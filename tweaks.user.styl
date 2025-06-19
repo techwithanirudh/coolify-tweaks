@@ -102,6 +102,13 @@
     transform: translateY(-2px);
   }
 
+  /* Light mode placeholder text for better contrast */
+  html:not(.dark) input.input::placeholder, 
+  html:not(.dark) textarea.input::placeholder {
+    color: #8E8C91 !important;
+    opacity: 0.8;
+  }
+
   /* =============================================================================
      1 ▸ GLOBAL RESET
   ============================================================================= */
@@ -296,7 +303,7 @@
     overflow: hidden;
   }
 
-  .badge-dashboard {
+  .badge-dashboard, .badge {
       // top: calc(var(--spacing)*0.5)!important;
       // right: calc(var(--spacing)*0.5)!important;
       width: calc(var(--spacing)*3.5);
@@ -401,6 +408,16 @@
   input.input:focus, textarea.input:focus, select.select:focus {
     border-color: var(--cfy-accent-light) !important;
     background: var(--cfy-card-container) !important;
+  }
+
+  /* Placeholder text styling */
+  input.input::placeholder, textarea.input::placeholder {
+    color: var(--cfy-muted) !important;
+    opacity: 0.7;
+  }
+
+  input.input:focus::placeholder, textarea.input:focus::placeholder {
+    opacity: 0.5;
   }
 
   input[type='checkbox'], input[type='radio'] {
