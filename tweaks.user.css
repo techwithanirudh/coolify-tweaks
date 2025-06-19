@@ -4,38 +4,52 @@
 @namespace    techwithanirudh
 @updateURL    https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
 @preprocessor stylus
-@description  Enhance Coolify’s UI with extra spacing, soft rounded corners, subtle shadows, and token-based colour overrides.
+@description  Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
 @include      *://coolify.local/*
 @license      MIT
 ==/UserStyle== */
 @-moz-document url-prefix("*://coolify.local/*"), url-prefix("https://app.coolify.io") {
   :root,
   html[data-theme="dark"] {
-/* ---------- Neutral ramp ---------- */
+/* Neutrals */
     --color-base: #1f1c23;
-/* body / main canvas                 */
     --color-coolgray-100: #26252b;
-/* inputs, subtle borders             */
     --color-coolgray-200: #2a292e;
-/* section / grid container           */
     --color-coolgray-300: #353239;
-/* cards & list rows                  */
     --color-coolgray-400: #3d3a40;
-/* raised states / hovers             */
     --color-coolgray-500: #45424a;
     --color-coolgray-600: #403d44;
     --color-coolgray-700: #1a191f;
-/* sidebar background                 */
+/* sidebar bg */
     --color-coolgray-800: #151419;
     --color-coolgray-900: #101014;
-/* ---------- Brand accent ---------- */
+/* Accent */
     --color-coollabs: #7349f3;
-/* nav highlight / primary buttons    */
-    --color-coollabs-100: color-mix(in srgb, #7349F3 75%, #fff);
-/* ---------- Semantic states (unchanged) ---------- */
+    --color-coollabs-100: color-mix(in srgb, #7349F3 75%, #FFFFFF);
+/* States */
     --color-success: #23ff1f;
     --color-warning: #fcd452;
     --color-error: #ff1f1c;
+  }
+  html[data-theme="light"],
+  :root:not([data-theme="dark"]) {
+    --color-base: #fff;
+    --color-coolgray-100: #f6f7f9;
+    --color-coolgray-200: #eceef2;
+    --color-coolgray-300: #e3e5ea;
+    --color-coolgray-400: #d8dae0;
+    --color-coolgray-500: #cfd1d8;
+    --color-coolgray-600: #c6c8d0;
+    --color-coolgray-700: #f4f5f7;
+/* sidebar bg */
+    --color-coolgray-800: #edeef1;
+    --color-coolgray-900: #e6e7eb;
+    --color-coollabs: #4c3495;
+/* same purple, feels richer on light */
+    --color-coollabs-100: color-mix(in srgb, #4C3495 85%, #FFFFFF);
+    --color-success: #2aaa52;
+    --color-warning: #e0b842;
+    --color-error: #d63b3b;
   }
   :root {
     --cfy-accent: var(--color-coollabs);
@@ -47,13 +61,26 @@
     --cfy-card: var(--color-coolgray-300);
     --cfy-text: #fcfafc;
     --cfy-muted: #8e8c91;
-/* layout + effects */
+/* layout / fx */
     --cfy-radius: 12px;
     --cfy-blur: 12px;
     --cfy-shadow: 0 4px 20px rgba(0,0,0,0.25);
     --cfy-sidebar-w: 230px;
     font-size: 15px;
     color-scheme: dark;
+  }
+  html[data-theme="light"],
+  :root:not([data-theme="dark"]) {
+    --cfy-accent: var(--color-coollabs);
+    --cfy-accent-light: var(--color-coollabs-100);
+    --cfy-sidebar-bg: var(--color-coolgray-700);
+    --cfy-secondary: var(--color-coolgray-100);
+    --cfy-content-bg: var(--color-base);
+    --cfy-card-container: var(--color-coolgray-200);
+    --cfy-card: var(--color-coolgray-300);
+    --cfy-text: #1f1c23;
+    --cfy-muted: #6e6b75;
+    color-scheme: light;
   }
   body,
   .box,
@@ -128,7 +155,7 @@
 @media (max-width: 1023px) {
     aside[class*="sidebar"] {
       position: fixed;
-      inset: 0 0 0 0;
+      inset: 0;
       transform: translateX(calc(-1 * var(--cfy-sidebar-w)));
       z-index: 60;
       transition: transform 0.25s;
@@ -441,3 +468,4 @@
     }
 }
 }
+/* end @-moz-document */
