@@ -9,7 +9,8 @@ Various tweaks for Coolify.
 [[https://github.com/techwithanirudh/coolify-tweaks/network][https://img.shields.io/github/forks/userstyles-world/tweaks.svg?color=007ec6&style=flat]]
 [[https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl][https://img.shields.io/badge/Install%20directly%20with-Stylus-116b59.svg?longCache=true&style=flat]]
 
-#+HTML: <img src="https://user-images.githubusercontent.com/18245694/111090605-9cc4ce00-8530-11eb-8716-2c1df40f32e1.png" width="100%"/>
+
+#+HTML: <img src="https://github.com/user-attachments/assets/fc6ec1d1-8004-4b64-9068-7799affa0e72" width="100%"/>
 #+HTML: </div>
 
 ** About
