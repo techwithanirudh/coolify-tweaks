@@ -74,8 +74,8 @@
     --cfy-card: var(--color-coolgray-300);
     --cfy-text: var(--color-text-primary);
     --cfy-muted: var(--color-text-muted); /* layout / fx */
-    --cfy-radius: 12px;
-    --cfy-blur: 12px;
+    --cfy-radius: 14px;
+    --cfy-blur: 14px;
     --cfy-shadow: 0 4px 20px var(--color-shadow-main);
     --cfy-sidebar-w: 260px;
     color-scheme: light;
@@ -85,45 +85,6 @@
     --cfy-text: var(--color-text-primary);
     --cfy-muted: var(--color-text-muted);
     color-scheme: dark;
-  }
-
-  /* Light mode specific overrides for better contrast */
-  html:not(.dark) {
-    --cfy-sidebar-bg: var(--color-coolgray-100);
-    --cfy-card-container: var(--color-coolgray-200);
-    --cfy-card: var(--color-base);
-    --cfy-text: var(--color-text-primary);
-    --cfy-muted: var(--color-text-muted);
-  }
-
-  /* Ensure proper text colors in light mode for buttons */
-  html:not(.dark) button.button, html:not(.dark) .button {
-    color: var(--color-base) !important;
-  }
-
-  html:not(.dark) button.button:hover, html:not(.dark) .button:hover {
-    color: var(--cfy-text) !important;
-  }
-
-  /* Light mode menu item overrides */
-  html:not(.dark) .menu-item:hover, html:not(.dark) .menu-item-active {
-    background: var(--cfy-accent) !important;
-    color: var(--color-base) !important;
-  }
-
-  /* Light mode card hover effects */
-  html:not(.dark) .box:hover {
-    border-color: var(--cfy-accent);
-    background: var(--cfy-card-container);
-    box-shadow: 0 8px 24px var(--color-shadow-light);
-    transform: translateY(-2px);
-  }
-
-  /* Light mode placeholder text for better contrast */
-  html:not(.dark) input.input::placeholder, 
-  html:not(.dark) textarea.input::placeholder {
-    color: var(--color-placeholder) !important;
-    opacity: 0.8;
   }
 
   /* =============================================================================
@@ -410,19 +371,22 @@
     border: 1px solid var(--color-coolgray-400) !important;
     border-radius: var(--cfy-radius);
     background: var(--cfy-accent);
-    color: var(--color-base) !important;
+    color: var(--color-text) !important;
     font-weight: 600;
     transition: background 0.18s;
   }
 
+  /* Ensure proper text colors in light mode for buttons */
+  html:not(.dark) button.button, html:not(.dark) .button {
+    color: var(--color-base) !important;
+  }
+
   button.button:hover, .button:hover {
     background: var(--cfy-accent-light);
-    color: var(--cfy-text) !important;
   }
 
   button.secondary, .secondary {
     background: var(--cfy-secondary) !important;
-    color: var(--cfy-text) !important;
   }
 
   button.secondary:hover {
