@@ -24,7 +24,7 @@
 /* Layout & effects */
     --cfy-radius: 12px;
     --cfy-blur: 12px;
-    --cfy-shadow: 0 4px 20px #000;
+    --cfy-shadow: 0 4px 20px rgba(0,0,0,0.25);
     --cfy-sidebar-w: 230px;
 /* Base font sizing and color scheme */
     font-size: 15px;
