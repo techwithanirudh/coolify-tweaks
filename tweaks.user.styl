@@ -31,7 +31,7 @@
         /* Layout & effects */
         --cfy-radius: 12px;
         --cfy-blur: 12px;
-        --cfy-shadow: 0 4px 20px rgb(0 0 0 /.25);
+        --cfy-shadow: 0 4px 20px rgba(0, 0, 0, .25);
         --cfy-sidebar-w: 230px;
 
         /* Base font sizing and color scheme */
@@ -360,7 +360,7 @@
     /* Toasts backdrop & border */
     ul[x-data] li>span {
         backdrop-filter: blur(var(--cfy-blur));
-        background: hsl(0 0% 100% /.05) !important;
+        background: hsla(0, 0%, 100%, 0.05) !important;
         border: 1px solid #ffffff18 !important;
         font-family: "Inter", sans-serif;
     }
