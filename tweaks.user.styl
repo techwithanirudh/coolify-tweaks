@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         Coolify Enhanced UI (light + dark via .dark)
 @namespace    techwithanirudh
-@version      1.5
+@version      1.6
 @preprocessor stylus
 @include      *://coolify.local/* https://app.coolify.io/*
 @updateURL    https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
@@ -28,21 +28,27 @@
       border-radius 4px
 
   /* ───────── 1.  GLOBAL TOKENS ───────── */
-  accent        = #4C3495
-  radius        = 12px
-  blurAmt       = 12px
-  sidebarW      = 230px
+  accent              = #4C3495
+  radius              = 12px
+  blurAmt             = 12px
+  sidebarW            = 230px
 
-  /* shared colors so both themes FEEL identical  */
-  white100      = #ffffff
-  white90       = #f5f5f7
-  white80       = #fafafa
-  white70       = #f3f3f4
-  black100      = #1a1a1f
-  grayMutedL    = #6c6a70
-  grayMutedD    = #8E8C91
-  grayDarker    = #26252B
-  grayDarkest   = #1F1C23
+  /* Colours that drive BOTH themes so they keep the same visual weight */
+  white100            = #ffffff
+  white90             = #f5f5f7
+  white80             = #fafafa
+  white70             = #f3f3f4
+  black100            = #1a1a1f
+  grayMutedL          = #6c6a70
+  grayMutedD          = #8E8C91
+  grayDarker          = #26252B
+  grayDarkest         = #1F1C23
+
+  /* Scrollbar tones pre‑computed here so Stylus can safely darken/lighten */
+  scrollbarLight      = #c2c2c2
+  scrollbarLightHover = darken(scrollbarLight, 15%) /* #a8a8a8 */
+  scrollbarDark       = #444444
+  scrollbarDarkHover  = lighten(scrollbarDark, 15%) /* #666666 */
 
   /* ───────── 2.  LIGHT THEME (default) ───────── */
   :root
@@ -69,7 +75,8 @@
     /* interactive */
     --cfy-input-bg             white100
     --cfy-input-bg-focus       white90
-    --cfy-scrollbar            #c2c2c2
+    --cfy-scrollbar            scrollbarLight
+    --cfy-scrollbar-hover      scrollbarLightHover
 
     /* layout */
     --cfy-radius               radius
@@ -98,7 +105,8 @@
 
     --cfy-input-bg             #202024
     --cfy-input-bg-focus       #26262b
-    --cfy-scrollbar            #444
+    --cfy-scrollbar            scrollbarDark
+    --cfy-scrollbar-hover      scrollbarDarkHover
 
     color-scheme               dark
 
@@ -242,102 +250,4 @@
 
   [role="row"]:not([dashed])
     background var(--cfy-card) !important
-    border-radius var(--cfy-radius) !important
-    padding .6rem .8rem
-
-  /* ───────── 8.  TYPOGRAPHY ───────── */
-  headingSizes = 2.1rem 1.5rem 1.25rem 1.1rem
-  for size, i in headingSizes
-    lvl = i + 1
-    h{lvl}
-      font-weight 700
-      font-size   size
-      line-height 1.3
-      font-family "Inter", "SF Pro Display", sans-serif
-      color var(--cfy-text)
-
-  .subtitle
-    font-size .95rem
-    color var(--cfy-muted)
-
-  .box-title
-    font-size 1.05rem
-    font-weight 600
-
-  .box-description
-    color var(--cfy-muted)
-
-  /* ───────── 9.  BUTTONS ───────── */
-  button.button,
-  .button
-    background var(--cfy-accent)
-    color var(--cfy-text) !important
-    font-weight 600
-    padding .75rem 1rem
-    border 1px solid var(--cfy-border) !important
-    border-radius var(--cfy-radius)
-    transition background .18s
-    &:hover
-      background var(--cfy-accent-light)
-      color var(--cfy-text) !important
-
-  button.secondary,
-  .secondary
-    background var(--cfy-secondary) !important
-    color var(--cfy-text) !important
-    &:hover
-      background var(--cfy-card-container) !important
-
-  /* ───────── 10. FORM INPUTS ───────── */
-  input.input,
-  textarea.input,
-  select.select
-    background var(--cfy-input-bg) !important
-    border 1px solid var(--cfy-border) !important
-    color var(--cfy-text)
-    padding .75rem 1rem
-    border-radius var(--cfy-radius) !important
-    transition border-color .15s, background .15s
-    &:focus
-      border-color var(--cfy-accent-light) !important
-      background var(--cfy-input-bg-focus) !important
-
-  /* ───────── 11. TOASTS ───────── */
-  ul[x-data] li > span
-    backdrop-filter blur(var(--cfy-blur))
-    background hsla(0,0%,100%,.05) !important
-    border 1px solid var(--cfy-border) !important
-    font-family "Inter", sans-serif
-
-  @keyframes wiggle
-    0%,100%
-      transform rotate(0)
-    25%
-      transform rotate(-3deg)
-    75%
-      transform rotate(3deg)
-
-  .toast-no-description svg[fill="currentColor"]
-    animation wiggle .6s ease
-
-  [x-show="popups.sponsorship"]
-    display none !important
-
-  /* ───────── 12. SCROLLBAR & FOCUS ───────── */
-  ::-webkit-scrollbar
-    width 8px
-    height 8px
-
-  ::-webkit-scrollbar-thumb
-    background var(--cfy-scrollbar)
-    border-radius 4px
-    &:hover
-      background darken(var(--cfy-scrollbar), 15%)
-
-  button:focus-visible,
-  a:focus-visible,
-  input:focus-visible,
-  select:focus-visible,
-  textarea:focus-visible
-    outline 2px solid var(--cfy-accent) !important
-    outline-offset 2px
+    border-radius var(--cfy-radius) !
