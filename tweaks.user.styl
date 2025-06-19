@@ -18,37 +18,38 @@
 ============================================================================= */
 :root,
 html[data-theme="dark"] {
-    /* Neutral ladder tuned to your values */
-    --color-base           : #1F1C23;   /* body / main canvas               */
-    --color-coolgray-100   : #26252B;   /* secondary surfaces / inputs      */
-    --color-coolgray-200   : #2A292E;   /* CONTAINER bg (grids, sections)   */
-    --color-coolgray-300   : #353239;   /* CARD bg                          */
-    --color-coolgray-400   : #3D3A40;   /* raised states, hovers            */
-    --color-coolgray-500   : #45424A;
-    --color-coolgray-600   : #403D44;
-    --color-coolgray-700   : #1A191F;   /* SIDEBAR bg                       */
-    --color-coolgray-800   : #151419;
-    --color-coolgray-900   : #101014;
+    /* ---------- Neutral ramp ---------- */
+    --color-base          : #1F1C23;   /* body / main canvas                 */
+    --color-coolgray-100  : #26252B;   /* inputs, subtle borders             */
+    --color-coolgray-200  : #2A292E;   /* section / grid container           */
+    --color-coolgray-300  : #353239;   /* cards & list rows                  */
+    --color-coolgray-400  : #3D3A40;   /* raised states / hovers             */
+    --color-coolgray-500  : #45424A;
+    --color-coolgray-600  : #403D44;
+    --color-coolgray-700  : #1A191F;   /* sidebar background                 */
+    --color-coolgray-800  : #151419;
+    --color-coolgray-900  : #101014;
 
-    /* Brand accent (your purple) */
-    --color-coollabs       : #4C3495;
-    --color-coollabs-100   : unquote('color-mix(in srgb, #4C3495 75%, #fff)');
+    /* ---------- Brand accent ---------- */
+    --color-coollabs      : #7349F3;   /* nav highlight / primary buttons    */
+    --color-coollabs-100  : unquote('color-mix(in srgb, #7349F3 75%, #fff)');
 
-    /* Semantic states (unchanged) */
-    --color-success        : #16a34a;
-    --color-warning        : #fcd452;
-    --color-error          : #dc2626;
+    /* ---------- Semantic states (unchanged) ---------- */
+    --color-success       : #23FF1F;
+    --color-warning       : #FCD452;
+    --color-error         : #FF1F1C;
 }
+
 
 /* Friendly aliases so you don’t have to re-hunt variable names later */
 :root {
-    --cfy-accent          : var(--color-coollabs);        /* #4C3495  */
-    --cfy-accent-light    : var(--color-coollabs-100);    /* tint     */
-    --cfy-sidebar-bg      : var(--color-coolgray-700);    /* #1A191F  */
-    --cfy-secondary       : var(--color-coolgray-100);    /* #26252B  */
-    --cfy-content-bg      : var(--color-base);            /* #1F1C23  */
-    --cfy-card-container  : var(--color-coolgray-200);    /* #2A292E  */
-    --cfy-card            : var(--color-coolgray-300);    /* #353239  */
+    --cfy-accent          : var(--color-coollabs);
+    --cfy-accent-light    : var(--color-coollabs-100);
+    --cfy-sidebar-bg      : var(--color-coolgray-700);
+    --cfy-secondary       : var(--color-coolgray-100);
+    --cfy-content-bg      : var(--color-base);
+    --cfy-card-container  : var(--color-coolgray-200);
+    --cfy-card            : var(--color-coolgray-300);
     --cfy-text            : #FCFAFC;
     --cfy-muted           : #8E8C91;
 
@@ -108,6 +109,10 @@ nav[class*="dark:border-coolgray-200"] > ul {
     padding-inline: calc(var(--spacing)*2);
 }
 
+nav[class*="dark:border-coolgray-200"] > div[class*="px-2 pt-2 pb-7"] {
+    padding-block: calc(var(--spacing)*4)!important;
+}
+
 aside::-webkit-scrollbar {
     width : 8px;
 }
@@ -133,7 +138,7 @@ nav > ul > li > ul > li {
 
 .menu-item:hover,
 .menu-item-active {
-    background : var(--cfy-accent-light);
+    background: var(--cfy-card-container) !important;
     color      : #fff !important;
 }
 
@@ -142,6 +147,7 @@ nav > ul > li > ul > li {
     height       : 20px;
     stroke-width : 1.6;
     flex-shrink  : 0;
+    fill         : var(--color-coolgray-600)!important;
 }
 
 /* Mobile slide-in */
@@ -231,7 +237,7 @@ div.grid[class*="cols"] {
     padding      : .65rem .75rem;
     background   : var(--cfy-card) !important;
     border       : 1px solid transparent;
-    box-shadow   : var(--cfy-shadow) !important;
+    // box-shadow   : var(--cfy-shadow) !important;
     transition   : transform .15s, box-shadow .2s, background .18s, border-color .18s;
     border-radius: var(--cfy-radius) !important;
 }
@@ -275,7 +281,7 @@ button.button,
     background    : var(--cfy-accent);
     color         : #fafafa !important;
     font-weight   : 600;
-    padding       : .75rem 1rem;
+    padding       : .55rem 1rem;
     border        : 1px solid #ffffff1a !important;
     border-radius : var(--cfy-radius);
     transition    : background .18s;
@@ -304,7 +310,7 @@ select.select {
     background   : #202024 !important;
     border       : 1px solid #ffffff1a !important;
     color        : var(--cfy-text);
-    padding      : .75rem 1rem;
+    padding      : .55rem 1rem;
     border-radius: var(--cfy-radius) !important;
     transition   : border-color .15s, background .15s;
 }
@@ -406,10 +412,26 @@ table {
 
 img[class*="w-[4.5rem] aspect-square h-[4.5rem]"] {
     border-radius: var(--cfy-radius) !important;
+    filter: none!important;
+    opacity: 1!important;
 }
 
 /* Hide light/theme buttons (site doesn’t support) */
 button[\@click="setTheme('light')"],
 button[\@click="setTheme('system')"] { display: none; }
+
+
+main > div[class*="p-4 sm:px-6 lg:px-8 lg:py-6"] {
+    margin: auto;
+    max-width: 80% !important;
+    padding-block: calc(var(--spacing)*18) !important;
+}
+
+div[class*="p-4 border dark:border-coolgray-300"] {
+    background   : var(--cfy-card-container) !important;
+    border-radius: var(--cfy-radius) !important;
+    padding      : calc(var(--spacing)*4) calc(var(--spacing)*6);
+    margin-top   : calc(var(--spacing)*4);
+}
 
 }

@@ -11,46 +11,40 @@
 @-moz-document url-prefix("*://coolify.local/*"), url-prefix("https://app.coolify.io") {
   :root,
   html[data-theme="dark"] {
-/* Neutral ladder tuned to your values */
+/* ---------- Neutral ramp ---------- */
     --color-base: #1f1c23;
-/* body / main canvas               */
+/* body / main canvas                 */
     --color-coolgray-100: #26252b;
-/* secondary surfaces / inputs      */
+/* inputs, subtle borders             */
     --color-coolgray-200: #2a292e;
-/* CONTAINER bg (grids, sections)   */
+/* section / grid container           */
     --color-coolgray-300: #353239;
-/* CARD bg                          */
+/* cards & list rows                  */
     --color-coolgray-400: #3d3a40;
-/* raised states, hovers            */
+/* raised states / hovers             */
     --color-coolgray-500: #45424a;
     --color-coolgray-600: #403d44;
     --color-coolgray-700: #1a191f;
-/* SIDEBAR bg                       */
+/* sidebar background                 */
     --color-coolgray-800: #151419;
     --color-coolgray-900: #101014;
-/* Brand accent (your purple) */
-    --color-coollabs: #4c3495;
-    --color-coollabs-100: color-mix(in srgb, #4C3495 75%, #fff);
-/* Semantic states (unchanged) */
-    --color-success: #16a34a;
+/* ---------- Brand accent ---------- */
+    --color-coollabs: #7349f3;
+/* nav highlight / primary buttons    */
+    --color-coollabs-100: color-mix(in srgb, #7349F3 75%, #fff);
+/* ---------- Semantic states (unchanged) ---------- */
+    --color-success: #23ff1f;
     --color-warning: #fcd452;
-    --color-error: #dc2626;
+    --color-error: #ff1f1c;
   }
   :root {
     --cfy-accent: var(--color-coollabs);
-/* #4C3495  */
     --cfy-accent-light: var(--color-coollabs-100);
-/* tint     */
     --cfy-sidebar-bg: var(--color-coolgray-700);
-/* #1A191F  */
     --cfy-secondary: var(--color-coolgray-100);
-/* #26252B  */
     --cfy-content-bg: var(--color-base);
-/* #1F1C23  */
     --cfy-card-container: var(--color-coolgray-200);
-/* #2A292E  */
     --cfy-card: var(--color-coolgray-300);
-/* #353239  */
     --cfy-text: #fcfafc;
     --cfy-muted: #8e8c91;
 /* layout + effects */
@@ -93,6 +87,12 @@
     scrollbar-width: thin;
     scrollbar-color: var(--cfy-accent) transparent;
   }
+  nav[class*="dark:border-coolgray-200"] > ul {
+    padding-inline: calc(var(--spacing) * 2);
+  }
+  nav[class*="dark:border-coolgray-200"] > div[class*="px-2 pt-2 pb-7"] {
+    padding-block: calc(var(--spacing) * 4) !important;
+  }
   aside::-webkit-scrollbar {
     width: 8px;
   }
@@ -115,7 +115,7 @@
   }
   .menu-item:hover,
   .menu-item-active {
-    background: var(--cfy-accent-light);
+    background: var(--cfy-card-container) !important;
     color: #fff !important;
   }
   .menu-item svg {
@@ -123,6 +123,7 @@
     height: 20px;
     stroke-width: 1.6;
     flex-shrink: 0;
+    fill: var(--color-coolgray-600) !important;
   }
 @media (max-width: 1023px) {
     aside[class*="sidebar"] {
@@ -207,7 +208,6 @@
     padding: 0.65rem 0.75rem;
     background: var(--cfy-card) !important;
     border: 1px solid transparent;
-    box-shadow: var(--cfy-shadow) !important;
     transition: transform 0.15s, box-shadow 0.2s, background 0.18s, border-color 0.18s;
     border-radius: var(--cfy-radius) !important;
   }
@@ -260,7 +260,7 @@
     background: var(--cfy-accent);
     color: #fafafa !important;
     font-weight: 600;
-    padding: 0.75rem 1rem;
+    padding: 0.55rem 1rem;
     border: 1px solid rgba(255,255,255,0.102) !important;
     border-radius: var(--cfy-radius);
     transition: background 0.18s;
@@ -284,7 +284,7 @@
     background: #202024 !important;
     border: 1px solid rgba(255,255,255,0.102) !important;
     color: var(--cfy-text);
-    padding: 0.75rem 1rem;
+    padding: 0.55rem 1rem;
     border-radius: var(--cfy-radius) !important;
     transition: border-color 0.15s, background 0.15s;
   }
@@ -378,10 +378,23 @@
   }
   img[class*="w-[4.5rem] aspect-square h-[4.5rem]"] {
     border-radius: var(--cfy-radius) !important;
+    filter: none !important;
+    opacity: 1 !important;
   }
   button[@click="setTheme('light')"],
   button[@click="setTheme('system')"] {
     display: none;
+  }
+  main > div[class*="p-4 sm:px-6 lg:px-8 lg:py-6"] {
+    margin: auto;
+    max-width: 80% !important;
+    padding-block: calc(var(--spacing) * 18) !important;
+  }
+  div[class*="p-4 border dark:border-coolgray-300"] {
+    background: var(--cfy-card-container) !important;
+    border-radius: var(--cfy-radius) !important;
+    padding: calc(var(--spacing) * 4) calc(var(--spacing) * 6);
+    margin-top: calc(var(--spacing) * 4);
   }
 @-moz-keyframes wiggle {
     0%, 100% {
