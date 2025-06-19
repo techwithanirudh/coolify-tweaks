@@ -7,7 +7,7 @@
 @description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
 @license MIT
 ==/UserStyle== */
-@-moz-document url-prefix("*://coolify.local/*"), url-prefix("https://app.coolify.io") {
+@-moz-document url-prefix("*://coolify.local/*"), url-prefix("https://app.coolify.io/*") {
   /* =============================================================================
      0 ▸ COLOUR TOKEN OVERRIDES
      ---------------------------------------------------------------------------
@@ -204,8 +204,8 @@
   .navbar-main nav {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
     padding-top: 0px;
+    gap: 0.8rem;
   }
 
   .navbar-main nav::-webkit-scrollbar {
@@ -445,7 +445,10 @@
     border-radius: var(--cfy-radius) !important;
   }
 
-  .flex.gap-2>h1, .flex.gap-2>h2, .flex.gap-2>h3, .flex.gap-2>h4, .flex.items-center.gap-4>h1, .flex.items-center.gap-4>h2, .flex.items-center.gap-4>h3, .flex.items-center.gap-4>h4 {
+  .flex.gap-2,
+  .flex.items-center.gap-4,
+  .flex.flex-col.gap-4.lg\:flex-row {
+  > h1, > h2, > h3, > h4 {
     margin-right: auto;
   }
 
@@ -465,7 +468,7 @@
   }
 
   /* force some widths */
-  div[class='w-48'], div[class*='w-64'], div[class='w-32'], div[class*='w-96'] {
+  div[class='w-48'], div[class*='w-64'], div[class='w-32'], div[class='w-96'] {
     width: 100% !important;
   }
 
@@ -510,6 +513,6 @@
     border-radius: var(--cfy-radius) !important;
     background: var(--cfy-card-container) !important;
   }
-} // coolify.local/*"), url-prefix("https://app.coolify.io") {
+} // coolify.local/*"), url-prefix("https://app.coolify.io/*") {
 
 /* end @-moz-document */
