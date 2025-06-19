@@ -7,7 +7,6 @@
 @description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
 @license MIT
 ==/UserStyle== */
-
 @-moz-document url-prefix("*://coolify.local/*"), url-prefix("https://app.coolify.io") {
   /* =============================================================================
      0 ▸ COLOUR TOKEN OVERRIDES
@@ -212,22 +211,21 @@
     display: none;
   }
 
-  .navbar-main nav button {
-    padding: 0.55rem 1.25rem;
+  .navbar-main nav a {
+    padding: 0.3rem;
     color: var(--cfy-muted);
+    border-radius: 10px!important;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.18s, color 0.18s;
-    all: unset;
   }
 
-  .navbar-main nav button:hover {
-    background: var(--cfy-accent-light);
-    color: #111;
+  .navbar-main nav a:hover {
+    color: var(--cfy-text) !important;
   }
 
-  .navbar-main nav a.active button, .navbar-main nav a[aria-current='page'] button {
-    background: var(--cfy-accent);
+  .navbar-main nav a[class*="dark:text-white"], .navbar-main nav a[aria-current='page'] {
+    color: var(--cfy-text) !important;
     box-shadow: inset 0 0 0 2px var(--cfy-accent-light);
     color: #111;
   }
@@ -245,6 +243,20 @@
     padding: 0.75rem 0.85rem !important;
     border-radius: var(--cfy-radius) !important;
     background: var(--cfy-card-container) !important;
+  }
+
+  @media screen and (min-width: 1920px) {
+    section>h2+div, section>h3+div, div[data-testid='resources-grid'], div.grid[class*='cols'] {
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+  }
+
+  section:has(> div > div:only-child) > div > div:only-child {
+    padding: 1.25rem !important;
+    border-radius: var(--cfy-radius) !important;
+    background: var(--cfy-card-container) !important;
+    color: var(--cfy-muted);
+    text-align: center;
   }
 
   .grid, [class*='grid-cols'] {
@@ -357,6 +369,18 @@
   input.input:focus, textarea.input:focus, select.select:focus {
     border-color: var(--cfy-accent-light) !important;
     background: #26262b !important;
+  }
+
+  input[type='checkbox'], input[type='radio'] {
+    padding: 0.7rem;
+    border-radius: 4px !important;
+    background-color: var(--cfy-card) !important;
+    transition: background 0.18s;
+  }
+
+  label {
+    margin-bottom: 0.75rem;
+    font-weight: 600;
   }
 
   /* =============================================================================
@@ -485,6 +509,6 @@
     border-radius: var(--cfy-radius) !important;
     background: var(--cfy-card-container) !important;
   }
-} 
+} // coolify.local/*"), url-prefix("https://app.coolify.io") {
 
 /* end @-moz-document */
