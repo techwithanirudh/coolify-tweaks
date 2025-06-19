@@ -39,6 +39,10 @@ This userstyle enhances Coolify’s UI by applying opinionated tweaks—spacing,
    ```
 
    Replace the IP and port above with your Coolify instance’s address, then click **Save**.
+  
+  4. **Experiencing Style Issues?**
+    If you notice style changes are slow, laggy, or not applying immediately, enable Instant Mode in Stylus. This forces styles to inject instantly on page load, eliminating delays.  
+    <img alt="Stylus Instant Mode" src="/.github/assets/stylus-instant-mode.png" width="50%" />
 
 ## Contributing
 
