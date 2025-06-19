@@ -52,9 +52,10 @@
     --color-coolgray-900: #101014; /* Accent */
     --color-coollabs: #7349F3;
     --color-coollabs-100: unquote('color-mix(in srgb, #7349F3 75%, #FFFFFF)'); /* States */
-    --color-success: #23FF1F;
+
+    --color-success: #4ad4b0;
     --color-warning: #FCD452;
-    --color-error: #FF1F1C;
+    --color-error: #45282f;
     
     /* semantic colors for dark mode */
     --color-text-primary: #FCFAFC;
@@ -76,7 +77,7 @@
     --cfy-radius: 12px;
     --cfy-blur: 12px;
     --cfy-shadow: 0 4px 20px var(--color-shadow-main);
-    --cfy-sidebar-w: 230px;
+    --cfy-sidebar-w: 260px;
     color-scheme: light;
   }
 
@@ -298,6 +299,25 @@
     }
   }
 
+  div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]) {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+
+  div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]) .box {
+    height: 150px;
+  }
+
+  div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]) .box > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  div.grid[class*='cols']:has([href*="/server/"]) {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+
   section:has(> div > div:only-child) > div > div:only-child {
     padding: 1.25rem !important;
     border-radius: var(--cfy-radius) !important;
@@ -312,7 +332,7 @@
 
   .box, .box-without-bg {
     padding: 0.65rem 0.75rem;
-    border: 1px solid transparent;
+    border: 1px solid var(--color-coolgray-400) !important;
     border-radius: var(--cfy-radius) !important;
     background: var(--cfy-card) !important;
     transition: transform 0.15s, box-shadow 0.2s, background 0.18s, border-color 0.18s;
@@ -558,7 +578,7 @@
   /* Optional: tighter max-width for wide desktops */
   main > div[class*='p-4 sm:px-6 lg:px-8 lg:py-6'] {
     margin: auto;
-    max-width: 80% !important;
+    max-width: 1280px !important;
     padding-block: calc(var(--spacing) * 18) !important;
   }
 
