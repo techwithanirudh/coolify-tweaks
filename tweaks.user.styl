@@ -25,6 +25,17 @@
     --color-success: #2AAA52;
     --color-warning: #E0B842;
     --color-error: #D63B3B;
+    
+    /* semantic colors for light mode */
+    --color-text-primary: #1F1C23;
+    --color-text-muted: #6E6B75;
+    --color-placeholder: #8E8C91;
+
+    /* shadows and overlays */
+    --color-overlay: rgba(0, 0, 0, 0.6);
+    --color-shadow-light: rgba(0, 0, 0, 0.15);
+    --color-shadow-dark: rgba(0, 0, 0, 0.35);
+    --color-shadow-main: rgba(0, 0, 0, 0.25);
   }
 
   /* Dark Scheme */
@@ -44,6 +55,11 @@
     --color-success: #23FF1F;
     --color-warning: #FCD452;
     --color-error: #FF1F1C;
+    
+    /* semantic colors for dark mode */
+    --color-text-primary: #FCFAFC;
+    --color-text-muted: #8E8C91;
+    --color-placeholder: #8E8C91;
   }
 
   :root {
@@ -55,18 +71,18 @@
     --cfy-content-bg: var(--color-base);
     --cfy-card-container: var(--color-coolgray-200);
     --cfy-card: var(--color-coolgray-300);
-    --cfy-text: #1F1C23;
-    --cfy-muted: #6E6B75; /* layout / fx */
+    --cfy-text: var(--color-text-primary);
+    --cfy-muted: var(--color-text-muted); /* layout / fx */
     --cfy-radius: 12px;
     --cfy-blur: 12px;
-    --cfy-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    --cfy-shadow: 0 4px 20px var(--color-shadow-main);
     --cfy-sidebar-w: 230px;
     color-scheme: light;
   }
 
   html.dark {
-    --cfy-text: #FCFAFC;
-    --cfy-muted: #8E8C91;
+    --cfy-text: var(--color-text-primary);
+    --cfy-muted: var(--color-text-muted);
     color-scheme: dark;
   }
 
@@ -75,37 +91,37 @@
     --cfy-sidebar-bg: var(--color-coolgray-100);
     --cfy-card-container: var(--color-coolgray-200);
     --cfy-card: var(--color-base);
-    --cfy-text: #1F1C23;
-    --cfy-muted: #6E6B75;
+    --cfy-text: var(--color-text-primary);
+    --cfy-muted: var(--color-text-muted);
   }
 
   /* Ensure proper text colors in light mode for buttons */
   html:not(.dark) button.button, html:not(.dark) .button {
-    color: #ffffff !important;
+    color: var(--color-base) !important;
   }
 
   html:not(.dark) button.button:hover, html:not(.dark) .button:hover {
-    color: #ffffff !important;
+    color: var(--cfy-text) !important;
   }
 
   /* Light mode menu item overrides */
   html:not(.dark) .menu-item:hover, html:not(.dark) .menu-item-active {
     background: var(--cfy-accent) !important;
-    color: #ffffff !important;
+    color: var(--color-base) !important;
   }
 
   /* Light mode card hover effects */
   html:not(.dark) .box:hover {
     border-color: var(--cfy-accent);
     background: var(--cfy-card-container);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 24px var(--color-shadow-light);
     transform: translateY(-2px);
   }
 
   /* Light mode placeholder text for better contrast */
   html:not(.dark) input.input::placeholder, 
   html:not(.dark) textarea.input::placeholder {
-    color: #8E8C91 !important;
+    color: var(--color-placeholder) !important;
     opacity: 0.8;
   }
 
@@ -204,7 +220,7 @@
     body.sidebar-open::after {
       position: fixed;
       z-index: 50;
-      background: rgba(0, 0, 0, 0.6);
+      background: var(--color-overlay);
       content: '';
       inset: 0;
     }
@@ -313,7 +329,7 @@
   .box:hover {
     border-color: var(--cfy-accent);
     background: unquote('color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%)');
-    box-shadow: 0 8px 24px rgb(0 0 0 / 0.35);
+    box-shadow: 0 8px 24px var(--color-shadow-dark);
     transform: translateY(-2px);
   }
 
@@ -374,14 +390,14 @@
     border: 1px solid var(--color-coolgray-400) !important;
     border-radius: var(--cfy-radius);
     background: var(--cfy-accent);
-    color: #fafafa !important;
+    color: var(--color-base) !important;
     font-weight: 600;
     transition: background 0.18s;
   }
 
   button.button:hover, .button:hover {
     background: var(--cfy-accent-light);
-    color: #111 !important;
+    color: var(--cfy-text) !important;
   }
 
   button.secondary, .secondary {
