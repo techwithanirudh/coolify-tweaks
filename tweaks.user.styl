@@ -70,6 +70,38 @@
     color-scheme: dark;
   }
 
+  /* Light mode specific overrides for better contrast */
+  html:not(.dark) {
+    --cfy-sidebar-bg: var(--color-coolgray-100);
+    --cfy-card-container: var(--color-coolgray-200);
+    --cfy-card: var(--color-base);
+    --cfy-text: #1F1C23;
+    --cfy-muted: #6E6B75;
+  }
+
+  /* Ensure proper text colors in light mode for buttons */
+  html:not(.dark) button.button, html:not(.dark) .button {
+    color: #ffffff !important;
+  }
+
+  html:not(.dark) button.button:hover, html:not(.dark) .button:hover {
+    color: #ffffff !important;
+  }
+
+  /* Light mode menu item overrides */
+  html:not(.dark) .menu-item:hover, html:not(.dark) .menu-item-active {
+    background: var(--cfy-accent) !important;
+    color: #ffffff !important;
+  }
+
+  /* Light mode card hover effects */
+  html:not(.dark) .box:hover {
+    border-color: var(--cfy-accent);
+    background: var(--cfy-card-container);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
   /* =============================================================================
      1 ▸ GLOBAL RESET
   ============================================================================= */
@@ -95,7 +127,7 @@
     overflow-x: hidden;
     overflow-y: auto !important;
     width: 100%;
-    border-right: 1px solid #ffffff10;
+    border-right: 1px solid var(--color-coolgray-400);
     background: var(--cfy-sidebar-bg) !important;
     backdrop-filter: blur(var(--cfy-blur));
     -webkit-backdrop-filter: blur(var(--cfy-blur));
@@ -137,7 +169,7 @@
 
   .menu-item:hover, .menu-item-active {
     background: var(--cfy-card-container) !important;
-    color: #FFFFFF !important;
+    color: var(--cfy-text) !important;
   }
 
   .menu-item svg {
@@ -165,7 +197,7 @@
     body.sidebar-open::after {
       position: fixed;
       z-index: 50;
-      background: #0009;
+      background: rgba(0, 0, 0, 0.6);
       content: '';
       inset: 0;
     }
@@ -186,7 +218,7 @@
     top: 0;
     z-index: 45;
     padding: 0.45rem 0.85rem;
-    border: 1px solid #ffffff10;
+    border: 1px solid var(--color-coolgray-400);
     border-radius: var(--cfy-radius) !important;
     background: var(--cfy-sidebar-bg);
     backdrop-filter: blur(var(--cfy-blur));
@@ -220,7 +252,6 @@
   .navbar-main nav a[class*='dark:text-white'], .navbar-main nav a[aria-current='page'] {
     box-shadow: inset 0 0 0 2px var(--cfy-accent-light);
     color: var(--cfy-text) !important;
-    color: #111;
   }
 
   .navbar-main .flex-1 {
@@ -280,7 +311,7 @@
   }
 
   [dashed], [class*='dashed'] {
-    border-color: #555 !important;
+    border-color: var(--cfy-muted) !important;
     border-radius: var(--cfy-radius) !important;
     padding-block: 2rem !important;
   }
@@ -333,7 +364,7 @@
   ============================================================================= */
   button.button, .button {
     padding: 0.55rem 1rem;
-    border: 1px solid #ffffff1a !important;
+    border: 1px solid var(--color-coolgray-400) !important;
     border-radius: var(--cfy-radius);
     background: var(--cfy-accent);
     color: #fafafa !important;
@@ -360,16 +391,16 @@
   ============================================================================= */
   input.input, textarea.input, select.select {
     padding: 0.55rem 1rem;
-    border: 1px solid #ffffff1a !important;
+    border: 1px solid var(--color-coolgray-400) !important;
     border-radius: var(--cfy-radius) !important;
-    background: #202024 !important;
+    background: var(--cfy-card) !important;
     color: var(--cfy-text);
     transition: border-color 0.15s, background 0.15s;
   }
 
   input.input:focus, textarea.input:focus, select.select:focus {
     border-color: var(--cfy-accent-light) !important;
-    background: #26262b !important;
+    background: var(--cfy-card-container) !important;
   }
 
   input[type='checkbox'], input[type='radio'] {
@@ -388,8 +419,8 @@
      8 ▸ TOASTS & MISC
   ============================================================================= */
   ul[x-data] li>span {
-    border: 1px solid #ffffff18 !important;
-    background: hsla(0, 0%, 100%, 0.05) !important;
+    border: 1px solid var(--color-coolgray-400) !important;
+    background: var(--cfy-card) !important;
     font-family: 'Inter', sans-serif;
     backdrop-filter: blur(var(--cfy-blur));
   }
@@ -427,11 +458,11 @@
 
   ::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background: #444;
+    background: var(--cfy-muted);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #666;
+    background: var(--cfy-text);
   }
 
   /* Focus ring */
