@@ -270,6 +270,14 @@
     border-radius: var(--cfy-radius) !important;
     background: var(--cfy-card) !important;
     transition: transform 0.15s, box-shadow 0.2s, background 0.18s, border-color 0.18s;
+    overflow: hidden;
+  }
+
+  .badge-dashboard {
+      // top: calc(var(--spacing)*0.5)!important;
+      // right: calc(var(--spacing)*0.5)!important;
+      width: calc(var(--spacing)*3.5);
+      height: calc(var(--spacing)*3.5);
   }
 
   .box:hover {
@@ -445,10 +453,7 @@
     border-radius: var(--cfy-radius) !important;
   }
 
-  .flex.gap-2,
-  .flex.items-center.gap-4,
-  .flex.flex-col.gap-4.lg\:flex-row 
-  > h1, > h2, > h3, > h4 {
+  :is(.flex.gap-2, .flex.items-center.gap-4, .flex.flex-col.gap-4.lg:\flex-row)> :is(h1, h2, h3, h4) {
     margin-right: auto;
   }
 
@@ -468,7 +473,7 @@
   }
 
   /* force some widths */
-  div[class='w-48'], div[class*='w-64'], div[class='w-32'], div[class='w-96'] {
+  div[class='w-48'], div[class*='w-64'], div[class='w-32'], div[class='pt-2 w-96'] {
     width: 100% !important;
   }
 
