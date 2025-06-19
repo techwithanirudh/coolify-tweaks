@@ -386,9 +386,11 @@
         animation: wiggle .6s ease;
     }
 
-    /* Hide the “Support us” popup entirely */
     [x-show="popups.sponsorship"] {
-        display: none !important;
+        border-radius: var(--cfy-radius) !important;
+        padding: 1.25rem !important;
+        background: var(--cfy-card-container) !important;
+        box-shadow: var(--cfy-shadow) !important;
     }
 
     /* Global scrollbar styling */
