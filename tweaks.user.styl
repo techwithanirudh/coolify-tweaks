@@ -1,60 +1,23 @@
 /* ==UserStyle==
-@name         Coolify Enhanced UI
+@name         Coolify Enhanced UI (light + dark via .dark)
 @namespace    techwithanirudh
-@version      1.3
+@version      1.4
 @preprocessor stylus
-@description  Extra spacing, rounded corners & subtle shadows for Coolify
 @include      *://coolify.local/* https://app.coolify.io/*
 @updateURL    https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
 @author       Anirudh Sriram
 @license      MIT
 ==/UserStyle== */
 
-/*  ↓↓↓  just one comma added after the first url-prefix()  */
+/* ONE @-moz-document with a comma between the two url-prefixes */
 @-moz-document url-prefix("*://coolify.local/"),
                url-prefix("https://app.coolify.io")
 
-  /* ───────────────── 1. DESIGN TOKENS ───────────────── */
-  accent          = #4C3495
-  accentLight     = mix(#fff, accent, 25%)
-  sidebarBG       = #1A191F
-  secondary       = #26252B
-  contentBG       = #1F1C23
-  cardContainer   = #2A292E
-  card            = #353239
-  cardHover       = mix(card, accent, 30%)
-  textCol         = #FCFAFC
-  mutedCol        = #8E8C91
-
-  radius          = 12px
-  blurAmt         = 12px
-  baseShadow      = 0 4px 20px rgba(0,0,0,.25)
-  sidebarW        = 230px
-
-  /* export as CSS variables */
-  :root
-    {--cfy-accent}           accent
-    {--cfy-accent-light}     accentLight
-    {--cfy-sidebar-bg}       sidebarBG
-    {--cfy-secondary}        secondary
-    {--cfy-content-bg}       contentBG
-    {--cfy-card-container}   cardContainer
-    {--cfy-card}             card
-    {--cfy-card-hover}       cardHover
-    {--cfy-text}             textCol
-    {--cfy-muted}            mutedCol
-    {--cfy-radius}           radius
-    {--cfy-blur}             blurAmt
-    {--cfy-shadow}           baseShadow
-    {--cfy-sidebar-w}        sidebarW
-    font-size 15px
-    color-scheme dark
-
-  /* ───────── mixins ───────── */
+  /* ───────── 0.  MIXINS ───────── */
   reset()
     border none !important
     box-shadow none !important
-    border-radius radius !important
+    border-radius var(--cfy-radius) !important
 
   scrollbar(w,c)
     &::-webkit-scrollbar
@@ -64,32 +27,72 @@
       background c
       border-radius 4px
 
-  /* global reset */
-  body, .box, .card, .menu-item, button, a, input, select, textarea
+  /* ───────── 1.  LIGHT-MODE TOKENS (DEFAULT) ───────── */
+  accent        = #4C3495
+  radius        = 12px
+  blurAmt       = 12px
+  sidebarW      = 230px
+
+  :root
+    --cfy-accent               accent
+    --cfy-accent-light         unquote('color-mix(in srgb, var(--cfy-accent) 75%, #000)')
+    --cfy-sidebar-bg           #ffffff
+    --cfy-secondary            #f5f5f7
+    --cfy-content-bg           #fafafa
+    --cfy-card-container       #f3f3f4
+    --cfy-card                  #ffffff
+    --cfy-card-hover           mix(#ffffff, accent, 8%)
+    --cfy-text                 #1a1a1f
+    --cfy-muted                #6c6a70
+    --cfy-radius               radius
+    --cfy-blur                 blurAmt
+    --cfy-shadow               0 4px 20px rgb(0 0 0 / .10)
+    --cfy-sidebar-w            sidebarW
+    color-scheme               light
+    font-size                  15px
+
+  /* ───────── 2.  DARK-MODE OVERRIDES (Tailwind adds .dark) ───────── */
+  html.dark :root
+    --cfy-sidebar-bg           #1A191F
+    --cfy-secondary            #26252B
+    --cfy-content-bg           #1F1C23
+    --cfy-card-container       #2A292E
+    --cfy-card                 #353239
+    --cfy-card-hover           unquote('color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%)')
+    --cfy-text                 #FCFAFC
+    --cfy-muted                #8E8C91
+    --cfy-accent-light         unquote('color-mix(in srgb, var(--cfy-accent) 25%, #000)')
+    --cfy-shadow               0 4px 20px rgb(0 0 0 / .25)
+    color-scheme               dark
+
+  /* ───────── 3.  GLOBAL RESET ───────── */
+  body,
+  .box, .card, .menu-item,
+  button, a, input, select, textarea
     reset()
 
   body, main
-    background contentBG !important
-    color textCol
+    background var(--cfy-content-bg) !important
+    color       var(--cfy-text)
 
-  /* sidebar */
+  /* ───────── 4.  SIDEBAR ───────── */
   [class*="lg:flex"][class*="lg:w-56"]
-    width sidebarW !important
+    width var(--cfy-sidebar-w) !important
 
   nav[class*="dark:border-coolgray-200"]
     width 100%
-    background sidebarBG !important
-    backdrop-filter blur(blurAmt)
-    -webkit-backdrop-filter blur(blurAmt)
+    background var(--cfy-sidebar-bg) !important
+    backdrop-filter blur(var(--cfy-blur))
+    -webkit-backdrop-filter blur(var(--cfy-blur))
     border-right 1px solid #ffffff10
     overflow-y auto !important
     overflow-x hidden
     scrollbar-width thin
-    scrollbar-color accent transparent
-    scrollbar(8px, accent)
+    scrollbar-color var(--cfy-accent) transparent
+    scrollbar(8px, var(--cfy-accent))
 
   nav > ul > li > ul > li
-    border-radius radius !important
+    border-radius var(--cfy-radius) !important
     overflow hidden
 
   .menu-item
@@ -98,14 +101,12 @@
     gap .6rem
     padding .55rem .9rem
     font-weight 500
-    color mutedCol
+    color var(--cfy-muted)
     transition background .18s, color .18s
-
     &:hover,
     &-active
-      background accentLight
+      background var(--cfy-accent-light)
       color #fff !important
-
     svg
       width 20px
       height 20px
@@ -116,10 +117,9 @@
     aside[class*="sidebar"]
       position fixed
       inset 0
-      transform translateX(-sidebarW)
+      transform translateX(calc(-1 * var(--cfy-sidebar-w)))
       z-index 60
       transition transform .25s ease
-
     body.sidebar-open
       aside
         transform none
@@ -132,57 +132,50 @@
 
   @media (min-width:1024px)
     main
-      padding-left sidebarW !important
+      padding-left var(--cfy-sidebar-w) !important
 
-  /* top sub-nav */
+  /* ───────── 5.  TOP NAV ───────── */
   .navbar-main
     position sticky
     top 0
     z-index 45
     padding .45rem .85rem
-    background sidebarBG
-    backdrop-filter blur(blurAmt)
-    -webkit-backdrop-filter blur(blurAmt)
+    background var(--cfy-sidebar-bg)
+    backdrop-filter blur(var(--cfy-blur))
+    -webkit-backdrop-filter blur(var(--cfy-blur))
     border 1px solid #ffffff10
-    border-radius radius !important
-
+    border-radius var(--cfy-radius) !important
     nav
       display flex
-      align-items center
       gap .8rem
-      padding-top 0 !important
       &::-webkit-scrollbar
         display none
-
       button
         all unset
         cursor pointer
         padding .55rem 1.25rem
         font-weight 600
-        color mutedCol
+        color var(--cfy-muted)
         transition background .18s, color .18s
-
         &:hover
-          background accentLight
+          background var(--cfy-accent-light)
           color #111
-
       a[aria-current="page"] button,
       a.active button
-        background accent
+        background var(--cfy-accent)
         color #111
-        box-shadow inset 0 0 0 2px accentLight
-
+        box-shadow inset 0 0 0 2px var(--cfy-accent-light)
     .flex-1
       flex 1 1 auto
 
-  /* containers & cards */
+  /* ───────── 6.  CARDS & GRIDS ───────── */
   section > h2 + div,
   section > h3 + div,
   div[data-testid="resources-grid"],
   div[class*="grid-cols"]
     padding .75rem .85rem !important
-    background cardContainer !important
-    border-radius radius !important
+    background var(--cfy-card-container) !important
+    border-radius var(--cfy-radius) !important
     overflow hidden
     margin-top .65rem
 
@@ -193,40 +186,37 @@
   .box,
   .box-without-bg
     padding .65rem .75rem
-    background card !important
+    background var(--cfy-card) !important
     border 1px solid transparent
-    box-shadow baseShadow !important
+    box-shadow var(--cfy-shadow) !important
     transition transform .15s, box-shadow .2s, background .18s, border-color .18s
-    border-radius radius !important
-
+    border-radius var(--cfy-radius) !important
     &:hover
       transform translateY(-2px)
-      box-shadow 0 8px 24px rgba(0,0,0,.35)
-      border-color accent
-      background cardHover
+      box-shadow 0 8px 24px rgb(0 0 0 / .35)
+      border-color var(--cfy-accent)
+      background var(--cfy-card-hover)
 
   [dashed],
   [class*="dashed"]
     padding-block 2rem !important
-    border-radius radius !important
+    border-radius var(--cfy-radius) !important
     border-color #555 !important
 
   [role="row"]:not([dashed])
-    background card !important
-    border-radius radius !important
+    background var(--cfy-card) !important
+    border-radius var(--cfy-radius) !important
     padding .6rem .8rem
 
-  /* ───────── 5. TYPOGRAPHY ───────── */
+  /* ───────── 7.  TYPOGRAPHY ───────── */
   headingSizes = 2.1rem 1.5rem 1.25rem 1.1rem
-
-  for size, i in headingSizes          // i = 0..3 -> h1..h4
-    lvl = i + 1
-    h{lvl}
+  for size, i in headingSizes
+    h{i+1}
       font-weight 700
       font-size   size
-      line-height 1.3                 // pick a sane ratio
+      line-height 1.3
       font-family "Inter", "SF Pro Display", sans-serif
-      color textCol
+      color var(--cfy-text)
 
   .subtitle
     font-size .95rem
@@ -239,60 +229,55 @@
   .box-description
     color mutedCol
 
-  /* buttons */
+  /* ───────── 8.  BUTTONS ───────── */
   button.button,
   .button
-    background accent
+    background var(--cfy-accent)
     color #fafafa !important
     font-weight 600
     padding .75rem 1rem
     border 1px solid #ffffff1a !important
-    border-radius radius
+    border-radius var(--cfy-radius)
     transition background .18s
-
     &:hover
-      background accentLight
+      background var(--cfy-accent-light)
       color #111 !important
 
   button.secondary,
   .secondary
-    background secondary !important
-    color textCol !important
-
+    background var(--cfy-secondary) !important
+    color var(--cfy-text) !important
     &:hover
-      background cardContainer !important
+      background var(--cfy-card-container) !important
 
-  /* form controls */
+  /* ───────── 9.  FORM INPUTS ───────── */
   input.input,
   textarea.input,
   select.select
     background #202024 !important
     border 1px solid #ffffff1a !important
-    color textCol
+    color var(--cfy-text)
     padding .75rem 1rem
-    border-radius radius !important
+    border-radius var(--cfy-radius) !important
     transition border-color .15s, background .15s
-
     &:focus
-      border-color accentLight !important
+      border-color var(--cfy-accent-light) !important
       background #26262b !important
 
-  /* toasts */
+  /* ───────── 10. TOASTS ───────── */
   ul[x-data] li > span
-    backdrop-filter blur(blurAmt)
+    backdrop-filter blur(var(--cfy-blur))
     background hsla(0,0%,100%,.05) !important
     border 1px solid #ffffff18 !important
     font-family "Inter", sans-serif
 
   @keyframes wiggle
-    from
+    0%,100%
       transform rotate(0)
     25%
       transform rotate(-3deg)
     75%
       transform rotate(3deg)
-    to
-      transform rotate(0)
 
   .toast-no-description svg[fill="currentColor"]
     animation wiggle .6s ease
@@ -300,7 +285,7 @@
   [x-show="popups.sponsorship"]
     display none !important
 
-  /* scrollbar */
+  /* ───────── 11. SCROLLBAR & FOCUS ───────── */
   ::-webkit-scrollbar
     width 8px
     height 8px
@@ -308,15 +293,13 @@
   ::-webkit-scrollbar-thumb
     background #444
     border-radius 4px
-
     &:hover
       background #666
 
-  /* focus ring */
   button:focus-visible,
   a:focus-visible,
   input:focus-visible,
   select:focus-visible,
   textarea:focus-visible
-    outline 2px solid accent !important
+    outline 2px solid var(--cfy-accent) !important
     outline-offset 2px
