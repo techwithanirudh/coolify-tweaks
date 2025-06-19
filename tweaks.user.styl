@@ -66,15 +66,12 @@
     --cfy-card-container: var(--color-coolgray-200);
     --cfy-card: var(--color-coolgray-300);
     --cfy-text: var(--color-text-primary);
-    --cfy-muted: var(--color-text-muted); /* layout / fx *//* one knob to rule them all */
-
+    --cfy-muted: var(--color-text-muted); // * one knob to rule them all *//* layout / fx *//* one knob to rule them all */
     --cfy-blur: 14px;
     --cfy-shadow: 0 4px 20px var(--color-shadow-main);
     --cfy-sidebar-w: 260px;
-
-    --radius-base: 14px; 
+    --radius-base: 14px;
     --radius-step: 2px;
-
     --radius-xs: calc(var(--radius-base) - (var(--radius-step) * 2));
     --radius-sm: calc(var(--radius-base) - var(--radius-step));
     --radius-md: var(--radius-base);
@@ -141,8 +138,8 @@
     display: flex;
     align-items: center;
     padding: 0.55rem 0.9rem;
-    color: var(--cfy-muted);
     border-radius: var(--radius-sm) !important;
+    color: var(--cfy-muted);
     font-weight: 500;
     transition: background 0.18s, color 0.18s;
     gap: 0.6rem;
@@ -246,7 +243,7 @@
     overflow: hidden;
     margin-top: 0.65rem;
     padding: 0.75rem 0.85rem !important;
-    border-radius: var(--radius-md) !important;   /* 14 px */
+    border-radius: var(--radius-md) !important; /* 14 px */
     background: var(--cfy-card-container) !important;
   }
 
@@ -314,7 +311,7 @@
     overflow: hidden;
     padding: 0.65rem 0.75rem;
     border: 1px solid var(--color-coolgray-400) !important;
-    border-radius: var(--radius-sm) !important;   /* 12 px */
+    border-radius: var(--radius-sm) !important; /* 12 px */
     background: var(--cfy-card) !important;
     transition: transform 0.15s, box-shadow 0.2s, background 0.18s, border-color 0.18s;
   }
@@ -388,7 +385,7 @@
   button.button, .button {
     padding: 0.55rem 1rem;
     border: 1px solid var(--color-coolgray-400) !important;
-    border-radius: var(--radius-sm) !important;   /* 12 px */
+    border-radius: var(--radius-sm) !important; /* 12 px */
     background: var(--cfy-accent);
     color: var(--color-text) !important;
     font-weight: 600;
@@ -418,7 +415,7 @@
   input.input, textarea.input, select.select {
     padding: 0.55rem 1rem;
     border: 1px solid var(--color-coolgray-400) !important;
-    border-radius: var(--radius-sm) !important;   /* 12 px */
+    border-radius: var(--radius-sm) !important; /* 12 px */
     background: var(--cfy-card) !important;
     color: var(--cfy-text);
     transition: border-color 0.15s, background 0.15s;
@@ -512,7 +509,7 @@
     border-radius: var(--radius-sm) !important;
   }
 
-  :is(.flex.gap-2, .flex.items-center.gap-4, .flex.flex-col.gap-4.lg:\flex-row)> :is(h1, h2, h3, h4) {
+  :is(.flex.gap-2, .flex.items-center.gap-4, .flex.flex-col.gap-4)> :is(h1, h2, h3, h4) {
     margin-right: auto;
   }
 
@@ -578,6 +575,108 @@
     border-radius: 10px !important;
     background: var(--cfy-card) !important;
     padding-block: 0.7rem !important;
+  }
+
+  select, ::picker(select) {
+    appearance: base-select;
+  }
+
+  select {
+    flex: 1;
+  }
+
+  select {
+    padding: 10px;
+    border: 2px solid var(--color-coolgray-400);
+    background: var(--cfy-card);
+    color: var(--cfy-text);
+    transition: 0.4s;
+  }
+
+  select:hover, select:focus {
+    background: var(--cfy-card-container);
+    border-color: var(--cfy-accent-light);
+  }
+
+  select::picker-icon {
+    color: var(--cfy-muted);
+    transition: 0.4s rotate;
+  }
+
+  select:open::picker-icon {
+    rotate: 180deg;
+  }
+
+  ::picker(select) {
+    border: 1px solid var(--color-coolgray-400) !important;
+    border-radius: var(--radius-xs) !important;
+    background: var(--cfy-card) !important;
+  }
+
+  option {
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+    border: 1px solid var(--color-coolgray-400);
+    background: var(--cfy-card) !important;
+    color: var(--cfy-text);
+    transition: 0.4s;
+    gap: 20px;
+  }
+
+  option:first-of-type {
+    border-radius: var(--radius-xs) var(--radius-xs) 0 0;
+  }
+
+  option:last-of-type {
+    border-radius: 0 0 var(--radius-xs) var(--radius-xs);
+  }
+
+  option:not(option:last-of-type) {
+    border-bottom: none;
+  }
+
+  option:hover, option:focus {
+    background: var(--cfy-card-container) !important;
+    color: var(--cfy-text);
+  }
+
+  option .icon {
+    font-size: 1.6rem;
+    text-box: trim-both cap alphabetic;
+  }
+
+  selectedcontent .icon {
+    display: none;
+  }
+
+  option:checked {
+    font-weight: bold;
+  }
+
+  option::checkmark {
+    order: 1;
+    margin-left: auto;
+    content: '✓';
+  }
+
+  ::picker(select) {
+    opacity: 0;
+    transition: all 0.4s allow-discrete;
+  }
+
+  ::picker(select):popover-open {
+    opacity: 1;
+  }
+
+  @starting-style {
+    ::picker(select):popover-open {
+      opacity: 0;
+    }
+  }
+
+  ::picker(select) {
+    top: calc(anchor(bottom) + 4px);
   }
 } // coolify.local/*"), url-prefix("https://app.coolify.io/*") {
 
