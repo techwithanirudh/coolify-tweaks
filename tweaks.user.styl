@@ -5,489 +5,305 @@
 @updateURL    https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
 @preprocessor stylus
 @description  Enhance Coolify’s UI with extra spacing, soft rounded corners, and subtle shadows.
-@include      *://coolify.local/*
+@include      *://coolify.local/*, https://app.coolify.io/*
 @author       Anirudh Sriram
 @license      MIT
 ==/UserStyle== */
 
-@-moz-document url-prefix("*://coolify.local/*"), url-prefix("https://app.coolify.io") {
-
-    /* ============================================================================
-   1. GLOBAL DESIGN TOKENS
-   Define colors, spacing, radii and shadows to be used throughout the UI.
-   ============================================================================ */
-    :root {
-        /* Color palette */
-        --cfy-accent: #4C3495;
-        --cfy-accent-light: color-mix(in srgb, var(--cfy-accent) 75%, #fff);
-        --cfy-sidebar-bg: #1A191F;
-        --cfy-secondary: #26252B;
-        --cfy-content-bg: #1F1C23;
-        --cfy-card-container: #2A292E;
-        --cfy-card: #353239;
-        --cfy-text: #FCFAFC;
-        --cfy-muted: #8E8C91;
-
-        /* Layout & effects */
-        --cfy-radius: 12px;
-        --cfy-blur: 12px;
-        --cfy-shadow: 0 4px 20px rgb(0 0 0 /.25);
-        --cfy-sidebar-w: 230px;
-
-        /* Base font sizing and color scheme */
-        font-size: 15px;
-        color-scheme: dark;
-    }
-
-    /* Reset native borders, shadows and apply unified rounding */
-    body,
-    .box,
-    .card,
-    .menu-item,
-    button,
-    a,
-    input,
-    select,
-    textarea {
-        border: none !important;
-        box-shadow: none !important;
-        border-radius: var(--cfy-radius) !important;
-    }
-
-    /* Main canvas background and default text color */
-    body,
-    main {
-        background: var(--cfy-content-bg) !important;
-        color: var(--cfy-text);
-    }
-
-    /* ============================================================================
-   2. SIDEBAR
-   Fixed width, custom scrollbar, backdrop blur, and responsive slide-in.
-   ============================================================================ */
-    /* Sidebar width override */
-    [class*="lg:flex"][class*="lg:w-56"] {
-        width: var(--cfy-sidebar-w) !important;
-    }
-
-    /* Dark-mode sidebar styling */
-    nav[class*="dark:border-coolgray-200"] {
-        width: 100%;
-        background: var(--cfy-sidebar-bg) !important;
-        backdrop-filter: blur(var(--cfy-blur));
-        -webkit-backdrop-filter: blur(var(--cfy-blur));
-        border-right: 1px solid #ffffff10;
-        overflow-y: auto !important;
-        overflow-x: hidden;
-        scrollbar-width: thin;
-        scrollbar-color: var(--cfy-accent) transparent;
-    }
-
-    /* WebKit scrollbar in sidebar */
-    aside::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    aside::-webkit-scrollbar-thumb {
-        background: var(--cfy-accent);
-        border-radius: 4px;
-    }
-
-    /* Nested list items rounding */
-    nav>ul>li>ul>li {
-        border-radius: var(--cfy-radius) !important;
-        overflow: hidden;
-    }
-
-    /* Sidebar menu items */
-    .menu-item {
-        display: flex;
-        align-items: center;
-        gap: .6rem;
-        padding: .55rem .9rem;
-        font-weight: 500;
-        color: var(--cfy-muted);
-        transition: background .18s, color .18s;
-    }
-
-    .menu-item:hover,
-    .menu-item-active {
-        background: var(--cfy-accent-light);
-        color: #fff !important;
-    }
-
-    .menu-item svg {
-        width: 20px;
-        height: 20px;
-        stroke-width: 1.6;
-        flex-shrink: 0;
-    }
-
-    /* Mobile: slide-in sidebar */
-    @media (max-width:1023px) {
-        aside[class*="sidebar"] {
-            position: fixed;
-            inset-block: 0;
-            inset-inline-start: 0;
-            transform: translateX(calc(-1 * var(--cfy-sidebar-w)));
-            z-index: 60;
-            transition: transform .25s ease;
-        }
-
-        body.sidebar-open aside {
-            transform: none;
-        }
-
-        body.sidebar-open::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: #0009;
-            z-index: 50;
-        }
-    }
-
-    /* Desktop: push main content */
-    @media (min-width:1024px) {
-        main {
-            padding-left: calc(var(--cfy-sidebar-w)) !important;
-        }
-    }
-
-    /* ============================================================================
-   3. TOP SUB-NAV (General · Members…)
-   Sticky header with blur, rounded corners, and hover effects.
-   ============================================================================ */
-    .navbar-main {
-        position: sticky;
-        top: 0;
-        z-index: 45;
-        padding: .45rem .85rem;
-        background: var(--cfy-sidebar-bg);
-        backdrop-filter: blur(var(--cfy-blur));
-        -webkit-backdrop-filter: blur(var(--cfy-blur));
-        border: 1px solid #ffffff10;
-        border-radius: var(--cfy-radius) !important;
-    }
-
-    .navbar-main nav {
-        display: flex;
-        align-items: center;
-        gap: .8rem;
-        padding-top: 0 !important;
-    }
-
-    .navbar-main nav::-webkit-scrollbar {
-        display: none;
-    }
-
-    .navbar-main nav button {
-        all: unset;
-        cursor: pointer;
-        padding: .55rem 1.25rem;
-        font-weight: 600;
-        color: var(--cfy-muted);
-        transition: background .18s, color .18s;
-    }
-
-    .navbar-main nav button:hover {
-        background: var(--cfy-accent-light);
-        color: #111;
-    }
-
-    .navbar-main nav a.active button,
-    .navbar-main nav a[aria-current="page"] button {
-        background: var(--cfy-accent);
-        color: #111;
-        box-shadow: inset 0 0 0 2px var(--cfy-accent-light);
-    }
-
-    .navbar-main .flex-1 {
-        flex: 1 1 auto;
-    }
-
-    /* ============================================================================
-   4. SECTION CONTAINERS & CARDS
-   Layout wrappers, grids, hover states and dashed placeholders.
-   ============================================================================ */
-    /* 4-A: Section wrappers (projects, servers, …) */
-    section>h2+div,
-    section>h3+div,
-    div[data-testid="resources-grid"],
-    div.grid[class*="cols"] {
-        padding: .75rem .85rem !important;
-        background: var(--cfy-card-container) !important;
-        border-radius: var(--cfy-radius) !important;
-        overflow: hidden;
-        margin-top: .65rem;
-    }
-
-    /* 4-B: Grid spacing */
-    .grid,
-    [class*="grid-cols"] {
-        gap: .65rem !important;
-    }
-
-    /* 4-C: Card style */
-    .box,
-    .box-without-bg {
-        padding: .65rem .75rem;
-        background: var(--cfy-card) !important;
-        border: 1px solid transparent;
-        box-shadow: var(--cfy-shadow) !important;
-        transition: transform .15s, box-shadow .2s, background .18s, border-color .18s;
-        border-radius: var(--cfy-radius) !important;
-    }
-
-    .box:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgb(0 0 0 /.35);
-        border-color: var(--cfy-accent);
-        background: color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%);
-    }
-
-    /* Dashed placeholders for “Add Project” */
-    [dashed],
-    [class*="dashed"] {
-        padding-block: 2rem !important;
-        border-radius: var(--cfy-radius) !important;
-        border-color: #555 !important;
-    }
-
-    /* List rows (non-grid) */
-    [role="row"]:not([dashed]) {
-        background: var(--cfy-card) !important;
-        border-radius: var(--cfy-radius) !important;
-        padding: .6rem .8rem;
-    }
-
-    /* ============================================================================
-   5. TYPOGRAPHY
-   Larger headings and muted subtitles for better hierarchy.
-   ============================================================================ */
-    h1 {
-        font: 700 2.1rem/1.25 "Inter", "SF Pro Display", sans-serif;
-        color: var(--cfy-text);
-    }
-
-    h2 {
-        font: 700 1.5rem/1.35 "Inter", "SF Pro Display", sans-serif;
-        color: var(--cfy-text);
-    }
-
-    h3 {
-        font: 700 1.25rem/1.35 "Inter", "SF Pro Display", sans-serif;
-        color: var(--cfy-text);
-    }
-
-    h4 {
-        font: 700 1.1rem/1.35 "Inter", "SF Pro Display", sans-serif;
-        color: var(--cfy-text);
-    }
-
-    .subtitle {
-        font-size: .95rem;
-        color: var(--cfy-muted);
-    }
-
-    .box-title {
-        font-size: 1.05rem;
-        font-weight: 600;
-    }
-
-    .box-description {
-        color: var(--cfy-muted);
-    }
-
-    /* ============================================================================
-   6. BUTTONS
-   Primary & secondary button styles with hover states.
-   ============================================================================ */
-    button.button,
-    .button {
-        background: var(--cfy-accent);
-        color: #fafafa !important;
-        font-weight: 600;
-        padding: .75rem 1rem;
-        border: 1px solid #ffffff1a !important;
-        border-radius: var(--cfy-radius);
-        transition: background .18s;
-    }
-
-    button.button:hover,
-    .button:hover {
-        background: var(--cfy-accent-light);
-        color: #111 !important;
-    }
-
-    /* Secondary buttons */
-    button.secondary,
-    .secondary {
-        background: var(--cfy-secondary) !important;
-        color: var(--cfy-text) !important;
-    }
-
-    button.secondary:hover {
-        background: var(--cfy-card-container) !important;
-    }
-
-    /* ============================================================================
-   7. FORM CONTROLS
-   Inputs, selects and textareas with focus styles.
-   ============================================================================ */
-    input.input,
-    textarea.input,
-    select.select {
-        background: #202024 !important;
-        border: 1px solid #ffffff1a !important;
-        color: var(--cfy-text);
-        padding: .75rem 1rem;
-        border-radius: var(--cfy-radius) !important;
-        transition: border-color .15s, background .15s;
-    }
-
-    input.input:focus,
-    textarea.input:focus,
-    select.select:focus {
-        border-color: var(--cfy-accent-light) !important;
-        background: #26262b !important;
-    }
-
-    /* ============================================================================
-   8. TOASTS & MISCELLANEOUS
-   Toast styling, wiggly icons, global scrollbars, focus outlines.
-   ============================================================================ */
-    /* Toasts backdrop & border */
-    ul[x-data] li>span {
-        backdrop-filter: blur(var(--cfy-blur));
-        background: hsla(0 0% 100% /.05) !important;
-        border: 1px solid #ffffff18 !important;
-        font-family: "Inter", sans-serif;
-    }
-
-    /* Shake animation for icons */
-    @keyframes wiggle {
-
-        0%,
-        100% {
-            transform: rotate(0);
-        }
-
-        25% {
-            transform: rotate(-3deg);
-        }
-
-        75% {
-            transform: rotate(3deg);
-        }
-    }
-
-    .toast-no-description svg[fill="currentColor"] {
-        animation: wiggle .6s ease;
-    }
-
-    /* Hide the “Support us” popup entirely */
-    [x-show="popups.sponsorship"] {
-        display: none !important;
-    }
-
-    /* Global scrollbar styling */
-    ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: #444;
-        border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        background: #666;
-    }
-
-    /* Focus ring for accessibility */
-    button:focus-visible,
-    a:focus-visible,
-    input:focus-visible,
-    select:focus-visible,
-    textarea:focus-visible {
-        outline: 2px solid var(--cfy-accent) !important;
-        outline-offset: 2px;
-    }
-
-    /* Utility tweaks */
-    .rounded-sm {
-        border-radius: var(--cfy-radius) !important;
-    }
-
-    form {
-        border-radius: var(--cfy-radius) !important;
-    }
-
-    div[class*="shadow-lg lg:border-t dark:border-coolgray-300"] {
-        border-radius: var(--cfy-radius) !important;
-    }
-
-    /* More Customization */
-    .flex.gap-2>h1,
-    .flex.gap-2>h2,
-    .flex.gap-2>h3,
-    .flex.gap-2>h4,
-    .flex.items-center.gap-4>h1,
-    .flex.items-center.gap-4>h2,
-    .flex.items-center.gap-4>h3,
-    .flex.items-center.gap-4>h4 {
-        margin-right: auto;
-    }
-
-
-    div[class="flex items-center gap-2"]>h3,
-    section>h3[class="pb-2"] {
-        font-size: 1.6rem;
-    }
-
-    div[class="flex flex-col gap-4 max-w-2xl"] {
-        max-width: none !important;
-    }
-
-    input.dark\:bg-coolgray-100:where(.dark, .dark *) {
-        background-color: var(--cfy-card) !important;
-        border-radius: 4px !important;
-        padding: .7rem;
-        transition: background .18s;
-    }
-
-    div[class="w-48"],
-    div[class*="w-64"],
-    div[class="w-32"],
-    div[class*="w-96"] {
-        width: 100% !important;
-    }
-
-    div[class*="flex flex-col gap-2"] {
-        gap: calc(var(--spacing)*4) !important;
-    }
-
-    a[class*="hover:underline"]:hover {
-        text-decoration: none !important;
-        color: var(--cfy-muted) !important;
-    }
-
-    table {
-        background: var(--cfy-card-container) !important;
-        border-radius: var(--cfy-radius) !important;
-        margin-top: calc(var(--spacing)*4);
-        overflow: hidden !important;
-    }
-
-    img[class*="w-[4.5rem] aspect-square h-[4.5rem]"] {
-        border-radius: var(--cfy-radius) !important;
-    }
-
-    button[\@click="setTheme('light')"],
-    button[\@click="setTheme('system')"] {
-        /* this theme does not support light mode */
-        display: none;
-    }
-}
+@-moz-document url-prefix("*://coolify.local/*"), url-prefix("https://app.coolify.io")
+  
+  //— Mixins
+  
+  reset()
+    border none !important
+    box-shadow none !important
+    border-radius var(--cfy-radius) !important
+
+  scrollbar(width, thumb)
+    &::-webkit-scrollbar
+      width width
+      height width
+    &::-webkit-scrollbar-thumb
+      background thumb
+      border-radius 4px
+
+  //— 1. GLOBAL DESIGN TOKENS
+  
+:root
+    // palette
+    '--cfy-accent'         #4C3495
+    '--cfy-accent-light'   color-mix(in srgb, var(--cfy-accent) 75%, #fff)
+    '--cfy-sidebar-bg'     #1A191F
+    '--cfy-secondary'      #26252B
+    '--cfy-content-bg'     #1F1C23
+    '--cfy-card-container' #2A292E
+    '--cfy-card'           #353239
+    '--cfy-text'           #FCFAFC
+    '--cfy-muted'          #8E8C91
+
+    // layout & effects
+    '--cfy-radius'  12px
+    '--cfy-blur'    12px
+    '--cfy-shadow'  0 4px 20px rgb(0 0 0/.25)
+    '--cfy-sidebar-w' 230px
+
+    font-size 15px
+    color-scheme dark
+
+  // apply reset everywhere we need it
+  body, .box, .card, .menu-item, button, a, input, select, textarea
+    reset()
+
+  // main background + text
+  body, main
+    background var(--cfy-content-bg) !important
+    color var(--cfy-text)
+
+  //— 2. SIDEBAR
+  
+  [class*="lg:flex"][class*="lg:w-56"]
+    width var(--cfy-sidebar-w) !important
+
+  nav[class*="dark:border-coolgray-200"]
+    width 100%
+    background var(--cfy-sidebar-bg) !important
+    backdrop-filter blur(var(--cfy-blur))
+    -webkit-backdrop-filter blur(var(--cfy-blur))
+    border-right 1px solid #ffffff10
+    overflow-y auto !important
+    overflow-x hidden
+    scrollbar-width thin
+    scrollbar-color var(--cfy-accent) transparent
+    scrollbar(8px, var(--cfy-accent))
+
+  nav > ul > li > ul > li
+    border-radius var(--cfy-radius) !important
+    overflow hidden
+
+  .menu-item
+    display flex
+    align-items center
+    gap .6rem
+    padding .55rem .9rem
+    font-weight 500
+    color var(--cfy-muted)
+    transition background .18s, color .18s
+
+    &:hover,
+    &-active
+      background var(--cfy-accent-light)
+      color #fff !important
+
+    svg
+      width 20px
+      height 20px
+      stroke-width 1.6
+      flex-shrink 0
+
+  // slide-in on mobile, push content on desktop
+  @media (max-width: 1023px)
+    aside[class*="sidebar"]
+      position fixed
+      inset-block 0
+      inset-inline-start 0
+      transform translateX(-var(--cfy-sidebar-w))
+      z-index 60
+      transition transform .25s ease
+
+    body.sidebar-open
+      aside
+        transform none
+      &::after
+        content ""
+        position fixed
+        inset 0
+        background #0009
+        z-index 50
+
+  @media (min-width: 1024px)
+    main
+      padding-left var(--cfy-sidebar-w) !important
+
+  //— 3. TOP SUB-NAV
+  
+  .navbar-main
+    position sticky
+    top 0
+    z-index 45
+    padding .45rem .85rem
+    background var(--cfy-sidebar-bg)
+    backdrop-filter blur(var(--cfy-blur))
+    -webkit-backdrop-filter blur(var(--cfy-blur))
+    border 1px solid #ffffff10
+    border-radius var(--cfy-radius) !important
+
+    nav
+      display flex
+      align-items center
+      gap .8rem
+      padding-top 0 !important
+      &::-webkit-scrollbar
+        display none
+
+      button
+        all unset
+        cursor pointer
+        padding .55rem 1.25rem
+        font-weight 600
+        color var(--cfy-muted)
+        transition background .18s, color .18s
+        
+        &:hover
+          background var(--cfy-accent-light)
+          color #111
+
+      a[aria-current="page"] button,
+      a.active button
+        background var(--cfy-accent)
+        color #111
+        box-shadow inset 0 0 0 2px var(--cfy-accent-light)
+
+    .flex-1
+      flex 1 1 auto
+
+  //— 4. SECTION CONTAINERS & CARDS
+
+  section > h2 + div,
+  section > h3 + div,
+  div[data-testid="resources-grid"],
+  div[class*="grid-cols"]
+    padding .75rem .85rem !important
+    background var(--cfy-card-container) !important
+    border-radius var(--cfy-radius) !important
+    overflow hidden
+    margin-top .65rem
+
+  .grid
+  [class*="grid-cols"]
+    gap .65rem !important
+
+  .box,
+  .box-without-bg
+    padding .65rem .75rem
+    background var(--cfy-card) !important
+    border 1px solid transparent
+    box-shadow var(--cfy-shadow) !important
+    transition transform .15s, box-shadow .2s, background .18s, border-color .18s
+    border-radius var(--cfy-radius) !important
+
+    &:hover
+      transform translateY(-2px)
+      box-shadow 0 8px 24px rgb(0 0 0/.35)
+      border-color var(--cfy-accent)
+      background color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%)
+
+  [dashed],
+  [class*="dashed"]
+    padding-block 2rem !important
+    border-radius var(--cfy-radius) !important
+    border-color #555 !important
+
+  [role="row"]:not([dashed])
+    background var(--cfy-card) !important
+    border-radius var(--cfy-radius) !important
+    padding .6rem .8rem
+
+  //— 5. TYPOGRAPHY
+
+  heading-sizes = {1:2.1rem, 2:1.5rem, 3:1.25rem, 4:1.1rem}
+  for lvl, sz in heading-sizes
+    h{lvl}
+      font 700 sz/(sz * 0.6) "Inter", "SF Pro Display", sans-serif
+      color var(--cfy-text)
+
+  .subtitle
+    font-size .95rem
+    color var(--cfy-muted)
+
+  .box-title
+    font-size 1.05rem
+    font-weight 600
+
+  .box-description
+    color var(--cfy-muted)
+
+  //— 6. BUTTONS
+
+  button.button,
+  .button
+    background var(--cfy-accent)
+    color #fafafa !important
+    font-weight 600
+    padding .75rem 1rem
+    border 1px solid #ffffff1a !important
+    border-radius var(--cfy-radius)
+    transition background .18s
+
+    &:hover
+      background var(--cfy-accent-light)
+      color #111 !important
+
+  button.secondary,
+  .secondary
+    background var(--cfy-secondary) !important
+    color var(--cfy-text) !important
+
+    &:hover
+      background var(--cfy-card-container) !important
+
+  //— 7. FORM CONTROLS
+
+  input.input,
+  textarea.input,
+  select.select
+    background #202024 !important
+    border 1px solid #ffffff1a !important
+    color var(--cfy-text)
+    padding .75rem 1rem
+    border-radius var(--cfy-radius) !important
+    transition border-color .15s, background .15s
+
+    &:focus
+      border-color var(--cfy-accent-light) !important
+      background #26262b !important
+
+  //— 8. TOASTS & MISCELLANEOUS
+
+  ul[x-data] li > span
+    backdrop-filter blur(var(--cfy-blur))
+    background hsla(0 0% 100%/.05) !important
+    border 1px solid #ffffff18 !important
+    font-family "Inter", sans-serif
+
+  @keyframes wiggle
+    0%, 100%
+      transform rotate(0)
+    25%
+      transform rotate(-3deg)
+    75%
+      transform rotate(3deg)
+
+  .toast-no-description svg[fill="currentColor"]
+    animation wiggle .6s ease
+
+  [x-show="popups.sponsorship"]
+    display none !important
+
+  // global scrollbar
+  ::-webkit-scrollbar
+    width 8px
+    height 8px
+  ::-webkit-scrollbar-thumb
+    background #444
+    border-radius 4px
+    &:hover
+      background #666
+
+  // focus outlines
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible
+    outline 2px solid var(--cfy-accent) !important
+    outline-offset 2px
