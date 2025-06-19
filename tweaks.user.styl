@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         Coolify Enhanced UI (light + dark via .dark)
 @namespace    techwithanirudh
-@version      1.6
+@version      1.5
 @preprocessor stylus
 @include      *://coolify.local/* https://app.coolify.io/*
 @updateURL    https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
@@ -9,110 +9,103 @@
 @license      MIT
 ==/UserStyle== */
 
-/* ONE @-moz-document with a comma between the two url-prefixes */
 @-moz-document url-prefix("*://coolify.local/"),
                url-prefix("https://app.coolify.io")
 
-  /* ───────── 0.  MIXINS ───────── */
+  /* ───────── 0. MIXINS ───────── */
   reset()
     border none !important
     box-shadow none !important
     border-radius var(--cfy-radius) !important
 
-  scrollbar(w,c)
+  scrollbar(w, c)
     &::-webkit-scrollbar
-      width w
+      width  w
       height w
     &::-webkit-scrollbar-thumb
       background c
       border-radius 4px
 
-  /* ───────── 1.  GLOBAL TOKENS ───────── */
-  accent              = #4C3495
-  radius              = 12px
-  blurAmt             = 12px
-  sidebarW            = 230px
+  /* ───────── 1. DESIGN TOKENS (LIGHT DEFAULT) ───────── */
+  accent         = #4C3495
+  radius         = 12px
+  blurAmt        = 12px
+  sidebarW       = 230px
 
-  /* Colours that drive BOTH themes so they keep the same visual weight */
-  white100            = #ffffff
-  white90             = #f5f5f7
-  white80             = #fafafa
-  white70             = #f3f3f4
-  black100            = #1a1a1f
-  grayMutedL          = #6c6a70
-  grayMutedD          = #8E8C91
-  grayDarker          = #26252B
-  grayDarkest         = #1F1C23
+  sidebarBG      = #ffffff
+  secondaryBG    = #f5f5f7
+  contentBG      = #fafafa
+  cardContainer  = #f3f3f4
+  cardBG         = #ffffff
+  cardHover      = mix(#ffffff, accent, 8%)
+  textCol        = #1a1a1f
+  mutedCol       = #6c6a70
+  borderCol      = #00000026          // ≈ 15 % black
+  inputBg        = #ffffff
+  inputBgFocus   = #ececec
+  scrollbarCol   = #bbbbbb
+  scrollbarHover = darken(scrollbarCol, 15%)
 
-  /* Scrollbar tones pre‑computed here so Stylus can safely darken/lighten */
-  scrollbarLight      = #c2c2c2
-  scrollbarLightHover = darken(scrollbarLight, 15%) /* #a8a8a8 */
-  scrollbarDark       = #444444
-  scrollbarDarkHover  = lighten(scrollbarDark, 15%) /* #666666 */
+  /* DARK THEME TOKEN OVERRIDES */
+  sidebarBG_D      = #1A191F
+  secondaryBG_D    = #26252B
+  contentBG_D      = #1F1C23
+  cardContainer_D  = #2A292E
+  cardBG_D         = #353239
+  cardHover_D      = unquote('color-mix(in srgb, #353239 70%, ' + accent + ' 30%)')
+  textCol_D        = #FCFAFC
+  mutedCol_D       = #8E8C91
+  borderCol_D      = #ffffff1a
+  inputBg_D        = #202024
+  inputBgFocus_D   = #26262b
+  scrollbarCol_D   = #444
+  scrollbarHover_D = darken(scrollbarCol_D, 15%)
 
-  /* ───────── 2.  LIGHT THEME (default) ───────── */
+  /* ───────── 2. CSS VARIABLES ───────── */
   :root
-    /* palette */
     --cfy-accent               accent
     --cfy-accent-light         unquote('color-mix(in srgb, var(--cfy-accent) 75%, #000)')
-
-    /* surfaces */
-    --cfy-sidebar-bg           white100
-    --cfy-secondary            white90
-    --cfy-content-bg           white80
-    --cfy-card-container       white70
-    --cfy-card                 white100
-    --cfy-card-hover           mix(white100, accent, 8%)
-
-    /* text */
-    --cfy-text                 black100
-    --cfy-muted                grayMutedL
-
-    /* borders & shadows */
-    --cfy-border               rgba(0,0,0,.06)
-    --cfy-shadow               0 4px 20px rgba(0,0,0,.12)
-
-    /* interactive */
-    --cfy-input-bg             white100
-    --cfy-input-bg-focus       white90
-    --cfy-scrollbar            scrollbarLight
-    --cfy-scrollbar-hover      scrollbarLightHover
-
-    /* layout */
+    --cfy-sidebar-bg           sidebarBG
+    --cfy-secondary            secondaryBG
+    --cfy-content-bg           contentBG
+    --cfy-card-container       cardContainer
+    --cfy-card                 cardBG
+    --cfy-card-hover           cardHover
+    --cfy-text                 textCol
+    --cfy-muted                mutedCol
+    --cfy-border               borderCol
+    --cfy-input-bg             inputBg
+    --cfy-input-bg-focus       inputBgFocus
+    --cfy-scrollbar            scrollbarCol
+    --cfy-scrollbar-hover      scrollbarHover
     --cfy-radius               radius
     --cfy-blur                 blurAmt
+    --cfy-shadow               0 4px 20px rgb(0 0 0 / .10)
     --cfy-sidebar-w            sidebarW
-
     color-scheme               light
     font-size                  15px
 
-  /* ───────── 3.  DARK THEME OVERRIDES ───────── */
   html.dark :root
-    --cfy-sidebar-bg           #1A191F
-    --cfy-secondary            grayDarker
-    --cfy-content-bg           grayDarkest
-    --cfy-card-container       #2A292E
-    --cfy-card                 #353239
-    --cfy-card-hover           unquote('color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%)')
-
-    --cfy-text                 #FCFAFC
-    --cfy-muted                grayMutedD
-
+    --cfy-sidebar-bg           sidebarBG_D
+    --cfy-secondary            secondaryBG_D
+    --cfy-content-bg           contentBG_D
+    --cfy-card-container       cardContainer_D
+    --cfy-card                 cardBG_D
+    --cfy-card-hover           cardHover_D
+    --cfy-text                 textCol_D
+    --cfy-muted                mutedCol_D
     --cfy-accent-light         unquote('color-mix(in srgb, var(--cfy-accent) 25%, #000)')
-
-    --cfy-border               #ffffff1a
-    --cfy-shadow               0 4px 20px rgba(0,0,0,.30)
-
-    --cfy-input-bg             #202024
-    --cfy-input-bg-focus       #26262b
-    --cfy-scrollbar            scrollbarDark
-    --cfy-scrollbar-hover      scrollbarDarkHover
-
+    --cfy-border               borderCol_D
+    --cfy-input-bg             inputBg_D
+    --cfy-input-bg-focus       inputBgFocus_D
+    --cfy-scrollbar            scrollbarCol_D
+    --cfy-scrollbar-hover      scrollbarHover_D
+    --cfy-shadow               0 4px 20px rgb(0 0 0 / .25)
     color-scheme               dark
 
-  /* ───────── 4.  GLOBAL RESET ───────── */
+  /* ───────── 3. GLOBAL RESET ───────── */
   body,
-  .box, .card, .menu-item,
+  .box, .box-without-bg, .card, .menu-item,
   button, a, input, select, textarea
     reset()
 
@@ -120,7 +113,7 @@
     background var(--cfy-content-bg) !important
     color       var(--cfy-text)
 
-  /* ───────── 5.  SIDEBAR ───────── */
+  /* ───────── 4. SIDEBAR ───────── */
   [class*="lg:flex"][class*="lg:w-56"]
     width var(--cfy-sidebar-w) !important
 
@@ -151,7 +144,7 @@
     &:hover,
     &-active
       background var(--cfy-accent-light)
-      color var(--cfy-text) !important
+      color #fff !important
     svg
       width 20px
       height 20px
@@ -172,14 +165,14 @@
         content ""
         position fixed
         inset 0
-        background rgba(0,0,0,.55)
+        background #0009
         z-index 50
 
   @media (min-width:1024px)
     main
       padding-left var(--cfy-sidebar-w) !important
 
-  /* ───────── 6.  TOP NAV ───────── */
+  /* ───────── 5. TOP NAV ───────── */
   .navbar-main
     position sticky
     top 0
@@ -204,16 +197,16 @@
         transition background .18s, color .18s
         &:hover
           background var(--cfy-accent-light)
-          color var(--cfy-text)
+          color #111
       a[aria-current="page"] button,
       a.active button
         background var(--cfy-accent)
-        color var(--cfy-text)
+        color #111
         box-shadow inset 0 0 0 2px var(--cfy-accent-light)
     .flex-1
       flex 1 1 auto
 
-  /* ───────── 7.  CARDS & GRIDS ───────── */
+  /* ───────── 6. CARDS & GRIDS ───────── */
   section > h2 + div,
   section > h3 + div,
   div[data-testid="resources-grid"],
@@ -232,13 +225,13 @@
   .box-without-bg
     padding .65rem .75rem
     background var(--cfy-card) !important
-    border 1px solid transparent
+    border 1px solid var(--cfy-border)
     box-shadow var(--cfy-shadow) !important
     transition transform .15s, box-shadow .2s, background .18s, border-color .18s
     border-radius var(--cfy-radius) !important
     &:hover
       transform translateY(-2px)
-      box-shadow 0 8px 24px rgba(0,0,0,.35)
+      box-shadow 0 8px 24px rgb(0 0 0 / .35)
       border-color var(--cfy-accent)
       background var(--cfy-card-hover)
 
@@ -250,4 +243,102 @@
 
   [role="row"]:not([dashed])
     background var(--cfy-card) !important
-    border-radius var(--cfy-radius) !
+    border-radius var(--cfy-radius) !important
+    padding .6rem .8rem
+
+  /* ───────── 7. TYPOGRAPHY ───────── */
+  headingSizes = 2.1rem 1.5rem 1.25rem 1.1rem
+  for size, i in headingSizes
+    lvl = i + 1
+    h{lvl}
+      font-weight 700
+      font-size   size
+      line-height 1.3
+      font-family "Inter", "SF Pro Display", sans-serif
+      color var(--cfy-text)
+
+  .subtitle
+    font-size .95rem
+    color var(--cfy-muted)
+
+  .box-title
+    font-size 1.05rem
+    font-weight 600
+
+  .box-description
+    color var(--cfy-muted)
+
+  /* ───────── 8. BUTTONS ───────── */
+  button.button,
+  .button
+    background var(--cfy-accent)
+    color var(--cfy-text) !important
+    font-weight 600
+    padding .75rem 1rem
+    border 1px solid var(--cfy-border) !important
+    border-radius var(--cfy-radius)
+    transition background .18s
+    &:hover
+      background var(--cfy-accent-light)
+      color var(--cfy-text) !important
+
+  button.secondary,
+  .secondary
+    background var(--cfy-secondary) !important
+    color var(--cfy-text) !important
+    &:hover
+      background var(--cfy-card-container) !important
+
+  /* ───────── 9. FORM INPUTS ───────── */
+  input.input,
+  textarea.input,
+  select.select
+    background var(--cfy-input-bg) !important
+    border 1px solid var(--cfy-border) !important
+    color var(--cfy-text)
+    padding .75rem 1rem
+    border-radius var(--cfy-radius) !important
+    transition border-color .15s, background .15s
+    &:focus
+      border-color var(--cfy-accent-light) !important
+      background var(--cfy-input-bg-focus) !important
+
+  /* ───────── 10. TOASTS ───────── */
+  ul[x-data] li > span
+    backdrop-filter blur(var(--cfy-blur))
+    background hsla(0,0%,100%,.05) !important
+    border 1px solid var(--cfy-border) !important
+    font-family "Inter", sans-serif
+
+  @keyframes wiggle
+    0%,100%
+      transform rotate(0)
+    25%
+      transform rotate(-3deg)
+    75%
+      transform rotate(3deg)
+
+  .toast-no-description svg[fill="currentColor"]
+    animation wiggle .6s ease
+
+  [x-show="popups.sponsorship"]
+    display none !important
+
+  /* ───────── 11. SCROLLBAR & FOCUS ───────── */
+  ::-webkit-scrollbar
+    width 8px
+    height 8px
+
+  ::-webkit-scrollbar-thumb
+    background var(--cfy-scrollbar)
+    border-radius 4px
+    &:hover
+      background var(--cfy-scrollbar-hover)
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible
+    outline 2px solid var(--cfy-accent) !important
+    outline-offset 2px

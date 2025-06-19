@@ -1,14 +1,13 @@
 /* ==UserStyle==
 @name         Coolify Enhanced UI (light + dark via .dark)
 @namespace    techwithanirudh
-@version      1.4
+@version      1.5
 @preprocessor stylus
 @include      *://coolify.local/* https://app.coolify.io/*
 @updateURL    https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
 @author       Anirudh Sriram
 @license      MIT
 ==/UserStyle== */
-/* ONE @-moz-document with a comma between the two url-prefixes */
 @-moz-document url-prefix("*://coolify.local/"), url-prefix("https://app.coolify.io") {
   :root {
     --cfy-accent: #4c3495;
@@ -21,6 +20,11 @@
     --cfy-card-hover: #5a449d;
     --cfy-text: #1a1a1f;
     --cfy-muted: #6c6a70;
+    --cfy-border: rgba(0,0,0,0.149);
+    --cfy-input-bg: #fff;
+    --cfy-input-bg-focus: #ececec;
+    --cfy-scrollbar: #bbb;
+    --cfy-scrollbar-hover: #9f9f9f;
     --cfy-radius: 12px;
     --cfy-blur: 12px;
     --cfy-shadow: 0 4px 20px #000;
@@ -34,15 +38,21 @@
     --cfy-content-bg: #1f1c23;
     --cfy-card-container: #2a292e;
     --cfy-card: #353239;
-    --cfy-card-hover: color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%);
+    --cfy-card-hover: color-mix(in srgb, #353239 70%, #4c3495 30%);
     --cfy-text: #fcfafc;
     --cfy-muted: #8e8c91;
     --cfy-accent-light: color-mix(in srgb, var(--cfy-accent) 25%, #000);
+    --cfy-border: rgba(255,255,255,0.102);
+    --cfy-input-bg: #202024;
+    --cfy-input-bg-focus: #26262b;
+    --cfy-scrollbar: #444;
+    --cfy-scrollbar-hover: #3a3a3a;
     --cfy-shadow: 0 4px 20px #000;
     color-scheme: dark;
   }
   body,
   .box,
+  .box-without-bg,
   .card,
   .menu-item,
   button,
@@ -67,18 +77,18 @@
     background: var(--cfy-sidebar-bg) !important;
     backdrop-filter: blur(var(--cfy-blur));
     -webkit-backdrop-filter: blur(var(--cfy-blur));
-    border-right: 1px solid rgba(255,255,255,0.063);
+    border-right: 1px solid var(--cfy-border);
     overflow-y: auto !important;
     overflow-x: hidden;
     scrollbar-width: thin;
-    scrollbar-color: var(--cfy-accent) transparent;
+    scrollbar-color: var(--cfy-scrollbar) transparent;
   }
   nav[class*="dark:border-coolgray-200"]::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
   nav[class*="dark:border-coolgray-200"]::-webkit-scrollbar-thumb {
-    background: var(--cfy-accent);
+    background: var(--cfy-scrollbar);
     border-radius: 4px;
   }
   nav > ul > li > ul > li {
@@ -137,7 +147,7 @@
     background: var(--cfy-sidebar-bg);
     backdrop-filter: blur(var(--cfy-blur));
     -webkit-backdrop-filter: blur(var(--cfy-blur));
-    border: 1px solid rgba(255,255,255,0.063);
+    border: 1px solid var(--cfy-border);
     border-radius: var(--cfy-radius) !important;
   }
   .navbar-main nav {
@@ -186,7 +196,7 @@
   .box-without-bg {
     padding: 0.65rem 0.75rem;
     background: var(--cfy-card) !important;
-    border: 1px solid transparent;
+    border: 1px solid var(--cfy-border);
     box-shadow: var(--cfy-shadow) !important;
     transition: transform 0.15s, box-shadow 0.2s, background 0.18s, border-color 0.18s;
     border-radius: var(--cfy-radius) !important;
@@ -202,7 +212,7 @@
   [class*="dashed"] {
     padding-block: 2rem !important;
     border-radius: var(--cfy-radius) !important;
-    border-color: #555 !important;
+    border-color: var(--cfy-border) !important;
   }
   [role="row"]:not([dashed]) {
     background: var(--cfy-card) !important;
@@ -239,29 +249,29 @@
   }
   .subtitle {
     font-size: 0.95rem;
-    color: mutedCol;
+    color: var(--cfy-muted);
   }
   .box-title {
     font-size: 1.05rem;
     font-weight: 600;
   }
   .box-description {
-    color: mutedCol;
+    color: var(--cfy-muted);
   }
   button.button,
   .button {
     background: var(--cfy-accent);
-    color: #fafafa !important;
+    color: var(--cfy-text) !important;
     font-weight: 600;
     padding: 0.75rem 1rem;
-    border: 1px solid rgba(255,255,255,0.102) !important;
+    border: 1px solid var(--cfy-border) !important;
     border-radius: var(--cfy-radius);
     transition: background 0.18s;
   }
   button.button:hover,
   .button:hover {
     background: var(--cfy-accent-light);
-    color: #111 !important;
+    color: var(--cfy-text) !important;
   }
   button.secondary,
   .secondary {
@@ -275,8 +285,8 @@
   input.input,
   textarea.input,
   select.select {
-    background: #202024 !important;
-    border: 1px solid rgba(255,255,255,0.102) !important;
+    background: var(--cfy-input-bg) !important;
+    border: 1px solid var(--cfy-border) !important;
     color: var(--cfy-text);
     padding: 0.75rem 1rem;
     border-radius: var(--cfy-radius) !important;
@@ -286,12 +296,12 @@
   textarea.input:focus,
   select.select:focus {
     border-color: var(--cfy-accent-light) !important;
-    background: #26262b !important;
+    background: var(--cfy-input-bg-focus) !important;
   }
   ul[x-data] li > span {
     backdrop-filter: blur(var(--cfy-blur));
     background: rgba(255,255,255,0.05) !important;
-    border: 1px solid rgba(255,255,255,0.094) !important;
+    border: 1px solid var(--cfy-border) !important;
     font-family: "Inter", sans-serif;
   }
   .toast-no-description svg[fill="currentColor"] {
@@ -305,11 +315,11 @@
     height: 8px;
   }
   ::-webkit-scrollbar-thumb {
-    background: #444;
+    background: var(--cfy-scrollbar);
     border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #666;
+    background: var(--cfy-scrollbar-hover);
   }
   button:focus-visible,
   a:focus-visible,
