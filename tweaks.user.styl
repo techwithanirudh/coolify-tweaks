@@ -254,21 +254,15 @@
     background: var(--cfy-card-container) !important;
   }
 
-  @media screen and (min-width: 1920px) {
-    section>h2+div, section>h3+div, div[data-testid='resources-grid'], div.grid[class*='cols'] {
-      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    }
-  }
-
-  div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]) {
+  div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]), div.grid[class*='cols']:has([href*="/project/"]) {
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   }
 
-  div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]) .box {
+  div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]) .box, div.grid[class*='cols']:has([href*="/project/"]) .box  {
     height: 150px;
   }
 
-  div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]) .box > div {
+  div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]) .box > div, div.grid[class*='cols']:has([href*="/project/"]) .box > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -513,7 +507,7 @@
   }
 
   /* force some widths */
-  div[class='w-48'], div[class*='w-64'], div[class='w-32'], div[class='pt-2 w-96'] {
+  div[class='w-48'], div[class*='w-64'], div[class='w-32'], div[class='pt-2 w-96'], div[class='flex flex-col md:w-96'] {
     width: 100% !important;
   }
 
