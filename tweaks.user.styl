@@ -8,14 +8,6 @@
 @license MIT
 ==/UserStyle== */
 @-moz-document url-prefix("*://coolify.local/*"), url-prefix("https://app.coolify.io/*") {
-  /* =============================================================================
-     0 ▸ COLOUR TOKEN OVERRIDES
-     ---------------------------------------------------------------------------
-     0-A DARK palette (default) – all values sampled from your screenshot
-     0-B LIGHT palette (fallback) – bright counterparts
-     0-C Alias block (dark) – handy --cfy-* names
-     0-D Alias block (light) – light-mode overrides
-  ============================================================================= */
   :root {
     /* neutrals */
     --color-base: #FFFFFF;
@@ -499,11 +491,6 @@
     opacity: 1 !important;
   }
 
-  /* Hide unused theme buttons */
-  button[\@click="setTheme('light')"], button[\@click="setTheme('system')"] {
-    display: none;
-  }
-
   /* Optional: tighter max-width for wide desktops */
   main > div[class*='p-4 sm:px-6 lg:px-8 lg:py-6'] {
     margin: auto;
@@ -518,6 +505,14 @@
     border-radius: var(--cfy-radius) !important;
     background: var(--cfy-card-container) !important;
   }
+
+  // Theme dropdown button styling - target button with dropdownOpen that has x-show child
+  button[\\\@click="dropdownOpen=true"]:has([x-show="theme === 'dark' || theme === 'system'"]) {
+    border-radius: 10px !important;
+    background: var(--cfy-card) !important;
+    padding-block: .7rem !important;
+  }
+
 } // coolify.local/*"), url-prefix("https://app.coolify.io/*") {
 
 /* end @-moz-document */
