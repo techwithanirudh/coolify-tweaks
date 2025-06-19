@@ -18,7 +18,7 @@
      0-D Alias block (light) – light-mode overrides
   ============================================================================= */
   /* 0-A ▸ DARK PALETTE */
-  :root,html.dark {
+  :root, html.dark {
     /* Neutrals */
     --color-base: #1F1C23
     --color-coolgray-100: #26252B
@@ -85,13 +85,13 @@
   /* =============================================================================
      1 ▸ GLOBAL RESET
   ============================================================================= */
-  body,.box,.card,.menu-item,button,a,input,select,textarea {
+  body, .box, .card, .menu-item, button, a, input, select, textarea {
     border: none !important
     box-shadow: none !important
     border-radius: var(--cfy-radius) !important
   }
 
-  body,main {
+  body, main {
     background: var(--cfy-content-bg) !important
     color: var(--cfy-text)
   }
@@ -147,7 +147,7 @@
     transition: background 0.18s, color 0.18s
   }
 
-  .menu-item:hover,.menu-item-active {
+  .menu-item:hover, .menu-item-active {
     background: var(--cfy-card-container) !important
     color: #FFFFFF !important
   }
@@ -229,7 +229,7 @@
     color: #111
   }
 
-  .navbar-main nav a.active button,.navbar-main nav a[aria-current='page'] button {
+  .navbar-main nav a.active button, .navbar-main nav a[aria-current='page'] button {
     background: var(--cfy-accent)
     color: #111
     box-shadow: inset 0 0 0 2px var(--cfy-accent-light)
@@ -237,11 +237,12 @@
 
   .navbar-main .flex-1 {
     flex: 1 1 auto
-  } /* =============================================================================
+  }
+
+  /* =============================================================================
      4 ▸ SECTION CONTAINERS & CARDS
   ============================================================================= */
-
-  section>h2+div,section>h3+div,div[data-testid='resources-grid'],div.grid[class*='cols'] {
+  section>h2+div, section>h3+div, div[data-testid='resources-grid'], div.grid[class*='cols'] {
     padding: 0.75rem 0.85rem !important
     background: var(--cfy-card-container) !important
     border-radius: var(--cfy-radius) !important
@@ -249,11 +250,11 @@
     margin-top: 0.65rem
   }
 
-  .grid,[class*='grid-cols'] {
+  .grid, [class*='grid-cols'] {
     gap: 0.65rem !important
   }
 
-  .box,.box-without-bg {
+  .box, .box-without-bg {
     padding: 0.65rem 0.75rem
     background: var(--cfy-card) !important
     border: 1px solid transparent
@@ -268,7 +269,7 @@
     background: unquote('color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%)')
   }
 
-  [dashed],[class*='dashed'] {
+  [dashed], [class*='dashed'] {
     padding-block: 2rem !important
     border-radius: var(--cfy-radius) !important
     border-color: #555 !important
@@ -315,11 +316,12 @@
 
   .box-description {
     color: var(--cfy-muted)
-  } /* =============================================================================
+  }
+
+  /* =============================================================================
      6 ▸ BUTTONS
   ============================================================================= */
-
-  button.button,.button {
+  button.button, .button {
     background: var(--cfy-accent)
     color: #fafafa !important
     font-weight: 600
@@ -329,12 +331,12 @@
     transition: background 0.18s
   }
 
-  button.button:hover,.button:hover {
+  button.button:hover, .button:hover {
     background: var(--cfy-accent-light)
     color: #111 !important
   }
 
-  button.secondary,.secondary {
+  button.secondary, .secondary {
     background: var(--cfy-secondary) !important
     color: var(--cfy-text) !important
   }
@@ -346,7 +348,7 @@
   /* =============================================================================
      7 ▸ FORM CONTROLS
   ============================================================================= */
-  input.input,textarea.input,select.select {
+  input.input, textarea.input, select.select {
     background: #202024 !important
     border: 1px solid #ffffff1a !important
     color: var(--cfy-text)
@@ -355,7 +357,7 @@
     transition: border-color 0.15s, background 0.15s
   }
 
-  input.input:focus,textarea.input:focus,select.select:focus {
+  input.input:focus, textarea.input:focus, select.select:focus {
     border-color: var(--cfy-accent-light) !important
     background: #26262b !important
   }
@@ -371,7 +373,7 @@
   }
 
   @keyframes wiggle {
-    0%,100% {
+    0%, 100% {
       transform: rotate(0)
     }
 
@@ -408,23 +410,24 @@
 
   ::-webkit-scrollbar-thumb:hover {
     background: #666
-  } /* Focus ring */
+  }
 
-  button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible {
+  /* Focus ring */
+  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
     outline: 2px solid var(--cfy-accent) !important
     outline-offset: 2px
   }
 
   /* Misc utilities */
-  .rounded-sm,form,div[class*='shadow-lg lg:border-t dark:border-coolgray-300'] {
+  .rounded-sm, form, div[class*='shadow-lg lg:border-t dark:border-coolgray-300'] {
     border-radius: var(--cfy-radius) !important
   }
 
-  .flex.gap-2>h1,.flex.gap-2>h2,.flex.gap-2>h3,.flex.gap-2>h4,.flex.items-center.gap-4>h1,.flex.items-center.gap-4>h2,.flex.items-center.gap-4>h3,.flex.items-center.gap-4>h4 {
+  .flex.gap-2>h1, .flex.gap-2>h2, .flex.gap-2>h3, .flex.gap-2>h4, .flex.items-center.gap-4>h1, .flex.items-center.gap-4>h2, .flex.items-center.gap-4>h3, .flex.items-center.gap-4>h4 {
     margin-right: auto
   }
 
-  div[class='flex items-center gap-2']>h3,section>h3[class='pb-2'] {
+  div[class='flex items-center gap-2']>h3, section>h3[class='pb-2'] {
     font-size: 1.6rem
   }
 
@@ -432,7 +435,7 @@
     max-width: none !important
   }
 
-  input.dark\:bg-coolgray-100:where(.dark,.dark *) {
+  input.dark\:bg-coolgray-100:where(.dark, .dark *) {
     background-color: var(--cfy-card) !important
     border-radius: 4px !important
     padding: 0.7rem
@@ -440,7 +443,7 @@
   }
 
   /* force some widths */
-  div[class='w-48'],div[class*='w-64'],div[class='w-32'],div[class*='w-96'] {
+  div[class='w-48'], div[class*='w-64'], div[class='w-32'], div[class*='w-96'] {
     width: 100% !important
   }
 
@@ -467,7 +470,7 @@
   }
 
   /* Hide unused theme buttons */
-  button[\@click="setTheme('light')"],button[\@click="setTheme('system')"] {
+  button[\@click="setTheme('light')"], button[\@click="setTheme('system')"] {
     display: none
   }
 
