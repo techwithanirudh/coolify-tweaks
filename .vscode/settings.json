@@ -1,6 +1,6 @@
 {
     "stylusSupremacy.insertColons": true,
-    "stylusSupremacy.insertSemicolons": false,
+    "stylusSupremacy.insertSemicolons": true,
     "stylusSupremacy.insertBraces": true,
     "stylusSupremacy.insertNewLineAroundImports": true,
     "stylusSupremacy.insertNewLineAroundBlocks": true,
@@ -17,7 +17,7 @@
     "stylusSupremacy.insertLeadingZeroBeforeFraction": true,
     "stylusSupremacy.selectorSeparator": ", ",
     "stylusSupremacy.quoteChar": "'",
-    "stylusSupremacy.sortProperties": true,
+    "stylusSupremacy.sortProperties": "grouped",
     "stylusSupremacy.alwaysUseImport": false,
     "stylusSupremacy.alwaysUseNot": false,
     "stylusSupremacy.alwaysUseAtBlock": false,
