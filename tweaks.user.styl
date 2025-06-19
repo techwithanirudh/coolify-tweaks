@@ -1,437 +1,514 @@
 /* ==UserStyle==
-@name         Coolify Enhanced UI
-@version      1.4
-@namespace    techwithanirudh
-@updateURL    https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@name Coolify Enhanced UI
+@version 1.4
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
 @preprocessor stylus
-@description  Enhance Coolify’s UI with extra spacing, soft rounded corners, subtle shadows, and token-based colour overrides.
-@include      *://coolify.local/*
-@license      MIT
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
 ==/UserStyle== */
-
 @-moz-document url-prefix("*://coolify.local/*"), url-prefix("https://app.coolify.io") {
+  /* =============================================================================
+     0 ▸ COLOUR TOKEN OVERRIDES
+     ---------------------------------------------------------------------------
+     0-A DARK palette (default) – all values sampled from your screenshot
+     0-B LIGHT palette (fallback) – bright counterparts
+     0-C Alias block (dark) – handy --cfy-* names
+     0-D Alias block (light) – light-mode overrides
+  ============================================================================= */
+  :root {
+    /* neutrals */
+    --color-base: #FFFFFF;
+    --color-coolgray-100: #F6F7F9;
+    --color-coolgray-200: #ECEEF2;
+    --color-coolgray-300: #E3E5EA;
+    --color-coolgray-400: #D8DAE0;
+    --color-coolgray-500: #CFD1D8;
+    --color-coolgray-600: #C6C8D0; /* sidebar */
+    --color-coolgray-700: #F4F5F7;
+    --color-coolgray-800: #EDEEF1;
+    --color-coolgray-900: #E6E7EB; /* accent */
+    --color-coollabs: #4C3495;
+    --color-coollabs-100: unquote('color-mix(in srgb, #4C3495 85%, #FFFFFF)'); /* states */
+    --color-success: #2AAA52;
+    --color-warning: #E0B842;
+    --color-error: #D63B3B;
+  }
 
-/* =============================================================================
-   0 ▸ COLOUR TOKEN OVERRIDES
-   Override Coolify’s built-in --color-* variables *first* so the whole UI
-   instantly adopts your palette. Then alias a few friendly --cfy-* names.
-============================================================================= */
-:root,
-html[data-theme="dark"] {
-    /* ---------- Neutral ramp ---------- */
-    --color-base          : #1F1C23;   /* body / main canvas                 */
-    --color-coolgray-100  : #26252B;   /* inputs, subtle borders             */
-    --color-coolgray-200  : #2A292E;   /* section / grid container           */
-    --color-coolgray-300  : #353239;   /* cards & list rows                  */
-    --color-coolgray-400  : #3D3A40;   /* raised states / hovers             */
-    --color-coolgray-500  : #45424A;
-    --color-coolgray-600  : #403D44;
-    --color-coolgray-700  : #1A191F;   /* sidebar background                 */
-    --color-coolgray-800  : #151419;
-    --color-coolgray-900  : #101014;
+  /* Dark Scheme */
+  .dark {
+    --color-base: #1F1C23;
+    --color-coolgray-100: #26252B;
+    --color-coolgray-200: #2A292E;
+    --color-coolgray-300: #353239;
+    --color-coolgray-400: #3D3A40;
+    --color-coolgray-500: #45424A;
+    --color-coolgray-600: #403D44; /* sidebar bg */
+    --color-coolgray-700: #1A191F;
+    --color-coolgray-800: #151419;
+    --color-coolgray-900: #101014; /* Accent */
+    --color-coollabs: #7349F3;
+    --color-coollabs-100: unquote('color-mix(in srgb, #7349F3 75%, #FFFFFF)'); /* States */
+    --color-success: #23FF1F;
+    --color-warning: #FCD452;
+    --color-error: #FF1F1C;
+  }
 
-    /* ---------- Brand accent ---------- */
-    --color-coollabs      : #7349F3;   /* nav highlight / primary buttons    */
-    --color-coollabs-100  : unquote('color-mix(in srgb, #7349F3 75%, #fff)');
+  :root {
+    font-size: 15px;
+    --cfy-accent: var(--color-coollabs);
+    --cfy-accent-light: var(--color-coollabs-100);
+    --cfy-sidebar-bg: var(--color-coolgray-700);
+    --cfy-secondary: var(--color-coolgray-100);
+    --cfy-content-bg: var(--color-base);
+    --cfy-card-container: var(--color-coolgray-200);
+    --cfy-card: var(--color-coolgray-300);
+    --cfy-text: #1F1C23;
+    --cfy-muted: #6E6B75; /* layout / fx */
+    --cfy-radius: 12px;
+    --cfy-blur: 12px;
+    --cfy-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    --cfy-sidebar-w: 230px;
+    color-scheme: light;
+  }
 
-    /* ---------- Semantic states (unchanged) ---------- */
-    --color-success       : #23FF1F;
-    --color-warning       : #FCD452;
-    --color-error         : #FF1F1C;
-}
+  html.dark {
+    --cfy-text: #FCFAFC;
+    --cfy-muted: #8E8C91;
+    color-scheme: dark;
+  }
 
-
-/* Friendly aliases so you don’t have to re-hunt variable names later */
-:root {
-    --cfy-accent          : var(--color-coollabs);
-    --cfy-accent-light    : var(--color-coollabs-100);
-    --cfy-sidebar-bg      : var(--color-coolgray-700);
-    --cfy-secondary       : var(--color-coolgray-100);
-    --cfy-content-bg      : var(--color-base);
-    --cfy-card-container  : var(--color-coolgray-200);
-    --cfy-card            : var(--color-coolgray-300);
-    --cfy-text            : #FCFAFC;
-    --cfy-muted           : #8E8C91;
-
-    /* layout + effects */
-    --cfy-radius          : 12px;
-    --cfy-blur            : 12px;
-    --cfy-shadow          : 0 4px 20px rgba(0, 0, 0, .25);
-    --cfy-sidebar-w       : 230px;
-
-    font-size             : 15px;
-    color-scheme          : dark;
-}
-
-/* =============================================================================
-   1 ▸ GLOBAL RESET
-============================================================================= */
-body,
-.box,
-.card,
-.menu-item,
-button,
-a,
-input,
-select,
-textarea {
-    border         : none !important;
-    box-shadow     : none !important;
-    border-radius  : var(--cfy-radius) !important;
-}
-
-body,
-main {
-    background : var(--cfy-content-bg) !important;
-    color      : var(--cfy-text);
-}
-
-/* =============================================================================
-   2 ▸ SIDEBAR
-============================================================================= */
-[class*="lg:flex"][class*="lg:w-56"] {
-    width : var(--cfy-sidebar-w) !important;
-}
-
-nav[class*="dark:border-coolgray-200"] {
-    width              : 100%;
-    background         : var(--cfy-sidebar-bg) !important;
-    backdrop-filter    : blur(var(--cfy-blur));
-    -webkit-backdrop-filter: blur(var(--cfy-blur));
-    border-right       : 1px solid #ffffff10;
-    overflow-y         : auto !important;
-    overflow-x         : hidden;
-    scrollbar-width    : thin;
-    scrollbar-color    : var(--cfy-accent) transparent;
-}
-
-nav[class*="dark:border-coolgray-200"] > ul {
-    padding-inline: calc(var(--spacing)*2);
-}
-
-nav[class*="dark:border-coolgray-200"] > div[class*="px-2 pt-2 pb-7"] {
-    padding-block: calc(var(--spacing)*4)!important;
-}
-
-aside::-webkit-scrollbar {
-    width : 8px;
-}
-aside::-webkit-scrollbar-thumb {
-    background   : var(--cfy-accent);
-    border-radius: 4px;
-}
-
-nav > ul > li > ul > li {
+  /* =============================================================================
+     1 ▸ GLOBAL RESET
+  ============================================================================= */
+  body, .box, .card, .menu-item, button, a, input, select, textarea {
+    border: none !important;
     border-radius: var(--cfy-radius) !important;
-    overflow     : hidden;
-}
+    box-shadow: none !important;
+  }
 
-.menu-item {
-    display        : flex;
-    align-items    : center;
-    gap            : .6rem;
-    padding        : .55rem .9rem;
-    font-weight    : 500;
-    color          : var(--cfy-muted);
-    transition     : background .18s, color .18s;
-}
+  body, main {
+    background: var(--cfy-content-bg) !important;
+    color: var(--cfy-text);
+  }
 
-.menu-item:hover,
-.menu-item-active {
-    background: var(--cfy-card-container) !important;
-    color      : #fff !important;
-}
+  /* =============================================================================
+     2 ▸ SIDEBAR
+  ============================================================================= */
+  [class*='lg:flex'][class*='lg:w-56'] {
+    width: var(--cfy-sidebar-w) !important;
+  }
 
-.menu-item svg {
-    width        : 20px;
-    height       : 20px;
-    stroke-width : 1.6;
-    flex-shrink  : 0;
-    fill         : var(--color-coolgray-600)!important;
-}
-
-/* Mobile slide-in */
-@media (max-width:1023px) {
-    aside[class*="sidebar"] {
-        position  : fixed;
-        inset     : 0 0 0 0;
-        transform : translateX(calc(-1 * var(--cfy-sidebar-w)));
-        z-index   : 60;
-        transition: transform .25s;
-    }
-    body.sidebar-open aside { transform: none; }
-    body.sidebar-open::after {
-        content   : "";
-        position  : fixed;
-        inset     : 0;
-        background: #0009;
-        z-index   : 50;
-    }
-}
-/* Desktop push */
-@media (min-width:1024px) {
-    main { padding-left: var(--cfy-sidebar-w) !important; }
-}
-
-/* =============================================================================
-   3 ▸ TOP SUB-NAV
-============================================================================= */
-.navbar-main {
-    position       : sticky;
-    top            : 0;
-    z-index        : 45;
-    padding        : .45rem .85rem;
-    background     : var(--cfy-sidebar-bg);
+  nav[class*='dark:border-coolgray-200'] {
+    overflow-x: hidden;
+    overflow-y: auto !important;
+    width: 100%;
+    border-right: 1px solid #ffffff10;
+    background: var(--cfy-sidebar-bg) !important;
     backdrop-filter: blur(var(--cfy-blur));
     -webkit-backdrop-filter: blur(var(--cfy-blur));
-    border         : 1px solid #ffffff10;
-    border-radius  : var(--cfy-radius) !important;
-}
+    scrollbar-width: thin;
+    scrollbar-color: var(--cfy-accent) transparent;
+  }
 
-.navbar-main nav {
-    display : flex;
+  nav[class*='dark:border-coolgray-200'] > ul {
+    padding-inline: calc(var(--spacing) * 2);
+  }
+
+  nav[class*='dark:border-coolgray-200'] > div[class*='px-2 pt-2 pb-7'] {
+    padding-block: calc(var(--spacing) * 4) !important;
+  }
+
+  aside::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  aside::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: var(--cfy-accent);
+  }
+
+  nav > ul > li > ul > li {
+    overflow: hidden;
+    border-radius: var(--cfy-radius) !important;
+  }
+
+  .menu-item {
+    display: flex;
     align-items: center;
-    gap     : .8rem;
-}
-.navbar-main nav::-webkit-scrollbar { display: none; }
+    padding: 0.55rem 0.9rem;
+    color: var(--cfy-muted);
+    font-weight: 500;
+    transition: background 0.18s, color 0.18s;
+    gap: 0.6rem;
+  }
 
-.navbar-main nav button {
-    all        : unset;
-    cursor     : pointer;
-    padding    : .55rem 1.25rem;
+  .menu-item:hover, .menu-item-active {
+    background: var(--cfy-card-container) !important;
+    color: #FFFFFF !important;
+  }
+
+  .menu-item svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.6;
+    fill: var(--color-coolgray-600) !important;
+  }
+
+  /* Mobile slide-in */
+  @media (max-width: 1023px) {
+    aside[class*='sidebar'] {
+      position: fixed;
+      z-index: 60;
+      transition: transform 0.25s;
+      transform: translateX(calc(-1 * var(--cfy-sidebar-w)));
+      inset: 0;
+    }
+
+    body.sidebar-open aside {
+      transform: none;
+    }
+
+    body.sidebar-open::after {
+      position: fixed;
+      z-index: 50;
+      background: #0009;
+      content: '';
+      inset: 0;
+    }
+  }
+
+  /* Desktop push */
+  @media (min-width: 1024px) {
+    main {
+      padding-left: var(--cfy-sidebar-w) !important;
+    }
+  }
+
+  /* =============================================================================
+     3 ▸ TOP SUB-NAV
+  ============================================================================= */
+  .navbar-main {
+    position: sticky;
+    top: 0;
+    z-index: 45;
+    padding: 0.45rem 0.85rem;
+    border: 1px solid #ffffff10;
+    border-radius: var(--cfy-radius) !important;
+    background: var(--cfy-sidebar-bg);
+    backdrop-filter: blur(var(--cfy-blur));
+    -webkit-backdrop-filter: blur(var(--cfy-blur));
+  }
+
+  .navbar-main nav {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .navbar-main nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navbar-main nav a {
+    padding: 0.3rem;
+    border-radius: 10px !important;
+    color: var(--cfy-muted);
     font-weight: 600;
-    color      : var(--cfy-muted);
-    transition : background .18s, color .18s;
-}
-.navbar-main nav button:hover {
-    background: var(--cfy-accent-light);
-    color     : #111;
-}
-.navbar-main nav a.active button,
-.navbar-main nav a[aria-current="page"] button {
-    background : var(--cfy-accent);
-    color      : #111;
-    box-shadow : inset 0 0 0 2px var(--cfy-accent-light);
-}
-.navbar-main .flex-1 { flex: 1 1 auto; }
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+  }
 
-/* =============================================================================
-   4 ▸ SECTION CONTAINERS & CARDS
-============================================================================= */
-section>h2+div,
-section>h3+div,
-div[data-testid="resources-grid"],
-div.grid[class*="cols"] {
-    padding      : .75rem .85rem !important;
-    background   : var(--cfy-card-container) !important;
+  .navbar-main nav a:hover {
+    color: var(--cfy-text) !important;
+  }
+
+  .navbar-main nav a[class*='dark:text-white'], .navbar-main nav a[aria-current='page'] {
+    box-shadow: inset 0 0 0 2px var(--cfy-accent-light);
+    color: var(--cfy-text) !important;
+    color: #111;
+  }
+
+  .navbar-main .flex-1 {
+    flex: 1 1 auto;
+  }
+
+  /* =============================================================================
+     4 ▸ SECTION CONTAINERS & CARDS
+  ============================================================================= */
+  section>h2+div, section>h3+div, div[data-testid='resources-grid'], div.grid[class*='cols'] {
+    overflow: hidden;
+    margin-top: 0.65rem;
+    padding: 0.75rem 0.85rem !important;
     border-radius: var(--cfy-radius) !important;
-    overflow     : hidden;
-    margin-top   : .65rem;
-}
+    background: var(--cfy-card-container) !important;
+  }
 
-.grid,
-[class*="grid-cols"] { gap: .65rem !important; }
+  @media screen and (min-width: 1920px) {
+    section>h2+div, section>h3+div, div[data-testid='resources-grid'], div.grid[class*='cols'] {
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+  }
 
-.box,
-.box-without-bg {
-    padding      : .65rem .75rem;
-    background   : var(--cfy-card) !important;
-    border       : 1px solid transparent;
-    // box-shadow   : var(--cfy-shadow) !important;
-    transition   : transform .15s, box-shadow .2s, background .18s, border-color .18s;
+  section:has(> div > div:only-child) > div > div:only-child {
+    padding: 1.25rem !important;
     border-radius: var(--cfy-radius) !important;
-}
-.box:hover {
-    transform   : translateY(-2px);
-    box-shadow  : 0 8px 24px rgb(0 0 0 /.35);
+    background: var(--cfy-card-container) !important;
+    color: var(--cfy-muted);
+    text-align: center;
+  }
+
+  .grid, [class*='grid-cols'] {
+    gap: 0.65rem !important;
+  }
+
+  .box, .box-without-bg {
+    padding: 0.65rem 0.75rem;
+    border: 1px solid transparent;
+    border-radius: var(--cfy-radius) !important;
+    background: var(--cfy-card) !important;
+    transition: transform 0.15s, box-shadow 0.2s, background 0.18s, border-color 0.18s;
+  }
+
+  .box:hover {
     border-color: var(--cfy-accent);
-    background  : unquote('color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%)');
-}
+    background: unquote('color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%)');
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.35);
+    transform: translateY(-2px);
+  }
 
-[dashed],
-[class*="dashed"] {
-    padding-block : 2rem !important;
-    border-radius : var(--cfy-radius) !important;
-    border-color  : #555 !important;
-}
-
-[role="row"]:not([dashed]) {
-    background   : var(--cfy-card) !important;
+  [dashed], [class*='dashed'] {
+    border-color: #555 !important;
     border-radius: var(--cfy-radius) !important;
-    padding      : .6rem .8rem;
-}
+    padding-block: 2rem !important;
+  }
 
-/* =============================================================================
-   5 ▸ TYPOGRAPHY
-============================================================================= */
-h1 { font: 700 2.1rem/1.25 "Inter","SF Pro Display",sans-serif; color: var(--cfy-text); }
-h2 { font: 700 1.5rem/1.35 "Inter","SF Pro Display",sans-serif; color: var(--cfy-text); }
-h3 { font: 700 1.25rem/1.35 "Inter","SF Pro Display",sans-serif; color: var(--cfy-text); }
-h4 { font: 700 1.1rem/1.35 "Inter","SF Pro Display",sans-serif; color: var(--cfy-text); }
-
-.subtitle      { font-size: .95rem;  color: var(--cfy-muted); }
-.box-title     { font-size: 1.05rem; font-weight: 600; }
-.box-description { color: var(--cfy-muted); }
-
-/* =============================================================================
-   6 ▸ BUTTONS
-============================================================================= */
-button.button,
-.button {
-    background    : var(--cfy-accent);
-    color         : #fafafa !important;
-    font-weight   : 600;
-    padding       : .55rem 1rem;
-    border        : 1px solid #ffffff1a !important;
-    border-radius : var(--cfy-radius);
-    transition    : background .18s;
-}
-button.button:hover,
-.button:hover {
-    background : var(--cfy-accent-light);
-    color      : #111 !important;
-}
-
-button.secondary,
-.secondary {
-    background : var(--cfy-secondary) !important;
-    color      : var(--cfy-text) !important;
-}
-button.secondary:hover {
-    background : var(--cfy-card-container) !important;
-}
-
-/* =============================================================================
-   7 ▸ FORM CONTROLS
-============================================================================= */
-input.input,
-textarea.input,
-select.select {
-    background   : #202024 !important;
-    border       : 1px solid #ffffff1a !important;
-    color        : var(--cfy-text);
-    padding      : .55rem 1rem;
+  [role='row']:not([dashed]) {
+    padding: 0.6rem 0.8rem;
     border-radius: var(--cfy-radius) !important;
-    transition   : border-color .15s, background .15s;
-}
-input.input:focus,
-textarea.input:focus,
-select.select:focus {
-    border-color : var(--cfy-accent-light) !important;
-    background   : #26262b !important;
-}
+    background: var(--cfy-card) !important;
+  }
 
-/* =============================================================================
-   8 ▸ TOASTS & MISC
-============================================================================= */
-ul[x-data] li>span {
-    backdrop-filter : blur(var(--cfy-blur));
-    background      : hsla(0,0%,100%,.05) !important;
-    border          : 1px solid #ffffff18 !important;
-    font-family     : "Inter", sans-serif;
-}
+  /* =============================================================================
+     5 ▸ TYPOGRAPHY
+  ============================================================================= */
+  h1 {
+    color: var(--cfy-text);
+    font: 700 2.1rem / 1.25 'Inter', 'SF Pro Display', sans-serif;
+  }
 
-/* Wiggle animation for icons */
-@keyframes wiggle {
-    0%,100% { transform: rotate(0); }
-    25%     { transform: rotate(-3deg); }
-    75%     { transform: rotate(3deg); }
-}
-.toast-no-description svg[fill="currentColor"] { animation: wiggle .6s ease; }
+  h2 {
+    color: var(--cfy-text);
+    font: 700 1.5rem / 1.35 'Inter', 'SF Pro Display', sans-serif;
+  }
 
-[x-show="popups.sponsorship"] {
+  h3 {
+    color: var(--cfy-text);
+    font: 700 1.25rem / 1.35 'Inter', 'SF Pro Display', sans-serif;
+  }
+
+  h4 {
+    color: var(--cfy-text);
+    font: 700 1.1rem / 1.35 'Inter', 'SF Pro Display', sans-serif;
+  }
+
+  .subtitle {
+    color: var(--cfy-muted);
+    font-size: 0.95rem;
+  }
+
+  .box-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+
+  .box-description {
+    color: var(--cfy-muted);
+  }
+
+  /* =============================================================================
+     6 ▸ BUTTONS
+  ============================================================================= */
+  button.button, .button {
+    padding: 0.55rem 1rem;
+    border: 1px solid #ffffff1a !important;
+    border-radius: var(--cfy-radius);
+    background: var(--cfy-accent);
+    color: #fafafa !important;
+    font-weight: 600;
+    transition: background 0.18s;
+  }
+
+  button.button:hover, .button:hover {
+    background: var(--cfy-accent-light);
+    color: #111 !important;
+  }
+
+  button.secondary, .secondary {
+    background: var(--cfy-secondary) !important;
+    color: var(--cfy-text) !important;
+  }
+
+  button.secondary:hover {
+    background: var(--cfy-card-container) !important;
+  }
+
+  /* =============================================================================
+     7 ▸ FORM CONTROLS
+  ============================================================================= */
+  input.input, textarea.input, select.select {
+    padding: 0.55rem 1rem;
+    border: 1px solid #ffffff1a !important;
     border-radius: var(--cfy-radius) !important;
-    padding      : 1.25rem !important;
-    background   : var(--cfy-card-container) !important;
-    box-shadow   : var(--cfy-shadow) !important;
-}
+    background: #202024 !important;
+    color: var(--cfy-text);
+    transition: border-color 0.15s, background 0.15s;
+  }
 
-/* Global scrollbars */
-::-webkit-scrollbar          { width: 8px; height: 8px; }
-::-webkit-scrollbar-thumb    { background: #444; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #666; }
+  input.input:focus, textarea.input:focus, select.select:focus {
+    border-color: var(--cfy-accent-light) !important;
+    background: #26262b !important;
+  }
 
-/* Focus rings */
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-    outline      : 2px solid var(--cfy-accent) !important;
-    outline-offset: 2px;
-}
-
-/* Misc utility tweaks */
-.rounded-sm,
-form,
-div[class*="shadow-lg lg:border-t dark:border-coolgray-300"] {
-    border-radius: var(--cfy-radius) !important;
-}
-
-.flex.gap-2>h1,
-.flex.gap-2>h2,
-.flex.gap-2>h3,
-.flex.gap-2>h4,
-.flex.items-center.gap-4>h1,
-.flex.items-center.gap-4>h2,
-.flex.items-center.gap-4>h3,
-.flex.items-center.gap-4>h4 { margin-right: auto; }
-
-div[class="flex items-center gap-2"]>h3,
-section>h3[class="pb-2"] { font-size: 1.6rem; }
-
-div[class="flex flex-col gap-4 max-w-2xl"] { max-width: none !important; }
-
-input.dark\:bg-coolgray-100:where(.dark, .dark *) {
+  input[type='checkbox'], input[type='radio'] {
+    padding: 0.7rem;
+    border-radius: 4px !important;
     background-color: var(--cfy-card) !important;
-    border-radius   : 4px !important;
-    padding         : .7rem;
-    transition      : background .18s;
-}
+    transition: background 0.18s;
+  }
 
-/* force some widths to full */
-div[class="w-48"],
-div[class*="w-64"],
-div[class="w-32"],
-div[class*="w-96"] { width: 100% !important; }
+  label {
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
 
-/* larger gap utility */
-div[class*="flex flex-col gap-2"] { gap: calc(var(--spacing)*4) !important; }
+  /* =============================================================================
+     8 ▸ TOASTS & MISC
+  ============================================================================= */
+  ul[x-data] li>span {
+    border: 1px solid #ffffff18 !important;
+    background: hsla(0, 0%, 100%, 0.05) !important;
+    font-family: 'Inter', sans-serif;
+    backdrop-filter: blur(var(--cfy-blur));
+  }
 
-a[class*="hover:underline"]:hover {
+  @keyframes wiggle {
+    0%, 100% {
+      transform: rotate(0);
+    }
+
+    25% {
+      transform: rotate(-3deg);
+    }
+
+    75% {
+      transform: rotate(3deg);
+    }
+  }
+
+  .toast-no-description svg[fill='currentColor'] {
+    animation: wiggle 0.6s ease;
+  }
+
+  [x-show='popups.sponsorship'] {
+    padding: 1.25rem !important;
+    border-radius: var(--cfy-radius) !important;
+    background: var(--cfy-card-container) !important;
+    box-shadow: var(--cfy-shadow) !important;
+  }
+
+  /* Scrollbars */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #444;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #666;
+  }
+
+  /* Focus ring */
+  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--cfy-accent) !important;
+    outline-offset: 2px;
+  }
+
+  /* Misc utilities */
+  .rounded-sm, form, div[class*='shadow-lg lg:border-t dark:border-coolgray-300'] {
+    border-radius: var(--cfy-radius) !important;
+  }
+
+  .flex.gap-2>h1, .flex.gap-2>h2, .flex.gap-2>h3, .flex.gap-2>h4, .flex.items-center.gap-4>h1, .flex.items-center.gap-4>h2, .flex.items-center.gap-4>h3, .flex.items-center.gap-4>h4 {
+    margin-right: auto;
+  }
+
+  div[class='flex items-center gap-2']>h3, section>h3[class='pb-2'] {
+    font-size: 1.6rem;
+  }
+
+  div[class='flex flex-col gap-4 max-w-2xl'] {
+    max-width: none !important;
+  }
+
+  input.dark\:bg-coolgray-100:where(.dark, .dark *) {
+    padding: 0.7rem;
+    border-radius: 4px !important;
+    background-color: var(--cfy-card) !important;
+    transition: background 0.18s;
+  }
+
+  /* force some widths */
+  div[class='w-48'], div[class*='w-64'], div[class='w-32'], div[class*='w-96'] {
+    width: 100% !important;
+  }
+
+  div[class*='flex flex-col gap-2'] {
+    gap: calc(var(--spacing) * 4) !important;
+  }
+
+  a[class*='hover:underline']:hover {
+    color: var(--cfy-muted) !important;
     text-decoration: none !important;
-    color          : var(--cfy-muted) !important;
-}
+  }
 
-table {
-    background   : var(--cfy-card-container) !important;
+  table {
+    overflow: hidden !important;
+    margin-top: calc(var(--spacing) * 4);
     border-radius: var(--cfy-radius) !important;
-    margin-top   : calc(var(--spacing)*4);
-    overflow     : hidden !important;
-}
+    background: var(--cfy-card-container) !important;
+  }
 
-img[class*="w-[4.5rem] aspect-square h-[4.5rem]"] {
+  img[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
     border-radius: var(--cfy-radius) !important;
-    filter: none!important;
-    opacity: 1!important;
-}
+    filter: none !important;
+    opacity: 1 !important;
+  }
 
-/* Hide light/theme buttons (site doesn’t support) */
-button[\@click="setTheme('light')"],
-button[\@click="setTheme('system')"] { display: none; }
+  /* Hide unused theme buttons */
+  button[\@click="setTheme('light')"], button[\@click="setTheme('system')"] {
+    display: none;
+  }
 
-
-main > div[class*="p-4 sm:px-6 lg:px-8 lg:py-6"] {
+  /* Optional: tighter max-width for wide desktops */
+  main > div[class*='p-4 sm:px-6 lg:px-8 lg:py-6'] {
     margin: auto;
     max-width: 80% !important;
-    padding-block: calc(var(--spacing)*18) !important;
-}
+    padding-block: calc(var(--spacing) * 18) !important;
+  }
 
-div[class*="p-4 border dark:border-coolgray-300"] {
-    background   : var(--cfy-card-container) !important;
+  /* “Sponsor us” box and similar */
+  div[class*='p-4 border dark:border-coolgray-300'] {
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 4) calc(var(--spacing) * 6);
     border-radius: var(--cfy-radius) !important;
-    padding      : calc(var(--spacing)*4) calc(var(--spacing)*6);
-    margin-top   : calc(var(--spacing)*4);
-}
+    background: var(--cfy-card-container) !important;
+  }
+} // coolify.local/*"), url-prefix("https://app.coolify.io") {
 
-}
+/* end @-moz-document */
