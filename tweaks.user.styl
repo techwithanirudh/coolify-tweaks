@@ -24,14 +24,10 @@
     --color-coollabs-100: unquote('color-mix(in srgb, #4C3495 85%, #FFFFFF)'); /* states */
     --color-success: #2AAA52;
     --color-warning: #E0B842;
-    --color-error: #D63B3B;
-    
-    /* semantic colors for light mode */
+    --color-error: #D63B3B; /* semantic colors for light mode */
     --color-text-primary: #1F1C23;
     --color-text-muted: #6E6B75;
-    --color-placeholder: #8E8C91;
-
-    /* shadows and overlays */
+    --color-placeholder: #8E8C91; /* shadows and overlays */
     --color-overlay: rgba(0, 0, 0, 0.6);
     --color-shadow-light: rgba(0, 0, 0, 0.15);
     --color-shadow-dark: rgba(0, 0, 0, 0.35);
@@ -52,12 +48,9 @@
     --color-coolgray-900: #101014; /* Accent */
     --color-coollabs: #7349F3;
     --color-coollabs-100: unquote('color-mix(in srgb, #7349F3 75%, #FFFFFF)'); /* States */
-
     --color-success: #4ad4b0;
     --color-warning: #FCD452;
-    --color-error: #45282f;
-    
-    /* semantic colors for dark mode */
+    --color-error: #45282f; /* semantic colors for dark mode */
     --color-text-primary: #FCFAFC;
     --color-text-muted: #8E8C91;
     --color-placeholder: #8E8C91;
@@ -73,18 +66,20 @@
     --cfy-card-container: var(--color-coolgray-200);
     --cfy-card: var(--color-coolgray-300);
     --cfy-text: var(--color-text-primary);
-    --cfy-muted: var(--color-text-muted); /* layout / fx */
-    --cfy-radius: 14px;
+    --cfy-muted: var(--color-text-muted); /* layout / fx *//* one knob to rule them all */
+
     --cfy-blur: 14px;
     --cfy-shadow: 0 4px 20px var(--color-shadow-main);
     --cfy-sidebar-w: 260px;
-    color-scheme: light;
-  }
 
-  html.dark {
-    --cfy-text: var(--color-text-primary);
-    --cfy-muted: var(--color-text-muted);
-    color-scheme: dark;
+    --radius-base: 14px; 
+    --radius-step: 2px;
+
+    --radius-xs: calc(var(--radius-base) - (var(--radius-step) * 2));
+    --radius-sm: calc(var(--radius-base) - var(--radius-step));
+    --radius-md: var(--radius-base);
+    --radius-lg: calc(var(--radius-base) + var(--radius-step));
+    --radius-xl: calc(var(--radius-base) + (var(--radius-step) * 2));
   }
 
   /* =============================================================================
@@ -92,7 +87,7 @@
   ============================================================================= */
   body, .box, .card, .menu-item, button, a, input, select, textarea {
     border: none !important;
-    border-radius: var(--cfy-radius) !important;
+    border-radius: var(--radius-sm) !important;
     box-shadow: none !important;
   }
 
@@ -139,7 +134,7 @@
 
   nav > ul > li > ul > li {
     overflow: hidden;
-    border-radius: var(--cfy-radius) !important;
+    border-radius: var(--radius-sm) !important;
   }
 
   .menu-item {
@@ -147,6 +142,7 @@
     align-items: center;
     padding: 0.55rem 0.9rem;
     color: var(--cfy-muted);
+    border-radius: var(--radius-sm) !important;
     font-weight: 500;
     transition: background 0.18s, color 0.18s;
     gap: 0.6rem;
@@ -204,7 +200,7 @@
     z-index: 45;
     padding: 0.45rem 0.85rem;
     border: 1px solid var(--color-coolgray-400);
-    border-radius: var(--cfy-radius) !important;
+    border-radius: var(--radius-sm) !important;
     background: var(--cfy-sidebar-bg);
     backdrop-filter: blur(var(--cfy-blur));
     -webkit-backdrop-filter: blur(var(--cfy-blur));
@@ -250,57 +246,61 @@
     overflow: hidden;
     margin-top: 0.65rem;
     padding: 0.75rem 0.85rem !important;
-    border-radius: var(--cfy-radius) !important;
+    border-radius: var(--radius-md) !important;   /* 14 px */
     background: var(--cfy-card-container) !important;
   }
 
-  div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]), div.grid[class*='cols']:has([href*="/project/"]) {
+  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([href*='/project/']) {
     grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
   }
 
   /* Responsive grid columns like Tailwind CSS breakpoints */
-  @media screen and (min-width: 640px) { /* sm */
-    div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]), div.grid[class*='cols']:has([href*="/project/"]) {
+  @media screen and (min-width: 640px) {
+    /* sm */
+    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([href*='/project/']) {
       grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
   }
 
-  @media screen and (min-width: 1024px) { /* lg */
-    div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]), div.grid[class*='cols']:has([href*="/project/"]) {
+  @media screen and (min-width: 1024px) {
+    /* lg */
+    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([href*='/project/']) {
       grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     }
   }
 
-  @media screen and (min-width: 1280px) { /* xl */
-    div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]), div.grid[class*='cols']:has([href*="/project/"]) {
+  @media screen and (min-width: 1280px) {
+    /* xl */
+    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([href*='/project/']) {
       grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     }
   }
 
-  @media screen and (min-width: 1536px) { /* 2xl */
-    div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]), div.grid[class*='cols']:has([href*="/project/"]) {
+  @media screen and (min-width: 1536px) {
+    /* 2xl */
+    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([href*='/project/']) {
       grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
     }
   }
 
-  div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]) .box, div.grid[class*='cols']:has([href*="/project/"]) .box  {
+  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']) .box, div.grid[class*='cols']:has([href*='/project/']) .box {
     height: 150px;
   }
 
-  div.grid[class*='cols']:has([wire\\\:click^="navigateToProject"]) .box > div, div.grid[class*='cols']:has([href*="/project/"]) .box > div {
+  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']) .box > div, div.grid[class*='cols']:has([href*='/project/']) .box > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 
-  div.grid[class*='cols']:has([href*="/server/"]) {
+  div.grid[class*='cols']:has([href*='/server/']) {
     grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
   }
 
   section:has(> div > div:only-child) > div > div:only-child {
     padding: 1.25rem !important;
-    border-radius: var(--cfy-radius) !important;
+    border-radius: var(--radius-sm) !important;
     background: var(--cfy-card-container) !important;
     color: var(--cfy-muted);
     text-align: center;
@@ -311,19 +311,19 @@
   }
 
   .box, .box-without-bg {
+    overflow: hidden;
     padding: 0.65rem 0.75rem;
     border: 1px solid var(--color-coolgray-400) !important;
-    border-radius: var(--cfy-radius) !important;
+    border-radius: var(--radius-sm) !important;   /* 12 px */
     background: var(--cfy-card) !important;
     transition: transform 0.15s, box-shadow 0.2s, background 0.18s, border-color 0.18s;
-    overflow: hidden;
   }
 
   .badge-dashboard, .badge {
-      // top: calc(var(--spacing)*0.5)!important;
-      // right: calc(var(--spacing)*0.5)!important;
-      width: calc(var(--spacing)*3.5);
-      height: calc(var(--spacing)*3.5);
+    // top: calc(var(--spacing)*0.5)!important;
+    // right: calc(var(--spacing)*0.5)!important;
+    width: calc(var(--spacing) * 3.5);
+    height: calc(var(--spacing) * 3.5);
   }
 
   .box:hover {
@@ -335,13 +335,13 @@
 
   [dashed], [class*='dashed'] {
     border-color: var(--cfy-muted) !important;
-    border-radius: var(--cfy-radius) !important;
+    border-radius: var(--radius-sm) !important;
     padding-block: 2rem !important;
   }
 
   [role='row']:not([dashed]) {
     padding: 0.6rem 0.8rem;
-    border-radius: var(--cfy-radius) !important;
+    border-radius: var(--radius-sm) !important;
     background: var(--cfy-card) !important;
   }
 
@@ -388,7 +388,7 @@
   button.button, .button {
     padding: 0.55rem 1rem;
     border: 1px solid var(--color-coolgray-400) !important;
-    border-radius: var(--cfy-radius);
+    border-radius: var(--radius-sm) !important;   /* 12 px */
     background: var(--cfy-accent);
     color: var(--color-text) !important;
     font-weight: 600;
@@ -418,7 +418,7 @@
   input.input, textarea.input, select.select {
     padding: 0.55rem 1rem;
     border: 1px solid var(--color-coolgray-400) !important;
-    border-radius: var(--cfy-radius) !important;
+    border-radius: var(--radius-sm) !important;   /* 12 px */
     background: var(--cfy-card) !important;
     color: var(--cfy-text);
     transition: border-color 0.15s, background 0.15s;
@@ -481,7 +481,7 @@
 
   [x-show='popups.sponsorship'] {
     padding: 1.25rem !important;
-    border-radius: var(--cfy-radius) !important;
+    border-radius: var(--radius-sm) !important;
     background: var(--cfy-card-container) !important;
     box-shadow: var(--cfy-shadow) !important;
   }
@@ -509,7 +509,7 @@
 
   /* Misc utilities */
   .rounded-sm, form, div[class*='shadow-lg lg:border-t dark:border-coolgray-300'] {
-    border-radius: var(--cfy-radius) !important;
+    border-radius: var(--radius-sm) !important;
   }
 
   :is(.flex.gap-2, .flex.items-center.gap-4, .flex.flex-col.gap-4.lg:\flex-row)> :is(h1, h2, h3, h4) {
@@ -548,12 +548,12 @@
   table {
     overflow: hidden !important;
     margin-top: calc(var(--spacing) * 4);
-    border-radius: var(--cfy-radius) !important;
+    border-radius: var(--radius-sm) !important;
     background: var(--cfy-card-container) !important;
   }
 
   img[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
-    border-radius: var(--cfy-radius) !important;
+    border-radius: var(--radius-sm) !important;
     filter: none !important;
     opacity: 1 !important;
   }
@@ -569,17 +569,16 @@
   div[class*='p-4 border dark:border-coolgray-300'] {
     margin-top: calc(var(--spacing) * 4);
     padding: calc(var(--spacing) * 4) calc(var(--spacing) * 6);
-    border-radius: var(--cfy-radius) !important;
+    border-radius: var(--radius-sm) !important;
     background: var(--cfy-card-container) !important;
   }
 
   // Theme dropdown button styling - target button with dropdownOpen that has x-show child
-  button[\\\@click="dropdownOpen=true"]:has([x-show="theme === 'dark' || theme === 'system'"]) {
+  button[\\\@click='dropdownOpen=true']:has([x-show="theme === 'dark' || theme === 'system'"]) {
     border-radius: 10px !important;
     background: var(--cfy-card) !important;
-    padding-block: .7rem !important;
+    padding-block: 0.7rem !important;
   }
-
 } // coolify.local/*"), url-prefix("https://app.coolify.io/*") {
 
 /* end @-moz-document */
