@@ -247,44 +247,44 @@
     background: var(--cfy-card-container) !important;
   }
 
-  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([href*='/project/']) {
+  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']),div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']) .box, div.grid[class*="cols"][x-show="filteredApplications.length > 0"] .box, div.grid[class*="cols"][x-show="filteredServices.length > 0"] .box {
     grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
   }
 
   /* Responsive grid columns like Tailwind CSS breakpoints */
   @media screen and (min-width: 640px) {
     /* sm */
-    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([href*='/project/']) {
+    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']),div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']) .box, div.grid[class*="cols"][x-show="filteredApplications.length > 0"] .box, div.grid[class*="cols"][x-show="filteredServices.length > 0"] .box {
       grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
   }
 
   @media screen and (min-width: 1024px) {
     /* lg */
-    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([href*='/project/']) {
+    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']),div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']) .box, div.grid[class*="cols"][x-show="filteredApplications.length > 0"] .box, div.grid[class*="cols"][x-show="filteredServices.length > 0"] .box {
       grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     }
   }
 
   @media screen and (min-width: 1280px) {
     /* xl */
-    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([href*='/project/']) {
+    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']),div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']) .box, div.grid[class*="cols"][x-show="filteredApplications.length > 0"] .box, div.grid[class*="cols"][x-show="filteredServices.length > 0"] .box {
       grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     }
   }
 
   @media screen and (min-width: 1536px) {
     /* 2xl */
-    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([href*='/project/']) {
+    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']),div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']) .box, div.grid[class*="cols"][x-show="filteredApplications.length > 0"] .box, div.grid[class*="cols"][x-show="filteredServices.length > 0"] .box {
       grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
     }
   }
 
-  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']) .box, div.grid[class*='cols']:has([href*='/project/']) .box {
+  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']) .box, div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']) .box, div.grid[class*="cols"][x-show="filteredApplications.length > 0"] .box, div.grid[class*="cols"][x-show="filteredServices.length > 0"] .box {
     height: 150px;
   }
 
-  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']) .box > div, div.grid[class*='cols']:has([href*='/project/']) .box > div, div.grid[class*='cols']:has([href*='/project/']) .box {
+  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']) .box > div, div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']) .box div,  div.grid[class*="cols"][x-show="filteredApplications.length > 0"] .box div, div.grid[class*="cols"][x-show="filteredServices.length > 0"] .box div {
     display: flex;
     flex-direction: column;
     justify-content: center;
