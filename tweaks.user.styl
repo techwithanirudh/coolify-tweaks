@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name Coolify Enhanced UI
-@version 1.4
+@version 1.5
 @namespace techwithanirudh
 @updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
 @preprocessor stylus
@@ -549,10 +549,11 @@
     background: var(--cfy-card-container) !important;
   }
 
-  img[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
+  img[class*='w-[4.5rem] aspect-square h-[4.5rem]'], svg[class*='w-[4.5rem] aspect-square h-[4.5rem]'], div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
     border-radius: var(--radius-sm) !important;
     filter: none !important;
     opacity: 1 !important;
+    overflow: hidden !important;
   }
 
   /* Optional: tighter max-width for wide desktops */
