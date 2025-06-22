@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name Coolify Enhanced UI
-@version 2.0
+@version 2.0.1
 @namespace techwithanirudh
 @updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
 @preprocessor stylus
@@ -183,7 +183,7 @@
 
   /* Desktop push */
   @media (min-width: 1024px) {
-    main {
+    body:has(nav[class*='dark:border-coolgray-200']) main {
       padding-left: var(--cfy-sidebar-w) !important;
     }
   }
@@ -697,6 +697,10 @@
     word-break: break-word !important;
     -webkit-line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
+  }
+
+  main {
+   height: 100svh;
   }
 } // coolify.local/*"), url-prefix("https://app.coolify.io/*") {
 
