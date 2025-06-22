@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name Coolify Enhanced UI
-@version 1.5
+@version 2.0
 @namespace techwithanirudh
 @updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
 @preprocessor stylus
@@ -247,44 +247,44 @@
     background: var(--cfy-card-container) !important;
   }
 
-  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([href*='/project/']) {
+  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']), div.grid[class*='cols'][x-show='filteredApplications.length > 0'], div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
     grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
   }
 
   /* Responsive grid columns like Tailwind CSS breakpoints */
   @media screen and (min-width: 640px) {
     /* sm */
-    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([href*='/project/']) {
+    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']), div.grid[class*='cols'][x-show='filteredApplications.length > 0'], div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
       grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
   }
 
   @media screen and (min-width: 1024px) {
     /* lg */
-    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([href*='/project/']) {
+    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']), div.grid[class*='cols'][x-show='filteredApplications.length > 0'], div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
       grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     }
   }
 
   @media screen and (min-width: 1280px) {
     /* xl */
-    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([href*='/project/']) {
+    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']), div.grid[class*='cols'][x-show='filteredApplications.length > 0'], div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
       grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     }
   }
 
   @media screen and (min-width: 1536px) {
     /* 2xl */
-    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([href*='/project/']) {
+    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']), div.grid[class*='cols'][x-show='filteredApplications.length > 0'], div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
       grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
     }
   }
 
-  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']) .box, div.grid[class*='cols']:has([href*='/project/']) .box {
+  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']) .box, div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']) .box, div.grid[class*='cols'][x-show='filteredApplications.length > 0'] .box, div.grid[class*='cols'][x-show='filteredServices.length > 0'] .box {
     height: 150px;
   }
 
-  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']) .box > div, div.grid[class*='cols']:has([href*='/project/']) .box > div, div.grid[class*='cols']:has([href*='/project/']) .box {
+  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']) .box > div, div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']) .box div, div.grid[class*='cols'][x-show='filteredApplications.length > 0'] .box div, div.grid[class*='cols'][x-show='filteredServices.length > 0'] .box div {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -550,10 +550,10 @@
   }
 
   img[class*='w-[4.5rem] aspect-square h-[4.5rem]'], svg[class*='w-[4.5rem] aspect-square h-[4.5rem]'], div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
+    overflow: hidden !important;
     border-radius: var(--radius-sm) !important;
     filter: none !important;
     opacity: 1 !important;
-    overflow: hidden !important;
   }
 
   /* Optional: tighter max-width for wide desktops */
@@ -595,8 +595,8 @@
   }
 
   select:hover, select:focus {
-    background: var(--cfy-card-container);
     border-color: var(--cfy-accent-light);
+    background: var(--cfy-card-container);
   }
 
   select::picker-icon {
@@ -680,9 +680,23 @@
     top: calc(anchor(bottom) + 4px);
   }
 
-  .dark\\\:hover\\\:bg-coolgray-100:where(.dark,.dark *):hover {
-    background: none!important;
+  .dark\\\:hover\\\:bg-coolgray-100:where(.dark, .dark *):hover {
+    background: none !important;
     color: var(--cfy-text) !important;
+  }
+
+  .add-tag {
+    color: var(--cfy-muted) !important;
+  }
+
+  .box-title {
+    display: -webkit-box !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
   }
 } // coolify.local/*"), url-prefix("https://app.coolify.io/*") {
 
