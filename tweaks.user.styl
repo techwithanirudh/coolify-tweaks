@@ -582,18 +582,6 @@
     appearance: base-select;
   }
 
-  select {
-    flex: 1;
-  }
-
-  select {
-    padding: 10px;
-    border: 1px solid var(--color-coolgray-400);
-    background: var(--cfy-card);
-    color: var(--cfy-text);
-    transition: 0.4s;
-  }
-
   select:hover, select:focus {
     border-color: var(--cfy-accent-light);
     background: var(--cfy-card-container);
@@ -699,7 +687,24 @@
   }
 
   main {
-   height: 100svh;
+    height: 100svh;
+  }
+
+  body > div[\\\:class="pageWidth === 'full' ? '' : 'max-w-7xl'"] {
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  div.font-bold.border-b:contains('Color'), div.font-bold.border-b:contains('Width'), div.font-bold.border-b:contains('Zoom') {
+    display: none !important;
+  }
+
+  button[\\\@click^='switchWidth'], button[\\\@click^='setZoom'] {
+    display: none !important;
+  }
+
+  div[class*="font-bold border-b dark:border-coolgray-500 dark:text-white text-md"] {
+    display: none !important;
   }
 } // coolify.local/*"), url-prefix("https://app.coolify.io/*") {
 
