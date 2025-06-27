@@ -1,0 +1,29 @@
+button.button,
+.button {
+    padding: 0.55rem 1rem;
+    border: 1px solid var(--color-coolgray-400) !important;
+    border-radius: var(--radius-sm) !important;
+    background: var(--cfy-accent);
+    color: var(--color-text) !important;
+    font-weight: 600;
+    transition: background 0.18s;
+}
+
+html:not(.dark) button.button,
+html:not(.dark) .button {
+    color: var(--color-base) !important;
+}
+
+button.button:hover,
+.button:hover {
+    background: var(--cfy-accent-light);
+}
+
+button.secondary,
+.secondary {
+    background: var(--cfy-secondary) !important;
+}
+
+button.secondary:hover {
+    background: var(--cfy-card-container) !important;
+}
