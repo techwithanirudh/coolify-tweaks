@@ -1,91 +1,91 @@
-select,
-::picker(select) {
-    appearance: base-select;
-}
+@mixin select-base {
+  appearance: base-select;
 
-select:hover,
-select:focus {
+  &:hover,
+  &:focus {
     border-color: var(--cfy-accent-light);
     background: var(--cfy-card-container);
-}
+  }
 
-select::picker-icon {
+  &::picker-icon {
     color: var(--cfy-muted);
     transition: 0.4s rotate;
+  }
+
+  &:open::picker-icon {
+    rotate: 180deg;
+  }
 }
 
-select:open::picker-icon {
-    rotate: 180deg;
+select,
+::picker(select) {
+  @include select-base;
 }
 
 ::picker(select) {
-    border: 1px solid var(--color-coolgray-400) !important;
-    border-radius: var(--radius-xs) !important;
-    background: var(--cfy-card) !important;
+  border: 1px solid var(--color-coolgray-400) !important;
+  border-radius: var(--radius-xs) !important;
+  background: var(--cfy-card) !important;
+
+  top: calc(anchor(bottom) + 4px);
+
+  opacity: 0;
+  transition: all 0.4s allow-discrete;
+
+  &:popover-open {
+    opacity: 1;
+  }
+
+  @starting-style {
+    &:popover-open {
+      opacity: 0;
+    }
+  }
 }
 
 option {
-    display: flex;
-    justify-content: flex-start;
-    padding: 10px;
-    background: var(--cfy-card) !important;
-    color: var(--cfy-text);
-    transition: 0.4s;
-    gap: 20px;
-}
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+  background: var(--cfy-card) !important;
+  color: var(--cfy-text);
+  transition: 0.4s;
+  gap: 20px;
 
-option:first-of-type {
+  &:first-of-type {
     border-radius: var(--radius-xs) var(--radius-xs) 0 0;
-}
+  }
 
-option:last-of-type {
+  &:last-of-type {
     border-radius: 0 0 var(--radius-xs) var(--radius-xs);
-}
+  }
 
-option:not(option:last-of-type) {
+  &:not(option:last-of-type) {
     border-bottom: none;
-}
+  }
 
-option:hover,
-option:focus {
+  &:hover,
+  &:focus {
     background: var(--cfy-card-container) !important;
     color: var(--cfy-text);
-}
+  }
 
-option .icon {
+  .icon {
     font-size: 1.6rem;
     text-box: trim-both cap alphabetic;
-}
+  }
 
-selectedcontent .icon {
+  selectedcontent .icon {
     display: none;
-}
+  }
 
-option:checked {
+  &:checked {
     font-weight: bold;
-}
+  }
 
-option::checkmark {
+  &::checkmark {
     order: 1;
     margin-left: auto;
     content: '✓';
-}
-
-::picker(select) {
-    opacity: 0;
-    transition: all 0.4s allow-discrete;
-}
-
-::picker(select):popover-open {
-    opacity: 1;
-}
-
-@starting-style {
-    ::picker(select):popover-open {
-        opacity: 0;
-    }
-}
-
-::picker(select) {
-    top: calc(anchor(bottom) + 4px);
+  }
 }

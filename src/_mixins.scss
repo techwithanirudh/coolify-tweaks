@@ -1,0 +1,13 @@
+@use "sass:map";
+@use "theme/variables" as vars;
+
+@mixin mq($key) {
+  $size: map.get(vars.$breakpoints, $key);
+  @media screen and (min-width: $size) {
+    @content;
+  }
+}
+
+@mixin apply-blur($blur-var: var(--cfy-blur)) {
+  backdrop-filter: blur($blur-var);
+}

@@ -1,43 +1,42 @@
+@mixin input-base {
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--color-coolgray-400) !important;
+  border-radius: var(--radius-sm) !important; /* 12 px */
+  background: var(--cfy-card) !important;
+  color: var(--cfy-text);
+  transition: border-color 0.15s, background 0.15s;
+
+  &:focus {
+    border-color: var(--cfy-accent-light) !important;
+    background: var(--cfy-card-container) !important;
+  }
+
+  /* Placeholder text styling */
+  &::placeholder {
+    color: var(--cfy-muted) !important;
+    opacity: 0.7;
+  }
+
+  &:focus::placeholder {
+    opacity: 0.5;
+  }
+}
+
 input.input,
 textarea.input,
 select.select {
-    padding: 0.55rem 1rem;
-    border: 1px solid var(--color-coolgray-400) !important;
-    border-radius: var(--radius-sm) !important;
-    /* 12 px */
-    background: var(--cfy-card) !important;
-    color: var(--cfy-text);
-    transition: border-color 0.15s, background 0.15s;
-}
-
-input.input:focus,
-textarea.input:focus,
-select.select:focus {
-    border-color: var(--cfy-accent-light) !important;
-    background: var(--cfy-card-container) !important;
-}
-
-/* Placeholder text styling */
-input.input::placeholder,
-textarea.input::placeholder {
-    color: var(--cfy-muted) !important;
-    opacity: 0.7;
-}
-
-input.input:focus::placeholder,
-textarea.input:focus::placeholder {
-    opacity: 0.5;
+  @include input-base;
 }
 
 input[type='checkbox'],
 input[type='radio'] {
-    padding: 0.7rem;
-    border-radius: 4px !important;
-    background-color: var(--cfy-card) !important;
-    transition: background 0.18s;
+  padding: 0.7rem;
+  border-radius: 4px !important;
+  background-color: var(--cfy-card) !important;
+  transition: background 0.18s;
 }
 
 label {
-    margin-bottom: 0.75rem;
-    font-weight: 600;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
 }

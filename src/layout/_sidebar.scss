@@ -1,3 +1,5 @@
+@use "../_mixins" as *;
+
 [class*='lg:flex'][class*='lg:w-56'] {
     width: var(--cfy-sidebar-w) !important;
 }
@@ -8,8 +10,7 @@ nav[class*='dark:border-coolgray-200'] {
     width: 100%;
     border-right: 1px solid var(--color-coolgray-400);
     background: var(--cfy-sidebar-bg) !important;
-    backdrop-filter: blur(var(--cfy-blur));
-    backdrop-filter: blur(var(--cfy-blur));
+    @include apply-blur;
     scrollbar-width: thin;
     scrollbar-color: var(--cfy-accent) transparent;
 }
@@ -63,7 +64,7 @@ nav>ul>li>ul>li {
 
 
 /* Mobile slide-in */
-@media (max-width: 1023px) {
+@include mq(lg) {
     aside[class*='sidebar'] {
         position: fixed;
         z-index: 60;
@@ -86,7 +87,7 @@ nav>ul>li>ul>li {
 }
 
 /* Desktop push */
-@media (min-width: 1024px) {
+@include mq(lg) {
     body:has(nav[class*='dark:border-coolgray-200']) main {
         padding-left: var(--cfy-sidebar-w) !important;
     }
