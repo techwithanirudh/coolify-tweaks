@@ -7,7 +7,7 @@
   border-radius: var(--radius-sm) !important;
   background: var(--cfy-sidebar-bg);
   backdrop-filter: blur(var(--cfy-blur));
-  -webkit-backdrop-filter: blur(var(--cfy-blur));
+  backdrop-filter: blur(var(--cfy-blur));
 }
 
 .navbar-main nav {

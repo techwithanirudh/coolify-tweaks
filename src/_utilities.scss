@@ -1,0 +1,97 @@
+
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: var(--cfy-muted);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cfy-text);
+}
+
+/* Focus ring */
+
+/* Misc utilities */
+.rounded-sm,
+form,
+div[class*='shadow-lg lg:border-t dark:border-coolgray-300'] {
+  border-radius: var(--radius-sm) !important;
+}
+
+:is(.flex.gap-2, .flex.items-center.gap-4, .flex.flex-col.gap-4)> :is(h1, h2, h3, h4) {
+  margin-right: auto;
+}
+
+div[class='flex items-center gap-2']>h3,
+section>h3[class='pb-2'] {
+  font-size: 1.6rem;
+}
+
+div[class='flex flex-col gap-4 max-w-2xl'] {
+  max-width: none !important;
+}
+
+input.dark\:bg-coolgray-100:where(.dark, .dark *) {
+  padding: 0.7rem;
+  border-radius: 4px !important;
+  background-color: var(--cfy-card) !important;
+  transition: background 0.18s;
+}
+
+/* force some widths */
+div[class='w-48'],
+div[class*='w-64'],
+div[class='w-32'],
+div[class='pt-2 w-96'],
+div[class='w-96'],
+div[class*='md:w-96'],
+div[class='w-96'] {
+  width: 100% !important;
+}
+
+div[class*='flex flex-col gap-2'] {
+  gap: calc(var(--spacing) * 4) !important;
+}
+
+a[class*='hover:underline']:hover {
+  color: var(--cfy-muted) !important;
+  text-decoration: none !important;
+}
+
+img[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
+svg[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
+div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
+  overflow: hidden !important;
+  border-radius: var(--radius-sm) !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Optional: tighter max-width for wide desktops */
+main>div[class*='p-4 sm:px-6 lg:px-8 lg:py-6'] {
+  margin: auto;
+  max-width: 1280px !important;
+  padding-block: calc(var(--spacing) * 18) !important;
+}
+
+/* “Sponsor us” box and similar */
+div[class*='p-4 border dark:border-coolgray-300'] {
+  margin-top: calc(var(--spacing) * 4);
+  padding: calc(var(--spacing) * 4) calc(var(--spacing) * 6);
+  border-radius: var(--radius-sm) !important;
+  background: var(--cfy-card-container) !important;
+}
+.dark\:hover\:bg-coolgray-100:where(.dark, .dark *):hover {
+  background: none !important;
+  color: var(--cfy-text) !important;
+}
+
+.add-tag {
+  color: var(--cfy-muted) !important;
+}

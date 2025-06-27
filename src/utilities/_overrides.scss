@@ -1,0 +1,15 @@
+div.font-bold.border-b:contains('Color'),
+div.font-bold.border-b:contains('Width'),
+div.font-bold.border-b:contains('Zoom') {
+  display: none !important;
+}
+
+button[@click^='switchWidth'],
+button[@click^='setZoom'] {
+  display: none !important;
+}
+
+div[class*="font-bold border-b dark:border-coolgray-500 dark:text-white text-md"] {
+  display: none !important;
+}
+
