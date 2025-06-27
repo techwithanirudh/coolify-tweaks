@@ -21,7 +21,7 @@
     --color-coolgray-800: #EDEEF1;
     --color-coolgray-900: #E6E7EB; /* accent */
     --color-coollabs: #4C3495;
-    --color-coollabs-100: unquote('color-mix(in srgb, #4C3495 85%, #FFFFFF)'); /* states */
+    --color-coollabs-100: color-mix(in srgb, #4C3495 85%, #FFFFFF); /* states */
     --color-success: #2AAA52;
     --color-warning: #E0B842;
     --color-error: #D63B3B; /* semantic colors for light mode */
@@ -47,7 +47,7 @@
     --color-coolgray-800: #151419;
     --color-coolgray-900: #101014; /* Accent */
     --color-coollabs: #7349F3;
-    --color-coollabs-100: unquote('color-mix(in srgb, #7349F3 75%, #FFFFFF)'); /* States */
+    --color-coollabs-100: color-mix(in srgb, #7349F3 75%, #FFFFFF); /* States */
     --color-success: #23FF1F;
     --color-warning: #FCD452;
     --color-error: #FF1F1C;
@@ -338,7 +338,7 @@
 
   .box:hover {
     border-color: var(--cfy-accent);
-    background: unquote('color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%)');
+    background: color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%);
     box-shadow: 0 8px 24px var(--color-shadow-dark);
     transform: translateY(-2px);
   }

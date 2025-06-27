@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "build": "sass src/main.scss dist/main.css --no-source-map && postcss dist/main.css --replace",
+    "dev": "sass --watch src:dist --no-source-map"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "postcss-preset-env": "^10.2.4",
+    "sass": "^1.89.2"
+  }
+}
