@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name Coolify Enhanced UI
-@version 2.0.1
+@version 2.1.0
 @namespace techwithanirudh
 @updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
 @preprocessor stylus
@@ -66,7 +66,7 @@
     --cfy-card-container: var(--color-coolgray-200);
     --cfy-card: var(--color-coolgray-300);
     --cfy-text: var(--color-text-primary);
-    --cfy-muted: var(--color-text-muted); // * one knob to rule them all *//* layout / fx *//* one knob to rule them all */
+    --cfy-muted: var(--color-text-muted);
     --cfy-blur: 14px;
     --cfy-shadow: 0 4px 20px var(--color-shadow-main);
     --cfy-sidebar-w: 260px;
@@ -96,11 +96,17 @@
   /* =============================================================================
      2 ▸ SIDEBAR
   ============================================================================= */
-  [class*='lg:flex'][class*='lg:w-56'] {
+  /* Targets the main desktop sidebar container. 
+     Instead of fragile width/flex classes, it's identified by its fixed position on large screens 
+     and the fact that it contains the main navigation (`a[title="Dashboard"]`). This is much more stable. */
+  div.lg\:fixed:has(nav a[title="Dashboard"]) {
     width: var(--cfy-sidebar-w) !important;
   }
 
-  nav[class*='dark:border-coolgray-200'] {
+  /* Targets the primary navigation element within the sidebar. 
+     It's identified by having an `x-data` attribute and containing the 'Dashboard' link,
+     which is far more semantic than a specific border color class. */
+  nav[x-data]:has(a[title="Dashboard"]) {
     overflow-x: hidden;
     overflow-y: auto !important;
     width: 100%;
@@ -112,11 +118,13 @@
     scrollbar-color: var(--cfy-accent) transparent;
   }
 
-  nav[class*='dark:border-coolgray-200'] > ul {
+  nav[x-data]:has(a[title="Dashboard"]) > ul {
     padding-inline: calc(var(--spacing) * 2);
   }
 
-  nav[class*='dark:border-coolgray-200'] > div[class*='px-2 pt-2 pb-7'] {
+  /* Targets the sidebar header containing the team switcher.
+     It's robustly selected by finding the `div` that directly contains the unique Livewire team selection dropdown. */
+  nav[x-data] > div:has(select[wire\:model\.live="selectedTeamId"]) {
     padding-block: calc(var(--spacing) * 4) !important;
   }
 
@@ -167,11 +175,9 @@
       transform: translateX(calc(-1 * var(--cfy-sidebar-w)));
       inset: 0;
     }
-
     body.sidebar-open aside {
       transform: none;
     }
-
     body.sidebar-open::after {
       position: fixed;
       z-index: 50;
@@ -183,7 +189,8 @@
 
   /* Desktop push */
   @media (min-width: 1024px) {
-    body:has(nav[class*='dark:border-coolgray-200']) main {
+    /* Uses :has to apply padding only when the specific nav element is present */
+    body:has(nav[x-data] a[title="Dashboard"]) main {
       padding-left: var(--cfy-sidebar-w) !important;
     }
   }
@@ -202,18 +209,15 @@
     backdrop-filter: blur(var(--cfy-blur));
     -webkit-backdrop-filter: blur(var(--cfy-blur));
   }
-
   .navbar-main nav {
     display: flex;
     align-items: center;
     padding-top: 0px;
     gap: 0.8rem;
   }
-
   .navbar-main nav::-webkit-scrollbar {
     display: none;
   }
-
   .navbar-main nav a {
     padding: 0.3rem;
     border-radius: 10px !important;
@@ -222,16 +226,15 @@
     cursor: pointer;
     transition: background 0.18s, color 0.18s;
   }
-
   .navbar-main nav a:hover {
     color: var(--cfy-text) !important;
   }
-
-  .navbar-main nav a[class*='dark:text-white'], .navbar-main nav a[aria-current='page'] {
+  /* Styles the active link in the sub-navigation.
+     `[aria-current='page']` is the semantically correct and most stable way to identify the current page link. */
+  .navbar-main nav a[aria-current='page'] {
     box-shadow: inset 0 0 0 2px var(--cfy-accent-light);
     color: var(--cfy-text) !important;
   }
-
   .navbar-main .flex-1 {
     flex: 1 1 auto;
   }
@@ -239,59 +242,71 @@
   /* =============================================================================
      4 ▸ SECTION CONTAINERS & CARDS
   ============================================================================= */
-  section>h2+div, section>h3+div, div[data-testid='resources-grid'], div.grid[class*='cols'] {
+  /* Applies a container style to grids that directly follow a section heading
+     or are part of the 'New Resource' search interface. This is more specific than a generic `div`. */
+  section > h2 + .grid,
+  section > h3 + .grid,
+  div[x-data^="searchResources"] > div > .grid {
     overflow: hidden;
     margin-top: 0.65rem;
     padding: 0.75rem 0.85rem !important;
-    border-radius: var(--radius-md) !important; /* 14 px */
+    border-radius: var(--radius-md) !important;
     background: var(--cfy-card-container) !important;
   }
 
-  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']), div.grid[class*='cols'][x-show='filteredApplications.length > 0'], div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
+  /* Targets specific grids by their unique content (e.g., project links, application lists) 
+     rather than a generic column class. This makes the responsive column overrides much more precise. */
+  .grid:has([wire\:click^='navigateToProject']),
+  .grid:has([x-show^='filteredApplications']),
+  .grid:has([x-show^='filteredServices']) {
     grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
   }
 
-  /* Responsive grid columns like Tailwind CSS breakpoints */
   @media screen and (min-width: 640px) {
-    /* sm */
-    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']), div.grid[class*='cols'][x-show='filteredApplications.length > 0'], div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
+    .grid:has([wire\:click^='navigateToProject']),
+    .grid:has([x-show^='filteredApplications']),
+    .grid:has([x-show^='filteredServices']) {
       grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
   }
-
   @media screen and (min-width: 1024px) {
-    /* lg */
-    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']), div.grid[class*='cols'][x-show='filteredApplications.length > 0'], div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
+    .grid:has([wire\:click^='navigateToProject']),
+    .grid:has([x-show^='filteredApplications']),
+    .grid:has([x-show^='filteredServices']) {
       grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     }
   }
-
   @media screen and (min-width: 1280px) {
-    /* xl */
-    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']), div.grid[class*='cols'][x-show='filteredApplications.length > 0'], div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
+    .grid:has([wire\:click^='navigateToProject']),
+    .grid:has([x-show^='filteredApplications']),
+    .grid:has([x-show^='filteredServices']) {
       grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     }
   }
-
   @media screen and (min-width: 1536px) {
-    /* 2xl */
-    div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']), div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']), div.grid[class*='cols'][x-show='filteredApplications.length > 0'], div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
+    .grid:has([wire\:click^='navigateToProject']),
+    .grid:has([x-show^='filteredApplications']),
+    .grid:has([x-show^='filteredServices']) {
       grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
     }
   }
 
-  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']) .box, div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']) .box, div.grid[class*='cols'][x-show='filteredApplications.length > 0'] .box, div.grid[class*='cols'][x-show='filteredServices.length > 0'] .box {
+  .grid:has([wire\:click^='navigateToProject']) .box,
+  .grid:has([x-show^='filteredApplications']) .box,
+  .grid:has([x-show^='filteredServices']) .box {
     height: 150px;
   }
-
-  div.grid[class*='cols']:has([wire\\\:click^='navigateToProject']) .box > div, div.grid[class*='cols']:has([\\\@click^='$wire.navigateToProject']) .box div, div.grid[class*='cols'][x-show='filteredApplications.length > 0'] .box div, div.grid[class*='cols'][x-show='filteredServices.length > 0'] .box div {
+  .grid:has([wire\:click^='navigateToProject']) .box > div,
+  .grid:has([x-show^='filteredApplications']) .box div,
+  .grid:has([x-show^='filteredServices']) .box div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 
-  div.grid[class*='cols']:has([href*='/server/']) {
+  /* Targets the grid of Server cards on the dashboard */
+  .grid:has(a[href*='/server/']) {
     grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
   }
 
@@ -302,8 +317,8 @@
     color: var(--cfy-muted);
     text-align: center;
   }
-
-  .grid, [class*='grid-cols'] {
+  
+  .grid {
     gap: 0.65rem !important;
   }
 
@@ -311,14 +326,12 @@
     overflow: hidden;
     padding: 0.65rem 0.75rem;
     border: 1px solid var(--color-coolgray-400) !important;
-    border-radius: var(--radius-sm) !important; /* 12 px */
+    border-radius: var(--radius-sm) !important;
     background: var(--cfy-card) !important;
     transition: transform 0.15s, box-shadow 0.2s, background 0.18s, border-color 0.18s;
   }
-
+  
   .badge-dashboard, .badge {
-    // top: calc(var(--spacing)*0.5)!important;
-    // right: calc(var(--spacing)*0.5)!important;
     width: calc(var(--spacing) * 3.5);
     height: calc(var(--spacing) * 3.5);
   }
@@ -335,7 +348,7 @@
     border-radius: var(--radius-sm) !important;
     padding-block: 2rem !important;
   }
-
+  
   [role='row']:not([dashed]) {
     padding: 0.6rem 0.8rem;
     border-radius: var(--radius-sm) !important;
@@ -345,39 +358,16 @@
   /* =============================================================================
      5 ▸ TYPOGRAPHY
   ============================================================================= */
-  h1 {
-    color: var(--cfy-text);
-    font: 700 2.1rem / 1.25 'Inter', 'SF Pro Display', sans-serif;
-  }
-
-  h2 {
-    color: var(--cfy-text);
-    font: 700 1.5rem / 1.35 'Inter', 'SF Pro Display', sans-serif;
-  }
-
-  h3 {
-    color: var(--cfy-text);
-    font: 700 1.25rem / 1.35 'Inter', 'SF Pro Display', sans-serif;
-  }
-
-  h4 {
-    color: var(--cfy-text);
-    font: 700 1.1rem / 1.35 'Inter', 'SF Pro Display', sans-serif;
-  }
-
-  .subtitle {
-    color: var(--cfy-muted);
-    font-size: 0.95rem;
-  }
-
-  .box-title {
-    font-weight: 600;
-    font-size: 1.05rem;
-  }
-
-  .box-description {
-    color: var(--cfy-muted);
-  }
+  h1 { font: 700 2.1rem / 1.25 'Inter', 'SF Pro Display', sans-serif; }
+  h2 { font: 700 1.5rem / 1.35 'Inter', 'SF Pro Display', sans-serif; }
+  h3 { font: 700 1.25rem / 1.35 'Inter', 'SF Pro Display', sans-serif; }
+  h4 { font: 700 1.1rem / 1.35 'Inter', 'SF Pro Display', sans-serif; }
+  
+  h1, h2, h3, h4 { color: var(--cfy-text); }
+  
+  .subtitle { color: var(--cfy-muted); font-size: 0.95rem; }
+  .box-title { font-weight: 600; font-size: 1.05rem; }
+  .box-description { color: var(--cfy-muted); }
 
   /* =============================================================================
      6 ▸ BUTTONS
@@ -385,14 +375,13 @@
   button.button, .button {
     padding: 0.55rem 1rem;
     border: 1px solid var(--color-coolgray-400) !important;
-    border-radius: var(--radius-sm) !important; /* 12 px */
+    border-radius: var(--radius-sm) !important;
     background: var(--cfy-accent);
     color: var(--color-text) !important;
     font-weight: 600;
     transition: background 0.18s;
   }
-
-  /* Ensure proper text colors in light mode for buttons */
+  
   html:not(.dark) button.button, html:not(.dark) .button {
     color: var(--color-base) !important;
   }
@@ -400,11 +389,11 @@
   button.button:hover, .button:hover {
     background: var(--cfy-accent-light);
   }
-
+  
   button.secondary, .secondary {
     background: var(--cfy-secondary) !important;
   }
-
+  
   button.secondary:hover {
     background: var(--cfy-card-container) !important;
   }
@@ -415,7 +404,7 @@
   input.input, textarea.input, select.select {
     padding: 0.55rem 1rem;
     border: 1px solid var(--color-coolgray-400) !important;
-    border-radius: var(--radius-sm) !important; /* 12 px */
+    border-radius: var(--radius-sm) !important;
     background: var(--cfy-card) !important;
     color: var(--cfy-text);
     transition: border-color 0.15s, background 0.15s;
@@ -426,7 +415,6 @@
     background: var(--cfy-card-container) !important;
   }
 
-  /* Placeholder text styling */
   input.input::placeholder, textarea.input::placeholder {
     color: var(--cfy-muted) !important;
     opacity: 0.7;
@@ -451,7 +439,8 @@
   /* =============================================================================
      8 ▸ TOASTS & MISC
   ============================================================================= */
-  ul[x-data] li>span {
+  /* Targets the toast notification container via its unique AlpineJS attributes */
+  ul[x-data][x-init^="window.toast"] li > span {
     border: 1px solid var(--color-coolgray-400) !important;
     background: var(--cfy-card) !important;
     font-family: 'Inter', sans-serif;
@@ -459,17 +448,9 @@
   }
 
   @keyframes wiggle {
-    0%, 100% {
-      transform: rotate(0);
-    }
-
-    25% {
-      transform: rotate(-3deg);
-    }
-
-    75% {
-      transform: rotate(3deg);
-    }
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-3deg); }
+    75% { transform: rotate(3deg); }
   }
 
   .toast-no-description svg[fill='currentColor'] {
@@ -483,65 +464,41 @@
     box-shadow: var(--cfy-shadow) !important;
   }
 
-  /* Scrollbars */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-thumb { border-radius: 4px; background: var(--cfy-muted); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--cfy-text); }
+  *:focus-visible { outline: 2px solid var(--cfy-accent) !important; outline-offset: 2px; }
 
-  ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background: var(--cfy-muted);
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--cfy-text);
-  }
-
-  /* Focus ring */
-  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
-    outline: 2px solid var(--cfy-accent) !important;
-    outline-offset: 2px;
-  }
-
-  /* Misc utilities */
-  .rounded-sm, form, div[class*='shadow-lg lg:border-t dark:border-coolgray-300'] {
+  /* Targets banner-style popups (like 'real-time warning') by their internal structure:
+     a container with a heading, a paragraph, and a button. This avoids relying on transient shadow or border classes. */
+  form, div:has(> div > h4 + p + button) {
     border-radius: var(--radius-sm) !important;
   }
-
-  :is(.flex.gap-2, .flex.items-center.gap-4, .flex.flex-col.gap-4)> :is(h1, h2, h3, h4) {
+  
+  :is(.flex.gap-2, .flex.items-center.gap-4, .flex.flex-col.gap-4) > :is(h1, h2, h3, h4) {
     margin-right: auto;
   }
 
-  div[class='flex items-center gap-2']>h3, section>h3[class='pb-2'] {
+  /* Targets headings in the resource/configuration navigation menu area */
+  nav.pb-6 > ol.flex > li h1,
+  div.flex > h2 {
     font-size: 1.6rem;
   }
 
-  div[class='flex flex-col gap-4 max-w-2xl'] {
+  form[wire\:submit] > .flex.flex-col {
     max-width: none !important;
-  }
-
-  input.dark\:bg-coolgray-100:where(.dark, .dark *) {
-    padding: 0.7rem;
-    border-radius: 4px !important;
-    background-color: var(--cfy-card) !important;
-    transition: background 0.18s;
-  }
-
-  /* force some widths */
-  div[class='w-48'], div[class*='w-64'], div[class='w-32'], div[class='pt-2 w-96'], div[class='w-96'], div[class*='md:w-96'], div[class='w-96'] {
-    width: 100% !important;
-  }
-
-  div[class*='flex flex-col gap-2'] {
     gap: calc(var(--spacing) * 4) !important;
   }
-
+  
+  form[wire\:submit] .w-full > div[class*='w-'] {
+    width: 100% !important;
+  }
+  
   a[class*='hover:underline']:hover {
     color: var(--cfy-muted) !important;
     text-decoration: none !important;
   }
-
+  
   table {
     overflow: hidden !important;
     margin-top: calc(var(--spacing) * 4);
@@ -549,20 +506,21 @@
     background: var(--cfy-card-container) !important;
   }
 
-  img[class*='w-[4.5rem] aspect-square h-[4.5rem]'], svg[class*='w-[4.5rem] aspect-square h-[4.5rem]'], div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
+  /* Targets the service/database icons on the 'New Resource' page. */
+  .box-without-bg > div > :first-child {
     overflow: hidden !important;
     border-radius: var(--radius-sm) !important;
     filter: none !important;
     opacity: 1 !important;
   }
 
-  /* Optional: tighter max-width for wide desktops */
-  main > div[class*='p-4 sm:px-6 lg:px-8 lg:py-6'] {
+  /* Applies max-width and padding to the main content area. */
+  main > div:first-child {
     margin: auto;
     max-width: 1280px !important;
     padding-block: calc(var(--spacing) * 18) !important;
   }
-
+  
   /* “Sponsor us” box and similar */
   div[class*='p-4 border dark:border-coolgray-300'] {
     margin-top: calc(var(--spacing) * 4);
@@ -570,104 +528,26 @@
     border-radius: var(--radius-sm) !important;
     background: var(--cfy-card-container) !important;
   }
-
-  // Theme dropdown button styling - target button with dropdownOpen that has x-show child
-  button[\\\@click='dropdownOpen=true']:has([x-show="theme === 'dark' || theme === 'system'"]) {
+  
+  /* Theme dropdown button styling */
+  button[x-on\:click='dropdownOpen=true']:has(svg > path[d^="M5.64,17l-.71.71"]) {
     border-radius: 10px !important;
     background: var(--cfy-card) !important;
     padding-block: 0.7rem !important;
   }
 
-  select, ::picker(select) {
-    appearance: base-select;
+  /* Hides the 'Color', 'Width', and 'Zoom' subheadings inside the theme switcher dropdown. */
+  div[x-show="dropdownOpen"] div > div:has(+ button) {
+    display: none !important;
   }
-
-  select:hover, select:focus {
-    border-color: var(--cfy-accent-light);
-    background: var(--cfy-card-container);
+  
+  /* Hide page width/zoom buttons in the theme switcher */
+  nav[x-data] button[x-on\:click^='switchWidth'],
+  nav[x-data] button[x-on\:click^='setZoom'] {
+    display: none !important;
   }
-
-  select::picker-icon {
-    color: var(--cfy-muted);
-    transition: 0.4s rotate;
-  }
-
-  select:open::picker-icon {
-    rotate: 180deg;
-  }
-
-  ::picker(select) {
-    border: 1px solid var(--color-coolgray-400) !important;
-    border-radius: var(--radius-xs) !important;
-    background: var(--cfy-card) !important;
-  }
-
-  option {
-    display: flex;
-    justify-content: flex-start;
-    padding: 10px;
-    background: var(--cfy-card) !important;
-    color: var(--cfy-text);
-    transition: 0.4s;
-    gap: 20px;
-  }
-
-  option:first-of-type {
-    border-radius: var(--radius-xs) var(--radius-xs) 0 0;
-  }
-
-  option:last-of-type {
-    border-radius: 0 0 var(--radius-xs) var(--radius-xs);
-  }
-
-  option:not(option:last-of-type) {
-    border-bottom: none;
-  }
-
-  option:hover, option:focus {
-    background: var(--cfy-card-container) !important;
-    color: var(--cfy-text);
-  }
-
-  option .icon {
-    font-size: 1.6rem;
-    text-box: trim-both cap alphabetic;
-  }
-
-  selectedcontent .icon {
-    display: none;
-  }
-
-  option:checked {
-    font-weight: bold;
-  }
-
-  option::checkmark {
-    order: 1;
-    margin-left: auto;
-    content: '✓';
-  }
-
-  ::picker(select) {
-    opacity: 0;
-    transition: all 0.4s allow-discrete;
-  }
-
-  ::picker(select):popover-open {
-    opacity: 1;
-  }
-
-  @starting-style {
-    ::picker(select):popover-open {
-      opacity: 0;
-    }
-  }
-
-  ::picker(select) {
-    top: calc(anchor(bottom) + 4px);
-  }
-
-  .dark\\\:hover\\\:bg-coolgray-100:where(.dark, .dark *):hover {
+  
+  .dark\:hover\:bg-coolgray-100:where(.dark, .dark *):hover {
     background: none !important;
     color: var(--cfy-text) !important;
   }
@@ -675,14 +555,15 @@
   .add-tag {
     color: var(--cfy-muted) !important;
   }
-
-  .box-title {
+  
+  /* Truncates long titles on dashboard-style project/resource cards */
+  .grid:has([wire\:click^='navigateToProject']) .box-title {
     display: -webkit-box !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: normal !important;
     word-break: break-word !important;
-    -webkit-line-clamp: 4 !important;
+    -webkit-line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
   }
 
@@ -690,18 +571,9 @@
     height: 100svh;
   }
 
-  body > div[\\\:class="pageWidth === 'full' ? '' : 'max-w-7xl'"] {
+  /* Force full width layout by targeting the main page container */
+  body > div[x-init^="this.pageWidth"] {
     min-width: 100% !important;
     max-width: 100% !important;
   }
-
-  button[\\\@click^='switchWidth'], button[\\\@click^='setZoom'] {
-    display: none !important;
-  }
-
-  div[class*="font-bold border-b dark:border-coolgray-500 dark:text-white text-md"] {
-    display: none !important;
-  }
-} // coolify.local/*"), url-prefix("https://app.coolify.io/*") {
-
-/* end @-moz-document */
+}
