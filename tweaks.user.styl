@@ -7,7 +7,7 @@
 @description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
 @license MIT
 ==/UserStyle== */
-@-moz-document url-prefix("*://coolify.local/*"), url-prefix("https://app.coolify.io/*") {
+@-moz-document url-prefix("*://coolify.local:8000/*"), url-prefix("https://app.coolify.io/*") {
   :root {
     /* neutrals */
     --color-base: #FFFFFF;
@@ -693,10 +693,6 @@
   body > div[\\\:class="pageWidth === 'full' ? '' : 'max-w-7xl'"] {
     min-width: 100% !important;
     max-width: 100% !important;
-  }
-
-  div.font-bold.border-b:contains('Color'), div.font-bold.border-b:contains('Width'), div.font-bold.border-b:contains('Zoom') {
-    display: none !important;
   }
 
   button[\\\@click^='switchWidth'], button[\\\@click^='setZoom'] {
