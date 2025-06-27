@@ -1,0 +1,93 @@
+[class*='lg:flex'][class*='lg:w-56'] {
+    width: var(--cfy-sidebar-w) !important;
+}
+
+nav[class*='dark:border-coolgray-200'] {
+    overflow-x: hidden;
+    overflow-y: auto !important;
+    width: 100%;
+    border-right: 1px solid var(--color-coolgray-400);
+    background: var(--cfy-sidebar-bg) !important;
+    backdrop-filter: blur(var(--cfy-blur));
+    -webkit-backdrop-filter: blur(var(--cfy-blur));
+    scrollbar-width: thin;
+    scrollbar-color: var(--cfy-accent) transparent;
+}
+
+nav[class*='dark:border-coolgray-200']>ul {
+    padding-inline: calc(var(--spacing) * 2);
+}
+
+nav[class*='dark:border-coolgray-200']>div[class*='px-2 pt-2 pb-7'] {
+    padding-block: calc(var(--spacing) * 4) !important;
+}
+
+aside::-webkit-scrollbar {
+    width: 8px;
+}
+
+aside::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: var(--cfy-accent);
+}
+
+nav>ul>li>ul>li {
+    overflow: hidden;
+    border-radius: var(--radius-sm) !important;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 0.55rem 0.9rem;
+    border-radius: var(--radius-sm) !important;
+    color: var(--cfy-muted);
+    font-weight: 500;
+    transition: background 0.18s, color 0.18s;
+    gap: 0.6rem;
+}
+
+.menu-item:hover,
+.menu-item-active {
+    background: var(--cfy-card-container) !important;
+    color: var(--cfy-text) !important;
+}
+
+.menu-item svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.6;
+    fill: var(--color-coolgray-600) !important;
+}
+
+
+/* Mobile slide-in */
+@media (max-width: 1023px) {
+    aside[class*='sidebar'] {
+        position: fixed;
+        z-index: 60;
+        transition: transform 0.25s;
+        transform: translateX(calc(-1 * var(--cfy-sidebar-w)));
+        inset: 0;
+    }
+
+    body.sidebar-open aside {
+        transform: none;
+    }
+
+    body.sidebar-open::after {
+        position: fixed;
+        z-index: 50;
+        background: var(--color-overlay);
+        content: '';
+        inset: 0;
+    }
+}
+
+/* Desktop push */
+@media (min-width: 1024px) {
+    body:has(nav[class*='dark:border-coolgray-200']) main {
+        padding-left: var(--cfy-sidebar-w) !important;
+    }
+}

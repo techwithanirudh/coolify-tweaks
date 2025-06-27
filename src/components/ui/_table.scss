@@ -1,0 +1,6 @@
+table {
+  overflow: hidden !important;
+  margin-top: calc(var(--spacing) * 4);
+  border-radius: var(--radius-sm) !important;
+  background: var(--cfy-card-container) !important;
+}
