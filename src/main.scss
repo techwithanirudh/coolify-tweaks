@@ -3,12 +3,13 @@
 @version 2.0.1
 @namespace techwithanirudh
 @updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@preprocessor stylus
 @description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
 @license MIT
 ==/UserStyle== */
 
-@import 'components';
+@use 'components';
+@use 'layout';
+@use 'theme';
 
 :root {
   /* neutrals */
@@ -25,7 +26,7 @@
   --color-coolgray-900: #E6E7EB;
   /* accent */
   --color-coollabs: #4C3495;
-  --color-coollabs-100: unquote('color-mix(in srgb, #4C3495 85%, #FFFFFF)');
+  --color-coollabs-100: color-mix(in srgb, #4C3495 85%, #FFFFFF);
   /* states */
   --color-success: #2AAA52;
   --color-warning: #E0B842;
@@ -56,7 +57,7 @@
   --color-coolgray-900: #101014;
   /* Accent */
   --color-coollabs: #7349F3;
-  --color-coollabs-100: unquote('color-mix(in srgb, #7349F3 75%, #FFFFFF)');
+  --color-coollabs-100: color-mix(in srgb, #7349F3 75%, #FFFFFF);
   /* States */
   --color-success: #23FF1F;
   --color-warning: #FCD452;

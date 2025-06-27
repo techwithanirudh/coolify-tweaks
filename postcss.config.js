@@ -5,9 +5,7 @@ module.exports = {
   plugins: [
     postcssPresetEnv({
       stage: 3,
-      features: {
-        'color-mix-function': true
-      }
+      // Removed explicit color-mix-function feature as it should be handled by browserslist
     }),
     autoprefixer()
   ]
