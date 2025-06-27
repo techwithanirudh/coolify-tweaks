@@ -9,29 +9,43 @@
 ==/UserStyle== */
 
 // =============================================================================
-// SCSS Configuration & Optimization
+// SCSS Configuration & Variables
 // =============================================================================
 
-// Configuration
+// Base configuration
 $spacing: 8px;
 $font-stack: ('Inter', 'SF Pro Display', sans-serif);
 $transition-speed: 0.18s;
 $blur-amount: 14px;
 $sidebar-width: 260px;
 
-// Color Maps (Better organization than individual variables)
+// Responsive breakpoints
+$breakpoints: (
+  'xs': 480px,
+  'sm': 640px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  '2xl': 1536px
+);
+
+// Color system - organized by theme
 $light-theme: (
   'base': #FFFFFF,
   'coolgray': (
-    100: #F6F7F9, 200: #ECEEF2, 300: #E3E5EA, 400: #D8DAE0, 
+    100: #F6F7F9, 200: #ECEEF2, 300: #E3E5EA, 400: #D8DAE0,
     500: #CFD1D8, 600: #C6C8D0, 700: #F4F5F7, 800: #EDEEF1, 900: #E6E7EB
   ),
   'coollabs': #4C3495,
   'semantic': (
-    'success': #2AAA52, 'warning': #E0B842, 'error': #D63B3B
+    'success': #2AAA52,
+    'warning': #E0B842,
+    'error': #D63B3B
   ),
   'text': (
-    'primary': #1F1C23, 'muted': #6E6B75, 'placeholder': #8E8C91
+    'primary': #1F1C23,
+    'muted': #6E6B75,
+    'placeholder': #8E8C91
   )
 );
 
@@ -43,21 +57,19 @@ $dark-theme: (
   ),
   'coollabs': #7349F3,
   'semantic': (
-    'success': #23FF1F, 'warning': #FCD452, 'error': #FF1F1C
+    'success': #23FF1F,
+    'warning': #FCD452,
+    'error': #FF1F1C
   ),
   'text': (
-    'primary': #FCFAFC, 'muted': #8E8C91, 'placeholder': #8E8C91
+    'primary': #FCFAFC,
+    'muted': #8E8C91,
+    'placeholder': #8E8C91
   )
 );
 
-// Breakpoints
-$breakpoints: (
-  'xs': 480px, 'sm': 640px, 'md': 768px, 
-  'lg': 1024px, 'xl': 1280px, '2xl': 1536px
-);
-
 // =============================================================================
-// Mixins & Functions (Reduce repetition)
+// Utility Functions & Mixins
 // =============================================================================
 
 // Responsive mixin
@@ -66,15 +78,21 @@ $breakpoints: (
     @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
       @content;
     }
+  } @else {
+    @warn "Unknown breakpoint: #{$breakpoint}";
   }
 }
 
-// Color function
-@function theme-color($theme, $category, $shade: null) {
-  @if $shade {
-    @return map-get(map-get(map-get($theme, $category), $shade));
-  } @else {
-    @return map-get($theme, $category);
+// Generate theme colors helper
+@mixin generate-theme-colors($theme) {
+  @each $category, $colors in $theme {
+    @if type-of($colors) == map {
+      @each $shade, $color in $colors {
+        --color-#{$category}-#{$shade}: #{$color};
+      }
+    } @else {
+      --color-#{$category}: #{$colors};
+    }
   }
 }
 
@@ -98,7 +116,7 @@ $breakpoints: (
   }
 }
 
-// Button base
+// Button base styles
 @mixin button-base($bg: var(--cfy-accent), $color: var(--color-base)) {
   padding: 0.55rem 1rem;
   border: 1px solid var(--color-coolgray-400);
@@ -112,9 +130,14 @@ $breakpoints: (
   &:hover {
     background: var(--cfy-accent-light);
   }
+
+  &:focus-visible {
+    outline: 2px solid var(--cfy-accent);
+    outline-offset: 2px;
+  }
 }
 
-// Input base
+// Input base styles
 @mixin input-base {
   padding: 0.55rem 1rem;
   border: 1px solid var(--color-coolgray-400);
@@ -137,9 +160,14 @@ $breakpoints: (
   &:focus::placeholder {
     opacity: 0.5;
   }
+
+  &:focus-visible {
+    outline: 2px solid var(--cfy-accent);
+    outline-offset: 2px;
+  }
 }
 
-// Scrollbar styling
+// Custom scrollbar
 @mixin custom-scrollbar($width: 8px) {
   &::-webkit-scrollbar {
     width: $width;
@@ -147,7 +175,7 @@ $breakpoints: (
   }
 
   &::-webkit-scrollbar-thumb {
-    border-radius: calc($width / 2);
+    border-radius: calc(#{$width} / 2);
     background: var(--cfy-muted);
 
     &:hover {
@@ -160,55 +188,61 @@ $breakpoints: (
   }
 }
 
-// Focus ring
-@mixin focus-ring($color: var(--cfy-accent)) {
-  &:focus-visible {
-    outline: 2px solid $color;
-    outline-offset: 2px;
-  }
-}
-
-// Typography scale
+// Typography helper
 @mixin heading($size: 1rem, $weight: 700, $line-height: 1.25) {
   color: var(--cfy-text);
   font: $weight #{$size} / #{$line-height} #{$font-stack};
 }
 
-// Reset utility
+// =============================================================================
+// Placeholder Selectors (for code reuse)
+// =============================================================================
+
 %reset-defaults {
   border: none;
   border-radius: var(--radius-sm);
   box-shadow: none;
 }
 
+%container-base {
+  overflow: hidden;
+  margin-top: 0.65rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: var(--radius-md);
+  background: var(--cfy-card-container);
+}
+
+%media-element {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  filter: none;
+  opacity: 1;
+}
+
 // =============================================================================
-// Main Styles
+// Main Document Styles
 // =============================================================================
 
 @-moz-document url-prefix("*://coolify.local/*"), url-prefix("https://app.coolify.io/*") {
   
-  // Generate CSS custom properties
+  // CSS Custom Properties
   :root {
-    // Light theme colors
-    @each $category, $colors in $light-theme {
-      @if type-of($colors) == map {
-        @each $shade, $color in $colors {
-          --color-#{$category}-#{$shade}: #{$color};
-        }
-      } @else {
-        --color-#{$category}: #{$colors};
-      }
-    }
+    // Generate light theme colors
+    @include generate-theme-colors($light-theme);
     
-    // Additional variables
+    // Color mix functions
     --color-coollabs-100: color-mix(in srgb, #{map-get($light-theme, 'coollabs')} 85%, #FFFFFF);
+    
+    // Shadow system
     --color-overlay: rgba(0, 0, 0, 0.6);
     --color-shadow-light: rgba(0, 0, 0, 0.15);
     --color-shadow-dark: rgba(0, 0, 0, 0.35);
     --color-shadow-main: rgba(0, 0, 0, 0.25);
 
-    // System variables
+    // Typography
     font-size: 15px;
+    
+    // Semantic color mappings
     --cfy-accent: var(--color-coollabs);
     --cfy-accent-light: var(--color-coollabs-100);
     --cfy-sidebar-bg: var(--color-coolgray-700);
@@ -219,12 +253,12 @@ $breakpoints: (
     --cfy-text: var(--color-text-primary);
     --cfy-muted: var(--color-text-muted);
     
-    // Layout
+    // Layout system
     --cfy-blur: #{$blur-amount};
     --cfy-shadow: 0 4px 20px var(--color-shadow-main);
     --cfy-sidebar-w: #{$sidebar-width};
     
-    // Border radius system
+    // Border radius scale
     --radius-base: 14px;
     --radius-step: 2px;
     --radius-xs: calc(var(--radius-base) - (var(--radius-step) * 2));
@@ -236,28 +270,16 @@ $breakpoints: (
 
   // Dark theme override
   .dark {
-    @each $category, $colors in $dark-theme {
-      @if type-of($colors) == map {
-        @each $shade, $color in $colors {
-          --color-#{$category}-#{$shade}: #{$color};
-        }
-      } @else {
-        --color-#{$category}: #{$colors};
-      }
-    }
+    @include generate-theme-colors($dark-theme);
     --color-coollabs-100: color-mix(in srgb, #{map-get($dark-theme, 'coollabs')} 75%, #FFFFFF);
   }
 
   // =============================================================================
-  // 1. Global Reset & Base Styles
+  // Global Reset & Base Styles
   // =============================================================================
   
-  %reset-element {
-    @extend %reset-defaults;
-  }
-
   body, .box, .card, .menu-item, button, a, input, select, textarea {
-    @extend %reset-element;
+    @extend %reset-defaults;
   }
 
   body, main {
@@ -266,7 +288,7 @@ $breakpoints: (
   }
 
   // =============================================================================
-  // 2. Sidebar Optimization
+  // Sidebar Component
   // =============================================================================
   
   // Sidebar container
@@ -274,7 +296,7 @@ $breakpoints: (
     width: var(--cfy-sidebar-w);
   }
 
-  // Main navigation
+  // Navigation container
   nav[class*='dark:border-coolgray-200'] {
     overflow-x: hidden;
     overflow-y: auto;
@@ -287,6 +309,7 @@ $breakpoints: (
     scrollbar-color: var(--cfy-accent) transparent;
     @include custom-scrollbar;
 
+    // Nested structure
     > ul {
       padding-inline: calc(#{$spacing} * 2);
     }
@@ -295,14 +318,13 @@ $breakpoints: (
       padding-block: calc(#{$spacing} * 4);
     }
 
-    // Nested list items
     ul li ul li {
       overflow: hidden;
       border-radius: var(--radius-sm);
     }
   }
 
-  // Menu items with better state management
+  // Menu items
   .menu-item {
     display: flex;
     align-items: center;
@@ -312,7 +334,11 @@ $breakpoints: (
     font-weight: 500;
     transition: background $transition-speed ease, color $transition-speed ease;
     gap: 0.6rem;
-    @include focus-ring;
+
+    &:focus-visible {
+      outline: 2px solid var(--cfy-accent);
+      outline-offset: 2px;
+    }
 
     &:hover,
     &:focus,
@@ -363,7 +389,7 @@ $breakpoints: (
   }
 
   // =============================================================================
-  // 3. Navigation & Headers
+  // Top Navigation Component
   // =============================================================================
   
   .navbar-main {
@@ -391,7 +417,11 @@ $breakpoints: (
         font-weight: 600;
         cursor: pointer;
         transition: background $transition-speed ease, color $transition-speed ease;
-        @include focus-ring;
+
+        &:focus-visible {
+          outline: 2px solid var(--cfy-accent);
+          outline-offset: 2px;
+        }
 
         &:hover,
         &:focus {
@@ -412,19 +442,10 @@ $breakpoints: (
   }
 
   // =============================================================================
-  // 4. Cards & Containers (Simplified with better selectors)
+  // Cards & Grid System
   // =============================================================================
   
-  // Container base style
-  %container-base {
-    overflow: hidden;
-    margin-top: 0.65rem;
-    padding: 0.75rem 0.85rem;
-    border-radius: var(--radius-md);
-    background: var(--cfy-card-container);
-  }
-
-  // Apply to content containers
+  // Content containers
   section > h2 + div,
   section > h3 + div,
   [data-testid='resources-grid'],
@@ -432,46 +453,56 @@ $breakpoints: (
     @extend %container-base;
   }
 
-  // Simplified grid handling with better selectors
-  $grid-targets: '[wire\\:click*="navigate"]', '[x-show*="filtered"]', '[\\@click*="navigate"]';
-  
+  // Grid system with responsive behavior
   .grid[class*='cols'] {
-    // Default mobile-first
-    &:has(#{nth($grid-targets, 1)}),
-    &:has(#{nth($grid-targets, 2)}),
-    &:has(#{nth($grid-targets, 3)}) {
-      grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 0.65rem;
 
-      // Responsive grid using loop
-      $grid-counts: (sm: 2, lg: 3, 2xl: 4);
-      @each $bp, $cols in $grid-counts {
-        @include respond-to($bp) {
-          grid-template-columns: repeat(#{$cols}, minmax(0, 1fr));
+    // Target specific grid types using better selectors
+    $grid-selectors: (
+      '[wire\\:click*="navigate"]',
+      '[x-show*="filtered"]',
+      '[\\@click*="navigate"]'
+    );
+
+    // Apply to each grid type
+    @each $selector in $grid-selectors {
+      &:has(#{$selector}) {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+
+        // Responsive breakpoints
+        @include respond-to(sm) {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
-      }
 
-      .box {
-        height: 150px;
+        @include respond-to(lg) {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
 
-        > div,
-        div {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+        @include respond-to(2xl) {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .box {
+          height: 150px;
+
+          > div,
+          div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
         }
       }
     }
 
-    // Server grids stay single column
+    // Server grids remain single column
     &:has([href*='/server/']) {
       grid-template-columns: repeat(1, minmax(0, 1fr));
     }
-
-    gap: 0.65rem;
   }
 
-  // Empty state styling
+  // Empty state containers
   section:has(> div > div:only-child) > div > div:only-child {
     padding: 1.25rem;
     border-radius: var(--radius-sm);
@@ -502,7 +533,7 @@ $breakpoints: (
     padding-block: 2rem;
   }
 
-  // Table rows
+  // Table row styling
   [role='row']:not([dashed]) {
     padding: 0.6rem 0.8rem;
     border-radius: var(--radius-sm);
@@ -510,16 +541,14 @@ $breakpoints: (
   }
 
   // =============================================================================
-  // 5. Typography System
+  // Typography System
   // =============================================================================
   
-  // Heading hierarchy
   h1 { @include heading(2.1rem, 700, 1.25); }
   h2 { @include heading(1.5rem, 700, 1.35); }
   h3 { @include heading(1.25rem, 700, 1.35); }
   h4 { @include heading(1.1rem, 700, 1.35); }
 
-  // Component typography
   .subtitle {
     color: var(--cfy-muted);
     font-size: 0.95rem;
@@ -528,7 +557,7 @@ $breakpoints: (
   .box-title {
     font-weight: 600;
     font-size: 1.05rem;
-    // Multi-line truncation
+    // Multi-line text truncation
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -544,17 +573,16 @@ $breakpoints: (
   }
 
   // =============================================================================
-  // 6. Interactive Elements
+  // Interactive Elements (Buttons & Forms)
   // =============================================================================
   
   // Primary buttons
   .button,
   button.button {
     @include button-base;
-    @include focus-ring;
   }
 
-  // Light mode text fix
+  // Light mode text color fix
   html:not(.dark) {
     .button,
     button.button {
@@ -572,16 +600,15 @@ $breakpoints: (
     }
   }
 
-  // Form controls
+  // Form inputs
   .input,
   input.input,
   textarea.input,
   select.select {
     @include input-base;
-    @include focus-ring;
   }
 
-  // Checkbox and radio
+  // Checkbox and radio buttons
   input[type='checkbox'],
   input[type='radio'] {
     padding: 0.7rem;
@@ -595,7 +622,10 @@ $breakpoints: (
     font-weight: 600;
   }
 
-  // Modern select dropdown (Enhanced UX)
+  // =============================================================================
+  // Enhanced Select Dropdown
+  // =============================================================================
+  
   select {
     appearance: base-select;
 
@@ -682,7 +712,7 @@ $breakpoints: (
   }
 
   // =============================================================================
-  // 7. UI Feedback & Animations
+  // UI Feedback & Animations
   // =============================================================================
   
   // Toast notifications
@@ -703,7 +733,7 @@ $breakpoints: (
     animation: wiggle 0.6s ease;
   }
 
-  // Popups
+  // Popup styling
   [x-show='popups.sponsorship'] {
     padding: 1.25rem;
     border-radius: var(--radius-sm);
@@ -711,23 +741,23 @@ $breakpoints: (
     box-shadow: var(--cfy-shadow);
   }
 
-  // Global scrollbars
+  // =============================================================================
+  // Scrollbars & Global Utilities
+  // =============================================================================
+  
+  // Global scrollbar styling
   * {
     @include custom-scrollbar;
   }
 
-  // =============================================================================
-  // 8. Utility Classes & Layout Helpers
-  // =============================================================================
-  
-  // Utility extensions
+  // Utility classes
   .rounded-sm,
   form,
   div[class*='shadow-lg lg:border-t dark:border-coolgray-300'] {
     border-radius: var(--radius-sm);
   }
 
-  // Flex layout helpers
+  // Layout helpers
   .flex {
     &.gap-2,
     &.items-center.gap-4,
@@ -738,7 +768,7 @@ $breakpoints: (
     }
   }
 
-  // Specific component sizing
+  // Specific component adjustments
   div[class='flex items-center gap-2'] > h3,
   section > h3[class='pb-2'] {
     font-size: 1.6rem;
@@ -756,7 +786,11 @@ $breakpoints: (
     transition: background $transition-speed ease;
   }
 
-  // Width utilities using loop for DRY code
+  // =============================================================================
+  // Width & Spacing Utilities
+  // =============================================================================
+  
+  // Width utilities using loop for maintainability
   $width-classes: ('w-48', 'w-64', 'w-32', 'pt-2 w-96', 'w-96', 'md:w-96');
   
   @each $class in $width-classes {
@@ -766,7 +800,6 @@ $breakpoints: (
     }
   }
 
-  // Gap utilities
   div[class*='flex flex-col gap-2'] {
     gap: calc(#{$spacing} * 4);
   }
@@ -777,6 +810,10 @@ $breakpoints: (
     text-decoration: none;
   }
 
+  // =============================================================================
+  // Content & Media Elements
+  // =============================================================================
+  
   // Table styling
   table {
     overflow: hidden;
@@ -785,21 +822,17 @@ $breakpoints: (
     background: var(--cfy-card-container);
   }
 
-  // Image/Icon styling
-  %media-style {
-    overflow: hidden;
-    border-radius: var(--radius-sm);
-    filter: none;
-    opacity: 1;
-  }
-
+  // Media element styling
   img[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
   svg[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
   div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
-    @extend %media-style;
+    @extend %media-element;
   }
 
-  // Main content area
+  // =============================================================================
+  // Layout & Page Structure
+  // =============================================================================
+  
   main {
     height: 100svh;
 
@@ -810,7 +843,7 @@ $breakpoints: (
     }
   }
 
-  // Sponsor/info boxes
+  // Info boxes and containers
   div[class*='p-4 border dark:border-coolgray-300'] {
     margin-top: calc(#{$spacing} * 4);
     padding: calc(#{$spacing} * 4) calc(#{$spacing} * 6);
@@ -818,14 +851,24 @@ $breakpoints: (
     background: var(--cfy-card-container);
   }
 
-  // Theme dropdown (simplified selector)
+  // Page width control
+  body > div[data-page-width] {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  // =============================================================================
+  // Component Specific Fixes
+  // =============================================================================
+  
+  // Theme dropdown - using semantic selector
   [data-theme-dropdown] {
     border-radius: 10px;
     background: var(--cfy-card);
     padding-block: 0.7rem;
   }
 
-  // Dark hover utilities
+  // Dark mode hover utility
   .dark-hover\\:bg-none {
     &:hover {
       background: none;
@@ -833,18 +876,16 @@ $breakpoints: (
     }
   }
 
-  // Misc utilities
+  // Tag styling
   .add-tag {
     color: var(--cfy-muted);
   }
 
-  // Page width override
-  body > div[data-page-width] {
-    min-width: 100%;
-    max-width: 100%;
-  }
-
-  // Hide UI elements using data attributes for better specificity
+  // =============================================================================
+  // UI Element Hiding (Improved Approach)
+  // =============================================================================
+  
+  // Primary approach: Use data attributes for better semantic meaning
   [data-ui-hide],
   [data-color-controls],
   [data-width-controls],
@@ -852,15 +893,8 @@ $breakpoints: (
     display: none !important;
   }
 
-  // Content-based hiding - CSS can't do text content matching
-  // These should be replaced with data attributes in HTML:
-  // <div data-ui-section="color">Color</div>
-  // <div data-ui-section="width">Width</div>
-  // <div data-ui-section="zoom">Zoom</div>
-  
-  // Fallback: Hide common UI control containers
+  // Fallback approach for existing markup
   div.font-bold.border-b {
-    // Use JavaScript or data attributes instead of :has-text()
     &[data-ui-section="color"],
     &[data-ui-section="width"],
     &[data-ui-section="zoom"] {
@@ -868,11 +902,20 @@ $breakpoints: (
     }
   }
 
-  // Additional fallback for buttons
+  // Additional button hiding
   button[class*="switch"],
   button[class*="zoom"],
   button[data-action*="width"],
   button[data-action*="zoom"] {
     display: none !important;
+  }
+
+  // Generic UI control hiding
+  .ui-control {
+    &[data-type="color"],
+    &[data-type="width"], 
+    &[data-type="zoom"] {
+      display: none !important;
+    }
   }
 }

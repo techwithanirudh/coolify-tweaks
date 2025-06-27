@@ -638,10 +638,16 @@ body, .box, .card, .menu-item, button, a, input, select, textarea {
   [data-color-controls],
   [data-width-controls],
   [data-zoom-controls] {
-    display: none;
+    display: none !important;
   }
-  div.font-bold.border-b:has-text("Color"), div.font-bold.border-b:has-text("Width"), div.font-bold.border-b:has-text("Zoom") {
-    display: none;
+  div.font-bold.border-b[data-ui-section=color], div.font-bold.border-b[data-ui-section=width], div.font-bold.border-b[data-ui-section=zoom] {
+    display: none !important;
+  }
+  button[class*=switch],
+  button[class*=zoom],
+  button[data-action*=width],
+  button[data-action*=zoom] {
+    display: none !important;
   }
 }
 
