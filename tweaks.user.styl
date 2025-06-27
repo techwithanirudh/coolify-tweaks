@@ -8,337 +8,389 @@
 @author       Anirudh Sriram
 @license      MIT
 ==/UserStyle== */
-
-@-moz-document url-prefix("*://coolify.local/"),
-               url-prefix("https://app.coolify.io")
-
+@-moz-document url-prefix("*://coolify.local/"), url-prefix("https://app.coolify.io") {
   /* ───────── 0. MIXINS ───────── */
-  reset()
-    border none !important
-    box-shadow none !important
-    border-radius var(--cfy-radius) !important
+  reset() {
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: var(--cfy-radius) !important;
+  }
 
-  scrollbar(w, c)
-    &::-webkit-scrollbar
-      width  w
-      height w
-    &::-webkit-scrollbar-thumb
-      background c
-      border-radius 4px
+  scrollbar(w, c) {
+    &::-webkit-scrollbar {
+      width: w;
+      height: w;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: c;
+      border-radius: 4px;
+    }
+  }
 
   /* ───────── 1. DESIGN TOKENS (LIGHT DEFAULT) ───────── */
-  accent         = #4C3495
-  radius         = 12px
-  blurAmt        = 12px
-  sidebarW       = 230px
+  accent = #4C3495;
+  radius = 12px;
+  blurAmt = 12px;
+  sidebarW = 230px;
+  sidebarBG = #ffffff;
+  secondaryBG = #f5f5f7;
+  contentBG = #fafafa;
+  cardContainer = #f3f3f4;
+  cardBG = #ffffff;
+  cardHover = mix(#ffffff, accent, 8%);
+  textCol = #1a1a1f;
+  mutedCol = #6c6a70;
+  borderCol = #00000026; // ≈ 15 % black
+  inputBg = #ffffff;
+  inputBgFocus = #ececec;
+  scrollbarCol = #bbbbbb;
+  scrollbarHover = darken(scrollbarCol, 15%); /* DARK THEME TOKEN OVERRIDES */
+  sidebarBG_D = #1A191F;
+  secondaryBG_D = #26252B;
+  contentBG_D = #1F1C23;
+  cardContainer_D = #2A292E;
+  cardBG_D = #353239;
+  cardHover_D = unquote('color-mix(in srgb, #353239 70%, ' + accent + ' 30%)');
+  textCol_D = #FCFAFC;
+  mutedCol_D = #8E8C91;
+  borderCol_D = #ffffff1a;
+  inputBg_D = #202024;
+  inputBgFocus_D = #26262b;
+  scrollbarCol_D = #444;
+  scrollbarHover_D = darken(scrollbarCol_D, 15%); /* ───────── 2. CSS VARIABLES ───────── */
 
-  sidebarBG      = #ffffff
-  secondaryBG    = #f5f5f7
-  contentBG      = #fafafa
-  cardContainer  = #f3f3f4
-  cardBG         = #ffffff
-  cardHover      = mix(#ffffff, accent, 8%)
-  textCol        = #1a1a1f
-  mutedCol       = #6c6a70
-  borderCol      = #00000026          // ≈ 15 % black
-  inputBg        = #ffffff
-  inputBgFocus   = #ececec
-  scrollbarCol   = #bbbbbb
-  scrollbarHover = darken(scrollbarCol, 15%)
+  :root {
+    --cfy-accent: accent;
+    --cfy-accent-light: unquote('color-mix(in srgb, var(--cfy-accent) 75%, #000)');
+    --cfy-sidebar-bg: sidebarBG;
+    --cfy-secondary: secondaryBG;
+    --cfy-content-bg: contentBG;
+    --cfy-card-container: cardContainer;
+    --cfy-card: cardBG;
+    --cfy-card-hover: cardHover;
+    --cfy-text: textCol;
+    --cfy-muted: mutedCol;
+    --cfy-border: borderCol;
+    --cfy-input-bg: inputBg;
+    --cfy-input-bg-focus: inputBgFocus;
+    --cfy-scrollbar: scrollbarCol;
+    --cfy-scrollbar-hover: scrollbarHover;
+    --cfy-radius: radius;
+    --cfy-blur: blurAmt;
+    --cfy-shadow: 0 4px 20px rgb(0 0 0 / 0.1);
+    --cfy-sidebar-w: sidebarW;
+    color-scheme: light;
+    font-size: 15px;
+  }
 
-  /* DARK THEME TOKEN OVERRIDES */
-  sidebarBG_D      = #1A191F
-  secondaryBG_D    = #26252B
-  contentBG_D      = #1F1C23
-  cardContainer_D  = #2A292E
-  cardBG_D         = #353239
-  cardHover_D      = unquote('color-mix(in srgb, #353239 70%, ' + accent + ' 30%)')
-  textCol_D        = #FCFAFC
-  mutedCol_D       = #8E8C91
-  borderCol_D      = #ffffff1a
-  inputBg_D        = #202024
-  inputBgFocus_D   = #26262b
-  scrollbarCol_D   = #444
-  scrollbarHover_D = darken(scrollbarCol_D, 15%)
-
-  /* ───────── 2. CSS VARIABLES ───────── */
-  :root
-    --cfy-accent               accent
-    --cfy-accent-light         unquote('color-mix(in srgb, var(--cfy-accent) 75%, #000)')
-    --cfy-sidebar-bg           sidebarBG
-    --cfy-secondary            secondaryBG
-    --cfy-content-bg           contentBG
-    --cfy-card-container       cardContainer
-    --cfy-card                 cardBG
-    --cfy-card-hover           cardHover
-    --cfy-text                 textCol
-    --cfy-muted                mutedCol
-    --cfy-border               borderCol
-    --cfy-input-bg             inputBg
-    --cfy-input-bg-focus       inputBgFocus
-    --cfy-scrollbar            scrollbarCol
-    --cfy-scrollbar-hover      scrollbarHover
-    --cfy-radius               radius
-    --cfy-blur                 blurAmt
-    --cfy-shadow               0 4px 20px rgb(0 0 0 / .10)
-    --cfy-sidebar-w            sidebarW
-    color-scheme               light
-    font-size                  15px
-
-  html.dark :root
-    --cfy-sidebar-bg           sidebarBG_D
-    --cfy-secondary            secondaryBG_D
-    --cfy-content-bg           contentBG_D
-    --cfy-card-container       cardContainer_D
-    --cfy-card                 cardBG_D
-    --cfy-card-hover           cardHover_D
-    --cfy-text                 textCol_D
-    --cfy-muted                mutedCol_D
-    --cfy-accent-light         unquote('color-mix(in srgb, var(--cfy-accent) 25%, #000)')
-    --cfy-border               borderCol_D
-    --cfy-input-bg             inputBg_D
-    --cfy-input-bg-focus       inputBgFocus_D
-    --cfy-scrollbar            scrollbarCol_D
-    --cfy-scrollbar-hover      scrollbarHover_D
-    --cfy-shadow               0 4px 20px rgb(0 0 0 / .25)
-    color-scheme               dark
+  html.dark :root {
+    --cfy-sidebar-bg: sidebarBG_D;
+    --cfy-secondary: secondaryBG_D;
+    --cfy-content-bg: contentBG_D;
+    --cfy-card-container: cardContainer_D;
+    --cfy-card: cardBG_D;
+    --cfy-card-hover: cardHover_D;
+    --cfy-text: textCol_D;
+    --cfy-muted: mutedCol_D;
+    --cfy-accent-light: unquote('color-mix(in srgb, var(--cfy-accent) 25%, #000)');
+    --cfy-border: borderCol_D;
+    --cfy-input-bg: inputBg_D;
+    --cfy-input-bg-focus: inputBgFocus_D;
+    --cfy-scrollbar: scrollbarCol_D;
+    --cfy-scrollbar-hover: scrollbarHover_D;
+    --cfy-shadow: 0 4px 20px rgb(0 0 0 / 0.25);
+    color-scheme: dark;
+  }
 
   /* ───────── 3. GLOBAL RESET ───────── */
-  body,
-  .box, .box-without-bg, .card, .menu-item,
-  button, a, input, select, textarea
-    reset()
+  body, .box, .box-without-bg, .card, .menu-item, button, a, input, select, textarea {
+    reset();
+  }
 
-  body, main
-    background var(--cfy-content-bg) !important
-    color       var(--cfy-text)
+  body, main {
+    background: var(--cfy-content-bg) !important;
+    color: var(--cfy-text);
+  }
 
   /* ───────── 4. SIDEBAR ───────── */
-  [class*="lg:flex"][class*="lg:w-56"]
-    width var(--cfy-sidebar-w) !important
+  [class*='lg:flex'][class*='lg:w-56'] {
+    width: var(--cfy-sidebar-w) !important;
+  }
 
-  nav[class*="dark:border-coolgray-200"]
-    width 100%
-    background var(--cfy-sidebar-bg) !important
-    backdrop-filter blur(var(--cfy-blur))
-    -webkit-backdrop-filter blur(var(--cfy-blur))
-    border-right 1px solid var(--cfy-border)
-    overflow-y auto !important
-    overflow-x hidden
-    scrollbar-width thin
-    scrollbar-color var(--cfy-scrollbar) transparent
-    scrollbar(8px, var(--cfy-scrollbar))
+  nav[class*='dark:border-coolgray-200'] {
+    width: 100%;
+    background: var(--cfy-sidebar-bg) !important;
+    backdrop-filter: blur(var(--cfy-blur));
+    -webkit-backdrop-filter: blur(var(--cfy-blur));
+    border-right: 1px solid var(--cfy-border);
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--cfy-scrollbar) transparent;
+    scrollbar(8px, var(--cfy-scrollbar));
+  }
 
-  nav > ul > li > ul > li
-    border-radius var(--cfy-radius) !important
-    overflow hidden
+  nav > ul > li > ul > li {
+    border-radius: var(--cfy-radius) !important;
+    overflow: hidden;
+  }
 
-  .menu-item
-    display flex
-    align-items center
-    gap .6rem
-    padding .55rem .9rem
-    font-weight 500
-    color var(--cfy-muted)
-    transition background .18s, color .18s
-    &:hover,
-    &-active
-      background var(--cfy-accent-light)
-      color #fff !important
-    svg
-      width 20px
-      height 20px
-      stroke-width 1.6
-      flex-shrink 0
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.55rem 0.9rem;
+    font-weight: 500;
+    color: var(--cfy-muted);
+    transition: background 0.18s, color 0.18s;
 
-  @media (max-width:1023px)
-    aside[class*="sidebar"]
-      position fixed
-      inset 0
-      transform translateX(calc(-1 * var(--cfy-sidebar-w)))
-      z-index 60
-      transition transform .25s ease
-    body.sidebar-open
-      aside
-        transform none
-      &::after
-        content ""
-        position fixed
-        inset 0
-        background #0009
-        z-index 50
+    &:hover, &-active {
+      background: var(--cfy-accent-light);
+      color: #fff !important;
+    }
 
-  @media (min-width:1024px)
-    main
-      padding-left var(--cfy-sidebar-w) !important
+    svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 1.6;
+      flex-shrink: 0;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    aside[class*='sidebar'] {
+      position: fixed;
+      inset: 0;
+      transform: translateX(calc(-1 * var(--cfy-sidebar-w)));
+      z-index: 60;
+      transition: transform 0.25s ease;
+    }
+
+    body.sidebar-open {
+      aside {
+        transform: none;
+      }
+
+      &::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: #0009;
+        z-index: 50;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    main {
+      padding-left: var(--cfy-sidebar-w) !important;
+    }
+  }
 
   /* ───────── 5. TOP NAV ───────── */
-  .navbar-main
-    position sticky
-    top 0
-    z-index 45
-    padding .45rem .85rem
-    background var(--cfy-sidebar-bg)
-    backdrop-filter blur(var(--cfy-blur))
-    -webkit-backdrop-filter blur(var(--cfy-blur))
-    border 1px solid var(--cfy-border)
-    border-radius var(--cfy-radius) !important
-    nav
-      display flex
-      gap .8rem
-      &::-webkit-scrollbar
-        display none
-      button
-        all unset
-        cursor pointer
-        padding .55rem 1.25rem
-        font-weight 600
-        color var(--cfy-muted)
-        transition background .18s, color .18s
-        &:hover
-          background var(--cfy-accent-light)
-          color #111
-      a[aria-current="page"] button,
-      a.active button
-        background var(--cfy-accent)
-        color #111
-        box-shadow inset 0 0 0 2px var(--cfy-accent-light)
-    .flex-1
-      flex 1 1 auto
+  .navbar-main {
+    position: sticky;
+    top: 0;
+    z-index: 45;
+    padding: 0.45rem 0.85rem;
+    background: var(--cfy-sidebar-bg);
+    backdrop-filter: blur(var(--cfy-blur));
+    -webkit-backdrop-filter: blur(var(--cfy-blur));
+    border: 1px solid var(--cfy-border);
+    border-radius: var(--cfy-radius) !important;
+
+    nav {
+      display: flex;
+      gap: 0.8rem;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      button {
+        all: unset;
+        cursor: pointer;
+        padding: 0.55rem 1.25rem;
+        font-weight: 600;
+        color: var(--cfy-muted);
+        transition: background 0.18s, color 0.18s;
+
+        &:hover {
+          background: var(--cfy-accent-light);
+          color: #111;
+        }
+      }
+
+      a[aria-current='page'] button, a.active button {
+        background: var(--cfy-accent);
+        color: #111;
+        box-shadow: inset 0 0 0 2px var(--cfy-accent-light);
+      }
+    }
+
+    .flex-1 {
+      flex: 1 1 auto;
+    }
+  }
 
   /* ───────── 6. CARDS & GRIDS ───────── */
-  section > h2 + div,
-  section > h3 + div,
-  div[data-testid="resources-grid"],
-  div[class*="grid-cols"]
-    padding .75rem .85rem !important
-    background var(--cfy-card-container) !important
-    border-radius var(--cfy-radius) !important
-    overflow hidden
-    margin-top .65rem
+  section > h2 + div, section > h3 + div, div[data-testid='resources-grid'], div[class*='grid-cols'] {
+    padding: 0.75rem 0.85rem !important;
+    background: var(--cfy-card-container) !important;
+    border-radius: var(--cfy-radius) !important;
+    overflow: hidden;
+    margin-top: 0.65rem;
+  }
 
-  .grid,
-  [class*="grid-cols"]
-    gap .65rem !important
+  .grid, [class*='grid-cols'] {
+    gap: 0.65rem !important;
+  }
 
-  .box,
-  .box-without-bg
-    padding .65rem .75rem
-    background var(--cfy-card) !important
-    border 1px solid var(--cfy-border)
-    box-shadow var(--cfy-shadow) !important
-    transition transform .15s, box-shadow .2s, background .18s, border-color .18s
-    border-radius var(--cfy-radius) !important
-    &:hover
-      transform translateY(-2px)
-      box-shadow 0 8px 24px rgb(0 0 0 / .35)
-      border-color var(--cfy-accent)
-      background var(--cfy-card-hover)
+  .box, .box-without-bg {
+    padding: 0.65rem 0.75rem;
+    background: var(--cfy-card) !important;
+    border: 1px solid var(--cfy-border);
+    box-shadow: var(--cfy-shadow) !important;
+    transition: transform 0.15s, box-shadow 0.2s, background 0.18s, border-color 0.18s;
+    border-radius: var(--cfy-radius) !important;
 
-  [dashed],
-  [class*="dashed"]
-    padding-block 2rem !important
-    border-radius var(--cfy-radius) !important
-    border-color var(--cfy-border) !important
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgb(0 0 0 / 0.35);
+      border-color: var(--cfy-accent);
+      background: var(--cfy-card-hover);
+    }
+  }
 
-  [role="row"]:not([dashed])
-    background var(--cfy-card) !important
-    border-radius var(--cfy-radius) !important
-    padding .6rem .8rem
+  [dashed], [class*='dashed'] {
+    padding-block: 2rem !important;
+    border-radius: var(--cfy-radius) !important;
+    border-color: var(--cfy-border) !important;
+  }
+
+  [role='row']:not([dashed]) {
+    background: var(--cfy-card) !important;
+    border-radius: var(--cfy-radius) !important;
+    padding: 0.6rem 0.8rem;
+  }
 
   /* ───────── 7. TYPOGRAPHY ───────── */
-  headingSizes = 2.1rem 1.5rem 1.25rem 1.1rem
-  for size, i in headingSizes
-    lvl = i + 1
-    h{lvl}
-      font-weight 700
-      font-size   size
-      line-height 1.3
-      font-family "Inter", "SF Pro Display", sans-serif
-      color var(--cfy-text)
+  headingSizes = 2.1rem 1.5rem 1.25rem 1.1rem;
 
-  .subtitle
-    font-size .95rem
-    color var(--cfy-muted)
+  for size, i in headingSizes {
+    lvl = i + 1;
 
-  .box-title
-    font-size 1.05rem
-    font-weight 600
+    h{lvl} {
+      font-weight: 700;
+      font-size: size;
+      line-height: 1.3;
+      font-family: 'Inter', 'SF Pro Display', sans-serif;
+      color: var(--cfy-text);
+    }
+  }
 
-  .box-description
-    color var(--cfy-muted)
+  .subtitle {
+    font-size: 0.95rem;
+    color: var(--cfy-muted);
+  }
+
+  .box-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  .box-description {
+    color: var(--cfy-muted);
+  }
 
   /* ───────── 8. BUTTONS ───────── */
-  button.button,
-  .button
-    background var(--cfy-accent)
-    color var(--cfy-text) !important
-    font-weight 600
-    padding .75rem 1rem
-    border 1px solid var(--cfy-border) !important
-    border-radius var(--cfy-radius)
-    transition background .18s
-    &:hover
-      background var(--cfy-accent-light)
-      color var(--cfy-text) !important
+  button.button, .button {
+    background: var(--cfy-accent);
+    color: var(--cfy-text) !important;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--cfy-border) !important;
+    border-radius: var(--cfy-radius);
+    transition: background 0.18s;
 
-  button.secondary,
-  .secondary
-    background var(--cfy-secondary) !important
-    color var(--cfy-text) !important
-    &:hover
-      background var(--cfy-card-container) !important
+    &:hover {
+      background: var(--cfy-accent-light);
+      color: var(--cfy-text) !important;
+    }
+  }
+
+  button.secondary, .secondary {
+    background: var(--cfy-secondary) !important;
+    color: var(--cfy-text) !important;
+
+    &:hover {
+      background: var(--cfy-card-container) !important;
+    }
+  }
 
   /* ───────── 9. FORM INPUTS ───────── */
-  input.input,
-  textarea.input,
-  select.select
-    background var(--cfy-input-bg) !important
-    border 1px solid var(--cfy-border) !important
-    color var(--cfy-text)
-    padding .75rem 1rem
-    border-radius var(--cfy-radius) !important
-    transition border-color .15s, background .15s
-    &:focus
-      border-color var(--cfy-accent-light) !important
-      background var(--cfy-input-bg-focus) !important
+  input.input, textarea.input, select.select {
+    background: var(--cfy-input-bg) !important;
+    border: 1px solid var(--cfy-border) !important;
+    color: var(--cfy-text);
+    padding: 0.75rem 1rem;
+    border-radius: var(--cfy-radius) !important;
+    transition: border-color 0.15s, background 0.15s;
+
+    &:focus {
+      border-color: var(--cfy-accent-light) !important;
+      background: var(--cfy-input-bg-focus) !important;
+    }
+  }
 
   /* ───────── 10. TOASTS ───────── */
-  ul[x-data] li > span
-    backdrop-filter blur(var(--cfy-blur))
-    background hsla(0,0%,100%,.05) !important
-    border 1px solid var(--cfy-border) !important
-    font-family "Inter", sans-serif
+  ul[x-data] li > span {
+    backdrop-filter: blur(var(--cfy-blur));
+    background: hsla(0, 0%, 100%, 0.05) !important;
+    border: 1px solid var(--cfy-border) !important;
+    font-family: 'Inter', sans-serif;
+  }
 
-  @keyframes wiggle
-    0%,100%
-      transform rotate(0)
-    25%
-      transform rotate(-3deg)
-    75%
-      transform rotate(3deg)
+  @keyframes wiggle {
+    0%, 100% {
+      transform: rotate(0);
+    }
 
-  .toast-no-description svg[fill="currentColor"]
-    animation wiggle .6s ease
+    25% {
+      transform: rotate(-3deg);
+    }
 
-  [x-show="popups.sponsorship"]
-    display none !important
+    75% {
+      transform: rotate(3deg);
+    }
+  }
+
+  .toast-no-description svg[fill='currentColor'] {
+    animation: wiggle 0.6s ease;
+  }
+
+  [x-show='popups.sponsorship'] {
+    display: none !important;
+  }
 
   /* ───────── 11. SCROLLBAR & FOCUS ───────── */
-  ::-webkit-scrollbar
-    width 8px
-    height 8px
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
 
-  ::-webkit-scrollbar-thumb
-    background var(--cfy-scrollbar)
-    border-radius 4px
-    &:hover
-      background var(--cfy-scrollbar-hover)
+  ::-webkit-scrollbar-thumb {
+    background: var(--cfy-scrollbar);
+    border-radius: 4px;
 
-  button:focus-visible,
-  a:focus-visible,
-  input:focus-visible,
-  select:focus-visible,
-  textarea:focus-visible
-    outline 2px solid var(--cfy-accent) !important
-    outline-offset 2px
+    &:hover {
+      background: var(--cfy-scrollbar-hover);
+    }
+  }
+
+  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--cfy-accent) !important;
+    outline-offset: 2px;
+  }
+} // coolify.local/"),
