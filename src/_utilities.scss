@@ -2,17 +2,11 @@
 @use 'theme/variables' as vars;
 @use 'sass:map';
 
-section > h2 +/* "Sponsor us" box and similar */
-div[class*='p-4 border dark:border-coolgray-300'] {
-  margin-top: s(4);
-  padding: s(4) s(6);
-  border-radius: var(--radius-sm) !important;
-  background: var(--cfy-card-container) !important;
-}
-ection > h3 + div {
+section > h2 + div,
+section > h3 + div {
   overflow: hidden;
-  margin-top: s(2.6);
-  padding: s(3) s(3.4) !important;
+  margin-top: s(2.65);
+  padding: s(3) s(3.5) !important;
   border-radius: var(--radius-md) !important;
   /* 14 px */
   background: var(--cfy-card-container) !important;
@@ -47,7 +41,7 @@ div[class='flex flex-col gap-4 max-w-2xl'] {
 }
 
 input.dark\:bg-coolgray-100:where(.dark, .dark *) {
-  padding: s(2.8);
+  padding: s(2.75);
   border-radius: 4px !important;
   background-color: var(--cfy-card) !important;
   transition: background 0.18s;
