@@ -1,3 +1,5 @@
+@use "globals" as *;
+
 h1 {
     color: var(--cfy-text);
     font: 700 2.1rem / 1.25 'Inter', 'SF Pro Display', sans-serif;

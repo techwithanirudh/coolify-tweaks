@@ -1,3 +1,5 @@
+@use "globals" as *;
+
 @mixin input-base {
   padding: s(2) s(4);
   border: 1px solid var(--color-coolgray-400) !important;

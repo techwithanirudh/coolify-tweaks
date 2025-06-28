@@ -1,3 +1,7 @@
+@use "globals" as *;
+@use "theme/variables" as vars;
+@use "sass:map";
+
 section>h2+div,
 section>h3+div {
   overflow: hidden;

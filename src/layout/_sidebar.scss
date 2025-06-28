@@ -1,4 +1,4 @@
-@use "../_mixins" as *;
+@use "globals" as *;
 
 [class*='lg:flex'][class*='lg:w-56'] {
     width: var(--cfy-sidebar-w) !important;

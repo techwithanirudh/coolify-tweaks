@@ -1,3 +1,5 @@
+@use "globals" as *;
+
 /* Sponsorship Popup Styles */
 [x-show='popups.sponsorship'] {
   padding: s(4) !important;

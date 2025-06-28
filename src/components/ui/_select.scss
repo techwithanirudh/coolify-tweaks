@@ -1,3 +1,5 @@
+@use "globals" as *;
+
 @mixin select-base {
   appearance: base-select;
 
