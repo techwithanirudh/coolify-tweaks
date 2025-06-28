@@ -4,7 +4,7 @@
   position: sticky;
   top: 0;
   // z-index: 45;
-  padding: s(1.8) s(3.4);
+  padding: s(1.75) s(3.5);
   border: 1px solid var(--color-coolgray-400) !important;
   border-radius: var(--radius-sm) !important;
   background: var(--cfy-sidebar-bg);
@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   padding-top: 0px;
-  gap: s(3.2);
+  gap: s(3.25);
 }
 
 .navbar-main nav::-webkit-scrollbar {
@@ -23,7 +23,7 @@
 }
 
 .navbar-main nav a {
-  padding: s(1.2);
+  padding: s(1.25);
   border-radius: 10px !important;
   color: var(--cfy-muted);
   font-weight: 600;

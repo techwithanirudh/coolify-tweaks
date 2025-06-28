@@ -40,14 +40,14 @@ nav > ul > li > ul > li {
 .menu-item {
   display: flex;
   align-items: center;
-  padding: s(2.2) s(3.6);
+  padding: s(2.25) s(3.75);
   border-radius: var(--radius-sm) !important;
   color: var(--cfy-muted);
   font-weight: 500;
   transition:
     background 0.18s,
     color 0.18s;
-  gap: s(2.4);
+  gap: s(2.5);
 }
 
 .menu-item:hover,
