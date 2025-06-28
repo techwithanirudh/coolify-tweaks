@@ -84,8 +84,8 @@
   .box,
   .box-without-bg {
     overflow: hidden;
-    padding: calc(0.25rem * 2) calc(0.25rem * 2);
-    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 2);
+    padding: calc(0.25rem * 2.6) calc(0.25rem * 3);
+    padding: calc(var(--spacing) * 2.6) calc(var(--spacing) * 3);
     border: 1px solid #d8dae0 !important;
     border: 1px solid var(--color-coolgray-400) !important;
     border-radius: 12px !important;
@@ -134,8 +134,8 @@
 
   button.button,
   .button {
-    padding: calc(0.25rem * 2) calc(0.25rem * 4);
-    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+    padding: calc(0.25rem * 2.2) calc(0.25rem * 4);
+    padding: calc(var(--spacing) * 2.2) calc(var(--spacing) * 4);
     border: 1px solid #d8dae0 !important;
     border: 1px solid var(--color-coolgray-400) !important;
     border-radius: 12px !important;
@@ -173,8 +173,8 @@
   input.input,
   textarea.input,
   select.select {
-    padding: calc(0.25rem * 2) calc(0.25rem * 4);
-    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+    padding: calc(0.25rem * 2.2) calc(0.25rem * 4);
+    padding: calc(var(--spacing) * 2.2) calc(var(--spacing) * 4);
     border: 1px solid #d8dae0 !important;
     border: 1px solid var(--color-coolgray-400) !important;
     border-radius: 12px !important;
@@ -223,8 +223,8 @@
 
   input[type='checkbox'],
   input[type='radio'] {
-    padding: calc(0.25rem * 2);
-    padding: calc(var(--spacing) * 2);
+    padding: calc(0.25rem * 2.8);
+    padding: calc(var(--spacing) * 2.8);
     border-radius: 4px !important;
     background-color: #e3e5ea !important;
     background-color: var(--cfy-card) !important;
@@ -232,8 +232,8 @@
   }
 
   label {
-    margin-bottom: calc(0.25rem * 2);
-    margin-bottom: calc(var(--spacing) * 2);
+    margin-bottom: calc(0.25rem * 3);
+    margin-bottom: calc(var(--spacing) * 3);
     font-weight: 600;
   }
 
@@ -286,15 +286,15 @@
   option {
     display: flex;
     justify-content: flex-start;
-    padding: calc(0.25rem * 4);
-    padding: calc(var(--spacing) * 4);
+    padding: calc(0.25rem * 2.5);
+    padding: calc(var(--spacing) * 2.5);
     background: #e3e5ea !important;
     background: var(--cfy-card) !important;
     color: #1f1c23;
     color: var(--cfy-text);
     transition: 0.4s;
-    gap: calc(0.25rem * 8);
-    gap: calc(var(--spacing) * 8);
+    gap: calc(0.25rem * 5);
+    gap: calc(var(--spacing) * 5);
   }
   option:first-of-type {
     border-radius: 10px 10px 0 0;
@@ -351,8 +351,8 @@
   }
 
   [role='row']:not([dashed]) {
-    padding: calc(0.25rem * 2) calc(0.25rem * 4);
-    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+    padding: calc(0.25rem * 2.4) calc(0.25rem * 3.2);
+    padding: calc(var(--spacing) * 2.4) calc(var(--spacing) * 3.2);
     border-radius: 12px !important;
     border-radius: var(--radius-sm) !important;
     background: #e3e5ea !important;
@@ -365,10 +365,10 @@
   div[data-testid='resources-grid'],
   div.grid[class*='cols'] {
     overflow: hidden;
-    margin-top: calc(0.25rem * 2);
-    margin-top: calc(var(--spacing) * 2);
-    padding: calc(0.25rem * 2) calc(0.25rem * 4) !important;
-    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4) !important;
+    margin-top: calc(0.25rem * 2.6);
+    margin-top: calc(var(--spacing) * 2.6);
+    padding: calc(0.25rem * 3) calc(0.25rem * 3.4) !important;
+    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 3.4) !important;
     border-radius: 14px !important;
     border-radius: var(--radius-md) !important;
     background: #eceef2 !important;
@@ -437,15 +437,15 @@
 
   .grid,
   [class*='grid-cols'] {
-    gap: calc(0.25rem * 2) !important;
-    gap: calc(var(--spacing) * 2) !important;
+    gap: calc(0.25rem * 2.6) !important;
+    gap: calc(var(--spacing) * 2.6) !important;
   }
 
   .navbar-main {
     position: sticky;
     top: 0;
-    padding: calc(0.25rem * 2) calc(0.25rem * 4);
-    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+    padding: calc(0.25rem * 1.8) calc(0.25rem * 3.4);
+    padding: calc(var(--spacing) * 1.8) calc(var(--spacing) * 3.4);
     border: 1px solid #d8dae0 !important;
     border: 1px solid var(--color-coolgray-400) !important;
     border-radius: 12px !important;
@@ -462,8 +462,8 @@
     display: flex;
     align-items: center;
     padding-top: 0px;
-    gap: calc(0.25rem * 4);
-    gap: calc(var(--spacing) * 4);
+    gap: calc(0.25rem * 3.2);
+    gap: calc(var(--spacing) * 3.2);
   }
 
   .navbar-main nav::-webkit-scrollbar {
@@ -471,7 +471,8 @@
   }
 
   .navbar-main nav a {
-    padding: 0;
+    padding: calc(0.25rem * 1.2);
+    padding: calc(var(--spacing) * 1.2);
     border-radius: 10px !important;
     color: #6e6b75;
     color: var(--cfy-muted);
@@ -550,8 +551,8 @@
   .menu-item {
     display: flex;
     align-items: center;
-    padding: calc(0.25rem * 2) calc(0.25rem * 4);
-    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+    padding: calc(0.25rem * 2.2) calc(0.25rem * 3.6);
+    padding: calc(var(--spacing) * 2.2) calc(var(--spacing) * 3.6);
     border-radius: 12px !important;
     border-radius: var(--radius-sm) !important;
     color: #6e6b75;
@@ -560,8 +561,8 @@
     transition:
       background 0.18s,
       color 0.18s;
-    gap: calc(0.25rem * 2);
-    gap: calc(var(--spacing) * 2);
+    gap: calc(0.25rem * 2.4);
+    gap: calc(var(--spacing) * 2.4);
   }
 
   .menu-item:hover,
@@ -614,8 +615,8 @@
     border-radius: 10px !important;
     background: #e3e5ea !important;
     background: var(--cfy-card) !important;
-    padding-block: calc(0.25rem * 2) !important;
-    padding-block: calc(var(--spacing) * 2) !important;
+    padding-block: calc(0.25rem * 2.8) !important;
+    padding-block: calc(var(--spacing) * 2.8) !important;
   }
 
   div.font-bold.border-b:contains('Color'),
@@ -717,13 +718,23 @@
     max-width: 100% !important;
   }
 
-  section > h2 + div,
-  section > h3 + div {
+  section > h2 + div[class*='p-4 border dark:border-coolgray-300'] {
+    margin-top: calc(0.25rem * 4);
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(0.25rem * 4) calc(0.25rem * 6);
+    padding: calc(var(--spacing) * 4) calc(var(--spacing) * 6);
+    border-radius: 12px !important;
+    border-radius: var(--radius-sm) !important;
+    background: #eceef2 !important;
+    background: var(--cfy-card-container) !important;
+  }
+
+  ection > h3 + div {
     overflow: hidden;
-    margin-top: calc(0.25rem * 2);
-    margin-top: calc(var(--spacing) * 2);
-    padding: calc(0.25rem * 2) calc(0.25rem * 4) !important;
-    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4) !important;
+    margin-top: calc(0.25rem * 2.6);
+    margin-top: calc(var(--spacing) * 2.6);
+    padding: calc(0.25rem * 3) calc(0.25rem * 3.4) !important;
+    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 3.4) !important;
     border-radius: 14px !important;
     border-radius: var(--radius-md) !important;
     /* 14 px */
@@ -732,8 +743,8 @@
   }
 
   section:has(> div > div:only-child) > div > div:only-child {
-    padding: calc(0.25rem * 4) !important;
-    padding: calc(var(--spacing) * 4) !important;
+    padding: calc(0.25rem * 5) !important;
+    padding: calc(var(--spacing) * 5) !important;
     border-radius: 12px !important;
     border-radius: var(--radius-sm) !important;
     background: #eceef2 !important;
@@ -765,8 +776,8 @@
   }
 
   input.dark\:bg-coolgray-100:where(.dark, .dark *) {
-    padding: calc(0.25rem * 2);
-    padding: calc(var(--spacing) * 2);
+    padding: calc(0.25rem * 2.8);
+    padding: calc(var(--spacing) * 2.8);
     border-radius: 4px !important;
     background-color: #e3e5ea !important;
     background-color: var(--cfy-card) !important;

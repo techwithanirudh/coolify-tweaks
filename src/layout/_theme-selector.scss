@@ -3,7 +3,7 @@
 button[\@click='dropdownOpen=true']:has([x-show="theme === 'dark' || theme === 'system'"]) {
   border-radius: 10px !important;
   background: var(--cfy-card) !important;
-  padding-block: s(2) !important;
+  padding-block: s(2.8) !important;
 }
 
 div.font-bold.border-b:contains('Color'),

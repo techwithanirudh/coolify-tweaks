@@ -12,6 +12,6 @@
   @if $value == 0 {
     @return 0;
   }
-  $rounded-multiplier: round($value / 2) * 2;
+  $rounded-multiplier: round($value / 0.05) * 0.05;
   @return calc(var(--spacing) * #{$rounded-multiplier});
 }
