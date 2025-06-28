@@ -9,16 +9,14 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.5",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "autoprefixer": "^10.4.21",
     "lefthook": "^1.11.14",
-    "lint-staged": "^16.1.2",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
     "postcss-preset-env": "^10.2.4",
     "prettier": "3.6.2",
     "sass": "^1.89.2"
-  },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
   }
 }
