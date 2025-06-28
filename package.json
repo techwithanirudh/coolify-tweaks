@@ -1,7 +1,7 @@
 {
   "name": "coolify-tweaks",
   "description": "A userstyle that enhances Coolify's UI by applying opinionated tweaks, spacing, colors, and layout fixes, to make the dashboard more polished and user-friendly.",
-  "version": "2.0.3",
+  "version": "2.0.6",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,7 +9,7 @@
     "build": "bun run build:sass && bun run build:css && bun run scripts/build.ts && bun run format",
     "build:sass": "sass --no-source-map --load-path=src src:dist",
     "build:css": "postcss dist/main.css --replace",
-    "format": "prettier --write --ignore-unknown .",
+    "format": "prettier --write --ignore-unknown --log-level silent .",
     "release": "bun run scripts/bump.ts && bun run format && bun run build"
   },
   "peerDependencies": {
