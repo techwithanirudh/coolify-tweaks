@@ -10,7 +10,7 @@ nav[class*='dark:border-coolgray-200'] {
     width: 100%;
     border-right: 1px solid var(--color-coolgray-400);
     background: var(--cfy-sidebar-bg) !important;
-    @include apply-blur;
+    backdrop-filter: blur(var(--cfy-blur)) !important;
     scrollbar-width: thin;
     scrollbar-color: var(--cfy-accent) transparent;
 }

@@ -7,10 +7,6 @@
     @content;
   }
 }
-  
-@mixin apply-blur($blur-var: var(--cfy-blur)) {
-  backdrop-filter: blur($blur-var);
-}
 
 @function s($value) {
   @if $value == 0 {
