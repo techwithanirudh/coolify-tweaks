@@ -1,5 +1,5 @@
 import { file } from 'bun';
-import { config } from '../src/config.ts';
+import * as config from '@/config.json';
 
 async function generate(): Promise<void> {
   const header = `/* ==UserStyle==

@@ -1,12 +1,19 @@
 {
   "name": "coolify-tweaks",
-  "version": "1.0.0",
-  "description": "Tweaks for Coolify",
+  "description": "A userstyle that enhances Coolify's UI by applying opinionated tweaks, spacing, colors, and layout fixes, to make the dashboard more polished and user-friendly.",
+  "version": "2.0.3",
+  "private": true,
   "type": "module",
   "scripts": {
-    "build": "sass src/main.scss dist/main.css --no-source-map --load-path=src && postcss dist/main.css --replace && bun scripts/build.ts",
-    "dev": "sass --watch src:dist --no-source-map --load-path=src",
-    "release": "bun run version:patch && bun run build"
+    "dev": "sass --no-source-map --load-path=src --watch src:dist",
+    "build": "bun run build:sass && bun run build:css && bun run scripts/build.ts && bun run format",
+    "build:sass": "sass --no-source-map --load-path=src src:dist",
+    "build:css": "postcss dist/main.css --replace",
+    "format": "prettier --write --ignore-unknown .",
+    "release": "bun run scripts/bump.ts && bun run format && bun run build"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.5",
@@ -20,9 +27,5 @@
     "prettier": "3.6.2",
     "sass": "^1.89.2",
     "@types/bun": "latest"
-  },
-  "private": true,
-  "peerDependencies": {
-    "typescript": "^5"
   }
 }
