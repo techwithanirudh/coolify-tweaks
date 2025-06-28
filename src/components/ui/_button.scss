@@ -1,5 +1,5 @@
 @mixin button-base {
-  padding: 0.55rem 1rem;
+  padding: s(2) s(4);
   border: 1px solid var(--color-coolgray-400) !important;
   border-radius: var(--radius-sm) !important; /* 12 px */
   background: var(--cfy-accent);

@@ -1,6 +1,6 @@
 /* Sponsorship Popup Styles */
 [x-show='popups.sponsorship'] {
-  padding: 1.25rem !important;
+  padding: s(4) !important;
   border-radius: var(--radius-sm) !important;
   background: var(--cfy-card-container) !important;
   box-shadow: var(--cfy-shadow) !important;

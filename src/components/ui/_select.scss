@@ -46,11 +46,11 @@ select,
 option {
   display: flex;
   justify-content: flex-start;
-  padding: 10px;
+  padding: s(4);
   background: var(--cfy-card) !important;
   color: var(--cfy-text);
   transition: 0.4s;
-  gap: 20px;
+  gap: s(8);
 
   &:first-of-type {
     border-radius: var(--radius-xs) var(--radius-xs) 0 0;

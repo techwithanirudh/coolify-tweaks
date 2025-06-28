@@ -1,15 +1,15 @@
 section>h2+div,
 section>h3+div {
   overflow: hidden;
-  margin-top: 0.65rem;
-  padding: 0.75rem 0.85rem !important;
+  margin-top: s(2);
+  padding: s(2) s(4) !important;
   border-radius: var(--radius-md) !important;
   /* 14 px */
   background: var(--cfy-card-container) !important;
 }
 
 section:has(> div > div:only-child)>div>div:only-child {
-  padding: 1.25rem !important;
+  padding: s(4) !important;
   border-radius: var(--radius-sm) !important;
   background: var(--cfy-card-container) !important;
   color: var(--cfy-muted);
@@ -37,7 +37,7 @@ div[class='flex flex-col gap-4 max-w-2xl'] {
 }
 
 input.dark\:bg-coolgray-100:where(.dark, .dark *) {
-  padding: 0.7rem;
+  padding: s(2);
   border-radius: 4px !important;
   background-color: var(--cfy-card) !important;
   transition: background 0.18s;
@@ -55,7 +55,7 @@ div[class='w-96'] {
 }
 
 div[class*='flex flex-col gap-2'] {
-  gap: calc(var(--spacing) * 4) !important;
+  gap: s(4) !important;
 }
 
 a[class*='hover:underline']:hover {
@@ -76,13 +76,13 @@ div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
 main>div[class*='p-4 sm:px-6 lg:px-8 lg:py-6'] {
   margin: auto;
   max-width: 1280px !important;
-  padding-block: calc(var(--spacing) * 18) !important;
+  padding-block: s(18) !important;
 }
 
 /* “Sponsor us” box and similar */
 div[class*='p-4 border dark:border-coolgray-300'] {
-  margin-top: calc(var(--spacing) * 4);
-  padding: calc(var(--spacing) * 4) calc(var(--spacing) * 6);
+  margin-top: s(4);
+  padding: s(4) s(6);
   border-radius: var(--radius-sm) !important;
   background: var(--cfy-card-container) !important;
 }

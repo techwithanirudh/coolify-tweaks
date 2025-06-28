@@ -9,8 +9,8 @@
 div[data-testid='resources-grid'],
 div.grid[class*='cols'] {
   overflow: hidden;
-  margin-top: 0.65rem;
-  padding: 0.75rem 0.85rem !important;
+  margin-top: s(2);
+  padding: s(2) s(4) !important;
   border-radius: var(--radius-md) !important;
   background: var(--cfy-card-container) !important;
 }
@@ -78,5 +78,5 @@ div.grid[class*='cols']:has([href*='/server/']) {
 
 .grid,
 [class*='grid-cols'] {
-  gap: 0.65rem !important;
+  gap: s(2) !important;
 }

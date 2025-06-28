@@ -1,6 +1,6 @@
 table {
   overflow: hidden !important;
-  margin-top: calc(var(--spacing) * 4);
+  margin-top: s(4);
   border-radius: var(--radius-sm) !important;
   background: var(--cfy-card-container) !important;
 }
@@ -9,11 +9,11 @@ table {
 [class*='dashed'] {
   border-color: var(--cfy-muted) !important;
   border-radius: var(--radius-sm) !important;
-  padding-block: 2rem !important;
+  padding-block: s(8) !important;
 }
 
 [role='row']:not([dashed]) {
-  padding: 0.6rem 0.8rem;
+  padding: s(2) s(4);
   border-radius: var(--radius-sm) !important;
   background: var(--cfy-card) !important;
 }

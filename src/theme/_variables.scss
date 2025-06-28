@@ -71,16 +71,6 @@ $radii: (
 );
 
 // Spacing (example, adjust as needed)
-$spacing: (
-  "unit": 0.25rem, // 4px
-  "1": 0.25rem,
-  "2": 0.5rem,
-  "3": 0.75rem,
-  "4": 1rem,
-  "6": 1.5rem,
-  "8": 2rem,
-  "18": 4.5rem,
-);
 
 @mixin generate-css-vars($theme-map) {
   @each $key, $value in $theme-map {
@@ -110,9 +100,7 @@ $spacing: (
     --radius-#{$key}: #{$value};
   }
 
-  @each $key, $value in $spacing {
-    --spacing-#{$key}: #{$value};
-  }
+  --spacing: 0.25rem; // Base spacing unit
 }
 
 .dark {

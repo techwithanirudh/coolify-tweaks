@@ -11,3 +11,11 @@
 @mixin apply-blur($blur-var: var(--cfy-blur)) {
   backdrop-filter: blur($blur-var);
 }
+
+@function s($value) {
+  @if $value == 0 {
+    @return 0;
+  }
+  $rounded-multiplier: round($value / 2) * 2;
+  @return calc(var(--spacing) * #{$rounded-multiplier});
+}
