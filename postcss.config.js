@@ -1,11 +1,10 @@
-const postcssPresetEnv = require('postcss-preset-env');
-const autoprefixer = require('autoprefixer');
+import postcssPresetEnv from 'postcss-preset-env';
+import autoprefixer from 'autoprefixer';
 
-module.exports = {
+export default {
   plugins: [
     postcssPresetEnv({
       stage: 3,
-      // Removed explicit color-mix-function feature as it should be handled by browserslist
     }),
     autoprefixer()
   ]

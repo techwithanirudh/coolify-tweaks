@@ -16,3 +16,5 @@ Properly handle the heading logic
 Replace icons for sidebar with smth else
 compare the changes
 Add stylus specific moz-document for *://coolify.local:8000/* and *://app.coolify.io/*
+Fix spacing
+Switch to bun, and add lint-staged prettier formatting and commitlint

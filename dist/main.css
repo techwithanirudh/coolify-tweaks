@@ -1,0 +1,934 @@
+@charset "UTF-8";
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+:root {
+  font-size: 15px;
+  --color-base: #FFFFFF;
+  --color-coolgray-100: #F6F7F9;
+  --color-coolgray-200: #ECEEF2;
+  --color-coolgray-300: #E3E5EA;
+  --color-coolgray-400: #D8DAE0;
+  --color-coolgray-500: #CFD1D8;
+  --color-coolgray-600: #C6C8D0;
+  --color-coolgray-700: #F4F5F7;
+  --color-coolgray-800: #EDEEF1;
+  --color-coolgray-900: #E6E7EB;
+  --color-coollabs: #4C3495;
+  --color-coollabs-100: color-mix(in srgb, #4C3495 85%, #FFFFFF);
+  --color-success: #2AAA52;
+  --color-warning: #E0B842;
+  --color-error: #D63B3B;
+  --color-text-primary: #1F1C23;
+  --color-text-muted: #6E6B75;
+  --color-placeholder: #8E8C91;
+  --color-overlay: rgba(0, 0, 0, 0.6);
+  --color-shadow-light: rgba(0, 0, 0, 0.15);
+  --color-shadow-dark: rgba(0, 0, 0, 0.35);
+  --color-shadow-main: rgba(0, 0, 0, 0.25);
+  --cfy-accent: var(--color-coollabs);
+  --cfy-accent-light: var(--color-coollabs-100);
+  --cfy-sidebar-bg: var(--color-coolgray-700);
+  --cfy-secondary: var(--color-coolgray-100);
+  --cfy-content-bg: var(--color-base);
+  --cfy-card-container: var(--color-coolgray-200);
+  --cfy-card: var(--color-coolgray-300);
+  --cfy-text: var(--color-text-primary);
+  --cfy-muted: var(--color-text-muted);
+  --cfy-blur: 14px;
+  --cfy-shadow: 0 4px 20px var(--color-shadow-main);
+  --cfy-sidebar-w: 260px;
+  --radius-base: 14px;
+  --radius-step: 2px;
+  --radius-xs: 10px;
+  --radius-sm: 12px;
+  --radius-md: 14px;
+  --radius-lg: 16px;
+  --radius-xl: 18px;
+  --spacing: 0.25rem;
+}
+
+.dark {
+  --color-base: #1F1C23;
+  --color-coolgray-100: #26252B;
+  --color-coolgray-200: #2A292E;
+  --color-coolgray-300: #353239;
+  --color-coolgray-400: #3D3A40;
+  --color-coolgray-500: #45424A;
+  --color-coolgray-600: #403D44;
+  --color-coolgray-700: #1A191F;
+  --color-coolgray-800: #151419;
+  --color-coolgray-900: #101014;
+  --color-coollabs: #7349F3;
+  --color-coollabs-100: color-mix(in srgb, #7349F3 75%, #FFFFFF);
+  --color-success: #23FF1F;
+  --color-warning: #FCD452;
+  --color-error: #FF1F1C;
+  --color-text-primary: #FCFAFC;
+  --color-text-muted: #8E8C91;
+  --color-placeholder: #8E8C91;
+}
+
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+.box,
+.box-without-bg {
+  overflow: hidden;
+  padding: calc(0.25rem * 2) calc(0.25rem * 2);
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 2);
+  border: 1px solid #D8DAE0 !important;
+  border: 1px solid var(--color-coolgray-400) !important;
+  border-radius: 12px !important;
+  border-radius: var(--radius-sm) !important;
+  /* 12 px */
+  background: #E3E5EA !important;
+  background: var(--cfy-card) !important;
+  transition: transform 0.15s, box-shadow 0.2s, background 0.18s, border-color 0.18s;
+}
+
+.box:hover {
+  border-color: #4C3495;
+  border-color: var(--cfy-accent);
+  background: color-mix(in srgb, #E3E5EA 70%, #4C3495 30%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 24px var(--color-shadow-dark);
+  transform: translateY(-2px);
+}
+
+@supports (color: color-mix(in lch, red, blue)){
+.box:hover {
+  background: color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%);
+}
+}
+
+.box-title {
+  font-weight: 600;
+  font-size: 1.05rem;
+  display: -webkit-box !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  -webkit-line-clamp: 4 !important;
+  -webkit-box-orient: vertical !important;
+}
+
+.box-description {
+  color: #6E6B75;
+  color: var(--cfy-muted);
+}
+
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+button.button, .button {
+  padding: calc(0.25rem * 2) calc(0.25rem * 4);
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+  border: 1px solid #D8DAE0 !important;
+  border: 1px solid var(--color-coolgray-400) !important;
+  border-radius: 12px !important;
+  border-radius: var(--radius-sm) !important; /* 12 px */
+  background: #4C3495;
+  background: var(--cfy-accent);
+  color: var(--color-text) !important;
+  font-weight: 600;
+  transition: background 0.18s;
+}
+button.button:hover, .button:hover {
+  background: color-mix(in srgb, #4C3495 85%, #FFFFFF);
+  background: var(--cfy-accent-light);
+}
+
+/* Ensure proper text colors in light mode for buttons */
+html:not(.dark) button.button,
+html:not(.dark) .button {
+  color: #FFFFFF !important;
+  color: var(--color-base) !important;
+}
+
+button.secondary, .secondary {
+  background: #F6F7F9 !important;
+  background: var(--cfy-secondary) !important;
+}
+button.secondary:hover, .secondary:hover {
+  background: #ECEEF2 !important;
+  background: var(--cfy-card-container) !important;
+}
+
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+input.input,
+textarea.input,
+select.select {
+  padding: calc(0.25rem * 2) calc(0.25rem * 4);
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+  border: 1px solid #D8DAE0 !important;
+  border: 1px solid var(--color-coolgray-400) !important;
+  border-radius: 12px !important;
+  border-radius: var(--radius-sm) !important; /* 12 px */
+  background: #E3E5EA !important;
+  background: var(--cfy-card) !important;
+  color: #1F1C23;
+  color: var(--cfy-text);
+  transition: border-color 0.15s, background 0.15s;
+  /* Placeholder text styling */
+}
+input.input:focus,
+textarea.input:focus,
+select.select:focus {
+  border-color: color-mix(in srgb, #4C3495 85%, #FFFFFF) !important;
+  border-color: var(--cfy-accent-light) !important;
+  background: #ECEEF2 !important;
+  background: var(--cfy-card-container) !important;
+}
+input.input::-moz-placeholder, textarea.input::-moz-placeholder, select.select::-moz-placeholder {
+  color: #6E6B75 !important;
+  color: var(--cfy-muted) !important;
+  opacity: 0.7;
+}
+input.input::placeholder,
+textarea.input::placeholder,
+select.select::placeholder {
+  color: #6E6B75 !important;
+  color: var(--cfy-muted) !important;
+  opacity: 0.7;
+}
+input.input:focus::-moz-placeholder, textarea.input:focus::-moz-placeholder, select.select:focus::-moz-placeholder {
+  opacity: 0.5;
+}
+input.input:focus::placeholder,
+textarea.input:focus::placeholder,
+select.select:focus::placeholder {
+  opacity: 0.5;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  padding: calc(0.25rem * 2);
+  padding: calc(var(--spacing) * 2);
+  border-radius: 4px !important;
+  background-color: #E3E5EA !important;
+  background-color: var(--cfy-card) !important;
+  transition: background 0.18s;
+}
+
+label {
+  margin-bottom: calc(0.25rem * 2);
+  margin-bottom: calc(var(--spacing) * 2);
+  font-weight: 600;
+}
+
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+select,
+::picker(select) {
+  -webkit-appearance: base-select;
+     -moz-appearance: base-select;
+          appearance: base-select;
+}
+select:hover, select:focus,
+::picker(select):hover,
+::picker(select):focus {
+  border-color: color-mix(in srgb, #4C3495 85%, #FFFFFF);
+  border-color: var(--cfy-accent-light);
+  background: #ECEEF2;
+  background: var(--cfy-card-container);
+}
+select::picker-icon,
+::picker(select)::picker-icon {
+  color: #6E6B75;
+  color: var(--cfy-muted);
+  transition: 0.4s rotate;
+}
+select:open::picker-icon,
+::picker(select):open::picker-icon {
+  rotate: 180deg;
+}
+
+::picker(select) {
+  border: 1px solid #D8DAE0 !important;
+  border: 1px solid var(--color-coolgray-400) !important;
+  border-radius: 10px !important;
+  border-radius: var(--radius-xs) !important;
+  background: #E3E5EA !important;
+  background: var(--cfy-card) !important;
+  top: calc(anchor(bottom) + 4px);
+  opacity: 0;
+  transition: all 0.4s allow-discrete;
+}
+::picker(select):popover-open {
+  opacity: 1;
+}
+@starting-style {
+  ::picker(select):popover-open {
+    opacity: 0;
+  }
+}
+
+option {
+  display: flex;
+  justify-content: flex-start;
+  padding: calc(0.25rem * 4);
+  padding: calc(var(--spacing) * 4);
+  background: #E3E5EA !important;
+  background: var(--cfy-card) !important;
+  color: #1F1C23;
+  color: var(--cfy-text);
+  transition: 0.4s;
+  gap: calc(0.25rem * 8);
+  gap: calc(var(--spacing) * 8);
+}
+option:first-of-type {
+  border-radius: 10px 10px 0 0;
+  border-radius: var(--radius-xs) var(--radius-xs) 0 0;
+}
+option:last-of-type {
+  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 var(--radius-xs) var(--radius-xs);
+}
+option:not(option:last-of-type) {
+  border-bottom: none;
+}
+option:hover, option:focus {
+  background: #ECEEF2 !important;
+  background: var(--cfy-card-container) !important;
+  color: #1F1C23;
+  color: var(--cfy-text);
+}
+option .icon {
+  font-size: 1.6rem;
+  text-box: trim-both cap alphabetic;
+}
+option selectedcontent .icon {
+  display: none;
+}
+option:checked {
+  font-weight: bold;
+}
+option::checkmark {
+  order: 1;
+  margin-left: auto;
+  content: "✓";
+}
+
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+table {
+  overflow: hidden !important;
+  margin-top: calc(0.25rem * 4);
+  margin-top: calc(var(--spacing) * 4);
+  border-radius: 12px !important;
+  border-radius: var(--radius-sm) !important;
+  background: #ECEEF2 !important;
+  background: var(--cfy-card-container) !important;
+}
+
+[dashed],
+[class*=dashed] {
+  border-color: #6E6B75 !important;
+  border-color: var(--cfy-muted) !important;
+  border-radius: 12px !important;
+  border-radius: var(--radius-sm) !important;
+  padding-block: calc(0.25rem * 8) !important;
+  padding-block: calc(var(--spacing) * 8) !important;
+}
+
+[role=row]:not([dashed]) {
+  padding: calc(0.25rem * 2) calc(0.25rem * 4);
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+  border-radius: 12px !important;
+  border-radius: var(--radius-sm) !important;
+  background: #E3E5EA !important;
+  background: var(--cfy-card) !important;
+}
+
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+/* =============================================================================
+     Grid System
+  ============================================================================= */
+div[data-testid=resources-grid],
+div.grid[class*=cols] {
+  overflow: hidden;
+  margin-top: calc(0.25rem * 2);
+  margin-top: calc(var(--spacing) * 2);
+  padding: calc(0.25rem * 2) calc(0.25rem * 4) !important;
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4) !important;
+  border-radius: 14px !important;
+  border-radius: var(--radius-md) !important;
+  background: #ECEEF2 !important;
+  background: var(--cfy-card-container) !important;
+}
+
+div.grid[class*=cols]:has([wire\:click^=navigateToProject]),
+div.grid[class*=cols]:has([\@click^="$wire.navigateToProject"]),
+div.grid[class*=cols][x-show="filteredApplications.length > 0"],
+div.grid[class*=cols][x-show="filteredServices.length > 0"] {
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+}
+
+@media screen and (min-width: 640px) {
+  div.grid[class*=cols]:has([wire\:click^=navigateToProject]),
+  div.grid[class*=cols]:has([\@click^="$wire.navigateToProject"]),
+  div.grid[class*=cols][x-show="filteredApplications.length > 0"],
+  div.grid[class*=cols][x-show="filteredServices.length > 0"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+@media screen and (min-width: 1024px) {
+  div.grid[class*=cols]:has([wire\:click^=navigateToProject]),
+  div.grid[class*=cols]:has([\@click^="$wire.navigateToProject"]),
+  div.grid[class*=cols][x-show="filteredApplications.length > 0"],
+  div.grid[class*=cols][x-show="filteredServices.length > 0"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+@media screen and (min-width: 1280px) {
+  div.grid[class*=cols]:has([wire\:click^=navigateToProject]),
+  div.grid[class*=cols]:has([\@click^="$wire.navigateToProject"]),
+  div.grid[class*=cols][x-show="filteredApplications.length > 0"],
+  div.grid[class*=cols][x-show="filteredServices.length > 0"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+@media screen and (min-width: 1536px) {
+  div.grid[class*=cols]:has([wire\:click^=navigateToProject]),
+  div.grid[class*=cols]:has([\@click^="$wire.navigateToProject"]),
+  div.grid[class*=cols][x-show="filteredApplications.length > 0"],
+  div.grid[class*=cols][x-show="filteredServices.length > 0"] {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+div.grid[class*=cols]:has([wire\:click^=navigateToProject]) .box,
+div.grid[class*=cols]:has([\@click^="$wire.navigateToProject"]) .box,
+div.grid[class*=cols][x-show="filteredApplications.length > 0"] .box,
+div.grid[class*=cols][x-show="filteredServices.length > 0"] .box {
+  height: 150px;
+}
+
+div.grid[class*=cols]:has([wire\:click^=navigateToProject]) .box > div,
+div.grid[class*=cols]:has([\@click^="$wire.navigateToProject"]) .box div,
+div.grid[class*=cols][x-show="filteredApplications.length > 0"] .box div,
+div.grid[class*=cols][x-show="filteredServices.length > 0"] .box div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+div.grid[class*=cols]:has([href*="/server/"]) {
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+}
+
+.grid,
+[class*=grid-cols] {
+  gap: calc(0.25rem * 2) !important;
+  gap: calc(var(--spacing) * 2) !important;
+}
+
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+.navbar-main {
+  position: sticky;
+  top: 0;
+  padding: calc(0.25rem * 2) calc(0.25rem * 4);
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+  border: 1px solid #D8DAE0 !important;
+  border: 1px solid var(--color-coolgray-400) !important;
+  border-radius: 12px !important;
+  border-radius: var(--radius-sm) !important;
+  background: #F4F5F7;
+  background: var(--cfy-sidebar-bg);
+  -webkit-backdrop-filter: blur(14px) !important;
+          backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(var(--cfy-blur)) !important;
+          backdrop-filter: blur(var(--cfy-blur)) !important;
+}
+
+.navbar-main nav {
+  display: flex;
+  align-items: center;
+  padding-top: 0px;
+  gap: calc(0.25rem * 4);
+  gap: calc(var(--spacing) * 4);
+}
+
+.navbar-main nav::-webkit-scrollbar {
+  display: none;
+}
+
+.navbar-main nav a {
+  padding: 0;
+  border-radius: 10px !important;
+  color: #6E6B75;
+  color: var(--cfy-muted);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+
+.navbar-main nav a:hover {
+  color: #1F1C23 !important;
+  color: var(--cfy-text) !important;
+}
+
+.navbar-main nav a[class*="dark:text-white"],
+.navbar-main nav a[aria-current=page] {
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, #4C3495 85%, #FFFFFF);
+  box-shadow: inset 0 0 0 2px var(--cfy-accent-light);
+  color: #1F1C23 !important;
+  color: var(--cfy-text) !important;
+}
+
+.navbar-main .flex-1 {
+  flex: 1 1 auto;
+}
+
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+[class*="lg:flex"][class*="lg:w-56"] {
+  width: 260px !important;
+  width: var(--cfy-sidebar-w) !important;
+}
+
+nav[class*="dark:border-coolgray-200"] {
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  width: 100%;
+  border-right: 1px solid #D8DAE0;
+  border-right: 1px solid var(--color-coolgray-400);
+  background: #F4F5F7 !important;
+  background: var(--cfy-sidebar-bg) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+          backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(var(--cfy-blur)) !important;
+          backdrop-filter: blur(var(--cfy-blur)) !important;
+  scrollbar-width: thin;
+  scrollbar-color: #4C3495 transparent;
+  scrollbar-color: var(--cfy-accent) transparent;
+}
+
+nav[class*="dark:border-coolgray-200"] > ul {
+  padding-inline: calc(0.25rem * 2);
+  padding-inline: calc(var(--spacing) * 2);
+}
+
+nav[class*="dark:border-coolgray-200"] > div[class*="px-2 pt-2 pb-7"] {
+  padding-block: calc(0.25rem * 4) !important;
+  padding-block: calc(var(--spacing) * 4) !important;
+}
+
+aside::-webkit-scrollbar {
+  width: 8px;
+}
+
+aside::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: #4C3495;
+  background: var(--cfy-accent);
+}
+
+nav > ul > li > ul > li {
+  overflow: hidden;
+  border-radius: 12px !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: calc(0.25rem * 2) calc(0.25rem * 4);
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+  border-radius: 12px !important;
+  border-radius: var(--radius-sm) !important;
+  color: #6E6B75;
+  color: var(--cfy-muted);
+  font-weight: 500;
+  transition: background 0.18s, color 0.18s;
+  gap: calc(0.25rem * 2);
+  gap: calc(var(--spacing) * 2);
+}
+
+.menu-item:hover,
+.menu-item-active {
+  background: #ECEEF2 !important;
+  background: var(--cfy-card-container) !important;
+  color: #1F1C23 !important;
+  color: var(--cfy-text) !important;
+}
+
+.menu-item svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.6;
+  fill: #C6C8D0 !important;
+  fill: var(--color-coolgray-600) !important;
+}
+
+/* Mobile slide-in */
+@media screen and (min-width: 1024px) {
+  aside[class*=sidebar] {
+    position: fixed;
+    z-index: 60;
+    transition: transform 0.25s;
+    transform: translateX(calc(-1 * 260px));
+    transform: translateX(calc(-1 * var(--cfy-sidebar-w)));
+    inset: 0;
+  }
+  body.sidebar-open aside {
+    transform: none;
+  }
+  body.sidebar-open::after {
+    position: fixed;
+    z-index: 50;
+    background: rgba(0, 0, 0, 0.6);
+    background: var(--color-overlay);
+    content: "";
+    inset: 0;
+  }
+}
+/* Desktop push */
+@media screen and (min-width: 1024px) {
+  body:has(nav[class*="dark:border-coolgray-200"]) main {
+    padding-left: 260px !important;
+    padding-left: var(--cfy-sidebar-w) !important;
+  }
+}
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+button[\@click="dropdownOpen=true"]:has([x-show="theme === 'dark' || theme === 'system'"]) {
+  border-radius: 10px !important;
+  background: #E3E5EA !important;
+  background: var(--cfy-card) !important;
+  padding-block: calc(0.25rem * 2) !important;
+  padding-block: calc(var(--spacing) * 2) !important;
+}
+
+div.font-bold.border-b:contains("Color"),
+div.font-bold.border-b:contains("Width"),
+div.font-bold.border-b:contains("Zoom") {
+  display: none !important;
+}
+
+button[\@click^=switchWidth],
+button[\@click^=setZoom] {
+  display: none !important;
+}
+
+div[class*="font-bold border-b dark:border-coolgray-500 dark:text-white text-md"] {
+  display: none !important;
+}
+
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+body,
+.box,
+.card,
+.menu-item,
+button,
+a,
+input,
+select,
+textarea {
+  border: none !important;
+  border-radius: 12px !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: none !important;
+}
+
+body,
+main {
+  background: #FFFFFF !important;
+  background: var(--cfy-content-bg) !important;
+  color: #1F1C23;
+  color: var(--cfy-text);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #4C3495 !important;
+  outline: 2px solid var(--cfy-accent) !important;
+  outline-offset: 2px;
+}
+
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+h1 {
+  color: #1F1C23;
+  color: var(--cfy-text);
+  font: 700 2.1rem/1.25 "Inter", "SF Pro Display", sans-serif;
+}
+
+h2 {
+  color: #1F1C23;
+  color: var(--cfy-text);
+  font: 700 1.5rem/1.35 "Inter", "SF Pro Display", sans-serif;
+}
+
+h3 {
+  color: #1F1C23;
+  color: var(--cfy-text);
+  font: 700 1.25rem/1.35 "Inter", "SF Pro Display", sans-serif;
+}
+
+h4 {
+  color: #1F1C23;
+  color: var(--cfy-text);
+  font: 700 1.1rem/1.35 "Inter", "SF Pro Display", sans-serif;
+}
+
+.subtitle {
+  color: #6E6B75;
+  color: var(--cfy-muted);
+  font-size: 0.95rem;
+}
+
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+main {
+  height: 100svh;
+}
+
+body > div[\:class="pageWidth === 'full' ? '' : 'max-w-7xl'"] {
+  min-width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* ==UserStyle==
+@name Coolify Enhanced UI
+@version 2.0.1
+@namespace techwithanirudh
+@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
+@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
+@license MIT
+==/UserStyle== */
+section > h2 + div,
+section > h3 + div {
+  overflow: hidden;
+  margin-top: calc(0.25rem * 2);
+  margin-top: calc(var(--spacing) * 2);
+  padding: calc(0.25rem * 2) calc(0.25rem * 4) !important;
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4) !important;
+  border-radius: 14px !important;
+  border-radius: var(--radius-md) !important;
+  /* 14 px */
+  background: #ECEEF2 !important;
+  background: var(--cfy-card-container) !important;
+}
+
+section:has(> div > div:only-child) > div > div:only-child {
+  padding: calc(0.25rem * 4) !important;
+  padding: calc(var(--spacing) * 4) !important;
+  border-radius: 12px !important;
+  border-radius: var(--radius-sm) !important;
+  background: #ECEEF2 !important;
+  background: var(--cfy-card-container) !important;
+  color: #6E6B75;
+  color: var(--cfy-muted);
+  text-align: center;
+}
+
+/* Misc utilities */
+.rounded-sm,
+form,
+div[class*="shadow-lg lg:border-t dark:border-coolgray-300"] {
+  border-radius: 12px !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+:is(.flex.gap-2, .flex.items.center.gap-4, .flex.flex-col.gap-4) > :is(h1, h2, h3, h4) {
+  margin-right: auto;
+}
+
+div[class="flex items-center gap-2"] > h3,
+section > h3[class=pb-2] {
+  font-size: 1.6rem;
+}
+
+div[class="flex flex-col gap-4 max-w-2xl"] {
+  max-width: none !important;
+}
+
+input.dark\:bg-coolgray-100:where(.dark, .dark *) {
+  padding: calc(0.25rem * 2);
+  padding: calc(var(--spacing) * 2);
+  border-radius: 4px !important;
+  background-color: #E3E5EA !important;
+  background-color: var(--cfy-card) !important;
+  transition: background 0.18s;
+}
+
+/* force some widths */
+div[class=w-48],
+div[class*=w-64],
+div[class=w-32],
+div[class="pt-2 w-96"],
+div[class=w-96],
+div[class*="md:w-96"],
+div[class=w-96] {
+  width: 100% !important;
+}
+
+div[class*="flex flex-col gap-2"] {
+  gap: calc(0.25rem * 4) !important;
+  gap: calc(var(--spacing) * 4) !important;
+}
+
+a[class*="hover:underline"]:hover {
+  color: #6E6B75 !important;
+  color: var(--cfy-muted) !important;
+  text-decoration: none !important;
+}
+
+img[class*="w-[4.5rem] aspect-square h-[4.5rem]"],
+svg[class*="w-[4.5rem] aspect-square h-[4.5rem]"],
+div[class*="w-[4.5rem] aspect-square h-[4.5rem]"] {
+  overflow: hidden !important;
+  border-radius: 12px !important;
+  border-radius: var(--radius-sm) !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Optional: tighter max-width for wide desktops */
+main > div[class*="p-4 sm:px-6 lg:px-8 lg:py-6"] {
+  margin: auto;
+  max-width: 1280px !important;
+  padding-block: calc(0.25rem * 18) !important;
+  padding-block: calc(var(--spacing) * 18) !important;
+}
+
+/* “Sponsor us” box and similar */
+div[class*="p-4 border dark:border-coolgray-300"] {
+  margin-top: calc(0.25rem * 4);
+  margin-top: calc(var(--spacing) * 4);
+  padding: calc(0.25rem * 4) calc(0.25rem * 6);
+  padding: calc(var(--spacing) * 4) calc(var(--spacing) * 6);
+  border-radius: 12px !important;
+  border-radius: var(--radius-sm) !important;
+  background: #ECEEF2 !important;
+  background: var(--cfy-card-container) !important;
+}
+
+.dark\:hover\:bg-coolgray-100:where(.dark, .dark *):hover {
+  background: none !important;
+  color: #1F1C23 !important;
+  color: var(--cfy-text) !important;
+}
+
+.add-tag {
+  color: #6E6B75 !important;
+  color: var(--cfy-muted) !important;
+}

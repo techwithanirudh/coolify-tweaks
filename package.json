@@ -1,13 +1,24 @@
 {
+  "name": "coolify-tweaks",
+  "version": "1.0.0",
+  "description": "Tweaks for Coolify",
+  "type": "module",
   "scripts": {
     "build": "sass src/main.scss dist/main.css --no-source-map --load-path=src && postcss dist/main.css --replace",
     "dev": "sass --watch src:dist --no-source-map --load-path=src"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.0.5",
     "autoprefixer": "^10.4.21",
+    "lefthook": "^1.11.14",
+    "lint-staged": "^16.1.2",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
     "postcss-preset-env": "^10.2.4",
+    "prettier": "3.6.2",
     "sass": "^1.89.2"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }
