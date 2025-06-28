@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "build": "sass src/main.scss dist/main.css --no-source-map && postcss dist/main.css --replace",
-    "dev": "sass --watch src:dist --no-source-map"
+    "build": "sass src/main.scss dist/main.css --no-source-map --load-path=src && postcss dist/main.css --replace",
+    "dev": "sass --watch src:dist --no-source-map --load-path=src"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",

@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "../theme/variables" as vars;
-@use "../_mixins" as mixins;
 
 /* =============================================================================
      Grid System
@@ -22,7 +21,7 @@ div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
   grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
 }
 
-@include mixins.mq(sm) {
+@include mq(sm) {
   div.grid[class*='cols']:has([wire\:click^='navigateToProject']),
   div.grid[class*='cols']:has([\@click^='$wire.navigateToProject']),
   div.grid[class*='cols'][x-show='filteredApplications.length > 0'],
@@ -30,7 +29,7 @@ div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
-@include mixins.mq(lg) {
+@include mq(lg) {
   div.grid[class*='cols']:has([wire\:click^='navigateToProject']),
   div.grid[class*='cols']:has([\@click^='$wire.navigateToProject']),
   div.grid[class*='cols'][x-show='filteredApplications.length > 0'],
@@ -38,7 +37,7 @@ div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 }
-@include mixins.mq(xl) {
+@include mq(xl) {
   div.grid[class*='cols']:has([wire\:click^='navigateToProject']),
   div.grid[class*='cols']:has([\@click^='$wire.navigateToProject']),
   div.grid[class*='cols'][x-show='filteredApplications.length > 0'],
@@ -46,7 +45,7 @@ div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 }
-@include mixins.mq(xxl) {
+@include mq(xxl) {
   div.grid[class*='cols']:has([wire\:click^='navigateToProject']),
   div.grid[class*='cols']:has([\@click^='$wire.navigateToProject']),
   div.grid[class*='cols'][x-show='filteredApplications.length > 0'],

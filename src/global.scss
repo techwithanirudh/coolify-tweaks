@@ -1,0 +1,4 @@
+// Global imports that should be available in all SCSS files
+@use "sass:map";
+@use "theme/variables" as vars;
+@use "mixins" as *;

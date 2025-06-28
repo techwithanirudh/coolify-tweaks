@@ -7,7 +7,7 @@
     @content;
   }
 }
-
+  
 @mixin apply-blur($blur-var: var(--cfy-blur)) {
   backdrop-filter: blur($blur-var);
 }
