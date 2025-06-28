@@ -1,61 +1,97 @@
-:root {
-  /* neutrals */
-  --color-base: #FFFFFF;
-  --color-coolgray-100: #F6F7F9;
-  --color-coolgray-200: #ECEEF2;
-  --color-coolgray-300: #E3E5EA;
-  --color-coolgray-400: #D8DAE0;
-  --color-coolgray-500: #CFD1D8;
-  --color-coolgray-600: #C6C8D0;
-  /* sidebar */
-  --color-coolgray-700: #F4F5F7;
-  --color-coolgray-800: #EDEEF1;
-  --color-coolgray-900: #E6E7EB;
-  /* accent */
-  --color-coollabs: #4C3495;
-  --color-coollabs-100: color-mix(in srgb, #4C3495 85%, #FFFFFF);
-  /* states */
-  --color-success: #2AAA52;
-  --color-warning: #E0B842;
-  --color-error: #D63B3B;
-  /* semantic colors for light mode */
-  --color-text-primary: #1F1C23;
-  --color-text-muted: #6E6B75;
-  --color-placeholder: #8E8C91;
-  /* shadows and overlays */
-  --color-overlay: rgba(0, 0, 0, 0.6);
-  --color-shadow-light: rgba(0, 0, 0, 0.15);
-  --color-shadow-dark: rgba(0, 0, 0, 0.35);
-  --color-shadow-main: rgba(0, 0, 0, 0.25);
-}
+@use "sass:map";
 
-/* Dark Scheme */
-.dark {
-  --color-base: #1F1C23;
-  --color-coolgray-100: #26252B;
-  --color-coolgray-200: #2A292E;
-  --color-coolgray-300: #353239;
-  --color-coolgray-400: #3D3A40;
-  --color-coolgray-500: #45424A;
-  --color-coolgray-600: #403D44;
-  /* sidebar bg */
-  --color-coolgray-700: #1A191F;
-  --color-coolgray-800: #151419;
-  --color-coolgray-900: #101014;
-  /* Accent */
-  --color-coollabs: #7349F3;
-  --color-coollabs-100: color-mix(in srgb, #7349F3 75%, #FFFFFF);
-  /* States */
-  --color-success: #23FF1F;
-  --color-warning: #FCD452;
-  --color-error: #FF1F1C;
-  --color-text-primary: #FCFAFC;
-  --color-text-muted: #8E8C91;
-  --color-placeholder: #8E8C91;
+// Breakpoints
+$breakpoints: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1536px
+);
+
+// Colors
+$colors: (
+  "light": (
+    "base": #FFFFFF,
+    "coolgray-100": #F6F7F9,
+    "coolgray-200": #ECEEF2,
+    "coolgray-300": #E3E5EA,
+    "coolgray-400": #D8DAE0,
+    "coolgray-500": #CFD1D8,
+    "coolgray-600": #C6C8D0,
+    "coolgray-700": #F4F5F7, // sidebar
+    "coolgray-800": #EDEEF1,
+    "coolgray-900": #E6E7EB,
+    "coollabs": #4C3495,
+    "coollabs-100": color-mix(in srgb, #4C3495 85%, #FFFFFF),
+    "success": #2AAA52,
+    "warning": #E0B842,
+    "error": #D63B3B,
+    "text-primary": #1F1C23,
+    "text-muted": #6E6B75,
+    "placeholder": #8E8C91,
+    "overlay": rgba(0, 0, 0, 0.6),
+    "shadow-light": rgba(0, 0, 0, 0.15),
+    "shadow-dark": rgba(0, 0, 0, 0.35),
+    "shadow-main": rgba(0, 0, 0, 0.25),
+  ),
+  "dark": (
+    "base": #1F1C23,
+    "coolgray-100": #26252B,
+    "coolgray-200": #2A292E,
+    "coolgray-300": #353239,
+    "coolgray-400": #3D3A40,
+    "coolgray-500": #45424A,
+    "coolgray-600": #403D44,
+    "coolgray-700": #1A191F, // sidebar bg
+    "coolgray-800": #151419,
+    "coolgray-900": #101014,
+    "coollabs": #7349F3,
+    "coollabs-100": color-mix(in srgb, #7349F3 75%, #FFFFFF),
+    "success": #23FF1F,
+    "warning": #FCD452,
+    "error": #FF1F1C,
+    "text-primary": #FCFAFC,
+    "text-muted": #8E8C91,
+    "placeholder": #8E8C91,
+  )
+);
+
+// Radii
+$radii-base: 14px;
+$radii-step: 2px;
+$radii: (
+  "base": $radii-base,
+  "step": $radii-step,
+  "xs": calc($radii-base - ($radii-step * 2)),
+  "sm": calc($radii-base - $radii-step),
+  "md": $radii-base,
+  "lg": calc($radii-base + $radii-step),
+  "xl": calc($radii-base + ($radii-step * 2)),
+);
+
+// Spacing (example, adjust as needed)
+$spacing: (
+  "unit": 0.25rem, // 4px
+  "1": 0.25rem,
+  "2": 0.5rem,
+  "3": 0.75rem,
+  "4": 1rem,
+  "6": 1.5rem,
+  "8": 2rem,
+  "18": 4.5rem,
+);
+
+@mixin generate-css-vars($theme-map) {
+  @each $key, $value in $theme-map {
+    --color-#{$key}: #{$value};
+  }
 }
 
 :root {
   font-size: 15px;
+  @include generate-css-vars(map.get($colors, "light"));
+
   --cfy-accent: var(--color-coollabs);
   --cfy-accent-light: var(--color-coollabs-100);
   --cfy-sidebar-bg: var(--color-coolgray-700);
@@ -64,23 +100,21 @@
   --cfy-card-container: var(--color-coolgray-200);
   --cfy-card: var(--color-coolgray-300);
   --cfy-text: var(--color-text-primary);
-  --cfy-muted: var(--color-text-muted); // * one knob to rule them all *//* layout / fx *//* one knob to rule them all */
+  --cfy-muted: var(--color-text-muted);
+
   --cfy-blur: 14px;
   --cfy-shadow: 0 4px 20px var(--color-shadow-main);
   --cfy-sidebar-w: 260px;
-  --radius-base: 14px;
-  --radius-step: 2px;
-  --radius-xs: calc(var(--radius-base) - (var(--radius-step) * 2));
-  --radius-sm: calc(var(--radius-base) - var(--radius-step));
-  --radius-md: var(--radius-base);
-  --radius-lg: calc(var(--radius-base) + var(--radius-step));
-  --radius-xl: calc(var(--radius-base) + (var(--radius-step) * 2));
+
+  @each $key, $value in $radii {
+    --radius-#{$key}: #{$value};
+  }
+
+  @each $key, $value in $spacing {
+    --spacing-#{$key}: #{$value};
+  }
 }
 
-$breakpoints: (
-  sm: 640px,
-  md: 768px,
-  lg: 1024px,
-  xl: 1280px,
-  xxl: 1536px
-);
+.dark {
+  @include generate-css-vars(map.get($colors, "dark"));
+}
