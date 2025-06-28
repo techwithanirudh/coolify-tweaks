@@ -1,14 +1,14 @@
 pre-commit:
   commands:
     format:
-      run: pnpm prettier --write --ignore-unknown {staged_files}
+      run: bun prettier --write --ignore-unknown {staged_files}
       stage_fixed: true
 
     build:
-      run: pnpm build
+      run: bun run build
       stage_fixed: true
 
 commit-msg:
   commands:
-    'lint commit message':
-      run: pnpm commitlint --edit {1}
+    "lint commit message":
+      run: bun commitlint --edit {1}

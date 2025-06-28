@@ -4,7 +4,7 @@
   "description": "Tweaks for Coolify",
   "type": "module",
   "scripts": {
-    "build": "sass src/main.scss dist/main.css --no-source-map --load-path=src && postcss dist/main.css --replace",
+    "build": "sass src/main.scss dist/main.css --no-source-map --load-path=src && postcss dist/main.css --replace && bun run scripts/wrapper.js && prettier --write dist",
     "dev": "sass --watch src:dist --no-source-map --load-path=src"
   },
   "devDependencies": {
