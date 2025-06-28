@@ -1,4 +1,4 @@
-@use "globals" as *;
+@use 'globals' as *;
 
 @mixin input-base {
   padding: s(2) s(4);
@@ -6,7 +6,9 @@
   border-radius: var(--radius-sm) !important; /* 12 px */
   background: var(--cfy-card) !important;
   color: var(--cfy-text);
-  transition: border-color 0.15s, background 0.15s;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
 
   &:focus {
     border-color: var(--cfy-accent-light) !important;

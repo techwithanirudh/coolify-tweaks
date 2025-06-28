@@ -1,9 +1,9 @@
-@use "globals" as *;
-@use "theme/variables" as vars;
-@use "sass:map";
+@use 'globals' as *;
+@use 'theme/variables' as vars;
+@use 'sass:map';
 
-section>h2+div,
-section>h3+div {
+section > h2 + div,
+section > h3 + div {
   overflow: hidden;
   margin-top: s(2);
   padding: s(2) s(4) !important;
@@ -12,7 +12,7 @@ section>h3+div {
   background: var(--cfy-card-container) !important;
 }
 
-section:has(> div > div:only-child)>div>div:only-child {
+section:has(> div > div:only-child) > div > div:only-child {
   padding: s(4) !important;
   border-radius: var(--radius-sm) !important;
   background: var(--cfy-card-container) !important;
@@ -27,12 +27,12 @@ div[class*='shadow-lg lg:border-t dark:border-coolgray-300'] {
   border-radius: var(--radius-sm) !important;
 }
 
-:is(.flex.gap-2, .flex.items.center.gap-4, .flex.flex-col.gap-4)> :is(h1, h2, h3, h4) {
+:is(.flex.gap-2, .flex.items.center.gap-4, .flex.flex-col.gap-4) > :is(h1, h2, h3, h4) {
   margin-right: auto;
 }
 
-div[class='flex items-center gap-2']>h3,
-section>h3[class='pb-2'] {
+div[class='flex items-center gap-2'] > h3,
+section > h3[class='pb-2'] {
   font-size: 1.6rem;
 }
 
@@ -77,7 +77,7 @@ div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
 }
 
 /* Optional: tighter max-width for wide desktops */
-main>div[class*='p-4 sm:px-6 lg:px-8 lg:py-6'] {
+main > div[class*='p-4 sm:px-6 lg:px-8 lg:py-6'] {
   margin: auto;
   max-width: 1280px !important;
   padding-block: s(18) !important;

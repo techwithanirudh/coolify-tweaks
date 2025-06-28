@@ -1,26 +1,38 @@
-@use "globals" as *;
+@use 'globals' as *;
 
 h1 {
-    color: var(--cfy-text);
-    font: 700 2.1rem / 1.25 'Inter', 'SF Pro Display', sans-serif;
+  color: var(--cfy-text);
+  font:
+    700 2.1rem / 1.25 'Inter',
+    'SF Pro Display',
+    sans-serif;
 }
 
 h2 {
-    color: var(--cfy-text);
-    font: 700 1.5rem / 1.35 'Inter', 'SF Pro Display', sans-serif;
+  color: var(--cfy-text);
+  font:
+    700 1.5rem / 1.35 'Inter',
+    'SF Pro Display',
+    sans-serif;
 }
 
 h3 {
-    color: var(--cfy-text);
-    font: 700 1.25rem / 1.35 'Inter', 'SF Pro Display', sans-serif;
+  color: var(--cfy-text);
+  font:
+    700 1.25rem / 1.35 'Inter',
+    'SF Pro Display',
+    sans-serif;
 }
 
 h4 {
-    color: var(--cfy-text);
-    font: 700 1.1rem / 1.35 'Inter', 'SF Pro Display', sans-serif;
+  color: var(--cfy-text);
+  font:
+    700 1.1rem / 1.35 'Inter',
+    'SF Pro Display',
+    sans-serif;
 }
 
 .subtitle {
-    color: var(--cfy-muted);
-    font-size: 0.95rem;
+  color: var(--cfy-muted);
+  font-size: 0.95rem;
 }

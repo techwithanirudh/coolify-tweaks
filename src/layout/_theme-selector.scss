@@ -1,4 +1,4 @@
-@use "globals" as *;
+@use 'globals' as *;
 
 button[\@click='dropdownOpen=true']:has([x-show="theme === 'dark' || theme === 'system'"]) {
   border-radius: 10px !important;
@@ -17,6 +17,6 @@ button[\@click^='setZoom'] {
   display: none !important;
 }
 
-div[class*="font-bold border-b dark:border-coolgray-500 dark:text-white text-md"] {
+div[class*='font-bold border-b dark:border-coolgray-500 dark:text-white text-md'] {
   display: none !important;
 }

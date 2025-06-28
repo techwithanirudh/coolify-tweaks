@@ -1,5 +1,5 @@
-@use "sass:map";
-@use "theme/variables" as vars;
+@use 'sass:map';
+@use 'theme/variables' as vars;
 
 @mixin mq($key) {
   $size: map.get(vars.$breakpoints, $key);

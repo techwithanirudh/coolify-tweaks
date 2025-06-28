@@ -8,13 +8,13 @@
 - [ ] Improve responsiveness design mobile
 - [ ] Make the UI like cards, 4x4 grid for project like Robert's design
 
-
 # v2
+
 Have Unified Spacing Parameters
 Simplify complicated classes
 Properly handle the heading logic
 Replace icons for sidebar with smth else
 compare the changes
-Add stylus specific moz-document for *://coolify.local:8000/* and *://app.coolify.io/*
+Add stylus specific moz-document for _://coolify.local:8000/_ and _://app.coolify.io/_
 Fix spacing
 Switch to bun, and add lint-staged prettier formatting and commitlint

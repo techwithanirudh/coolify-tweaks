@@ -1,4 +1,4 @@
-@use "globals" as *;
+@use 'globals' as *;
 
 .box,
 .box-without-bg {
@@ -8,7 +8,11 @@
   border-radius: var(--radius-sm) !important;
   /* 12 px */
   background: var(--cfy-card) !important;
-  transition: transform 0.15s, box-shadow 0.2s, background 0.18s, border-color 0.18s;
+  transition:
+    transform 0.15s,
+    box-shadow 0.2s,
+    background 0.18s,
+    border-color 0.18s;
 }
 
 .box:hover {
@@ -31,5 +35,5 @@
 }
 
 .box-description {
-    color: var(--cfy-muted);
+  color: var(--cfy-muted);
 }

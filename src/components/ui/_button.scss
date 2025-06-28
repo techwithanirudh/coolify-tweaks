@@ -1,4 +1,4 @@
-@use "globals" as *;
+@use 'globals' as *;
 
 @mixin button-base {
   padding: s(2) s(4);
@@ -14,7 +14,8 @@
   }
 }
 
-button.button, .button {
+button.button,
+.button {
   @include button-base;
 }
 
@@ -26,7 +27,8 @@ html:not(.dark) {
   }
 }
 
-button.secondary, .secondary {
+button.secondary,
+.secondary {
   background: var(--cfy-secondary) !important;
 
   &:hover {

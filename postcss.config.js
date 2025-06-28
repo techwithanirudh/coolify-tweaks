@@ -6,6 +6,6 @@ export default {
     postcssPresetEnv({
       stage: 3,
     }),
-    autoprefixer()
-  ]
+    autoprefixer(),
+  ],
 };

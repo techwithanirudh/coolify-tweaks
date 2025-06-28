@@ -1,4 +1,4 @@
-@use "globals" as *;
+@use 'globals' as *;
 
 /* =============================================================================
      Grid System
@@ -60,7 +60,7 @@ div.grid[class*='cols'][x-show='filteredServices.length > 0'] .box {
   height: 150px;
 }
 
-div.grid[class*='cols']:has([wire\:click^='navigateToProject']) .box>div,
+div.grid[class*='cols']:has([wire\:click^='navigateToProject']) .box > div,
 div.grid[class*='cols']:has([\@click^='$wire.navigateToProject']) .box div,
 div.grid[class*='cols'][x-show='filteredApplications.length > 0'] .box div,
 div.grid[class*='cols'][x-show='filteredServices.length > 0'] .box div {

@@ -1,11 +1,10 @@
-@use "globals" as *;
+@use 'globals' as *;
 
 main {
   height: 100svh;
 }
 
-body>div[\:class="pageWidth === 'full' ? '' : 'max-w-7xl'"] {
+body > div[\:class="pageWidth === 'full' ? '' : 'max-w-7xl'"] {
   min-width: 100% !important;
   max-width: 100% !important;
 }
-
