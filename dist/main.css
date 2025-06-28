@@ -1,12 +1,4 @@
-@-moz-document url-prefix("http://coolify.local:8000/"),
-               url-prefix("https://coolify.local:8000/"),
-               url-prefix("http://app.coolify.io/"),
-               url-prefix("https://app.coolify.io/"),
-               regexp(".*://coolify\.local:8000/.*"),
-               regexp(".*://app\.coolify\.io/.*")
-{
-  @charset "UTF-8";
-  /* ==UserStyle==
+/* ==UserStyle==
 @name Coolify Enhanced UI
 @version 2.0.1
 @namespace techwithanirudh
@@ -14,6 +6,14 @@
 @description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
 @license MIT
 ==/UserStyle== */
+
+@-moz-document url-prefix("http://coolify.local:8000/"),
+               url-prefix("https://coolify.local:8000/"),
+               url-prefix("http://app.coolify.io/"),
+               url-prefix("https://app.coolify.io/"),
+               regexp(".*://coolify\.local:8000/.*"),
+               regexp(".*://app\.coolify\.io/.*")
+{
   :root {
     font-size: 15px;
     --color-base: #ffffff;
@@ -81,22 +81,6 @@
     --color-placeholder: #8e8c91;
   }
 
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
   .box,
   .box-without-bg {
     overflow: hidden;
@@ -148,22 +132,6 @@
     color: var(--cfy-muted);
   }
 
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
   button.button,
   .button {
     padding: calc(0.25rem * 2) calc(0.25rem * 4);
@@ -202,14 +170,6 @@
     background: var(--cfy-card-container) !important;
   }
 
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
   input.input,
   textarea.input,
   select.select {
@@ -277,14 +237,6 @@
     font-weight: 600;
   }
 
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
   select,
   ::picker(select) {
     -webkit-appearance: base-select;
@@ -378,14 +330,6 @@
     content: '✓';
   }
 
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
   table {
     overflow: hidden !important;
     margin-top: calc(0.25rem * 4);
@@ -415,22 +359,6 @@
     background: var(--cfy-card) !important;
   }
 
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
   /* =============================================================================
      Grid System
   ============================================================================= */
@@ -513,14 +441,6 @@
     gap: calc(var(--spacing) * 2) !important;
   }
 
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
   .navbar-main {
     position: sticky;
     top: 0;
@@ -579,14 +499,6 @@
     flex: 1 1 auto;
   }
 
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
   [class*='lg:flex'][class*='lg:w-56'] {
     width: 260px !important;
     width: var(--cfy-sidebar-w) !important;
@@ -698,14 +610,6 @@
       padding-left: var(--cfy-sidebar-w) !important;
     }
   }
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
   button[\@click='dropdownOpen=true']:has([x-show="theme === 'dark' || theme === 'system'"]) {
     border-radius: 10px !important;
     background: #e3e5ea !important;
@@ -729,22 +633,6 @@
     display: none !important;
   }
 
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
   body,
   .box,
   .card,
@@ -778,14 +666,6 @@
     outline-offset: 2px;
   }
 
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
   h1 {
     color: #1f1c23;
     color: var(--cfy-text);
@@ -828,14 +708,6 @@
     font-size: 0.95rem;
   }
 
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
   main {
     height: 100svh;
   }
@@ -845,14 +717,6 @@
     max-width: 100% !important;
   }
 
-  /* ==UserStyle==
-@name Coolify Enhanced UI
-@version 2.0.1
-@namespace techwithanirudh
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl
-@description Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.
-@license MIT
-==/UserStyle== */
   section > h2 + div,
   section > h3 + div {
     overflow: hidden;

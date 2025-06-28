@@ -18,3 +18,5 @@ compare the changes
 Add stylus specific moz-document for _://coolify.local:8000/_ and _://app.coolify.io/_
 Fix spacing
 Switch to bun, and add lint-staged prettier formatting and commitlint
+
+Add tsconfig for the script, and have an auto versoning script

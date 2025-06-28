@@ -10,5 +10,5 @@ pre-commit:
 
 commit-msg:
   commands:
-    "lint commit message":
+    'lint commit message':
       run: bun commitlint --edit {1}
