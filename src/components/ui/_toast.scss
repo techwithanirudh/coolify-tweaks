@@ -6,7 +6,6 @@ ul[x-data] li>span {
 }
 
 @keyframes wiggle {
-
   0%,
   100% {
     transform: rotate(0);
@@ -23,11 +22,4 @@ ul[x-data] li>span {
 
 .toast-no-description svg[fill='currentColor'] {
   animation: wiggle 0.6s ease;
-}
-
-[x-show='popups.sponsorship'] {
-  padding: 1.25rem !important;
-  border-radius: var(--radius-sm) !important;
-  background: var(--cfy-card-container) !important;
-  box-shadow: var(--cfy-shadow) !important;
 }

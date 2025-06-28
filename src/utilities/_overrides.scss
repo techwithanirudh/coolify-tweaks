@@ -1,15 +1,22 @@
-div.font-bold.border-b:contains('Color'),
-div.font-bold.border-b:contains('Width'),
-div.font-bold.border-b:contains('Zoom') {
-  display: none !important;
+/* Sponsorship Popup Styles */
+[x-show='popups.sponsorship'] {
+  padding: 1.25rem !important;
+  border-radius: var(--radius-sm) !important;
+  background: var(--cfy-card-container) !important;
+  box-shadow: var(--cfy-shadow) !important;
 }
 
-button[@click^='switchWidth'],
-button[@click^='setZoom'] {
-  display: none !important;
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-div[class*="font-bold border-b dark:border-coolgray-500 dark:text-white text-md"] {
-  display: none !important;
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: var(--cfy-muted);
 }
 
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cfy-text);
+}

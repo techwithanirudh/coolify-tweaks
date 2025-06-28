@@ -7,3 +7,11 @@
 - [ ] Improve empty sdtates like no projects, deployments etc
 - [ ] Improve responsiveness design mobile
 - [ ] Make the UI like cards, 4x4 grid for project like Robert's design
+
+
+# v2
+Have Unified Spacing Parameters
+Simplify complicated classes
+Properly handle the heading logic
+Replace icons for sidebar with smth else
+compare the changes

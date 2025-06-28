@@ -16,36 +16,6 @@ section:has(> div > div:only-child)>div>div:only-child {
   text-align: center;
 }
 
-[dashed],
-[class*='dashed'] {
-  border-color: var(--cfy-muted) !important;
-  border-radius: var(--radius-sm) !important;
-  padding-block: 2rem !important;
-}
-
-[role='row']:not([dashed]) {
-  padding: 0.6rem 0.8rem;
-  border-radius: var(--radius-sm) !important;
-  background: var(--cfy-card) !important;
-}
-
-/* Scrollbars */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background: var(--cfy-muted);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--cfy-text);
-}
-
-/* Focus ring */
-
 /* Misc utilities */
 .rounded-sm,
 form,

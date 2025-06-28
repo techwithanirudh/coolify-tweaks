@@ -4,3 +4,16 @@ table {
   border-radius: var(--radius-sm) !important;
   background: var(--cfy-card-container) !important;
 }
+
+[dashed],
+[class*='dashed'] {
+  border-color: var(--cfy-muted) !important;
+  border-radius: var(--radius-sm) !important;
+  padding-block: 2rem !important;
+}
+
+[role='row']:not([dashed]) {
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-sm) !important;
+  background: var(--cfy-card) !important;
+}
