@@ -15,3 +15,8 @@ Properly handle the heading logic
 Replace icons for sidebar with smth else
 compare the changes
 Fix spacing
+
+# v3
+
+Make a release github actions as pushing the dist folder is bad
+The build / dev script seems suspicious as it is not inclduded om the same thing, try to just include the info as a comment in the main.scss anf stop it repeating a million times on build.
