@@ -5,8 +5,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "sass --no-source-map --load-path=src --watch src:dist",
-    "build": "bun run build:sass && bun run build:css && bun run format",
+    "dev:sass": "sass --no-source-map --load-path=src --watch src:dist",
+    "dev": "concurrently \"bun run dev:sass\" \"bun run scripts/dev.ts\"",
+    "build": "bun run build:sass && bun run build:css && bun run scripts/build.ts && bun run format",
     "build:sass": "sass --no-source-map --load-path=src src:dist",
     "build:css": "postcss dist/main.css --replace",
     "format": "prettier --write --ignore-unknown --log-level silent .",
