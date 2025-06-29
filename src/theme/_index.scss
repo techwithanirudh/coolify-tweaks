@@ -1,4 +1,6 @@
+@use 'globals' as *;
+
 @use 'reset';
-@use 'typography';
+@forward 'typography';
 @use 'variables';
 @use 'base';
