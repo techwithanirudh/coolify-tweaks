@@ -1,4 +1,6 @@
-@use 'globals' as *;
+@use 'metadata';
+
+@use 'globals';
 @use 'components';
 @use 'pages';
 @use 'theme';
