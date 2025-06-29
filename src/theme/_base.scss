@@ -4,6 +4,12 @@ main {
   height: 100svh;
 }
 
+main > div[class*='p-4 sm:px-6 lg:px-8 lg:py-6'] {
+  margin: auto;
+  max-width: 1280px !important;
+  padding-block: s(18) !important;
+}
+
 body > div[\:class="pageWidth === 'full' ? '' : 'max-w-7xl'"] {
   min-width: 100% !important;
   max-width: 100% !important;

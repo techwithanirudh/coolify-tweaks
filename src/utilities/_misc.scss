@@ -21,16 +21,17 @@ section:has(> div > div:only-child) > div > div:only-child {
 }
 
 /* Misc utilities */
-.rounded-sm,
 form,
 div[class*='shadow-lg lg:border-t dark:border-coolgray-300'] {
   border-radius: var(--radius-sm) !important;
 }
 
+// Push all buttons to the right from the headings for many sections
 :is(.flex.gap-2, .flex.items.center.gap-4, .flex.flex-col.gap-4) > :is(h1, h2, h3, h4) {
   margin-right: auto;
 }
 
+// Increase font size of headings in sections
 div[class='flex items-center gap-2'] > h3,
 section > h3[class='pb-2'] {
   font-size: 1.6rem;
@@ -47,17 +48,6 @@ input.dark\:bg-coolgray-100:where(.dark, .dark *) {
   transition: background 0.18s;
 }
 
-/* force some widths */
-div[class='w-48'],
-div[class*='w-64'],
-div[class='w-32'],
-div[class='pt-2 w-96'],
-div[class='w-96'],
-div[class*='md:w-96'],
-div[class='w-96'] {
-  width: 100% !important;
-}
-
 div[class*='flex flex-col gap-2'] {
   gap: s(4) !important;
 }
@@ -67,22 +57,6 @@ a[class*='hover:underline']:hover {
   text-decoration: none !important;
 }
 
-img[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
-svg[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
-div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
-  overflow: hidden !important;
-  border-radius: var(--radius-sm) !important;
-  filter: none !important;
-  opacity: 1 !important;
-}
-
-/* Optional: tighter max-width for wide desktops */
-main > div[class*='p-4 sm:px-6 lg:px-8 lg:py-6'] {
-  margin: auto;
-  max-width: 1280px !important;
-  padding-block: s(18) !important;
-}
-
 /* “Sponsor us” box and similar */
 div[class*='p-4 border dark:border-coolgray-300'] {
   margin-top: s(4);
@@ -90,11 +64,8 @@ div[class*='p-4 border dark:border-coolgray-300'] {
   border-radius: var(--radius-sm) !important;
   background: var(--cfy-card-container) !important;
 }
+
 .dark\:hover\:bg-coolgray-100:where(.dark, .dark *):hover {
   background: none !important;
   color: var(--cfy-text) !important;
-}
-
-.add-tag {
-  color: var(--cfy-muted) !important;
 }

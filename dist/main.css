@@ -81,57 +81,6 @@
     --color-placeholder: #8e8c91;
   }
 
-  .box,
-  .box-without-bg {
-    overflow: hidden;
-    padding: calc(0.25rem * 2.5) calc(0.25rem * 3);
-    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 3);
-    border: 1px solid #d8dae0 !important;
-    border: 1px solid var(--color-coolgray-400) !important;
-    border-radius: 12px !important;
-    border-radius: var(--radius-sm) !important;
-    /* 12 px */
-    background: #e3e5ea !important;
-    background: var(--cfy-card) !important;
-    transition:
-      transform 0.15s,
-      box-shadow 0.2s,
-      background 0.18s,
-      border-color 0.18s;
-  }
-
-  .box:hover {
-    border-color: #4c3495;
-    border-color: var(--cfy-accent);
-    background: color-mix(in srgb, #e3e5ea 70%, #4c3495 30%);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-    box-shadow: 0 8px 24px var(--color-shadow-dark);
-    transform: translateY(-2px);
-  }
-
-  @supports (color: color-mix(in lch, red, blue)) {
-    .box:hover {
-      background: color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%);
-    }
-  }
-
-  .box-title {
-    font-weight: 600;
-    font-size: 1.05rem;
-    display: -webkit-box !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    white-space: normal !important;
-    word-break: break-word !important;
-    -webkit-line-clamp: 4 !important;
-    -webkit-box-orient: vertical !important;
-  }
-
-  .box-description {
-    color: #6e6b75;
-    color: var(--cfy-muted);
-  }
-
   button.button,
   .button {
     padding: calc(0.25rem * 2.25) calc(0.25rem * 4);
@@ -359,9 +308,57 @@
     background: var(--cfy-card) !important;
   }
 
-  /* =============================================================================
-     Grid System
-  ============================================================================= */
+  .box,
+  .box-without-bg {
+    overflow: hidden;
+    padding: calc(0.25rem * 2.5) calc(0.25rem * 3);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 3);
+    border: 1px solid #d8dae0 !important;
+    border: 1px solid var(--color-coolgray-400) !important;
+    border-radius: 12px !important;
+    border-radius: var(--radius-sm) !important;
+    /* 12 px */
+    background: #e3e5ea !important;
+    background: var(--cfy-card) !important;
+    transition:
+      transform 0.15s,
+      box-shadow 0.2s,
+      background 0.18s,
+      border-color 0.18s;
+  }
+
+  .box:hover {
+    border-color: #4c3495;
+    border-color: var(--cfy-accent);
+    background: color-mix(in srgb, #e3e5ea 70%, #4c3495 30%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 8px 24px var(--color-shadow-dark);
+    transform: translateY(-2px);
+  }
+
+  @supports (color: color-mix(in lch, red, blue)) {
+    .box:hover {
+      background: color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%);
+    }
+  }
+
+  .box-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+    display: -webkit-box !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important;
+  }
+
+  .box-description {
+    color: #6e6b75;
+    color: var(--cfy-muted);
+  }
+
   div[data-testid='resources-grid'],
   div.grid[class*='cols'] {
     overflow: hidden;
@@ -634,6 +631,16 @@
     display: none !important;
   }
 
+  img[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
+  svg[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
+  div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
+    overflow: hidden !important;
+    border-radius: 12px !important;
+    border-radius: var(--radius-sm) !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+
   body,
   .box,
   .card,
@@ -713,9 +720,62 @@
     height: 100svh;
   }
 
+  main > div[class*='p-4 sm:px-6 lg:px-8 lg:py-6'] {
+    margin: auto;
+    max-width: 1280px !important;
+    padding-block: calc(0.25rem * 18) !important;
+    padding-block: calc(var(--spacing) * 18) !important;
+  }
+
   body > div[\:class="pageWidth === 'full' ? '' : 'max-w-7xl'"] {
     min-width: 100% !important;
     max-width: 100% !important;
+  }
+
+  /* Sponsorship Popup Styles */
+  [x-show='popups.sponsorship'] {
+    padding: calc(0.25rem * 5) !important;
+    padding: calc(var(--spacing) * 5) !important;
+    border-radius: 12px !important;
+    border-radius: var(--radius-sm) !important;
+    background: #eceef2 !important;
+    background: var(--cfy-card-container) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+    box-shadow: var(--cfy-shadow) !important;
+  }
+
+  /* Scrollbars */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #6e6b75;
+    background: var(--cfy-muted);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #1f1c23;
+    background: var(--cfy-text);
+  }
+
+  /* Button to add tags to service */
+  .add-tag {
+    color: #6e6b75 !important;
+    color: var(--cfy-muted) !important;
+  }
+
+  /* take full width for compressed items, like checkboxes */
+  div[class='w-48'],
+  div[class*='w-64'],
+  div[class='w-32'],
+  div[class='pt-2 w-96'],
+  div[class='w-96'],
+  div[class*='md:w-96'],
+  div[class='w-96'] {
+    width: 100% !important;
   }
 
   section > h2 + div,
@@ -745,7 +805,6 @@
   }
 
   /* Misc utilities */
-  .rounded-sm,
   form,
   div[class*='shadow-lg lg:border-t dark:border-coolgray-300'] {
     border-radius: 12px !important;
@@ -774,17 +833,6 @@
     transition: background 0.18s;
   }
 
-  /* force some widths */
-  div[class='w-48'],
-  div[class*='w-64'],
-  div[class='w-32'],
-  div[class='pt-2 w-96'],
-  div[class='w-96'],
-  div[class*='md:w-96'],
-  div[class='w-96'] {
-    width: 100% !important;
-  }
-
   div[class*='flex flex-col gap-2'] {
     gap: calc(0.25rem * 4) !important;
     gap: calc(var(--spacing) * 4) !important;
@@ -794,24 +842,6 @@
     color: #6e6b75 !important;
     color: var(--cfy-muted) !important;
     text-decoration: none !important;
-  }
-
-  img[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
-  svg[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
-  div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
-    overflow: hidden !important;
-    border-radius: 12px !important;
-    border-radius: var(--radius-sm) !important;
-    filter: none !important;
-    opacity: 1 !important;
-  }
-
-  /* Optional: tighter max-width for wide desktops */
-  main > div[class*='p-4 sm:px-6 lg:px-8 lg:py-6'] {
-    margin: auto;
-    max-width: 1280px !important;
-    padding-block: calc(0.25rem * 18) !important;
-    padding-block: calc(var(--spacing) * 18) !important;
   }
 
   /* “Sponsor us” box and similar */
@@ -830,10 +860,5 @@
     background: none !important;
     color: #1f1c23 !important;
     color: var(--cfy-text) !important;
-  }
-
-  .add-tag {
-    color: #6e6b75 !important;
-    color: var(--cfy-muted) !important;
   }
 }
