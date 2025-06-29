@@ -2,7 +2,7 @@
   "name": "Coolify Enhanced UI",
   "version": "3.0.0",
   "namespace": "techwithanirudh",
-  "updateURL": "https://github.com/techwithanirudh/coolify-tweaks/raw/main/tweaks.user.styl",
+  "updateURL": "https://github.com/techwithanirudh/coolify-tweaks/raw/main/dist/main.user.css",
   "description": "Extra spacing, soft rounded corners, subtle shadows, and fully token-driven colour themes for Coolify.",
   "license": "MIT",
   "domains": {

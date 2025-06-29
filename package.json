@@ -5,7 +5,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "sass --no-source-map --load-path=src --watch src:dist",
+    "dev:sass": "sass --no-source-map --load-path=src --watch src:dist",
+    "dev": "concurrently \"bun run dev:sass\" \"bun run scripts/dev.ts\"",
     "build": "bun run build:sass && bun run build:css && bun run scripts/build.ts && bun run format",
     "build:sass": "sass --no-source-map --load-path=src src:dist",
     "build:css": "postcss dist/main.css --replace",
@@ -20,6 +21,7 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "autoprefixer": "^10.4.21",
+    "concurrently": "^9.1.0",
     "lefthook": "^1.11.14",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
