@@ -1,37 +1,39 @@
 {
   "name": "coolify-tweaks",
-  "description": "A userstyle that enhances Coolify's UI by applying opinionated tweaks, spacing, colors, and layout fixes, to make the dashboard more polished and user-friendly.",
   "version": "3.0.0",
+  "description": "Opinionated tweaks for Coolify: better spacing, layout, and color polish.",
+  "author": "techwithanirudh",
   "private": true,
   "type": "module",
+  "main": "./src/main.scss",
+  "license": "MIT",
   "scripts": {
-    "dev:sass": "sass --no-source-map --load-path=src --watch src:dist",
-    "dev": "concurrently \"bun run dev:sass\" \"bun run scripts/dev.ts\"",
-    "build": "bun run build:sass && bun run build:css && bun run scripts/build.ts && bun run format",
-    "build:sass": "sass --no-source-map --load-path=src src:dist",
-    "build:css": "postcss dist/main.css --replace",
+    "build": "vite build",
+    "dev": "vite dev",
     "format": "prettier --write --ignore-unknown --log-level silent .",
     "release": "bun run scripts/bump.ts"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
+  "dependencies": {
+    "@types/semver": "^7.7.0",
+    "semver": "^7.7.2"
+  },
   "devDependencies": {
     "@biomejs/biome": "2.0.5",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
+    "@types/bun": "latest",
     "autoprefixer": "^10.4.21",
-    "concurrently": "^9.1.0",
+    "conventional-changelog-atom": "^5.0.0",
     "lefthook": "^1.11.14",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
     "postcss-preset-env": "^10.2.4",
     "prettier": "3.6.2",
     "sass": "^1.89.2",
-    "@types/bun": "latest"
-  },
-  "dependencies": {
-    "@types/semver": "^7.7.0",
-    "semver": "^7.7.2"
+    "vite": "^7.0.0",
+    "vite-plugin-banner": "^0.8.1"
   }
 }
