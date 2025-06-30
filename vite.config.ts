@@ -28,7 +28,9 @@ export default defineConfig({
     banner(`/* ==UserStyle==
 @name ${pkg.name}
 @version ${pkg.version}
-@namespace ${pkg.author}
+@namespace ${pkg.author.url}
+@author ${pkg.author.name} <${pkg.author.email}> (${pkg.author.url})
+@homepageURL ${pkg.homepage}
 @updateURL ${pkg.repository.url}/raw/main/${pkg.dist.main}
 @description ${pkg.description}
 @license ${pkg.license}

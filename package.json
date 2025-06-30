@@ -2,7 +2,11 @@
   "name": "coolify-tweaks",
   "version": "3.0.0",
   "description": "Opinionated tweaks for Coolify: better spacing, layout, and color polish.",
-  "author": "techwithanirudh",
+  "author": {
+    "name": "Anirudh Sriram",
+    "email": "hello@techwithanirudh.com",
+    "url": "https://github.com/techwithanirudh"
+  },
   "private": true,
   "type": "module",
   "main": "src/main.scss",
