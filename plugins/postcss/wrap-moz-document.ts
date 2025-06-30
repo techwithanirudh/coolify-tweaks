@@ -19,6 +19,6 @@ const wrapMozDocument = (): Plugin => ({
   },
 });
 
-(wrapMozDocument as any).postcss = true;
+wrapMozDocument.postcss = true;
 
 export default wrapMozDocument;
