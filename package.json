@@ -5,8 +5,16 @@
   "author": "techwithanirudh",
   "private": true,
   "type": "module",
-  "main": "./src/main.scss",
+  "main": "src/main.scss",
+  "dist": {
+    "main": "dist/main.user.css"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/techwithanirudh/coolify-tweaks"
+  },
+  "homepage": "https://github.com/techwithanirudh/coolify-tweaks#readme",
   "scripts": {
     "build": "vite build",
     "dev": "vite dev",

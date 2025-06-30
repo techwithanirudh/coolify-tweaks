@@ -11,7 +11,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      input: path.resolve(__dirname, 'src/main.scss'),
+      input: path.resolve(__dirname, pkg.main),
       output: {
         assetFileNames: '[name].user.css',
       },
@@ -29,7 +29,7 @@ export default defineConfig({
 @name ${pkg.name}
 @version ${pkg.version}
 @namespace ${pkg.author}
-@updateURL https://github.com/techwithanirudh/coolify-tweaks/raw/main/dist/main.user.css
+@updateURL ${pkg.repository.url}/raw/main/${pkg.dist.main}
 @description ${pkg.description}
 @license ${pkg.license}
 ==/UserStyle== */`),
