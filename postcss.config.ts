@@ -8,6 +8,11 @@ export default {
       stage: 3,
     }),
     autoprefixer(),
-    wrapMozDocument(),
+    wrapMozDocument({
+      domains: [
+        { type: 'regexp', value: 'https?://app\\.coolify\\.io/.*' },
+        { type: 'regexp', value: 'https?://coolify\\.local:8000/.*' },
+      ],
+    }),
   ],
 };

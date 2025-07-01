@@ -1,17 +1,42 @@
-import postcss, { type AtRule, type Plugin } from 'postcss';
+import postcss, { type Plugin } from 'postcss';
 
-const wrapMozDocument = (): Plugin => ({
+interface DomainConfig {
+  type: 'url-prefix' | 'url' | 'regexp' | 'domain';
+  value: string;
+}
+
+interface Options {
+  domains?: (string | DomainConfig)[];
+}
+
+const wrapMozDocument = (options: Options = {}): Plugin => ({
   postcssPlugin: 'wrap-moz-document',
   Once(root) {
-    const charsetRules: AtRule[] = [];
-    root.walkAtRules('charset', rule => {
-      charsetRules.push(rule.clone());
-      rule.remove();
+    const domains = options.domains || [''];
+
+    const charsetRules = root.nodes.filter(
+      node => node.type === 'atrule' && node.name === 'charset'
+    );
+
+    const otherNodes = root.nodes.filter(
+      node => !(node.type === 'atrule' && node.name === 'charset')
+    );
+
+    const params = domains
+      .map(domain => {
+        if (typeof domain === 'string') {
+          return `url-prefix("${domain}")`;
+        }
+        return `${domain.type}("${domain.value}")`;
+      })
+      .join(', ');
+
+    const wrapper = postcss.atRule({
+      name: '-moz-document',
+      params,
     });
 
-    const wrapper = postcss.atRule({ name: '-moz-document', params: 'url-prefix("")' });
-
-    root.nodes.forEach(node => wrapper.append(node));
+    otherNodes.forEach(node => wrapper.append(node.clone()));
 
     root.removeAll();
     charsetRules.forEach(rule => root.append(rule));
