@@ -7,7 +7,6 @@ export default defineConfig({
   server: {
     host: true,
     allowedHosts: true,
-    middlewareMode: false,
   },
   resolve: {
     alias: {
