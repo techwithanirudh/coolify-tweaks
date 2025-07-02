@@ -19,16 +19,11 @@ jobs:
 
       - uses: oven-sh/setup-bun@v2
 
-      - name: Cache Bun dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.bun/install/cache
-          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
-          restore-keys: |
-            ${{ runner.os }}-bun-
-
       - name: Install Dependencies
         run: bun install --frozen-lockfile
+
+      - name: Build
+        run: bun run build
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
