@@ -10,9 +10,6 @@
   "private": true,
   "type": "module",
   "main": "src/main.scss",
-  "dist": {
-    "main": "dist/main.user.css"
-  },
   "license": "MIT",
   "repository": {
     "type": "git",
