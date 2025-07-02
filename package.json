@@ -22,6 +22,7 @@
     "format": "prettier --write --ignore-unknown --log-level silent .",
     "format:check": "prettier --check --ignore-unknown --log-level silent .",
     "types:check": "tsc --noEmit --skipLibCheck",
+    "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --unique",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "bun run build && changeset publish"
@@ -30,7 +31,11 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@cspell/dict-bash": "^4.2.0",
+    "@cspell/dict-npm": "^5.2.9",
+    "@cspell/dict-redis": "^1.0.5",
     "@types/semver": "^7.7.0",
+    "cspell": "^9.1.2",
     "semver": "^7.7.2"
   },
   "devDependencies": {
@@ -49,5 +54,8 @@
     "sass": "^1.89.2",
     "vite": "^7.0.0",
     "vite-plugin-banner": "^0.8.1"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

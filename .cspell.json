@@ -1,0 +1,31 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "dictionaries": ["software-terms", "npm", "fullstack", "redis", "bash", "typescript"],
+  "files": ["**", ".vscode/**", ".github/**"],
+  "ignorePaths": ["bun.lock"],
+  "ignoreRegExpList": ["apiKey='[a-zA-Z0-9-]{32}'"],
+  "import": [
+    "@cspell/dict-redis/cspell-ext.json",
+    "@cspell/dict-bash/cspell-ext.json",
+    "@cspell/dict-npm/cspell-ext.json"
+  ],
+  "useGitignore": true,
+  "version": "0.2",
+  "words": [
+    "anirudh",
+    "sriram",
+    "techwithanirudh",
+    "ultracite",
+    "coolify",
+    "lefthook",
+    "coollabs",
+    "scrollbars",
+    "laggy",
+    "userstyle",
+    "softprops",
+    "checkmark",
+    "selectedcontent",
+    "atrule",
+    "coolgray"
+  ]
+}
