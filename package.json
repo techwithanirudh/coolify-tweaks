@@ -20,6 +20,8 @@
     "build": "vite build",
     "dev": "vite dev",
     "format": "prettier --write --ignore-unknown --log-level silent .",
+    "format:check": "prettier --check --ignore-unknown --log-level silent .",
+    "types:check": "tsc --noEmit --skipLibCheck",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "bun run build && changeset publish"
