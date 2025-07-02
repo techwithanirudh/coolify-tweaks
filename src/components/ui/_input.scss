@@ -1,0 +1,46 @@
+@use 'globals' as *;
+
+@mixin input-base {
+  padding: s(2.25) s(4);
+  border: 1px solid var(--color-coolgray-400) !important;
+  border-radius: var(--radius-sm) !important; /* 12 px */
+  background: var(--cfy-card) !important;
+  color: var(--cfy-text);
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+
+  &:focus {
+    border-color: var(--cfy-accent-light) !important;
+    background: var(--cfy-card-container) !important;
+  }
+
+  /* Placeholder text styling */
+  &::placeholder {
+    color: var(--cfy-muted) !important;
+    opacity: 0.7;
+  }
+
+  &:focus::placeholder {
+    opacity: 0.5;
+  }
+}
+
+input.input,
+textarea.input,
+select.select {
+  @include input-base;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  padding: s(2.75);
+  border-radius: 4px !important;
+  background-color: var(--cfy-card) !important;
+  transition: background 0.18s;
+}
+
+label {
+  margin-bottom: s(3);
+  font-weight: 600;
+}

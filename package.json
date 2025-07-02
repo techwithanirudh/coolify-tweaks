@@ -1,0 +1,53 @@
+{
+  "name": "coolify-tweaks",
+  "version": "3.0.1",
+  "description": "Opinionated tweaks for Coolify: better spacing, layout, and color polish.",
+  "author": {
+    "name": "Anirudh Sriram",
+    "email": "hello@techwithanirudh.com",
+    "url": "https://github.com/techwithanirudh"
+  },
+  "private": true,
+  "type": "module",
+  "main": "src/main.scss",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/techwithanirudh/coolify-tweaks"
+  },
+  "homepage": "https://github.com/techwithanirudh/coolify-tweaks#readme",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite dev",
+    "format": "prettier --write --ignore-unknown --log-level silent .",
+    "format:check": "prettier --check --ignore-unknown --log-level silent .",
+    "types:check": "tsc --noEmit --skipLibCheck",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "bun run build && changeset publish"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@types/semver": "^7.7.0",
+    "semver": "^7.7.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.0.5",
+    "@changesets/cli": "^2.29.5",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@types/bun": "latest",
+    "autoprefixer": "^10.4.21",
+    "conventional-changelog-atom": "^5.0.0",
+    "lefthook": "^1.11.14",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "postcss-preset-env": "^10.2.4",
+    "prettier": "3.6.2",
+    "sass": "^1.89.2",
+    "vite": "^7.0.0",
+    "vite-plugin-banner": "^0.8.1"
+  }
+}

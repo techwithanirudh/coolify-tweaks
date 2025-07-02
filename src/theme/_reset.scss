@@ -1,0 +1,30 @@
+@use 'globals' as *;
+
+body,
+.box,
+.card,
+.menu-item,
+button,
+a,
+input,
+select,
+textarea {
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: none !important;
+}
+
+body,
+main {
+  background: var(--cfy-content-bg) !important;
+  color: var(--cfy-text);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--cfy-accent) !important;
+  outline-offset: 2px;
+}

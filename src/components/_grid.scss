@@ -1,0 +1,76 @@
+@use 'globals' as *;
+
+div[data-testid='resources-grid'],
+div.grid[class*='cols'] {
+  overflow: hidden;
+  margin-top: s(2.5);
+  padding: s(3) s(3.5) !important;
+  border-radius: var(--radius-md) !important;
+  background: var(--cfy-card-container) !important;
+}
+
+div.grid[class*='cols']:has([wire\:click^='navigateToProject']),
+div.grid[class*='cols']:has([\@click^='$wire.navigateToProject']),
+div.grid[class*='cols'][x-show='filteredApplications.length > 0'],
+div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+}
+
+@include mq(sm) {
+  div.grid[class*='cols']:has([wire\:click^='navigateToProject']),
+  div.grid[class*='cols']:has([\@click^='$wire.navigateToProject']),
+  div.grid[class*='cols'][x-show='filteredApplications.length > 0'],
+  div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+@include mq(lg) {
+  div.grid[class*='cols']:has([wire\:click^='navigateToProject']),
+  div.grid[class*='cols']:has([\@click^='$wire.navigateToProject']),
+  div.grid[class*='cols'][x-show='filteredApplications.length > 0'],
+  div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+@include mq(xl) {
+  div.grid[class*='cols']:has([wire\:click^='navigateToProject']),
+  div.grid[class*='cols']:has([\@click^='$wire.navigateToProject']),
+  div.grid[class*='cols'][x-show='filteredApplications.length > 0'],
+  div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+@include mq(xxl) {
+  div.grid[class*='cols']:has([wire\:click^='navigateToProject']),
+  div.grid[class*='cols']:has([\@click^='$wire.navigateToProject']),
+  div.grid[class*='cols'][x-show='filteredApplications.length > 0'],
+  div.grid[class*='cols'][x-show='filteredServices.length > 0'] {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+div.grid[class*='cols']:has([wire\:click^='navigateToProject']) .box,
+div.grid[class*='cols']:has([\@click^='$wire.navigateToProject']) .box,
+div.grid[class*='cols'][x-show='filteredApplications.length > 0'] .box,
+div.grid[class*='cols'][x-show='filteredServices.length > 0'] .box {
+  height: 150px;
+}
+
+div.grid[class*='cols']:has([wire\:click^='navigateToProject']) .box > div,
+div.grid[class*='cols']:has([\@click^='$wire.navigateToProject']) .box div,
+div.grid[class*='cols'][x-show='filteredApplications.length > 0'] .box div,
+div.grid[class*='cols'][x-show='filteredServices.length > 0'] .box div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+div.grid[class*='cols']:has([href*='/server/']) {
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+}
+
+.grid,
+[class*='grid-cols'] {
+  gap: s(2.5) !important;
+}

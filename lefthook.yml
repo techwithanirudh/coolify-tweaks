@@ -1,0 +1,10 @@
+pre-commit:
+  commands:
+    format:
+      run: bun prettier --write --ignore-unknown {staged_files}
+      stage_fixed: true
+
+commit-msg:
+  commands:
+    'lint commit message':
+      run: bun commitlint --edit {1}

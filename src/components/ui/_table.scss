@@ -1,0 +1,21 @@
+@use 'globals' as *;
+
+table {
+  overflow: hidden !important;
+  margin-top: s(4);
+  border-radius: var(--radius-sm) !important;
+  background: var(--cfy-card-container) !important;
+}
+
+[dashed],
+[class*='dashed'] {
+  border-color: var(--cfy-muted) !important;
+  border-radius: var(--radius-sm) !important;
+  padding-block: s(8) !important;
+}
+
+[role='row']:not([dashed]) {
+  padding: s(2.5) s(3.25);
+  border-radius: var(--radius-sm) !important;
+  background: var(--cfy-card) !important;
+}

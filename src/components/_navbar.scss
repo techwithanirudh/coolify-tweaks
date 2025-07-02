@@ -1,0 +1,48 @@
+@use 'globals' as *;
+
+.navbar-main {
+  position: sticky;
+  top: 0;
+  // z-index: 45;
+  padding: s(1.75) s(3.5);
+  border: 1px solid var(--color-coolgray-400) !important;
+  border-radius: var(--radius-sm) !important;
+  background: var(--cfy-sidebar-bg);
+  backdrop-filter: blur(var(--cfy-blur)) !important;
+}
+
+.navbar-main nav {
+  display: flex;
+  align-items: center;
+  padding-top: 0px;
+  gap: s(3.25);
+}
+
+.navbar-main nav::-webkit-scrollbar {
+  display: none;
+}
+
+.navbar-main nav a {
+  padding: s(1.25);
+  border-radius: 10px !important;
+  color: var(--cfy-muted);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.18s,
+    color 0.18s;
+}
+
+.navbar-main nav a:hover {
+  color: var(--cfy-text) !important;
+}
+
+.navbar-main nav a[class*='dark:text-white'],
+.navbar-main nav a[aria-current='page'] {
+  box-shadow: inset 0 0 0 2px var(--cfy-accent-light);
+  color: var(--cfy-text) !important;
+}
+
+.navbar-main .flex-1 {
+  flex: 1 1 auto;
+}

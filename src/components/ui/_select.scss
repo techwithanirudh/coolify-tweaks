@@ -1,0 +1,93 @@
+@use 'globals' as *;
+
+@mixin select-base {
+  appearance: base-select;
+
+  &:hover,
+  &:focus {
+    border-color: var(--cfy-accent-light);
+    background: var(--cfy-card-container);
+  }
+
+  &::picker-icon {
+    color: var(--cfy-muted);
+    transition: 0.4s rotate;
+  }
+
+  &:open::picker-icon {
+    rotate: 180deg;
+  }
+}
+
+select,
+::picker(select) {
+  @include select-base;
+}
+
+::picker(select) {
+  border: 1px solid var(--color-coolgray-400) !important;
+  border-radius: var(--radius-xs) !important;
+  background: var(--cfy-card) !important;
+
+  top: calc(anchor(bottom) + 4px);
+
+  opacity: 0;
+  transition: all 0.4s allow-discrete;
+
+  &:popover-open {
+    opacity: 1;
+  }
+
+  @starting-style {
+    &:popover-open {
+      opacity: 0;
+    }
+  }
+}
+
+option {
+  display: flex;
+  justify-content: flex-start;
+  padding: s(2.5);
+  background: var(--cfy-card) !important;
+  color: var(--cfy-text);
+  transition: 0.4s;
+  gap: s(5);
+
+  &:first-of-type {
+    border-radius: var(--radius-xs) var(--radius-xs) 0 0;
+  }
+
+  &:last-of-type {
+    border-radius: 0 0 var(--radius-xs) var(--radius-xs);
+  }
+
+  &:not(option:last-of-type) {
+    border-bottom: none;
+  }
+
+  &:hover,
+  &:focus {
+    background: var(--cfy-card-container) !important;
+    color: var(--cfy-text);
+  }
+
+  .icon {
+    font-size: 1.6rem;
+    text-box: trim-both cap alphabetic;
+  }
+
+  selectedcontent .icon {
+    display: none;
+  }
+
+  &:checked {
+    font-weight: bold;
+  }
+
+  &::checkmark {
+    order: 1;
+    margin-left: auto;
+    content: '✓';
+  }
+}

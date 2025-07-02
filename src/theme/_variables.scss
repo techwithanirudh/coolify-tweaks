@@ -1,0 +1,110 @@
+@use 'sass:map';
+
+// Breakpoints
+$breakpoints: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1536px,
+);
+
+// Colors
+$colors: (
+  'light': (
+    'base': #ffffff,
+    'coolgray-100': #f6f7f9,
+    'coolgray-200': #eceef2,
+    'coolgray-300': #e3e5ea,
+    'coolgray-400': #d8dae0,
+    'coolgray-500': #cfd1d8,
+    'coolgray-600': #c6c8d0,
+    'coolgray-700': #f4f5f7,
+    // sidebar
+    'coolgray-800': #edeef1,
+    'coolgray-900': #e6e7eb,
+    'coollabs': #4c3495,
+    'coollabs-100': color-mix(in srgb, #4c3495 85%, #ffffff),
+    'success': #2aaa52,
+    'warning': #e0b842,
+    'error': #d63b3b,
+    'text-primary': #1f1c23,
+    'text-muted': #6e6b75,
+    'placeholder': #8e8c91,
+    'overlay': rgba(0, 0, 0, 0.6),
+    'shadow-light': rgba(0, 0, 0, 0.15),
+    'shadow-dark': rgba(0, 0, 0, 0.35),
+    'shadow-main': rgba(0, 0, 0, 0.25),
+  ),
+  'dark': (
+    'base': #1f1c23,
+    'coolgray-100': #26252b,
+    'coolgray-200': #2a292e,
+    'coolgray-300': #353239,
+    'coolgray-400': #3d3a40,
+    'coolgray-500': #45424a,
+    'coolgray-600': #403d44,
+    'coolgray-700': #1a191f,
+    // sidebar bg
+    'coolgray-800': #151419,
+    'coolgray-900': #101014,
+    'coollabs': #7349f3,
+    'coollabs-100': color-mix(in srgb, #7349f3 75%, #ffffff),
+    'success': #23ff1f,
+    'warning': #fcd452,
+    'error': #ff1f1c,
+    'text-primary': #fcfafc,
+    'text-muted': #8e8c91,
+    'placeholder': #8e8c91,
+  ),
+);
+
+// Radii
+$radii-base: 14px;
+$radii-step: 2px;
+$radii: (
+  'base': $radii-base,
+  'step': $radii-step,
+  'xs': calc($radii-base - ($radii-step * 2)),
+  'sm': calc($radii-base - $radii-step),
+  'md': $radii-base,
+  'lg': calc($radii-base + $radii-step),
+  'xl': calc($radii-base + ($radii-step * 2)),
+);
+
+// Spacing (example, adjust as needed)
+
+@mixin generate-css-vars($theme-map) {
+  @each $key, $value in $theme-map {
+    --color-#{$key}: #{$value};
+  }
+}
+
+:root {
+  font-size: 15px;
+  @include generate-css-vars(map.get($colors, 'light'));
+
+  --cfy-accent: var(--color-coollabs);
+  --cfy-accent-light: var(--color-coollabs-100);
+  --cfy-sidebar-bg: var(--color-coolgray-700);
+  --cfy-secondary: var(--color-coolgray-100);
+  --cfy-content-bg: var(--color-base);
+  --cfy-card-container: var(--color-coolgray-200);
+  --cfy-card: var(--color-coolgray-300);
+  --cfy-text: var(--color-text-primary);
+  --cfy-muted: var(--color-text-muted);
+
+  --cfy-blur: 14px;
+  --cfy-shadow: 0 4px 20px var(--color-shadow-main);
+  --cfy-sidebar-w: 260px;
+
+  @each $key, $value in $radii {
+    --radius-#{$key}: #{$value};
+  }
+
+  --spacing: 0.25rem; // Base spacing unit
+}
+
+.dark {
+  @include generate-css-vars(map.get($colors, 'dark'));
+}
