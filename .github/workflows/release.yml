@@ -39,3 +39,12 @@ jobs:
           version: bun run version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Release Asset
+        if: steps.changesets.outputs.published == 'true'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}
+          files: dist/main.user.css
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
