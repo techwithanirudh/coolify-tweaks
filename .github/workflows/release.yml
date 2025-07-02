@@ -44,7 +44,8 @@ jobs:
         if: steps.changesets.outputs.published == 'true'
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}
+          tag_name: v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}
           files: dist/main.user.css
+          append_body: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
