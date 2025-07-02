@@ -19,6 +19,7 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite dev",
+    "preview": "vite preview",
     "format": "prettier --write --ignore-unknown --log-level silent .",
     "format:check": "prettier --check --ignore-unknown --log-level silent .",
     "types:check": "tsc --noEmit --skipLibCheck",
