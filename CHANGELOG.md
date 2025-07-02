@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.0.2
+
+### Patch Changes
+
+- Fixes release workflow for changesets.
+
 ## 3.0.1
 
 ### Patch Changes
