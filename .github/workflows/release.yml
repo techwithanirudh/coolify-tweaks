@@ -12,9 +12,10 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repo
+        uses: actions/checkout@v4
         with:
-          token: ${{ secrets.UPDATE_TEMPLATE_SSH_KEY }}
+          fetch-depth: 0
 
       - uses: oven-sh/setup-bun@v2
 
@@ -36,4 +37,4 @@ jobs:
           publish: bun run release
           version: bun run version
         env:
-          GITHUB_TOKEN: ${{ secrets.UPDATE_TEMPLATE_SSH_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
