@@ -1,6 +1,6 @@
 {
   "name": "coolify-tweaks",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Opinionated tweaks for Coolify: better spacing, layout, and color polish.",
   "author": {
     "name": "Anirudh Sriram",
@@ -20,7 +20,9 @@
     "build": "vite build",
     "dev": "vite dev",
     "format": "prettier --write --ignore-unknown --log-level silent .",
-    "release": "bun run scripts/bump.ts"
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "bun run build && changeset publish"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -31,6 +33,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.5",
+    "@changesets/cli": "^2.29.5",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@types/bun": "latest",
