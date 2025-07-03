@@ -20,7 +20,7 @@
 
 ## About
 
-This userstyle enhances Coolify’s UI by applying opinionated tweaks—spacing, colors, and layout fixes—to make the dashboard more polished and user-friendly.
+A userstyle that enhances Coolify's UI by applying opinionated tweaks, spacing, colors, and layout fixes, to make the UI more polished and user-friendly.
 
 ## Installation
 
