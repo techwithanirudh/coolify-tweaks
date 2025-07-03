@@ -12,6 +12,7 @@
 [![stars](https://img.shields.io/github/stars/techwithanirudh/coolify-tweaks.svg?style=flat)](https://github.com/techwithanirudh/coolify-tweaks/stargazers)
 [![forks](https://img.shields.io/github/forks/techwithanirudh/coolify-tweaks.svg?color=007ec6&style=flat)](https://github.com/techwithanirudh/coolify-tweaks/network)
 [![install with Stylus](https://img.shields.io/badge/Install%20directly%20with-Stylus-116b59.svg?longCache=true&style=flat)](https://gh-releases.techwithanirudh.com/api/release/techwithanirudh/coolify-tweaks/latest/main.user.css)
+[![install from userstyles.world](https://img.shields.io/badge/Install%20from-userstyles.world-116b59.svg?longCache=true&style=flat)](https://userstyles.world/style/22850/coolify-enhanced-ui)
 
 </div>
 
@@ -27,6 +28,10 @@ This userstyle enhances Coolify’s UI by applying opinionated tweaks—spacing,
 2. Hit the badge below to add the style:
 
    [![install with Stylus](https://img.shields.io/badge/Install%20directly%20with-Stylus-116b59.svg?longCache=true&style=flat)](https://github.com/techwithanirudh/coolify-tweaks/releases/latest/download/main.user.css)
+
+   OR
+
+   [![install from userstyles.world](https://img.shields.io/badge/Install%20from-userstyles.world-116b59.svg?longCache=true&style=flat)](https://userstyles.world/style/22850/coolify-enhanced-ui)
 
 3. **Running Coolify on something other than `coolify.local`?**  
    Open the style’s _Settings_ pane in Stylus, then under **Custom included sites** add your host using a wildcard. For example:
