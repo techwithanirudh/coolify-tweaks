@@ -1,17 +1,6 @@
 @use 'globals' as *;
 
 body,
-button,
-a,
-input,
-select,
-textarea {
-  border: none !important;
-  border-radius: var(--radius-sm) !important;
-  box-shadow: none !important;
-}
-
-body,
 main {
   background: var(--cfy-content-bg) !important;
   color: var(--cfy-text);
