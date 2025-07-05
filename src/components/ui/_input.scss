@@ -44,3 +44,9 @@ label {
   margin-bottom: s(3);
   font-weight: 600;
 }
+
+input,
+select,
+textarea {
+  border-radius: var(--radius-sm) !important;
+}

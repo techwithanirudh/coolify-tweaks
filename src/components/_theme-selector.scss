@@ -6,12 +6,6 @@ button[\@click='dropdownOpen=true']:has([x-show="theme === 'dark' || theme === '
   padding-block: s(2.75) !important;
 }
 
-div.font-bold.border-b:contains('Color'),
-div.font-bold.border-b:contains('Width'),
-div.font-bold.border-b:contains('Zoom') {
-  display: none !important;
-}
-
 button[\@click^='switchWidth'],
 button[\@click^='setZoom'] {
   display: none !important;
