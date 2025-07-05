@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.2.0
+
+### Minor Changes
+
+- refactor selector logic to be easier to read
+
 ## 3.1.0
 
 ### Minor Changes
