@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.2.1
+
+### Patch Changes
+
+- use phosphor icons for the sidebar
+
 ## 3.2.0
 
 ### Minor Changes
