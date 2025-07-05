@@ -61,14 +61,6 @@ nav > ul > li > ul > li {
   color: var(--cfy-text) !important;
 }
 
-.menu-item svg {
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  stroke-width: 1.6;
-  fill: var(--color-coolgray-600) !important;
-}
-
 /* Mobile slide-in */
 @include mq(lg) {
   aside[class*='sidebar'] {
