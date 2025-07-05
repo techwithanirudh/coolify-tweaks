@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.2.2
+
+### Patch Changes
+
+- fix: icon rendering for the feedback icon
+
 ## 3.2.1
 
 ### Patch Changes
