@@ -51,6 +51,17 @@ $icon-size: 1.25rem;
     height: $icon-size;
   }
 }
-.menu-item[title='Dashboard'] .icon:before {
-  content: '\ed90';
+.menu-item[title='Dashboard'] .icon {
+  mask: url('https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/acorn-fill.svg')
+    no-repeat center/contain;
+  -webkit-mask: url('https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/acorn-fill.svg')
+    no-repeat center/contain;
+
+  /* paint the visible shape with currentColor */
+  background-color: currentColor;
+
+  /* size it like a font glyph */
+  width: 1em;
+  height: 1em;
+  display: inline-block;
 }
