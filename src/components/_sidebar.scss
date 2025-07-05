@@ -1,10 +1,13 @@
 @use 'globals' as *;
 
-[class*='lg:flex'][class*='lg:w-56'] {
+/* Targets the main desktop sidebar container. 
+     Instead of fragile width/flex classes, it's identified by its fixed position on large screens 
+     and the fact that it contains the main navigation (`a[title="Dashboard"]`). This is much more stable. */
+div.lg\:fixed:has(nav a[title='Dashboard']) {
   width: var(--cfy-sidebar-w) !important;
 }
 
-nav[class*='dark:border-coolgray-200'] {
+nav[x-data]:has(a[title='Dashboard']) {
   overflow-x: hidden;
   overflow-y: auto !important;
   width: 100%;
@@ -15,11 +18,13 @@ nav[class*='dark:border-coolgray-200'] {
   scrollbar-color: var(--cfy-accent) transparent;
 }
 
-nav[class*='dark:border-coolgray-200'] > ul {
+nav[x-data]:has(a[title='Dashboard']) > ul {
   padding-inline: s(2);
 }
 
-nav[class*='dark:border-coolgray-200'] > div[class*='px-2 pt-2 pb-7'] {
+/* Targets the sidebar header containing the team switcher.
+     It's robustly selected by finding the `div` that directly contains the unique Livewire team selection dropdown. */
+nav[x-data] > div:has(select[wire\:model\.live='selectedTeamId']) {
   padding-block: s(4) !important;
 }
 

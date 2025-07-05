@@ -14,6 +14,7 @@ export default defineConfig({
     },
   },
   build: {
+    minify: false,
     rollupOptions: {
       input: path.resolve(__dirname, pkg.main),
       output: {
