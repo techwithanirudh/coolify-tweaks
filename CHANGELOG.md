@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.2.3
+
+### Patch Changes
+
+- fix: select styling
+
 ## 3.2.2
 
 ### Patch Changes
