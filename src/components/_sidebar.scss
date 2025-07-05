@@ -86,7 +86,7 @@ nav > ul > li > ul > li {
 }
 
 .menu-item[title='Sources'] .icon {
-  @include icon('code-fill', 'fill');
+  @include icon('github-logo-fill', 'fill');
 }
 
 .menu-item[title='Destinations'] .icon {
