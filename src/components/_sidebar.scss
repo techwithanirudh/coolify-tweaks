@@ -72,54 +72,71 @@ nav > ul > li > ul > li {
     display: none !important;
   }
 }
+
 .menu-item[title='Dashboard'] .icon {
   @include icon('house-fill', 'fill');
 }
+
 .menu-item[title='Projects'] .icon {
   @include icon('folder-fill', 'fill');
 }
+
 .menu-item[title='Servers'] .icon {
   @include icon('hard-drives-fill', 'fill');
 }
+
 .menu-item[title='Sources'] .icon {
   @include icon('code-fill', 'fill');
 }
+
 .menu-item[title='Destinations'] .icon {
   @include icon('map-pin-fill', 'fill');
 }
+
 .menu-item[title='S3\ Storages'] .icon {
   @include icon('database-fill', 'fill');
 }
-.menu-item[title='Shared\ Variables'] .icon {
-  @include icon('functions-fill', 'fill');
+
+.menu-item[title='Shared\ variables'] .icon {
+  @include icon('function-fill', 'fill');
 }
+
 .menu-item[title='Notifications'] .icon {
   @include icon('bell-fill', 'fill');
 }
+
 .menu-item[title='Keys\ \&\ Tokens'] .icon {
   @include icon('key-fill', 'fill');
 }
+
 .menu-item[title='Tags'] .icon {
   @include icon('tag-fill', 'fill');
 }
+
 .menu-item[title='Terminal'] .icon {
   @include icon('terminal-fill', 'fill');
 }
+
 .menu-item[title='Profile'] .icon {
   @include icon('user-circle-fill', 'fill');
 }
+
 .menu-item[title='Teams'] .icon {
   @include icon('users-fill', 'fill');
 }
+
 .menu-item[title='Settings'] .icon {
   @include icon('gear-fill', 'fill');
 }
+
 .menu-item[title='Sponsor\ us'] .icon {
   @include icon('heart-fill', 'fill');
 }
+
 .menu-item[title='Feedback'] .icon {
   @include icon('chat-text-fill', 'fill');
 }
+
 .menu-item[title='Logout'] .icon {
   @include icon('sign-out-fill', 'fill');
 }
