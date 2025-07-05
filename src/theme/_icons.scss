@@ -1,0 +1,34 @@
+@import url('https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css');
+@import url('https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css');
+
+$icon-size: 1.25rem;
+$icon-color: var(--color-coolgray-600);
+
+$icon-map: (
+  'Dashboard': '\EA01',
+  'Projects': '\EA1F',
+  'Servers': '\EA59',
+  'Sources': '\EC4B',
+);
+
+.menu-item .icon {
+  display: none !important;
+}
+
+.menu-item {
+  @each $name, $code in $icon-map {
+    &[title='#{$name}']::before {
+      font-family: 'Phosphor-Light' !important;
+      font-style: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      display: inline-block;
+      width: $icon-size;
+      height: $icon-size;
+      color: $icon-color;
+      content: $code;
+      margin-right: 0.5rem;
+    }
+  }
+}
