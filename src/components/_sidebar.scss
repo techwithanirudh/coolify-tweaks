@@ -61,6 +61,22 @@ nav > ul > li > ul > li {
   color: var(--cfy-text) !important;
 }
 
+.menu-item .icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.6;
+  fill: var(--color-coolgray-600) !important;
+
+  & > * {
+    display: none !important;
+  }
+}
+
+.menu-item[title='Dashboard'] .icon {
+  @include icon('acorn');
+}
+
 /* Mobile slide-in */
 @include mq(lg) {
   aside[class*='sidebar'] {
