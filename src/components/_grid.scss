@@ -52,19 +52,22 @@ div.grid[class*='cols']:is(
       width: 100%;
     }
 
+    a[href*='/edit'],
     a[href*='/new'] {
+      padding: s(1.5);
+      background-color: var(--color-coolgray-400);
+      border-radius: var(--radius-xs);
+
       & > * {
         display: none !important;
       }
+    }
 
+    a[href*='/new'] {
       @include icon-button('plus-bold', 'bold');
     }
 
     a[href*='/edit'] {
-      & > * {
-        display: none !important;
-      }
-
       @include icon-button('gear-fill', 'fill');
     }
 
