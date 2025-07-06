@@ -33,7 +33,16 @@ div.grid[class*='cols']:is(
   .box {
     height: 150px;
 
-    > div {
+    &:has(> div + div) {
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: space-between;
+      align-items: center;
+      // the box already has 2.5 and 3 padding so we need to add 2.5+1.5 and 3+2 padding
+      padding: s(4) s(5) !important;
+    }
+
+    > div:only-child {
       display: flex;
       flex-direction: column-reverse;
       justify-content: space-between;

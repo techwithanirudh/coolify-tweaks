@@ -54,6 +54,7 @@
     "postcss-preset-env": "^10.2.4",
     "prettier": "3.6.2",
     "sass": "^1.89.2",
+    "serve": "^14.2.4",
     "vite": "^7.0.0",
     "vite-plugin-banner": "^0.8.1"
   },
