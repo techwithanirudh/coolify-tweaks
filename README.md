@@ -3,7 +3,7 @@
   <img alt="" src="/.github/assets/cover.png" />
 
 <h1>
-  coolify-tweaks
+  Coolify Tweaks
 </h1>
 
 <div>
