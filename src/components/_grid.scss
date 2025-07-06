@@ -12,8 +12,8 @@ div.grid[class*='cols'] {
 div.grid[class*='cols']:is(
     :has([wire\:click^='navigateToProject']),
     :has([\@click^='$wire.navigateToProject']),
-    [x-show='filteredApplications.length > 0'],
-    [x-show='filteredServices.length > 0']
+    [x-show^='filteredApplications'],
+    [x-show^='filteredServices']
   ) {
   grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
 
@@ -35,9 +35,50 @@ div.grid[class*='cols']:is(
 
     > div {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      flex-direction: column-reverse;
+      justify-content: space-between;
       align-items: center;
+      margin: s(1.5) s(2);
+    }
+
+    div:has(> .box-title) {
+      flex: 0;
+      justify-content: flex-start;
+      width: 100%;
+    }
+
+    div:has(> .box-title) + div {
+      justify-content: flex-end;
+      width: 100%;
+    }
+
+    a[href*='/new'] {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+
+      & > * {
+        display: none !important;
+      }
+
+      @include icon('plus');
+    }
+
+    a[href*='/edit'] {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+
+      & > * {
+        display: none !important;
+      }
+
+      @include icon('gear');
+    }
+
+    a[href*='/new']:hover,
+    a[href*='/edit']:hover {
+      opacity: 0.8;
     }
   }
 }
