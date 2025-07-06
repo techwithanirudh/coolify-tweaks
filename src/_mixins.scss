@@ -24,3 +24,31 @@
   -webkit-mask: url('#{$url}') no-repeat center / contain;
   background-color: currentColor;
 }
+
+@mixin icon-button(
+  $name,
+  $variant: 'regular',
+  $bg-color: var(--color-coolgray-400),
+  $icon-color: #fff,
+  $pad: s(1.5),
+  $radius: var(--radius-xs),
+  $icon-size: s(1)
+) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $pad;
+  background-color: $bg-color;
+  border-radius: $radius;
+
+  text-indent: -9999px;
+  position: relative;
+
+  &::before {
+    content: '';
+    width: $icon-size;
+    height: $icon-size;
+    color: $icon-color;
+    @include icon($name, $variant);
+  }
+}

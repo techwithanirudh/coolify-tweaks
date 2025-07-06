@@ -5,13 +5,13 @@ a,
 input,
 select,
 textarea {
-  border-radius: var(--radius-sm) !important;
+  border-radius: var(--radius-sm);
   box-shadow: none !important;
 }
 
 body,
 main {
-  background: var(--cfy-content-bg) !important;
+  background: var(--cfy-content-bg);
   color: var(--cfy-text);
 }
 
@@ -20,6 +20,6 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--cfy-accent) !important;
+  outline: 2px solid var(--cfy-accent);
   outline-offset: 2px;
 }

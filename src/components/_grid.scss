@@ -53,27 +53,19 @@ div.grid[class*='cols']:is(
     }
 
     a[href*='/new'] {
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-
       & > * {
         display: none !important;
       }
 
-      @include icon('plus');
+      @include icon-button('plus-bold', 'bold');
     }
 
     a[href*='/edit'] {
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-
       & > * {
         display: none !important;
       }
 
-      @include icon('gear');
+      @include icon-button('gear-fill', 'fill');
     }
 
     a[href*='/new']:hover,
