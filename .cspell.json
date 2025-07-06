@@ -26,6 +26,8 @@
     "checkmark",
     "selectedcontent",
     "atrule",
-    "coolgray"
+    "coolgray",
+    "userstyles",
+    "livewire"
   ]
 }
