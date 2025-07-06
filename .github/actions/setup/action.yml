@@ -1,0 +1,13 @@
+name: Check setup
+description: |
+  This action sets up the Bun environment and installs dependencies for the project.
+
+runs:
+  using: composite
+  steps:
+    - name: Setup bun
+      uses: oven-sh/setup-bun@v2
+
+    - name: Install dependencies
+      shell: bash
+      run: bun install --frozen-lockfile

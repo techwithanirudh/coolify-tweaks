@@ -31,9 +31,7 @@ div[class*='shadow-lg lg:border-t dark:border-coolgray-300'] {
   margin-right: auto;
 }
 
-// Increase font size of headings in sections
-div[class='flex items-center gap-2'] > h3,
-section > h3[class='pb-2'] {
+section h3[class='pb-2'] {
   font-size: 1.6rem;
 }
 

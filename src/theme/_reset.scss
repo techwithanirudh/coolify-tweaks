@@ -1,15 +1,10 @@
 @use 'globals' as *;
 
-body,
-.box,
-.card,
-.menu-item,
 button,
 a,
 input,
 select,
 textarea {
-  border: none !important;
   border-radius: var(--radius-sm) !important;
   box-shadow: none !important;
 }

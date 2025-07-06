@@ -4,12 +4,18 @@ import path from 'path';
 import pkg from './package.json';
 
 export default defineConfig({
+  server: {
+    host: true,
+    allowedHosts: true,
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
   },
   build: {
+    emptyOutDir: false,
+    minify: false,
     rollupOptions: {
       input: path.resolve(__dirname, pkg.main),
       output: {

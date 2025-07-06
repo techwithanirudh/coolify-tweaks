@@ -35,3 +35,7 @@ button.secondary,
     background: var(--cfy-card-container) !important;
   }
 }
+
+button {
+  border-radius: var(--radius-sm) !important;
+}
