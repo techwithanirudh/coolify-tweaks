@@ -18,7 +18,7 @@
   "homepage": "https://github.com/techwithanirudh/coolify-tweaks#readme",
   "scripts": {
     "build": "vite build",
-    "dev": "vite build --watch --mode development",
+    "dev": "chokidar 'src/**/*' -c 'vite build'",
     "preview": "vite preview",
     "format": "prettier --write --ignore-unknown --log-level silent .",
     "format:check": "prettier --check --ignore-unknown --log-level silent .",
@@ -46,6 +46,7 @@
     "@commitlint/config-conventional": "^19.8.1",
     "@types/bun": "latest",
     "autoprefixer": "^10.4.21",
+    "chokidar-cli": "^3.0.0",
     "conventional-changelog-atom": "^5.0.0",
     "lefthook": "^1.11.14",
     "postcss": "^8.5.6",
