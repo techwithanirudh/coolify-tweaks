@@ -42,7 +42,7 @@ div.grid[class*='cols']:is(
     }
 
     div:has(> .box-title) {
-      flex: 0;
+      flex: none;
       justify-content: flex-start;
       width: 100%;
     }
@@ -50,6 +50,7 @@ div.grid[class*='cols']:is(
     div:has(> .box-title) + div {
       justify-content: flex-end;
       width: 100%;
+      margin-inline: 0;
     }
 
     a[href*='/edit'],
@@ -57,6 +58,7 @@ div.grid[class*='cols']:is(
       padding: s(1.5);
       background-color: var(--color-coolgray-400);
       border-radius: var(--radius-xs);
+      margin-inline: 0;
 
       & > * {
         display: none !important;

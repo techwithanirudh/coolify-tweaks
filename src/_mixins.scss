@@ -25,7 +25,7 @@
   background-color: currentColor;
 }
 
-@mixin icon-button($name, $variant: 'regular', $color: #fff, $size: s(4)) {
+@mixin icon-button($name, $variant: 'regular', $color: var(--color-text), $size: s(4)) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
