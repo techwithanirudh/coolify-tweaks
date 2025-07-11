@@ -18,7 +18,9 @@
 .box:hover {
   border-color: var(--cfy-accent);
   background: color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%);
-  box-shadow: 0 8px 24px var(--color-shadow-dark);
+  box-shadow:
+    0 4px 6px -1px var(--color-shadow-dark),
+    0 2px 4px -2px var(--color-shadow-dark) !important;
   transform: translateY(-2px);
 }
 

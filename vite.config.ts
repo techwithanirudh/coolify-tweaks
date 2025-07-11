@@ -37,7 +37,7 @@ export default defineConfig({
 @namespace ${pkg.author.url}
 @author ${pkg.author.name} <${pkg.author.email}> (${pkg.author.url})
 @homepageURL ${pkg.homepage}
-@updateURL ${pkg.repository.url}/releases/latest/download/main.user.css
+@updateURL https://gh-releases.techwithanirudh.com/api/release/techwithanirudh/coolify-tweaks/latest/main.user.css
 @description ${pkg.description}
 @license ${pkg.license}
 ==/UserStyle== */`),
