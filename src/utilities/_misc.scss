@@ -67,3 +67,10 @@ div[class*='p-4 border dark:border-coolgray-300'] {
   background: none !important;
   color: var(--cfy-text) !important;
 }
+
+// Deployments card
+.p-2.border-l-2.bg-white.dark\:bg-coolgray-100 {
+  padding: s(2);
+  background-color: var(--cfy-card-container) !important;
+  border-radius: var(--radius-sm) !important;
+}
