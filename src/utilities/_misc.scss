@@ -74,3 +74,10 @@ div[class*='p-4 border dark:border-coolgray-300'] {
   background-color: var(--cfy-card-container) !important;
   border-radius: var(--radius-sm) !important;
 }
+
+.p-4.my-4.border.dark\:border-coolgray-200.border-neutral-200 {
+  padding: s(4);
+  margin-top: s(4);
+  border-radius: var(--radius-sm) !important;
+  background: var(--cfy-card-container) !important;
+}
