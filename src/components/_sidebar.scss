@@ -15,7 +15,7 @@ nav[x-data]:has(a[title='Dashboard']) {
   background: var(--sidebar) !important;
   backdrop-filter: blur(var(--cfy-blur)) !important;
   scrollbar-width: thin;
-  scrollbar-color: var(--cfy-accent) transparent;
+  scrollbar-color: var(--accent) transparent;
 }
 
 nav[x-data]:has(a[title='Dashboard']) > ul {
@@ -34,7 +34,7 @@ aside::-webkit-scrollbar {
 
 aside::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background: var(--cfy-accent);
+  background: var(--accent);
 }
 
 nav > ul > li > ul > li {
@@ -47,7 +47,7 @@ nav > ul > li > ul > li {
   align-items: center;
   padding: s(2.25) s(3.75);
   border-radius: var(--radius-sm) !important;
-  color: var(--cfy-muted);
+  color: var(--muted);
   font-weight: 500;
   transition:
     background 0.18s,
@@ -57,8 +57,8 @@ nav > ul > li > ul > li {
 
 .menu-item:hover,
 .menu-item-active {
-  background: var(--cfy-card-container) !important;
-  color: var(--cfy-text) !important;
+  background: var(--popover) !important;
+  color: var(--text) !important;
 }
 
 .menu-item .icon {

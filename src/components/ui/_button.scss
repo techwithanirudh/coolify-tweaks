@@ -4,13 +4,13 @@
   padding: s(2.25) s(4);
   border: 1px solid var(--color-coolgray-400) !important;
   border-radius: var(--radius-xs) !important; /* 12 px */
-  background: var(--cfy-accent);
+  background: var(--accent);
   color: var(--color-text) !important;
   font-weight: 600;
   transition: background 0.18s;
 
   &:hover {
-    background: var(--cfy-accent-light);
+    background: var(--accent-light);
   }
 }
 
@@ -29,10 +29,10 @@ html:not(.dark) {
 
 button.secondary,
 .secondary {
-  background: var(--cfy-secondary) !important;
+  background: var(--secondary) !important;
 
   &:hover {
-    background: var(--cfy-card-container) !important;
+    background: var(--popover) !important;
   }
 }
 

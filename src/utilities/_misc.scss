@@ -9,14 +9,14 @@ section > h3 + div {
   padding: s(3) s(3.5) !important;
   border-radius: var(--radius-md) !important;
   /* 14 px */
-  background: var(--cfy-card-container) !important;
+  background: var(--popover) !important;
 }
 
 section:has(> div > div:only-child) > div > div:only-child {
   padding: s(5) !important;
   border-radius: var(--radius-sm) !important;
-  background: var(--cfy-card-container) !important;
-  color: var(--cfy-muted);
+  background: var(--popover) !important;
+  color: var(--muted);
   text-align: center;
 }
 
@@ -51,7 +51,7 @@ div[class*='flex flex-col gap-2'] {
 }
 
 a[class*='hover:underline']:hover {
-  color: var(--cfy-muted) !important;
+  color: var(--muted) !important;
   text-decoration: none !important;
 }
 
@@ -60,18 +60,18 @@ div[class*='p-4 border dark:border-coolgray-300'] {
   margin-top: s(4);
   padding: s(4) s(6);
   border-radius: var(--radius-sm) !important;
-  background: var(--cfy-card-container) !important;
+  background: var(--popover) !important;
 }
 
 .dark\:hover\:bg-coolgray-100:where(.dark, .dark *):hover {
   background: none !important;
-  color: var(--cfy-text) !important;
+  color: var(--text) !important;
 }
 
 // Deployments card
 .p-2.border-l-2.bg-white.dark\:bg-coolgray-100 {
   padding: s(2);
-  background-color: var(--cfy-card-container) !important;
+  background-color: var(--popover) !important;
   border-radius: var(--radius-sm) !important;
 }
 
@@ -79,7 +79,7 @@ div[class*='p-4 border dark:border-coolgray-300'] {
   padding: s(4);
   margin-top: s(4);
   border-radius: var(--radius-sm) !important;
-  background: var(--cfy-card-container) !important;
+  background: var(--popover) !important;
 }
 
 .monaco-editor {

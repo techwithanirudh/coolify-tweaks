@@ -4,7 +4,7 @@
 [x-show='popups.sponsorship'] {
   padding: s(5) !important;
   border-radius: var(--radius-sm) !important;
-  background: var(--cfy-card-container) !important;
+  background: var(--popover) !important;
   box-shadow: var(--cfy-shadow) !important;
 }
 
@@ -16,16 +16,16 @@
 
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background: var(--cfy-muted);
+  background: var(--muted);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--cfy-text);
+  background: var(--text);
 }
 
 /* Button to add tags to service */
 .add-tag {
-  color: var(--cfy-muted) !important;
+  color: var(--muted) !important;
 }
 
 /* take full width for compressed items, like checkboxes */

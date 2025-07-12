@@ -4,12 +4,12 @@ table {
   overflow: hidden !important;
   margin-top: s(4);
   border-radius: var(--radius-sm) !important;
-  background: var(--cfy-card-container) !important;
+  background: var(--popover) !important;
 }
 
 [dashed],
 [class*='dashed'] {
-  border-color: var(--cfy-muted) !important;
+  border-color: var(--muted) !important;
   border-radius: var(--radius-sm) !important;
   padding-block: s(8) !important;
 }

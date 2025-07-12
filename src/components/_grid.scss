@@ -6,7 +6,7 @@ div.grid[class*='cols'] {
   margin-top: s(2.5);
   padding: s(3) s(3.5) !important;
   border-radius: var(--radius-md) !important;
-  background: var(--cfy-card-container) !important;
+  background: var(--popover) !important;
 }
 
 div.grid[class*='cols']:is(

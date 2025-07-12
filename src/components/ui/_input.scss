@@ -5,19 +5,19 @@
   border: 1px solid var(--color-coolgray-100) !important;
   border-radius: var(--radius-xs) !important; /* 12 px */
   background: var(--cfy-card) !important;
-  color: var(--cfy-text);
+  color: var(--text);
   transition:
     border-color 0.15s,
     background 0.15s;
 
   &:focus {
-    border-color: var(--cfy-accent-light) !important;
-    background: var(--cfy-card-container) !important;
+    border-color: var(--accent-light) !important;
+    background: var(--popover) !important;
   }
 
   /* Placeholder text styling */
   &::placeholder {
-    color: var(--cfy-muted) !important;
+    color: var(--muted) !important;
     opacity: 0.7;
   }
 

@@ -6,12 +6,12 @@
 
   &:hover,
   &:focus {
-    border-color: var(--cfy-accent-light);
-    background: var(--cfy-card-container);
+    border-color: var(--accent-light);
+    background: var(--popover);
   }
 
   &::picker-icon {
-    color: var(--cfy-muted);
+    color: var(--muted);
     transition: 0.4s rotate;
   }
 
@@ -20,8 +20,8 @@
   }
 
   &:disabled {
-    border-color: var(--cfy-muted) !important;
-    color: var(--cfy-muted) !important;
+    border-color: var(--muted) !important;
+    color: var(--muted) !important;
     cursor: not-allowed;
     pointer-events: none;
   }
@@ -65,7 +65,7 @@ option {
   justify-content: flex-start;
   padding: s(2.5);
   background: var(--card) !important;
-  color: var(--cfy-text);
+  color: var(--text);
   transition: 0.4s;
   gap: s(5);
 
@@ -83,8 +83,8 @@ option {
 
   &:hover,
   &:focus {
-    background: var(--cfy-card-container) !important;
-    color: var(--cfy-text);
+    background: var(--popover) !important;
+    color: var(--text);
   }
 
   .icon {
@@ -107,7 +107,7 @@ option {
   }
 
   &:disabled {
-    color: var(--cfy-muted) !important;
+    color: var(--muted) !important;
     cursor: not-allowed;
     opacity: 0.7;
     pointer-events: none;
