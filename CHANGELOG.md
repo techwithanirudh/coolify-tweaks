@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.3.0
+
+### Minor Changes
+
+- feat: redesign dashboard project cards
+
 ## 3.2.3
 
 ### Patch Changes
