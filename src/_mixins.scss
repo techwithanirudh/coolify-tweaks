@@ -21,7 +21,6 @@
   $url: '#{$base-url}/#{$variant}/#{$name}.svg';
 
   mask: url('#{$url}') no-repeat center / contain;
-  -webkit-mask: url('#{$url}') no-repeat center / contain;
   background-color: currentColor;
 }
 
