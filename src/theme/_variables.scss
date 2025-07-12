@@ -21,7 +21,6 @@ $colors: (
     'coolgray-600': #c6c8d0,
     'coolgray-700': #f4f5f7,
     'coolgray-800': #edeef1,
-    // sidebar light
     'coolgray-900': #e6e7eb,
     'coollabs': #4c3495,
     'coollabs-100': color-mix(in srgb, #4c3495 85%, #ffffff),
@@ -85,49 +84,45 @@ $radii: (
   /* geometry */
   --radius: map-get($radii, 'md');
 
-  /* surfaces & text */
+  /* surfaces */
   --background: var(--color-base);
-  --surface: var(--color-coolgray-100);
-  --surface-hover: var(--color-coolgray-200);
-  --card: var(--color-coolgray-300);
-  --card-hover: var(--color-coolgray-400);
-  --popover: var(--color-coolgray-200);
-  --popover-hover: var(--color-coolgray-300);
+  --foreground: var(--color-text-primary);
+  --muted: var(--color-coolgray-100);
+  --muted-foreground: var(--color-text-muted);
+  --card: var(--color-coolgray-200);
+  --card-foreground: var(--color-text-primary);
+  --popover: var(--color-coolgray-100);
+  --popover-foreground: var(--color-text-primary);
 
-  --text: var(--color-text-primary);
-  --text-secondary: var(--color-text-muted);
-
-  /* interactions & accents */
+  /* primary / secondary */
   --primary: var(--color-coollabs);
-  --primary-hover: var(--color-coollabs-100);
-  --secondary: var(--color-coolgray-500);
-  --secondary-hover: var(--color-coolgray-600);
-  --accent: var(--color-coollabs);
-  --accent-hover: var(--color-coollabs-100);
+  --primary-foreground: var(--color-base);
+  --secondary: var(--color-coolgray-300);
+  --secondary-foreground: var(--color-text-primary);
+  --accent: var(--color-coollabs-100);
+  --accent-foreground: var(--color-base);
 
-  /* status */
-  --success: var(--color-success);
-  --warning: var(--color-warning);
+  /* destructive / warn / success */
   --destructive: var(--color-error);
+  --destructive-foreground: var(--color-base);
+  --warning: var(--color-warning);
+  --success: var(--color-success);
 
-  /* forms & focus */
-  --border: var(--color-coolgray-400);
+  /* borders & rings */
+  --border: var(--color-coolgray-300);
   --input: var(--color-coolgray-100);
   --ring: var(--color-coollabs);
 
   /* overlay & shadows */
   --overlay: var(--color-overlay);
-  --shadow-light: var(--color-shadow-light);
-  --shadow-dark: var(--color-shadow-dark);
-  --shadow-main: var(--color-shadow-main);
+  --shadow: var(--color-shadow-main);
 
-  /* sidebar */
+  /* sidebar extras */
   --sidebar: var(--color-coolgray-800);
-  --sidebar-text: var(--color-text-primary);
-  --sidebar-active: var(--color-coollabs);
-  --sidebar-hover: var(--color-coolgray-700);
-  --sidebar-border: var(--color-coolgray-500);
-  --sidebar-ring: var(--color-coolgray-600);
+  --sidebar-foreground: var(--color-text-primary);
+  --sidebar-primary: var(--color-coollabs);
+  --sidebar-accent: var(--color-coollabs-100);
+  --sidebar-border: var(--color-coolgray-600);
 }
 
 :root {
