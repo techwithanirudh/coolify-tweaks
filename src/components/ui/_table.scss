@@ -19,3 +19,13 @@ table {
   border-radius: var(--radius-sm) !important;
   background: var(--card) !important;
 }
+
+@media (hover: hover) {
+  tr:where(.dark, .dark *):hover {
+    background: color-mix(in srgb, var(--card) 80%, transparent);
+  }
+
+  tr:where(.light, .light *):hover {
+    background: color-mix(in srgb, var(--card) 90%, transparent);
+  }
+}
