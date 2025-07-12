@@ -20,7 +20,6 @@ $colors: (
     'coolgray-500': #cfd1d8,
     'coolgray-600': #c6c8d0,
     'coolgray-700': #f4f5f7,
-    // sidebar
     'coolgray-800': #edeef1,
     'coolgray-900': #e6e7eb,
     'coollabs': #4c3495,
@@ -40,19 +39,19 @@ $colors: (
     'base': #1f1c23,
     'coolgray-100': #26252b,
     'coolgray-200': #2a292e,
-    'coolgray-300': #353239,
-    'coolgray-400': #3d3a40,
+    'coolgray-300': #363239,
+    'coolgray-400': #3f3b42,
     'coolgray-500': #45424a,
     'coolgray-600': #403d44,
     'coolgray-700': #1a191f,
-    // sidebar bg
-    'coolgray-800': #151419,
+
+    'coolgray-800': #1a191f,
     'coolgray-900': #101014,
     'coollabs': #483492,
     'coollabs-100': color-mix(in srgb, #483492 75%, #ffffff),
-    'success': #23ff1f,
-    'warning': #fcd452,
-    'error': #ff1f1c,
+    'success': #25f1bb,
+    'warning': #545026,
+    'error': #502b2d,
     'text-primary': #ede3f4,
     'text-muted': #8e8c91,
     'placeholder': #8e8c91,
@@ -71,8 +70,6 @@ $radii: (
   'lg': calc($radii-base + $radii-step),
   'xl': calc($radii-base + ($radii-step * 2)),
 );
-
-// Spacing (example, adjust as needed)
 
 @mixin generate-css-vars($theme-map) {
   @each $key, $value in $theme-map {
@@ -102,7 +99,7 @@ $radii: (
     --radius-#{$key}: #{$value};
   }
 
-  --spacing: 0.25rem; // Base spacing unit
+  --spacing: 0.25rem;
 }
 
 .dark {
