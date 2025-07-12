@@ -67,7 +67,7 @@ div.grid[class*='cols']:is(
     a[href*='/edit'],
     a[href*='/new'] {
       padding: s(1.5);
-      background-color: var(--color-coolgray-400);
+      background-color: var(--secondary);
       border-radius: var(--radius-xs);
       margin-inline: 0;
 

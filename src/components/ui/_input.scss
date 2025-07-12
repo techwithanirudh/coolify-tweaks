@@ -2,7 +2,7 @@
 
 @mixin input-base {
   padding: s(2.25) s(4);
-  border: 1px solid var(--color-coolgray-100) !important;
+  border: 1px solid var(--border) !important;
   border-radius: var(--radius-xs) !important; /* 12 px */
   background: var(--card) !important;
   color: var(--foreground);

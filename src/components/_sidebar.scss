@@ -11,7 +11,7 @@ nav[x-data]:has(a[title='Dashboard']) {
   overflow-x: hidden;
   overflow-y: auto !important;
   width: 100%;
-  border-right: 1px solid var(--color-coolgray-100);
+  border-right: 1px solid var(--border);
   background: var(--sidebar) !important;
   backdrop-filter: blur(var(--cfy-blur)) !important;
   scrollbar-width: thin;
@@ -66,7 +66,7 @@ nav > ul > li > ul > li {
   width: 20px;
   height: 20px;
   stroke-width: 1.6;
-  fill: var(--color-coolgray-600) !important;
+  fill: var(--secondary) !important;
 
   & > * {
     display: none !important;
