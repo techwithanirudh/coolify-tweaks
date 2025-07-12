@@ -1,6 +1,6 @@
 @use 'sass:map';
 
-// Breakpoints
+//── breakpoints (if you need ’em)
 $breakpoints: (
   sm: 640px,
   md: 768px,
@@ -9,7 +9,7 @@ $breakpoints: (
   xxl: 1536px,
 );
 
-// Colors
+//── your full palettes
 $colors: (
   'light': (
     'base': #ffffff,
@@ -21,6 +21,7 @@ $colors: (
     'coolgray-600': #c6c8d0,
     'coolgray-700': #f4f5f7,
     'coolgray-800': #edeef1,
+    // sidebar light
     'coolgray-900': #e6e7eb,
     'coollabs': #4c3495,
     'coollabs-100': color-mix(in srgb, #4c3495 85%, #ffffff),
@@ -43,8 +44,7 @@ $colors: (
     'coolgray-400': #3f3b42,
     'coolgray-500': #45424a,
     'coolgray-600': #403d44,
-    'coolgray-700': #1a191f,
-
+    'coolgray-700': #2d2531,
     'coolgray-800': #1a191f,
     'coolgray-900': #101014,
     'coollabs': #483492,
@@ -55,53 +55,90 @@ $colors: (
     'text-primary': #ede3f4,
     'text-muted': #8e8c91,
     'placeholder': #8e8c91,
+    'overlay': rgba(0, 0, 0, 0.6),
+    'shadow-light': rgba(255, 255, 255, 0.15),
+    'shadow-dark': rgba(0, 0, 0, 0.35),
+    'shadow-main': rgba(255, 255, 255, 0.25),
   ),
 );
 
-// Radii
+//── radii
 $radii-base: 14px;
 $radii-step: 2px;
 $radii: (
-  'base': $radii-base,
-  'step': $radii-step,
-  'xs': calc($radii-base - ($radii-step * 2)),
+  'xs': calc($radii-base - $radii-step * 2),
   'sm': calc($radii-base - $radii-step),
   'md': $radii-base,
   'lg': calc($radii-base + $radii-step),
-  'xl': calc($radii-base + ($radii-step * 2)),
+  'xl': calc($radii-base + $radii-step * 2),
 );
 
-@mixin generate-css-vars($theme-map) {
-  @each $key, $value in $theme-map {
-    --color-#{$key}: #{$value};
+//── mixin to emit raw color vars
+@mixin generate-color-vars($theme-map) {
+  @each $name, $val in $theme-map {
+    --color-#{$name}: #{$val};
   }
+}
+
+//── semantic tokens
+@mixin semantic-tokens {
+  /* geometry */
+  --radius: map-get($radii, 'md');
+
+  /* surfaces & text */
+  --background: var(--color-base);
+  --surface: var(--color-coolgray-100);
+  --surface-hover: var(--color-coolgray-200);
+  --card: var(--color-coolgray-300);
+  --card-hover: var(--color-coolgray-400);
+  --popover: var(--color-coolgray-200);
+  --popover-hover: var(--color-coolgray-300);
+
+  --text: var(--color-text-primary);
+  --text-secondary: var(--color-text-muted);
+
+  /* interactions & accents */
+  --primary: var(--color-coollabs);
+  --primary-hover: var(--color-coollabs-100);
+  --secondary: var(--color-coolgray-500);
+  --secondary-hover: var(--color-coolgray-600);
+  --accent: var(--color-coollabs);
+  --accent-hover: var(--color-coollabs-100);
+
+  /* status */
+  --success: var(--color-success);
+  --warning: var(--color-warning);
+  --destructive: var(--color-error);
+
+  /* forms & focus */
+  --border: var(--color-coolgray-400);
+  --input-bg: var(--color-coolgray-100);
+  --input-border: var(--color-coolgray-300);
+  --focus-ring: var(--color-coollabs);
+
+  /* overlay & shadows */
+  --overlay: var(--color-overlay);
+  --shadow-light: var(--color-shadow-light);
+  --shadow-dark: var(--color-shadow-dark);
+  --shadow-main: var(--color-shadow-main);
+
+  /* sidebar */
+  --sidebar-bg: var(--color-coolgray-800);
+  --sidebar-text: var(--color-text-primary);
+  --sidebar-active: var(--color-coollabs);
+  --sidebar-hover: var(--color-coolgray-700);
+  --sidebar-border: var(--color-coolgray-500);
+  --sidebar-ring: var(--color-coolgray-600);
 }
 
 :root {
   font-size: 15px;
-  @include generate-css-vars(map.get($colors, 'light'));
 
-  --cfy-accent: var(--color-coollabs);
-  --cfy-accent-light: var(--color-coollabs-100);
-  --cfy-sidebar-bg: var(--color-coolgray-700);
-  --cfy-secondary: var(--color-coolgray-100);
-  --cfy-content-bg: var(--color-base);
-  --cfy-card-container: var(--color-coolgray-200);
-  --cfy-card: var(--color-coolgray-300);
-  --cfy-text: var(--color-text-primary);
-  --cfy-muted: var(--color-text-muted);
-
-  --cfy-blur: 14px;
-  --cfy-shadow: 0 4px 20px var(--color-shadow-main);
-  --cfy-sidebar-w: 260px;
-
-  @each $key, $value in $radii {
-    --radius-#{$key}: #{$value};
-  }
-
-  --spacing: 0.25rem;
+  @include generate-color-vars(map.get($colors, 'light'));
+  @include semantic-tokens;
 }
 
 .dark {
-  @include generate-css-vars(map.get($colors, 'dark'));
+  @include generate-color-vars(map.get($colors, 'dark'));
+  @include semantic-tokens;
 }
