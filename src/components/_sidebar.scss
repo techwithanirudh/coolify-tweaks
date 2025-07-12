@@ -47,7 +47,7 @@ nav > ul > li > ul > li {
   align-items: center;
   padding: s(2.25) s(3.75);
   border-radius: var(--radius-sm) !important;
-  color: var(--muted);
+  color: var(--muted-foreground);
   font-weight: 500;
   transition:
     background 0.18s,
@@ -58,7 +58,7 @@ nav > ul > li > ul > li {
 .menu-item:hover,
 .menu-item-active {
   background: var(--popover) !important;
-  color: var(--text) !important;
+  color: var(--foreground) !important;
 }
 
 .menu-item .icon {

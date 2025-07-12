@@ -5,7 +5,7 @@
   border: 1px solid var(--color-coolgray-100) !important;
   border-radius: var(--radius-xs) !important; /* 12 px */
   background: var(--card) !important;
-  color: var(--text);
+  color: var(--foreground);
   transition:
     border-color 0.15s,
     background 0.15s;
@@ -17,7 +17,7 @@
 
   /* Placeholder text styling */
   &::placeholder {
-    color: var(--muted) !important;
+    color: var(--muted-foreground) !important;
     opacity: 0.7;
   }
 

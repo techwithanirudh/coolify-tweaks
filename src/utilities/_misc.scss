@@ -16,7 +16,7 @@ section:has(> div > div:only-child) > div > div:only-child {
   padding: s(5) !important;
   border-radius: var(--radius-sm) !important;
   background: var(--popover) !important;
-  color: var(--muted);
+  color: var(--muted-foreground);
   text-align: center;
 }
 
@@ -51,7 +51,7 @@ div[class*='flex flex-col gap-2'] {
 }
 
 a[class*='hover:underline']:hover {
-  color: var(--muted) !important;
+  color: var(--muted-foreground) !important;
   text-decoration: none !important;
 }
 
@@ -65,7 +65,7 @@ div[class*='p-4 border dark:border-coolgray-300'] {
 
 .dark\:hover\:bg-coolgray-100:where(.dark, .dark *):hover {
   background: none !important;
-  color: var(--text) !important;
+  color: var(--foreground) !important;
 }
 
 // Deployments card

@@ -16,16 +16,16 @@
 
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background: var(--muted);
+  background: var(--muted-foreground);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text);
+  background: var(--foreground);
 }
 
 /* Button to add tags to service */
 .add-tag {
-  color: var(--muted) !important;
+  color: var(--muted-foreground) !important;
 }
 
 /* take full width for compressed items, like checkboxes */

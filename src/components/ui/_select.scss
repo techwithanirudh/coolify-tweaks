@@ -11,7 +11,7 @@
   }
 
   &::picker-icon {
-    color: var(--muted);
+    color: var(--muted-foreground);
     transition: 0.4s rotate;
   }
 
@@ -20,8 +20,8 @@
   }
 
   &:disabled {
-    border-color: var(--muted) !important;
-    color: var(--muted) !important;
+    border-color: var(--muted-foreground) !important;
+    color: var(--muted-foreground) !important;
     cursor: not-allowed;
     pointer-events: none;
   }
@@ -65,7 +65,7 @@ option {
   justify-content: flex-start;
   padding: s(2.5);
   background: var(--card) !important;
-  color: var(--text);
+  color: var(--foreground);
   transition: 0.4s;
   gap: s(5);
 
@@ -84,7 +84,7 @@ option {
   &:hover,
   &:focus {
     background: var(--popover) !important;
-    color: var(--text);
+    color: var(--foreground);
   }
 
   .icon {
@@ -107,7 +107,7 @@ option {
   }
 
   &:disabled {
-    color: var(--muted) !important;
+    color: var(--muted-foreground) !important;
     cursor: not-allowed;
     opacity: 0.7;
     pointer-events: none;

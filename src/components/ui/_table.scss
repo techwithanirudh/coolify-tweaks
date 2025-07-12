@@ -9,7 +9,7 @@ table {
 
 [dashed],
 [class*='dashed'] {
-  border-color: var(--muted) !important;
+  border-color: var(--muted-foreground) !important;
   border-radius: var(--radius-sm) !important;
   padding-block: s(8) !important;
 }

@@ -7,34 +7,34 @@
 }
 
 h1 {
-  color: var(--text);
+  color: var(--foreground);
   font:
     700 2.1rem/1.25 'Geist',
     sans-serif;
 }
 
 h2 {
-  color: var(--text);
+  color: var(--foreground);
   font:
     700 1.5rem/1.35 'Geist',
     sans-serif;
 }
 
 h3 {
-  color: var(--text);
+  color: var(--foreground);
   font:
     700 1.25rem/1.35 'Geist',
     sans-serif;
 }
 
 h4 {
-  color: var(--text);
+  color: var(--foreground);
   font:
     700 1.1rem/1.35 'Geist',
     sans-serif;
 }
 
 .subtitle {
-  color: var(--muted);
+  color: var(--muted-foreground);
   font-size: 0.95rem;
 }
