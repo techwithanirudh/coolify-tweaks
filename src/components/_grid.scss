@@ -86,7 +86,8 @@ div.grid[class*='cols']:is(
 
     a[href*='/new']:hover,
     a[href*='/edit']:hover {
-      opacity: 0.8;
+      background: color-mix(in srgb, var(--secondary) 80%, transparent);
+      color: var(--foreground);
     }
   }
 }
