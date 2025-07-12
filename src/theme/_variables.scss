@@ -112,9 +112,8 @@ $radii: (
 
   /* forms & focus */
   --border: var(--color-coolgray-400);
-  --input-bg: var(--color-coolgray-100);
-  --input-border: var(--color-coolgray-300);
-  --focus-ring: var(--color-coollabs);
+  --input: var(--color-coolgray-100);
+  --ring: var(--color-coollabs);
 
   /* overlay & shadows */
   --overlay: var(--color-overlay);
