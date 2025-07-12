@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.3.1
+
+### Patch Changes
+
+- feat: add new font and update colors, and radius
+
 ## 3.3.0
 
 ### Minor Changes
