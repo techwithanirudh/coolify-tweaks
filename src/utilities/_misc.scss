@@ -81,3 +81,8 @@ div[class*='p-4 border dark:border-coolgray-300'] {
   border-radius: var(--radius-sm) !important;
   background: var(--cfy-card-container) !important;
 }
+
+.monaco-editor {
+  border-radius: var(--radius-sm) !important;
+  overflow: hidden;
+}
