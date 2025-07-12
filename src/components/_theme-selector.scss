@@ -2,7 +2,7 @@
 
 button[\@click='dropdownOpen=true']:has([x-show="theme === 'dark' || theme === 'system'"]) {
   border-radius: 10px !important;
-  background: var(--card) !important;
+  background: var(--secondary) !important;
   padding-block: s(2.75) !important;
 }
 

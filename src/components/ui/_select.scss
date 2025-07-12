@@ -6,8 +6,8 @@
 
   &:hover,
   &:focus {
-    border-color: var(--accent-light);
-    background: var(--popover);
+    border-color: var(--accent) / 0.8;
+    background: var(--popover) / 0.8;
   }
 
   &::picker-icon {
@@ -35,7 +35,7 @@ select,
 ::picker(select) {
   border: 1px solid var(--border) !important;
   border-radius: var(--radius-xs) !important;
-  background: var(--card) !important;
+  background: var(--secondary) !important;
 
   top: calc(anchor(bottom) + 4px);
 
@@ -56,7 +56,7 @@ select,
   &:disabled,
   &:disabled:popover-open {
     opacity: 0.6 !important;
-    background: var(--cfy-card-disabled) !important;
+    background: var(--secondary) / 0.6 !important;
   }
 }
 
@@ -64,7 +64,7 @@ option {
   display: flex;
   justify-content: flex-start;
   padding: s(2.5);
-  background: var(--card) !important;
+  background: var(--secondary) !important;
   color: var(--foreground);
   transition: 0.4s;
   gap: s(5);
@@ -77,13 +77,13 @@ option {
     border-radius: 0 0 var(--radius-xs) var(--radius-xs);
   }
 
-  &:not(option:last-of-type) {
+  &:not(:last-of-type) {
     border-bottom: none;
   }
 
   &:hover,
   &:focus {
-    background: var(--popover) !important;
+    background: var(--popover) / 0.8 !important;
     color: var(--foreground);
   }
 

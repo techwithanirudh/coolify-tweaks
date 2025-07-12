@@ -4,35 +4,42 @@
   padding: s(2.25) s(4);
   border: 1px solid var(--border) !important;
   border-radius: var(--radius-xs) !important; /* 12 px */
-  background: var(--accent);
-  color: var(--color-text) !important;
   font-weight: 600;
-  transition: background 0.18s;
-
-  &:hover {
-    background: var(--accent-light);
-  }
+  transition:
+    background 0.18s ease,
+    color 0.18s ease;
 }
 
 button.button,
 .button {
   @include button-base;
-}
+  background: var(--primary);
+  color: var(--primary-foreground) !important;
 
-/* Ensure proper text colors in light mode for buttons */
-html:not(.dark) {
-  button.button,
-  .button {
-    color: var(--color-base) !important;
+  &:hover {
+    background-color: color-mix(in srgb, var(--primary) 80%, transparent);
   }
 }
 
 button.secondary,
 .secondary {
+  @include button-base;
   background: var(--secondary) !important;
+  color: var(--secondary-foreground) !important;
 
   &:hover {
-    background: var(--popover) !important;
+    background-color: color-mix(in srgb, var(--secondary) 80%, transparent);
+  }
+}
+
+button.destructive,
+.destructive {
+  @include button-base;
+  background: var(--destructive) !important;
+  color: var(--destructive-foreground) !important;
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--destructive) 80%, transparent);
   }
 }
 

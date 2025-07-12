@@ -3,7 +3,7 @@
 @mixin input-base {
   padding: s(2.25) s(4);
   border: 1px solid var(--border) !important;
-  border-radius: var(--radius-xs) !important; /* 12 px */
+  border-radius: var(--radius-xs) !important; /* 12px */
   background: var(--card) !important;
   color: var(--foreground);
   transition:
@@ -11,8 +11,9 @@
     background 0.15s;
 
   &:focus {
-    border-color: var(--accent-light) !important;
-    background: var(--popover) !important;
+    // 80% opacity versions of your accent & popover
+    border-color: var(--accent) / 0.8 !important;
+    background: var(--popover) / 0.8 !important;
   }
 
   /* Placeholder text styling */
@@ -38,6 +39,10 @@ input[type='radio'] {
   border-radius: 4px !important;
   background-color: var(--card) !important;
   transition: background 0.18s;
+
+  &:focus {
+    background: var(--accent) / 0.8;
+  }
 }
 
 label {

@@ -38,8 +38,8 @@ $colors: (
   'dark': (
     'base': #1f1c23,
     'coolgray-100': #26252b,
-    'coolgray-200': #2a292e,
-    'coolgray-300': #363239,
+    'coolgray-200': #363239,
+    'coolgray-300': #26252b,
     'coolgray-400': #3f3b42,
     'coolgray-500': #45424a,
     'coolgray-600': #403d44,
@@ -48,10 +48,10 @@ $colors: (
     'coolgray-900': #101014,
     'coollabs': #483492,
     'coollabs-100': color-mix(in srgb, #483492 75%, #ffffff),
-    'success': #25f1bb,
-    'warning': #545026,
-    'error': #502b2d,
-    'text-primary': #ede3f4,
+    'success': #23ff1f,
+    'warning': #fcd452,
+    'error': #ff1f1c,
+    'text-primary': #ffffff,
     'text-muted': #8e8c91,
     'placeholder': #8e8c91,
     'overlay': rgba(0, 0, 0, 0.6),
@@ -112,7 +112,7 @@ $radii: (
   --success: var(--color-success);
 
   /* borders & rings */
-  --border: var(--color-coolgray-300);
+  --border: var(--color-coolgray-400);
   --input: var(--color-coolgray-100);
   --ring: var(--color-coollabs);
 
