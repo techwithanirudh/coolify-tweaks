@@ -4,7 +4,7 @@ ul[x-data] li > span {
   border: 1px solid var(--border) !important;
   background: var(--card) !important;
   font-family: 'Inter', sans-serif;
-  backdrop-filter: blur(var(--cfy-blur));
+  backdrop-filter: blur(var(--blur));
 }
 
 @keyframes wiggle {

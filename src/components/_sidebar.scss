@@ -4,7 +4,7 @@
      Instead of fragile width/flex classes, it's identified by its fixed position on large screens 
      and the fact that it contains the main navigation (`a[title="Dashboard"]`). This is much more stable. */
 div.lg\:fixed:has(nav a[title='Dashboard']) {
-  width: var(--cfy-sidebar-w) !important;
+  width: var(--sidebar-width) !important;
 }
 
 nav[x-data]:has(a[title='Dashboard']) {
@@ -13,7 +13,7 @@ nav[x-data]:has(a[title='Dashboard']) {
   width: 100%;
   border-right: 1px solid var(--border);
   background: var(--sidebar) !important;
-  backdrop-filter: blur(var(--cfy-blur)) !important;
+  backdrop-filter: blur(var(--blur)) !important;
   scrollbar-width: thin;
   scrollbar-color: var(--accent) transparent;
 }
@@ -147,7 +147,7 @@ nav > ul > li > ul > li {
     position: fixed;
     z-index: 60;
     transition: transform 0.25s;
-    transform: translateX(calc(-1 * var(--cfy-sidebar-w)));
+    transform: translateX(calc(-1 * var(--sidebar-width)));
     inset: 0;
   }
 
@@ -167,6 +167,6 @@ nav > ul > li > ul > li {
 /* Desktop push */
 @include mq(lg) {
   body:has(nav[class*='dark:border-coolgray-200']) main {
-    padding-left: var(--cfy-sidebar-w) !important;
+    padding-left: var(--sidebar-width) !important;
   }
 }

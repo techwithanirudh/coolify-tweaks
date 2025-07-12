@@ -28,6 +28,10 @@
   color: var(--muted-foreground) !important;
 }
 
+.add-tag:hover {
+  color: var(--foreground) !important;
+}
+
 /* take full width for compressed items, like checkboxes */
 div[class='w-48'],
 div[class*='w-64'],

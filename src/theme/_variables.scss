@@ -99,7 +99,7 @@ $radii: (
 
   /* primary / secondary */
   --primary: var(--color-coollabs);
-  --primary-foreground: var(--color-base);
+  --primary-foreground: var(--color-foreground);
   --secondary: var(--color-coolgray-300);
   --secondary-foreground: var(--color-text-primary);
   --accent: var(--color-coollabs-100);
@@ -126,6 +126,10 @@ $radii: (
   --sidebar-primary: var(--color-coollabs);
   --sidebar-accent: var(--color-coollabs-100);
   --sidebar-border: var(--color-coolgray-600);
+  --sidebar-width: 260px;
+
+  /* blur */
+  --blur: 10px;
 }
 
 :root {
