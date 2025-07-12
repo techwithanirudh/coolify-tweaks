@@ -32,34 +32,36 @@ div.grid[class*='cols']:is(
 
   .box {
     height: 150px;
+    padding: s(4.5) s(5) !important;
 
+    > div {
+      margin: 0;
+    }
+
+    > div:only-child,
     &:has(> div + div) {
       display: flex;
       flex-direction: column-reverse;
       justify-content: space-between;
-      align-items: center;
-      // the box already has 2.5 and 3 padding so we need to add 2.5+1.5 and 3+2 padding
-      padding: s(4) s(5) !important;
-    }
-
-    > div:only-child {
-      display: flex;
-      flex-direction: column-reverse;
-      justify-content: space-between;
-      align-items: center;
-      margin: s(1.5) s(2);
+      align-items: start;
     }
 
     div:has(> .box-title) {
       flex: none;
       justify-content: flex-start;
       width: 100%;
+      padding-inline: 0;
     }
 
     div:has(> .box-title) + div {
       justify-content: flex-end;
       width: 100%;
       margin-inline: 0;
+    }
+
+    .box-description,
+    .box-title {
+      padding: 0;
     }
 
     a[href*='/edit'],
