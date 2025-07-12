@@ -6,8 +6,8 @@
 
   &:hover,
   &:focus {
-    border-color: var(--accent) / 0.8;
-    background: var(--popover) / 0.8;
+    border-color: color-mix(in srgb, var(--accent) 80%, transparent);
+    background: color-mix(in srgb, var(--popover) 80%, transparent);
   }
 
   &::picker-icon {
@@ -56,7 +56,7 @@ select,
   &:disabled,
   &:disabled:popover-open {
     opacity: 0.6 !important;
-    background: var(--secondary) / 0.6 !important;
+    background: color-mix(in srgb, var(--secondary) 60%, transparent) !important;
   }
 }
 
@@ -83,7 +83,7 @@ option {
 
   &:hover,
   &:focus {
-    background: var(--popover) / 0.8 !important;
+    background: color-mix(in srgb, var(--popover) 80%, transparent) !important;
     color: var(--foreground);
   }
 

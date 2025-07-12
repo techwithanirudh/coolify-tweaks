@@ -11,9 +11,9 @@
     background 0.15s;
 
   &:focus {
-    // 80% opacity versions of your accent & popover
-    border-color: var(--accent) / 0.8 !important;
-    background: var(--popover) / 0.8 !important;
+    // 80% opacity versions of your accent & popover using color-mix
+    border-color: color-mix(in srgb, var(--accent) 80%, transparent) !important;
+    background: color-mix(in srgb, var(--popover) 80%, transparent) !important;
   }
 
   /* Placeholder text styling */
@@ -41,7 +41,7 @@ input[type='radio'] {
   transition: background 0.18s;
 
   &:focus {
-    background: var(--accent) / 0.8;
+    background-color: color-mix(in srgb, var(--accent) 80%, transparent);
   }
 }
 
