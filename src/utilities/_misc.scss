@@ -27,7 +27,7 @@ div[class*='shadow-lg lg:border-t dark:border-coolgray-300'] {
 }
 
 // Push all buttons to the right from the headings for many sections
-:is(.flex.gap-2, .flex.items.center.gap-4, .flex.flex-col.gap-4) > :is(h1, h2, h3, h4) {
+:is(.flex.gap-2, .flex.items-center.gap-4, .flex.flex-col.gap-4) > :is(h1, h2, h3, h4) {
   margin-right: auto;
 }
 
