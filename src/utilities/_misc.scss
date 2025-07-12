@@ -42,7 +42,7 @@ div[class='flex flex-col gap-4 max-w-2xl'] {
 input.dark\:bg-coolgray-100:where(.dark, .dark *) {
   padding: s(2.75);
   border-radius: 4px !important;
-  background-color: var(--cfy-card) !important;
+  background-color: var(--card) !important;
   transition: background 0.18s;
 }
 

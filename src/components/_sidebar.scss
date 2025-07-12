@@ -12,7 +12,7 @@ nav[x-data]:has(a[title='Dashboard']) {
   overflow-y: auto !important;
   width: 100%;
   border-right: 1px solid var(--color-coolgray-100);
-  background: var(--cfy-sidebar-bg) !important;
+  background: var(--sidebar) !important;
   backdrop-filter: blur(var(--cfy-blur)) !important;
   scrollbar-width: thin;
   scrollbar-color: var(--cfy-accent) transparent;
