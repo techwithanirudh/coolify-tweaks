@@ -1,6 +1,6 @@
 @use 'sass:map';
 
-// Breakpoints
+//── breakpoints (if you need ’em)
 $breakpoints: (
   sm: 640px,
   md: 768px,
@@ -9,7 +9,7 @@ $breakpoints: (
   xxl: 1536px,
 );
 
-// Colors
+//── your full palettes
 $colors: (
   'light': (
     'base': #ffffff,
@@ -20,7 +20,6 @@ $colors: (
     'coolgray-500': #cfd1d8,
     'coolgray-600': #c6c8d0,
     'coolgray-700': #f4f5f7,
-    // sidebar
     'coolgray-800': #edeef1,
     'coolgray-900': #e6e7eb,
     'coollabs': #4c3495,
@@ -39,72 +38,108 @@ $colors: (
   'dark': (
     'base': #1f1c23,
     'coolgray-100': #26252b,
-    'coolgray-200': #2a292e,
-    'coolgray-300': #353239,
-    'coolgray-400': #3d3a40,
+    'coolgray-200': #363239,
+    'coolgray-300': #26252b,
+    'coolgray-400': #3f3b42,
     'coolgray-500': #45424a,
     'coolgray-600': #403d44,
-    'coolgray-700': #1a191f,
-    // sidebar bg
-    'coolgray-800': #151419,
+    'coolgray-700': #2d2531,
+    'coolgray-800': #1a191f,
     'coolgray-900': #101014,
     'coollabs': #483492,
     'coollabs-100': color-mix(in srgb, #483492 75%, #ffffff),
     'success': #23ff1f,
     'warning': #fcd452,
     'error': #ff1f1c,
-    'text-primary': #ede3f4,
+    'text-primary': #ffffff,
     'text-muted': #8e8c91,
     'placeholder': #8e8c91,
+    'overlay': rgba(0, 0, 0, 0.6),
+    'shadow-light': rgba(255, 255, 255, 0.15),
+    'shadow-dark': rgba(0, 0, 0, 0.35),
+    'shadow-main': rgba(255, 255, 255, 0.25),
   ),
 );
 
-// Radii
+//── radii
 $radii-base: 14px;
 $radii-step: 2px;
 $radii: (
-  'base': $radii-base,
-  'step': $radii-step,
-  'xs': calc($radii-base - ($radii-step * 2)),
+  '': $radii-base,
+  'xs': calc($radii-base - $radii-step * 2),
   'sm': calc($radii-base - $radii-step),
   'md': $radii-base,
   'lg': calc($radii-base + $radii-step),
-  'xl': calc($radii-base + ($radii-step * 2)),
+  'xl': calc($radii-base + $radii-step * 2),
 );
 
-// Spacing (example, adjust as needed)
-
-@mixin generate-css-vars($theme-map) {
-  @each $key, $value in $theme-map {
-    --color-#{$key}: #{$value};
+//── mixin to emit raw color vars
+@mixin generate-color-vars($theme-map) {
+  @each $name, $val in $theme-map {
+    --color-#{$name}: #{$val};
   }
+}
+
+//── semantic tokens
+@mixin semantic-tokens {
+  /* geometry */
+  @each $key, $value in $radii {
+    --radius#{if($key != '', '-' + $key, '')}: #{$value};
+  }
+
+  /* surfaces */
+  --background: var(--color-base);
+  --foreground: var(--color-text-primary);
+  --muted: var(--color-coolgray-100);
+  --muted-foreground: var(--color-text-muted);
+  --card: var(--color-coolgray-200);
+  --card-foreground: var(--color-text-primary);
+  --popover: var(--color-coolgray-100);
+  --popover-foreground: var(--color-text-primary);
+
+  /* primary / secondary */
+  --primary: var(--color-coollabs);
+  --primary-foreground: var(--color-foreground);
+  --secondary: var(--color-coolgray-300);
+  --secondary-foreground: var(--color-text-primary);
+  --accent: var(--color-coollabs-100);
+  --accent-foreground: var(--color-base);
+
+  /* destructive / warn / success */
+  --destructive: var(--color-error);
+  --destructive-foreground: var(--color-base);
+  --warning: var(--color-warning);
+  --success: var(--color-success);
+
+  /* borders & rings */
+  --border: var(--color-coolgray-400);
+  --input: var(--color-coolgray-100);
+  --ring: var(--color-coollabs);
+
+  /* overlay & shadows */
+  --overlay: var(--color-overlay);
+  --shadow: var(--color-shadow-main);
+
+  /* sidebar extras */
+  --sidebar: var(--color-coolgray-800);
+  --sidebar-foreground: var(--color-text-primary);
+  --sidebar-primary: var(--color-coollabs);
+  --sidebar-accent: var(--color-coollabs-100);
+  --sidebar-border: var(--color-coolgray-600);
+  --sidebar-width: 260px;
+
+  /* blur */
+  --blur: 10px;
 }
 
 :root {
   font-size: 15px;
-  @include generate-css-vars(map.get($colors, 'light'));
 
-  --cfy-accent: var(--color-coollabs);
-  --cfy-accent-light: var(--color-coollabs-100);
-  --cfy-sidebar-bg: var(--color-coolgray-700);
-  --cfy-secondary: var(--color-coolgray-100);
-  --cfy-content-bg: var(--color-base);
-  --cfy-card-container: var(--color-coolgray-200);
-  --cfy-card: var(--color-coolgray-300);
-  --cfy-text: var(--color-text-primary);
-  --cfy-muted: var(--color-text-muted);
-
-  --cfy-blur: 14px;
-  --cfy-shadow: 0 4px 20px var(--color-shadow-main);
-  --cfy-sidebar-w: 260px;
-
-  @each $key, $value in $radii {
-    --radius-#{$key}: #{$value};
-  }
-
-  --spacing: 0.25rem; // Base spacing unit
+  @include generate-color-vars(map.get($colors, 'light'));
+  @include semantic-tokens;
 }
 
 .dark {
-  @include generate-css-vars(map.get($colors, 'dark'));
+  @include generate-color-vars(map.get($colors, 'dark'));
+  @include semantic-tokens;
 }

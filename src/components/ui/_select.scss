@@ -6,12 +6,12 @@
 
   &:hover,
   &:focus {
-    border-color: var(--cfy-accent-light);
-    background: var(--cfy-card-container);
+    border-color: color-mix(in srgb, var(--accent) 80%, transparent);
+    background: color-mix(in srgb, var(--popover) 80%, transparent);
   }
 
   &::picker-icon {
-    color: var(--cfy-muted);
+    color: var(--muted-foreground);
     transition: 0.4s rotate;
   }
 
@@ -20,8 +20,8 @@
   }
 
   &:disabled {
-    border-color: var(--cfy-muted) !important;
-    color: var(--cfy-muted) !important;
+    border-color: var(--muted-foreground) !important;
+    color: var(--muted-foreground) !important;
     cursor: not-allowed;
     pointer-events: none;
   }
@@ -33,9 +33,9 @@ select,
 }
 
 ::picker(select) {
-  border: 1px solid var(--color-coolgray-400) !important;
+  border: 1px solid var(--border) !important;
   border-radius: var(--radius-xs) !important;
-  background: var(--cfy-card) !important;
+  background: var(--secondary) !important;
 
   top: calc(anchor(bottom) + 4px);
 
@@ -56,7 +56,7 @@ select,
   &:disabled,
   &:disabled:popover-open {
     opacity: 0.6 !important;
-    background: var(--cfy-card-disabled) !important;
+    background: color-mix(in srgb, var(--secondary) 60%, transparent) !important;
   }
 }
 
@@ -64,8 +64,8 @@ option {
   display: flex;
   justify-content: flex-start;
   padding: s(2.5);
-  background: var(--cfy-card) !important;
-  color: var(--cfy-text);
+  background: var(--secondary) !important;
+  color: var(--foreground);
   transition: 0.4s;
   gap: s(5);
 
@@ -77,14 +77,14 @@ option {
     border-radius: 0 0 var(--radius-xs) var(--radius-xs);
   }
 
-  &:not(option:last-of-type) {
+  &:not(:last-of-type) {
     border-bottom: none;
   }
 
   &:hover,
   &:focus {
-    background: var(--cfy-card-container) !important;
-    color: var(--cfy-text);
+    background: color-mix(in srgb, var(--popover) 80%, transparent) !important;
+    color: var(--foreground);
   }
 
   .icon {
@@ -107,7 +107,7 @@ option {
   }
 
   &:disabled {
-    color: var(--cfy-muted) !important;
+    color: var(--muted-foreground) !important;
     cursor: not-allowed;
     opacity: 0.7;
     pointer-events: none;

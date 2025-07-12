@@ -6,7 +6,7 @@ div.grid[class*='cols'] {
   margin-top: s(2.5);
   padding: s(3) s(3.5) !important;
   border-radius: var(--radius-md) !important;
-  background: var(--cfy-card-container) !important;
+  background: var(--popover) !important;
 }
 
 div.grid[class*='cols']:is(
@@ -67,7 +67,7 @@ div.grid[class*='cols']:is(
     a[href*='/edit'],
     a[href*='/new'] {
       padding: s(1.5);
-      background-color: var(--color-coolgray-400);
+      background-color: var(--secondary);
       border-radius: var(--radius-xs);
       margin-inline: 0;
 
@@ -86,7 +86,8 @@ div.grid[class*='cols']:is(
 
     a[href*='/new']:hover,
     a[href*='/edit']:hover {
-      opacity: 0.8;
+      background: color-mix(in srgb, var(--secondary) 80%, transparent);
+      color: var(--foreground);
     }
   }
 }

@@ -2,22 +2,23 @@
 
 @mixin input-base {
   padding: s(2.25) s(4);
-  border: 1px solid var(--color-coolgray-400) !important;
-  border-radius: var(--radius-xs) !important; /* 12 px */
-  background: var(--cfy-card) !important;
-  color: var(--cfy-text);
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-xs) !important; /* 12px */
+  background: var(--card) !important;
+  color: var(--foreground);
   transition:
     border-color 0.15s,
     background 0.15s;
 
   &:focus {
-    border-color: var(--cfy-accent-light) !important;
-    background: var(--cfy-card-container) !important;
+    // 80% opacity versions of your accent & popover using color-mix
+    border-color: color-mix(in srgb, var(--accent) 80%, transparent) !important;
+    background: color-mix(in srgb, var(--popover) 80%, transparent) !important;
   }
 
   /* Placeholder text styling */
   &::placeholder {
-    color: var(--cfy-muted) !important;
+    color: var(--muted-foreground) !important;
     opacity: 0.7;
   }
 
@@ -36,8 +37,12 @@ input[type='checkbox'],
 input[type='radio'] {
   padding: s(2.75);
   border-radius: 4px !important;
-  background-color: var(--cfy-card) !important;
+  background-color: var(--card) !important;
   transition: background 0.18s;
+
+  &:focus {
+    background-color: color-mix(in srgb, var(--accent) 80%, transparent);
+  }
 }
 
 label {
