@@ -1,6 +1,6 @@
 @use 'sass:map';
 
-//── breakpoints (if you need ’em)
+//── breakpoints
 $breakpoints: (
   sm: 640px,
   md: 768px,
@@ -88,44 +88,37 @@ $radii: (
   }
 
   /* surfaces */
-  --background: var(--color-base);
-  --foreground: var(--color-text-primary);
-  --muted: var(--color-coolgray-100);
-  --muted-foreground: var(--color-text-muted);
-  --card: var(--color-coolgray-200);
-  --card-foreground: var(--color-text-primary);
-  --popover: var(--color-coolgray-100);
-  --popover-foreground: var(--color-text-primary);
-
-  /* primary / secondary */
-  --primary: var(--color-coollabs);
-  --primary-foreground: var(--color-foreground);
-  --secondary: var(--color-coolgray-300);
-  --secondary-foreground: var(--color-text-primary);
-  --accent: var(--color-coollabs-100);
-  --accent-foreground: var(--color-base);
-
-  /* destructive / warn / success */
-  --destructive: var(--color-error);
-  --destructive-foreground: #42292f;
-  --warning: var(--color-warning);
-  --success: var(--color-success);
-
-  /* borders & rings */
-  --border: var(--color-coolgray-400);
-  --input: var(--color-coolgray-100);
-  --ring: var(--color-coollabs);
-
-  /* overlay & shadows */
-  --overlay: var(--color-overlay);
-  --shadow: var(--color-shadow-main);
-
-  /* sidebar extras */
-  --sidebar: var(--color-coolgray-800);
-  --sidebar-foreground: var(--color-text-primary);
-  --sidebar-primary: var(--color-coollabs);
-  --sidebar-accent: var(--color-coollabs-100);
-  --sidebar-border: var(--color-coolgray-600);
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
   --sidebar-width: 260px;
 
   /* blur */
