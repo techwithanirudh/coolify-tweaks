@@ -1,6 +1,6 @@
 @use 'sass:map';
 
-//── breakpoints
+// breakpoints
 $breakpoints: (
   sm: 640px,
   md: 768px,
@@ -9,59 +9,7 @@ $breakpoints: (
   xxl: 1536px,
 );
 
-//── your full palettes
-$colors: (
-  'light': (
-    'base': #ffffff,
-    'coolgray-100': #f6f7f9,
-    'coolgray-200': #eceef2,
-    'coolgray-300': #e3e5ea,
-    'coolgray-400': #d8dae0,
-    'coolgray-500': #cfd1d8,
-    'coolgray-600': #c6c8d0,
-    'coolgray-700': #f4f5f7,
-    'coolgray-800': #edeef1,
-    'coolgray-900': #e6e7eb,
-    'coollabs': #4c3495,
-    'coollabs-100': color-mix(in srgb, #4c3495 85%, #ffffff),
-    'success': #2aaa52,
-    'warning': #e0b842,
-    'error': #d63b3b,
-    'text-primary': #1f1c23,
-    'text-muted': #6e6b75,
-    'placeholder': #8e8c91,
-    'overlay': rgba(0, 0, 0, 0.6),
-    'shadow-light': rgba(0, 0, 0, 0.15),
-    'shadow-dark': rgba(0, 0, 0, 0.35),
-    'shadow-main': rgba(0, 0, 0, 0.25),
-  ),
-  'dark': (
-    'base': #1f1c23,
-    'coolgray-100': #26252b,
-    'coolgray-200': #363239,
-    'coolgray-300': #26252b,
-    'coolgray-400': #3f3b42,
-    'coolgray-500': #45424a,
-    'coolgray-600': #403d44,
-    'coolgray-700': #2d2531,
-    'coolgray-800': #1a191f,
-    'coolgray-900': #101014,
-    'coollabs': #483492,
-    'coollabs-100': color-mix(in srgb, #483492 75%, #ffffff),
-    'success': #23ff1f,
-    'warning': #fcd452,
-    'error': #fd7b74,
-    'text-primary': #ffffff,
-    'text-muted': #8e8c91,
-    'placeholder': #8e8c91,
-    'overlay': rgba(0, 0, 0, 0.6),
-    'shadow-light': rgba(255, 255, 255, 0.15),
-    'shadow-dark': rgba(0, 0, 0, 0.35),
-    'shadow-main': rgba(255, 255, 255, 0.25),
-  ),
-);
-
-//── radii
+// radius
 $radii-base: 14px;
 $radii-step: 2px;
 $radii: (
@@ -73,44 +21,89 @@ $radii: (
   'xl': calc($radii-base + $radii-step * 2),
 );
 
-//── mixin to emit raw color vars
-@mixin generate-color-vars($theme-map) {
-  @each $name, $val in $theme-map {
-    --color-#{$name}: #{$val};
-  }
-}
+:root {
+  font-size: 15px;
 
-//── semantic tokens
-@mixin semantic-tokens {
   /* geometry */
   @each $key, $value in $radii {
     --radius#{if($key != '', '-' + $key, '')}: #{$value};
   }
 
-  /* surfaces */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --info: oklch(0.398 0.07 227.392);
+  --success: oklch(0.6 0.118 184.704);
+  --warn: oklch(0.828 0.189 84.429);
+
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-width: 260px;
+
+  /* blur */
+  --blur: 10px;
+}
+
+.dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
+
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
+
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
+
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
+
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
+
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
+
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
+
   --destructive: oklch(0.704 0.191 22.216);
+  --info: oklch(0.488 0.243 264.376);
+  --success: oklch(0.696 0.17 162.48);
+  --warn: oklch(0.769 0.188 70.08);
+
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
+
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -119,20 +112,12 @@ $radii: (
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-  --sidebar-width: 260px;
-
-  /* blur */
-  --blur: 10px;
 }
 
 :root {
-  font-size: 15px;
-
-  @include generate-color-vars(map.get($colors, 'light'));
-  @include semantic-tokens;
-}
-
-.dark {
-  @include generate-color-vars(map.get($colors, 'dark'));
-  @include semantic-tokens;
+  --color-base: var(--background) !important;
+  --color-coollabs: var(--primary) !important;
+  --color-error: var(--destructive) !important;
+  --color-success: var(--chart-2) !important;
+  --color-text-primary: var(--foreground) !important;
 }
