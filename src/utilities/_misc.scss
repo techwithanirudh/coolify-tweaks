@@ -23,26 +23,10 @@ div[class*='flex flex-col gap-2'] {
   gap: s(4) !important;
 }
 
-/* “Sponsor us” box and similar */
+/* "Sponsor us" box and similar */
 div[class*='p-4 border dark:border-coolgray-300'] {
   margin-top: s(4);
   padding: s(4) s(6);
   border-radius: var(--radius-sm) !important;
   background: var(--popover) !important;
-}
-
-// Deployments card
-.p-2.border-l-2.bg-white.dark\:bg-coolgray-100 {
-  padding: s(2);
-  background-color: var(--card) !important;
-  color: var(--card-foreground) !important;
-  border-radius: var(--radius-sm) !important;
-}
-
-.p-4.my-4.border.dark\:border-coolgray-200.border-neutral-200 {
-  padding: s(4);
-  margin-top: s(4);
-  border-radius: var(--radius-sm) !important;
-  background: var(--card) !important;
-  color: var(--card-foreground) !important;
 }
