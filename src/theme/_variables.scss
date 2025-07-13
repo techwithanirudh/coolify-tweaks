@@ -117,7 +117,10 @@ $radii: (
 :root {
   --color-base: var(--background) !important;
   --color-coollabs: var(--primary) !important;
-  --color-error: var(--destructive) !important;
-  --color-success: var(--chart-2) !important;
   --color-text-primary: var(--foreground) !important;
+
+  --color-error: var(--destructive) !important;
+  --color-success: var(--success) !important;
+  --color-warning: var(--warn) !important;
+  --color-info: var(--info) !important;
 }

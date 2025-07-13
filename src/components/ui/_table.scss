@@ -4,7 +4,6 @@ table {
   overflow: hidden !important;
   margin-top: s(4);
   border-radius: var(--radius-sm) !important;
-  background: var(--popover) !important;
 }
 
 [dashed],
@@ -17,15 +16,11 @@ table {
 [role='row']:not([dashed]) {
   padding: s(2.5) s(3.25);
   border-radius: var(--radius-sm) !important;
-  background: var(--card) !important;
+  background: var(--muted) !important;
 }
 
 @media (hover: hover) {
-  tr:where(.dark, .dark *):hover {
-    background: color-mix(in srgb, var(--card) 80%, transparent);
-  }
-
-  tr:where(.light, .light *):hover {
-    background: color-mix(in srgb, var(--card) 90%, transparent);
+  tr:hover {
+    background: color-mix(in srgb, var(--muted) 50%, transparent) !important;
   }
 }
