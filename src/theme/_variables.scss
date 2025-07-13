@@ -53,8 +53,7 @@ $radii: (
   --ring: oklch(0 0 0);
 
   --success: oklch(0.7459 0.1483 156.4499);
-  --warning: oklch(0.5393 0.2713 286.7462);
-  --error: oklch(0.7336 0.1758 50.5517);
+  --warning: oklch(0.7336 0.1758 50.5517);
   --info: oklch(0.5828 0.1809 259.7276);
 
   --sidebar: oklch(0.97 0.0029 264.542);
@@ -109,8 +108,7 @@ $radii: (
   --ring: oklch(0.6132 0.2294 291.7437);
 
   --success: oklch(0.8003 0.1821 151.711);
-  --warning: oklch(0.6132 0.2294 291.7437);
-  --error: oklch(0.8077 0.1035 19.5706);
+  --warning: oklch(0.7336 0.1758 50.5517);
   --info: oklch(0.6691 0.1569 260.1063);
 
   --sidebar: oklch(0.2172 0.0117 293.0436);
@@ -151,6 +149,6 @@ $radii: (
 
   --color-error: var(--destructive) !important;
   --color-success: var(--success) !important;
-  --color-warning: var(--warn) !important;
+  --color-warning: var(--warning) !important;
   --color-info: var(--info) !important;
 }
