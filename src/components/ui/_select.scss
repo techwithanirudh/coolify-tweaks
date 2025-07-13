@@ -6,8 +6,8 @@
 
   &:hover,
   &:focus {
-    border-color: color-mix(in srgb, var(--accent) 80%, transparent) !important;
-    background: var(--muted) !important;
+    border-color: var(--border) !important;
+    background: var(--accent) !important;
   }
 
   &::picker-icon {
@@ -41,7 +41,7 @@ select,
 ::picker(select) {
   border: 1px solid var(--border) !important;
   border-radius: var(--radius-xs) !important;
-  background: var(--secondary) !important;
+  background: var(--popover) !important;
 
   top: calc(anchor(bottom) + 4px);
 
@@ -67,7 +67,7 @@ select,
   &:disabled,
   &:disabled:popover-open {
     opacity: 0.6 !important;
-    background: color-mix(in srgb, var(--secondary) 60%, transparent) !important;
+    background: color-mix(in srgb, var(--popover) 60%, transparent) !important;
   }
 }
 
@@ -75,8 +75,8 @@ option {
   display: flex;
   justify-content: flex-start;
   padding: s(2.5);
-  background: var(--secondary) !important;
-  color: var(--foreground);
+  background: var(--popover) !important;
+  color: var(--popover-foreground) !important;
   transition: 0.4s;
   gap: s(5);
 
@@ -94,8 +94,8 @@ option {
 
   &:hover,
   &:focus {
-    background: var(--muted) !important;
-    color: var(--foreground);
+    background: var(--accent) !important;
+    color: var(--accent-foreground);
   }
 
   .icon {
@@ -125,7 +125,7 @@ option {
   &:disabled {
     color: var(--muted-foreground) !important;
     cursor: not-allowed;
-    opacity: 0.7;
+    opacity: 0.5;
     pointer-events: none;
   }
 }

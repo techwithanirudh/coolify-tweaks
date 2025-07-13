@@ -13,7 +13,7 @@
   &:focus {
     // 80% opacity versions of your accent & popover using color-mix
     border-color: color-mix(in srgb, var(--accent) 80%, transparent) !important;
-    background: color-mix(in srgb, var(--popover) 80%, transparent) !important;
+    // background: color-mix(in srgb, var(--popover) 80%, transparent) !important;
   }
 
   /* Placeholder text styling */
