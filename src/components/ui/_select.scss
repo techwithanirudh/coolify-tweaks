@@ -33,8 +33,8 @@
     color: var(--muted-foreground);
     transition: 0.4s rotate;
     content: '';
-    width: s(4.5);
-    height: s(5);
+    width: s(4);
+    height: s(4.5);
     @include icon('caret-down-bold', 'bold');
   }
 
