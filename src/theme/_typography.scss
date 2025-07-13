@@ -1,9 +1,10 @@
 @use 'globals' as *;
 
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap');
 
 :root {
   --default-font-family: 'Geist', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
 }
 
 h1 {

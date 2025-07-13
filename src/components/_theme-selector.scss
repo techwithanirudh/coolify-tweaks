@@ -7,6 +7,10 @@ button[\@click='dropdownOpen=true']:has([x-show="theme === 'dark' || theme === '
   padding-block: s(2.75) !important;
   border: 1px solid var(--border) !important;
 
+  & svg {
+    fill: var(--secondary-foreground) !important;
+  }
+
   & > span > div {
     justify-content: center;
   }
