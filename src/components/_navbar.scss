@@ -24,7 +24,7 @@
 .navbar-main nav a {
   padding: s(1.25);
   border-radius: 10px !important;
-  color: var(--muted-foreground);
+  color: var(--sidebar-foreground);
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -33,12 +33,12 @@
 }
 
 .navbar-main nav a:hover {
-  color: var(--foreground) !important;
+  color: var(--sidebar-accent-foreground) !important;
 }
 
 .navbar-main nav a[class*='dark:text-white'],
 .navbar-main nav a[aria-current='page'] {
-  color: var(--foreground) !important;
+  color: var(--sidebar-accent-foreground) !important;
 }
 
 .navbar-main .flex-1 {

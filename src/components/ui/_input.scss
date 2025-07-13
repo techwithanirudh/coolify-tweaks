@@ -68,6 +68,7 @@
 }
 
 input.input,
+input.input-sticky,
 textarea.input,
 select.select {
   @include input-base;

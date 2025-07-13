@@ -34,7 +34,8 @@ div[class*='p-4 border dark:border-coolgray-300'] {
 // Deployments card
 .p-2.border-l-2.bg-white.dark\:bg-coolgray-100 {
   padding: s(2);
-  background-color: var(--popover) !important;
+  background-color: var(--card) !important;
+  color: var(--card-foreground) !important;
   border-radius: var(--radius-sm) !important;
 }
 
@@ -42,5 +43,6 @@ div[class*='p-4 border dark:border-coolgray-300'] {
   padding: s(4);
   margin-top: s(4);
   border-radius: var(--radius-sm) !important;
-  background: var(--popover) !important;
+  background: var(--card) !important;
+  color: var(--card-foreground) !important;
 }
