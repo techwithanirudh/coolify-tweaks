@@ -1,11 +1,44 @@
 @use 'globals' as *;
 
+/* Section */
+// Increase header size and add padding
+section > h2 + div,
+section > h3 + div {
+  overflow: hidden;
+  margin-top: s(2.5);
+  padding: s(3) s(3.5) !important;
+  border-radius: var(--radius-md) !important;
+  /* 14 px */
+  background: var(--popover) !important;
+}
+
+section h3[class='pb-2'] {
+  font-size: 1.6rem;
+}
+
+// Push all buttons to the right from the headings for many sections
+:is(.flex.gap-2, .flex.items-center.gap-4, .flex.flex-col.gap-4) > :is(h1, h2, h3, h4) {
+  margin-right: auto;
+}
+
+/* Cleanup Links */
+a[class*='hover:underline']:hover {
+  color: var(--muted-foreground) !important;
+  text-decoration: none !important;
+}
+
+/* Monaco Editor */
+.monaco-editor {
+  border-radius: var(--radius-sm) !important;
+  overflow: hidden;
+}
+
 /* Sponsorship Popup Styles */
 [x-show='popups.sponsorship'] {
   padding: s(5) !important;
   border-radius: var(--radius-sm) !important;
-  background: var(--cfy-card-container) !important;
-  box-shadow: var(--cfy-shadow) !important;
+  background: var(--popover) !important;
+  box-shadow: var(--shadow-lg) !important;
 }
 
 /* Scrollbars */
@@ -16,16 +49,20 @@
 
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background: var(--cfy-muted);
+  background: var(--muted);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--cfy-text);
+  background: var(--foreground);
 }
 
 /* Button to add tags to service */
 .add-tag {
-  color: var(--cfy-muted) !important;
+  color: var(--muted-foreground) !important;
+}
+
+.add-tag:hover {
+  color: var(--foreground) !important;
 }
 
 /* take full width for compressed items, like checkboxes */

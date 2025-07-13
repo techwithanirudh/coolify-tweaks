@@ -2,37 +2,10 @@
 @use 'theme/variables' as vars;
 @use 'sass:map';
 
-section > h2 + div,
-section > h3 + div {
-  overflow: hidden;
-  margin-top: s(2.5);
-  padding: s(3) s(3.5) !important;
-  border-radius: var(--radius-md) !important;
-  /* 14 px */
-  background: var(--cfy-card-container) !important;
-}
-
-section:has(> div > div:only-child) > div > div:only-child {
-  padding: s(5) !important;
-  border-radius: var(--radius-sm) !important;
-  background: var(--cfy-card-container) !important;
-  color: var(--cfy-muted);
-  text-align: center;
-}
-
 /* Misc utilities */
 form,
 div[class*='shadow-lg lg:border-t dark:border-coolgray-300'] {
   border-radius: var(--radius-sm) !important;
-}
-
-// Push all buttons to the right from the headings for many sections
-:is(.flex.gap-2, .flex.items-center.gap-4, .flex.flex-col.gap-4) > :is(h1, h2, h3, h4) {
-  margin-right: auto;
-}
-
-section h3[class='pb-2'] {
-  font-size: 1.6rem;
 }
 
 div[class='flex flex-col gap-4 max-w-2xl'] {
@@ -42,7 +15,7 @@ div[class='flex flex-col gap-4 max-w-2xl'] {
 input.dark\:bg-coolgray-100:where(.dark, .dark *) {
   padding: s(2.75);
   border-radius: 4px !important;
-  background-color: var(--cfy-card) !important;
+  background-color: var(--card) !important;
   transition: background 0.18s;
 }
 
@@ -50,39 +23,10 @@ div[class*='flex flex-col gap-2'] {
   gap: s(4) !important;
 }
 
-a[class*='hover:underline']:hover {
-  color: var(--cfy-muted) !important;
-  text-decoration: none !important;
-}
-
-/* “Sponsor us” box and similar */
+/* "Sponsor us" box and similar */
 div[class*='p-4 border dark:border-coolgray-300'] {
   margin-top: s(4);
   padding: s(4) s(6);
   border-radius: var(--radius-sm) !important;
-  background: var(--cfy-card-container) !important;
-}
-
-.dark\:hover\:bg-coolgray-100:where(.dark, .dark *):hover {
-  background: none !important;
-  color: var(--cfy-text) !important;
-}
-
-// Deployments card
-.p-2.border-l-2.bg-white.dark\:bg-coolgray-100 {
-  padding: s(2);
-  background-color: var(--cfy-card-container) !important;
-  border-radius: var(--radius-sm) !important;
-}
-
-.p-4.my-4.border.dark\:border-coolgray-200.border-neutral-200 {
-  padding: s(4);
-  margin-top: s(4);
-  border-radius: var(--radius-sm) !important;
-  background: var(--cfy-card-container) !important;
-}
-
-.monaco-editor {
-  border-radius: var(--radius-sm) !important;
-  overflow: hidden;
+  background: var(--popover) !important;
 }

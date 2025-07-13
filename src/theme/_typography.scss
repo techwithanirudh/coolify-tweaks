@@ -1,40 +1,41 @@
 @use 'globals' as *;
 
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap');
 
-* {
-  font-family: 'Geist', sans-serif;
+:root {
+  --default-font-family: 'Geist', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
 }
 
 h1 {
-  color: var(--cfy-text);
+  color: var(--foreground);
   font:
     700 2.1rem/1.25 'Geist',
     sans-serif;
 }
 
 h2 {
-  color: var(--cfy-text);
+  color: var(--foreground);
   font:
     700 1.5rem/1.35 'Geist',
     sans-serif;
 }
 
 h3 {
-  color: var(--cfy-text);
+  color: var(--foreground);
   font:
     700 1.25rem/1.35 'Geist',
     sans-serif;
 }
 
 h4 {
-  color: var(--cfy-text);
+  color: var(--foreground);
   font:
     700 1.1rem/1.35 'Geist',
     sans-serif;
 }
 
 .subtitle {
-  color: var(--cfy-muted);
+  color: var(--muted-foreground);
   font-size: 0.95rem;
 }

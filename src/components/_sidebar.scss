@@ -4,18 +4,18 @@
      Instead of fragile width/flex classes, it's identified by its fixed position on large screens 
      and the fact that it contains the main navigation (`a[title="Dashboard"]`). This is much more stable. */
 div.lg\:fixed:has(nav a[title='Dashboard']) {
-  width: var(--cfy-sidebar-w) !important;
+  width: var(--sidebar-width) !important;
 }
 
 nav[x-data]:has(a[title='Dashboard']) {
   overflow-x: hidden;
   overflow-y: auto !important;
   width: 100%;
-  border-right: 1px solid var(--color-coolgray-100);
-  background: var(--cfy-sidebar-bg) !important;
-  backdrop-filter: blur(var(--cfy-blur)) !important;
+  border-right: 1px solid var(--border);
+  background: var(--sidebar) !important;
+  backdrop-filter: blur(var(--blur)) !important;
   scrollbar-width: thin;
-  scrollbar-color: var(--cfy-accent) transparent;
+  scrollbar-color: var(--accent) transparent;
 }
 
 nav[x-data]:has(a[title='Dashboard']) > ul {
@@ -34,7 +34,7 @@ aside::-webkit-scrollbar {
 
 aside::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background: var(--cfy-accent);
+  background: var(--accent);
 }
 
 nav > ul > li > ul > li {
@@ -47,7 +47,7 @@ nav > ul > li > ul > li {
   align-items: center;
   padding: s(2.25) s(3.75);
   border-radius: var(--radius-sm) !important;
-  color: var(--cfy-muted);
+  color: var(--sidebar-foreground);
   font-weight: 500;
   transition:
     background 0.18s,
@@ -57,8 +57,8 @@ nav > ul > li > ul > li {
 
 .menu-item:hover,
 .menu-item-active {
-  background: var(--cfy-card-container) !important;
-  color: var(--cfy-text) !important;
+  background: var(--sidebar-accent) !important;
+  color: var(--sidebar-accent-foreground) !important;
 }
 
 .menu-item .icon {
@@ -66,7 +66,6 @@ nav > ul > li > ul > li {
   width: 20px;
   height: 20px;
   stroke-width: 1.6;
-  fill: var(--color-coolgray-600) !important;
 
   & > * {
     display: none !important;
@@ -147,7 +146,7 @@ nav > ul > li > ul > li {
     position: fixed;
     z-index: 60;
     transition: transform 0.25s;
-    transform: translateX(calc(-1 * var(--cfy-sidebar-w)));
+    transform: translateX(calc(-1 * var(--sidebar-width)));
     inset: 0;
   }
 
@@ -167,6 +166,6 @@ nav > ul > li > ul > li {
 /* Desktop push */
 @include mq(lg) {
   body:has(nav[class*='dark:border-coolgray-200']) main {
-    padding-left: var(--cfy-sidebar-w) !important;
+    padding-left: var(--sidebar-width) !important;
   }
 }

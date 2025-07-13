@@ -9,3 +9,8 @@ div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
   filter: none !important;
   opacity: 1 !important;
 }
+
+input.input-sticky {
+  background: transparent !important;
+  backdrop-filter: blur(var(--blur)) !important;
+}

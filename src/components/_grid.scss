@@ -4,9 +4,9 @@ div[data-testid='resources-grid'],
 div.grid[class*='cols'] {
   overflow: hidden;
   margin-top: s(2.5);
-  padding: s(3) s(3.5) !important;
-  border-radius: var(--radius-md) !important;
-  background: var(--cfy-card-container) !important;
+  padding: s(4) s(4) !important;
+  border-radius: 24px !important;
+  background: var(--accent) !important;
 }
 
 div.grid[class*='cols']:is(
@@ -20,12 +20,15 @@ div.grid[class*='cols']:is(
   @include mq(sm) {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
+
   @include mq(lg) {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
+
   @include mq(xl) {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
+
   @include mq(xxl) {
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   }
@@ -67,7 +70,8 @@ div.grid[class*='cols']:is(
     a[href*='/edit'],
     a[href*='/new'] {
       padding: s(1.5);
-      background-color: var(--color-coolgray-400);
+      background-color: var(--accent);
+      color: var(--accent-foreground);
       border-radius: var(--radius-xs);
       margin-inline: 0;
 
@@ -86,7 +90,9 @@ div.grid[class*='cols']:is(
 
     a[href*='/new']:hover,
     a[href*='/edit']:hover {
-      opacity: 0.8;
+      background-color: color-mix(in srgb, var(--accent) 80%, transparent);
+      color: var(--accent-foreground);
+      opacity: 1;
     }
   }
 }

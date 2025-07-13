@@ -1,6 +1,6 @@
 @use 'sass:map';
 
-// Breakpoints
+// breakpoints
 $breakpoints: (
   sm: 640px,
   md: 768px,
@@ -9,102 +9,148 @@ $breakpoints: (
   xxl: 1536px,
 );
 
-// Colors
-$colors: (
-  'light': (
-    'base': #ffffff,
-    'coolgray-100': #f6f7f9,
-    'coolgray-200': #eceef2,
-    'coolgray-300': #e3e5ea,
-    'coolgray-400': #d8dae0,
-    'coolgray-500': #cfd1d8,
-    'coolgray-600': #c6c8d0,
-    'coolgray-700': #f4f5f7,
-    // sidebar
-    'coolgray-800': #edeef1,
-    'coolgray-900': #e6e7eb,
-    'coollabs': #4c3495,
-    'coollabs-100': color-mix(in srgb, #4c3495 85%, #ffffff),
-    'success': #2aaa52,
-    'warning': #e0b842,
-    'error': #d63b3b,
-    'text-primary': #1f1c23,
-    'text-muted': #6e6b75,
-    'placeholder': #8e8c91,
-    'overlay': rgba(0, 0, 0, 0.6),
-    'shadow-light': rgba(0, 0, 0, 0.15),
-    'shadow-dark': rgba(0, 0, 0, 0.35),
-    'shadow-main': rgba(0, 0, 0, 0.25),
-  ),
-  'dark': (
-    'base': #1f1c23,
-    'coolgray-100': #26252b,
-    'coolgray-200': #2a292e,
-    'coolgray-300': #353239,
-    'coolgray-400': #3d3a40,
-    'coolgray-500': #45424a,
-    'coolgray-600': #403d44,
-    'coolgray-700': #1a191f,
-    // sidebar bg
-    'coolgray-800': #151419,
-    'coolgray-900': #101014,
-    'coollabs': #483492,
-    'coollabs-100': color-mix(in srgb, #483492 75%, #ffffff),
-    'success': #23ff1f,
-    'warning': #fcd452,
-    'error': #ff1f1c,
-    'text-primary': #ede3f4,
-    'text-muted': #8e8c91,
-    'placeholder': #8e8c91,
-  ),
-);
-
-// Radii
+// radius
 $radii-base: 14px;
 $radii-step: 2px;
 $radii: (
-  'base': $radii-base,
-  'step': $radii-step,
-  'xs': calc($radii-base - ($radii-step * 2)),
+  '': $radii-base,
+  'xs': calc($radii-base - $radii-step * 2),
   'sm': calc($radii-base - $radii-step),
   'md': $radii-base,
   'lg': calc($radii-base + $radii-step),
-  'xl': calc($radii-base + ($radii-step * 2)),
+  'xl': calc($radii-base + $radii-step * 2),
 );
 
-// Spacing (example, adjust as needed)
-
-@mixin generate-css-vars($theme-map) {
-  @each $key, $value in $theme-map {
-    --color-#{$key}: #{$value};
-  }
-}
-
+/* SHADCN THEMES START
+   You can edit this with code from https://tweakcn.com and customize the theme! */
 :root {
-  font-size: 15px;
-  @include generate-css-vars(map.get($colors, 'light'));
+  --background: oklch(0.994 0 0);
+  --foreground: oklch(0 0 0);
 
-  --cfy-accent: var(--color-coollabs);
-  --cfy-accent-light: var(--color-coollabs-100);
-  --cfy-sidebar-bg: var(--color-coolgray-700);
-  --cfy-secondary: var(--color-coolgray-100);
-  --cfy-content-bg: var(--color-base);
-  --cfy-card-container: var(--color-coolgray-200);
-  --cfy-card: var(--color-coolgray-300);
-  --cfy-text: var(--color-text-primary);
-  --cfy-muted: var(--color-text-muted);
+  --card: oklch(0.994 0 0);
+  --card-foreground: oklch(0 0 0);
 
-  --cfy-blur: 14px;
-  --cfy-shadow: 0 4px 20px var(--color-shadow-main);
-  --cfy-sidebar-w: 260px;
+  --popover: oklch(0.9911 0 0);
+  --popover-foreground: oklch(0 0 0);
 
-  @each $key, $value in $radii {
-    --radius-#{$key}: #{$value};
-  }
+  --primary: oklch(0.5393 0.2713 286.7462);
+  --primary-foreground: oklch(1 0 0);
 
-  --spacing: 0.25rem; // Base spacing unit
+  --secondary: oklch(0.954 0.0063 255.4755);
+  --secondary-foreground: oklch(0.1344 0 0);
+
+  --muted: oklch(0.9702 0 0);
+  --muted-foreground: oklch(0.4386 0 0);
+
+  --accent: oklch(0.9487 0.0058 264.5319);
+  --accent-foreground: oklch(0 0 0);
+
+  --destructive: oklch(0.629 0.1902 23.0704);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.93 0.0094 286.2156);
+  --input: oklch(0.9401 0 0);
+  --ring: oklch(0 0 0);
+
+  --success: oklch(0.7459 0.1483 156.4499);
+  --warning: oklch(0.5393 0.2713 286.7462);
+  --error: oklch(0.7336 0.1758 50.5517);
+  --info: oklch(0.5828 0.1809 259.7276);
+
+  --sidebar: oklch(0.97 0.0029 264.542);
+  --sidebar-foreground: oklch(0 0 0);
+  --sidebar-primary: oklch(0 0 0);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.9401 0 0);
+  --sidebar-accent-foreground: oklch(0 0 0);
+  --sidebar-border: oklch(0.9401 0 0);
+  --sidebar-ring: oklch(0 0 0);
+
+  --shadow-2xs: 0px 2px 3px 0px hsl(0 0% 0% / 0.08);
+  --shadow-xs: 0px 2px 3px 0px hsl(0 0% 0% / 0.08);
+  --shadow-sm: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 1px 2px -1px hsl(0 0% 0% / 0.16);
+  --shadow: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 1px 2px -1px hsl(0 0% 0% / 0.16);
+  --shadow-md: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 2px 4px -1px hsl(0 0% 0% / 0.16);
+  --shadow-lg: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 4px 6px -1px hsl(0 0% 0% / 0.16);
+  --shadow-xl: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 8px 10px -1px hsl(0 0% 0% / 0.16);
+  --shadow-2xl: 0px 2px 3px 0px hsl(0 0% 0% / 0.4);
+
+  --tracking-normal: -0.025em;
+  --spacing: 0.27rem;
 }
 
 .dark {
-  @include generate-css-vars(map.get($colors, 'dark'));
+  --background: oklch(0.2329 0.014 304.7344);
+  --foreground: oklch(0.9938 0.0013 106.4231);
+
+  --card: oklch(0.323 0.0129 305.0055);
+  --card-foreground: oklch(0.9872 0.0034 325.6024);
+
+  --popover: oklch(0.2568 0.0076 274.6528);
+  --popover-foreground: oklch(0.9551 0 0);
+
+  --primary: oklch(0.4039 0.1475 287.6846);
+  --primary-foreground: oklch(1 0 0);
+
+  --secondary: oklch(0.294 0.013 272.9312);
+  --secondary-foreground: oklch(0.9551 0 0);
+
+  --muted: oklch(0.294 0.013 272.9312);
+  --muted-foreground: oklch(0.7058 0 0);
+
+  --accent: oklch(0.284 0.0091 294.9832);
+  --accent-foreground: oklch(0.852 0.0027 286.3415);
+
+  --destructive: oklch(0.3139 0.0384 3.8411);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.3343 0.0111 308.0912);
+  --input: oklch(0.3343 0.0111 308.0912);
+  --ring: oklch(0.6132 0.2294 291.7437);
+
+  --success: oklch(0.8003 0.1821 151.711);
+  --warning: oklch(0.6132 0.2294 291.7437);
+  --error: oklch(0.8077 0.1035 19.5706);
+  --info: oklch(0.6691 0.1569 260.1063);
+
+  --sidebar: oklch(0.2172 0.0117 293.0436);
+  --sidebar-foreground: oklch(0.9864 0.0028 308.429);
+  --sidebar-primary: oklch(0.6132 0.2294 291.7437);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.284 0.0091 294.9832);
+  --sidebar-accent-foreground: oklch(0.6132 0.2294 291.7437);
+  --sidebar-border: oklch(0.3289 0.0092 268.3843);
+  --sidebar-ring: oklch(0.6132 0.2294 291.7437);
+
+  --shadow-2xs: 0px 2px 3px 0px hsl(0 0% 0% / 0.08);
+  --shadow-xs: 0px 2px 3px 0px hsl(0 0% 0% / 0.08);
+  --shadow-sm: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 1px 2px -1px hsl(0 0% 0% / 0.16);
+  --shadow: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 1px 2px -1px hsl(0 0% 0% / 0.16);
+  --shadow-md: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 2px 4px -1px hsl(0 0% 0% / 0.16);
+  --shadow-lg: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 4px 6px -1px hsl(0 0% 0% / 0.16);
+  --shadow-xl: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 8px 10px -1px hsl(0 0% 0% / 0.16);
+  --shadow-2xl: 0px 2px 3px 0px hsl(0 0% 0% / 0.4);
+}
+/* SHADCN THEMES END */
+
+:root {
+  font-size: 15px;
+
+  /* geometry */
+  @each $key, $value in $radii {
+    --radius#{if($key != '', '-' + $key, '')}: #{$value};
+  }
+
+  /* misc */
+  --sidebar-width: 260px;
+  --blur: 10px;
+
+  --color-base: var(--background) !important;
+  --color-coollabs: var(--primary) !important;
+  --color-text-primary: var(--foreground) !important;
+
+  --color-error: var(--destructive) !important;
+  --color-success: var(--success) !important;
+  --color-warning: var(--warn) !important;
+  --color-info: var(--info) !important;
 }

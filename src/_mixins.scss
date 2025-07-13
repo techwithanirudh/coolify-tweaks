@@ -40,3 +40,11 @@
     @include icon($name, $variant);
   }
 }
+
+@mixin for-dark {
+  @at-root {
+    :where(.dark, .dark *) & {
+      @content;
+    }
+  }
+}

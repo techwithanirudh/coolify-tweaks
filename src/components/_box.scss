@@ -4,10 +4,9 @@
 .box-without-bg {
   overflow: hidden;
   padding: s(2.5) s(3);
-  border: 1px solid var(--color-coolgray-400) !important;
-  border-radius: var(--radius-sm) !important;
-  /* 12 px */
-  background: var(--cfy-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-lg) !important;
+  background: var(--card) !important;
   transition:
     transform 0.15s,
     box-shadow 0.2s,
@@ -16,26 +15,23 @@
 }
 
 .box:hover {
-  border-color: var(--cfy-accent);
-  background: color-mix(in srgb, var(--cfy-card) 70%, var(--cfy-accent) 30%);
-  box-shadow:
-    0 4px 6px -1px var(--color-shadow-dark),
-    0 2px 4px -2px var(--color-shadow-dark) !important;
-  transform: translateY(-2px);
+  background-color: color-mix(in srgb, var(--card) 80%, transparent) !important;
 }
 
 .box-title {
   font-weight: 600;
   font-size: 1.05rem;
-  display: -webkit-box !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: normal !important;
-  word-break: break-word !important;
-  -webkit-line-clamp: 4 !important;
-  -webkit-box-orient: vertical !important;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .box-description {
-  color: var(--cfy-muted);
+  color: var(--muted-foreground);
 }

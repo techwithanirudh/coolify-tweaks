@@ -1,29 +1,45 @@
 @use 'globals' as *;
 
-// base select styles
 @mixin select-base {
   appearance: base-select;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-xs) !important;
+  background: transparent;
+  color: var(--foreground);
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
 
-  &:hover,
-  &:focus {
-    border-color: var(--cfy-accent-light);
-    background: var(--cfy-card-container);
+  @include for-dark {
+    background: color-mix(in srgb, var(--input) 30%, transparent);
+  }
+
+  &:disabled {
+    border-color: var(--muted-foreground) !important;
+    color: var(--muted-foreground) !important;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &:not([disabled]):hover,
+  &:not([disabled]):focus {
+    border-color: var(--border) !important;
+    background: var(--accent) !important;
   }
 
   &::picker-icon {
-    color: var(--cfy-muted);
+    color: var(--muted-foreground);
     transition: 0.4s rotate;
+    content: '';
+    width: s(4);
+    height: s(4.5);
+    @include icon('caret-down-bold', 'bold');
   }
 
   &:open::picker-icon {
     rotate: 180deg;
-  }
-
-  &:disabled {
-    border-color: var(--cfy-muted) !important;
-    color: var(--cfy-muted) !important;
-    cursor: not-allowed;
-    pointer-events: none;
   }
 }
 
@@ -32,15 +48,18 @@ select,
   @include select-base;
 }
 
+// dropdown panel
 ::picker(select) {
-  border: 1px solid var(--color-coolgray-400) !important;
+  border: 1px solid var(--border) !important;
   border-radius: var(--radius-xs) !important;
-  background: var(--cfy-card) !important;
-
+  background: var(--popover) !important;
   top: calc(anchor(bottom) + 4px);
-
   opacity: 0;
-  transition: all 0.4s allow-discrete;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s cubic-bezier(0, 0, 0.3, 1),
+    display 0.2s allow-discrete,
+    overlay 0.2s allow-discrete;
 
   &:popover-open {
     opacity: 1;
@@ -51,21 +70,15 @@ select,
       opacity: 0;
     }
   }
-
-  // disabled dropdown panel
-  &:disabled,
-  &:disabled:popover-open {
-    opacity: 0.6 !important;
-    background: var(--cfy-card-disabled) !important;
-  }
 }
 
+// option items
 option {
   display: flex;
   justify-content: flex-start;
   padding: s(2.5);
-  background: var(--cfy-card) !important;
-  color: var(--cfy-text);
+  background: var(--popover) !important;
+  color: var(--popover-foreground) !important;
   transition: 0.4s;
   gap: s(5);
 
@@ -77,14 +90,14 @@ option {
     border-radius: 0 0 var(--radius-xs) var(--radius-xs);
   }
 
-  &:not(option:last-of-type) {
+  &:not(:last-of-type) {
     border-bottom: none;
   }
 
-  &:hover,
-  &:focus {
-    background: var(--cfy-card-container) !important;
-    color: var(--cfy-text);
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
+    background: var(--accent) !important;
+    color: var(--accent-foreground) !important;
   }
 
   .icon {
@@ -103,13 +116,15 @@ option {
   &::checkmark {
     order: 1;
     margin-left: auto;
-    content: '✓';
+    content: '';
+    width: s(4);
+    height: s(4);
+    @include icon('check');
   }
 
   &:disabled {
-    color: var(--cfy-muted) !important;
     cursor: not-allowed;
-    opacity: 0.7;
+    opacity: 0.5;
     pointer-events: none;
   }
 }

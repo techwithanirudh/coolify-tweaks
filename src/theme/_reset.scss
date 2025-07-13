@@ -6,20 +6,11 @@ input,
 select,
 textarea {
   border-radius: var(--radius-sm);
-  box-shadow: none !important;
 }
 
 body,
+html,
 main {
-  background: var(--cfy-content-bg);
-  color: var(--cfy-text);
-}
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid var(--cfy-accent);
-  outline-offset: 2px;
+  background: var(--background);
+  color: var(--foreground);
 }
