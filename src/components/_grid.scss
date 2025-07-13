@@ -70,8 +70,8 @@ div.grid[class*='cols']:is(
     a[href*='/edit'],
     a[href*='/new'] {
       padding: s(1.5);
-      background-color: var(--primary);
-      color: var(--primary-foreground);
+      background-color: var(--accent);
+      color: var(--accent-foreground);
       border-radius: var(--radius-xs);
       margin-inline: 0;
 
@@ -90,8 +90,8 @@ div.grid[class*='cols']:is(
 
     a[href*='/new']:hover,
     a[href*='/edit']:hover {
-      background-color: color-mix(in srgb, var(--primary) 80%, transparent);
-      color: var(--primary-foreground);
+      background-color: color-mix(in srgb, var(--accent) 80%, transparent);
+      color: var(--accent-foreground);
       opacity: 1;
     }
   }
