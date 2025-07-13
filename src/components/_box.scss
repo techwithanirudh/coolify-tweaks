@@ -16,10 +16,6 @@
 
 .box:hover {
   background-color: color-mix(in srgb, var(--card) 80%, transparent) !important;
-  box-shadow:
-    0 4px 6px -1px var(--color-shadow-dark),
-    0 2px 4px -2px var(--color-shadow-dark) !important;
-  transform: translateY(-2px);
 }
 
 .box-title {

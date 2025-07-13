@@ -21,14 +21,9 @@ $radii: (
   'xl': calc($radii-base + $radii-step * 2),
 );
 
+/* SHADCN THEMES START
+   You can edit this with code from https://tweakcn.com and customize the theme! */
 :root {
-  font-size: 15px;
-
-  /* geometry */
-  @each $key, $value in $radii {
-    --radius#{if($key != '', '-' + $key, '')}: #{$value};
-  }
-
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
 
@@ -67,10 +62,6 @@ $radii: (
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-
-  /* misc */
-  --sidebar-width: 260px;
-  --blur: 10px;
 }
 
 .dark {
@@ -113,8 +104,20 @@ $radii: (
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+/* SHADCN THEMES END */
 
 :root {
+  font-size: 15px;
+
+  /* geometry */
+  @each $key, $value in $radii {
+    --radius#{if($key != '', '-' + $key, '')}: #{$value};
+  }
+
+  /* misc */
+  --sidebar-width: 260px;
+  --blur: 10px;
+
   --color-base: var(--background) !important;
   --color-coollabs: var(--primary) !important;
   --color-text-primary: var(--foreground) !important;

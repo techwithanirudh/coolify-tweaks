@@ -2,9 +2,9 @@
 
 @mixin input-base {
   padding: s(2.25) s(4);
-  border: 1px solid var(--border) !important;
+  border: 1px solid var(--input) !important;
   border-radius: var(--radius-xs) !important; /* 12px */
-  background: var(--secondary) !important;
+  background: transparent;
   color: var(--foreground);
   transition:
     border-color 0.15s,
@@ -38,7 +38,7 @@ input[type='checkbox'],
 input[type='radio'] {
   padding: s(2.75);
   border-radius: 4px !important;
-  background-color: var(--secondary) !important;
+  background-color: var(--input) !important;
   transition: background 0.18s;
 
   &:focus {
