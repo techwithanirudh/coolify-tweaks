@@ -28,6 +28,7 @@
     "atrule",
     "coolgray",
     "userstyles",
-    "livewire"
+    "livewire",
+    "iserror"
   ]
 }

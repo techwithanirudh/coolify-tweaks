@@ -50,7 +50,7 @@ $colors: (
     'coollabs-100': color-mix(in srgb, #483492 75%, #ffffff),
     'success': #23ff1f,
     'warning': #fcd452,
-    'error': #ff1f1c,
+    'error': #fd7b74,
     'text-primary': #ffffff,
     'text-muted': #8e8c91,
     'placeholder': #8e8c91,
@@ -107,7 +107,7 @@ $radii: (
 
   /* destructive / warn / success */
   --destructive: var(--color-error);
-  --destructive-foreground: var(--color-base);
+  --destructive-foreground: #42292f;
   --warning: var(--color-warning);
   --success: var(--color-success);
 

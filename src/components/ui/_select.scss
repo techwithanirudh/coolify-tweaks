@@ -18,7 +18,7 @@
     width: s(4.5);
     height: s(5);
 
-    @include icon('caret-down');
+    @include icon('caret-down-bold', 'bold');
   }
 
   &:open::picker-icon {

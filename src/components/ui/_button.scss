@@ -33,6 +33,7 @@ button.secondary,
 }
 
 button.destructive,
+button[iserror='isError'],
 .destructive {
   @include button-base;
   background: var(--destructive) !important;
