@@ -30,3 +30,8 @@ div[class*='p-4 border dark:border-coolgray-300'] {
   border-radius: var(--radius-sm) !important;
   background: var(--popover) !important;
 }
+
+// When you hover over any "box", it will not hover, like in settings
+.dark\:hover\:bg-coolgray-100:where(.dark, .dark *):hover {
+  background: none !important;
+}
