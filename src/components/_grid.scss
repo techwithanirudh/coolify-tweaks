@@ -6,7 +6,7 @@ div.grid[class*='cols'] {
   margin-top: s(2.5);
   padding: s(4) s(4) !important;
   border-radius: 24px !important;
-  background: var(--popover) !important;
+  background: var(--accent) !important;
 }
 
 div.grid[class*='cols']:is(
@@ -70,7 +70,8 @@ div.grid[class*='cols']:is(
     a[href*='/edit'],
     a[href*='/new'] {
       padding: s(1.5);
-      background-color: var(--popover);
+      background-color: var(--primary);
+      color: var(--primary-foreground);
       border-radius: var(--radius-xs);
       margin-inline: 0;
 
@@ -89,8 +90,9 @@ div.grid[class*='cols']:is(
 
     a[href*='/new']:hover,
     a[href*='/edit']:hover {
-      background-color: color-mix(in srgb, var(--popover) 80%, transparent);
-      color: var(--foreground);
+      background-color: color-mix(in srgb, var(--primary) 80%, transparent);
+      color: var(--primary-foreground);
+      opacity: 1;
     }
   }
 }
