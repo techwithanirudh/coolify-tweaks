@@ -15,17 +15,18 @@
     background: color-mix(in srgb, var(--input) 30%, transparent);
   }
 
-  &:hover,
-  &:focus {
-    border-color: var(--border) !important;
-    background: var(--accent) !important;
+  &:disabled {
+    border-color: var(--muted-foreground) !important;
+    color: var(--muted-foreground) !important;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
   }
 
-  @include for-dark {
-    &:hover,
-    &:focus {
-      background: color-mix(in srgb, var(--input) 50%, transparent) !important;
-    }
+  &:not([disabled]):hover,
+  &:not([disabled]):focus {
+    border-color: var(--border) !important;
+    background: var(--accent) !important;
   }
 
   &::picker-icon {
@@ -39,18 +40,6 @@
 
   &:open::picker-icon {
     rotate: 180deg;
-  }
-
-  &:disabled {
-    border-color: var(--muted-foreground) !important;
-    color: var(--muted-foreground) !important;
-    cursor: not-allowed;
-    pointer-events: none;
-
-    @include for-dark {
-      // optional: tweak opacity in dark if you like
-      opacity: 0.6;
-    }
   }
 }
 
@@ -81,13 +70,6 @@ select,
       opacity: 0;
     }
   }
-
-  // disabled panel
-  &:disabled,
-  &:disabled:popover-open {
-    opacity: 0.6 !important;
-    background: color-mix(in srgb, var(--popover) 60%, transparent) !important;
-  }
 }
 
 // option items
@@ -112,18 +94,10 @@ option {
     border-bottom: none;
   }
 
-  &:hover,
-  &:focus {
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
     background: var(--accent) !important;
     color: var(--accent-foreground) !important;
-  }
-
-  @include for-dark {
-    &:hover,
-    &:focus {
-      background: color-mix(in srgb, var(--input) 50%, transparent) !important;
-      color: var(--foreground) !important;
-    }
   }
 
   .icon {
