@@ -1,12 +1,22 @@
 @use 'globals' as *;
+@use 'components/ui/_button' as button;
 
 button[\@click='dropdownOpen=true']:has([x-show="theme === 'dark' || theme === 'system'"]) {
+  @include button.button-base;
+
   border-radius: 10px !important;
+
   background: var(--secondary) !important;
+  color: var(--secondary-foreground) !important;
+  box-shadow: var(--shadow-xs);
+
   padding-inline: s(0.5) !important;
   padding-block: s(2) !important;
-  border: 1px solid var(--border) !important;
   margin-right: s(2);
+
+  &:hover {
+    background: color-mix(in srgb, var(--secondary) 80%, transparent);
+  }
 
   & svg {
     fill: var(--secondary-foreground) !important;
