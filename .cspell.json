@@ -30,6 +30,7 @@
     "userstyles",
     "livewire",
     "iserror",
-    "shadcn"
+    "shadcn",
+    "tweakcn"
   ]
 }

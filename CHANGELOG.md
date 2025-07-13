@@ -1,5 +1,43 @@
 # coolify-tweaks
 
+## 3.4.0
+
+### Minor Changes
+
+- ### Styling Cleanup and UX Polish
+
+  This update is all about giving Coolify a nice visual makeover—cleaner, smoother styles and just an all-around better feel:
+
+  #### 🎨 Smarter Colors & Themes
+  - **Custom Theming**: The new version now supports the ShadCN theming spec, allowing you to **fully customize** your Coolify instance to look unique. Customize using [tweakcn.com](https://tweakcn.com/).
+  - Tidied up the color variables for clearer theming and better contrasts
+  - Improved semantic tokens so it's actually easy to tell what's going on
+  - Dark mode looking much slicker (thanks to better handling with color-mix)
+  - Renamed color tokens to simpler stuff like `foreground` and `muted-foreground`—makes sense now!
+
+  #### 🧩 Component Polish
+  - Sidebar layout cleaned up, way more consistent
+  - Inputs, buttons, selects—all have nicer focus and hover interactions
+
+  #### ✨ UI Improvements
+  - Tables fixed up and sidebar colors adjusted for better harmony
+  - Deployment cards styled properly, plus a nice cleanup in `misc.scss`
+  - Navbar links are now easier on the eyes
+  - Hover effects got a sweet upgrade and inputs give better feedback
+  - Logs are now using monospaced fonts
+
+  #### 🛠️ Code Cleanup & Consistency
+  - Border radius and padding consistent throughout—looks neat
+  - Hover and focus styles tightened up globally
+
+  #### 🐛 Little (but important) Fixes
+  - Font issues squashed—no more weird glitches
+  - Fixed some pesky typos in class selectors
+  - Labels now have proper spacing and feel uniform
+  - Monaco editor respects radius and overflow properly now
+
+  This update smooths everything out and makes Coolify feel way more unified—nothing breaks, just a nicer, themeable experience overall.
+
 ## 3.3.1
 
 ### Patch Changes
