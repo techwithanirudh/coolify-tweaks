@@ -8,6 +8,12 @@
   transition:
     background 0.18s ease,
     color 0.18s ease;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 }
 
 button.button,
@@ -17,7 +23,7 @@ button.button,
   color: var(--primary-foreground) !important;
 
   &:hover {
-    background-color: color-mix(in srgb, var(--primary) 80%, transparent);
+    background-color: color-mix(in srgb, var(--primary) 90%, transparent);
   }
 }
 
@@ -40,7 +46,7 @@ button[iserror='isError'],
   color: var(--destructive-foreground) !important;
 
   &:hover {
-    background-color: color-mix(in srgb, var(--destructive) 80%, transparent);
+    background-color: color-mix(in srgb, var(--destructive) 60%, transparent);
   }
 }
 
