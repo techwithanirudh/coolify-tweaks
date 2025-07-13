@@ -4,7 +4,7 @@
   padding: s(2.25) s(4);
   border: 1px solid var(--border) !important;
   border-radius: var(--radius-xs) !important; /* 12px */
-  background: var(--card) !important;
+  background: var(--secondary) !important;
   color: var(--foreground);
   transition:
     border-color 0.15s,
@@ -37,7 +37,7 @@ input[type='checkbox'],
 input[type='radio'] {
   padding: s(2.75);
   border-radius: 4px !important;
-  background-color: var(--card) !important;
+  background-color: var(--secondary) !important;
   transition: background 0.18s;
 
   &:focus {
@@ -48,10 +48,4 @@ input[type='radio'] {
 label {
   margin: s(1);
   font-weight: 600;
-}
-
-input,
-select,
-textarea {
-  border-radius: var(--radius-sm) !important;
 }
