@@ -13,6 +13,12 @@
   &::picker-icon {
     color: var(--muted-foreground);
     transition: 0.4s rotate;
+    content: '';
+
+    width: s(4.5);
+    height: s(5);
+
+    @include icon('caret-down');
   }
 
   &:open::picker-icon {
@@ -40,7 +46,12 @@ select,
   top: calc(anchor(bottom) + 4px);
 
   opacity: 0;
-  transition: all 0.4s allow-discrete;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s cubic-bezier(0, 0, 0.3, 1),
+    display 0.2s allow-discrete,
+    overlay 0.2s allow-discrete;
 
   &:popover-open {
     opacity: 1;
@@ -103,7 +114,12 @@ option {
   &::checkmark {
     order: 1;
     margin-left: auto;
-    content: '✓';
+    content: '';
+
+    width: s(4);
+    height: s(4);
+
+    @include icon('check');
   }
 
   &:disabled {

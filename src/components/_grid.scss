@@ -67,7 +67,7 @@ div.grid[class*='cols']:is(
     a[href*='/edit'],
     a[href*='/new'] {
       padding: s(1.5);
-      background-color: var(--secondary);
+      background-color: color-mix(in srgb, var(--card) 80%, transparent);
       border-radius: var(--radius-xs);
       margin-inline: 0;
 
@@ -86,7 +86,7 @@ div.grid[class*='cols']:is(
 
     a[href*='/new']:hover,
     a[href*='/edit']:hover {
-      background: color-mix(in srgb, var(--secondary) 80%, transparent);
+      background: color-mix(in srgb, var(--card) 80%, transparent);
       color: var(--foreground);
     }
   }

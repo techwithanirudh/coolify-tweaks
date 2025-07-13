@@ -3,7 +3,19 @@
 button[\@click='dropdownOpen=true']:has([x-show="theme === 'dark' || theme === 'system'"]) {
   border-radius: 10px !important;
   background: var(--secondary) !important;
-  padding-block: s(2.75) !important;
+  padding: s(2.75) !important;
+  border: 1px solid var(--border) !important;
+
+  & > span > div {
+    justify-content: center;
+  }
+
+  & > svg.w-4.h-4 {
+    display: none;
+    width: 0;
+    height: 0;
+    margin: 0;
+  }
 }
 
 button[\@click^='switchWidth'],
