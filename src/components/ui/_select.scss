@@ -1,8 +1,19 @@
 @use 'globals' as *;
 
-// base select styles
 @mixin select-base {
   appearance: base-select;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-xs) !important;
+  background: transparent;
+  color: var(--foreground);
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
+
+  @include for-dark {
+    background: color-mix(in srgb, var(--input) 30%, transparent);
+  }
 
   &:hover,
   &:focus {
@@ -10,14 +21,19 @@
     background: var(--accent) !important;
   }
 
+  @include for-dark {
+    &:hover,
+    &:focus {
+      background: color-mix(in srgb, var(--input) 50%, transparent) !important;
+    }
+  }
+
   &::picker-icon {
     color: var(--muted-foreground);
     transition: 0.4s rotate;
     content: '';
-
     width: s(4.5);
     height: s(5);
-
     @include icon('caret-down-bold', 'bold');
   }
 
@@ -30,6 +46,11 @@
     color: var(--muted-foreground) !important;
     cursor: not-allowed;
     pointer-events: none;
+
+    @include for-dark {
+      // optional: tweak opacity in dark if you like
+      opacity: 0.6;
+    }
   }
 }
 
@@ -38,15 +59,13 @@ select,
   @include select-base;
 }
 
+// dropdown panel
 ::picker(select) {
   border: 1px solid var(--border) !important;
   border-radius: var(--radius-xs) !important;
   background: var(--popover) !important;
-
   top: calc(anchor(bottom) + 4px);
-
   opacity: 0;
-
   transition:
     opacity 0.2s ease,
     transform 0.2s cubic-bezier(0, 0, 0.3, 1),
@@ -63,7 +82,7 @@ select,
     }
   }
 
-  // disabled dropdown panel
+  // disabled panel
   &:disabled,
   &:disabled:popover-open {
     opacity: 0.6 !important;
@@ -71,6 +90,7 @@ select,
   }
 }
 
+// option items
 option {
   display: flex;
   justify-content: flex-start;
@@ -95,7 +115,15 @@ option {
   &:hover,
   &:focus {
     background: var(--accent) !important;
-    color: var(--accent-foreground);
+    color: var(--accent-foreground) !important;
+  }
+
+  @include for-dark {
+    &:hover,
+    &:focus {
+      background: color-mix(in srgb, var(--input) 50%, transparent) !important;
+      color: var(--foreground) !important;
+    }
   }
 
   .icon {
@@ -115,10 +143,8 @@ option {
     order: 1;
     margin-left: auto;
     content: '';
-
     width: s(4);
     height: s(4);
-
     @include icon('check');
   }
 

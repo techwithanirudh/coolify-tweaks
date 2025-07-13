@@ -15,12 +15,3 @@ main {
   background: var(--background);
   color: var(--foreground);
 }
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
