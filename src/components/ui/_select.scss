@@ -6,8 +6,8 @@
 
   &:hover,
   &:focus {
-    border-color: color-mix(in srgb, var(--accent) 80%, transparent);
-    background: color-mix(in srgb, var(--popover) 80%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 80%, transparent) !important;
+    background: var(--muted) !important;
   }
 
   &::picker-icon {
@@ -94,7 +94,7 @@ option {
 
   &:hover,
   &:focus {
-    background: color-mix(in srgb, var(--popover) 80%, transparent) !important;
+    background: var(--muted) !important;
     color: var(--foreground);
   }
 
