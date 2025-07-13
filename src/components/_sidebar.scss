@@ -47,7 +47,7 @@ nav > ul > li > ul > li {
   align-items: center;
   padding: s(2.25) s(3.75);
   border-radius: var(--radius-sm) !important;
-  color: var(--muted-foreground);
+  color: var(--sidebar-foreground);
   font-weight: 500;
   transition:
     background 0.18s,
@@ -58,7 +58,7 @@ nav > ul > li > ul > li {
 .menu-item:hover,
 .menu-item-active {
   background: var(--sidebar-accent) !important;
-  color: var(--foreground) !important;
+  color: var(--sidebar-accent-foreground) !important;
 }
 
 .menu-item .icon {
@@ -66,7 +66,6 @@ nav > ul > li > ul > li {
   width: 20px;
   height: 20px;
   stroke-width: 1.6;
-  fill: var(--secondary) !important;
 
   & > * {
     display: none !important;
