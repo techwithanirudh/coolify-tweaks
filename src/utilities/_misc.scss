@@ -12,14 +12,6 @@ section > h3 + div {
   background: var(--popover) !important;
 }
 
-section:has(> div > div:only-child) > div > div:only-child {
-  padding: s(5) !important;
-  border-radius: var(--radius-sm) !important;
-  background: var(--popover) !important;
-  color: var(--muted-foreground);
-  text-align: center;
-}
-
 /* Misc utilities */
 form,
 div[class*='shadow-lg lg:border-t dark:border-coolgray-300'] {

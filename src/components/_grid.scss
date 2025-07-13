@@ -20,12 +20,15 @@ div.grid[class*='cols']:is(
   @include mq(sm) {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
+
   @include mq(lg) {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
+
   @include mq(xl) {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
+
   @include mq(xxl) {
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   }
@@ -67,7 +70,7 @@ div.grid[class*='cols']:is(
     a[href*='/edit'],
     a[href*='/new'] {
       padding: s(1.5);
-      background-color: color-mix(in srgb, var(--card) 80%, transparent);
+      background-color: var(--popover);
       border-radius: var(--radius-xs);
       margin-inline: 0;
 
@@ -86,7 +89,7 @@ div.grid[class*='cols']:is(
 
     a[href*='/new']:hover,
     a[href*='/edit']:hover {
-      background: color-mix(in srgb, var(--card) 80%, transparent);
+      background-color: color-mix(in srgb, var(--popover) 80%, transparent);
       color: var(--foreground);
     }
   }
