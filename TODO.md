@@ -21,4 +21,3 @@ Fix spacing
 Make a release github actions as pushing the dist folder is bad
 The build / dev script seems suspicious as it is not inclduded om the same thing, try to just include the info as a comment in the main.scss anf stop it repeating a million times on build.
 There is still random spacing padding usaage not rounded
-Fix terminal font issue
