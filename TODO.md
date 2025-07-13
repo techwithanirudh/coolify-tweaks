@@ -23,3 +23,4 @@ The build / dev script seems suspicious as it is not inclduded om the same thing
 There is still random spacing padding usaage not rounded
 Automatically calculate radius from --radius variable
 Use defined shadows
+Fix table's design
