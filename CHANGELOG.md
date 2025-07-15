@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.5.0
+
+### Minor Changes
+
+- fix: tweakcn
+
 ## 3.4.0
 
 ### Minor Changes

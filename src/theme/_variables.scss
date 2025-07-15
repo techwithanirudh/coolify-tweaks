@@ -21,8 +21,7 @@ $radii: (
   'xl': calc($radii-base + $radii-step * 2),
 );
 
-/* SHADCN THEMES START
-   You can edit this with code from https://tweakcn.com and customize the theme! */
+/* ==UI-THEME-VARS:START== */
 :root {
   --background: oklch(0.994 0 0);
   --foreground: oklch(0 0 0);
@@ -129,7 +128,7 @@ $radii: (
   --shadow-xl: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 8px 10px -1px hsl(0 0% 0% / 0.16);
   --shadow-2xl: 0px 2px 3px 0px hsl(0 0% 0% / 0.4);
 }
-/* SHADCN THEMES END */
+/* ==UI-THEME-VARS:END== */
 
 :root {
   font-size: 15px;
