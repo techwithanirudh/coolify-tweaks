@@ -123,7 +123,7 @@ $breakpoints: (
 :root {
   font-size: 15px;
 
-  /* geometry */
+  /* radius */
   --radius-xs: calc(var(--radius) - 8px);
   --radius-sm: calc(var(--radius) - 6px);
   --radius-md: calc(var(--radius) - 4px);

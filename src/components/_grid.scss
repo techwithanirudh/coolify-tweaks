@@ -5,7 +5,7 @@ div.grid[class*='cols'] {
   overflow: hidden;
   margin-top: s(2.5);
   padding: s(4) s(4) !important;
-  border-radius: 24px !important;
+  border-radius: var(--radius-3xl) !important;
   background: var(--accent) !important;
 }
 
