@@ -9,18 +9,6 @@ $breakpoints: (
   xxl: 1536px,
 );
 
-// radius
-$radii-base: 14px;
-$radii-step: 2px;
-$radii: (
-  '': $radii-base,
-  'xs': calc($radii-base - $radii-step * 2),
-  'sm': calc($radii-base - $radii-step),
-  'md': $radii-base,
-  'lg': calc($radii-base + $radii-step),
-  'xl': calc($radii-base + $radii-step * 2),
-);
-
 /* ==UI-THEME-VARS:START== */
 :root {
   --background: oklch(0.994 0 0);
@@ -75,6 +63,8 @@ $radii: (
 
   --tracking-normal: -0.025em;
   --spacing: 0.27rem;
+
+  --radius: 0.8rem;
 }
 
 .dark {
@@ -134,9 +124,13 @@ $radii: (
   font-size: 15px;
 
   /* geometry */
-  @each $key, $value in $radii {
-    --radius#{if($key != '', '-' + $key, '')}: #{$value};
-  }
+  --radius-xs: calc(var(--radius) - 4px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
 
   /* misc */
   --sidebar-width: 260px;
