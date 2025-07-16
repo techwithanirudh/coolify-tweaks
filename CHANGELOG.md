@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.5.1
+
+### Patch Changes
+
+- refactor: update system
+
 ## 3.5.0
 
 ### Minor Changes
