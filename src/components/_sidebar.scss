@@ -39,14 +39,14 @@ aside::-webkit-scrollbar-thumb {
 
 nav > ul > li > ul > li {
   overflow: hidden;
-  border-radius: var(--radius-sm) !important;
+  border-radius: var(--radius-md) !important;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
   padding: s(2.25) s(3.75);
-  border-radius: var(--radius-sm) !important;
+  border-radius: var(--radius-md) !important;
   color: var(--sidebar-foreground);
   font-weight: 500;
   transition:

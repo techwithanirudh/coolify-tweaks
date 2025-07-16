@@ -7,7 +7,7 @@ section > h3 + div {
   overflow: hidden;
   margin-top: s(2.5);
   padding: s(3) s(3.5) !important;
-  border-radius: var(--radius-md) !important;
+  border-radius: var(--radius-lg) !important;
   /* 14 px */
   background: var(--popover) !important;
 }
@@ -29,14 +29,14 @@ a[class*='hover:underline']:hover {
 
 /* Monaco Editor */
 .monaco-editor {
-  border-radius: var(--radius-sm) !important;
+  border-radius: var(--radius-md) !important;
   overflow: hidden;
 }
 
 /* Sponsorship Popup Styles */
 [x-show='popups.sponsorship'] {
   padding: s(5) !important;
-  border-radius: var(--radius-sm) !important;
+  border-radius: var(--radius-md) !important;
   background: var(--popover) !important;
   box-shadow: var(--shadow-lg) !important;
 }

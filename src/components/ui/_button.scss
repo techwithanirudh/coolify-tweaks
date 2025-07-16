@@ -3,7 +3,7 @@
 @mixin button-base {
   padding: s(2.25) s(4);
   border: 1px solid transparent !important;
-  border-radius: var(--radius-xs) !important;
+  border-radius: var(--radius-sm) !important;
   font-weight: 600;
   transition:
     background 0.18s ease,

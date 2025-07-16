@@ -3,19 +3,19 @@
 table {
   overflow: hidden !important;
   margin-top: s(4);
-  border-radius: var(--radius-sm) !important;
+  border-radius: var(--radius-md) !important;
   background: var(--popover) !important;
 
   [dashed],
   [class*='dashed'] {
     border-color: var(--border) !important;
-    border-radius: var(--radius-sm) !important;
+    border-radius: var(--radius-md) !important;
     padding-block: s(8) !important;
   }
 
   [role='row']:not([dashed]) {
     padding: s(2.5) s(3.25);
-    border-radius: var(--radius-sm) !important;
+    border-radius: var(--radius-md) !important;
     background: var(--card) !important;
   }
 

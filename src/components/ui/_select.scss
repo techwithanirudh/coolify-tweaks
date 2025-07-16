@@ -3,7 +3,7 @@
 @mixin select-base {
   appearance: base-select;
   border: 1px solid var(--input) !important;
-  border-radius: var(--radius-xs) !important;
+  border-radius: var(--radius-sm) !important;
   background: transparent;
   color: var(--foreground);
   transition:
@@ -51,7 +51,7 @@ select,
 // dropdown panel
 ::picker(select) {
   border: 1px solid var(--border) !important;
-  border-radius: var(--radius-xs) !important;
+  border-radius: var(--radius-sm) !important;
   background: var(--popover) !important;
   top: calc(anchor(bottom) + 4px);
   opacity: 0;
@@ -83,11 +83,11 @@ option {
   gap: s(5);
 
   &:first-of-type {
-    border-radius: var(--radius-xs) var(--radius-xs) 0 0;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   }
 
   &:last-of-type {
-    border-radius: 0 0 var(--radius-xs) var(--radius-xs);
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
   }
 
   &:not(:last-of-type) {
