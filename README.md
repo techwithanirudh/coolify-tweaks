@@ -48,6 +48,44 @@ A userstyle that enhances Coolify's UI by applying opinionated tweaks, spacing, 
    If you notice style changes are slow, laggy, or not applying immediately, enable Instant Mode in Stylus. This forces styles to inject instantly on page load, eliminating delays.  
    <img alt="Stylus Instant Mode" src="/.github/assets/stylus-instant-mode.png" width="50%" />
 
+## Theming
+
+Coolify Tweaks supports custom themes through integration with [TweakCN](https://tweakcn.com), allowing you to personalize your Coolify interface with beautiful color schemes and styling variations.
+
+### How to Apply a Custom Theme
+
+1. **Browse Available Themes**  
+   Visit [TweakCN](https://tweakcn.com/editor/theme) to explore available themes or create your own custom theme.
+
+2. **Get the Theme ID**  
+   When you find a theme you like:
+   - Click the **Share** button on the theme
+   - Copy the theme ID (e.g., `bubblegum`, `claude`, or `cmd1ndlp3000504l24z7vgywd`)
+
+3. **Install with Theme**  
+   Use the themed installation URL in Stylus:
+
+   ```
+   https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=THEME_ID&asset=main.user.css
+   ```
+
+   Replace `THEME_ID` with your copied theme identifier.
+
+   > **Note:** The theme query parameter should come first, as Stylus identifies user styles by URLs ending with `user.css`
+
+### Troubleshooting Themes
+
+**Theme not applying?**
+
+- Ensure you're using the correct theme ID
+- Try refreshing the page or restarting your browser
+
+**Mixed styling issues?**
+
+- Clear your browser cache
+- Disable and re-enable the style in Stylus
+- Make sure you're not running multiple conflicting styles
+
 ## Contributing
 
 Got an idea or feature request? [Open an issue](https://github.com/techwithanirudh/coolify-tweaks/issues) and let’s chat.

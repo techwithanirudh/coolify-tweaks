@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.5.2
+
+### Patch Changes
+
+- refactor: radius logic
+
 ## 3.5.1
 
 ### Patch Changes
