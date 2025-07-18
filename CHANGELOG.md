@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.5.3
+
+### Patch Changes
+
+- fix: allow pointer events for disabled inputs
+
 ## 3.5.2
 
 ### Patch Changes
