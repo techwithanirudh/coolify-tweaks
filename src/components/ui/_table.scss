@@ -1,31 +1,91 @@
 @use 'globals' as *;
 
 table {
+  /* base container */
+  min-width: 100% !important;
   overflow: hidden !important;
-  margin-top: s(4);
+  margin-top: s(4) !important;
   border-radius: var(--radius-md) !important;
   background: var(--card) !important;
 
-  [dashed],
-  [class*='dashed'] {
-    border-color: var(--border) !important;
-    border-radius: var(--radius-md) !important;
-    padding-block: s(8) !important;
+  /* row separators */
+  > :not(:last-child) {
+    border-bottom: 1px solid var(--border) !important;
   }
 
-  [role='row']:not([dashed]) {
-    padding: s(2.5) s(3.25);
-    border-radius: var(--radius-md) !important;
-    background: var(--card) !important;
-  }
-
+  /* header */
   thead {
     background: var(--card) !important;
+    text-transform: uppercase !important;
+
+    tr th {
+      padding-block: s(3.5) !important;
+      padding-inline: s(3) !important;
+      text-align: left !important;
+      font-weight: var(--font-weight-medium) !important;
+      color: var(--foreground) !important;
+
+      /* extra left padding on first col */
+      &:first-child {
+        padding-left: s(4) !important;
+        @media (min-width: 40rem) {
+          padding-left: s(6) !important;
+        }
+      }
+    }
   }
 
-  @media (hover: hover) {
-    tr:hover {
-      background: color-mix(in srgb, var(--muted) 50%, transparent) !important;
+  /* body */
+  tbody {
+    > :not(:last-child) {
+      border-bottom: 1px solid var(--border) !important;
+    }
+
+    tr {
+      td {
+        padding-block: s(4) !important;
+        padding-inline: s(3) !important;
+        white-space: nowrap !important;
+
+        /* bold and indented first col */
+        &:first-child {
+          padding-left: s(4) !important;
+          font-weight: var(--font-weight-bold) !important;
+          @media (min-width: 40rem) {
+            padding-left: s(6) !important;
+          }
+        }
+      }
+
+      /* hover effect */
+      @media (hover: hover) {
+        &:hover {
+          background: color-mix(in srgb, var(--muted) 50%, transparent) !important;
+        }
+      }
+    }
+  }
+}
+
+/* dark‑mode via class */
+:where(.dark, .dark *) {
+  table {
+    > :not(:last-child) {
+      border-color: var(--border) !important;
+    }
+
+    tr {
+      color: var(--muted-foreground) !important;
+
+      @media (hover: hover) {
+        &:hover {
+          background: var(--card) !important;
+        }
+      }
+    }
+
+    th {
+      color: var(--foreground) !important;
     }
   }
 }
