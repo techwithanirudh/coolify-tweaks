@@ -77,3 +77,8 @@ div[class*='md:w-96'],
 div[class='w-96 pb-6'] {
   width: 100% !important;
 }
+
+/* center the loader in the deployments section */
+div.flex.items-start.gap-2 > .inline-flex svg {
+  height: s(9);
+}
