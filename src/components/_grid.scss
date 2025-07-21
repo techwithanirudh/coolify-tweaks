@@ -97,7 +97,11 @@ div.grid[class*='cols']:is(
   }
 }
 
-@each $target in server, source, destination, security {
+div.grid[wire\:poll\.3000ms='loadDeployments'] > .grid:has(a[href^='/project/']) {
+  padding: 0 !important;
+}
+
+@each $target in server, source, destination, security, project {
   .grid:has(a[href*='/#{$target}/']) {
     grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
   }

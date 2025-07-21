@@ -14,7 +14,7 @@ export default defineConfig({
     },
   },
   build: {
-    emptyOutDir: true,
+    emptyOutDir: false,
     minify: false,
     rollupOptions: {
       input: path.resolve(__dirname, pkg.main),
