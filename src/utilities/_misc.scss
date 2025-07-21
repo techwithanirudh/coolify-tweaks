@@ -23,10 +23,10 @@ div[class*='flex flex-col gap-2'] {
   gap: s(4) !important;
 }
 
-/* "Sponsor us" box and similar */
+/* Style cards for settings */
 div[class*='p-4 border dark:border-coolgray-300'] {
   margin-top: s(4);
-  padding: s(4) s(6);
+  padding: s(4);
   border-radius: var(--radius-md) !important;
   background: var(--popover) !important;
 }
