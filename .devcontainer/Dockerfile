@@ -17,11 +17,6 @@ USER bun
 # Add bun to path
 ENV PATH=~/.bin/bin:${PATH}
 
-# Install p10k
-RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
-RUN echo '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' >> .zshrc
-RUN wget https://raw.githubusercontent.com/techwithanirudh/dotfiles/main/zsh/.p10k.zsh -O .p10k.zsh
-
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
