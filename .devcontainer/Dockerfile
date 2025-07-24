@@ -7,8 +7,28 @@ RUN apt-get update \
     git \
     nano \
     vim-tiny \
-    && apt-get auto-remove -y \
+    && apt-get autoremove -y \
     && apt-get clean -y \
     && chsh -s $(which bash) bun
 
+# Switch to bun user
 USER bun
+
+# Add bun to path
+ENV PATH=~/.bin/bin:${PATH}
+
+# Install p10k
+RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+RUN echo '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' >> .zshrc
+RUN wget https://raw.githubusercontent.com/techwithanirudh/dotfiles/main/zsh/.p10k.zsh -O .p10k.zsh
+
+# [Optional] Uncomment this section to install additional OS packages.
+# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+#     && apt-get -y install --no-install-recommends <your-package-list-here>
+
+# [Optional] Uncomment if you want to install an additional version of node using nvm
+# ARG EXTRA_NODE_VERSION=10
+# RUN su node -c "source /usr/local/share/nvm/nvm.sh && nvm install ${EXTRA_NODE_VERSION}"
+
+# [Optional] Uncomment if you want to install more global node modules
+# RUN su node -c "npm install -g <your-package-list-here>"
