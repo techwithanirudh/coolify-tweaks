@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import banner from 'vite-plugin-banner';
 import path from 'path';
 import pkg from './package.json';
+import userstyleProcessor from './plugins/vite/userstyle-processor';
 
 export default defineConfig({
   server: {
@@ -41,5 +42,11 @@ export default defineConfig({
 @description ${pkg.description}
 @license ${pkg.license}
 ==/UserStyle== */`),
+    userstyleProcessor({
+      domains: [
+        { type: 'regexp', value: 'https?://app\.coolify\.io/.*' },
+        { type: 'regexp', value: 'https?://coolify\.local:8000/.*' },
+      ],
+    }),
   ],
 });
