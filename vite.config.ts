@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import banner from 'vite-plugin-banner';
 import path from 'path';
 import pkg from './package.json';
+import { fixImportsInMozDocument } from './plugins/vite/userstyle-processor';
 
 export default defineConfig({
   server: {
@@ -41,5 +42,6 @@ export default defineConfig({
 @description ${pkg.description}
 @license ${pkg.license}
 ==/UserStyle== */`),
+    fixImportsInMozDocument(),
   ],
 });
