@@ -8,9 +8,55 @@ div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
   border-radius: var(--radius-lg) !important;
   filter: none !important;
   opacity: 1 !important;
+  min-width: 3.5rem !important;
+  width: 3.5rem !important;
+  min-height: 3.5rem !important;
+  height: 3.5rem !important;
+  padding: s(1.5);
 }
 
 input.input-sticky {
   background: transparent !important;
   backdrop-filter: blur(var(--blur)) !important;
+}
+
+div.grid[class*='cols']:is(
+    [x-show^='filteredGitBasedApplications'],
+    [x-show^='filteredDockerBasedApplications'],
+    [x-show^='filteredDatabases']
+  ) {
+  background: none !important;
+  padding: 0 !important;
+}
+
+div[x-show='filteredServices.length > 0']:has(> div[x-init='loadResources']) {
+  div[x-init='loadResources'] {
+    button {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+      border-radius: var(--radius-md);
+      margin-inline: 0;
+      text-indent: 0 !important;
+
+      & > * {
+        display: none !important;
+      }
+    }
+
+    button {
+      @include icon-button('arrows-clockwise-bold', 'bold');
+    }
+
+    button:hover {
+      background-color: color-mix(in srgb, var(--accent) 80%, transparent);
+      color: var(--accent-foreground);
+      opacity: 1;
+    }
+  }
+
+  div.grid[class*='cols'] {
+    background: none !important;
+    padding: 0 !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
 }
