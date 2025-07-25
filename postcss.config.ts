@@ -1,4 +1,3 @@
-import postcssPresetEnv from 'postcss-preset-env';
 import autoprefixer from 'autoprefixer';
 import wrapMozDocument from './plugins/postcss/wrap-moz-document';
 
@@ -8,6 +7,7 @@ export default {
       stage: 3,
     }),
     autoprefixer(),
+    // Note: @import placement is handled by the Vite plugin, not PostCSS
     wrapMozDocument({
       domains: [
         { type: 'regexp', value: 'https?://app\\.coolify\\.io/.*' },

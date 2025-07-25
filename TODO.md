@@ -26,3 +26,4 @@ Fix the deployments section
 Fix the tags section
 Fix empty state for no projects
 Fix add resources page
+Move @import in main.user.css to inside moz-document
