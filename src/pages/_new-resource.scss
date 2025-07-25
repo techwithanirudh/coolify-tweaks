@@ -5,7 +5,7 @@ img[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
 svg[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
 div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
   overflow: hidden !important;
-  border-radius: var(--radius-md) !important;
+  border-radius: var(--radius-lg) !important;
   filter: none !important;
   opacity: 1 !important;
 }

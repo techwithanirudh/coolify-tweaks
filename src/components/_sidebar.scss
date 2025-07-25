@@ -33,20 +33,20 @@ aside::-webkit-scrollbar {
 }
 
 aside::-webkit-scrollbar-thumb {
-  border-radius: 4px;
+  border-radius: var(--radius-lg);
   background: var(--accent);
 }
 
 nav > ul > li > ul > li {
   overflow: hidden;
-  border-radius: var(--radius-md) !important;
+  border-radius: var(--radius-lg) !important;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
   padding: s(2.25) s(3.75);
-  border-radius: var(--radius-md) !important;
+  border-radius: var(--radius-lg) !important;
   color: var(--sidebar-foreground);
   font-weight: 500;
   transition:

@@ -72,7 +72,7 @@ div.grid[class*='cols']:is(
       padding: s(1.5);
       background-color: var(--accent);
       color: var(--accent-foreground);
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-md);
       margin-inline: 0;
 
       & > * {

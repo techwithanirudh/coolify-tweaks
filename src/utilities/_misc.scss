@@ -5,7 +5,7 @@
 /* Misc utilities */
 form,
 div[class*='shadow-lg lg:border-t dark:border-coolgray-300'] {
-  border-radius: var(--radius-md) !important;
+  border-radius: var(--radius-lg) !important;
 }
 
 div[class='flex flex-col gap-4 max-w-2xl'] {
@@ -27,7 +27,7 @@ div[class*='flex flex-col gap-2'] {
 div[class*='p-4 border dark:border-coolgray-300'] {
   margin-top: s(4);
   padding: s(4);
-  border-radius: var(--radius-md) !important;
+  border-radius: var(--radius-lg) !important;
   background: var(--popover) !important;
 }
 
