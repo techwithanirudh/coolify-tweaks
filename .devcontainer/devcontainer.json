@@ -1,5 +1,5 @@
 {
-  "name": "Bun",
+  "name": "Bun + ZSH",
   "build": {
     "dockerfile": "Dockerfile"
   },
