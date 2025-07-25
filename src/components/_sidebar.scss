@@ -55,10 +55,21 @@ nav > ul > li > ul > li {
   gap: s(2.5);
 }
 
+// target settings sidebar (edit service)
+div > .menu-item {
+  color: var(--foreground);
+}
+
 .menu-item:hover,
 .menu-item-active {
   background: var(--sidebar-accent) !important;
   color: var(--sidebar-accent-foreground) !important;
+}
+
+div > .menu-item:hover,
+div > .menu-item-active {
+  background: var(--accent) !important;
+  color: var(--accent-foreground) !important;
 }
 
 .menu-item .icon {
