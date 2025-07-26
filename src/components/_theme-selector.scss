@@ -11,10 +11,14 @@ button[\@click='dropdownOpen=true']:has([x-show*='theme']) {
 
   &:hover {
     background: color-mix(in srgb, var(--secondary) 80%, transparent);
+
+    & svg {
+      fill: var(--secondary-foreground) !important;
+    }
   }
 
   & svg {
-    fill: var(--secondary-foreground) !important;
+    fill: var(--sidebar-foreground) !important;
   }
 
   & > span > div {
