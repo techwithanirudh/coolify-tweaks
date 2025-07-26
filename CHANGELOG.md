@@ -1,5 +1,16 @@
 # coolify-tweaks
 
+## 3.6.3
+
+### Patch Changes
+
+- Refactor user style processing with consolidated plugin architecture:
+  - Consolidated two separate plugins into single userstyle-processor.ts
+  - Improved CSS structure with proper @import placement inside @-moz-document wrapper
+  - Clean PostCSS plugin for handling import rules placement
+  - Removed redundant code and simplified build pipeline
+  - Better maintainability and cleaner output
+
 ## 3.6.2
 
 ### Patch Changes

@@ -29,3 +29,5 @@ Fix add resources page
 
 # v4
 Um, dump all HTML into o3 or 2.5 Pro and ask it to fix my selectors 😭
+Fix onboarding page
+Fix coolify cloud
