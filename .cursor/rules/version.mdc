@@ -33,7 +33,8 @@ We use [Changesets](https://github.com/changesets/changesets) to manage versioni
 3. Release Process
 
 1. Create a changeset:
-   bun changeset --empty
+   bun changeset --empty (creates an empty changeset without interactive prompts)
+   > Note: AI agents cannot interact with the `bun changeset` command, so use the `--empty` flag to skip interactive prompts.
 
    or write a markdown file in `.changeset/`.
 
