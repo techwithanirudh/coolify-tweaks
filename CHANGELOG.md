@@ -1,5 +1,15 @@
 # coolify-tweaks
 
+## 3.6.2
+
+### Patch Changes
+
+- fix: improve theme selector button styling and functionality
+  - Adjust button background and SVG fill for improved theme dropdown visibility
+  - Update hover state styles for theme selector button to enhance visual feedback
+  - Support all theme states for improved functionality
+  - Remove unnecessary styles for cleaner design
+
 ## 3.6.1
 
 ### Patch Changes
