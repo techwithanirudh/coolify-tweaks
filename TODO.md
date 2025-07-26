@@ -26,3 +26,6 @@ Fix the deployments section
 Fix the tags section
 Fix empty state for no projects
 Fix add resources page
+
+# v4
+Um, dump all HTML into o3 or 2.5 Pro and ask it to fix my selectors 😭

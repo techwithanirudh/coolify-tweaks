@@ -1,7 +1,7 @@
 @use 'globals' as *;
 @use 'components/ui/_button' as button;
 
-button[\@click='dropdownOpen=true']:has([x-show="theme === 'dark' || theme === 'system'"]) {
+button[\@click='dropdownOpen=true']:has([x-show*='theme']) {
   @include button.button-base;
 
   border-radius: 10px !important;
@@ -24,6 +24,16 @@ button[\@click='dropdownOpen=true']:has([x-show="theme === 'dark' || theme === '
   & > svg.w-4.h-4 {
     display: none;
   }
+}
+
+div:has(div[x-show='dropdownOpen']:not([style*='display: none']))
+  button[\@click='dropdownOpen=true']:has([x-show*='theme']) {
+  background: var(--secondary) !important;
+}
+
+div[x-show='dropdownOpen']:has(button[\@click*='setTheme']) {
+  left: s(-2);
+  top: s(3);
 }
 
 button[\@click^='switchWidth'],
