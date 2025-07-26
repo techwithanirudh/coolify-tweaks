@@ -1,3 +1,4 @@
+// WARNING: This plugin is vibe-coded
 import postcss, { type Plugin } from 'postcss';
 
 interface DomainConfig {
@@ -11,17 +12,8 @@ interface Options {
 
 const wrapMozDocument = (options: Options = {}): Plugin => ({
   postcssPlugin: 'wrap-moz-document',
-  Once(root) {
+  prepare() {
     const domains = options.domains || [''];
-
-    const charsetRules = root.nodes.filter(
-      node => node.type === 'atrule' && node.name === 'charset'
-    );
-
-    const otherNodes = root.nodes.filter(
-      node => !(node.type === 'atrule' && node.name === 'charset')
-    );
-
     const params = domains
       .map(domain => {
         if (typeof domain === 'string') {
@@ -31,16 +23,31 @@ const wrapMozDocument = (options: Options = {}): Plugin => ({
       })
       .join(', ');
 
-    const wrapper = postcss.atRule({
-      name: '-moz-document',
-      params,
-    });
+    return {
+      Once(root) {
+        const wrapper = postcss.atRule({
+          name: '-moz-document',
+          params,
+        });
 
-    otherNodes.forEach(node => wrapper.append(node.clone()));
+        const charsetRules: postcss.Node[] = [];
+        const nodesToMove: postcss.Node[] = [];
 
-    root.removeAll();
-    charsetRules.forEach(rule => root.append(rule));
-    root.append(wrapper);
+        root.each(node => {
+          if (node.type === 'atrule' && node.name === 'charset') {
+            charsetRules.push(node.clone());
+          } else {
+            nodesToMove.push(node.clone());
+          }
+        });
+
+        root.removeAll();
+
+        charsetRules.forEach(rule => root.append(rule));
+        nodesToMove.forEach(node => wrapper.append(node));
+        root.append(wrapper);
+      },
+    };
   },
 });
 
