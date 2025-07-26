@@ -1,5 +1,27 @@
 # coolify-tweaks
 
+## 3.6.0
+
+### Minor Changes
+
+- # Refactor User Style Processing Architecture
+
+  This release introduces a significant architectural improvement to how user styles are processed and generated, resulting in cleaner, more maintainable code and better CSS output.
+
+  ## Major Changes
+
+  ### Improved CSS Structure
+  - **Fixed @import rule placement** - imports now properly appear inside the `@-moz-document` wrapper instead of outside
+  - **Correct CSS ordering** - UserStyle header → @charset → @-moz-document wrapper → @imports → CSS content
+
+  ## What This Means for Users
+
+  The generated user styles now have proper CSS structure with imports correctly scoped within domain targeting. This ensures better compatibility with user style managers and more reliable application of tweaks across different Coolify environments.
+
+  ## Breaking Changes
+
+  None - this is purely an internal architectural improvement that maintains the same output functionality while improving code quality and maintainability.
+
 ## 3.5.4
 
 ### Patch Changes
