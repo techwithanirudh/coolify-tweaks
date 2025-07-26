@@ -33,10 +33,13 @@ button[\@click='dropdownOpen=true']:has([x-show*='theme']) {
 div:has(div[x-show='dropdownOpen']:not([style*='display: none']))
   button[\@click='dropdownOpen=true']:has([x-show*='theme']) {
   background: var(--secondary) !important;
+  & svg {
+    fill: var(--secondary-foreground) !important;
+  }
 }
 
 div[x-show='dropdownOpen']:has(button[\@click*='setTheme']) {
-  left: s(-2);
+  right: 0;
   top: s(3);
 }
 
