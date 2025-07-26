@@ -15,6 +15,16 @@ div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
   padding: s(1.5);
 }
 
+div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] > svg {
+  transform: translateX(-23px) translateY(-8px) scaleX(0.8) scaleY(0.7) !important;
+  transform-origin: center center !important;
+}
+
+div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] > svg#svg1326 {
+  transform: translateX(-19px) translateY(-9px) scaleX(0.8) scaleY(0.7) !important;
+  transform-origin: center center !important;
+}
+
 input.input-sticky {
   background: transparent !important;
   backdrop-filter: blur(var(--blur)) !important;
