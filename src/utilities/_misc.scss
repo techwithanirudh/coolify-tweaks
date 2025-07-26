@@ -19,10 +19,6 @@ input.dark\:bg-coolgray-100:where(.dark, .dark *) {
   transition: background 0.18s;
 }
 
-div[class*='flex flex-col gap-2'] {
-  gap: s(4) !important;
-}
-
 /* Style cards for settings */
 div[class*='p-4 border dark:border-coolgray-300'] {
   margin-top: s(4);

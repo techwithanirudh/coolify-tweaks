@@ -22,6 +22,22 @@
 
 A userstyle that enhances Coolify's UI by applying opinionated tweaks, spacing, colors, and layout fixes, to make the UI more polished and user-friendly.
 
+## Backstory
+
+With Coolify v5’s big redesign set for 2026, I couldn't just sit around waiting for the visual upgrades. Coolify is super powerful, but a lot of people in the community feel like the UI gets in the way sometimes.
+
+Instead of waiting for the official update, I decided to take things into my own hands. **Coolify Tweaks isn't a full redesign, it's a restyle.** It's a preview of what Coolify v5 _might_ look and feel like.
+
+I cleaned up the spacing, adjusted the colors, tweaked the typography, and gave the layout a more modern vibe. It’s still the same Coolify under the hood, just with a smoother, more intuitive interface. Basically, it's a taste of the future, available right now.
+
+Let me know if you want a more professional or developer-blog-style tone instead.
+
+With Coolify v5's fully-featured redesign on the horizon for 2026, I found myself unable to wait for the visual improvements. While Coolify is an incredibly powerful platform, I've heard from many in the community that UI design friction sometimes holds people back from fully embracing it.
+
+Rather than waiting for the official redesign, I decided to take matters into my own hands. **Coolify Tweaks isn't a redesign—it's a restyle.** Think of it as a sneak peek into what Coolify v5 could potentially look and feel like. This project bridges the gap between Coolify's current interface and the polished experience we're all eagerly anticipating.
+
+By refining spacing, colors, typography, and layout patterns, this userstyle transforms the existing interface into something that feels more modern and intuitive—giving you a taste of tomorrow's Coolify, today.
+
 ## Installation
 
 1. Install [Stylus](https://add0n.com/stylus.html).
