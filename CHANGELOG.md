@@ -1,5 +1,18 @@
 # coolify-tweaks
 
+## 3.6.1
+
+### Patch Changes
+
+- Fix multiple UI improvements and documentation updates:
+  - Enhanced changeset creation instructions for AI agents
+  - Added comprehensive versioning rules and release process documentation
+  - Improved SVG transformations for consistent alignment in resource images
+  - Updated theme selector button to support all theme states
+  - Cleaned up unnecessary styles from theme selector button
+  - Refined README backstory section for better clarity
+  - Updated README with enhanced project backstory and UI descriptions
+
 ## 3.6.0
 
 ### Minor Changes
