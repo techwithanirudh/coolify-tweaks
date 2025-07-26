@@ -5,11 +5,6 @@ button[\@click='dropdownOpen=true']:has([x-show="theme === 'dark' || theme === '
   @include button.button-base;
 
   border-radius: 10px !important;
-
-  background: var(--secondary) !important;
-  color: var(--secondary-foreground) !important;
-  box-shadow: var(--shadow-xs);
-
   padding-inline: s(0.5) !important;
   padding-block: s(2) !important;
   margin-right: s(2);
