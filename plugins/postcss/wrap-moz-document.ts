@@ -47,12 +47,6 @@ const wrapMozDocument = (options: Options = {}): Plugin => ({
         nodesToMove.forEach(node => wrapper.append(node));
         root.append(wrapper);
       },
-
-      AtRule: {
-        import(atRule) {
-          atRule.raws.before = atRule.raws.before || '';
-        },
-      },
     };
   },
 });
