@@ -22,6 +22,8 @@
 
 A userstyle that enhances Coolify's UI by applying opinionated tweaks, spacing, colors, and layout fixes, to make the UI more polished and user-friendly.
 
+**[View Screenshots →](SCREENSHOTS.md)**
+
 ## Backstory
 
 With Coolify v5's redesign set for 2026, I couldn't just sit around waiting for the visual upgrades. Coolify is really powerful, but a lot of people in the community feel like the UI gets in the way sometimes.
@@ -31,6 +33,8 @@ Instead of waiting for the official update, I decided to take things into my own
 I cleaned up the spacing, adjusted the colors, tweaked the typography, and gave the layout a more modern vibe. It's still the same Coolify under the hood, just with a smoother, more intuitive interface.
 
 ## Installation
+
+> **Note:** Coolify Tweaks is distributed through a custom API ([coolify-tweaks-api](https://github.com/techwithanirudh/coolify-tweaks-api)) that dynamically embeds [TweakCN](https://tweakcn.com) theme code into the style, enabling seamless theme integration.
 
 1. Install [Stylus](https://add0n.com/stylus.html).
 2. Hit the badge below to add the style:
