@@ -1,5 +1,17 @@
 # coolify-tweaks
 
+## 3.7.0
+
+### Minor Changes
+
+- feat: add spinner and dropdown components with enhanced styling
+  - Added new spinner component with proper theming
+  - Implemented dropdown component with hover and focus states
+  - Refactored box styles for better consistency
+  - Enhanced onboarding page layout and styling
+  - Removed !important declarations for better maintainability
+  - Improved UI component organization and theming
+
 ## 3.6.4
 
 ### Patch Changes
