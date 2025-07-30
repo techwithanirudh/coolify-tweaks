@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.6.4
+
+### Patch Changes
+
+- fix: destructive colors & fix width inconsistencies
+
 ## 3.6.3
 
 ### Patch Changes
