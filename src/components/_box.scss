@@ -4,9 +4,10 @@
 .box-without-bg {
   overflow: hidden;
   padding: s(2.5) s(3);
-  border: 1px solid var(--border) !important;
-  border-radius: var(--radius-2xl) !important;
-  background: var(--card) !important;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  background: var(--card);
+  color: var(--card-foreground);
   transition:
     transform 0.15s,
     box-shadow 0.2s,
@@ -14,9 +15,11 @@
     border-color 0.18s;
 }
 
+// todo: fix active state in servers/resources section
+
 .box:hover,
 .box-without-bg:hover {
-  background-color: color-mix(in srgb, var(--card) 80%, transparent) !important;
+  background-color: color-mix(in srgb, var(--card) 80%, transparent);
 }
 
 .box-title {

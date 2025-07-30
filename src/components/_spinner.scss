@@ -2,15 +2,15 @@
 
 // spinner
 svg.animate-spin {
-  color: var(--primary) !important;
+  color: var(--primary);
 
   circle {
     opacity: 0.75;
-    stroke: var(--primary-foreground) !important;
+    stroke: var(--primary-foreground);
     stroke-width: 2;
   }
 }
 
 // [wire\:loading][wire\:loading] {
-//   display: block !important;
+//   display: block;
 // }

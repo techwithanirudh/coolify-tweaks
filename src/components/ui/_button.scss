@@ -2,8 +2,8 @@
 
 @mixin button-base {
   padding: s(2.25) s(4);
-  border: 1px solid transparent !important;
-  border-radius: var(--radius-md) !important;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
   font-weight: 600;
   transition:
     background 0.18s ease,
@@ -12,12 +12,12 @@
 
   &:focus-visible {
     outline: none;
-    border-color: var(--ring) !important;
+    border-color: var(--ring);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
   }
 
   &[aria-invalid='true'] {
-    border-color: var(--destructive) !important;
+    border-color: var(--destructive);
 
     @include for-dark {
       box-shadow: 0 0 0 3px color-mix(in srgb, var(--destructive) 40%, transparent);
@@ -25,7 +25,7 @@
   }
 
   &:disabled {
-    opacity: 0.5 !important;
+    opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
   }
@@ -35,7 +35,7 @@ button.button,
 .button {
   @include button-base;
   background: var(--primary);
-  color: var(--primary-foreground) !important;
+  color: var(--primary-foreground);
   box-shadow: var(--shadow-xs);
 
   &:hover {
@@ -52,8 +52,8 @@ button.button,
 button.secondary,
 .secondary {
   @include button-base;
-  background: var(--secondary) !important;
-  color: var(--secondary-foreground) !important;
+  background: var(--secondary);
+  color: var(--secondary-foreground);
   box-shadow: var(--shadow-xs);
 
   &:hover {
@@ -71,8 +71,8 @@ button.destructive,
 button[iserror='isError'],
 .destructive {
   @include button-base;
-  background: var(--destructive) !important;
-  color: var(--destructive-foreground) !important;
+  background: var(--destructive);
+  color: var(--destructive-foreground);
   box-shadow: var(--shadow-xs);
 
   &:hover {
@@ -84,7 +84,7 @@ button[iserror='isError'],
       background: color-mix(in srgb, var(--destructive) 80%, var(--input));
     }
 
-    background: color-mix(in srgb, var(--destructive) 60%, var(--input)) !important;
+    background: color-mix(in srgb, var(--destructive) 60%, var(--input));
   }
 }
 
@@ -93,7 +93,7 @@ button.outline,
   @include button-base;
   background: var(--background);
   color: var(--foreground);
-  border-color: var(--border) !important;
+  border-color: var(--border);
   box-shadow: var(--shadow-xs);
 
   &:hover {
@@ -103,7 +103,7 @@ button.outline,
 
   @include for-dark {
     background: color-mix(in srgb, var(--input) 30%, transparent);
-    border-color: var(--input) !important;
+    border-color: var(--input);
 
     &:hover {
       background: color-mix(in srgb, var(--input) 50%, transparent);

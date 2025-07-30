@@ -141,12 +141,12 @@ $breakpoints: (
   --sidebar-width: 260px;
   --blur: 10px;
 
-  --color-base: var(--background) !important;
-  --color-coollabs: var(--primary) !important;
-  --color-text-primary: var(--foreground) !important;
+  --color-base: var(--background);
+  --color-coollabs: var(--primary);
+  --color-text-primary: var(--foreground);
 
-  --color-error: var(--destructive) !important;
-  --color-success: var(--success) !important;
-  --color-warning: var(--warning) !important;
-  --color-info: var(--info) !important;
+  --color-error: var(--destructive);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
 }

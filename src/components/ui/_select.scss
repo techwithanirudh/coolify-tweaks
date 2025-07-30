@@ -2,8 +2,8 @@
 
 @mixin select-base {
   appearance: base-select;
-  border: 1px solid var(--input) !important;
-  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-md);
   background: transparent;
   color: var(--foreground);
   transition:
@@ -16,8 +16,8 @@
   }
 
   &:disabled {
-    border-color: var(--muted-foreground) !important;
-    color: var(--muted-foreground) !important;
+    border-color: var(--muted-foreground);
+    color: var(--muted-foreground);
     cursor: not-allowed;
     pointer-events: none;
     opacity: 0.5;
@@ -25,8 +25,8 @@
 
   &:not([disabled]):hover,
   &:not([disabled]):focus {
-    border-color: var(--input) !important;
-    background: var(--accent) !important;
+    border-color: var(--input);
+    background: var(--accent);
   }
 
   &::picker-icon {
@@ -50,9 +50,9 @@ select,
 
 // dropdown panel
 ::picker(select) {
-  border: 1px solid var(--border) !important;
-  border-radius: var(--radius-md) !important;
-  background: var(--popover) !important;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--popover);
   top: calc(anchor(bottom) + 4px);
   opacity: 0;
   transition:
@@ -77,8 +77,8 @@ option {
   display: flex;
   justify-content: flex-start;
   padding: s(2.5);
-  background: var(--popover) !important;
-  color: var(--popover-foreground) !important;
+  background: var(--popover);
+  color: var(--popover-foreground);
   transition: 0.4s;
   gap: s(5);
 
@@ -96,8 +96,8 @@ option {
 
   &:hover:not(:disabled),
   &:focus:not(:disabled) {
-    background: var(--accent) !important;
-    color: var(--accent-foreground) !important;
+    background: var(--accent);
+    color: var(--accent-foreground);
   }
 
   .icon {

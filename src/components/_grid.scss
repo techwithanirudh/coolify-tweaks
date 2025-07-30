@@ -4,9 +4,9 @@ div[data-testid='resources-grid'],
 div.grid[class*='cols'] {
   overflow: hidden;
   margin-top: s(2.5);
-  padding: s(4) s(4) !important;
-  border-radius: var(--radius-3xl) !important;
-  background: var(--accent) !important;
+  padding: s(4) s(4);
+  border-radius: var(--radius-3xl);
+  background: var(--accent);
 }
 
 div.grid[class*='cols']:is(
@@ -15,27 +15,27 @@ div.grid[class*='cols']:is(
     [x-show^='filteredApplications'],
     [x-show^='filteredServices']
   ) {
-  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 
   @include mq(sm) {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   @include mq(lg) {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   @include mq(xl) {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   @include mq(xxl) {
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .box {
     height: 150px;
-    padding: s(4) s(5) !important;
+    padding: s(4) s(5);
 
     > div {
       margin: 0;
@@ -76,7 +76,7 @@ div.grid[class*='cols']:is(
       margin-inline: 0;
 
       & > * {
-        display: none !important;
+        display: none;
       }
     }
 
@@ -98,16 +98,16 @@ div.grid[class*='cols']:is(
 }
 
 div.grid[wire\:poll\.3000ms='loadDeployments'] > .grid:has(a[href^='/project/']) {
-  padding: 0 !important;
+  padding: 0;
 }
 
 @each $target in server, source, destination, security, project {
   .grid:has(a[href*='/#{$target}/']) {
-    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
 
 .grid,
 [class*='grid-cols'] {
-  gap: s(2.5) !important;
+  gap: s(2.5);
 }

@@ -3,8 +3,8 @@
 @mixin input-base {
   padding: s(2.25) s(4);
 
-  border: 1px solid var(--input) !important;
-  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-md);
 
   background: transparent;
   color: var(--foreground);
@@ -31,12 +31,12 @@
 
   &:focus-visible {
     outline: none;
-    border-color: var(--ring) !important;
+    border-color: var(--ring);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
   }
 
   &::placeholder {
-    color: var(--muted-foreground) !important;
+    color: var(--muted-foreground);
     opacity: 0.7;
   }
   &:focus::placeholder {
@@ -44,7 +44,7 @@
   }
 
   &[aria-invalid='true'] {
-    border-color: var(--destructive) !important;
+    border-color: var(--destructive);
   }
   @include for-dark {
     &[aria-invalid='true'] {
@@ -55,7 +55,7 @@
   &:disabled {
     pointer-events: all;
     cursor: not-allowed;
-    opacity: 0.5 !important;
+    opacity: 0.5;
   }
 
   &::selection {
@@ -74,8 +74,8 @@ select.select {
 input[type='checkbox'],
 input[type='radio'] {
   padding: s(2.75);
-  border-radius: 4px !important;
-  background-color: var(--input) !important;
+  border-radius: 4px;
+  background-color: var(--input);
   transition: background-color 0.18s;
 
   &:focus-visible {

@@ -1,8 +1,8 @@
 @use 'globals' as *;
 
 ul[x-data] li > span {
-  border: 1px solid var(--border) !important;
-  background: var(--card) !important;
+  border: 1px solid var(--border);
+  background: var(--card);
   font-family: 'Inter', sans-serif;
   backdrop-filter: blur(var(--blur));
 }

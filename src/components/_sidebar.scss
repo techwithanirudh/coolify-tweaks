@@ -4,16 +4,16 @@
      Instead of fragile width/flex classes, it's identified by its fixed position on large screens 
      and the fact that it contains the main navigation (`a[title="Dashboard"]`). This is much more stable. */
 div.lg\:fixed:has(nav a[title='Dashboard']) {
-  width: var(--sidebar-width) !important;
+  width: var(--sidebar-width);
 }
 
 nav[x-data]:has(a[title='Dashboard']) {
   overflow-x: hidden;
-  overflow-y: auto !important;
+  overflow-y: auto;
   width: 100%;
   border-right: 1px solid var(--border);
-  background: var(--sidebar) !important;
-  backdrop-filter: blur(var(--blur)) !important;
+  background: var(--sidebar);
+  backdrop-filter: blur(var(--blur));
   scrollbar-width: thin;
   scrollbar-color: var(--accent) transparent;
 }
@@ -25,7 +25,7 @@ nav[x-data]:has(a[title='Dashboard']) > ul {
 /* Targets the sidebar header containing the team switcher.
      It's robustly selected by finding the `div` that directly contains the unique Livewire team selection dropdown. */
 nav[x-data] > div:has(select[wire\:model\.live='selectedTeamId']) {
-  padding-block: s(4) !important;
+  padding-block: s(4);
 }
 
 aside::-webkit-scrollbar {
@@ -39,14 +39,14 @@ aside::-webkit-scrollbar-thumb {
 
 nav > ul > li > ul > li {
   overflow: hidden;
-  border-radius: var(--radius-lg) !important;
+  border-radius: var(--radius-lg);
 }
 
 .menu-item {
   display: flex;
   align-items: center;
   padding: s(2.25) s(3.75);
-  border-radius: var(--radius-lg) !important;
+  border-radius: var(--radius-lg);
   color: var(--sidebar-foreground);
   font-weight: 500;
   transition:
@@ -62,14 +62,14 @@ div > .menu-item {
 
 .menu-item:hover,
 .menu-item-active {
-  background: var(--sidebar-accent) !important;
-  color: var(--sidebar-accent-foreground) !important;
+  background: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
 }
 
 div > .menu-item:hover,
 div > .menu-item-active {
-  background: var(--accent) !important;
-  color: var(--accent-foreground) !important;
+  background: var(--accent);
+  color: var(--accent-foreground);
 }
 
 .menu-item .icon {
@@ -80,7 +80,7 @@ div > .menu-item-active {
   margin: 0;
 
   & > * {
-    display: none !important;
+    display: none;
   }
 }
 
@@ -178,6 +178,6 @@ div > .menu-item-active {
 /* Desktop push */
 @include mq(lg) {
   body:has(nav[class*='dark:border-coolgray-200']) main {
-    padding-left: var(--sidebar-width) !important;
+    padding-left: var(--sidebar-width);
   }
 }

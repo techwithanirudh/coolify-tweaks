@@ -4,30 +4,30 @@
 img[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
 svg[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
 div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
-  overflow: hidden !important;
-  border-radius: var(--radius-lg) !important;
-  filter: none !important;
-  opacity: 1 !important;
-  min-width: 3.5rem !important;
-  width: 3.5rem !important;
-  min-height: 3.5rem !important;
-  height: 3.5rem !important;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  filter: none;
+  opacity: 1;
+  min-width: 3.5rem;
+  width: 3.5rem;
+  min-height: 3.5rem;
+  height: 3.5rem;
   padding: s(1.5);
 }
 
 div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] > svg {
-  transform: translateX(-23px) translateY(-8px) scaleX(0.8) scaleY(0.7) !important;
-  transform-origin: center center !important;
+  transform: translateX(-23px) translateY(-8px) scaleX(0.8) scaleY(0.7);
+  transform-origin: center center;
 }
 
 div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] > svg#svg1326 {
-  transform: translateX(-19px) translateY(-9px) scaleX(0.8) scaleY(0.7) !important;
-  transform-origin: center center !important;
+  transform: translateX(-19px) translateY(-9px) scaleX(0.8) scaleY(0.7);
+  transform-origin: center center;
 }
 
 input.input-sticky {
-  background: transparent !important;
-  backdrop-filter: blur(var(--blur)) !important;
+  background: transparent;
+  backdrop-filter: blur(var(--blur));
 }
 
 div.grid[class*='cols']:is(
@@ -35,8 +35,8 @@ div.grid[class*='cols']:is(
     [x-show^='filteredDockerBasedApplications'],
     [x-show^='filteredDatabases']
   ) {
-  background: none !important;
-  padding: 0 !important;
+  background: none;
+  padding: 0;
 }
 
 div[x-show='filteredServices.length > 0']:has(> div[x-init='loadResources']) {
@@ -46,10 +46,10 @@ div[x-show='filteredServices.length > 0']:has(> div[x-init='loadResources']) {
       color: var(--accent-foreground);
       border-radius: var(--radius-md);
       margin-inline: 0;
-      text-indent: 0 !important;
+      text-indent: 0;
 
       & > * {
-        display: none !important;
+        display: none;
       }
     }
 
@@ -65,8 +65,8 @@ div[x-show='filteredServices.length > 0']:has(> div[x-init='loadResources']) {
   }
 
   div.grid[class*='cols'] {
-    background: none !important;
-    padding: 0 !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    background: none;
+    padding: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

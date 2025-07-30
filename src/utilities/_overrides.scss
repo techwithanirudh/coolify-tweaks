@@ -6,10 +6,10 @@ section > h2 + div,
 section > h3 + div {
   overflow: hidden;
   margin-top: s(2.5);
-  padding: s(3) s(3.5) !important;
-  border-radius: var(--radius-xl) !important;
+  padding: s(3) s(3.5);
+  border-radius: var(--radius-xl);
   /* 14 px */
-  background: var(--popover) !important;
+  background: var(--popover);
 }
 
 section h3[class='pb-2'] {
@@ -23,22 +23,22 @@ section h3[class='pb-2'] {
 
 /* Cleanup Links */
 a[class*='hover:underline']:hover {
-  color: var(--muted-foreground) !important;
-  text-decoration: none !important;
+  color: var(--muted-foreground);
+  text-decoration: none;
 }
 
 /* Monaco Editor */
 .monaco-editor {
-  border-radius: var(--radius-lg) !important;
+  border-radius: var(--radius-lg);
   overflow: hidden;
 }
 
 /* Sponsorship Popup Styles */
 [x-show='popups.sponsorship'] {
-  padding: s(5) !important;
-  border-radius: var(--radius-lg) !important;
-  background: var(--popover) !important;
-  box-shadow: var(--shadow-lg) !important;
+  padding: s(5);
+  border-radius: var(--radius-lg);
+  background: var(--popover);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Scrollbars */
@@ -58,27 +58,27 @@ a[class*='hover:underline']:hover {
 
 /* Button to add tags to service */
 .add-tag {
-  color: var(--muted-foreground) !important;
+  color: var(--muted-foreground);
 }
 
 .add-tag:hover {
-  color: var(--foreground) !important;
+  color: var(--foreground);
 }
 
 /* take full width for compressed items, like checkboxes */
 div[class='w-32'] {
-  width: 100% !important;
-  min-width: s(32) !important;
+  width: 100%;
+  min-width: s(32);
 }
 
 div[class='w-48'] {
-  width: 100% !important;
-  min-width: s(48) !important;
+  width: 100%;
+  min-width: s(48);
 }
 
 div[class*='w-64'] {
-  width: 100% !important;
-  min-width: s(64) !important;
+  width: 100%;
+  min-width: s(64);
 }
 
 div[class='w-96'],
@@ -86,13 +86,13 @@ div[class='pt-2 w-96'],
 div[class='w-96 flex flex-col gap-1'],
 div[class='w-96 pb-6'],
 div[class*='md:w-96'] {
-  width: 100% !important;
-  min-width: s(96) !important;
+  width: 100%;
+  min-width: s(96);
 }
 
 div[class='w-\\[500px\\]'] {
-  width: 100% !important;
-  min-width: 500px !important;
+  width: 100%;
+  min-width: 500px;
 }
 
 /* center the loader in the deployments section */
@@ -102,5 +102,5 @@ div.flex.items-start.gap-2 > .inline-flex svg {
 
 /* button w-auto */
 div.w-auto > button {
-  width: max-content !important;
+  width: max-content;
 }

@@ -4,10 +4,10 @@
   position: sticky;
   top: 0;
   padding: s(1.75) s(3.5);
-  border: 1px solid var(--border) !important;
-  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   background: var(--sidebar);
-  backdrop-filter: blur(var(--blur)) !important;
+  backdrop-filter: blur(var(--blur));
 }
 
 .navbar-main nav {
@@ -23,7 +23,7 @@
 
 .navbar-main nav a {
   padding: s(1.25);
-  border-radius: 10px !important;
+  border-radius: 10px;
   color: var(--sidebar-foreground);
   font-weight: 600;
   cursor: pointer;
@@ -33,12 +33,12 @@
 }
 
 .navbar-main nav a:hover {
-  color: var(--sidebar-accent-foreground) !important;
+  color: var(--sidebar-accent-foreground);
 }
 
 .navbar-main nav a[class*='dark:text-white'],
 .navbar-main nav a[aria-current='page'] {
-  color: var(--sidebar-accent-foreground) !important;
+  color: var(--sidebar-accent-foreground);
 }
 
 .navbar-main .flex-1 {

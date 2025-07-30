@@ -2,34 +2,34 @@
 
 table {
   /* base container */
-  min-width: 100% !important;
-  overflow: hidden !important;
-  margin-top: s(4) !important;
-  border-radius: var(--radius-md) !important;
-  background: var(--card) !important;
+  min-width: 100%;
+  overflow: hidden;
+  margin-top: s(4);
+  border-radius: var(--radius-md);
+  background: var(--card);
 
   /* row separators */
   > :not(:last-child) {
-    border-bottom: 1px solid var(--border) !important;
+    border-bottom: 1px solid var(--border);
   }
 
   /* header */
   thead {
-    background: var(--card) !important;
-    text-transform: uppercase !important;
+    background: var(--card);
+    text-transform: uppercase;
 
     tr th {
-      padding-block: s(3.5) !important;
-      padding-inline: s(3) !important;
-      text-align: left !important;
-      font-weight: var(--font-weight-medium) !important;
-      color: var(--foreground) !important;
+      padding-block: s(3.5);
+      padding-inline: s(3);
+      text-align: left;
+      font-weight: var(--font-weight-medium);
+      color: var(--foreground);
 
       /* extra left padding on first col */
       &:first-child {
-        padding-left: s(4) !important;
+        padding-left: s(4);
         @media (min-width: 40rem) {
-          padding-left: s(6) !important;
+          padding-left: s(6);
         }
       }
     }
@@ -38,21 +38,21 @@ table {
   /* body */
   tbody {
     > :not(:last-child) {
-      border-bottom: 1px solid var(--border) !important;
+      border-bottom: 1px solid var(--border);
     }
 
     tr {
       td {
-        padding-block: s(4) !important;
-        padding-inline: s(3) !important;
-        white-space: nowrap !important;
+        padding-block: s(4);
+        padding-inline: s(3);
+        white-space: nowrap;
 
         /* bold and indented first col */
         &:first-child {
-          padding-left: s(4) !important;
-          font-weight: var(--font-weight-bold) !important;
+          padding-left: s(4);
+          font-weight: var(--font-weight-bold);
           @media (min-width: 40rem) {
-            padding-left: s(6) !important;
+            padding-left: s(6);
           }
         }
       }
@@ -60,7 +60,7 @@ table {
       /* hover effect */
       @media (hover: hover) {
         &:hover {
-          background: color-mix(in srgb, var(--muted) 50%, transparent) !important;
+          background: color-mix(in srgb, var(--muted) 50%, transparent);
         }
       }
     }
@@ -71,21 +71,21 @@ table {
 :where(.dark, .dark *) {
   table {
     > :not(:last-child) {
-      border-color: var(--border) !important;
+      border-color: var(--border);
     }
 
     tr {
-      color: var(--muted-foreground) !important;
+      color: var(--muted-foreground);
 
       @media (hover: hover) {
         &:hover {
-          background: var(--card) !important;
+          background: var(--card);
         }
       }
     }
 
     th {
-      color: var(--foreground) !important;
+      color: var(--foreground);
     }
   }
 }
