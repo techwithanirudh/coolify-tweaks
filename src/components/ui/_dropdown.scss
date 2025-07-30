@@ -1,0 +1,39 @@
+@use 'globals' as *;
+@use 'components/ui/_button' as button;
+
+[x-show='dropdownOpen'] > div {
+  border-radius: var(--radius-lg) !important;
+  background: var(--popover) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-lg);
+
+  .dropdown-item,
+  .dropdown-item-no-padding {
+    @include button.button-base;
+    width: 100%;
+    text-align: left;
+    padding: s(2) s(3);
+    color: var(--popover-foreground) !important;
+    background: var(--popover) !important;
+
+    &:hover {
+      background: var(--accent) !important;
+      color: var(--accent-foreground);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+      border-color: var(--ring) !important;
+    }
+  }
+
+  .dropdown-item-no-padding {
+    padding: s(1) !important;
+
+    &:focus {
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--ring) 50%, transparent);
+      border-color: var(--ring) !important;
+    }
+  }
+}

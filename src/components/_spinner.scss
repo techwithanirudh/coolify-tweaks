@@ -1,0 +1,16 @@
+@use 'globals' as *;
+
+// spinner
+svg.animate-spin {
+  color: var(--primary) !important;
+
+  circle {
+    opacity: 0.75;
+    stroke: var(--primary-foreground) !important;
+    stroke-width: 2;
+  }
+}
+
+// [wire\:loading][wire\:loading] {
+//   display: block !important;
+// }
