@@ -14,7 +14,8 @@
     border-color 0.18s;
 }
 
-.box:hover {
+.box:hover,
+.box-without-bg:hover {
   background-color: color-mix(in srgb, var(--card) 80%, transparent) !important;
 }
 
