@@ -22,12 +22,24 @@ button:has([title='Settings']) {
   }
 }
 
-div:has(div[x-show='dropdownOpen']:not([style*='display: none']))
-  button[\@click='dropdownOpen=true']:has([x-show*='theme']) {
+.dropdown-item-no-padding[wire\:click='openWhatsNewModal'] svg {
+  @include icon('file-text-fill', 'fill');
+}
+
+.dropdown-item-no-padding[\@click^="setTheme('dark')"] svg {
+  @include icon('moon-fill', 'fill');
+}
+
+.dropdown-item-no-padding[\@click^="setTheme('light')"] svg {
+  @include icon('sun-fill', 'fill');
+}
+
+.dropdown-item-no-padding[\@click^="setTheme('system')"] svg {
+  @include icon('desktop-fill', 'fill');
+}
+
+div:has(div[x-show='dropdownOpen']:not([style*='display: none'])) button:has([title='Settings']) {
   background: var(--secondary);
-  & svg {
-    fill: var(--secondary-foreground);
-  }
 }
 
 div[x-show='dropdownOpen']:has(button[\@click*='setTheme']) {

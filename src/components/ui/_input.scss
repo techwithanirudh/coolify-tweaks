@@ -23,6 +23,7 @@
   &:hover {
     background: color-mix(in srgb, var(--secondary) 10%, transparent);
   }
+
   @include for-dark {
     &:hover {
       background: color-mix(in srgb, var(--input) 40%, transparent);
@@ -39,6 +40,7 @@
     color: var(--muted-foreground);
     opacity: 0.7;
   }
+
   &:focus::placeholder {
     opacity: 0.5;
   }
@@ -46,6 +48,7 @@
   &[aria-invalid='true'] {
     border-color: var(--destructive);
   }
+
   @include for-dark {
     &[aria-invalid='true'] {
       box-shadow: 0 0 0 3px color-mix(in srgb, var(--destructive) 40%, transparent);
@@ -75,10 +78,15 @@ select.select {
 /* Targets inputs bound to Alpine's x-model="search" or inputs with class 'input--search' */
 input[x-model='search'],
 input.input--search {
-  padding-left: s(10); /* keep space for the icon */
-
   /* Ensure the containing block is positioned for the absolute svg */
   position: relative;
+
+  /* Only add left padding when the input is followed by an svg (search icon) */
+  &:has(+ svg),
+  &:has(+ svg[aria-hidden]),
+  &:has(+ svg[class*='w-4']) {
+    padding-left: s(10);
+  }
 
   /* Align the svg inside the input when it's absolutely positioned as in markup */
   & + svg,

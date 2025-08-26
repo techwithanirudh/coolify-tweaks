@@ -55,6 +55,7 @@ div[x-show='filteredServices.length > 0']:has(> div[x-init='loadResources']) {
 
     button {
       @include icon-button('arrows-clockwise-bold', 'bold');
+      text-indent: 0px;
     }
 
     button:hover {

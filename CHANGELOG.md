@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.7.2
+
+### Patch Changes
+
+- feat: add new icons for theme selector; fix: search icon position for changelog modal; fix: highlight settings button on active (dropdownOpen)
+
 ## 3.7.1
 
 ### Patch Changes

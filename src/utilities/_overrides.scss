@@ -41,6 +41,20 @@ a[class*='hover:underline']:hover {
   box-shadow: var(--shadow-lg);
 }
 
+/* Modal panels: ensure consistent large radius */
+.fixed.inset-0.z-50 {
+  /* Target the modal panel inside the overlay and apply rounded-lg */
+  > .relative[class*='max-w-'] {
+    border-radius: var(--radius-lg);
+  }
+}
+
+[x-show][x-trap],
+[x-show][x-trap] > .relative,
+[x-show^='modalOpen'] {
+  border-radius: var(--radius-lg);
+}
+
 /* Scrollbars */
 ::-webkit-scrollbar {
   width: 8px;
