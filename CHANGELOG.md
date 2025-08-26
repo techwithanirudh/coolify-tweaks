@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.7.1
+
+### Patch Changes
+
+- refactor: theme selector logic for new settings menu
+
 ## 3.7.0
 
 ### Minor Changes

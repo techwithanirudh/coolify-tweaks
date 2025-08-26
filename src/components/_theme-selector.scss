@@ -1,24 +1,16 @@
 @use 'globals' as *;
 @use 'components/ui/_button' as button;
 
-button[\@click='dropdownOpen=true']:has([x-show*='theme']) {
+button:has([title='Settings']) {
   @include button.button-base;
 
   border-radius: 10px;
-  padding-inline: s(0.5);
+  padding-inline: s(2);
   padding-block: s(2);
   margin-right: s(2);
 
   &:hover {
     background: color-mix(in srgb, var(--secondary) 80%, transparent);
-
-    & svg {
-      fill: var(--secondary-foreground);
-    }
-  }
-
-  & svg {
-    fill: var(--sidebar-foreground);
   }
 
   & > span > div {
@@ -39,8 +31,8 @@ div:has(div[x-show='dropdownOpen']:not([style*='display: none']))
 }
 
 div[x-show='dropdownOpen']:has(button[\@click*='setTheme']) {
-  right: 0;
-  top: s(3);
+  right: s(2);
+  top: s(10);
 }
 
 button[\@click^='switchWidth'],
@@ -48,6 +40,6 @@ button[\@click^='setZoom'] {
   display: none;
 }
 
-div[class*='font-bold border-b dark:border-coolgray-500 dark:text-white text-md'] {
+div[class*='font-bold border-b dark:border-coolgray-500 border-neutral-300 dark:text-white'] {
   display: none;
 }
