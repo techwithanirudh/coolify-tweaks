@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.7.3
+
+### Patch Changes
+
+- feat: replace theme-selector with settings-menu and add styling for settings dropdown
+
 ## 3.7.2
 
 ### Patch Changes

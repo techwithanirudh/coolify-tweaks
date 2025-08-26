@@ -17,25 +17,25 @@ button:has([title='Settings']) {
     justify-content: center;
   }
 
-  & > svg.w-4.h-4 {
-    display: none;
+  & > svg.w-5.h-5 {
+    @include icon('gear-fill', 'fill');
   }
 }
 
 .dropdown-item-no-padding[wire\:click='openWhatsNewModal'] svg {
-  @include icon('file-text-fill', 'fill');
+  @include icon('list-magnifying-glass-duotone', 'duotone');
 }
 
 .dropdown-item-no-padding[\@click^="setTheme('dark')"] svg {
-  @include icon('moon-fill', 'fill');
+  @include icon('moon-duotone', 'duotone');
 }
 
 .dropdown-item-no-padding[\@click^="setTheme('light')"] svg {
-  @include icon('sun-fill', 'fill');
+  @include icon('sun-duotone', 'duotone');
 }
 
 .dropdown-item-no-padding[\@click^="setTheme('system')"] svg {
-  @include icon('desktop-fill', 'fill');
+  @include icon('desktop-duotone', 'duotone');
 }
 
 div:has(div[x-show='dropdownOpen']:not([style*='display: none'])) button:has([title='Settings']) {
