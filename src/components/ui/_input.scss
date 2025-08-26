@@ -71,6 +71,29 @@ select.select {
   @include input-base;
 }
 
+/* Align search icon placed absolutely inside inputs with left padding */
+/* Targets inputs bound to Alpine's x-model="search" or inputs with class 'input--search' */
+input[x-model='search'],
+input.input--search {
+  padding-left: s(10); /* keep space for the icon */
+
+  /* Ensure the containing block is positioned for the absolute svg */
+  position: relative;
+
+  /* Align the svg inside the input when it's absolutely positioned as in markup */
+  & + svg,
+  svg[aria-hidden][class*='w-4'] {
+    position: absolute;
+    left: s(3);
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--muted-foreground);
+    height: s(4);
+    width: s(4);
+  }
+}
+
 input[type='checkbox'],
 input[type='radio'] {
   padding: s(2.75);
