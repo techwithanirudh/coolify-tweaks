@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.7.4
+
+### Patch Changes
+
+- fix: tweak gear icon
+
 ## 3.7.3
 
 ### Patch Changes

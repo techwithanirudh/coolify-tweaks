@@ -18,7 +18,7 @@ button:has([title='Settings']) {
   }
 
   & > svg.w-5.h-5 {
-    @include icon('gear-fill', 'fill');
+    @include icon('gear-six-fill', 'fill');
   }
 }
 
