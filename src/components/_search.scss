@@ -1,0 +1,11 @@
+@use 'globals' as *;
+@use 'components/ui/input' as input;
+
+.search-result-item {
+    border-radius: 0px;
+}
+
+input[x-ref='searchInput'] {
+    @include input.input-base;
+    padding: s(3) s(12);
+}
