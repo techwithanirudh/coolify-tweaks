@@ -61,6 +61,7 @@ div.grid[class*='cols']:is(
       justify-content: flex-end;
       width: 100%;
       margin-inline: 0;
+      gap: s(2);
     }
 
     .box-description,

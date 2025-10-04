@@ -35,3 +35,4 @@ In the project's page the icon color is messed up (restart button etc.)
 Fix search alignment in settings item 
 Fix misalignment of upgrade button
 Check if any impact is done by removing project from the link _grid.scss loop
+The databases section doesnt have the new grid UI like projects

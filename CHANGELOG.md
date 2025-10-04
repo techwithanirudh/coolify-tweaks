@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.7.7
+
+### Patch Changes
+
+- fix: search bar alignment
+
 ## 3.7.6
 
 ### Patch Changes
