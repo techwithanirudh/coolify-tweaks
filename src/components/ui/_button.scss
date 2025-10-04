@@ -2,6 +2,7 @@
 
 @mixin button-base {
   padding: s(2.25) s(4);
+  height: auto;
   border: 1px solid transparent;
   border-radius: var(--radius-md);
   font-weight: 600;

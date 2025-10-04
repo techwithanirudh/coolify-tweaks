@@ -1,3 +1,5 @@
+@use 'globals' as *;
+
 // Deployment Card
 .p-2.border-l-2.bg-white.dark\:bg-coolgray-100 {
   padding: s(2);
@@ -12,4 +14,26 @@
   border-radius: var(--radius-lg);
   background: var(--card);
   color: var(--card-foreground);
+}
+
+// Deployment floating
+div[class*='fixed bottom-0 z-50 mb-4 left-0 lg:left-56 ml-4'] {
+  margin-inline: s(4);
+
+  @media (min-width: 640px) {
+    margin-inline: s(6);
+  }
+
+  @media (min-width: 1024px) {
+    left: var(--sidebar-width);
+    margin-inline: s(8);
+
+    width: calc(100% - var(--sidebar-width));
+
+    & > div {
+      max-width: 1280px;
+      width: 100%;
+      margin-inline: auto;
+    }
+  }
 }

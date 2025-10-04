@@ -102,6 +102,11 @@ input.input--search {
   }
 }
 
+input[x-ref='searchInput'] {
+  @include input-base;
+  padding: s(3) s(12);
+}
+
 input[type='checkbox'],
 input[type='radio'] {
   padding: s(2.75);
