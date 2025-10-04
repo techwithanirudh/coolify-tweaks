@@ -10,6 +10,7 @@ div.grid[class*='cols'] {
 }
 
 div.grid[class*='cols']:is(
+    :has(a[href*='/project/']),
     :has([wire\:click^='navigateToProject']),
     :has([\@click^='$wire.navigateToProject']),
     [x-show^='filteredApplications'],
@@ -41,7 +42,7 @@ div.grid[class*='cols']:is(
       margin: 0;
     }
 
-    > div:only-child,
+    > div:has(> div + div),
     &:has(> div + div) {
       display: flex;
       flex-direction: column-reverse;
@@ -101,7 +102,7 @@ div.grid[wire\:poll\.3000ms='loadDeployments'] > .grid:has(a[href^='/project/'])
   padding: 0;
 }
 
-@each $target in server, source, destination, security, project {
+@each $target in server, source, destination, security {
   .grid:has(a[href*='/#{$target}/']) {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
