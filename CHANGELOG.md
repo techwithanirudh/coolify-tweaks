@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.7.6
+
+### Patch Changes
+
+- fix: match deployment item colors
+
 ## 3.7.5
 
 ### Patch Changes
