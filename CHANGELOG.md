@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.7.5
+
+### Patch Changes
+
+- fix: styles broken due to new coolify update
+
 ## 3.7.4
 
 ### Patch Changes
