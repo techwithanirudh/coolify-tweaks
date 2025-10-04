@@ -36,4 +36,10 @@ div[class*='fixed bottom-0 z-50 mb-4 left-0 lg:left-56 ml-4'] {
       margin-inline: auto;
     }
   }
+
+  & button {
+    background-color: var(--accent);
+    border-color: var(--border);
+    border-radius: var(--radius-xl);
+  }
 }
