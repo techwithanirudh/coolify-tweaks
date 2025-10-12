@@ -5,7 +5,7 @@
   border-radius: 0px;
 }
 
-input[x-ref='searchInput'] {
+input[x-ref='searchInput'].pl-12.pr-12 {
   @include input.input-base;
   padding: s(3) s(12);
 }

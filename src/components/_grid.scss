@@ -10,11 +10,12 @@ div.grid[class*='cols'] {
 }
 
 div.grid[class*='cols']:is(
-    :has(a[href*='/project/']),
+    :has(a[href*='/project/'][class='absolute inset-0']),
     :has([wire\:click^='navigateToProject']),
     :has([\@click^='$wire.navigateToProject']),
     [x-show^='filteredApplications'],
-    [x-show^='filteredServices']
+    [x-show^='filteredServices'],
+    [x-show^='filteredDatabases']:has(> span > a.box)
   ) {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 

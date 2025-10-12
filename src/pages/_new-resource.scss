@@ -33,7 +33,7 @@ input.input-sticky {
 div.grid[class*='cols']:is(
     [x-show^='filteredGitBasedApplications'],
     [x-show^='filteredDockerBasedApplications'],
-    [x-show^='filteredDatabases']
+    [x-show^='filteredDatabases']:has(> div[x-on\:click='setType(database.id)'])
   ) {
   background: none;
   padding: 0;
