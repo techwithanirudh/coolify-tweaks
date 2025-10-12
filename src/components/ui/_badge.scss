@@ -2,7 +2,7 @@
 
 .badge-dashboard,
 .badge {
-  width: calc(var(--spacing) * 4.5);
-  height: calc(var(--spacing) * 4.5);
+  width: s(4.5);
+  height: s(4.5);
   border: 1px solid var(--border);
 }
