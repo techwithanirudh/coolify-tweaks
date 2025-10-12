@@ -1,13 +1,5 @@
 @use 'globals' as *;
 
-// Deployment Card
-.p-2.border-l-2.bg-white.dark\:bg-coolgray-100 {
-  padding: s(2);
-  background-color: var(--card);
-  color: var(--card-foreground);
-  border-radius: var(--radius-lg);
-}
-
 .p-4.my-4.border.dark\:border-coolgray-200.border-neutral-200 {
   padding: s(4);
   margin-top: s(4);

@@ -1,0 +1,21 @@
+@use 'globals' as *;
+
+div.border-l.border-dashed.box-without-bg-without-border {
+  border-radius: var(--radius-xl);
+  background: var(--card);
+  color: var(--card-foreground);
+  padding: s(4) s(0) s(4) s(4);
+  border-style: solid;
+  background-clip: padding-box;
+  overflow: hidden;
+}
+
+div.border-l-2.bg-white.dark\:bg-coolgray-100 {
+  border-radius: var(--radius-xl);
+  background: var(--card);
+  color: var(--card-foreground);
+  padding: s(4);
+  border-style: solid;
+  background-clip: padding-box;
+  overflow: hidden;
+}
