@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.8.1
+
+### Patch Changes
+
+- fix: general bug fixes and improvements
+
 ## 3.8.0
 
 ### Minor Changes
