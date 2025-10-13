@@ -32,6 +32,10 @@
   }
 }
 
+button[isHighlighted]:not(:disabled) {
+  border-color: var(--primary);
+}
+
 button.button,
 .button {
   @include button-base;

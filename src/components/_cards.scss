@@ -10,12 +10,25 @@ div.border-l.border-dashed.box-without-bg-without-border {
   overflow: hidden;
 }
 
-div.border-l-2.bg-white.dark\:bg-coolgray-100 {
+div.border-l-2.bg-white.dark\:bg-coolgray-100,
+a.border-l-2.bg-white.dark\:bg-coolgray-100 {
   border-radius: var(--radius-lg);
-  background: var(--card);
-  color: var(--card-foreground);
   padding: s(4);
   border-style: solid;
   background-clip: padding-box;
   overflow: hidden;
+}
+
+.bg-white.dark\:bg-coolgray-100 {
+  background: var(--card);
+  color: var(--card-foreground);
+  border: var(--border);
+}
+
+.bg-gray-100.dark\:bg-coolgray-200.rounded-sm {
+  background: var(--card);
+  color: var(--card-foreground);
+  padding: s(4);
+  border-radius: var(--radius-lg);
+  border: var(--border);
 }

@@ -79,6 +79,13 @@ a[class*='hover:underline']:hover {
   color: var(--foreground);
 }
 
+.tag {
+  color: var(--muted-foreground);
+  background: var(--card);
+  border-radius: var(--radius-xl);
+  border: var(--border);
+}
+
 /* take full width for compressed items, like checkboxes */
 div[class='w-32'] {
   width: 100%;
@@ -98,7 +105,8 @@ div[class*='w-64'] {
 div[class='pb-6 w-96'],
 div[class='flex gap-2 items-end w-96'],
 div[class='w-96'],
-div[class*='sm:w-96'] div[class='pt-2 w-96'],
+div[class*='sm:w-96'],
+div[class='pt-2 w-96'],
 div[class='w-96 flex flex-col gap-1'],
 div[class='w-96 pb-6'],
 div[class*='md:w-96'] {

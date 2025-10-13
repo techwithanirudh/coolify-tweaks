@@ -1,4 +1,5 @@
 .box-without-bg.bg-coollabs.dark\:bg-coollabs {
   background-color: var(--primary);
+  color: var(--primary-foreground);
   border-color: color-mix(in srgb, var(--primary) 80%, transparent);
 }
