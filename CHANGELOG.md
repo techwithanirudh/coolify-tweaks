@@ -1,5 +1,16 @@
 # coolify-tweaks
 
+## 3.8.0
+
+### Minor Changes
+
+- feat: add tooltip and new resource styles; polish cards; fixes
+  - Add tooltip component styles and integrate into component index
+  - Add styles for the new resource page
+  - Round cards and adjust background/radius for improved visual consistency
+  - Fix badge dimensions using shorthand spacing function
+  - Update overrides for width utility classes
+
 ## 3.7.8
 
 ### Patch Changes
