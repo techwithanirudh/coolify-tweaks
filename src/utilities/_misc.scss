@@ -22,9 +22,9 @@ input.dark\:bg-coolgray-100:where(.dark, .dark *) {
 /* Style cards for settings */
 div[class*='p-4 border dark:border-coolgray-300'] {
   padding: s(4);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   // background: var(--card);
-  background: var(--popover);
+  background: var(--background);
   // color: var(--card-foreground);
 }
 
