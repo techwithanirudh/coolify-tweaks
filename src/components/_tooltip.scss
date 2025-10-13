@@ -1,0 +1,9 @@
+.info-helper-popup {
+  background: var(--popover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: s(2);
+  color: var(--popover-foreground);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
