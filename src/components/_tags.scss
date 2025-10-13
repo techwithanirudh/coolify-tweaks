@@ -1,0 +1,35 @@
+.add-tag {
+  color: var(--muted-foreground);
+
+  &:hover {
+    color: var(--foreground);
+  }
+}
+.tag {
+  color: var(--muted-foreground);
+  background: var(--card);
+  border-radius: var(--radius-xl);
+  border: var(--border);
+
+  &:hover {
+    background: color-mix(in srgb, var(--card) 80%, transparent);
+    color: var(--foreground);
+  }
+}
+
+.min-w-32.box-without-bg.dark\:bg-coolgray-100.dark\:text-white.dark\:hover\:bg-coollabs-100.flex.justify-center.items-center {
+  background: var(--card);
+  color: var(--card-foreground);
+  border: var(--border);
+
+  &:hover {
+    background: color-mix(in srgb, var(--card) 80%, transparent);
+    color: var(--foreground);
+  }
+
+  &.dark\:bg-coollabs {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border: var(--border);
+  }
+}

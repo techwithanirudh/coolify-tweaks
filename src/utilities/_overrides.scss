@@ -70,22 +70,6 @@ a[class*='hover:underline']:hover {
   background: var(--foreground);
 }
 
-/* Button to add tags to service */
-.add-tag {
-  color: var(--muted-foreground);
-}
-
-.add-tag:hover {
-  color: var(--foreground);
-}
-
-.tag {
-  color: var(--muted-foreground);
-  background: var(--card);
-  border-radius: var(--radius-xl);
-  border: var(--border);
-}
-
 /* take full width for compressed items, like checkboxes */
 div[class='w-32'] {
   width: 100%;
