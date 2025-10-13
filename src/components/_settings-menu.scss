@@ -9,6 +9,13 @@ button:has([title='Settings']) {
   padding-block: s(2);
   margin-right: s(2);
 
+  width: s(10);
+  height: s(10);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   &:hover {
     background: color-mix(in srgb, var(--secondary) 80%, transparent);
   }
@@ -54,4 +61,35 @@ button[\@click^='setZoom'] {
 
 div[class*='font-bold border-b dark:border-coolgray-500 border-neutral-300 dark:text-white'] {
   display: none;
+}
+
+button[\@click^="\$dispatch('open-global-search')"] {
+  @include button.button-base;
+
+  background: transparent;
+  padding-inline: s(2);
+  padding-block: s(2);
+  border: var(--border);
+  border-radius: 10px;
+
+  width: s(10);
+  height: s(10);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: color-mix(in srgb, var(--secondary) 80%, transparent);
+  }
+
+  & > svg.w-4.h-4 {
+    width: s(5);
+    height: s(5);
+    @include icon('magnifying-glass-bold', 'bold');
+  }
+
+  & kbd {
+    display: none;
+  }
 }
