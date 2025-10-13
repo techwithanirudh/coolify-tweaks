@@ -3,6 +3,7 @@
 
 button:has([title='Settings']) {
   @include button.button-base;
+  color: var(--muted-foreground);
 
   border-radius: 10px;
   padding-inline: s(2);
@@ -18,6 +19,7 @@ button:has([title='Settings']) {
 
   &:hover {
     background: color-mix(in srgb, var(--secondary) 80%, transparent);
+    color: var(--foreground);
   }
 
   & > span > div {
@@ -46,6 +48,7 @@ button:has([title='Settings']) {
 }
 
 div:has(div[x-show='dropdownOpen']:not([style*='display: none'])) button:has([title='Settings']) {
+  color: var(--foreground);
   background: var(--secondary);
 }
 
@@ -81,15 +84,30 @@ button[\@click^="\$dispatch('open-global-search')"] {
 
   &:hover {
     background: color-mix(in srgb, var(--secondary) 80%, transparent);
+
+    & > svg.w-4.h-4 {
+      color: var(--foreground);
+    }
   }
 
   & > svg.w-4.h-4 {
     width: s(5);
     height: s(5);
+    color: var(--muted-foreground);
     @include icon('magnifying-glass-bold', 'bold');
   }
 
   & kbd {
     display: none;
+  }
+}
+
+body:has(div[x-show='modalOpen']:not([style*='display: none']) input[x-ref='searchInput']) {
+  button[\@click^="\$dispatch('open-global-search')"] {
+    background-color: var(--secondary);
+
+    & > svg.w-4.h-4 {
+      color: var(--foreground);
+    }
   }
 }
