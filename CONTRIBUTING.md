@@ -10,25 +10,25 @@ You can either use the Dev Container in this repository, or have a system with [
 
 2. Install dependencies:
 
-```bash
-bun install
-```
+   ```bash
+   bun install
+   ```
 
 3. Start the development server:
 
-```bash
-bun run dev
-```
+   ```bash
+   bun run dev
+   ```
 
-4. Open http://localhost:3000 in your browser with Stylus installed. Stylus should automatically prompt you to install the userstyle. **Make sure "Live Preview" is on for automatic reloading in development!**
+4. Open <http://localhost:3000> in your browser with Stylus installed. Stylus should automatically prompt you to install the userstyle. **Make sure "Live Preview" is on for automatic reloading in development!**
 
 5. Make your changes to the code.
 
 6. Create a changeset for your changes:
 
-```bash
-bun run changeset
-```
+   ```bash
+   bun run changeset
+   ```
 
 7. Commit your changes with Git.
 
