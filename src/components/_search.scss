@@ -9,6 +9,7 @@
 input[x-ref='searchInput'].pl-12.pr-32 {
   @include input.input-base;
   padding: s(3) s(36) s(3) s(12);
+  background: var(--input) !important;
 }
 
 div.relative:has(> input[type='hidden'] ~ div[\@click='openDropdown()'] ~ datalist) {
