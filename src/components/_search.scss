@@ -14,11 +14,12 @@ input[x-ref='searchInput'].pl-12.pr-32 {
 div.relative:has(> input[type='hidden'] ~ div[\@click='openDropdown()'] ~ datalist) {
   div[\@click='openDropdown()'] {
     @include input.input-base;
-    padding: s(2.25) s(4);
+    padding: s(2.25);
     background: var(--input) !important;
 
     > div.flex-1.flex.items-center.px-1 {
       padding: s(0);
+      padding-left: s(1);
     }
   }
 
