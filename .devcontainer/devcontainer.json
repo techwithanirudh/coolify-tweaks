@@ -14,10 +14,6 @@
       "userGid": "1000",
       "upgradePackages": "true"
     },
-    "ghcr.io/devcontainers/features/git:1": {
-      "version": "latest",
-      "ppa": "false"
-    },
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest"
     }
