@@ -110,6 +110,7 @@ $breakpoints: (
   --shadow-xl: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 8px 10px -1px hsl(0 0% 0% / 0.16);
   --shadow-2xl: 0px 2px 3px 0px hsl(0 0% 0% / 0.4);
 }
+
 /* ==UI-THEME-VARS:END== */
 
 // Color variables for success, warning, and info states
@@ -141,7 +142,7 @@ $breakpoints: (
   --sidebar-width: 260px;
   --blur: 10px;
 
-  --color-base: var(--background);
+  --color-base: var(--foreground);
   --color-coollabs: var(--primary);
   --color-text-primary: var(--foreground);
 

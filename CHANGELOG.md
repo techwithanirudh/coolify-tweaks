@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.8.4
+
+### Patch Changes
+
+- fix: make "Maybe next time" text visible in light mode
+
 ## 3.8.3
 
 ### Patch Changes
