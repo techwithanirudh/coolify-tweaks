@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.8.3
+
+### Patch Changes
+
+- fix: colors for search input
+
 ## 3.8.2
 
 ### Patch Changes
