@@ -19,7 +19,7 @@
   "scripts": {
     "build": "vite build",
     "dev": "concurrently --kill-others-on-fail --names 'watch,serve' 'bun run dev:watch' 'bun run dev:serve'",
-    "dev:watch": "chokidar 'src/**/*' -c 'vite build'",
+    "dev:watch": "chokidar 'src/**/*' -c 'vite build' --initial",
     "dev:serve": "serve dist --listen 3000 --single",
     "format": "prettier --write --ignore-unknown --log-level silent .",
     "format:check": "prettier --check --ignore-unknown --log-level silent .",

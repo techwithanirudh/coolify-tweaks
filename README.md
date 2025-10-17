@@ -100,7 +100,7 @@ Coolify Tweaks supports custom themes through integration with [TweakCN](https:/
 
 ## Contributing
 
-Got an idea or feature request? [Open an issue](https://github.com/techwithanirudh/coolify-tweaks/issues) and let’s chat.
+Got an idea or feature request? [Open an issue](https://github.com/techwithanirudh/coolify-tweaks/issues) and let’s chat, or read the [contributing guide](CONTRIBUTING.md).
 
 ## License
 
