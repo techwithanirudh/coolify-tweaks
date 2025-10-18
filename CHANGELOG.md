@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.8.6
+
+### Patch Changes
+
+- style: update z-index for deployment floating element and enhance expanded state styles
+
 ## 3.8.5
 
 ### Patch Changes
