@@ -2,9 +2,25 @@
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
   "tasks": {
+    "build": {
+      "outputs": ["dist/**"]
+    },
     "build:watch": {
+      "outputs": ["dist/**"],
       "cache": false,
       "persistent": true
+    },
+    "format": {
+      "cache": false
+    },
+    "format:check": {
+      "cache": false
+    },
+    "types:check": {
+      "cache": true
+    },
+    "check:spelling": {
+      "cache": false
     },
     "preview": {
       "cache": false,
