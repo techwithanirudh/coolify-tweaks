@@ -9,7 +9,7 @@
 }
 
 // Deployment floating
-div[class*='fixed bottom-0 z-60 mb-4 left-0 lg:left-56 ml-4'] {
+div[class*='fixed bottom-0 mb-4 left-0 lg:left-56 ml-4'] {
   margin-inline: s(4);
 
   @media (min-width: 640px) {

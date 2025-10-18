@@ -1,13 +1,5 @@
 @use 'sass:map';
 
-@mixin for-dark {
-  @at-root {
-    :where(.dark, .dark *) & {
-      @content;
-    }
-  }
-}
-
 // breakpoints
 $breakpoints: (
   sm: 640px,
@@ -126,12 +118,16 @@ $breakpoints: (
   --success: oklch(0.7459 0.1483 156.4499);
   --warning: oklch(0.7336 0.1758 50.5517);
   --info: oklch(0.5828 0.1809 259.7276);
+
+  --color-base: var(--foreground);
 }
 
 .dark {
   --success: oklch(0.8003 0.1821 151.711);
   --warning: oklch(0.7336 0.1758 50.5517);
   --info: oklch(0.6691 0.1569 260.1063);
+
+  --color-base: var(--background);
 }
 
 :root {
@@ -149,12 +145,6 @@ $breakpoints: (
   /* misc */
   --sidebar-width: 260px;
   --blur: 10px;
-
-  --color-base: var(--foreground);
-
-  @include for-dark {
-    --color-base: var(--background);
-  }
 
   --color-coollabs: var(--primary);
   --color-text-primary: var(--foreground);
