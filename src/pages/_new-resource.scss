@@ -69,5 +69,9 @@ div[x-show='filteredServices.length > 0']:has(> div[x-init='loadResources']) {
     background: none;
     padding: 0;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    .box-without-bg {
+      min-height: 100%;
+    }
   }
 }
