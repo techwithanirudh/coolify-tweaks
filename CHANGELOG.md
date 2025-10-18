@@ -1,5 +1,12 @@
 # coolify-tweaks
 
+## 3.8.5
+
+### Patch Changes
+
+- fix: base color
+- 90f9104: fix: run vite build when starting dev server
+
 ## 3.8.4
 
 ### Patch Changes
