@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.8.7
+
+### Patch Changes
+
+- fix: undo changes for new version
+
 ## 3.8.6
 
 ### Patch Changes
