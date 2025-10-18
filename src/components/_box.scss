@@ -13,6 +13,7 @@
     box-shadow 0.2s,
     background 0.18s,
     border-color 0.18s;
+  box-shadow: var(--shadow-sm);
 }
 
 // todo: fix active state in servers/resources section
