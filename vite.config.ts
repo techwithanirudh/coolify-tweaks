@@ -8,6 +8,9 @@ export default defineConfig({
   server: {
     host: true,
     allowedHosts: true,
+    watch: {
+      ignored: ['**/.turbo/**'],
+    },
   },
   resolve: {
     alias: {

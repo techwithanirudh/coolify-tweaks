@@ -18,9 +18,9 @@
   "homepage": "https://github.com/techwithanirudh/coolify-tweaks#readme",
   "scripts": {
     "build": "vite build",
-    "dev": "concurrently --kill-others-on-fail --names 'watch,serve' 'bun run dev:watch' 'bun run dev:serve'",
-    "dev:watch": "chokidar 'src/**/*' -c 'vite build' --initial",
-    "dev:serve": "serve dist --listen 3000 --single",
+    "dev": "turbo run build:watch preview",
+    "build:watch": "chokidar 'src/**/*' -c 'vite build' --initial --silent",
+    "preview": "serve dist --listen 3000 --single",
     "format": "prettier --write --ignore-unknown --log-level silent .",
     "format:check": "prettier --check --ignore-unknown --log-level silent .",
     "types:check": "tsc --noEmit --skipLibCheck",
@@ -58,10 +58,12 @@
     "prettier": "3.6.2",
     "sass": "^1.93.2",
     "serve": "^14.2.5",
+    "turbo": "^2.5.8",
     "vite": "^7.1.9",
     "vite-plugin-banner": "^0.8.1"
   },
   "engines": {
     "node": ">=22"
-  }
+  },
+  "packageManager": "bun@1.2.2"
 }

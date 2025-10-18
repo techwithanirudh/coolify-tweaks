@@ -140,3 +140,6 @@ vite.config.ts.timestamp-*
 
 # todo
 TODO.md
+
+# Turbo
+.turbo

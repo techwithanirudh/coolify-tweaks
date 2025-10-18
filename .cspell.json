@@ -38,6 +38,10 @@
     "devcontainer",
     "devcontainers",
     "powerlevel",
-    "noninteractive"
+    "noninteractive",
+    "pids",
+    "jscoverage",
+    "wscript",
+    "stylelintcache"
   ]
 }
