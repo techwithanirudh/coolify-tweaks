@@ -36,7 +36,7 @@ div.grid[class*='cols']:is(
     [x-show^='filteredDatabases']:has(> div[x-on\:click='setType(database.id)'])
   ) {
   background: none;
-  padding: 0;
+  padding: s(0.5);
 }
 
 div[x-show='filteredServices.length > 0']:has(> div[x-init='loadResources']) {
@@ -67,7 +67,7 @@ div[x-show='filteredServices.length > 0']:has(> div[x-init='loadResources']) {
 
   div.grid[class*='cols'] {
     background: none;
-    padding: 0;
+    padding: s(0.5);
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
     .box-without-bg {
