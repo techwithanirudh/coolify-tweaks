@@ -1,0 +1,48 @@
+@use 'globals' as *;
+
+.p-4.my-4.border.dark\:border-coolgray-200.border-neutral-200 {
+  padding: s(4);
+  margin-top: s(4);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  color: var(--card-foreground);
+}
+
+// Deployment floating
+div.fixed.bottom-0.mb-4.left-0.ml-4:has(button) {
+  margin-inline: s(4);
+
+  @media (min-width: 640px) {
+    margin-inline: s(6);
+  }
+
+  @media (min-width: 1024px) {
+    left: var(--sidebar-width);
+    margin-inline: s(8);
+
+    width: calc(100% - var(--sidebar-width));
+
+    & > div {
+      max-width: 1280px;
+      width: 100%;
+      margin-inline: auto;
+    }
+  }
+
+  & button {
+    background-color: var(--accent);
+    border-color: var(--border);
+    border-radius: var(--radius-xl);
+  }
+
+  & [x-show='expanded'] {
+    background: var(--popover);
+
+    & a {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      color: var(--card-foreground);
+      border: 1px solid var(--border);
+    }
+  }
+}

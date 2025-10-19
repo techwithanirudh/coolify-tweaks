@@ -1,135 +1,107 @@
-# Turborepo starter
+<div align="center">
 
-This Turborepo starter is maintained by the Turborepo core team.
+  <img alt="" src="/.github/assets/cover.png" />
 
-## Using this example
+<h1>
+  Coolify Tweaks
+</h1>
 
-Run the following command:
+<div>
 
-```sh
-npx create-turbo@latest
-```
+[![version](https://img.shields.io/github/v/tag/techwithanirudh/coolify-tweaks.svg?label=version&style=flat)](https://github.com/techwithanirudh/coolify-tweaks/releases)
+[![stars](https://img.shields.io/github/stars/techwithanirudh/coolify-tweaks.svg?style=flat)](https://github.com/techwithanirudh/coolify-tweaks/stargazers)
+[![forks](https://img.shields.io/github/forks/techwithanirudh/coolify-tweaks.svg?color=007ec6&style=flat)](https://github.com/techwithanirudh/coolify-tweaks/network)
+[![install with Stylus](https://img.shields.io/badge/Install%20directly%20with-Stylus-116b59.svg?longCache=true&style=flat)](https://coolify-tweaks-api.techwithanirudh.com/release/latest/?asset=main.user.css)
+[![install from userstyles.world](https://img.shields.io/badge/Install%20from-userstyles.world-116b59.svg?longCache=true&style=flat)](https://userstyles.world/style/22850/coolify-enhanced-ui)
 
-## What's inside?
+</div>
 
-This Turborepo includes the following packages/apps:
+</div>
 
-### Apps and Packages
+## About
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+A userstyle that enhances Coolify's UI by applying opinionated tweaks, spacing, colors, and layout fixes, to make the UI more polished and user-friendly.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+**[View Screenshots →](SCREENSHOTS.md)**
 
-### Utilities
+## Backstory
 
-This Turborepo has some additional tools already setup for you:
+With Coolify v5's redesign set for 2026, I couldn't just sit around waiting for the visual upgrades. Coolify is really powerful, but a lot of people in the community feel like the UI gets in the way sometimes.
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+Instead of waiting for the official update, I decided to take things into my own hands. **Coolify Tweaks isn't a full redesign, it's a restyle.** It's a preview of what Coolify v5 _might_ look and feel like.
 
-### Build
+I cleaned up the spacing, adjusted the colors, tweaked the typography, and gave the layout a more modern vibe. It's still the same Coolify under the hood, just with a smoother, more intuitive interface.
 
-To build all apps and packages, run the following command:
+## Installation
 
-```
-cd my-turborepo
+> **Note:** Coolify Tweaks is distributed through a custom API ([coolify-tweaks-api](https://github.com/techwithanirudh/coolify-tweaks-api)) that dynamically embeds [TweakCN](https://tweakcn.com) theme code into the style, enabling seamless theme integration.
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
+1. Install [Stylus](https://add0n.com/stylus.html).
+2. Hit the badge below to add the style:
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
+   [![install with Stylus](https://img.shields.io/badge/Install%20directly%20with-Stylus-116b59.svg?longCache=true&style=flat)](https://coolify-tweaks-api.techwithanirudh.com/release/latest/?asset=main.user.css)
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+   OR
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+   [![install from userstyles.world](https://img.shields.io/badge/Install%20from-userstyles.world-116b59.svg?longCache=true&style=flat)](https://userstyles.world/style/22850/coolify-enhanced-ui)
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+3. **Running Coolify on something other than `coolify.local`?**  
+   Open the style’s _Settings_ pane in Stylus, then under **Custom included sites** add your host using a wildcard. For example:
 
-### Develop
+   <img alt="Stylus Settings" src="/.github/assets/stylus-settings.png" width="50%" />
 
-To develop all apps and packages, run the following command:
+   ```css
+   *://192.168.0.123:8000/*
+   ```
 
-```
-cd my-turborepo
+   Replace the IP and port above with your Coolify instance’s address, then click **Save**.
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+4. **Experiencing Style Issues?**
+   If you notice style changes are slow, laggy, or not applying immediately, enable Instant Mode in Stylus. This forces styles to inject instantly on page load, eliminating delays.  
+   <img alt="Stylus Instant Mode" src="/.github/assets/stylus-instant-mode.png" width="50%" />
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+## Theming
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+Coolify Tweaks supports custom themes through integration with [TweakCN](https://tweakcn.com), allowing you to personalize your Coolify interface with beautiful color schemes and styling variations.
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+### How to Apply a Custom Theme
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+1. **Browse Available Themes**  
+   Visit [TweakCN](https://tweakcn.com/editor/theme) to explore available themes or create your own custom theme.
 
-### Remote Caching
+2. **Get the Theme ID**  
+   When you find a theme you like:
+   - Click the **Share** button on the theme
+   - Copy the theme ID (e.g., `bubblegum`, `claude`, or `cmd1ndlp3000504l24z7vgywd`)
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+3. **Install with Theme**  
+   Use the themed installation URL in Stylus:
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+   ```
+   https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=THEME_ID&asset=main.user.css
+   ```
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+   Replace `THEME_ID` with your copied theme identifier.
 
-```
-cd my-turborepo
+   > **Note:** The theme query parameter should come first, as Stylus identifies user styles by URLs ending with `user.css`
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
+### Troubleshooting Themes
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
+**Theme not applying?**
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+- Ensure you're using the correct theme ID
+- Try refreshing the page or restarting your browser
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+**Mixed styling issues?**
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
+- Clear your browser cache
+- Disable and re-enable the style in Stylus
+- Make sure you're not running multiple conflicting styles
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
+## Contributing
 
-## Useful Links
+Got an idea or feature request? [Open an issue](https://github.com/techwithanirudh/coolify-tweaks/issues) and let’s chat, or read the [contributing guide](CONTRIBUTING.md).
 
-Learn more about the power of Turborepo:
+## License
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+Released under the [MIT](license) license.

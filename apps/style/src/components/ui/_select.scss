@@ -1,0 +1,130 @@
+@use 'globals' as *;
+
+@mixin select-base {
+  appearance: base-select;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--foreground);
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
+
+  @include for-dark {
+    background: color-mix(in srgb, var(--input) 30%, transparent);
+  }
+
+  &:disabled {
+    border-color: var(--muted-foreground);
+    color: var(--muted-foreground);
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &:not([disabled]):hover,
+  &:not([disabled]):focus {
+    border-color: var(--input);
+    background: var(--accent);
+  }
+
+  &::picker-icon {
+    color: var(--muted-foreground);
+    transition: 0.4s rotate;
+    content: '';
+    width: s(4);
+    height: s(4.5);
+    @include icon('caret-down-bold', 'bold');
+  }
+
+  &:open::picker-icon {
+    rotate: 180deg;
+  }
+}
+
+select,
+::picker(select) {
+  @include select-base;
+}
+
+// dropdown panel
+::picker(select) {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--popover);
+  top: calc(anchor(bottom) + 4px);
+  opacity: 0;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s cubic-bezier(0, 0, 0.3, 1),
+    display 0.2s allow-discrete,
+    overlay 0.2s allow-discrete;
+
+  &:popover-open {
+    opacity: 1;
+  }
+
+  @starting-style {
+    &:popover-open {
+      opacity: 0;
+    }
+  }
+}
+
+// option items
+option {
+  display: flex;
+  justify-content: flex-start;
+  padding: s(2.5);
+  background: var(--popover);
+  color: var(--popover-foreground);
+  transition: 0.4s;
+  gap: s(5);
+
+  &:first-of-type {
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+
+  &:last-of-type {
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+  }
+
+  &:not(:last-of-type) {
+    border-bottom: none;
+  }
+
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  .icon {
+    font-size: 1.6rem;
+    text-box: trim-both cap alphabetic;
+  }
+
+  selectedcontent .icon {
+    display: none;
+  }
+
+  &:checked {
+    font-weight: bold;
+  }
+
+  &::checkmark {
+    order: 1;
+    margin-left: auto;
+    content: '';
+    width: s(4);
+    height: s(4);
+    @include icon('check');
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

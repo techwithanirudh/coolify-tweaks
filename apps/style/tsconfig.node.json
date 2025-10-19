@@ -1,0 +1,7 @@
+{
+  "extends": "@repo/typescript-config/node.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo"
+  },
+  "include": ["vite.config.ts", "commitlint.config.ts", "postcss.config.ts"]
+}

@@ -1,0 +1,9 @@
+@use 'globals' as *;
+
+button,
+a,
+input,
+select,
+textarea {
+  border-radius: var(--radius-md);
+}

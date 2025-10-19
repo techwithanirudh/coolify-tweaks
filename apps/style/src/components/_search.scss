@@ -1,0 +1,57 @@
+@use 'globals' as *;
+@use 'components/ui/input' as input;
+@use 'components/ui/button' as button;
+
+.search-result-item {
+  border-radius: 0px;
+}
+
+[x-show='modalOpen'] input[x-ref='searchInput'].pl-12 {
+  @include input.input-base;
+  padding: s(3) s(36) s(3) s(12);
+  background: var(--input) !important;
+}
+
+div.relative:has(> input[type='hidden'] ~ div[\@click='openDropdown()'] ~ datalist) {
+  div[\@click='openDropdown()'] {
+    @include input.input-base;
+    padding: s(2.25);
+    background: var(--input) !important;
+
+    > div.flex-1.flex.items-center.px-1 {
+      padding: s(0);
+      padding-left: s(1);
+    }
+  }
+
+  div[x-show='open && !false'] {
+    border-radius: var(--radius-lg);
+    background: var(--popover);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+
+    > div {
+      @include button.button-base;
+      width: 100%;
+      text-align: left;
+      padding: s(2) s(3);
+      color: var(--popover-foreground);
+      background: var(--popover);
+
+      &:hover {
+        background: var(--accent);
+        color: var(--accent-foreground);
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+        border-color: var(--ring);
+      }
+    }
+
+    padding: s(1);
+  }
+
+  padding: s(0);
+}

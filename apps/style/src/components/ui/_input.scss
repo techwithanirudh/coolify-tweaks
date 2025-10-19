@@ -1,0 +1,125 @@
+@use 'globals' as *;
+
+@mixin input-base {
+  padding: s(2.25) s(4);
+
+  border: 1px solid var(--input);
+  border-radius: var(--radius-md);
+
+  background: transparent;
+  color: var(--foreground);
+
+  box-shadow: var(--shadow-xs);
+
+  transition:
+    border-color 0.15s,
+    background 0.15s,
+    box-shadow 0.15s;
+
+  @include for-dark {
+    background: color-mix(in srgb, var(--input) 30%, transparent);
+  }
+
+  &:hover {
+    background: color-mix(in srgb, var(--secondary) 10%, transparent);
+  }
+
+  @include for-dark {
+    &:hover {
+      background: color-mix(in srgb, var(--input) 40%, transparent);
+    }
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+  }
+
+  &::placeholder {
+    color: var(--muted-foreground);
+    opacity: 0.7;
+  }
+
+  &:focus::placeholder {
+    opacity: 0.5;
+  }
+
+  &[aria-invalid='true'] {
+    border-color: var(--destructive);
+  }
+
+  @include for-dark {
+    &[aria-invalid='true'] {
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--destructive) 40%, transparent);
+    }
+  }
+
+  &:disabled {
+    pointer-events: all;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+}
+
+input.input,
+input.input-sticky,
+textarea.input,
+select.select {
+  @include input-base;
+}
+
+/* Align search icon placed absolutely inside inputs with left padding */
+/* Targets inputs bound to Alpine's x-model="search" or inputs with class 'input--search' */
+input[x-model='search'],
+input.input--search {
+  /* Ensure the containing block is positioned for the absolute svg */
+  position: relative;
+
+  /* Only add left padding when the input is followed by an svg (search icon) */
+  &:has(+ svg),
+  &:has(+ svg[aria-hidden]),
+  &:has(+ svg[class*='w-4']) {
+    padding-left: s(10);
+  }
+
+  /* Align the svg inside the input when it's absolutely positioned as in markup */
+  & + svg,
+  svg[aria-hidden][class*='w-4'] {
+    position: absolute;
+    left: s(3);
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--muted-foreground);
+    height: s(4);
+    width: s(4);
+  }
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  padding: s(2.75);
+  border-radius: 4px;
+  background-color: var(--input);
+  transition: background-color 0.18s;
+  box-shadow: var(--shadow-xs);
+
+  transition:
+    background-color 0.18s,
+    box-shadow 0.18s;
+
+  &:focus-visible {
+    background-color: color-mix(in srgb, var(--accent) 80%, transparent);
+  }
+}
+
+label {
+  margin: s(1);
+  font-weight: 600;
+}

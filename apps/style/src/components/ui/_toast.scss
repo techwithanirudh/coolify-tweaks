@@ -1,0 +1,27 @@
+@use 'globals' as *;
+
+ul[x-data] li > span {
+  border: 1px solid var(--border);
+  background: var(--card);
+  font-family: 'Inter', sans-serif;
+  backdrop-filter: blur(var(--blur));
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+
+  25% {
+    transform: rotate(-3deg);
+  }
+
+  75% {
+    transform: rotate(3deg);
+  }
+}
+
+.toast-no-description svg[fill='currentColor'] {
+  animation: wiggle 0.6s ease;
+}

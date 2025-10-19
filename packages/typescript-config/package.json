@@ -3,6 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "base.json",
+    "nextjs.json",
+    "vite.json",
+    "node.json",
+    "api.json",
+    "react-library.json"
+  ],
   "publishConfig": {
     "access": "public"
   }
