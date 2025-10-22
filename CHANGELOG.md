@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.8.9
+
+### Patch Changes
+
+- fix: (preferences hover style)
+
 ## 3.8.8
 
 ### Patch Changes
