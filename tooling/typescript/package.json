@@ -1,0 +1,17 @@
+{
+  "name": "@repo/tsconfig",
+  "version": "0.0.0",
+  "private": true,
+  "files": [
+    "*.json"
+  ],
+  "exports": {
+    "./base.json": "./base.json",
+    "./node.json": "./node.json",
+    "./vite.json": "./vite.json",
+    "./api.json": "./api.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

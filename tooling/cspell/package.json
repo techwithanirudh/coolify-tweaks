@@ -1,0 +1,24 @@
+{
+  "name": "@repo/cspell-config",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./cspell.config.cjs"
+  },
+  "files": [
+    "cspell.config.cjs"
+  ],
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo node_modules"
+  },
+  "dependencies": {
+    "@cspell/dict-bash": "^4.2.1",
+    "@cspell/dict-npm": "^5.2.17",
+    "@cspell/dict-redis": "^1.0.7",
+    "cspell": "^9.2.1"
+  },
+  "devDependencies": {
+    "@repo/tsconfig": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

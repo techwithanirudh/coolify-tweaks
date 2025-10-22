@@ -4,7 +4,6 @@
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "allowJs": true,
     "noEmit": true
   }
 }

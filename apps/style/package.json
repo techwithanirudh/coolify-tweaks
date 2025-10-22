@@ -19,24 +19,21 @@
   "scripts": {
     "build": "vite build",
     "build:watch": "chokidar 'src/**/*' -c 'vite build' --initial --silent",
+    "dev": "vite dev",
     "preview": "serve dist --listen 3000 --single",
-    "format": "prettier --write --ignore-unknown --log-level silent .",
-    "format:check": "prettier --check --ignore-unknown --log-level silent .",
-    "types:check": "tsc --noEmit --skipLibCheck",
-    "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --unique",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint --flag unstable_native_nodejs_ts_config",
+    "typecheck": "tsc --noEmit",
+    "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --unique .",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "bun run build && changeset publish"
   },
   "peerDependencies": {
-    "typescript": "^5.8.3"
+    "typescript": "catalog:"
   },
   "dependencies": {
-    "@cspell/dict-bash": "^4.2.1",
-    "@cspell/dict-npm": "^5.2.17",
-    "@cspell/dict-redis": "^1.0.7",
     "@types/semver": "^7.7.1",
-    "cspell": "^9.2.1",
     "semver": "^7.7.2"
   },
   "devDependencies": {
@@ -44,8 +41,14 @@
     "@changesets/cli": "^2.29.7",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
-    "@repo/typescript-config": "workspace:*",
+    "@repo/cspell-config": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/prettier-config": "workspace:*",
+    "@repo/tsconfig": "workspace:*",
     "@types/bun": "latest",
+    "eslint": "catalog:",
+    "@eslint/js": "catalog:",
+    "typescript-eslint": "^8.46.0",
     "autoprefixer": "^10.4.21",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^9.2.1",
@@ -62,8 +65,5 @@
     "vite": "^7.1.9",
     "vite-plugin-banner": "^0.8.1"
   },
-  "engines": {
-    "node": ">=22"
-  },
-  "packageManager": "bun@1.2.2"
+  "prettier": "@repo/prettier-config"
 }
