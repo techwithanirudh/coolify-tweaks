@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.8.8
+
+### Patch Changes
+
+- fix: ui fixes for coolify beta 427
+
 ## 3.8.7
 
 ### Patch Changes

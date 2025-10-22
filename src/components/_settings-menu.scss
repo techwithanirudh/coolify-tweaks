@@ -1,7 +1,8 @@
 @use 'globals' as *;
 @use 'components/ui/_button' as button;
 
-button:has([title='Settings']) {
+button:has([title='Settings']),
+button:has([title='Preferences']) {
   @include button.button-base;
   color: var(--muted-foreground);
 
@@ -27,7 +28,7 @@ button:has([title='Settings']) {
   }
 
   & > svg.w-5.h-5 {
-    @include icon('gear-six-fill', 'fill');
+    @include icon('faders-fill', 'fill');
   }
 }
 
