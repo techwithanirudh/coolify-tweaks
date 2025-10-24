@@ -85,6 +85,15 @@ Coolify Tweaks supports custom themes through integration with [TweakCN](https:/
 
    > **Note:** The theme query parameter should come first, as Stylus identifies user styles by URLs ending with `user.css`
 
+### Video Guide
+
+If you prefer watching instead, here’s a short walkthrough:
+
+<video controls width="700">
+  <source src="https://fixupx.com/AnirudhWith/status/1981595703978713311.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ### Troubleshooting Themes
 
 **Theme not applying?**
