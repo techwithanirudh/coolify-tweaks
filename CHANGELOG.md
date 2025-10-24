@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.8.10
+
+### Patch Changes
+
+- fix: use accent foreground for accent bg
+
 ## 3.8.9
 
 ### Patch Changes
