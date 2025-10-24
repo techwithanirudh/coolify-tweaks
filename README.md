@@ -89,10 +89,7 @@ Coolify Tweaks supports custom themes through integration with [TweakCN](https:/
 
 If you prefer watching instead, here’s a short walkthrough:
 
-<video controls width="700">
-  <source src="https://fixupx.com/AnirudhWith/status/1981595703978713311.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[![Watch the video](https://i.ibb.co/FLxtT5Y2/Clean-Shot-2025-10-24-at-11-14-01-2x.png)](https://fixupx.com/AnirudhWith/status/1981595703978713311.mp4)
 
 ### Troubleshooting Themes
 
