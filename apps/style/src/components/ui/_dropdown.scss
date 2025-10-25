@@ -1,7 +1,7 @@
-@use 'globals' as *;
-@use 'components/ui/_button' as button;
+@use "globals" as *;
+@use "components/ui/_button" as button;
 
-[x-show='dropdownOpen'] > div {
+[x-show="dropdownOpen"] > div {
   border-radius: var(--radius-lg);
   background: var(--popover);
   border: 1px solid var(--border);

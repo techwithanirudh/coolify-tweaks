@@ -1,19 +1,21 @@
-@use 'globals' as *;
-@use 'components/ui/input' as input;
-@use 'components/ui/button' as button;
+@use "globals" as *;
+@use "components/ui/input" as input;
+@use "components/ui/button" as button;
 
 .search-result-item {
   border-radius: 0px;
 }
 
-[x-show='modalOpen'] input[x-ref='searchInput'].pl-12 {
+[x-show="modalOpen"] input[x-ref="searchInput"].pl-12 {
   @include input.input-base;
   padding: s(3) s(36) s(3) s(12);
   background: var(--input) !important;
 }
 
-div.relative:has(> input[type='hidden'] ~ div[\@click='openDropdown()'] ~ datalist) {
-  div[\@click='openDropdown()'] {
+div.relative:has(
+    > input[type="hidden"] ~ div[\@click="openDropdown()"] ~ datalist
+  ) {
+  div[\@click="openDropdown()"] {
     @include input.input-base;
     padding: s(2.25);
     background: var(--input) !important;
@@ -24,7 +26,7 @@ div.relative:has(> input[type='hidden'] ~ div[\@click='openDropdown()'] ~ datali
     }
   }
 
-  div[x-show='open && !false'] {
+  div[x-show="open && !false"] {
     border-radius: var(--radius-lg);
     background: var(--popover);
     border: 1px solid var(--border);

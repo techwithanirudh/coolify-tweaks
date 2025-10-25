@@ -1,4 +1,4 @@
-@use 'globals' as *;
+@use "globals" as *;
 
 div.border-l.border-dashed.box-without-bg-without-border {
   border-radius: var(--radius-lg);

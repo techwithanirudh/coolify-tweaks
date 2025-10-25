@@ -11,6 +11,7 @@
       ],
       "inputs": [
         "$TURBO_DEFAULT$",
+        "package.json",
         ".env*"
       ],
       "outputs": [

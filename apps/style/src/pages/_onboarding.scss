@@ -1,7 +1,7 @@
-@use 'globals' as *;
-@use 'components/ui/_button' as button;
+@use "globals" as *;
+@use "components/ui/_button" as button;
 
-div[class='flex flex-col items-center justify-center p-10 mx-2 mt-10 bg-white border rounded-lg shadow-sm lg:p-20 dark:bg-transparent dark:border-none max-w-7xl border-neutral-200'] {
+div[class="flex flex-col items-center justify-center p-10 mx-2 mt-10 bg-white border rounded-lg shadow-sm lg:p-20 dark:bg-transparent dark:border-none max-w-7xl border-neutral-200"] {
   background-color: var(--accent);
   padding: s(10);
 }

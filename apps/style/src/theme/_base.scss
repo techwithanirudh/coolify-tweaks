@@ -1,4 +1,4 @@
-@use 'globals' as *;
+@use "globals" as *;
 
 body,
 html,
@@ -18,7 +18,7 @@ main > div:first-child {
   padding-block: s(18);
 }
 
-body > div[x-data*='pageWidth'] {
+body > div[x-data*="pageWidth"] {
   min-width: 100%;
   max-width: 100%;
 }

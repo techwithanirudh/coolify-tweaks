@@ -1,5 +1,5 @@
-@use 'sass:map';
-@use 'theme/variables' as vars;
+@use "sass:map";
+@use "theme/variables" as vars;
 
 @mixin mq($key) {
   $size: map.get(vars.$breakpoints, $key);
@@ -16,15 +16,20 @@
   @return calc(var(--spacing) * #{$rounded-multiplier});
 }
 
-@mixin icon($name, $variant: 'regular') {
-  $base-url: 'https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets';
-  $url: '#{$base-url}/#{$variant}/#{$name}.svg';
+@mixin icon($name, $variant: "regular") {
+  $base-url: "https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets";
+  $url: "#{$base-url}/#{$variant}/#{$name}.svg";
 
-  mask: url('#{$url}') no-repeat center / contain;
+  mask: url("#{$url}") no-repeat center / contain;
   background-color: currentColor;
 }
 
-@mixin icon-button($name, $variant: 'regular', $color: var(--color-text), $size: s(4)) {
+@mixin icon-button(
+  $name,
+  $variant: "regular",
+  $color: var(--color-text),
+  $size: s(4)
+) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -33,7 +38,7 @@
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     width: $size;
     height: $size;
     color: $color;

@@ -1,4 +1,4 @@
-@use 'globals' as *;
+@use "globals" as *;
 
 .navbar-main {
   position: sticky;
@@ -37,8 +37,8 @@
   color: var(--sidebar-foreground);
 }
 
-.navbar-main nav a[class*='dark:text-white'],
-.navbar-main nav a[aria-current='page'] {
+.navbar-main nav a[class*="dark:text-white"],
+.navbar-main nav a[aria-current="page"] {
   color: var(--sidebar-foreground);
 }
 

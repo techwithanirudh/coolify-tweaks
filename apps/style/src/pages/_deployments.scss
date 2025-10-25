@@ -1,4 +1,4 @@
-@use 'globals' as *;
+@use "globals" as *;
 
 .p-4.my-4.border.dark\:border-coolgray-200.border-neutral-200 {
   padding: s(4);
@@ -35,7 +35,7 @@ div.fixed.bottom-0.mb-4.left-0.ml-4:has(button) {
     border-radius: var(--radius-xl);
   }
 
-  & [x-show='expanded'] {
+  & [x-show="expanded"] {
     background: var(--popover);
 
     & a {

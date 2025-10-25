@@ -1,9 +1,9 @@
-@use 'globals' as *;
+@use "globals" as *;
 
 // Round Resource Images
-img[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
-svg[class*='w-[4.5rem] aspect-square h-[4.5rem]'],
-div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
+img[class*="w-[4.5rem] aspect-square h-[4.5rem]"],
+svg[class*="w-[4.5rem] aspect-square h-[4.5rem]"],
+div[class*="w-[4.5rem] aspect-square h-[4.5rem]"] {
   overflow: hidden;
   border-radius: var(--radius-lg);
   filter: none;
@@ -15,12 +15,12 @@ div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] {
   padding: s(1.5);
 }
 
-div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] > svg {
+div[class*="w-[4.5rem] aspect-square h-[4.5rem]"] > svg {
   transform: translateX(-23px) translateY(-8px) scaleX(0.8) scaleY(0.7);
   transform-origin: center center;
 }
 
-div[class*='w-[4.5rem] aspect-square h-[4.5rem]'] > svg#svg1326 {
+div[class*="w-[4.5rem] aspect-square h-[4.5rem]"] > svg#svg1326 {
   transform: translateX(-19px) translateY(-9px) scaleX(0.8) scaleY(0.7);
   transform-origin: center center;
 }
@@ -30,17 +30,17 @@ input.input-sticky {
   backdrop-filter: blur(var(--blur));
 }
 
-div.grid[class*='cols']:is(
-    [x-show^='filteredGitBasedApplications'],
-    [x-show^='filteredDockerBasedApplications'],
-    [x-show^='filteredDatabases']:has(> div[x-on\:click='setType(database.id)'])
+div.grid[class*="cols"]:is(
+    [x-show^="filteredGitBasedApplications"],
+    [x-show^="filteredDockerBasedApplications"],
+    [x-show^="filteredDatabases"]:has(> div[x-on\:click="setType(database.id)"])
   ) {
   background: none;
   padding: s(0.5);
 }
 
-div[x-show='filteredServices.length > 0']:has(> div[x-init='loadResources']) {
-  div[x-init='loadResources'] {
+div[x-show="filteredServices.length > 0"]:has(> div[x-init="loadResources"]) {
+  div[x-init="loadResources"] {
     button {
       background-color: var(--accent);
       color: var(--accent-foreground);
@@ -54,7 +54,7 @@ div[x-show='filteredServices.length > 0']:has(> div[x-init='loadResources']) {
     }
 
     button {
-      @include icon-button('arrows-clockwise-bold', 'bold');
+      @include icon-button("arrows-clockwise-bold", "bold");
       text-indent: 0px;
     }
 
@@ -65,7 +65,7 @@ div[x-show='filteredServices.length > 0']:has(> div[x-init='loadResources']) {
     }
   }
 
-  div.grid[class*='cols'] {
+  div.grid[class*="cols"] {
     background: none;
     padding: s(0.5);
     grid-template-columns: repeat(2, minmax(0, 1fr));

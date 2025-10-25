@@ -1,8 +1,10 @@
+import type { Plugin } from "postcss";
+import postcss from "postcss";
+
 // WARNING: This plugin is vibe-coded
-import postcss, { type Plugin } from 'postcss';
 
 interface DomainConfig {
-  type: 'url-prefix' | 'url' | 'regexp' | 'domain';
+  type: "url-prefix" | "url" | "regexp" | "domain";
   value: string;
 }
 
@@ -11,30 +13,30 @@ interface Options {
 }
 
 const wrapMozDocument = (options: Options = {}): Plugin => ({
-  postcssPlugin: 'wrap-moz-document',
+  postcssPlugin: "wrap-moz-document",
   prepare() {
-    const domains = options.domains || [''];
+    const domains = options.domains || [""];
     const params = domains
-      .map(domain => {
-        if (typeof domain === 'string') {
+      .map((domain) => {
+        if (typeof domain === "string") {
           return `url-prefix("${domain}")`;
         }
         return `${domain.type}("${domain.value}")`;
       })
-      .join(', ');
+      .join(", ");
 
     return {
       Once(root) {
         const wrapper = postcss.atRule({
-          name: '-moz-document',
+          name: "-moz-document",
           params,
         });
 
         const charsetRules: postcss.Node[] = [];
         const nodesToMove: postcss.Node[] = [];
 
-        root.each(node => {
-          if (node.type === 'atrule' && node.name === 'charset') {
+        root.each((node) => {
+          if (node.type === "atrule" && node.name === "charset") {
             charsetRules.push(node.clone());
           } else {
             nodesToMove.push(node.clone());
@@ -43,8 +45,8 @@ const wrapMozDocument = (options: Options = {}): Plugin => ({
 
         root.removeAll();
 
-        charsetRules.forEach(rule => root.append(rule));
-        nodesToMove.forEach(node => wrapper.append(node));
+        charsetRules.forEach((rule) => root.append(rule));
+        nodesToMove.forEach((node) => wrapper.append(node));
         root.append(wrapper);
       },
     };

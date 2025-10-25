@@ -1,4 +1,4 @@
-@use 'globals' as *;
+@use "globals" as *;
 
 @mixin input-base {
   padding: s(2.25) s(4);
@@ -45,13 +45,14 @@
     opacity: 0.5;
   }
 
-  &[aria-invalid='true'] {
+  &[aria-invalid="true"] {
     border-color: var(--destructive);
   }
 
   @include for-dark {
-    &[aria-invalid='true'] {
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--destructive) 40%, transparent);
+    &[aria-invalid="true"] {
+      box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--destructive) 40%, transparent);
     }
   }
 
@@ -76,7 +77,7 @@ select.select {
 
 /* Align search icon placed absolutely inside inputs with left padding */
 /* Targets inputs bound to Alpine's x-model="search" or inputs with class 'input--search' */
-input[x-model='search'],
+input[x-model="search"],
 input.input--search {
   /* Ensure the containing block is positioned for the absolute svg */
   position: relative;
@@ -84,13 +85,13 @@ input.input--search {
   /* Only add left padding when the input is followed by an svg (search icon) */
   &:has(+ svg),
   &:has(+ svg[aria-hidden]),
-  &:has(+ svg[class*='w-4']) {
+  &:has(+ svg[class*="w-4"]) {
     padding-left: s(10);
   }
 
   /* Align the svg inside the input when it's absolutely positioned as in markup */
   & + svg,
-  svg[aria-hidden][class*='w-4'] {
+  svg[aria-hidden][class*="w-4"] {
     position: absolute;
     left: s(3);
     top: 50%;
@@ -102,8 +103,8 @@ input.input--search {
   }
 }
 
-input[type='checkbox'],
-input[type='radio'] {
+input[type="checkbox"],
+input[type="radio"] {
   padding: s(2.75);
   border-radius: 4px;
   background-color: var(--input);

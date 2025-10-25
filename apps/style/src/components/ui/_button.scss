@@ -1,4 +1,4 @@
-@use 'globals' as *;
+@use "globals" as *;
 
 @mixin button-base {
   padding: s(2.25) s(4);
@@ -17,11 +17,12 @@
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
   }
 
-  &[aria-invalid='true'] {
+  &[aria-invalid="true"] {
     border-color: var(--destructive);
 
     @include for-dark {
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--destructive) 40%, transparent);
+      box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--destructive) 40%, transparent);
     }
   }
 
@@ -73,7 +74,7 @@ button.secondary,
 }
 
 button.destructive,
-button[iserror='isError'],
+button[iserror="isError"],
 .destructive {
   @include button-base;
   background: var(--destructive);

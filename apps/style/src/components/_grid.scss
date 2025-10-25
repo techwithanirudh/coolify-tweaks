@@ -1,7 +1,7 @@
-@use 'globals' as *;
+@use "globals" as *;
 
-div[data-testid='resources-grid'],
-div.grid[class*='cols'] {
+div[data-testid="resources-grid"],
+div.grid[class*="cols"] {
   overflow: hidden;
   margin-top: s(2.5);
   padding: s(4) s(4);
@@ -9,13 +9,13 @@ div.grid[class*='cols'] {
   background: var(--accent);
 }
 
-div.grid[class*='cols']:is(
-    :has(a[href*='/project/'][class='absolute inset-0']),
-    :has([wire\:click^='navigateToProject']),
-    :has([\@click^='$wire.navigateToProject']),
-    [x-show^='filteredApplications'],
-    [x-show^='filteredServices'],
-    [x-show^='filteredDatabases']:has(> span > a.box)
+div.grid[class*="cols"]:is(
+    :has(a[href*="/project/"][class="absolute inset-0"]),
+    :has([wire\:click^="navigateToProject"]),
+    :has([\@click^="$wire.navigateToProject"]),
+    [x-show^="filteredApplications"],
+    [x-show^="filteredServices"],
+    [x-show^="filteredDatabases"]:has(> span > a.box)
   ) {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 
@@ -70,8 +70,8 @@ div.grid[class*='cols']:is(
       padding: 0;
     }
 
-    a[href*='/edit'],
-    a[href*='/new'] {
+    a[href*="/edit"],
+    a[href*="/new"] {
       padding: s(1.5);
       background-color: var(--accent);
       color: var(--accent-foreground);
@@ -83,16 +83,16 @@ div.grid[class*='cols']:is(
       }
     }
 
-    a[href*='/new'] {
-      @include icon-button('plus-bold', 'bold');
+    a[href*="/new"] {
+      @include icon-button("plus-bold", "bold");
     }
 
-    a[href*='/edit'] {
-      @include icon-button('gear-fill', 'fill');
+    a[href*="/edit"] {
+      @include icon-button("gear-fill", "fill");
     }
 
-    a[href*='/new']:hover,
-    a[href*='/edit']:hover {
+    a[href*="/new"]:hover,
+    a[href*="/edit"]:hover {
       background-color: color-mix(in srgb, var(--accent) 80%, transparent);
       color: var(--accent-foreground);
       opacity: 1;
@@ -100,17 +100,18 @@ div.grid[class*='cols']:is(
   }
 }
 
-div.grid[wire\:poll\.3000ms='loadDeployments'] > .grid:has(a[href^='/project/']) {
+div.grid[wire\:poll\.3000ms="loadDeployments"]
+  > .grid:has(a[href^="/project/"]) {
   padding: 0;
 }
 
 @each $target in server, source, destination, security {
-  .grid:has(a[href*='/#{$target}/']) {
+  .grid:has(a[href*="/#{$target}/"]) {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
 
 .grid,
-[class*='grid-cols'] {
+[class*="grid-cols"] {
   gap: s(2.5);
 }

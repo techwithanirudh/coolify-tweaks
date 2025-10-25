@@ -1,7 +1,7 @@
-@use 'globals' as *;
-@use 'components/ui/_button' as button;
+@use "globals" as *;
+@use "components/ui/_button" as button;
 
-button:has([title='Settings']) {
+button:has([title="Settings"]) {
   @include button.button-base;
   color: var(--muted-foreground);
 
@@ -27,42 +27,43 @@ button:has([title='Settings']) {
   }
 
   & > svg.w-5.h-5 {
-    @include icon('gear-six-fill', 'fill');
+    @include icon("gear-six-fill", "fill");
   }
 }
 
-.dropdown-item-no-padding[wire\:click='openWhatsNewModal'] svg {
-  @include icon('list-magnifying-glass-duotone', 'duotone');
+.dropdown-item-no-padding[wire\:click="openWhatsNewModal"] svg {
+  @include icon("list-magnifying-glass-duotone", "duotone");
 }
 
 .dropdown-item-no-padding[\@click^="setTheme('dark')"] svg {
-  @include icon('moon-duotone', 'duotone');
+  @include icon("moon-duotone", "duotone");
 }
 
 .dropdown-item-no-padding[\@click^="setTheme('light')"] svg {
-  @include icon('sun-duotone', 'duotone');
+  @include icon("sun-duotone", "duotone");
 }
 
 .dropdown-item-no-padding[\@click^="setTheme('system')"] svg {
-  @include icon('desktop-duotone', 'duotone');
+  @include icon("desktop-duotone", "duotone");
 }
 
-div:has(div[x-show='dropdownOpen']:not([style*='display: none'])) button:has([title='Settings']) {
+div:has(div[x-show="dropdownOpen"]:not([style*="display: none"]))
+  button:has([title="Settings"]) {
   color: var(--foreground);
   background: var(--secondary);
 }
 
-div[x-show='dropdownOpen']:has(button[\@click*='setTheme']) {
+div[x-show="dropdownOpen"]:has(button[\@click*="setTheme"]) {
   right: s(2);
   top: s(10);
 }
 
-button[\@click^='switchWidth'],
-button[\@click^='setZoom'] {
+button[\@click^="switchWidth"],
+button[\@click^="setZoom"] {
   display: none;
 }
 
-div[class*='font-bold border-b dark:border-coolgray-500 border-neutral-300 dark:text-white'] {
+div[class*="font-bold border-b dark:border-coolgray-500 border-neutral-300 dark:text-white"] {
   display: none;
 }
 
@@ -94,7 +95,7 @@ button[\@click^="\$dispatch('open-global-search')"] {
     width: s(5);
     height: s(5);
     color: var(--muted-foreground);
-    @include icon('magnifying-glass-bold', 'bold');
+    @include icon("magnifying-glass-bold", "bold");
   }
 
   & kbd {
@@ -102,7 +103,10 @@ button[\@click^="\$dispatch('open-global-search')"] {
   }
 }
 
-body:has(div[x-show='modalOpen']:not([style*='display: none']) input[x-ref='searchInput']) {
+body:has(
+  div[x-show="modalOpen"]:not([style*="display: none"])
+    input[x-ref="searchInput"]
+) {
   button[\@click^="\$dispatch('open-global-search')"] {
     background-color: var(--secondary);
 

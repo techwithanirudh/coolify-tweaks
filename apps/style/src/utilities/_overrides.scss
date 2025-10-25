@@ -1,4 +1,4 @@
-@use 'globals' as *;
+@use "globals" as *;
 
 /* Section */
 // Increase header size and add padding
@@ -12,17 +12,18 @@ section > h3 + div {
   background: var(--popover);
 }
 
-section h3[class='pb-2'] {
+section h3[class="pb-2"] {
   font-size: 1.6rem;
 }
 
 // Push all buttons to the right from the headings for many sections
-:is(.flex.gap-2, .flex.items-center.gap-4, .flex.flex-col.gap-4) > :is(h1, h2, h3, h4) {
+:is(.flex.gap-2, .flex.items-center.gap-4, .flex.flex-col.gap-4)
+  > :is(h1, h2, h3, h4) {
   margin-right: auto;
 }
 
 /* Cleanup Links */
-a[class*='hover:underline']:hover {
+a[class*="hover:underline"]:hover {
   color: var(--muted-foreground);
   text-decoration: none;
 }
@@ -34,7 +35,7 @@ a[class*='hover:underline']:hover {
 }
 
 /* Sponsorship Popup Styles */
-[x-show='popups.sponsorship'] {
+[x-show="popups.sponsorship"] {
   padding: s(5);
   border-radius: var(--radius-lg);
   background: var(--popover);
@@ -44,14 +45,14 @@ a[class*='hover:underline']:hover {
 /* Modal panels: ensure consistent large radius */
 .fixed.inset-0.z-50 {
   /* Target the modal panel inside the overlay and apply rounded-lg */
-  > .relative[class*='max-w-'] {
+  > .relative[class*="max-w-"] {
     border-radius: var(--radius-lg);
   }
 }
 
 [x-show][x-trap],
 [x-show][x-trap] > .relative,
-[x-show^='modalOpen'] {
+[x-show^="modalOpen"] {
   border-radius: var(--radius-lg);
 }
 
@@ -71,34 +72,34 @@ a[class*='hover:underline']:hover {
 }
 
 /* take full width for compressed items, like checkboxes */
-div[class='w-32'] {
+div[class="w-32"] {
   width: 100%;
   min-width: s(32);
 }
 
-div[class='w-48'] {
+div[class="w-48"] {
   width: 100%;
   min-width: s(48);
 }
 
-div[class*='w-64'] {
+div[class*="w-64"] {
   width: 100%;
   min-width: s(64);
 }
 
-div[class='pb-6 w-96'],
-div[class='flex gap-2 items-end w-96'],
-div[class='w-96'],
-div[class*='sm:w-96'],
-div[class='pt-2 w-96'],
-div[class='w-96 flex flex-col gap-1'],
-div[class='w-96 pb-6'],
-div[class*='md:w-96'] {
+div[class="pb-6 w-96"],
+div[class="flex gap-2 items-end w-96"],
+div[class="w-96"],
+div[class*="sm:w-96"],
+div[class="pt-2 w-96"],
+div[class="w-96 flex flex-col gap-1"],
+div[class="w-96 pb-6"],
+div[class*="md:w-96"] {
   width: 100%;
   min-width: s(96);
 }
 
-div[class='w-\\[500px\\]'] {
+div[class="w-\\[500px\\]"] {
   width: 100%;
   min-width: 500px;
 }

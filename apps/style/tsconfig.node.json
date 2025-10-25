@@ -9,6 +9,7 @@
     "postcss.config.ts",
     "eslint.config.ts",
     "prettier.config.js",
-    "plugins/**/*"
+    "plugins/**/*",
+    "scripts/**/*"
   ]
 }
