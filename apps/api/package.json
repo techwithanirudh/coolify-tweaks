@@ -1,0 +1,41 @@
+{
+  "name": "api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nitro build",
+    "dev": "nitro dev",
+    "prepare": "nitro prepare",
+    "preview": "node .output/server/index.mjs",
+    "lint": "bun run prepare && eslint --flag unstable_native_nodejs_ts_config",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "format:fix": "prettier --write . --ignore-path ../../.gitignore",
+    "typecheck": "bun run prepare && tsc --noEmit --skipLibCheck"
+  },
+  "dependencies": {
+    "h3": "^1.15.3",
+    "mime": "^4.0.7",
+    "nitro-cors": "^0.7.1",
+    "ofetch": "^1.4.1",
+    "postcss": "^8.5.6",
+    "shadcn": "^2.9.0",
+    "zod": "^4.0.5"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/prettier-config": "workspace:*",
+    "@repo/tsconfig": "workspace:*",
+    "@types/bun": "latest",
+    "@types/node": "^22.10.1",
+    "eslint": "catalog:",
+    "lefthook": "^1.12.2",
+    "nitropack": "latest",
+    "prettier": "catalog:",
+    "turbo": "^2.5.8",
+    "typescript": "catalog:"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "prettier": "@repo/prettier-config"
+}

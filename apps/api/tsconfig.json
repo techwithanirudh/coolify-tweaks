@@ -1,0 +1,16 @@
+{
+  "extends": "./.nitro/types/tsconfig.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.api.tsbuildinfo",
+    "strictNullChecks": true,
+    "types": ["nitropack", "node"]
+  },
+  "include": [
+    "server",
+    "nitro.config.ts",
+    ".nitro/types/**/*.d.ts"
+  ]
+}

@@ -1,0 +1,2 @@
+There is a github bug when you have the latest thign the url chagnes and a version number the format changes fix that
+Whenever you have a built-in tweakcn it needs to end with json but non-built in can't

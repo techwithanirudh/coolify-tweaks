@@ -16,7 +16,8 @@
       ],
       "outputs": [
         ".cache/tsbuildinfo.json",
-        "dist/**"
+        "dist/**",
+        ".output/**"
       ]
     },
     "lint": {
