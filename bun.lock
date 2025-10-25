@@ -32,6 +32,7 @@
         "@types/bun": "latest",
         "autoprefixer": "^10.4.21",
         "chokidar-cli": "^3.0.0",
+        "commander": "^14.0.1",
         "concurrently": "^9.2.1",
         "conventional-changelog-atom": "^5.0.0",
         "eslint": "catalog:",

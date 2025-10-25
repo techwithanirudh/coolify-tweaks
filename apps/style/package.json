@@ -5,7 +5,7 @@
   "main": "src/main.scss",
   "scripts": {
     "build": "bun run scripts/build.ts",
-    "build:watch": "chokidar 'src/**/*' -c 'bun run build' --initial --silent",
+    "build:watch": "bun run scripts/watch.ts",
     "preview": "serve dist --listen 3000 --single",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint --flag unstable_native_nodejs_ts_config",
@@ -37,6 +37,7 @@
     "@types/bun": "latest",
     "autoprefixer": "^10.4.21",
     "chokidar-cli": "^3.0.0",
+    "commander": "^14.0.1",
     "concurrently": "^9.2.1",
     "conventional-changelog-atom": "^5.0.0",
     "eslint": "catalog:",

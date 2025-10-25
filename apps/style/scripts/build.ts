@@ -1,8 +1,8 @@
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { parseArgs } from "node:util";
 import ora from "ora";
+import { Command } from "commander";
 import * as sass from "sass-embedded";
 import prettier from "prettier";
 import { transform as lcTransform, browserslistToTargets } from "lightningcss";
@@ -10,30 +10,37 @@ import browserslist from "browserslist";
 import postcss from "postcss";
 import loadConfig from "postcss-load-config";
 
+const program = new Command()
+  .name("build")
+  .description("Compile SCSS with Sass → LightningCSS → PostCSS pipeline")
+  .option("-s, --src <path>", "entry SCSS file", "src/main.scss")
+  .option("-o, --out <path>", "output CSS file", "dist/main.user.css")
+  .option("-l, --load-path <paths>", "comma-separated Sass load paths", "src")
+  .option("-m, --minify", "minify output", true)
+  .option("-p, --format", "format with Prettier", false)
+  .allowUnknownOption(false)
+  .parse(process.argv);
+
+const opts = program.opts<{
+  src: string;
+  out: string;
+  loadPath: string;
+  minify: boolean;
+  format: boolean;
+}>();
+
 const cwd = process.cwd();
-
-const {
-  values: { src, out, "load-path": loadPath, minify, format },
-} = parseArgs({
-  options: {
-    src: { type: "string", short: "s", default: "src/main.scss" },
-    out: { type: "string", short: "o", default: "dist/main.user.css" },
-    "load-path": { type: "string", short: "l", default: "src" },
-    minify: { type: "boolean", short: "m", default: true },
-    format: { type: "boolean", short: "p", default: false },
-  },
-});
-
-const SRC = path.resolve(cwd, src);
-const OUT = path.resolve(cwd, out);
-const LOAD_PATHS = loadPath
+const SRC = path.resolve(cwd, opts.src);
+const OUT = path.resolve(cwd, opts.out);
+const LOAD_PATHS = opts.loadPath
   .split(",")
   .map((p) => path.resolve(cwd, p.trim()))
   .filter(Boolean);
+
 const OUT_DIR = path.dirname(OUT);
 const OUT_MAP = `${OUT}.map`;
-const MINIFY = Boolean(minify);
-const FORMAT = Boolean(format) && !MINIFY;
+const MINIFY = !!opts.minify;
+const FORMAT = !!opts.format && !MINIFY;
 
 export async function build() {
   const spinner = ora("Building styles (Sass → Lightning → PostCSS)").start();
@@ -49,10 +56,9 @@ export async function build() {
       loadPaths: LOAD_PATHS,
     });
 
-    spinner.text = `Running Lightning CSS`;
+    spinner.text = "Running LightningCSS";
     const blQueries = browserslist.loadConfig({ path: cwd }) || ["defaults"];
     const targets = browserslistToTargets(browserslist(blQueries));
-
     const lightningResult = lcTransform({
       filename: SRC,
       code: Buffer.from(sassResult.css),
@@ -66,22 +72,21 @@ export async function build() {
 
     spinner.text = "Running PostCSS";
     const processor = postcss(plugins);
-    const postcssResult = await processor.process(
-      lightningResult.code.toString(),
-      {
-        ...options,
-        from: SRC,
-        to: OUT,
-        map: {
-          inline: false,
-          annotation: path.basename(OUT_MAP),
-          prev: lightningResult.map?.toString() ?? sassResult.sourceMap ?? undefined,
-          ...(typeof options.map === "object" ? options.map : {}),
-        },
+    const postcssResult = await processor.process(lightningResult.code.toString(), {
+      ...options,
+      from: SRC,
+      to: OUT,
+      map: {
+        inline: false,
+        annotation: path.basename(OUT_MAP),
+        prev: lightningResult.map?.toString() ?? sassResult.sourceMap ?? undefined,
+        ...(typeof options.map === "object" ? options.map : {}),
       },
-    );
+    });
 
     let css = postcssResult.css;
+
+    if (MINIFY && opts.format) console.warn("\nMinify and Format are both enabled, skipping formatting");
     if (FORMAT) {
       spinner.text = "Formatting";
       try {
@@ -104,8 +109,13 @@ export async function build() {
   } catch (err: any) {
     spinner.fail("Build failed");
     console.error(err.stack || err.message);
-    process.exit(1);
+    throw err;
   }
 }
 
-if (import.meta.main) build();
+if (import.meta.main) {
+  build().catch((err) => {
+    console.error(err.stack || err.message);
+    process.exit(1);
+  });
+}

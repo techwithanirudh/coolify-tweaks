@@ -26,7 +26,7 @@ export default {
     }),
     postcssBanner({
       banner,
-      inline: true
+      inline: true,
     }),
   ],
 };
