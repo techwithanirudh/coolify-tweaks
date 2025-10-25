@@ -1,3 +1,4 @@
+// build.ts
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -9,54 +10,61 @@ import { transform as lcTransform, browserslistToTargets } from "lightningcss";
 import browserslist from "browserslist";
 import postcss from "postcss";
 import loadConfig from "postcss-load-config";
+import { z } from "zod";
 
-const program = new Command()
-  .name("build")
-  .description("Compile SCSS with Sass → LightningCSS → PostCSS pipeline")
-  .option("-s, --src <path>", "entry SCSS file", "src/main.scss")
-  .option("-o, --out <path>", "output CSS file", "dist/main.user.css")
-  .option("-l, --load-path <paths>", "comma-separated Sass load paths", "src")
-  .option("-m, --minify", "minify output", true)
-  .option("-p, --format", "format with Prettier", false)
-  .allowUnknownOption(false)
-  .parse(process.argv);
+const BuildParamsSchema = z.object({
+  src: z.string().default("src/main.scss"),
+  out: z.string().default("dist/main.user.css"),
+  loadPath: z
+    .union([
+      z.array(z.string()),
+      z.string().transform((s) =>
+        s
+          .split(",")
+          .map((x) => x.trim())
+          .filter(Boolean)
+      ),
+    ])
+    .default(["src"]),
+  minify: z.coerce.boolean().default(true),
+  format: z.coerce.boolean().default(false),
+  silent: z.coerce.boolean().default(false),
+});
 
-const opts = program.opts<{
-  src: string;
-  out: string;
-  loadPath: string;
-  minify: boolean;
-  format: boolean;
-}>();
+export type BuildParams = z.infer<typeof BuildParamsSchema>;
 
-const cwd = process.cwd();
-const SRC = path.resolve(cwd, opts.src);
-const OUT = path.resolve(cwd, opts.out);
-const LOAD_PATHS = opts.loadPath
-  .split(",")
-  .map((p) => path.resolve(cwd, p.trim()))
-  .filter(Boolean);
+export async function build(input: Partial<BuildParams> = {}) {
+  const params = BuildParamsSchema.parse(input);
 
-const OUT_DIR = path.dirname(OUT);
-const OUT_MAP = `${OUT}.map`;
-const MINIFY = !!opts.minify;
-const FORMAT = !!opts.format && !MINIFY;
+  const cwd = process.cwd();
+  const SRC = path.resolve(cwd, params.src);
+  const OUT = path.resolve(cwd, params.out);
+  const LOAD_PATHS = params.loadPath.map((p) => path.resolve(cwd, p));
+  const OUT_DIR = path.dirname(OUT);
+  const OUT_MAP = `${OUT}.map`;
+  const MINIFY = params.minify;
+  const FORMAT = params.format && !MINIFY;
+  const SILENT = params.silent;
 
-export async function build() {
-  const spinner = ora("Building styles (Sass → Lightning → PostCSS)").start();
+  const spinner = ora({
+    text: "Building styles (Sass → Lightning → PostCSS)",
+    isEnabled: !SILENT,
+  });
+
+  if (!SILENT) spinner.start();
   const t0 = performance.now();
 
   try {
     if (!existsSync(OUT_DIR)) await fs.mkdir(OUT_DIR, { recursive: true });
 
-    spinner.text = "Compiling SCSS";
+    if (!SILENT) spinner.text = "Compiling SCSS";
     const sassResult = await sass.compileAsync(SRC, {
       style: "expanded",
       sourceMap: true,
       loadPaths: LOAD_PATHS,
     });
 
-    spinner.text = "Running LightningCSS";
+    if (!SILENT) spinner.text = "Running LightningCSS";
     const blQueries = browserslist.loadConfig({ path: cwd }) || ["defaults"];
     const targets = browserslistToTargets(browserslist(blQueries));
     const lightningResult = lcTransform({
@@ -67,10 +75,10 @@ export async function build() {
       targets,
     });
 
-    spinner.text = "Loading PostCSS config";
+    if (!SILENT) spinner.text = "Loading PostCSS config";
     const { plugins, options } = await loadConfig({}, cwd);
 
-    spinner.text = "Running PostCSS";
+    if (!SILENT) spinner.text = "Running PostCSS";
     const processor = postcss(plugins);
     const postcssResult = await processor.process(lightningResult.code.toString(), {
       ...options,
@@ -86,18 +94,20 @@ export async function build() {
 
     let css = postcssResult.css;
 
-    if (MINIFY && opts.format) console.warn("\nMinify and Format are both enabled, skipping formatting");
+    if (MINIFY && params.format && !SILENT) {
+      console.warn("\nMinify and Format are both enabled, skipping formatting");
+    }
     if (FORMAT) {
-      spinner.text = "Formatting";
+      if (!SILENT) spinner.text = "Formatting";
       try {
         const conf = (await prettier.resolveConfig(OUT)) ?? {};
         css = await prettier.format(css, { ...conf, parser: "css" });
       } catch (e) {
-        console.warn("Formatting failed:", (e as Error).message);
+        if (!SILENT) console.warn("Formatting failed:", (e as Error).message);
       }
     }
 
-    spinner.text = "Writing output";
+    if (!SILENT) spinner.text = "Writing output";
     await fs.writeFile(OUT, css, "utf8");
     if (postcssResult.map) {
       await fs.writeFile(OUT_MAP, postcssResult.map.toString(), "utf8");
@@ -105,17 +115,51 @@ export async function build() {
 
     const kb = (new TextEncoder().encode(css).length / 1024).toFixed(1);
     const dt = ((performance.now() - t0) / 1000).toFixed(2);
-    spinner.succeed(`Built ${path.relative(cwd, OUT)} (${kb} kB) in ${dt}s`);
+    if (!SILENT) spinner.succeed(`Built ${path.relative(cwd, OUT)} (${kb} kB) in ${dt}s`);
+
+    return { out: OUT, bytesKB: Number(kb), seconds: Number(dt) };
   } catch (err: any) {
-    spinner.fail("Build failed");
+    if (!SILENT) {
+      try {
+        ora().fail("Build failed");
+      } catch {}
+    }
     console.error(err.stack || err.message);
     throw err;
   }
 }
 
 if (import.meta.main) {
-  build().catch((err) => {
-    console.error(err.stack || err.message);
+  const program = new Command()
+    .name("build")
+    .description("Compile SCSS with Sass → LightningCSS → PostCSS")
+    .option("-s, --src <path>", "entry SCSS file", "src/main.scss")
+    .option("-o, --out <path>", "output CSS file", "dist/main.user.css")
+    .option("-l, --load-path <paths>", "comma-separated Sass load paths", "src")
+    .option("-m, --minify", "minify output", true)
+    .option("-p, --format", "format with Prettier", false)
+    .option("--silent", "suppress output", false)
+    .allowUnknownOption(false)
+    .parse(process.argv);
+
+  const cli = program.opts<{
+    src: string;
+    out: string;
+    loadPath: string;
+    minify: boolean;
+    format: boolean;
+    silent: boolean;
+  }>();
+
+  build({
+    src: cli.src,
+    out: cli.out,
+    loadPath: cli.loadPath,
+    minify: cli.minify,
+    format: cli.format,
+    silent: cli.silent,
+  }).catch((err) => {
+    console.error(err?.stack || err?.message);
     process.exit(1);
   });
 }

@@ -6,7 +6,8 @@
   "scripts": {
     "build": "bun run scripts/build.ts",
     "build:watch": "bun run scripts/watch.ts",
-    "preview": "serve dist --listen 3000 --single",
+    "dev": "bun run build:watch --serve",
+    "preview": "serve dist --listen 3000 --single --no-request-logging",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint --flag unstable_native_nodejs_ts_config",
     "typecheck": "tsc --noEmit",
@@ -20,8 +21,10 @@
   },
   "dependencies": {
     "@types/semver": "^7.7.1",
+    "@types/serve-handler": "^6.1.4",
     "sass-embedded": "^1.93.2",
-    "semver": "^7.7.2"
+    "semver": "^7.7.2",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.5",
@@ -51,6 +54,7 @@
     "postcss-preset-env": "^10.4.0",
     "prettier": "3.6.2",
     "serve": "^14.2.5",
+    "serve-handler": "^6.1.6",
     "turbo": "^2.5.8",
     "typescript-eslint": "^8.46.0"
   },
