@@ -1,6 +1,3 @@
-import autoprefixer from "autoprefixer";
-import postcssPresetEnv from "postcss-preset-env";
-
 import pkg from "../../package.json";
 import postcssBanner from "./plugins/postcss/banner";
 import wrapMozDocument from "./plugins/postcss/wrap-moz-document";
@@ -19,21 +16,17 @@ const banner = `==UserStyle==
 export default {
   map: true,
   plugins: [
-    postcssPresetEnv({
-      stage: 3,
-    }),
-    autoprefixer(),
-    // Note: @import placement is handled by the Vite plugin, not PostCSS
     wrapMozDocument({
       domains: [
-        { type: "regexp", value: "https?://app\\.coolify\\.io/.*" },
-        { type: "regexp", value: "https?://coolify\\.local:8000/.*" },
+        { type: "url-prefix", value: "https://app.coolify.io/" },
+        { type: "url-prefix", value: "http://app.coolify.io/" },
+        { type: "url-prefix", value: "https://coolify.local:8000/" },
+        { type: "url-prefix", value: "http://coolify.local:8000/" },
       ],
     }),
     postcssBanner({
       banner,
-      inline: true,
-      important: true,
+      inline: true
     }),
   ],
 };
