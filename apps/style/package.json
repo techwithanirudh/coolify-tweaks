@@ -6,7 +6,8 @@
   "scripts": {
     "build": "bun run scripts/build.ts",
     "build:watch": "bun run scripts/watch.ts",
-    "dev": "bun run build:watch --serve",
+    "serve:dev": "serve dist --listen 5173 --single --no-request-logging",
+    "dev": "concurrently --kill-others --names watch,serve -r \"bun run build:watch\" \"bun run serve:dev\"",
     "preview": "serve dist --listen 3000 --single --no-request-logging",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint --flag unstable_native_nodejs_ts_config",

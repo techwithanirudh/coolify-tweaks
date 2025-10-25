@@ -2,14 +2,14 @@
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
-import ora from "ora";
-import { Command } from "commander";
-import * as sass from "sass-embedded";
-import prettier from "prettier";
-import { transform as lcTransform, browserslistToTargets } from "lightningcss";
 import browserslist from "browserslist";
+import { Command } from "commander";
+import { browserslistToTargets, transform as lcTransform } from "lightningcss";
+import ora from "ora";
 import postcss from "postcss";
 import loadConfig from "postcss-load-config";
+import prettier from "prettier";
+import * as sass from "sass-embedded";
 import { z } from "zod";
 
 const BuildParamsSchema = z.object({
@@ -22,7 +22,7 @@ const BuildParamsSchema = z.object({
         s
           .split(",")
           .map((x) => x.trim())
-          .filter(Boolean)
+          .filter(Boolean),
       ),
     ])
     .default(["src"]),
@@ -32,8 +32,15 @@ const BuildParamsSchema = z.object({
 });
 
 export type BuildParams = z.infer<typeof BuildParamsSchema>;
+export type BuildResult = {
+  out: string;
+  bytesKB: number;
+  seconds: number;
+};
 
-export async function build(input: Partial<BuildParams> = {}) {
+export async function build(
+  input: Partial<BuildParams> = {},
+): Promise<BuildResult> {
   const params = BuildParamsSchema.parse(input);
 
   const cwd = process.cwd();
@@ -80,17 +87,23 @@ export async function build(input: Partial<BuildParams> = {}) {
 
     if (!SILENT) spinner.text = "Running PostCSS";
     const processor = postcss(plugins);
-    const postcssResult = await processor.process(lightningResult.code.toString(), {
-      ...options,
-      from: SRC,
-      to: OUT,
-      map: {
-        inline: false,
-        annotation: path.basename(OUT_MAP),
-        prev: lightningResult.map?.toString() ?? sassResult.sourceMap ?? undefined,
-        ...(typeof options.map === "object" ? options.map : {}),
+    const postcssResult = await processor.process(
+      lightningResult.code.toString(),
+      {
+        ...options,
+        from: SRC,
+        to: OUT,
+        map: {
+          inline: false,
+          annotation: path.basename(OUT_MAP),
+          prev:
+            lightningResult.map?.toString() ??
+            sassResult.sourceMap ??
+            undefined,
+          ...(typeof options.map === "object" ? options.map : {}),
+        },
       },
-    });
+    );
 
     let css = postcssResult.css;
 
@@ -115,16 +128,19 @@ export async function build(input: Partial<BuildParams> = {}) {
 
     const kb = (new TextEncoder().encode(css).length / 1024).toFixed(1);
     const dt = ((performance.now() - t0) / 1000).toFixed(2);
-    if (!SILENT) spinner.succeed(`Built ${path.relative(cwd, OUT)} (${kb} kB) in ${dt}s`);
+    if (!SILENT)
+      spinner.succeed(`Built ${path.relative(cwd, OUT)} (${kb} kB) in ${dt}s`);
 
     return { out: OUT, bytesKB: Number(kb), seconds: Number(dt) };
-  } catch (err: any) {
+  } catch (err: unknown) {
     if (!SILENT) {
       try {
         ora().fail("Build failed");
       } catch {}
     }
-    console.error(err.stack || err.message);
+    const message =
+      err instanceof Error ? err.stack || err.message : String(err);
+    console.error(message);
     throw err;
   }
 }
@@ -154,12 +170,17 @@ if (import.meta.main) {
   build({
     src: cli.src,
     out: cli.out,
-    loadPath: cli.loadPath,
+    loadPath: cli.loadPath
+      .split(",")
+      .map((x) => x.trim())
+      .filter(Boolean),
     minify: cli.minify,
     format: cli.format,
     silent: cli.silent,
-  }).catch((err) => {
-    console.error(err?.stack || err?.message);
+  }).catch((err: unknown) => {
+    const message =
+      err instanceof Error ? err.stack || err.message : String(err);
+    console.error(message);
     process.exit(1);
   });
 }

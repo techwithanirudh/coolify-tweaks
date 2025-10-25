@@ -1,9 +1,11 @@
-import path from "node:path";
 import fs from "node:fs";
-import ora from "ora";
+import path from "node:path";
 import { Command } from "commander";
-import { build as defaultBuild } from "./build.ts";
+import ora from "ora";
 import { z } from "zod";
+
+import type { BuildParams, BuildResult } from "./build.ts";
+import { build as defaultBuild } from "./build.ts";
 
 const WatchParamsSchema = z.object({
   dir: z.string().default("src"),
@@ -16,7 +18,7 @@ const WatchParamsSchema = z.object({
         s
           .split(",")
           .map((x) => x.trim())
-          .filter(Boolean)
+          .filter(Boolean),
       ),
     ])
     .default([".scss", ".sass", ".css"]),
@@ -31,7 +33,7 @@ export type WatchController = {
 
 export async function startWatch(
   params: Partial<WatchParams> = {},
-  build: () => Promise<void> = defaultBuild
+  build: (input: Partial<BuildParams>) => Promise<BuildResult> = defaultBuild,
 ): Promise<WatchController> {
   const cfg = WatchParamsSchema.parse(params);
 
@@ -47,7 +49,7 @@ export async function startWatch(
     return INTERESTING.has(path.extname(fp).toLowerCase());
   }
 
-  let timer: NodeJS.Timeout | null = null;
+  let timer: ReturnType<typeof setTimeout> | null = null;
   let building = false;
   let queued = false;
   let watcher: fs.FSWatcher | null = null;
@@ -57,8 +59,12 @@ export async function startWatch(
     queued = false;
     if (!SILENT) spinner.start("rebuilding…");
     try {
-      await build();
-      if (!SILENT) spinner.succeed("rebuilt");
+      const result = await build({ silent: true });
+      const { out, bytesKB, seconds } = result;
+      if (!SILENT)
+        spinner.succeed(
+          `rebuilt ${path.relative(cwd, out)} (${bytesKB} kB) in ${seconds}s`,
+        );
     } catch (err: any) {
       if (!SILENT) spinner.fail("build failed");
       console.error(err?.stack || err?.message || err);
@@ -104,15 +110,28 @@ export async function startWatch(
 
   if (!SILENT) {
     const rel = path.relative(cwd, ROOT) || ".";
-    spinner.text = `watching ${rel}/ (recursive)`;
+    spinner.text = `watching ${rel}/`;
     spinner.start();
   }
 
   const close = () => {
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    }
     try {
       watcher?.close();
     } catch {}
     watcher = null;
+    if (!SILENT) {
+      try {
+        if (spinner.isSpinning) {
+          spinner.stopAndPersist({ symbol: "✔", text: "watcher stopped" });
+        } else {
+          spinner.succeed("watcher stopped");
+        }
+      } catch {}
+    }
   };
 
   return { schedule, close };
@@ -144,19 +163,20 @@ if (import.meta.main) {
       debounce: Number(opts.debounce) || 120,
       silent: !!opts.silent,
     },
-    defaultBuild
+    defaultBuild,
   )
     .then((controller) => {
       const cleanup = () => {
-        console.log("\nclosing watcher…");
         controller.close();
         process.exit(0);
       };
       process.on("SIGINT", cleanup);
       process.on("SIGTERM", cleanup);
     })
-    .catch((err) => {
-      console.error(err?.stack || err?.message || err);
+    .catch((err: unknown) => {
+      const message =
+        err instanceof Error ? err.stack || err.message : String(err);
+      console.error(message);
       process.exit(1);
     });
 }
