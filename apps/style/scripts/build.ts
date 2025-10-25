@@ -26,7 +26,8 @@ const BuildParamsSchema = z.object({
       ),
     ])
     .default(["src"]),
-  minify: z.coerce.boolean().default(true),
+  // minify: z.coerce.boolean().default(true),
+  minify: z.coerce.boolean().default(false),
   format: z.coerce.boolean().default(false),
   silent: z.coerce.boolean().default(false),
 });
