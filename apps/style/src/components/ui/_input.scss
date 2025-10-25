@@ -41,9 +41,10 @@
     opacity: 0.7;
   }
 
-  &:focus::placeholder {
+  /* Note: :focus::placeholder is not valid CSS syntax */
+  /* &:focus::placeholder {
     opacity: 0.5;
-  }
+  } */
 
   &[aria-invalid="true"] {
     border-color: var(--destructive);

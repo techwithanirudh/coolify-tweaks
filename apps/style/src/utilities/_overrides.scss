@@ -67,9 +67,10 @@ a[class*="hover:underline"]:hover {
   background: var(--muted);
 }
 
-::-webkit-scrollbar-thumb:hover {
+/* Note: :hover on pseudo-elements is not supported in all browsers */
+/* ::-webkit-scrollbar-thumb:hover {
   background: var(--foreground);
-}
+} */
 
 /* take full width for compressed items, like checkboxes */
 div[class="w-32"] {

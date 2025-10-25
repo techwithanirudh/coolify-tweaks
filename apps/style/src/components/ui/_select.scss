@@ -38,18 +38,24 @@
     @include icon("caret-down-bold", "bold");
   }
 
-  &:open::picker-icon {
+  /* Note: :open::picker-icon is not valid CSS syntax */
+  /* &:open::picker-icon {
     rotate: 180deg;
-  }
+  } */
 }
 
-select,
-::picker(select) {
+select {
   @include select-base;
 }
 
+/* Note: ::picker(select) is a pseudo-element and cannot be combined with pseudo-classes */
+/* ::picker(select) {
+  @include select-base;
+} */
+
 // dropdown panel
-::picker(select) {
+/* Note: ::picker(select) pseudo-element cannot be combined with pseudo-classes like :popover-open */
+/* ::picker(select) {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   background: var(--popover);
@@ -70,7 +76,7 @@ select,
       opacity: 0;
     }
   }
-}
+} */
 
 // option items
 option {

@@ -1,39 +1,40 @@
-import { existsSync } from "node:fs";
-import fs from "node:fs/promises";
 import path from "node:path";
+import fs from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { parseArgs } from "node:util";
+import * as sass from "sass-embedded";
 import ora from "ora";
-import postcss from "postcss";
-import loadConfig from "postcss-load-config";
-import prettier from "prettier";
-import * as sass from "sass";
+import { transform as lcTransform, browserslistToTargets } from "lightningcss";
+import browserslist from "browserslist";
 
-const cwd = process.cwd();
-
-const {
-  values: { src, out, "load-path": loadPath, format },
-} = parseArgs({
+const { values } = parseArgs({
   options: {
     src: { type: "string", short: "s", default: "src/main.scss" },
     out: { type: "string", short: "o", default: "dist/main.user.css" },
     "load-path": { type: "string", short: "l", default: "src" },
-    format: { type: "boolean", short: "p", default: false },
-  },
+    minify: { type: "boolean", short: "m", default: true },
+    banner: { type: "string", default: "" },
+    nesting: { type: "boolean", default: false }
+  }
 });
 
-const SRC = path.resolve(cwd, src);
-const OUT = path.resolve(cwd, out);
-const LOAD_PATHS = loadPath
-  .split(",")
-  .map((p) => path.resolve(cwd, p.trim()))
-  .filter(Boolean);
+const cwd = process.cwd();
+const SRC = path.resolve(cwd, String(values.src));
+const OUT = path.resolve(cwd, String(values.out));
+const LOAD_PATHS = String(values["load-path"]).split(",").map(p => path.resolve(cwd, p.trim())).filter(Boolean);
+const SHOULD_MINIFY = Boolean(values.minify);
+const BANNER = String(values.banner || "");
+const USE_NESTING = Boolean(values.nesting);
 const OUT_DIR = path.dirname(OUT);
 const OUT_MAP = `${OUT}.map`;
 
-export async function build() {
-  const spinner = ora("Building styles...").start();
-  const startTime = performance.now();
+function prependBanner(css: string) {
+  return BANNER ? `${BANNER}\n${css}` : css;
+}
 
+export async function buildOnce() {
+    const spinner = ora(`Building styles...`).start();
+    const startTime = performance.now();  
   try {
     if (!existsSync(OUT_DIR)) await fs.mkdir(OUT_DIR, { recursive: true });
 
@@ -41,56 +42,43 @@ export async function build() {
     const sassResult = await sass.compileAsync(SRC, {
       style: "expanded",
       sourceMap: true,
-      loadPaths: LOAD_PATHS,
+      loadPaths: LOAD_PATHS
     });
 
-    spinner.text = "Loading PostCSS config";
-    const { plugins, options } = await loadConfig({}, cwd);
+    spinner.text = `Transforming with Lightning CSS${SHOULD_MINIFY ? " + minify" : ""}`;
+    const blQueries = browserslist.loadConfig({ path: cwd }) || ["defaults"];
+    const targets = browserslistToTargets(browserslist(blQueries));
 
-    spinner.text = "Running PostCSS";
-    const processor = postcss(plugins);
-    const postcssResult = await processor.process(sassResult.css, {
-      ...options,
-      from: SRC,
-      to: OUT,
-      map: {
-        inline: false,
-        annotation: path.basename(OUT_MAP),
-        prev: sassResult.sourceMap ?? undefined,
-        ...(typeof options.map === "object" ? options.map : {}),
-      },
+    const result = lcTransform({
+      filename: SRC,
+      code: Buffer.from(sassResult.css),
+      minify: SHOULD_MINIFY,
+      sourceMap: true,
+      targets
     });
 
-    let css = postcssResult.css;
+    let css = prependBanner(result.code.toString());
+    const map = result.map ? result.map.toString() : null;
 
-    if (format) {
-      spinner.text = "Formatting";
-      try {
-        const conf = (await prettier.resolveConfig(cwd)) ?? {};
-        css = await prettier.format(css, { ...conf, parser: "css" });
-      } catch (e) {
-        console.warn("Formatting failed:", (e as Error).message);
-      }
+    if (map && !/sourceMappingURL=/.test(css)) {
+      css += `\n/*# sourceMappingURL=${path.basename(OUT_MAP)} */\n`;
     }
 
-    spinner.text = "Writing output";
+    spinner.text = "Writing output files";
     await fs.writeFile(OUT, css, "utf8");
-    if (postcssResult.map) {
-      await fs.writeFile(OUT_MAP, postcssResult.map.toString(), "utf8");
-    }
+    if (map) await fs.writeFile(OUT_MAP, map, "utf8");
 
     const endTime = performance.now();
     const durationSec = ((endTime - startTime) / 1000).toFixed(2);
     const sizeKB = (new TextEncoder().encode(css).length / 1024).toFixed(1);
-
-    spinner.succeed(
-      `Built ${path.relative(cwd, OUT)} (${sizeKB} kB) in ${durationSec}s`,
-    );
-  } catch (err: any) {
+    spinner.succeed(`Built ${path.relative(cwd, OUT)} (${sizeKB} kB) in ${durationSec}s`);
+  } catch (e: any) {
     spinner.fail("Build failed");
-    console.error(err.stack || err.message);
+    console.error(e?.stack || e?.message || e);
     process.exit(1);
   }
 }
 
-build();
+if (import.meta.main) {
+  buildOnce();
+}
