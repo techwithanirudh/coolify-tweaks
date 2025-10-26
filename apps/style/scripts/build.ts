@@ -156,7 +156,7 @@ if (import.meta.main) {
     .option("-s, --src <path>", "entry SCSS file", "src/main.scss")
     .option("-o, --out <path>", "output CSS file", "dist/main.user.css")
     .option("-l, --load-path <paths>", "comma-separated Sass load paths", "src")
-    .option("-m, --minify", "minify output", true)
+    .option("-m, --minify", "minify output", false)
     .option("-p, --format", "format with Prettier", false)
     .option("--silent", "suppress output", false)
     .allowUnknownOption(false)

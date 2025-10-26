@@ -8,8 +8,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/dev' }}
 
-permissions:
-  contents: write
+permissions: {}
 
 # You can leverage Vercel Remote Caching with Turbo to speed up your builds
 # @link https://turborepo.com/docs/core-concepts/remote-caching#remote-caching-on-vercel-builds
@@ -21,6 +20,10 @@ env:
 jobs:
   release:
     name: Release
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
