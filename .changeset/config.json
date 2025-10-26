@@ -1,5 +1,5 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@2.3.0/schema.json",
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [],
@@ -7,10 +7,10 @@
   "access": "restricted",
   "baseBranch": "dev",
   "updateInternalDependencies": "patch",
+  "ignore": [],
   "privatePackages": {
     "version": true,
-    "tag": false
+    "tag": true
   },
-  "bumpVersionsWithWorkspaceProtocolOnly": true,
-  "ignore": []
+  "bumpVersionsWithWorkspaceProtocolOnly": true
 }

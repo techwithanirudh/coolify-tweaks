@@ -33,6 +33,7 @@ Fix add resources page
 - Create a new landing page with fumadocs (move screenshots, etc)
 - Move api to api.coolify-tweaks.techwithanirudh.com
 - Make a user-style template
+- Update contributing guide to talking about env
 
 # v4
 Um, dump all HTML into o3 or 2.5 Pro and ask it to fix my selectors 😭
