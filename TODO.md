@@ -30,7 +30,9 @@ Fix add resources page
 # v3.9
 - Refactor to turborepo
 - Add analytics through coolify-tweaks-api
-- Create a new landing page with fumadocs 
+- Create a new landing page with fumadocs (move screenshots, etc)
+- Move api to api.coolify-tweaks.techwithanirudh.com
+- Make a user-style template
 
 # v4
 Um, dump all HTML into o3 or 2.5 Pro and ask it to fix my selectors 😭
