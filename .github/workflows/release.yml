@@ -46,7 +46,7 @@ jobs:
         with:
           tag_name: v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}
           files: |
-            **/dist/**
+            **/dist/main.user.css
           append_body: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
