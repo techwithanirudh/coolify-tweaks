@@ -1,12 +1,9 @@
-import { corsEventHandler } from "nitro-cors";
+import { eventHandler } from "#imports";
+import { onRequestCORSMiddleware } from "nitro-cors";
 
-export default corsEventHandler(
-  () => {
-    // No-op handler; header configuration is handled via corsEventHandler options.
-    return null;
-  },
-  {
-    origin: "*",
-    methods: "*",
-  },
+export default eventHandler(
+  onRequestCORSMiddleware({
+  origin: "*",
+  methods: "*",
+  }),
 );

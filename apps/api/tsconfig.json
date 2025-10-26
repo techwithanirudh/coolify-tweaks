@@ -1,5 +1,8 @@
 {
-  "extends": "@repo/tsconfig/base.json",
+  "extends": [
+    "@repo/tsconfig/base.json",
+    "./.nitro/types/tsconfig.json"
+  ],
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "Bundler",

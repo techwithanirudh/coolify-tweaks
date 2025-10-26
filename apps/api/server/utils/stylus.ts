@@ -68,10 +68,7 @@ export async function processContent({
   content: string;
   event: H3Event;
 }): Promise<string | null | undefined> {
-  const { theme, asset = "main.user.css" } = getQuery(event) as Record<
-    string,
-    string
-  >;
+  const { theme, asset = "main.user.css" } = getQuery<Record<string, string>>(event);
 
   let result = content;
 

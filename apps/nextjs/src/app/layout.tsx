@@ -7,7 +7,7 @@ import { Toaster } from "@repo/ui/toast";
 
 import { env } from "~/env";
 
-import "~/app/styles.css";
+import "~/styles/globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
