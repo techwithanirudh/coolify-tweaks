@@ -1,0 +1,117 @@
+@use "globals" as *;
+
+div[data-testid="resources-grid"],
+div.grid[class*="cols"] {
+  overflow: hidden;
+  margin-top: s(2.5);
+  padding: s(4) s(4);
+  border-radius: var(--radius-3xl);
+  background: var(--accent);
+}
+
+div.grid[class*="cols"]:is(
+    :has(a[href*="/project/"][class="absolute inset-0"]),
+    :has([wire\:click^="navigateToProject"]),
+    :has([\@click^="$wire.navigateToProject"]),
+    [x-show^="filteredApplications"],
+    [x-show^="filteredServices"],
+    [x-show^="filteredDatabases"]:has(> span > a.box)
+  ) {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+
+  @include mq(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include mq(lg) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include mq(xl) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include mq(xxl) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .box {
+    height: 150px;
+    padding: s(4) s(5);
+
+    > div {
+      margin: 0;
+    }
+
+    > div:has(> div + div),
+    &:has(> div + div) {
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    div:has(> .box-title) {
+      flex: none;
+      justify-content: flex-start;
+      width: 100%;
+      padding-inline: 0;
+    }
+
+    div:has(> .box-title) + div {
+      justify-content: flex-end;
+      width: 100%;
+      margin-inline: 0;
+      gap: s(2);
+    }
+
+    .box-description,
+    .box-title {
+      padding: 0;
+    }
+
+    a[href*="/edit"],
+    a[href*="/new"] {
+      padding: s(1.5);
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+      border-radius: var(--radius-md);
+      margin-inline: 0;
+
+      & > * {
+        display: none;
+      }
+    }
+
+    a[href*="/new"] {
+      @include icon-button("plus-bold", "bold");
+    }
+
+    a[href*="/edit"] {
+      @include icon-button("gear-fill", "fill");
+    }
+
+    a[href*="/new"]:hover,
+    a[href*="/edit"]:hover {
+      background-color: color-mix(in srgb, var(--accent) 80%, transparent);
+      color: var(--accent-foreground);
+      opacity: 1;
+    }
+  }
+}
+
+div.grid[wire\:poll\.3000ms="loadDeployments"]
+  > .grid:has(a[href^="/project/"]) {
+  padding: 0;
+}
+
+@each $target in server, source, destination, security {
+  .grid:has(a[href*="/#{$target}/"]) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+.grid,
+[class*="grid-cols"] {
+  gap: s(2.5);
+}

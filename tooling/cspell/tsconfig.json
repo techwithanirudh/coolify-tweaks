@@ -1,0 +1,6 @@
+{
+  "extends": "@acme/tsconfig/compiled-package.json",
+  "compilerOptions": {},
+  "include": ["*.ts", "src", "index.js"],
+  "exclude": ["node_modules"]
+}

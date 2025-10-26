@@ -1,0 +1,91 @@
+@use "globals" as *;
+
+table {
+  /* base container */
+  min-width: 100%;
+  overflow: hidden;
+  margin-top: s(4);
+  border-radius: var(--radius-md);
+  background: var(--card);
+
+  /* row separators */
+  > :not(:last-child) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* header */
+  thead {
+    background: var(--card);
+    text-transform: uppercase;
+
+    tr th {
+      padding-block: s(3.5);
+      padding-inline: s(3);
+      text-align: left;
+      font-weight: var(--font-weight-medium);
+      color: var(--foreground);
+
+      /* extra left padding on first col */
+      &:first-child {
+        padding-left: s(4);
+        @media (min-width: 40rem) {
+          padding-left: s(6);
+        }
+      }
+    }
+  }
+
+  /* body */
+  tbody {
+    > :not(:last-child) {
+      border-bottom: 1px solid var(--border);
+    }
+
+    tr {
+      td {
+        padding-block: s(4);
+        padding-inline: s(3);
+        white-space: nowrap;
+
+        /* bold and indented first col */
+        &:first-child {
+          padding-left: s(4);
+          font-weight: var(--font-weight-bold);
+          @media (min-width: 40rem) {
+            padding-left: s(6);
+          }
+        }
+      }
+
+      /* hover effect */
+      @media (hover: hover) {
+        &:hover {
+          background: color-mix(in srgb, var(--muted) 50%, transparent);
+        }
+      }
+    }
+  }
+}
+
+/* dark‑mode via class */
+:where(.dark, .dark *) {
+  table {
+    > :not(:last-child) {
+      border-color: var(--border);
+    }
+
+    tr {
+      color: var(--muted-foreground);
+
+      @media (hover: hover) {
+        &:hover {
+          background: var(--card);
+        }
+      }
+    }
+
+    th {
+      color: var(--foreground);
+    }
+  }
+}

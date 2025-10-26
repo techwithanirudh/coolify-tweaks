@@ -1,0 +1,24 @@
+@use "globals" as *;
+
+body,
+html,
+main {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+main {
+  height: 100svh;
+}
+
+/* Applies max-width and padding to the main content area. */
+main > div:first-child {
+  margin: auto;
+  max-width: 1280px;
+  padding-block: s(18);
+}
+
+body > div[x-data*="pageWidth"] {
+  min-width: 100%;
+  max-width: 100%;
+}

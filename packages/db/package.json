@@ -26,6 +26,7 @@
     "push": "pnpm with-env drizzle-kit push",
     "studio": "pnpm with-env drizzle-kit studio",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --unique .",
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
@@ -37,7 +38,9 @@
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
+    "@acme/cspell-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
+    "cspell": "catalog:",
     "drizzle-kit": "^0.31.5",
     "eslint": "catalog:",
     "prettier": "catalog:",

@@ -1,0 +1,55 @@
+@use "sass:map";
+@use "theme/variables" as vars;
+
+@mixin mq($key) {
+  $size: map.get(vars.$breakpoints, $key);
+  @media screen and (min-width: $size) {
+    @content;
+  }
+}
+
+@function s($value) {
+  @if $value == 0 {
+    @return 0;
+  }
+  $rounded-multiplier: round($value / 0.05) * 0.05;
+  @return calc(var(--spacing) * #{$rounded-multiplier});
+}
+
+@mixin icon($name, $variant: "regular") {
+  $base-url: "https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets";
+  $url: "#{$base-url}/#{$variant}/#{$name}.svg";
+
+  mask: url("#{$url}") no-repeat center / contain;
+  background-color: currentColor;
+}
+
+@mixin icon-button(
+  $name,
+  $variant: "regular",
+  $color: var(--color-text),
+  $size: s(4)
+) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  text-indent: -9999px;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: $size;
+    height: $size;
+    color: $color;
+    @include icon($name, $variant);
+  }
+}
+
+@mixin for-dark {
+  @at-root {
+    :where(.dark, .dark *) & {
+      @content;
+    }
+  }
+}

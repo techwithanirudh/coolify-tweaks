@@ -1,0 +1,34 @@
+@use "globals" as *;
+@use "theme/variables" as vars;
+@use "sass:map";
+
+/* Misc utilities */
+form,
+div[class*="shadow-lg lg:border-t dark:border-coolgray-300"] {
+  border-radius: var(--radius-lg);
+}
+
+div[class="flex flex-col gap-4 max-w-2xl"] {
+  max-width: none;
+}
+
+input.dark\:bg-coolgray-100:where(.dark, .dark *) {
+  padding: s(2.75);
+  border-radius: 4px;
+  background-color: var(--card);
+  transition: background 0.18s;
+}
+
+/* Style cards for settings */
+div[class*="p-4 border dark:border-coolgray-300"] {
+  padding: s(4);
+  border-radius: var(--radius-lg);
+  // background: var(--card);
+  background: var(--background);
+  // color: var(--card-foreground);
+}
+
+// When you hover over any "box", it will not hover, like in settings
+.dark\:hover\:bg-coolgray-100:where(.dark, .dark *):hover {
+  background: none;
+}

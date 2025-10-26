@@ -1,0 +1,77 @@
+@use "globals" as *;
+
+// Round Resource Images
+img[class*="w-[4.5rem] aspect-square h-[4.5rem]"],
+svg[class*="w-[4.5rem] aspect-square h-[4.5rem]"],
+div[class*="w-[4.5rem] aspect-square h-[4.5rem]"] {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  filter: none;
+  opacity: 1;
+  min-width: 3.5rem;
+  width: 3.5rem;
+  min-height: 3.5rem;
+  height: 3.5rem;
+  padding: s(1.5);
+}
+
+div[class*="w-[4.5rem] aspect-square h-[4.5rem]"] > svg {
+  transform: translateX(-23px) translateY(-8px) scaleX(0.8) scaleY(0.7);
+  transform-origin: center center;
+}
+
+div[class*="w-[4.5rem] aspect-square h-[4.5rem]"] > svg#svg1326 {
+  transform: translateX(-19px) translateY(-9px) scaleX(0.8) scaleY(0.7);
+  transform-origin: center center;
+}
+
+input.input-sticky {
+  background: transparent;
+  backdrop-filter: blur(var(--blur));
+}
+
+div.grid[class*="cols"]:is(
+    [x-show^="filteredGitBasedApplications"],
+    [x-show^="filteredDockerBasedApplications"],
+    [x-show^="filteredDatabases"]:has(> div[x-on\:click="setType(database.id)"])
+  ) {
+  background: none;
+  padding: s(0.5);
+}
+
+div[x-show="filteredServices.length > 0"]:has(> div[x-init="loadResources"]) {
+  div[x-init="loadResources"] {
+    button {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+      border-radius: var(--radius-md);
+      margin-inline: 0;
+      text-indent: 0;
+
+      & > * {
+        display: none;
+      }
+    }
+
+    button {
+      @include icon-button("arrows-clockwise-bold", "bold");
+      text-indent: 0px;
+    }
+
+    button:hover {
+      background-color: color-mix(in srgb, var(--accent) 80%, transparent);
+      color: var(--accent-foreground);
+      opacity: 1;
+    }
+  }
+
+  div.grid[class*="cols"] {
+    background: none;
+    padding: s(0.5);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    .box-without-bg {
+      min-height: 100%;
+    }
+  }
+}

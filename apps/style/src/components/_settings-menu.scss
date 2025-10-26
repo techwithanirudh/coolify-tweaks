@@ -1,0 +1,117 @@
+@use "globals" as *;
+@use "components/ui/_button" as button;
+
+button:has([title="Settings"]) {
+  @include button.button-base;
+  color: var(--muted-foreground);
+
+  border-radius: 10px;
+  padding-inline: s(2);
+  padding-block: s(2);
+  margin-right: s(2);
+
+  width: s(10);
+  height: s(10);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: color-mix(in srgb, var(--secondary) 80%, transparent);
+    color: var(--foreground);
+  }
+
+  & > span > div {
+    justify-content: center;
+  }
+
+  & > svg.w-5.h-5 {
+    @include icon("gear-six-fill", "fill");
+  }
+}
+
+.dropdown-item-no-padding[wire\:click="openWhatsNewModal"] svg {
+  @include icon("list-magnifying-glass-duotone", "duotone");
+}
+
+.dropdown-item-no-padding[\@click^="setTheme('dark')"] svg {
+  @include icon("moon-duotone", "duotone");
+}
+
+.dropdown-item-no-padding[\@click^="setTheme('light')"] svg {
+  @include icon("sun-duotone", "duotone");
+}
+
+.dropdown-item-no-padding[\@click^="setTheme('system')"] svg {
+  @include icon("desktop-duotone", "duotone");
+}
+
+div:has(div[x-show="dropdownOpen"]:not([style*="display: none"]))
+  button:has([title="Settings"]) {
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+div[x-show="dropdownOpen"]:has(button[\@click*="setTheme"]) {
+  right: s(2);
+  top: s(10);
+}
+
+button[\@click^="switchWidth"],
+button[\@click^="setZoom"] {
+  display: none;
+}
+
+div[class*="font-bold border-b dark:border-coolgray-500 border-neutral-300 dark:text-white"] {
+  display: none;
+}
+
+button[\@click^="\$dispatch('open-global-search')"] {
+  @include button.button-base;
+
+  background: transparent;
+  padding-inline: s(2);
+  padding-block: s(2);
+  border: var(--border);
+  border-radius: 10px;
+
+  width: s(10);
+  height: s(10);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: color-mix(in srgb, var(--secondary) 80%, transparent);
+
+    & > svg.w-4.h-4 {
+      color: var(--foreground);
+    }
+  }
+
+  & > svg.w-4.h-4 {
+    width: s(5);
+    height: s(5);
+    color: var(--muted-foreground);
+    @include icon("magnifying-glass-bold", "bold");
+  }
+
+  & kbd {
+    display: none;
+  }
+}
+
+body:has(
+  div[x-show="modalOpen"]:not([style*="display: none"])
+    input[x-ref="searchInput"]
+) {
+  button[\@click^="\$dispatch('open-global-search')"] {
+    background-color: var(--secondary);
+
+    & > svg.w-4.h-4 {
+      color: var(--foreground);
+    }
+  }
+}

@@ -15,7 +15,8 @@
     "dev": "tsc",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint --flag unstable_native_nodejs_ts_config",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --unique ."
   },
   "dependencies": {
     "zod": "catalog:"
@@ -23,7 +24,9 @@
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
+    "@acme/cspell-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
+    "cspell": "catalog:",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"

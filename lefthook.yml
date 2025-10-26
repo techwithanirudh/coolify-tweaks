@@ -1,0 +1,15 @@
+pre-commit:
+  commands:
+    format:
+      # run: pnpm run format:fix {staged_files}
+      run: pnpm run format:fix
+      stage_fixed: true
+    spelling:
+      # run: pnpm check:spelling {staged_files}
+      run: pnpm run check:spelling
+      stage_fixed: true
+
+commit-msg:
+  commands:
+    'lint commit message':
+      run: pnpm commitlint --edit {1}

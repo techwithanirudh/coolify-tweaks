@@ -1,0 +1,116 @@
+@use "globals" as *;
+
+/* Section */
+// Increase header size and add padding
+section > h2 + div,
+section > h3 + div {
+  overflow: hidden;
+  margin-top: s(2.5);
+  padding: s(3) s(3.5);
+  border-radius: var(--radius-xl);
+  /* 14 px */
+  background: var(--popover);
+}
+
+section h3[class="pb-2"] {
+  font-size: 1.6rem;
+}
+
+// Push all buttons to the right from the headings for many sections
+:is(.flex.gap-2, .flex.items-center.gap-4, .flex.flex-col.gap-4)
+  > :is(h1, h2, h3, h4) {
+  margin-right: auto;
+}
+
+/* Cleanup Links */
+a[class*="hover:underline"]:hover {
+  color: var(--muted-foreground);
+  text-decoration: none;
+}
+
+/* Monaco Editor */
+.monaco-editor {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Sponsorship Popup Styles */
+[x-show="popups.sponsorship"] {
+  padding: s(5);
+  border-radius: var(--radius-lg);
+  background: var(--popover);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Modal panels: ensure consistent large radius */
+.fixed.inset-0.z-50 {
+  /* Target the modal panel inside the overlay and apply rounded-lg */
+  > .relative[class*="max-w-"] {
+    border-radius: var(--radius-lg);
+  }
+}
+
+[x-show][x-trap],
+[x-show][x-trap] > .relative,
+[x-show^="modalOpen"] {
+  border-radius: var(--radius-lg);
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: var(--muted);
+}
+
+/* Note: :hover on pseudo-elements is not supported in all browsers */
+/* ::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+} */
+
+/* take full width for compressed items, like checkboxes */
+div[class="w-32"] {
+  width: 100%;
+  min-width: s(32);
+}
+
+div[class="w-48"] {
+  width: 100%;
+  min-width: s(48);
+}
+
+div[class*="w-64"] {
+  width: 100%;
+  min-width: s(64);
+}
+
+div[class="pb-6 w-96"],
+div[class="flex gap-2 items-end w-96"],
+div[class="w-96"],
+div[class*="sm:w-96"],
+div[class="pt-2 w-96"],
+div[class="w-96 flex flex-col gap-1"],
+div[class="w-96 pb-6"],
+div[class*="md:w-96"] {
+  width: 100%;
+  min-width: s(96);
+}
+
+div[class="w-\\[500px\\]"] {
+  width: 100%;
+  min-width: 500px;
+}
+
+/* center the loader in the deployments section */
+div.flex.items-start.gap-2 > .inline-flex svg {
+  height: s(9);
+}
+
+/* button w-auto */
+div.w-auto > button {
+  width: max-content;
+}

@@ -1,0 +1,42 @@
+@use "globals" as *;
+
+.box,
+.box-without-bg {
+  overflow: hidden;
+  padding: s(2.5) s(3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  background: var(--card);
+  color: var(--card-foreground);
+  transition:
+    transform 0.15s,
+    box-shadow 0.2s,
+    background 0.18s,
+    border-color 0.18s;
+  box-shadow: var(--shadow-sm);
+}
+
+// todo: fix active state in servers/resources section
+
+.box:hover,
+.box-without-bg:hover {
+  background-color: color-mix(in srgb, var(--card) 80%, transparent);
+}
+
+.box-title {
+  font-weight: 600;
+  font-size: 1.05rem;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.box-description {
+  color: var(--muted-foreground);
+}
