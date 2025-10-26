@@ -1,6 +1,5 @@
 {
   "name": "coolify-tweaks",
-  "version": "3.8.7",
   "description": "Opinionated tweaks for Coolify: better spacing, layout, and color polish.",
   "author": {
     "name": "Anirudh Sriram",
@@ -38,10 +37,10 @@
     "typecheck": "turbo run typecheck",
     "check:spelling": "turbo run check:spelling",
     "ui-add": "turbo run ui-add",
-    "android": "expo run:android",
-    "ios": "expo run:ios"
+    "version": "changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.7",
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@commitlint/format": "^20.0.0",
