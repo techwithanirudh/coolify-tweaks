@@ -54,7 +54,15 @@ const config = {
       languageId: "typescriptreact",
     },
   ],
-  words: ["anirudh", "techwithanirudh", "coolify", "lefthook", "turborepo", "shadcn", "tweakcn"],
+  words: [
+    "anirudh",
+    "techwithanirudh",
+    "coolify",
+    "lefthook",
+    "turborepo",
+    "shadcn",
+    "tweakcn",
+  ],
 };
 
 export default config;

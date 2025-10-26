@@ -1,8 +1,6 @@
 import type { Plugin } from "postcss";
 import postcss from "postcss";
 
-// WARNING: This plugin is vibe-coded
-
 interface DomainConfig {
   type: "url-prefix" | "url" | "regexp" | "domain";
   value: string;
