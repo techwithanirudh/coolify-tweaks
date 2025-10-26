@@ -127,7 +127,7 @@ export async function build(
     if (mapText) {
       await fs.writeFile(OUT_MAP, mapText, "utf8");
     }
-    
+
     const kb = (new TextEncoder().encode(css).length / 1024).toFixed(1);
     const dt = ((performance.now() - t0) / 1000).toFixed(2);
     if (!SILENT)
@@ -143,7 +143,7 @@ export async function build(
       }
     }
     const message =
-      err instanceof Error ? err.stack ?? err.message : String(err);
+      err instanceof Error ? (err.stack ?? err.message) : String(err);
     console.error(message);
     throw err;
   }
@@ -183,7 +183,7 @@ if (import.meta.main) {
     silent: cli.silent,
   }).catch((err: unknown) => {
     const message =
-      err instanceof Error ? err.stack ?? err.message : String(err);
+      err instanceof Error ? (err.stack ?? err.message) : String(err);
     console.error(message);
     process.exit(1);
   });

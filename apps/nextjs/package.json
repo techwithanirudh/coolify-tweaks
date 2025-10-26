@@ -10,7 +10,7 @@
     "lint": "eslint --flag unstable_native_nodejs_ts_config",
     "start": "pnpm with-env next start",
     "typecheck": "tsc --noEmit",
-    "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --unique .",
+    "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --cache --unique .",
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {

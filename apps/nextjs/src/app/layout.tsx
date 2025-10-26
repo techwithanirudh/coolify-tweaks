@@ -16,10 +16,12 @@ export const metadata: Metadata = {
       : "http://localhost:3000",
   ),
   title: "Coolify Tweaks",
-  description: "Opinionated tweaks for Coolify: better spacing, layout, and colors.",
+  description:
+    "Opinionated tweaks for Coolify: better spacing, layout, and colors.",
   openGraph: {
     title: "Coolify Tweaks",
-    description: "Opinionated tweaks for Coolify: better spacing, layout, and colors.",
+    description:
+      "Opinionated tweaks for Coolify: better spacing, layout, and colors.",
     url: "http://coolify-tweaks.techwithanirudh.com",
     siteName: "Coolify Tweaks",
   },

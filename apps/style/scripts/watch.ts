@@ -51,7 +51,7 @@ export async function startWatch(
 
   let timer: ReturnType<typeof setTimeout> | null = null;
 
-  let running = false;   
+  let running = false;
   let pending = false;
   const reasons = new Set<string>();
 
@@ -69,7 +69,8 @@ export async function startWatch(
       }
     } catch (err: unknown) {
       if (!SILENT) spinner.fail("build failed");
-      const msg = err instanceof Error ? err.stack ?? err.message : String(err);
+      const msg =
+        err instanceof Error ? (err.stack ?? err.message) : String(err);
       console.error(msg);
     } finally {
       if (!SILENT) {
@@ -80,7 +81,7 @@ export async function startWatch(
   }
 
   async function run() {
-    if (running) return; 
+    if (running) return;
     running = true;
     try {
       while (pending) {
@@ -191,7 +192,7 @@ if (import.meta.main) {
     })
     .catch((err: unknown) => {
       const message =
-        err instanceof Error ? err.stack ?? err.message : String(err);
+        err instanceof Error ? (err.stack ?? err.message) : String(err);
       console.error(message);
       process.exit(1);
     });

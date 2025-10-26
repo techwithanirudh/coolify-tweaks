@@ -42,11 +42,14 @@
   "devDependencies": {
     "@acme/cspell-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
-    "@commitlint/format": "",
-    "@commitlint/types": "",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@commitlint/format": "^20.0.0",
+    "@commitlint/types": "^20.0.0",
     "@turbo/gen": "^2.5.8",
     "conventional-changelog-atom": "",
     "dotenv-cli": "^10.0.0",
+    "lefthook": "^2.0.1",
     "prettier": "catalog:",
     "turbo": "^2.5.8",
     "typescript": "catalog:"

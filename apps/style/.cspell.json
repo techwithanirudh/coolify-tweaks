@@ -1,4 +1,14 @@
 {
   "version": "0.2",
-  "import": ["@acme/cspell-config"]
+  "import": ["@acme/cspell-config"],
+  "words": [
+    "coolify",
+    "anirudh",
+    "techwithanirudh",
+    "lefthook",
+    "mailhog",
+    "vite",
+    "atrule",
+    "iserror"
+  ]
 }

@@ -19,7 +19,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint --flag unstable_native_nodejs_ts_config",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-    "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --unique .",
+    "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --cache --unique .",
     "ui-add": "pnpm dlx shadcn@latest add && prettier src --write --list-different"
   },
   "dependencies": {
