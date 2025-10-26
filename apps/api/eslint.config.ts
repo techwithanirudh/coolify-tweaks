@@ -6,7 +6,7 @@ export default defineConfig(
   {
     languageOptions: {
       parserOptions: {
-        projectService: true
+        projectService: true,
       },
     },
     ignores: [".nitro/**", ".output/**"],
