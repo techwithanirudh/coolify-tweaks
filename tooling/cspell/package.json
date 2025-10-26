@@ -5,13 +5,16 @@
   "exports": {
     ".": "./index.js"
   },
-  "license": "MIT",
   "scripts": {
-    "build": "tsc",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "dev": "tsc",
     "format": "prettier --check . --ignore-path ../../.gitignore",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cspell/dict-bash": "^4.2.1",
+    "@cspell/dict-npm": "^5.2.17",
+    "@cspell/dict-redis": "^1.0.7",
+    "cspell": "catalog:"
   },
   "devDependencies": {
     "@repo/prettier-config": "workspace:*",
@@ -20,11 +23,5 @@
     "prettier": "catalog:",
     "typescript": "catalog:"
   },
-  "prettier": "@repo/prettier-config",
-  "dependencies": {
-    "@cspell/dict-bash": "^4.2.1",
-    "@cspell/dict-npm": "^5.2.17",
-    "@cspell/dict-redis": "^1.0.7",
-    "cspell": "catalog:"
-  }
+  "prettier": "@repo/prettier-config"
 }

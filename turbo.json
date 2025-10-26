@@ -27,6 +27,7 @@
       "outputs": [".cache/tsbuildinfo.json"]
     },
     "check:spelling": {
+      "dependsOn": ["^topo", "^build"],
       "outputs": [".cache/.cspellcache"]
     },
     "clean": {
