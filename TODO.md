@@ -38,9 +38,7 @@ Fix add resources page
 - sync dev and main
 - theme installer UI in nextjs fumadocs
 
-# v4
+# backlog
 Um, dump all HTML into o3 or 2.5 Pro and ask it to fix my selectors 😭
-Fix onboarding page
 Fix coolify cloud
 In the project's page the icon color is messed up (restart button etc.)
-The databases section doesnt have the new grid UI like projects

@@ -1,6 +1,6 @@
 # Coolify Tweaks Web
 
-The web app is a Next.js playground used to test userstyle changes, UI components, and future companion tooling. It shares packages from the Turborepo and consumes the compiled style during development.
+The web app is the landing page for Coolify Tweaks. It shares packages from the Turborepo and consumes the compiled style during development.
 
 ## Getting Started
 
@@ -52,5 +52,3 @@ When introducing new components, prefer generating them through the shared `ui` 
 ```bash
 pnpm ui-add
 ```
-
-See `CONTRIBUTING.md` for full monorepo guidelines.

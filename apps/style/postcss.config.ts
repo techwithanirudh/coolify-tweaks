@@ -1,8 +1,8 @@
 import root from "../../package.json";
+import { version } from "./package.json";
 import postcssBanner from "./plugins/postcss/banner";
 import appendThemeIdentifier from "./plugins/postcss/theme-identifier";
 import wrapMozDocument from "./plugins/postcss/wrap-moz-document";
-import { version } from "./package.json";
 
 const banner = `==UserStyle==
 @name ${root.name}

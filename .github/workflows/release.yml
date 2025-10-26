@@ -34,7 +34,7 @@ jobs:
       - name: Setup
         uses: ./tooling/github/setup
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Create Release Pull Request
         id: changesets
         uses: changesets/action@v1
         with:

@@ -1,6 +1,6 @@
 # Coolify Tweaks Style
 
-This package compiles the Coolify Tweaks userstyle using Sass, Lightning CSS, and PostCSS. The output lives in `dist/` and is published via Changesets.
+This package compiles the Coolify Tweaks userstyle using SASS, Lightning CSS, and PostCSS. The output lives in `dist/` and is published via Changesets.
 
 ## Scripts
 
@@ -52,6 +52,4 @@ While `pnpm --filter @repo/style dev` is running, the preview server (powered by
 
 1. Create a Changeset describing the update.
 2. Merge to `dev`; CI will run and publish when you trigger the release workflow.
-3. Once published, the API app serves the new CSS with optional theme injection.
-
-Refer to the root `README.md` for the end-to-end release process across the monorepo.
+3. Once published, the API app serves the new CSS.
