@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.9.5
+
+### Patch Changes
+
+- fix: use lightning again
+
 ## 3.9.4
 
 ### Patch Changes

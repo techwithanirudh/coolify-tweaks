@@ -72,7 +72,8 @@ export async function build(
     });
 
     if (!SILENT) spinner.text = "Running LightningCSS";
-    const blQueries = browserslist.loadConfig({ path: cwd }) ?? ["defaults"];
+    const blQueries =
+      browserslist.loadConfig({ path: cwd }) ?? browserslist.defaults;
     const targets = browserslistToTargets(browserslist(blQueries));
     const lightningResult = lcTransform({
       filename: SRC,

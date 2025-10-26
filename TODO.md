@@ -28,13 +28,13 @@ Fix empty state for no projects
 Fix add resources page
 
 # v3.9
-- Refactor to turborepo
+- [x] Refactor to turborepo
 - Add analytics through coolify-tweaks-api
 - Create a new landing page with fumadocs (move screenshots, etc)
 - Move api to api.coolify-tweaks.techwithanirudh.com
 - Make a user-style template
-- Update contributing guide to talking about env
-- rebuild css on the nitro with lightning and postcss so the colors are compatible (loading postcss)
+- [x] Update contributing guide to talking about env
+- [x] rebuild css on the nitro with lightning and postcss so the colors are compatible (loading postcss)
 - sync dev and main
 - theme installer UI in nextjs fumadocs
 

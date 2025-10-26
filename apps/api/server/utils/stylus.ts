@@ -4,6 +4,7 @@ import { createError, getQuery, getRequestURL } from "h3";
 import { ofetch } from "ofetch";
 import { registryItemSchema } from "shadcn/registry";
 
+import { transformCssWithLightning } from "./css-compiler";
 import { cssVarsToCss } from "./css-transformer";
 
 const THEME_START = "/* ==UI-THEME-VARS:START== */";
@@ -75,7 +76,15 @@ export async function processContent({
 
   if (theme && asset === "main.user.css") {
     const css = await getThemeCss(theme);
-    const wrappedCss = `${THEME_START}\n${css}\n${THEME_END}`;
+    if (!css) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: `CSS not found for theme: ${theme}`,
+      });
+    }
+
+    const transformedCss = transformCssWithLightning(css);
+    const wrappedCss = `${THEME_START}\n${transformedCss}\n${THEME_END}`;
 
     const url = getRequestURL(event);
     const searchParams = new URLSearchParams(url.search);

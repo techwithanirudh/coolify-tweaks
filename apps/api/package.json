@@ -15,7 +15,9 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
+    "browserslist": "^4.27.0",
     "h3": "^1.15.3",
+    "lightningcss": "^1.30.2",
     "mime": "^4.0.7",
     "ofetch": "^1.4.1",
     "postcss": "^8.5.6",

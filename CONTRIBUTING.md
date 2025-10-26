@@ -34,7 +34,7 @@ apps
       └─ Standalone SASS pipeline for Coolify theming
 packages
   ├─ db
-  │   └─ Typesafe DB calls using Drizzle & Supabase
+  │   └─ Typesafe DB calls using Drizzle & Neon
   └─ ui
       └─ UI package for the website using shadcn/ui
 tooling
