@@ -17,7 +17,6 @@
   "dependencies": {
     "h3": "^1.15.3",
     "mime": "^4.0.7",
-    "nitro-cors": "^0.7.1",
     "ofetch": "^1.4.1",
     "postcss": "^8.5.6",
     "shadcn": "^2.9.0",
