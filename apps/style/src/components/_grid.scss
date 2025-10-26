@@ -7,6 +7,16 @@ div.grid[class*="cols"] {
   padding: s(4) s(4);
   border-radius: var(--radius-3xl);
   background: var(--accent);
+  color: var(--accent-foreground);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--accent-foreground);
+  }
 }
 
 div.grid[class*="cols"]:is(

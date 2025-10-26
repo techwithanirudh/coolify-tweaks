@@ -31,6 +31,16 @@ div.fixed.bottom-0.mb-4.left-0.ml-4:has(button) {
 
   & button {
     background-color: var(--accent);
+    color: var(--accent-foreground);
+
+    > span {
+      color: var(--accent-foreground) !important;
+    }
+
+    > svg:last-child {
+      color: var(--accent-foreground) !important;
+    }
+
     border-color: var(--border);
     border-radius: var(--radius-xl);
   }
