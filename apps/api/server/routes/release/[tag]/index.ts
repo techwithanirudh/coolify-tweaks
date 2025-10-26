@@ -13,7 +13,7 @@ import { allowedHeaders, owner, repo } from "~/config";
 
 export default defineEventHandler(async (event) => {
   const tag = getRouterParam(event, "tag");
-  const assetParam = getQuery(event)?.asset;
+  const assetParam = getQuery(event).asset;
   const asset =
     typeof assetParam === "string" && assetParam.length > 0
       ? assetParam

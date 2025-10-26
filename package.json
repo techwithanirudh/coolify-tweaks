@@ -37,6 +37,7 @@
     "typecheck": "turbo run typecheck",
     "check:spelling": "turbo run check:spelling",
     "ui-add": "turbo run ui-add",
+    "release": "turbo run build --filter=./apps/* && changeset publish",
     "version": "changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
