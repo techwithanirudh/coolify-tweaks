@@ -4,8 +4,8 @@ import { Command } from "commander";
 import ora from "ora";
 import { z } from "zod";
 
-import type { BuildParams, BuildResult } from "./build.ts";
-import { build as defaultBuild } from "./build.ts";
+import type { BuildParams, BuildResult } from "./build";
+import { build as defaultBuild } from "./build";
 
 const WatchParamsSchema = z.object({
   dir: z.string().default("src"),
@@ -26,10 +26,10 @@ const WatchParamsSchema = z.object({
 
 export type WatchParams = z.infer<typeof WatchParamsSchema>;
 
-export type WatchController = {
+export interface WatchController {
   schedule: (reason: string) => void;
   close: () => void;
-};
+}
 
 export async function startWatch(
   params: Partial<WatchParams> = {},
@@ -50,45 +50,60 @@ export async function startWatch(
   }
 
   let timer: ReturnType<typeof setTimeout> | null = null;
-  let building = false;
-  let queued = false;
+
+  let running = false;   
+  let pending = false;
+  const reasons = new Set<string>();
+
   let watcher: fs.FSWatcher | null = null;
 
-  async function buildOnce() {
-    building = true;
-    queued = false;
+  async function doBuildOnce() {
     if (!SILENT) spinner.start("rebuilding…");
     try {
       const result = await build({ silent: true });
       const { out, bytesKB, seconds } = result;
-      if (!SILENT)
+      if (!SILENT) {
         spinner.succeed(
           `rebuilt ${path.relative(cwd, out)} (${bytesKB} kB) in ${seconds}s`,
         );
-    } catch (err: any) {
+      }
+    } catch (err: unknown) {
       if (!SILENT) spinner.fail("build failed");
-      console.error(err?.stack || err?.message || err);
+      const msg = err instanceof Error ? err.stack ?? err.message : String(err);
+      console.error(msg);
     } finally {
-      building = false;
-      if (queued) {
-        queued = false;
-        await buildOnce();
-      } else if (!SILENT) {
+      if (!SILENT) {
         spinner.text = "watching…";
         spinner.start();
       }
     }
   }
 
-  function schedule(reason: string) {
-    if (!SILENT) spinner.text = `change: ${reason}`;
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(async () => {
-      if (building) {
-        queued = true;
-        return;
+  async function run() {
+    if (running) return; 
+    running = true;
+    try {
+      while (pending) {
+        pending = false;
+
+        const why =
+          reasons.size > 0 ? `change: ${Array.from(reasons).join(", ")}` : "";
+        if (!SILENT && why) spinner.text = why;
+        reasons.clear();
+
+        await doBuildOnce();
       }
-      await buildOnce();
+    } finally {
+      running = false;
+    }
+  }
+
+  function schedule(reason: string) {
+    if (reason) reasons.add(reason);
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      pending = true;
+      void run();
     }, DEBOUNCE_MS);
   }
 
@@ -98,7 +113,9 @@ export async function startWatch(
   }
 
   if (!SILENT) spinner.start("initial build…");
-  await buildOnce();
+
+  pending = true;
+  await run();
 
   watcher = fs.watch(ROOT, { recursive: true }, (_event, filename) => {
     const name = filename?.toString();
@@ -121,12 +138,16 @@ export async function startWatch(
     }
     try {
       watcher?.close();
-    } catch {}
+    } catch {
+      // ignore
+    }
     watcher = null;
     if (!SILENT) {
       try {
         spinner.succeed("watcher stopped");
-      } catch {}
+      } catch {
+        // ignore
+      }
     }
   };
 
@@ -135,7 +156,6 @@ export async function startWatch(
 
 /**
  * CLI
- * Flags remain simple. No JSON piping here.
  */
 if (import.meta.main) {
   const program = new Command()
@@ -157,7 +177,7 @@ if (import.meta.main) {
     {
       dir: opts.dir,
       debounce: Number(opts.debounce) || 120,
-      silent: !!opts.silent,
+      silent: Boolean(opts.silent),
     },
     defaultBuild,
   )
@@ -171,7 +191,7 @@ if (import.meta.main) {
     })
     .catch((err: unknown) => {
       const message =
-        err instanceof Error ? err.stack || err.message : String(err);
+        err instanceof Error ? err.stack ?? err.message : String(err);
       console.error(message);
       process.exit(1);
     });
