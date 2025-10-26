@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.9.1
+
+### Patch Changes
+
+- 3.9.1
+
 ## 3.9.0
 
 ### Minor Changes

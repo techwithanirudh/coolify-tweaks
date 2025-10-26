@@ -9,7 +9,7 @@ This project uses [Changesets](https://github.com/changesets/changesets) for ver
 When you make changes that should be included in the next release, create a changeset:
 
 ```bash
-bun changeset
+pnpm changeset
 ```
 
 This will:
@@ -23,8 +23,7 @@ This will:
 When you're ready to release:
 
 ```bash
-bun run version  # Updates package.json version and generates CHANGELOG.md
-bun run release  # Builds the project and creates git tags
+pnpm run version
 ```
 
 ## Change Types
@@ -33,11 +32,10 @@ bun run release  # Builds the project and creates git tags
 - **Minor (Feature)**: New features, new components, significant improvements
 - **Patch (Fix)**: Bug fixes, small improvements, documentation updates
 
-## Example Workflow
+## Workflow
 
 1. Make your changes to the codebase
-2. Run `bun changeset` and describe your changes
+2. Run `pnpm changeset` and describe your changes
 3. Commit your changes including the new changeset file
-4. When ready to release, run `bun run version` to update versions
+4. When ready to release, run `pnpm run version` to update versions
 5. Commit the version changes
-6. Run `bun run release` to publish and tag the release
