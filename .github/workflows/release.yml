@@ -4,9 +4,6 @@ on:
   push:
     branches: ["dev"]
 
-permissions:
-  contents: write
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/dev' }}
@@ -46,7 +43,7 @@ jobs:
         with:
           tag_name: v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}
           files: |
-            **/dist/main.user.css
+            apps/style/dist/**
           append_body: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
