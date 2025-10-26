@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.9.3
+
+### Patch Changes
+
+- fix: un-minify output
+
 ## 3.9.2
 
 ### Patch Changes
