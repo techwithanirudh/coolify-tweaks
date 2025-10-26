@@ -1,5 +1,5 @@
 {
-  "name": "@acme/db",
+  "name": "@repo/db",
   "private": true,
   "type": "module",
   "exports": {
@@ -36,15 +36,15 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@acme/cspell-config": "workspace:*",
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
+    "@repo/cspell-config": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/prettier-config": "workspace:*",
+    "@repo/tsconfig": "workspace:*",
     "cspell": "catalog:",
     "drizzle-kit": "^0.31.5",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@repo/prettier-config"
 }

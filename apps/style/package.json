@@ -1,5 +1,5 @@
 {
-  "name": "@acme/style",
+  "name": "@repo/style",
   "private": true,
   "type": "module",
   "main": "src/main.scss",
@@ -23,10 +23,10 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
-    "@acme/cspell-config": "workspace:*",
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
+    "@repo/cspell-config": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/prettier-config": "workspace:*",
+    "@repo/tsconfig": "workspace:*",
     "@types/serve-handler": "^6.1.4",
     "browserslist": "^4.27.0",
     "commander": "^14.0.1",
@@ -43,5 +43,5 @@
     "serve": "^14.2.5",
     "serve-handler": "^6.1.6"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@repo/prettier-config"
 }

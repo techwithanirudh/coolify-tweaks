@@ -1,6 +1,6 @@
 {
   "version": "0.2",
-  "import": ["@acme/cspell-config"],
+  "import": ["@repo/cspell-config"],
   "words": [
     "coolify",
     "anirudh",

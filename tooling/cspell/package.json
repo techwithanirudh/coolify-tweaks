@@ -1,5 +1,5 @@
 {
-  "name": "@acme/cspell-config",
+  "name": "@repo/cspell-config",
   "private": true,
   "type": "module",
   "exports": {
@@ -14,13 +14,13 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "devDependencies": {
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
+    "@repo/prettier-config": "workspace:*",
+    "@repo/tsconfig": "workspace:*",
     "@types/node": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"
   },
-  "prettier": "@acme/prettier-config",
+  "prettier": "@repo/prettier-config",
   "dependencies": {
     "@cspell/dict-bash": "^4.2.1",
     "@cspell/dict-npm": "^5.2.17",

@@ -1,5 +1,5 @@
 {
-  "name": "@acme/ui",
+  "name": "@repo/ui",
   "private": true,
   "type": "module",
   "exports": {
@@ -30,10 +30,10 @@
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
-    "@acme/cspell-config": "workspace:*",
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
+    "@repo/cspell-config": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/prettier-config": "workspace:*",
+    "@repo/tsconfig": "workspace:*",
     "@types/react": "catalog:react19",
     "cspell": "catalog:",
     "eslint": "catalog:",
@@ -46,5 +46,5 @@
     "react": "catalog:react19",
     "zod": "catalog:"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@repo/prettier-config"
 }
