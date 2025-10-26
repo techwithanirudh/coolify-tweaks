@@ -1,21 +1,3 @@
-pre-commit:
-  commands:
-    format:
-      run: pnpm turbo run format --continue -- {staged_files} --cache --cache-location .cache/.prettiercache
-      stage_fixed: true
-      glob: "*.{js,jsx,ts,tsx,json,md,mdx,yml,yaml,css,scss,html}"
-    lint:
-      run: pnpm turbo run lint --continue -- {staged_files} --fix --cache --cache-location .cache/.eslintcache
-      stage_fixed: true
-      glob: "*.{js,jsx,ts,tsx,json,md,mdx,yml,yaml,css,scss,html}"
-    typecheck:
-      run: pnpm turbo run typecheck -- {staged_files}
-      stage_fixed: false
-      glob: "*.{ts,tsx}"
-    spelling:
-      run: pnpm turbo run check:spelling --continue -- {staged_files} --cache --cache-location .cache/.cspellcache
-      stage_fixed: true
-
 commit-msg:
   commands:
     lint-commit-msg:

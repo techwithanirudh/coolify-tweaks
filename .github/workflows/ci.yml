@@ -45,6 +45,17 @@ jobs:
       - name: Format
         run: pnpm format
 
+  cspell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup
+        uses: ./tooling/github/setup
+
+      - name: CSpell
+        run: pnpm check:spelling
+
   typecheck:
     runs-on: ubuntu-latest
     steps:
