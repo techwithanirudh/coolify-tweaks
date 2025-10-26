@@ -12,21 +12,21 @@ import "~/app/styles.css";
 export const metadata: Metadata = {
   metadataBase: new URL(
     env.VERCEL_ENV === "production"
-      ? "https://turbo.t3.gg"
+      ? "https://coolify-tweaks.techwithanirudh.com"
       : "http://localhost:3000",
   ),
-  title: "Create T3 Turbo",
-  description: "Simple monorepo with shared backend for web & mobile apps",
+  title: "Coolify Tweaks",
+  description: "Opinionated tweaks for Coolify: better spacing, layout, and colors.",
   openGraph: {
-    title: "Create T3 Turbo",
-    description: "Simple monorepo with shared backend for web & mobile apps",
-    url: "https://create-t3-turbo.vercel.app",
-    siteName: "Create T3 Turbo",
+    title: "Coolify Tweaks",
+    description: "Opinionated tweaks for Coolify: better spacing, layout, and colors.",
+    url: "http://coolify-tweaks.techwithanirudh.com",
+    siteName: "Coolify Tweaks",
   },
   twitter: {
     card: "summary_large_image",
-    site: "@jullerino",
-    creator: "@jullerino",
+    site: "@AnirudhWith",
+    creator: "@AnirudhWith",
   },
 };
 

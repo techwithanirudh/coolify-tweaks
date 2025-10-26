@@ -26,16 +26,16 @@
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@acme/cspell-config": "workspace:*",
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tailwind-config": "workspace:*",
-    "@acme/cspell-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
-    "eslint": "catalog:",
     "cspell": "catalog:",
+    "eslint": "catalog:",
     "jiti": "^2.5.1",
     "prettier": "catalog:",
     "tailwindcss": "catalog:",

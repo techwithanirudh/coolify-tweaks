@@ -30,9 +30,9 @@
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
+    "@acme/cspell-config": "workspace:*",
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
-    "@acme/cspell-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "@types/react": "catalog:react19",
     "cspell": "catalog:",

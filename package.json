@@ -1,11 +1,24 @@
 {
-  "name": "create-t3-turbo",
+  "name": "coolify-tweaks",
+  "version": "3.8.7",
+  "description": "Opinionated tweaks for Coolify: better spacing, layout, and color polish.",
+  "author": {
+    "name": "Anirudh Sriram",
+    "email": "hello@techwithanirudh.com",
+    "url": "https://github.com/techwithanirudh"
+  },
   "private": true,
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/techwithanirudh/coolify-tweaks"
+  },
+  "homepage": "https://coolify-tweaks.techwithanirudh.com",
   "engines": {
     "node": "^22.21.0",
     "pnpm": "^10.19.0"
   },
-  "packageManager": "pnpm@10.19.0",
   "scripts": {
     "build": "turbo run build",
     "clean": "git clean -xdf node_modules",
@@ -27,8 +40,8 @@
     "ios": "expo run:ios"
   },
   "devDependencies": {
-    "@acme/prettier-config": "workspace:*",
     "@acme/cspell-config": "workspace:*",
+    "@acme/prettier-config": "workspace:*",
     "@commitlint/format": "",
     "@commitlint/types": "",
     "@turbo/gen": "^2.5.8",
@@ -71,5 +84,6 @@
   "overrides": {
     "@types/minimatch": "5.1.2",
     "vite": "7.1.12"
-  }
+  },
+  "packageManager": "pnpm@10.19.0"
 }

@@ -22,9 +22,9 @@
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@acme/cspell-config": "workspace:*",
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
-    "@acme/cspell-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "cspell": "catalog:",
     "eslint": "catalog:",
