@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.9.4
+
+### Patch Changes
+
+- fix: tweakcn themes
+
 ## 3.9.3
 
 ### Patch Changes
