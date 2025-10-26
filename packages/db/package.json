@@ -26,7 +26,7 @@
     "push": "pnpm with-env drizzle-kit push",
     "studio": "pnpm with-env drizzle-kit studio",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-    "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --cache --unique .",
+    "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --cache --cache-location .cache/.cspellcache --unique .",
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {

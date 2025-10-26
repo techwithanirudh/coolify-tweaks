@@ -12,7 +12,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint --flag unstable_native_nodejs_ts_config",
     "typecheck": "tsc --noEmit",
-    "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --cache --unique .",
+    "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --cache --cache-location .cache/.cspellcache --unique .",
     "with-env": "dotenv -e ../../.env --"
   },
   "peerDependencies": {
