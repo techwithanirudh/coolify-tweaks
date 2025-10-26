@@ -3,9 +3,14 @@ pre-commit:
     format:
       run: pnpm prettier --write {staged_files} --ignore-path ../../.gitignore
       stage_fixed: true
+      glob: "*.{js,jsx,ts,tsx,json,md,mdx,yml,yaml,css,scss,html}"
     spelling:
       run: pnpm cspell --no-progress {staged_files}
       stage_fixed: true
+      glob: "*.{js,jsx,ts,tsx,json,md,mdx,yml,yaml,css,scss,html}"
+    typecheck:
+      run: pnpm typecheck
+      stage_fixed: false
 
 commit-msg:
   commands:

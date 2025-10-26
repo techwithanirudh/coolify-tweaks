@@ -33,11 +33,14 @@ It uses [Turborepo](https://turborepo.com) and contains:
 .vscode
   └─ Recommended extensions and settings for VSCode users
 apps
-  ├─ nextjs
-  │   ├─ Next.js 15
+  ├─ web
+  │   ├─ Next.js 15 web client
   │   ├─ React 19
-  │   ├─ Tailwind CSS v4
-  │   └─ E2E Typesafe API Server & Client
+  │   └─ Tailwind CSS v4
+  ├─ api
+  │   └─ Nitro server that proxies GitHub release assets
+  └─ style
+      └─ Standalone Sass pipeline for Coolify theming
 packages
   ├─ db
   │   └─ Typesafe db calls using Drizzle & Supabase
@@ -55,6 +58,12 @@ tooling
 ```
 
 > In this template, we use `@repo` as a placeholder for package names. As a user, you might want to replace it with your own organization or project name. You can use find-and-replace to change all the instances of `@repo` to something like `@my-company` or `@project-name`.
+
+## Apps
+
+- **Next.js web** (`apps/nextjs`, port 3000): full-stack web UI with shared packages; run with `pnpm --filter @repo/nextjs dev`.
+- **API** (`apps/api`, port 3001): lightweight Nitro proxy that serves GitHub assets and health checks; run with `pnpm --filter @repo/api dev`.
+- **Style** (`apps/style`, port 3002): Sass/Tailwind build watcher that outputs the Coolify theme; run with `pnpm --filter @repo/style dev`.
 
 ## Quick Start
 

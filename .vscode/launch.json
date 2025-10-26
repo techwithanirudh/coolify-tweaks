@@ -2,16 +2,34 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Next.js",
+      "name": "Web",
       "type": "node-terminal",
       "request": "launch",
       "command": "pnpm dev",
-      "cwd": "${workspaceFolder}/apps/nextjs",
+      "cwd": "${workspaceFolder}/apps/web",
       "skipFiles": ["<node_internals>/**"],
       "sourceMaps": true,
       "sourceMapPathOverrides": {
         "/turbopack/[project]/*": "${webRoot}/*" //https://github.com/vercel/next.js/issues/62008
       }
+    },
+    {
+      "name": "Style",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "pnpm dev:style",
+      "cwd": "${workspaceFolder}/apps/style",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true
+    },
+    {
+      "name": "API",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "pnpm dev:api",
+      "cwd": "${workspaceFolder}/apps/api",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true
     }
   ]
 }
