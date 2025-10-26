@@ -4,7 +4,7 @@ import {
   transform as lightningTransform,
 } from "lightningcss";
 
-export function transformCssWithLightning(css: string): string {
+export function transformCss(css: string): string {
   const blQueries =
     browserslist.loadConfig({ path: "apps/style" }) ?? browserslist.defaults;
   const targets = browserslistToTargets(browserslist(blQueries));
