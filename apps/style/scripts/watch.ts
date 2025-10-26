@@ -125,11 +125,7 @@ export async function startWatch(
     watcher = null;
     if (!SILENT) {
       try {
-        if (spinner.isSpinning) {
-          spinner.stopAndPersist({ symbol: "✔", text: "watcher stopped" });
-        } else {
-          spinner.succeed("watcher stopped");
-        }
+        spinner.succeed("watcher stopped");
       } catch {}
     }
   };

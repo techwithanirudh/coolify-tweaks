@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nitro build",
-    "dev": "nitro dev",
+    "dev": "nitro dev --host",
     "prepare": "nitro prepare",
     "preview": "node .output/server/index.mjs",
     "lint": "bun run prepare && eslint --flag unstable_native_nodejs_ts_config",
