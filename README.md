@@ -34,7 +34,7 @@ I cleaned up the spacing, adjusted the colors, tweaked the typography, and gave 
 
 ## Installation
 
-> **Note:** Coolify Tweaks is distributed through a custom API ([coolify-tweaks-api](https://github.com/techwithanirudh/coolify-tweaks-api)) that dynamically embeds [TweakCN](https://tweakcn.com) theme code into the style, enabling seamless theme integration.
+> **Note:** The bundled Nitro API in this Monorepo serves dynamic builds of the style, injecting [TweakCN](https://tweakcn.com) theme code on demand so every installation link stays up to date.
 
 1. Install [Stylus](https://add0n.com/stylus.html).
 2. Hit the badge below to add the style:
