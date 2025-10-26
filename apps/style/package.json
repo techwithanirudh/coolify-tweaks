@@ -42,7 +42,8 @@
     "postcss-preset-env": "^10.4.0",
     "prettier": "catalog:",
     "serve": "^14.2.5",
-    "serve-handler": "^6.1.6"
+    "serve-handler": "^6.1.6",
+    "tsx": "^4.20.6"
   },
   "prettier": "@repo/prettier-config"
 }
