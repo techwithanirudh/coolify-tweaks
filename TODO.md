@@ -34,6 +34,9 @@ Fix add resources page
 - Move api to api.coolify-tweaks.techwithanirudh.com
 - Make a user-style template
 - Update contributing guide to talking about env
+- rebuild css on the nitro with lightning and postcss so the colors are compatible (loading postcss)
+- sync dev and main
+- theme installer UI in nextjs fumadocs
 
 # v4
 Um, dump all HTML into o3 or 2.5 Pro and ask it to fix my selectors 😭

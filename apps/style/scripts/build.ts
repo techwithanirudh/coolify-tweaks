@@ -1,10 +1,9 @@
-// build.ts
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
-// import browserslist from "browserslist";
+import browserslist from "browserslist";
 import { Command } from "commander";
-// import { browserslistToTargets, transform as lcTransform } from "lightningcss";
+import { browserslistToTargets, transform as lcTransform } from "lightningcss";
 import ora from "ora";
 import postcss from "postcss";
 import loadConfig from "postcss-load-config";
@@ -72,16 +71,16 @@ export async function build(
       loadPaths: LOAD_PATHS,
     });
 
-    // if (!SILENT) spinner.text = "Running LightningCSS";
-    // const blQueries = browserslist.loadConfig({ path: cwd }) ?? ["defaults"];
-    // const targets = browserslistToTargets(browserslist(blQueries));
-    // const lightningResult = lcTransform({
-    //   filename: SRC,
-    //   code: Buffer.from(sassResult.css),
-    //   minify: MINIFY,
-    //   sourceMap: true,
-    //   targets,
-    // });
+    if (!SILENT) spinner.text = "Running LightningCSS";
+    const blQueries = browserslist.loadConfig({ path: cwd }) ?? ["defaults"];
+    const targets = browserslistToTargets(browserslist(blQueries));
+    const lightningResult = lcTransform({
+      filename: SRC,
+      code: Buffer.from(sassResult.css),
+      minify: MINIFY,
+      sourceMap: true,
+      targets,
+    });
 
     if (!SILENT) spinner.text = "Loading PostCSS config";
     const { plugins, options } = await loadConfig({}, cwd);
@@ -89,7 +88,7 @@ export async function build(
     if (!SILENT) spinner.text = "Running PostCSS";
     const processor = postcss(plugins);
     const postcssResult = await processor.process(
-      sassResult.css,
+      lightningResult.code.toString(),
       {
         ...options,
         from: SRC,
@@ -98,6 +97,7 @@ export async function build(
           inline: false,
           annotation: path.basename(OUT_MAP),
           prev:
+            lightningResult.map?.toString() ??
             sassResult.sourceMap ??
             undefined,
           ...(typeof options.map === "object" ? options.map : {}),
