@@ -3,7 +3,7 @@
   "private": false,
   "type": "module",
   "main": "src/main.scss",
-  "version": "3.9.10",
+  "version": "3.9.0",
   "scripts": {
     "build": "pnpm with-env tsx scripts/build.ts",
     "build:watch": "pnpm with-env tsx scripts/watch.ts",
