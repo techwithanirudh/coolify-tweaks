@@ -1,0 +1,10 @@
+{
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "buildCommand": "pnpm run build",
+    "installCommand": "pnpm ci && pnpm install --no-save --platform=linuxmusl --arch=x64 @tailwindcss/oxide",
+    "framework": "nitro",
+    "env": {
+        "npm_config_target_platform": "linuxmusl",
+        "npm_config_target_arch": "x64"
+    }
+}
