@@ -27,8 +27,18 @@ linkWorkspacePackages: true
 
 onlyBuiltDependencies:
   - '@parcel/watcher'
+  - '@prisma/client'
+  - '@prisma/engines'
   - '@tailwindcss/oxide'
+  - better-sqlite3
+  - bufferutil
+  - core-js-pure
   - esbuild
+  - lefthook
+  - msw
+  - prisma
+  - sharp
+  - utf-8-validate
 
 overrides:
   '@types/minimatch': 5.1.2
