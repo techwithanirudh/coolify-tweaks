@@ -6,15 +6,6 @@ settings:
 
 catalogs:
   default:
-    '@eslint/js':
-      specifier: ^9.38.0
-      version: 9.38.0
-    '@tailwindcss/postcss':
-      specifier: ^4.1.16
-      version: 4.1.16
-    '@tanstack/react-form':
-      specifier: ^1.23.8
-      version: 1.23.8
     '@types/node':
       specifier: ^22.18.12
       version: 22.18.12
@@ -27,28 +18,12 @@ catalogs:
     prettier:
       specifier: ^3.6.2
       version: 3.6.2
-    tailwindcss:
-      specifier: ^4.1.16
-      version: 4.1.16
     typescript:
       specifier: ^5.9.3
       version: 5.9.3
     zod:
       specifier: ^4.1.12
       version: 4.1.12
-  react19:
-    '@types/react':
-      specifier: ^19.1.12
-      version: 19.2.2
-    '@types/react-dom':
-      specifier: ^19.1.9
-      version: 19.2.2
-    react:
-      specifier: 19.1.1
-      version: 19.1.1
-    react-dom:
-      specifier: 19.1.1
-      version: 19.1.1
 
 overrides:
   '@types/minimatch': 5.1.2
@@ -112,7 +87,7 @@ importers:
       h3:
         specifier: ^1.15.3
         version: 1.15.4
-      lightningcss:
+      lightningcss-wasm:
         specifier: ^1.30.2
         version: 1.30.2
       mime:
@@ -5215,6 +5190,12 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
+
+  lightningcss-wasm@1.30.2:
+    resolution: {integrity: sha512-3QB24h07oFTwiXI/wItgEv5De1prsmrZFWluuTyLO7/CFk4kEC5zgG7V6qQNGLBB5+QhSnGMixUALWHXj+J3Ug==}
+    engines: {node: '>= 12.0.0'}
+    bundledDependencies:
+      - napi-wasm
 
   lightningcss-win32-arm64-msvc@1.30.2:
     resolution: {integrity: sha512-FZn+vaj7zLv//D/192WFFVA0RgHawIcHqLX9xuWiQt7P0PtdFEVaxgF9rjM/IRYHQXNnk61/H/gb2Ei+kUQ4xQ==}
@@ -12155,6 +12136,8 @@ snapshots:
 
   lightningcss-linux-x64-musl@1.30.2:
     optional: true
+
+  lightningcss-wasm@1.30.2: {}
 
   lightningcss-win32-arm64-msvc@1.30.2:
     optional: true
