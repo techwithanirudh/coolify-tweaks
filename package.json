@@ -49,7 +49,7 @@
     "@repo/cspell-config": "workspace:*",
     "@repo/prettier-config": "workspace:*",
     "@turbo/gen": "^2.5.8",
-    "conventional-changelog-atom": "",
+    "conventional-changelog-atom": "^5.0.0",
     "cspell": "catalog:",
     "dotenv-cli": "^10.0.0",
     "lefthook": "^2.0.1",
