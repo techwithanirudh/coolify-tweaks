@@ -1,0 +1,142 @@
+---
+title: 'Code Blocks'
+description: 'Display inline code and code blocks'
+icon: 'Code'
+---
+
+## Basic
+
+### Inline Code
+
+To denote a `word` or `phrase` as code, enclose it in backticks (`).
+
+```
+To denote a `word` or `phrase` as code, enclose it in backticks (`).
+```
+
+### Code Block
+
+Use [fenced code blocks](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks) by enclosing code in three backticks and follow the leading ticks with the programming language of your snippet to get syntax highlighting. Optionally, you can also write the name of your code after the programming language. Syntax Highlighting is supported by default using [Rehype Code](https://fumadocs.dev/docs/headless/mdx/rehype-code).
+
+```java title="HelloWorld.java"
+class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+
+````md
+```java title="HelloWorld.java"
+class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+````
+
+## Advanced
+
+### Package Install
+
+The package install block automatically detects common package managers (npm, yarn, pnpm) and displays installation commands for each. Users can switch between different package managers using tabs.
+
+````md tab="Input"
+```package-install
+npm i next -D
+```
+````
+
+```package-install tab="Output"
+@types/react
+```
+
+### Shiki Transformers
+
+We support some of the [Shiki Transformers](https://shiki.style/packages/transformers), allowing you to highlight/style specific lines.
+
+````md tab="Input"
+```tsx
+// highlight a line
+<div>Hello World</div>  // [\!code highlight]
+
+// highlight a word
+// [\!code word:Fumadocs]
+<div>Fumadocs</div>
+
+// diff styles
+console.log('hewwo'); // [\!code --]
+console.log('hello'); // [\!code ++]
+```
+````
+
+```tsx tab="Output"
+// highlight a line
+<div>Hello World</div>  // [!code highlight]
+
+// highlight a word
+// [!code word:Fumadocs]
+<div>Fumadocs</div>
+
+// diff styles:
+console.log('hewwo'); // [!code --]
+console.log('hello'); // [!code ++]
+```
+
+### Twoslash Notations
+
+Learn more about [Twoslash notations](https://twoslash.netlify.app/refs/notations).
+
+```ts twoslash title="Test"
+type Player = {
+  /**
+   * The player name
+   * @default 'user'
+   */
+  name: string;
+};
+
+// ---cut---
+// @noErrors
+console.g;
+//       ^|
+
+// ---cut-start---
+// ---cut-end---
+
+// ---cut-start---
+// ---cut-end---
+
+// ---cut-start---
+// ---cut-end---
+
+// ---cut-start---
+// ---cut-end---
+
+const player: Player = { name: 'Hello World' };
+//    ^?
+```
+
+```ts twoslash
+const a = '123';
+
+console.log(a);
+//      ^^^
+```
+
+```ts twoslash
+import { generateFiles } from 'fumadocs-openapi';
+
+void generateFiles({
+  input: ['./museum.yaml'],
+  output: './content/docs/(index)',
+});
+```
+
+```ts twoslash
+// @errors: 2588
+const a = '123';
+
+a = 132;
+```

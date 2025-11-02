@@ -1,0 +1,18 @@
+---
+title: Async Mode
+description: Runtime compilation of content files.
+icon: Clock
+---
+
+## Introduction
+
+By default, all Markdown and MDX files must be precompiled, even when running the development server. This requirement can increase startup time for large documentation sites.
+
+## Constraints
+
+Async Mode introduces some limitations to MDX features:
+
+- **No import/export statements** are allowed inside MDX files. If you need to use custom components, pass them through the `components` prop instead.
+- **Images must be referenced using URLs** (e.g. `/images/test.png`). Avoid relative file paths like `./image.png`. Place your images inside the `public` folder and reference them via their public URL path.
+
+For more details, see [the documentation](https://fumadocs.dev/docs/mdx/async).

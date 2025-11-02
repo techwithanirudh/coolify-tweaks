@@ -1,0 +1,296 @@
+---
+title: 'Markdown Syntax'
+description: 'Text, title, and styling in standard markdown'
+icon: 'TextInitial'
+---
+
+## Introduction
+
+Fumadocs provides many useful extensions to MDX, a markup language. Here is a brief introduction to the default MDX syntax of Fumadocs.
+
+> MDX is not the only supported format of Fumadocs. In fact, you can use any renderers such as `next-mdx-remote` or CMS.
+
+## MDX
+
+We recommend MDX, a superset of Markdown with JSX syntax.
+It allows you to import components, and use them right in the document, or even export values.
+
+See:
+
+- [MDX Syntax](https://mdxjs.com/docs/what-is-mdx/#mdx-syntax).
+- GFM (GitHub Flavored Markdown) is also supported, see [GFM Specification](https://github.github.com/gfm).
+
+```mdx
+---
+title: This is a document
+---
+
+import { Component } from './component';
+
+<Component name="Hello" />
+
+# Heading
+
+## Heading
+
+### Heading
+
+#### Heading
+
+Hello World, **Bold**, _Italic_, ~~Hidden~~
+
+1. First
+2. Second
+3. Third
+
+- Item 1
+- Item 2
+
+> Quote here
+
+![alt](/image.png)
+
+| Table | Description |
+| ----- | ----------- |
+| Hello | World       |
+```
+
+### Images
+
+Images are automatically optimized for `next/image`.
+
+```mdx
+![Image](/image.png)
+```
+
+### Auto Links
+
+Internal links use the `next/link` component to allow prefetching and avoid hard-reload.
+
+External links will get the default `rel="noreferrer noopener" target="_blank"` attributes for security.
+
+```mdx
+[My Link](https://github.github.com/gfm)
+
+This also works: https://github.github.com/gfm.
+```
+
+### Cards
+
+Useful for adding links.
+
+```mdx
+import { HomeIcon } from 'lucide-react';
+
+<Cards>
+  <Card
+    href="https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating"
+    title="Fetching, Caching, and Revalidating"
+  >
+    Learn more about caching in Next.js
+  </Card>
+  <Card title="href is optional">Learn more about `fetch` in Next.js.</Card>
+  <Card icon={<HomeIcon />} href="/" title="Home">
+    You can include icons too.
+  </Card>
+</Cards>
+```
+
+<Cards>
+  <Card href="https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating" title="Fetching, Caching, and Revalidating">
+    Learn more about caching in Next.js
+  </Card>
+
+<Card title="href is optional">Learn more about `fetch` in Next.js.</Card>
+
+  <Card icon={<HomeIcon />} href="/" title="Home">
+    You can include icons too.
+  </Card>
+</Cards>
+
+### Callouts
+
+Useful for adding tips/warnings, it is included by default. You can specify the type of callout:
+
+- `info` (default)
+- `warn`
+- `error`
+
+```mdx
+<Callout>Hello World</Callout>
+
+<Callout title="Title">Hello World</Callout>
+
+<Callout title="Title" type="error">
+  Hello World
+</Callout>
+```
+
+<Callout>Hello World</Callout>
+
+<Callout title="Title">Hello World</Callout>
+
+<Callout title="Title" type="error">
+  Hello World
+</Callout>
+
+### Headings
+
+An anchor is automatically applied to each heading, it sanitizes invalid characters like spaces. (e.g. `Hello World` to `hello-world`)
+
+```md
+# Hello `World`
+```
+
+#### TOC Settings
+
+The table of contents (TOC) will be generated based on headings, you can also customize the effects of headings:
+
+```md
+# Heading [!toc]
+
+This heading will be hidden from TOC.
+
+# Another Heading [toc]
+
+This heading will **only** be visible in TOC, you can use it to add additional TOC items.
+Like headings rendered in a React component:
+
+<MyComp />
+```
+
+#### Custom Anchor
+
+You can add `[#slug]` to customize heading anchors.
+
+```md
+# heading [#my-heading-id]
+```
+
+You can also chain it with TOC settings like:
+
+```md
+# heading [toc] [#my-heading-id]
+```
+
+To link people to a specific heading, add the heading id to hash fragment: `/page#my-heading-id`.
+
+#### Tab Groups
+
+You can use code blocks with the `<Tab />` component.
+
+````mdx
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+
+```ts tab="Tab 1"
+console.log('A');
+```
+
+```ts tab="Tab 2"
+console.log('B');
+```
+````
+
+> Note that you can add MDX components instead of importing them in MDX files.
+
+```ts tab="Tab 1"
+console.log('A');
+```
+
+```ts tab="Tab 2"
+console.log('B');
+```
+
+### Include
+
+Reference another file (can also be a Markdown/MDX document).
+Specify the target file path in `<include>` tag (relative to the MDX file itself).
+
+```mdx title="page.mdx"
+<include>./another.mdx</include>
+```
+
+See [other usages](https://fumadocs.dev/docs/mdx/include).
+
+### Mermaid
+
+Rendering diagrams in your docs
+
+```mdx
+<Mermaid
+  chart="
+graph TD;
+subgraph AA [Consumers]
+A[Mobile app];
+B[Web app];
+C[Node.js client];
+end
+subgraph BB [Services]
+E[REST API];
+F[GraphQL API];
+G[SOAP API];
+end
+Z[GraphQL API];
+A --> Z;
+B --> Z;
+C --> Z;
+Z --> E;
+Z --> F;
+Z --> G;"
+/>
+```
+
+<Mermaid
+  chart="
+graph TD;
+subgraph AA [Consumers]
+A[Mobile app];
+B[Web app];
+C[Node.js client];
+end
+subgraph BB [Services]
+E[REST API];
+F[GraphQL API];
+G[SOAP API];
+end
+Z[GraphQL API];
+A --> Z;
+B --> Z;
+C --> Z;
+Z --> E;
+Z --> F;
+Z --> G;"
+/>
+
+### LaTeX
+
+Fumadocs supports [LaTeX](https://www.latex-project.org) through the Latex component.
+
+````mdx
+Inline: $$c = \pm\sqrt{a^2 + b^2}$$
+
+```math
+c = \pm\sqrt{a^2 + b^2}
+```
+````
+
+Inline: $$c = \pm\sqrt{a^2 + b^2}$$
+
+```math
+c = \pm\sqrt{a^2 + b^2}
+```
+
+Taylor Expansion (expressing holomorphic function $$f(x)$$ in power series):
+
+```math
+\displaystyle {\begin{aligned}T_{f}(z)&=\sum _{k=0}^{\infty }{\frac {(z-c)^{k}}{2\pi i}}\int _{\gamma }{\frac {f(w)}{(w-c)^{k+1}}}\,dw\\&={\frac {1}{2\pi i}}\int _{\gamma }{\frac {f(w)}{w-c}}\sum _{k=0}^{\infty }\left({\frac {z-c}{w-c}}\right)^{k}\,dw\\&={\frac {1}{2\pi i}}\int _{\gamma }{\frac {f(w)}{w-c}}\left({\frac {1}{1-{\frac {z-c}{w-c}}}}\right)\,dw\\&={\frac {1}{2\pi i}}\int _{\gamma }{\frac {f(w)}{w-z}}\,dw=f(z),\end{aligned}}
+```
+
+<Callout title="Tip">
+  You can actually copy equations on Wikipedia, they will be converted into a KaTeX string when you paste it.
+
+```math
+\displaystyle S[{\boldsymbol {q}}]=\int _{a}^{b}L(t,{\boldsymbol {q}}(t),{\dot {\boldsymbol {q}}}(t))\,dt.
+```
+
+</Callout>

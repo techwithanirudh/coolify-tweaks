@@ -1,0 +1,21 @@
+name: Check setup
+description: |
+  This action sets up the Bun environment and installs dependencies for the project.
+
+runs:
+  using: composite
+  steps:
+    - name: Setup bun
+      uses: oven-sh/setup-bun@v2
+
+    - name: Install dependencies
+      shell: bash
+      run: bun install --frozen-lockfile
+
+    - name: Create environment variables file
+      shell: bash
+      run: |
+        cat << EOF > .env.local
+        OPENAI_API_KEY=sk-proj-1234567890
+        NEXT_PUBLIC_BASE_URL=http://localhost:3000
+        EOF

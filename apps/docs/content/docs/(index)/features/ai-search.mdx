@@ -1,0 +1,27 @@
+---
+title: AI Search
+description: Configure and use AI-powered search in your documentation
+icon: Search
+---
+
+## Introduction
+
+This template comes with built-in AI-powered search capabilities. Although this feature is enabled by default, you'll need to configure an API key for full functionality.
+
+## Setting Up the API Key
+
+To activate AI search, add your OpenAI API key to the `.env` file at the root of your project. If you don't already have one, you can generate a key by signing up at the [OpenAI platform](https://platform.openai.com/signup).
+
+```bash
+OPENAI_API_KEY=your_api_key_here
+```
+
+## Application Configuration
+
+The logic for AI search is pre-configured in the `components/fumadocs/ai` directory. You can explore or modify the implementation there to suit your needs.
+
+## How Queries Are Handled
+
+AI Search uses the OpenAI API to process user queries. Instead of Retrieval-Augmented Generation (RAG), it relies on Web Search for external information.
+
+> Tip: You can replace the default OpenAI integration with a custom setup (such as [Inkeep](https://www.inkeep.com/)) for a more efficient Retrieval-Augmented Generation (RAG) implementation tailored to your content and infrastructure.

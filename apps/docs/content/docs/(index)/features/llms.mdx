@@ -1,0 +1,76 @@
+---
+title: LLM Support
+description: Provide AI-friendly endpoints to assist large language models
+icon: Bot
+---
+
+## Introduction
+
+Large language models waste tokens crawling HTML, JS, and site chrome. By shipping a few simple endpoints, you can provide a more efficient way for LLMs to access your documentation.
+
+1. **`/llms.txt`**: a concise sitemap with titles, URLs, and summaries
+2. **`/llms-full.txt`**: a full Markdown dump of every document
+3. **`/llms.mdx/*`**: the raw MDX/Markdown content of a requested page
+
+## `/llms.txt`
+
+- Lists each section and page in your documentation
+- Includes optional one-line descriptions from frontmatter
+- No boilerplate or styling, just the outline
+
+```md
+# Docs
+
+## API Reference
+
+- [Get museum hours](/docs/api-reference/operations/museum-hours): No description available
+- [Buy museum tickets](/docs/api-reference/tickets): No description available
+
+## UI Framework
+
+- [Quickstart](/docs/quickstart): Start building awesome documentation in under 5 minutes
+```
+
+This file is generated at the root of your deployed site, enabling agents to discover it at `https://<your-domain>/llms.txt`.
+
+## `/llms-full.txt`
+
+- Concatenates the raw MDX/Markdown of every page
+- Preserves headings, paragraphs, code samples, and frontmatter
+- Lets an LLM ingest your entire documentation corpus in a single fetch
+
+```md
+# API Reference: Get museum hours
+
+URL: /docs/api-reference/operations/museum-hours
+Source: content/docs/api-reference/operations/museum-hours.mdx
+
+> No description available
+
+## Operation: GET /museum-hours
+
+...full MDX content...
+```
+
+This file is generated at build time by globbing `content/docs/**/*.mdx` and joining files in sidebar order.
+
+## `/llms.mdx/*`
+
+- Provides the raw MDX/Markdown content of a requested page
+- Preserves headings, paragraphs, code samples, and frontmatter
+
+Example: `/llms.mdx/app`
+
+```md
+# App Framework: Introduction
+
+URL: /docs/app
+Source: https://raw.githubusercontent.com/techwithanirudh/fumadocs-starter/main/content/docs/(index)/index.mdx
+
+Welcome to your new documentation.
+
+## Getting Started
+
+The first step to creating amazing documentation is setting up your editing environment.
+...
+```

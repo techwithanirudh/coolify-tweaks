@@ -1,0 +1,244 @@
+---
+title: OpenAPI
+description: Generate and document your OpenAPI schema
+icon: Webhook
+---
+
+## Introduction
+
+Fumadocs provides an official OpenAPI integration to generate and document your OpenAPI schema.
+
+## Features
+
+The official OpenAPI integration supports:
+
+- Basic API endpoint information
+- Interactive API playground
+- Example code to send request (in different programming languages)
+- Response samples and TypeScript definitions
+- Request parameters and body generated from schemas
+
+## Changing the OpenAPI schema
+
+The `generate-docs` script uses the OpenAPI schema to generate the documentation. You can change the OpenAPI schema by modifying the `openapi.json` file in `content/docs/api-reference` of your project.
+
+```ts title="scripts/generate-docs.ts"
+import * as OpenAPI from 'fumadocs-openapi'
+import { rimraf } from 'rimraf'
+import { openapi } from './lib/openapi' // [!code highlight]
+
+const out = './content/docs/api-reference/(generated)'
+
+export async function generateDocs() {
+  await rimraf(out, {
+    filter(v) {
+      return !v.endsWith('meta.json')
+    },
+  })
+
+  await OpenAPI.generateFiles({
+    input: openapi, // [!code highlight]
+    output: out,
+    per: 'operation',
+    includeDescription: true,
+    groupBy: 'tag',
+  })
+}
+```
+
+> Only OpenAPI 3.0 and 3.1 are supported.
+
+Generate docs with the script:
+
+```bash
+bun run build:pre
+```
+
+## Removing the OpenAPI Integration
+
+Follow these steps to completely remove the OpenAPI integration from your project.
+
+### 1. Update `lib/source.ts`
+
+Comment out the OpenAPI transformer:
+
+```tsx title="lib/source.ts" 
+import { transformerOpenAPI } from 'fumadocs-openapi/server' /* [!code --] */
+import { loader } from 'fumadocs-core/source'
+import { docs } from '@/.source'
+
+export const source = loader({
+  baseUrl: '/docs',
+  source: docs.toFumadocsSource(),
+  pageTree: { /* [!code --] */
+    transformers: [transformerOpenAPI()], /* [!code --] */
+  }, /* [!code --] */
+})
+```
+
+
+
+### 2. Remove the OpenAPI config file
+
+Delete the `lib/openapi.ts` file:
+
+```ts twoslash title="lib/openapi.ts"
+import { createOpenAPI } from 'fumadocs-openapi/server' /* [!code --] */
+
+export const openapi = createOpenAPI({ /* [!code --] */
+  input: ['./content/docs/api-reference/openapi.yml'], /* [!code --] */
+  proxyUrl: '/api/proxy', /* [!code --] */
+}) /* [!code --] */
+```
+
+
+### 3. Delete the API reference content
+
+1. **Delete the API Reference folder:**
+
+```bash
+rm -rf content/docs/api-reference
+```
+
+2. **Remove the API Reference entry from the root `meta.json`:**
+
+```json title="meta.json"
+{
+  "pages": [
+    "(index)", 
+    "api-reference", /* [!code --] */
+    "changelog"
+  ]
+}
+```
+
+3. **Remove the API Reference section from the homepage (`src/app/(home)/page.tsx`):**
+
+```tsx title="src/app/(home)/page.tsx"
+<div className="mt-8 grid grid-cols-1 gap-4 text-left md:grid-cols-2">
+  <DocumentationItem
+    title="Documentation"
+    description="Get started with the Fumadocs framework."
+    icon={{ icon: BookIcon, id: '(index)' }}
+    href="/docs"
+  />
+
+  <DocumentationItem  {/* [!code --] */}
+    title="API Reference" {/* [!code --] */}
+    description="Explore the Fumadocs API reference." {/* [!code --] */}
+    icon={{ icon: WebhookIcon, id: 'api-reference' }} {/* [!code --] */}
+    href="/docs/api-reference" {/* [!code --] */}
+  /> {/* [!code --] */}
+</div>
+```
+
+### 4. Clean up build scripts
+
+#### `scripts/generate-docs.ts`
+
+Remove the OpenAPI generation logic:
+
+```tsx title="scripts/generate-docs.ts"
+import * as OpenAPI from 'fumadocs-openapi' /* [!code --] */
+import { rimraf } from 'rimraf' /* [!code --] */
+import { openapi } from '@/lib/openapi' /* [!code --] */
+
+export async function generateDocs() { /* [!code --] */
+  await rimraf('./content/docs/api-reference/(generated)') /* [!code --] */
+
+  await Promise.all([ /* [!code --] */
+    OpenAPI.generateFiles({ /* [!code --] */
+      input: openapi,  /* [!code --] */
+      output: './content/docs/api-reference/(generated)',  /* [!code --] */
+      per: 'operation',  /* [!code --] */
+      includeDescription: true,  /* [!code --] */
+      groupBy: 'tag', /* [!code --] */
+    }),  /* [!code --] */
+  ]) /* [!code --] */
+} /* [!code --] */
+```
+
+#### `scripts/pre-build.ts`
+
+Remove the reference to `generateDocs`:
+
+```tsx title="scripts/pre-build.ts"
+import { generateDocs } from './generate-docs.mjs' /* [!code --] */
+
+async function main() {
+  console.log('Generating docs...') /* [!code ++] */
+  await Promise.all([generateDocs()]) /* [!code --] */
+}
+```
+
+
+
+### 5. Remove the API proxy
+
+Delete the `app/api/proxy/route.ts` file.
+
+
+
+### 6. Update global styles
+
+Remove the OpenAPI CSS import from `src/styles/globals.css`:
+
+```css title="styles/globals.css"
+@import 'tailwindcss' source(none);
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+@import 'fumadocs-twoslash/twoslash.css';
+@import 'fumadocs-openapi/css/preset.css'; /* [!code --] */
+@import 'tw-animate-css';
+```
+
+
+
+### 7. Update the docs page
+
+Remove OpenAPI references in `src/app/docs/[[...slug]]/page.tsx`:
+
+```tsx title="app/docs/[[...slug]]/page.tsx"
+import { APIPage } from 'fumadocs-openapi/ui' /* [!code --] */
+import { openapi } from '@/lib/openapi' /* [!code --] */
+
+export default async function Page() {
+  return (
+    <PageRoot
+      toc={{
+        toc,
+        single: false,
+      }}
+    >
+      {/* ... */}
+      <PageArticle>
+        {/* ... */}
+        <div className='prose flex-1 text-fd-foreground/80'>
+          <Mdx
+            components={getMDXComponents({
+              // ...
+              APIPage: (props) => ( /* [!code --] */
+                <APIPage {...openapi.getAPIPageProps(props)} /> /* [!code --] */
+              ), /* [!code --] */
+              // ...
+            })}
+          />
+          {page.data.index ? <DocsCategory url={page.url} /> : null}
+        </div>
+        {/* ... */}
+      </PageArticle>
+      {/* ... */}
+    </PageRoot>
+  )
+}
+```
+
+### 8. Uninstall dependencies
+
+Uninstall the OpenAPI dependencies:
+
+```bash
+bun remove fumadocs-openapi
+```
+
+After completing these steps, all OpenAPI functionality will be removed from your Fumadocs setup.

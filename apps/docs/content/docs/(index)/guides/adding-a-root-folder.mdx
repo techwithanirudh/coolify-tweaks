@@ -1,0 +1,168 @@
+---
+title: Adding a Root Folder
+description: 'Learn how to add a new root folder to your documentation'
+icon: FolderCheck
+---
+
+## Introduction
+
+Fumadocs allows you to create new root folders in your documentation. This helps you organize your docs into clear sections or categories. This guide will walk you through adding a new root folder step by step.
+
+## Steps to Add a New Root Folder
+
+<div className='fd-steps [&_h3]:fd-step'>
+
+### Step 1: Create a New Folder
+
+Create a new folder in the `content/docs` directory. You can name it anything; this example uses `cli`.
+
+```bash
+mkdir content/docs/cli
+```
+
+### Step 2: Update the `meta.json` File
+
+Open the `meta.json` file located in the `content/docs` directory. Add your new folder name to the `pages` array:
+
+```json
+{
+  "pages": [
+    "(index)",
+    "api-reference",
+    "changelog",
+    "cli" // [!code ++]
+  ]
+}
+```
+
+### Step 3: Update the Homepage
+
+Open `page.tsx` in the `app/(home)` directory and add a new `DocumentationItem`:
+
+```tsx
+<div className="mt-8 grid grid-cols-1 gap-4 text-left md:grid-cols-2">
+  <DocumentationItem
+    title="Documentation"
+    description="Get started with the Fumadocs framework."
+    icon={{ icon: BookIcon, id: '(index)' }}
+    href="/docs"
+  />
+
+  <DocumentationItem
+    title="API Reference"
+    description="Explore Fumadocs's API reference."
+    icon={{ icon: WebhookIcon, id: 'api-reference' }}
+    href="/docs/api-reference"
+  />
+
+  <DocumentationItem
+    title="CLI" {/* [!code ++] */}
+    description="Learn how to use Fumadocs's CLI." {/* [!code ++] */}
+    icon={{ icon: ChevronRightIcon, id: 'cli' }} {/* [!code ++] */}
+    href="/docs/cli" {/* [!code ++] */}
+  /> {/* [!code ++] */}
+</div>
+```
+
+### Step 4: Update Colors (Optional)
+
+Edit `globals.css` in the `styles` directory to define colors for your new folder:
+
+```css
+@layer base {
+  :root {
+    --index-color: hsl(220deg 91% 54%);
+    --api-reference-color: hsl(250 80% 54%);
+    --changelog-color: var(--color-fd-foreground);
+    --cli-color: hsl(120 100% 54%); /* [!code ++] */
+  }
+
+  .dark {
+    --index-color: hsl(217deg 92% 76%);
+    --api-reference-color: hsl(250 100% 80%);
+    --changelog-color: var(--color-fd-foreground);
+    --cli-color: hsl(120 100% 80%); /* [!code ++] */
+  }
+}
+```
+
+Update the base styles to apply the new color:
+
+```css
+@layer base {
+  body {
+    overscroll-behavior-y: none;
+    background-color: var(--color-fd-background);
+  }
+
+  .\(index\) {
+    --color-fd-primary: var(--index-color) !important;
+  }
+
+  .api-reference {
+    --color-fd-primary: var(--api-reference-color) !important;
+  }
+
+  .changelog {
+    --color-fd-primary: var(--changelog-color) !important;
+  }
+
+  .cli {
+    /* [!code ++] */
+    --color-fd-primary: var(--cli-color) !important; /* [!code ++] */
+  } /* [!code ++] */
+}
+```
+
+### Step 5: Create `meta.json` in the New Folder
+
+Create a `meta.json` file in your new `cli` folder:
+
+```bash
+touch content/docs/cli/meta.json
+```
+
+Add the following content to `meta.json`:
+
+```json
+{
+  // [!code ++]
+  "title": "CLI", // [!code ++]
+  "description": "Learn how to use the Fumadocs CLI", // [!code ++]
+  "root": true, // [!code ++]
+  "icon": "ChevronRight", // [!code ++]
+  "pages": ["---Getting Started---", "index", "..."] // [!code ++]
+} // [!code ++]
+```
+
+This file defines the metadata for your new folder, including its title, description, and icon.
+
+### Step 6: Create a New Page
+
+Create an `index.mdx` page in your new `cli` folder:
+
+```bash
+touch content/docs/cli/index.mdx
+```
+
+Add initial content to `index.mdx`:
+
+```mdx
+---
+title: CLI
+description: 'Learn how to use the Fumadocs CLI'
+icon: ChevronRightIcon
+---
+
+## Introduction
+
+The Fumadocs CLI is a command-line tool for managing your documentation. It helps you create, build, and deploy your docs.
+
+## Installation
+
+...
+```
+
+</div>
+
+That's it! You've successfully added a new root folder to your documentation. Now, navigate to your docs website to view your new folder and content.
