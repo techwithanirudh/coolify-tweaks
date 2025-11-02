@@ -1,13 +1,12 @@
-import { fileURLToPath } from 'node:url'
 import bundleAnalyzer from '@next/bundle-analyzer'
 import { createMDX } from 'fumadocs-mdx/next'
-import createJiti from 'jiti'
-import type { NextConfig } from 'next'
+import { createJiti } from "jiti";
 
-const jiti = createJiti(fileURLToPath(import.meta.url))
-jiti('./src/env')
+const jiti = createJiti(import.meta.url);
+await jiti.import("./src/env");
 
-const nextConfig: NextConfig = {
+/** @type {import("next").NextConfig} */
+const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   productionBrowserSourceMaps: process.env.SOURCE_MAPS === 'true',
@@ -29,6 +28,7 @@ const nextConfig: NextConfig = {
     'shiki',
     '@takumi-rs/core',
   ],
+  transpilePackages: ["@repo/db", "@repo/ui", "@repo/validators"],
   images: {
     unoptimized: true,
     remotePatterns: [

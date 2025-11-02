@@ -1,6 +1,6 @@
 'use client'
 import { type UIMessage, type UseChatHelpers, useChat } from '@ai-sdk/react'
-import { Presence } from '@radix-ui/react-presence'
+import { Presence } from '@repo/ui/presence'
 import { DefaultChatTransport } from 'ai'
 import { buttonVariants } from 'fumadocs-ui/components/ui/button'
 import {
