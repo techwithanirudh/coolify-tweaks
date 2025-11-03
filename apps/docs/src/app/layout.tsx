@@ -21,10 +21,10 @@ const mono = Geist_Mono({
 
 export const metadata = createMetadata({
   title: {
-    template: '%s | Starter Kit',
-    default: 'Starter Kit',
+    template: '%s | Coolify Tweaks',
+    default: 'Coolify Tweaks',
   },
-  description: 'The Next.js framework for building documentation sites',
+  description: 'Opinionated tweaks for Coolify: better spacing, layout, and colors.',
   metadataBase: baseUrl,
 })
 

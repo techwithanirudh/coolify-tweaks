@@ -25,7 +25,7 @@
     "db:push": "turbo -F @repo/db push",
     "db:studio": "turbo -F @repo/db studio",
     "dev": "turbo watch dev --continue",
-    "dev:web": "turbo watch dev -F @repo/web...",
+    "dev:web": "turbo watch dev -F @repo/docs...",
     "dev:style": "turbo watch dev -F @repo/style...",
     "dev:api": "turbo watch dev -F @repo/api...",
     "format": "turbo run format --continue -- --cache --cache-location .cache/.prettiercache",

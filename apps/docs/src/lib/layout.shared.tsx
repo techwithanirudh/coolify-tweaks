@@ -3,7 +3,7 @@ import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared'
 import Image from 'next/image'
 import { ThemeToggle } from '@/components/theme-toggle'
 
-export const title = 'Starter Kit'
+export const title = 'Coolify Tweaks'
 
 export const logo = (
   <>
@@ -22,7 +22,7 @@ export const logo = (
 export const linkItems: LinkItemType[] = [
   {
     type: 'icon',
-    url: 'https://github.com/techwithanirudh/fumadocs-starter',
+    url: 'https://github.com/techwithanirudh/coolify-tweaks',
     text: 'Github',
     icon: (
       <svg role='img' viewBox='0 0 24 24' fill='currentColor'>

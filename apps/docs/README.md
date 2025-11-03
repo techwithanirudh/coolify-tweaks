@@ -9,12 +9,12 @@ The web app is the landing page for Coolify Tweaks. It shares packages from the 
 pnpm install
 
 # Launch the dev server
-pnpm --filter @repo/web dev
+pnpm --filter @repo/docs dev
 
 # Run linting, type checking, and tests
-pnpm --filter @repo/web lint
-pnpm --filter @repo/web typecheck
-pnpm --filter @repo/web test
+pnpm --filter @repo/docs lint
+pnpm --filter @repo/docs typecheck
+pnpm --filter @repo/docs test
 ```
 
 The app runs on `http://localhost:3000` by default. Environment variables can be configured via `.env` in the repository root (see `.env.example`).

@@ -14,6 +14,7 @@ const fontSemiBold = readFileSync(
   './src/app/og/[...slug]/fonts/Inter-SemiBold.ttf'
 )
 const fontBold = readFileSync('./src/app/og/[...slug]/fonts/Inter-Bold.ttf')
+const fontPixy = readFileSync('./src/app/og/[...slug]/fonts/Pixy-Regular.ttf')
 
 export async function getImageResponseOptions(): Promise<ImageResponseOptions> {
   return {
@@ -42,6 +43,11 @@ export async function getImageResponseOptions(): Promise<ImageResponseOptions> {
         data: fontBold,
         weight: 700,
       },
+      {
+        name: 'Pixy',
+        data: fontPixy,
+        weight: 400,
+      },
     ],
   }
 }
@@ -49,6 +55,7 @@ export async function getImageResponseOptions(): Promise<ImageResponseOptions> {
 export function generate({ title, description, tag }: GenerateProps) {
   const primaryTextColor = 'rgb(240,240,240)'
   const primaryColor = 'rgb(123, 111, 111)'
+  const gridColor = 'rgba(123, 111, 111, 0.2)'; // subtler grid tone
 
   return (
     <div
@@ -62,6 +69,19 @@ export function generate({ title, description, tag }: GenerateProps) {
         backgroundImage: `linear-gradient(to top right, ${primaryColor}, transparent), noise-v1(opacity(0.3) frequency(1.0) octaves(4))`,
       }}
     >
+    <div
+      style={{
+        background: '#000',
+        backgroundImage: `
+          linear-gradient(to right, ${gridColor} 1px, transparent 1px),
+          linear-gradient(to bottom, ${gridColor} 1px, transparent 1px)
+        `,
+        backgroundSize: "25px 25px",
+        position: 'absolute',
+        inset: 0,
+        zIndex: 0,
+      }}
+    />
       <div
         style={{
           display: 'flex',
@@ -108,6 +128,8 @@ export function generate({ title, description, tag }: GenerateProps) {
           style={{
             fontWeight: 600,
             fontSize: '76px',
+            fontFamily: 'Pixy',
+            marginLeft: '1px'
           }}
         >
           {title}
@@ -115,7 +137,7 @@ export function generate({ title, description, tag }: GenerateProps) {
         <p
           style={{
             fontSize: '48px',
-            color: 'rgba(240,240,240,0.7)',
+            color: '#a0a0a0'
           }}
         >
           {description}

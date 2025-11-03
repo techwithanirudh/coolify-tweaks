@@ -55,7 +55,7 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
         title: (
           <>
             {logo}
-            <span className='font-medium max-md:hidden'>Starter Kit</span>
+            <span className='font-medium max-md:hidden'>Coolify Tweaks</span>
           </>
         ),
       }}
