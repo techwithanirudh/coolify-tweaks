@@ -40,8 +40,8 @@ button[isHighlighted]:not(:disabled) {
 button.button,
 .button {
   @include button-base;
-  background: var(--primary)!important;
-  color: var(--primary-foreground)!important;
+  background: var(--primary);
+  color: var(--primary-foreground);
   box-shadow: var(--shadow-xs);
 
   &:hover {
