@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:pre": "tsx ./scripts/pre-build.ts",
-    "build:post": "tsx ./scripts/post-build.ts",
+    "build:pre": "bun ./scripts/pre-build.ts",
+    "build:post": "bun ./scripts/post-build.ts",
     "build": "pnpm run build:pre && pnpm with-env next build && pnpm run build:post",
     "clean": "git clean -xdf .cache .next .turbo node_modules",
     "dev": "pnpm with-env next dev --port 3002",
@@ -77,6 +77,7 @@
     "@types/hast": "^3.0.4",
     "@types/mdx": "^2.0.13",
     "@types/node": "catalog:",
+    "@types/bun": "catalog:",
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
     "chokidar": "^4.0.3",
@@ -90,7 +91,6 @@
     "tailwindcss": "catalog:",
     "tinyglobby": "^0.2.15",
     "ts-morph": "^27.0.2",
-    "tsx": "catalog:",
     "typescript": "catalog:"
   },
   "peerDependencies": {

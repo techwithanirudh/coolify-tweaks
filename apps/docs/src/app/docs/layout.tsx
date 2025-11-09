@@ -29,8 +29,12 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
               ...option,
               icon: (
                 <div
-                  className='size-full text-(--tab-color) max-md:border max-md:bg-(--tab-color)/10 max-md:p-1.5 [&_svg]:size-full'
-                  style={{ '--tab-color': color } as CSSProperties}
+                  className="[&_svg]:size-full rounded-lg size-full text-(--tab-color) max-md:bg-(--tab-color)/10 max-md:border max-md:p-1.5"
+                  style={
+                    {
+                      '--tab-color': color,
+                    } as CSSProperties
+                  }
                 >
                   {node.icon}
                 </div>

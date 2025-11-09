@@ -5,8 +5,8 @@
   "main": "src/main.scss",
   "version": "3.9.5",
   "scripts": {
-    "build": "pnpm with-env tsx scripts/build.ts",
-    "build:watch": "pnpm with-env tsx scripts/watch.ts",
+    "build": "pnpm with-env bun scripts/build.ts",
+    "build:watch": "pnpm with-env bun scripts/watch.ts",
     "clean": "git clean -xdf .cache .next .turbo node_modules",
     "preview": "serve dist --listen 3000 --single --no-request-logging --no-clipboard",
     "dev": "concurrently --kill-others --names watch,serve -r \"pnpm run build:watch\" \"pnpm run preview\"",
@@ -42,7 +42,7 @@
     "prettier": "catalog:",
     "serve": "^14.2.5",
     "serve-handler": "^6.1.6",
-    "tsx": "catalog:"
+    "@types/bun": "catalog:"
   },
   "prettier": "@repo/prettier-config"
 }
