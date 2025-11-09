@@ -3,7 +3,7 @@
 import type { Root } from 'fumadocs-core/page-tree'
 import { usePathname } from 'next/navigation'
 import type { ReactNode } from 'react'
-import { cn } from '@/lib/cn'
+import { cn } from '@repo/ui'
 import { findPage } from '@/lib/page-tree'
 
 export function Body({ children, tree }: { children: ReactNode; tree: Root }) {

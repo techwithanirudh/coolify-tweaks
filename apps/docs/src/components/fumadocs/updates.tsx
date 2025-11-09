@@ -1,8 +1,8 @@
 'use client'
 
 import type { ReactNode } from 'react'
-import { Badge } from '@/components/ui/badge'
-import { cn } from '@/lib/cn'
+import { Badge } from '@repo/ui/badge'
+import { cn } from '@repo/ui'
 
 export interface UpdatesProps {
   children: ReactNode

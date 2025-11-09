@@ -1,7 +1,7 @@
 import Link from 'fumadocs-core/link'
 import type { ComponentProps } from 'react'
-import { Skeleton } from '@/components/ui/skeleton'
-import { cn } from '@/lib/cn'
+import { Skeleton } from '@repo/ui/skeleton'
+import { cn } from '@repo/ui'
 
 type GetPageContentInput = {
   path: string

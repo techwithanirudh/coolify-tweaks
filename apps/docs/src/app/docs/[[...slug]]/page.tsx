@@ -15,7 +15,7 @@ import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from '@/components/ui/hover-card'
+} from '@repo/ui/hover-card'
 import { owner, repo } from '@/lib/github'
 import { createMetadata } from '@/lib/metadata'
 import { source } from '@/lib/source'

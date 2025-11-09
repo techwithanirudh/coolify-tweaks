@@ -15,6 +15,7 @@ catalog:
   tailwindcss: ^4.1.16
   typescript: ^5.9.3
   zod: ^4.1.12
+  tsx: ^4.20.6
 
 catalogs:
   react19:

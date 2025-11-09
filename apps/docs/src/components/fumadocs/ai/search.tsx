@@ -34,7 +34,7 @@ import {
   ToolOutput,
 } from '@/components/fumadocs/ai/tool'
 import type { ProvideLinksToolSchema } from '@/lib/ai/qa-schema'
-import { cn } from '@/lib/cn'
+import { cn } from '@repo/ui'
 import { Markdown } from './markdown'
 import type { GetPageContentOutput } from './tools/get-page-content'
 import { GetPageContentVisualizer } from './tools/get-page-content'

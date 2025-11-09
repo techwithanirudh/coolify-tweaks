@@ -1,7 +1,7 @@
 'use client'
 import * as CollapsiblePrimitive from '@radix-ui/react-collapsible'
 import { forwardRef, useEffect, useState } from 'react'
-import { cn } from '@/lib/fumadocs/cn'
+import { cn } from '@repo/ui'
 
 const Collapsible = CollapsiblePrimitive.Root
 

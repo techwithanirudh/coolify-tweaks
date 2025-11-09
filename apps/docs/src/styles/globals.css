@@ -1,4 +1,4 @@
-@import 'tailwindcss' source(none);
+@import 'tailwindcss';
 @import 'fumadocs-ui/css/preset.css';
 @import 'fumadocs-ui/css/solar.css';
 @import 'fumadocs-ui/css/shadcn.css';
@@ -8,10 +8,6 @@
 @import "@repo/tailwind-config/theme";
 
 @source "../../../../packages/ui/src/*.{ts,tsx}";
-@source ".";
-@source "../components";
-@source "../content";
-@source "../app";
 
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant light (&:where(.light, .light *));

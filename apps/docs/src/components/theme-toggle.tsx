@@ -3,7 +3,7 @@ import { Airplay, Moon, Sun } from 'lucide-react'
 import { LayoutGroup, motion } from 'motion/react'
 import { useTheme } from 'next-themes'
 import { type HTMLAttributes, useLayoutEffect, useState } from 'react'
-import { cn } from '@/lib/cn'
+import { cn } from '@repo/ui'
 
 const themes = [
   { key: 'light', icon: Sun, label: 'Light theme' },

@@ -13,7 +13,8 @@ export const logo = (
       sizes='100px'
       width={28}
       height={28}
-      className='size-6'
+      className='size-6 object-contain'
+      style={{ borderRadius: '8px' }}
       aria-label={title}
     />
   </>

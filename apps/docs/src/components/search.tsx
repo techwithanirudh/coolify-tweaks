@@ -25,7 +25,7 @@ import { useTreeContext } from 'fumadocs-ui/contexts/tree'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
-import { cn } from '@/lib/cn'
+import { cn } from '@repo/ui'
 import { tags } from '@/lib/constants'
 
 export default function CustomSearchDialog(props: SharedProps) {

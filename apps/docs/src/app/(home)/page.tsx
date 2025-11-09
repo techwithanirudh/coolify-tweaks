@@ -2,7 +2,7 @@ import { BookIcon, type LucideIcon, WebhookIcon } from 'lucide-react'
 import type { LinkProps } from 'next/link'
 import Link from 'next/link'
 import type { ReactElement, ReactNode } from 'react'
-import { cn } from '@/lib/cn'
+import { cn } from '@repo/ui'
 
 export default function DocsPage(): ReactElement {
   return (

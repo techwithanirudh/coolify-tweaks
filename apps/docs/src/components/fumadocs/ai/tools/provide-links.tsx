@@ -2,7 +2,7 @@ import Link from 'fumadocs-core/link'
 import type { ComponentProps } from 'react'
 import type { z } from 'zod'
 import type { ProvideLinksToolSchema } from '@/lib/ai/qa-schema'
-import { cn } from '@/lib/cn'
+import { cn } from '@repo/ui'
 
 type ProvideLinksInput = z.infer<typeof ProvideLinksToolSchema>
 
