@@ -28,6 +28,7 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/prettier-config": "workspace:*",
     "@repo/tsconfig": "workspace:*",
+    "@types/bun": "catalog:",
     "@types/serve-handler": "^6.1.4",
     "browserslist": "^4.27.0",
     "commander": "^14.0.1",
@@ -41,8 +42,7 @@
     "postcss-load-config": "^6.0.1",
     "prettier": "catalog:",
     "serve": "^14.2.5",
-    "serve-handler": "^6.1.6",
-    "@types/bun": "catalog:"
+    "serve-handler": "^6.1.6"
   },
   "prettier": "@repo/prettier-config"
 }

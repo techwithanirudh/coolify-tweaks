@@ -1,0 +1,43 @@
+@theme {
+    --color-fd-article: oklch(0.985 0.008 305);
+}
+
+:root {
+    letter-spacing: -0.25px;
+    --fd-layout-width: 1600px;
+    --fd-page-width: 1400px;
+}
+
+.dark {
+    --color-fd-article: oklch(0.28 0.015 305);
+}
+
+@variant md {
+    #nd-page article {
+        @apply bg-fd-article rounded-xl border shadow-xl my-4;
+    }
+
+    #nd-tocnav,
+    #nd-subnav>div {
+        border: none;
+    }
+
+    .fd-default-layout #nd-page article {
+        @apply mx-4;
+    }
+
+    .fd-notebook-layout #nd-page article {
+        @apply mx-6;
+    }
+}
+
+#nd-sidebar {
+    @apply bg-fd-background;
+}
+
+#nd-sidebar[data-collapsed='false'] {
+    border: none;
+    --color-fd-muted: inherit;
+    --color-fd-secondary: inherit;
+    --color-fd-muted-foreground: inherit;
+}

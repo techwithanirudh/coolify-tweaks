@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 @import 'fumadocs-ui/css/preset.css';
-@import 'fumadocs-ui/css/solar.css';
+@import './solar.css';
 @import 'fumadocs-ui/css/shadcn.css';
 @import 'fumadocs-twoslash/twoslash.css';
 @import 'fumadocs-openapi/css/preset.css';
@@ -12,10 +12,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant light (&:where(.light, .light *));
 @custom-variant auto (&:where(.auto, .auto *));
-
-@theme {
-  --color-fd-primary: var(--primary)!important;
-}
 
 @theme {
   @keyframes stroke {
