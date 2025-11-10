@@ -56,4 +56,4 @@ provideLinks(links: [
 ])
 \`\`\`
 </tools>
-`.trim()
+`.trim();

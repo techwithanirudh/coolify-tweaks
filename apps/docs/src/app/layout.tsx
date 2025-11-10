@@ -1,44 +1,51 @@
-import { baseUrl, createMetadata } from '@/lib/metadata'
-import '@/styles/globals.css'
-import type { Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import { Body } from './layout.client'
-import { Providers } from './providers'
-import 'katex/dist/katex.css'
-import { NextProvider } from 'fumadocs-core/framework/next'
-import { TreeContextProvider } from 'fumadocs-ui/contexts/tree'
-import { source } from '@/lib/source'
+import { baseUrl, createMetadata } from "@/lib/metadata";
+
+import "@/styles/globals.css";
+
+import type { Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+
+import { Body } from "./layout.client";
+import { Providers } from "./providers";
+
+import "katex/dist/katex.css";
+
+import { NextProvider } from "fumadocs-core/framework/next";
+import { TreeContextProvider } from "fumadocs-ui/contexts/tree";
+
+import { source } from "@/lib/source";
 
 const geist = Geist({
-  variable: '--font-sans',
-  subsets: ['latin'],
-})
+  variable: "--font-sans",
+  subsets: ["latin"],
+});
 
 const mono = Geist_Mono({
-  variable: '--font-mono',
-  subsets: ['latin'],
-})
+  variable: "--font-mono",
+  subsets: ["latin"],
+});
 
 export const metadata = createMetadata({
   title: {
-    template: '%s | Coolify Tweaks',
-    default: 'Coolify Tweaks',
+    template: "%s | Coolify Tweaks",
+    default: "Coolify Tweaks",
   },
-  description: 'Opinionated tweaks for Coolify: better spacing, layout, and colors.',
+  description:
+    "Opinionated tweaks for Coolify: better spacing, layout, and colors.",
   metadataBase: baseUrl,
-})
+});
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: '#0A0A0A' },
-    { media: '(prefers-color-scheme: light)', color: '#fff' },
+    { media: "(prefers-color-scheme: dark)", color: "#0A0A0A" },
+    { media: "(prefers-color-scheme: light)", color: "#fff" },
   ],
-}
+};
 
-export default function Layout({ children }: LayoutProps<'/'>) {
+export default function Layout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang='en'
+      lang="en"
       className={`${geist.variable} ${mono.variable}`}
       suppressHydrationWarning
     >
@@ -50,5 +57,5 @@ export default function Layout({ children }: LayoutProps<'/'>) {
         </NextProvider>
       </Body>
     </html>
-  )
+  );
 }

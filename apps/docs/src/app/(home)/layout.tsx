@@ -1,8 +1,9 @@
-import { HomeLayout } from 'fumadocs-ui/layouts/home'
-import { baseOptions, linkItems } from '@/lib/layout.shared'
+import { HomeLayout } from "fumadocs-ui/layouts/home";
 
-export default function Layout({ children }: LayoutProps<'/'>) {
-  const base = baseOptions()
+import { baseOptions, linkItems } from "@/lib/layout.shared";
+
+export default function Layout({ children }: LayoutProps<"/">) {
+  const base = baseOptions();
 
   return (
     <HomeLayout
@@ -10,11 +11,11 @@ export default function Layout({ children }: LayoutProps<'/'>) {
       links={linkItems}
       style={
         {
-          '--spacing-fd-container': '1300px',
+          "--spacing-fd-container": "1300px",
         } as object
       }
     >
       {children}
     </HomeLayout>
-  )
+  );
 }

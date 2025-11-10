@@ -1,10 +1,10 @@
-@import 'tailwindcss';
-@import 'fumadocs-ui/css/preset.css';
-@import './solar.css';
-@import 'fumadocs-ui/css/shadcn.css';
-@import 'fumadocs-twoslash/twoslash.css';
-@import 'fumadocs-openapi/css/preset.css';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "fumadocs-ui/css/preset.css";
+@import "./solar.css";
+@import "fumadocs-ui/css/shadcn.css";
+@import "fumadocs-twoslash/twoslash.css";
+@import "fumadocs-openapi/css/preset.css";
+@import "tw-animate-css";
 @import "@repo/tailwind-config/theme";
 
 @source "../../../../packages/ui/src/*.{ts,tsx}";
@@ -56,11 +56,10 @@
   }
 }
 
-.dark [data-hide-on-theme='dark'],
-.light [data-hide-on-theme='light'] {
+.dark [data-hide-on-theme="dark"],
+.light [data-hide-on-theme="light"] {
   display: none;
 }
-
 
 #nd-sidebar {
   @apply border-e;

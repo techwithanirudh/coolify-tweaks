@@ -1,14 +1,15 @@
-'use client'
+"use client";
 
-import { ProgressProvider } from '@bprogress/next/app'
-import { RootProvider } from 'fumadocs-ui/provider/base'
-import dynamic from 'next/dynamic'
-import type { ReactNode } from 'react'
-import { TooltipProvider } from '@repo/ui/tooltip'
+import type { ReactNode } from "react";
+import dynamic from "next/dynamic";
+import { ProgressProvider } from "@bprogress/next/app";
+import { RootProvider } from "fumadocs-ui/provider/base";
 
-const SearchDialog = dynamic(() => import('@/components/search'), {
+import { TooltipProvider } from "@repo/ui/tooltip";
+
+const SearchDialog = dynamic(() => import("@/components/search"), {
   ssr: false,
-})
+});
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
@@ -18,8 +19,8 @@ export function Providers({ children }: { children: ReactNode }) {
       }}
     >
       <ProgressProvider
-        height='2px'
-        color='var(--color-primary)'
+        height="2px"
+        color="var(--color-primary)"
         options={{
           showSpinner: false,
         }}
@@ -31,5 +32,5 @@ export function Providers({ children }: { children: ReactNode }) {
         <TooltipProvider>{children}</TooltipProvider>
       </ProgressProvider>
     </RootProvider>
-  )
+  );
 }

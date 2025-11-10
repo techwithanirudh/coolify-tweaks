@@ -1,8 +1,5 @@
 import browserslist from "browserslist";
-import {
-  browserslistToTargets,
-  transform,
-} from "lightningcss-wasm";
+import { browserslistToTargets, transform } from "lightningcss-wasm";
 
 export function transformCss(css: string): string {
   const blQueries =

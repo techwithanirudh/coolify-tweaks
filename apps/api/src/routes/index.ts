@@ -34,7 +34,8 @@ defineRouteMeta({
                 summary: "API information response",
                 value: {
                   service: "Coolify Tweaks API",
-                  description: "Proxies GitHub release assets for Coolify Tweaks",
+                  description:
+                    "Proxies GitHub release assets for Coolify Tweaks",
                   version: "1.0",
                 },
               },

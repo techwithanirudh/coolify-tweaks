@@ -1,21 +1,21 @@
+import type { ElementContent } from "hast";
 import {
   rehypeCodeDefaultOptions,
   remarkSteps,
-} from 'fumadocs-core/mdx-plugins'
+} from "fumadocs-core/mdx-plugins";
 import {
   defineConfig,
   defineDocs,
   frontmatterSchema,
   metaSchema,
-} from 'fumadocs-mdx/config'
-import jsonSchema from 'fumadocs-mdx/plugins/json-schema'
-import { transformerTwoslash } from 'fumadocs-twoslash'
-import { createFileSystemTypesCache } from 'fumadocs-twoslash/cache-fs'
-import { remarkAutoTypeTable } from 'fumadocs-typescript'
-import type { ElementContent } from 'hast'
-import rehypeKatex from 'rehype-katex'
-import remarkMath from 'remark-math'
-import { z } from 'zod'
+} from "fumadocs-mdx/config";
+import jsonSchema from "fumadocs-mdx/plugins/json-schema";
+import { transformerTwoslash } from "fumadocs-twoslash";
+import { createFileSystemTypesCache } from "fumadocs-twoslash/cache-fs";
+import { remarkAutoTypeTable } from "fumadocs-typescript";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
+import { z } from "zod";
 
 export const docs = defineDocs({
   docs: {
@@ -35,10 +35,10 @@ export const docs = defineDocs({
       description: z.string().optional(),
     }),
   },
-})
+});
 
 export default defineConfig({
-  lastModifiedTime: 'git',
+  lastModifiedTime: "git",
   plugins: [
     jsonSchema({
       insert: true,
@@ -47,11 +47,11 @@ export default defineConfig({
   mdxOptions: {
     rehypeCodeOptions: {
       lazy: true,
-      langs: ['ts', 'js', 'html', 'tsx', 'mdx'],
-      inline: 'tailing-curly-colon',
+      langs: ["ts", "js", "html", "tsx", "mdx"],
+      inline: "tailing-curly-colon",
       themes: {
-        light: 'catppuccin-latte',
-        dark: 'catppuccin-mocha',
+        light: "catppuccin-latte",
+        dark: "catppuccin-mocha",
       },
       transformers: [
         ...(rehypeCodeDefaultOptions.transformers ?? []),
@@ -59,20 +59,20 @@ export default defineConfig({
           typesCache: createFileSystemTypesCache(),
         }),
         {
-          name: '@shikijs/transformers:remove-notation-escape',
+          name: "@shikijs/transformers:remove-notation-escape",
           code(hast) {
             function replace(node: ElementContent): void {
-              if (node.type === 'text') {
-                node.value = node.value.replace('[\\!code', '[!code')
-              } else if ('children' in node) {
+              if (node.type === "text") {
+                node.value = node.value.replace("[\\!code", "[!code");
+              } else if ("children" in node) {
                 for (const child of node.children) {
-                  replace(child)
+                  replace(child);
                 }
               }
             }
 
-            replace(hast)
-            return hast
+            replace(hast);
+            return hast;
           },
         },
       ],
@@ -82,10 +82,10 @@ export default defineConfig({
     },
     remarkNpmOptions: {
       persist: {
-        id: 'package-manager',
+        id: "package-manager",
       },
     },
     remarkPlugins: [remarkSteps, remarkMath, remarkAutoTypeTable],
     rehypePlugins: (v) => [rehypeKatex, ...v],
   },
-})
+});

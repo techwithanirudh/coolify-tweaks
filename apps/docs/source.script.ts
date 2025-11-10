@@ -1,35 +1,35 @@
-import { defineConfig } from 'fumadocs-mdx/config'
-import type { Root } from 'mdast'
-import { visit } from 'unist-util-visit'
+import type { Root } from "mdast";
+import { defineConfig } from "fumadocs-mdx/config";
+import { visit } from "unist-util-visit";
 
-export { docs } from './source.config'
+export { docs } from "./source.config";
 
 function remarkElementIds() {
   return (tree: Root, vfile: unknown) => {
-    const file = vfile as { data?: { elementIds?: string[] } }
-    file.data ??= {}
-    file.data.elementIds ??= []
+    const file = vfile as { data?: { elementIds?: string[] } };
+    file.data ??= {};
+    file.data.elementIds ??= [];
 
-    visit(tree, 'mdxJsxFlowElement', (element) => {
-      if (!element.name || !element.attributes) return
+    visit(tree, "mdxJsxFlowElement", (element) => {
+      if (!element.name || !element.attributes) return;
 
       const idAttr = element.attributes.find(
-        (attr) => attr.type === 'mdxJsxAttribute' && attr.name === 'id'
-      )
+        (attr) => attr.type === "mdxJsxAttribute" && attr.name === "id",
+      );
 
-      if (idAttr && typeof idAttr.value === 'string') {
-        file.data!.elementIds!.push(idAttr.value)
+      if (idAttr && typeof idAttr.value === "string") {
+        file.data!.elementIds!.push(idAttr.value);
       }
-    })
-  }
+    });
+  };
 }
 
 export default defineConfig({
   mdxOptions: {
-    valueToExport: ['elementIds', 'toc'],
+    valueToExport: ["elementIds", "toc"],
     remarkNpmOptions: {
       persist: {
-        id: 'package-manager',
+        id: "package-manager",
       },
     },
     remarkHeadingOptions: {
@@ -38,4 +38,4 @@ export default defineConfig({
     remarkPlugins: [remarkElementIds],
     rehypePlugins: () => [],
   },
-})
+});

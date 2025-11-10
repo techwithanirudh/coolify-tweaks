@@ -1,1 +1,1 @@
-export * from "@radix-ui/react-presence"
+export * from "@radix-ui/react-presence";

@@ -1,7 +1,7 @@
 import type { H3Event } from "nitro/h3";
 import type { RegistryItem } from "shadcn/schema";
-import { getQuery, getRequestURL, HTTPError } from "nitro/h3";
 import { $fetch } from "nitro/deps/ofetch";
+import { getQuery, getRequestURL, HTTPError } from "nitro/h3";
 import { registryItemSchema } from "shadcn/schema";
 
 import { transformCss } from "./css-compiler";
@@ -70,8 +70,10 @@ export async function processContent({
   content: string;
   event: H3Event;
 }): Promise<string | null | undefined> {
-  const { theme, asset = "main.user.css" } =
-    getQuery(event) as Record<string, string>;
+  const { theme, asset = "main.user.css" } = getQuery(event) as Record<
+    string,
+    string
+  >;
 
   let result = content;
 

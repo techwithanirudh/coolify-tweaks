@@ -45,6 +45,6 @@
     "firecrawl",
     "treeview",
     "intitle",
-    "inurl"
-  ]
+    "inurl",
+  ],
 }

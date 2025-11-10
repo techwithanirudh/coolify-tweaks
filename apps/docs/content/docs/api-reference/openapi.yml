@@ -3,18 +3,18 @@ info:
   title: Coolify Tweaks API
   description: A lightweight Nitro server that serves `coolify-tweaks` release assets with optional TweakCN theme injection. It keeps the userstyle install links fast, consistent, and free from GitHub CDN hiccups.
   version: 1.0.0
-  termsOfService: 'https://github.com/techwithanirudh/coolify-tweaks'
+  termsOfService: "https://github.com/techwithanirudh/coolify-tweaks"
   contact:
-    url: 'https://github.com/techwithanirudh/coolify-tweaks'
+    url: "https://github.com/techwithanirudh/coolify-tweaks"
   license:
     name: MIT
-    url: 'https://opensource.org/license/mit/'
+    url: "https://opensource.org/license/mit/"
 servers:
-  - url: 'https://api.coolify-tweaks.techwithanirudh.com'
+  - url: "https://api.coolify-tweaks.techwithanirudh.com"
     description: Production server
-  - url: 'http://localhost:3001'
+  - url: "http://localhost:3001"
     description: Local development server
-  - url: '{protocol}://{domain}'
+  - url: "{protocol}://{domain}"
     description: Custom Name
     variables:
       protocol:
@@ -35,21 +35,21 @@ paths:
       tags:
         - Releases
       parameters:
-        - $ref: '#/components/parameters/ReleaseTag'
-        - $ref: '#/components/parameters/AssetName'
-        - $ref: '#/components/parameters/ThemeId'
+        - $ref: "#/components/parameters/ReleaseTag"
+        - $ref: "#/components/parameters/AssetName"
+        - $ref: "#/components/parameters/ThemeId"
       responses:
-        '200':
+        "200":
           description: Successfully retrieved release asset.
           content:
             text/css:
               schema:
-                $ref: '#/components/schemas/CssContent'
+                $ref: "#/components/schemas/CssContent"
               examples:
                 default_css:
-                  $ref: '#/components/examples/CssResponseExample'
+                  $ref: "#/components/examples/CssResponseExample"
                 themed_css:
-                  $ref: '#/components/examples/ThemedCssResponseExample'
+                  $ref: "#/components/examples/ThemedCssResponseExample"
             application/octet-stream:
               schema:
                 type: string
@@ -72,12 +72,12 @@ paths:
             X-RateLimit-Limit:
               schema:
                 type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
   /health:
     get:
       summary: Health check
@@ -86,15 +86,15 @@ paths:
       tags:
         - Operations
       responses:
-        '200':
+        "200":
           description: Service is healthy.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HealthStatus'
+                $ref: "#/components/schemas/HealthStatus"
               examples:
                 default_example:
-                  $ref: '#/components/examples/HealthResponseExample'
+                  $ref: "#/components/examples/HealthResponseExample"
   /:
     get:
       summary: API information
@@ -103,15 +103,15 @@ paths:
       tags:
         - Operations
       responses:
-        '200':
+        "200":
           description: API information.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiInfo'
+                $ref: "#/components/schemas/ApiInfo"
               examples:
                 default_example:
-                  $ref: '#/components/examples/ApiInfoResponseExample'
+                  $ref: "#/components/examples/ApiInfoResponseExample"
 
 components:
   schemas:
@@ -126,7 +126,7 @@ components:
     ThemeId:
       description: TweakCN theme identifier for CSS variable injection. Only applies when requesting `main.user.css`.
       type: string
-      pattern: '^c[a-z0-9]{24}$'
+      pattern: "^c[a-z0-9]{24}$"
       example: c1234567890abcdefghijklmn
     CssContent:
       description: CSS content with optional theme variables injected.
@@ -146,7 +146,7 @@ components:
         timestamp:
           type: string
           format: date-time
-          example: '2024-01-15T10:30:00.000Z'
+          example: "2024-01-15T10:30:00.000Z"
       required:
         - status
         - message
@@ -162,7 +162,7 @@ components:
           example: Proxies GitHub release assets for Coolify Tweaks
         version:
           type: string
-          example: '1.0'
+          example: "1.0"
       required:
         - service
         - description
@@ -192,21 +192,21 @@ components:
       description: Release tag identifier. Use `latest` for the most recent release, or a specific version tag.
       required: true
       schema:
-        $ref: '#/components/schemas/ReleaseTag'
+        $ref: "#/components/schemas/ReleaseTag"
     AssetName:
       name: asset
       in: query
       description: Asset filename to retrieve. Defaults to `main.user.css` if not specified.
       required: false
       schema:
-        $ref: '#/components/schemas/AssetName'
+        $ref: "#/components/schemas/AssetName"
     ThemeId:
       name: theme
       in: query
       description: TweakCN theme identifier for CSS variable injection. Only applies when requesting `main.user.css`. Browse available themes at https://tweakcn.com/themes.
       required: false
       schema:
-        $ref: '#/components/schemas/ThemeId'
+        $ref: "#/components/schemas/ThemeId"
 
   examples:
     CssResponseExample:
@@ -258,13 +258,13 @@ components:
       value:
         status: ok
         message: Server is running
-        timestamp: '2024-01-15T10:30:00.000Z'
+        timestamp: "2024-01-15T10:30:00.000Z"
     ApiInfoResponseExample:
       summary: API information response
       value:
         service: Coolify Tweaks API
         description: Proxies GitHub release assets for Coolify Tweaks
-        version: '1.0'
+        version: "1.0"
 
   responses:
     BadRequest:
@@ -272,7 +272,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: "#/components/schemas/Error"
           example:
             statusCode: 400
             statusMessage: Bad Request
@@ -284,11 +284,11 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: "#/components/schemas/Error"
           example:
             statusCode: 404
             statusMessage: Not Found
-            message: 'Theme not found: invalid-theme-id'
+            message: "Theme not found: invalid-theme-id"
             data:
               url: https://github.com/techwithanirudh/coolify-tweaks/releases/download/latest/main.user.css
               tag: latest
@@ -297,7 +297,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: "#/components/schemas/Error"
           example:
             statusCode: 500
             statusMessage: Internal Server Error
@@ -311,4 +311,3 @@ tags:
     description: Endpoints for retrieving GitHub release assets with optional theme injection.
   - name: Operations
     description: Operational endpoints for monitoring and API information.
-

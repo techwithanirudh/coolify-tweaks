@@ -1,2 +1,2 @@
-export const owner = 'techwithanirudh'
-export const repo = 'coolify-tweaks'
+export const owner = "techwithanirudh";
+export const repo = "coolify-tweaks";
