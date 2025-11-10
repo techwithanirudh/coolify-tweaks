@@ -15,8 +15,8 @@ export const tags: Tag[] = [
     value: "style",
   },
   {
-    name: "API Reference",
-    description: "Only results about the API reference",
-    value: "api-reference",
+    name: "API",
+    description: "Only results about the API",
+    value: "api",
   }
 ];

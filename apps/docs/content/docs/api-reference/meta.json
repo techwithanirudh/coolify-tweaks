@@ -1,8 +1,0 @@
-{
-  "$schema": "../../../.source/json-schema/docs.meta.json",
-  "title": "API Reference",
-  "description": "A demo for Fumadocs OpenAPI",
-  "root": true,
-  "icon": "Webhook",
-  "pages": ["---API Reference---", "index", "...(generated)"]
-}

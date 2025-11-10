@@ -3,7 +3,7 @@ import { rimraf } from "rimraf";
 
 import { openapi } from "@/lib/openapi";
 
-const out = "./content/docs/api-reference/(generated)";
+const out = "./content/docs/api/(generated)";
 
 export async function generateDocs() {
   await rimraf(out, {
@@ -17,11 +17,11 @@ export async function generateDocs() {
     output: out,
     per: "operation",
     includeDescription: true,
-    groupBy: "tag",
+    groupBy: "none",
     beforeWrite: (files) => {
       for (let i = files.length - 1; i >= 0; i--) {
         if (
-          files[i]!.path.includes("internal")
+          files[i]!.path.includes("_docs") || files[i]!.path.includes("_nitro")
         ) {
           files.splice(i, 1);
         }

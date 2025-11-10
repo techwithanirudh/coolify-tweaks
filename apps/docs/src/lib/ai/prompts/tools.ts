@@ -10,7 +10,7 @@ Usage:
 
 Inputs:
 - query: the search phrase (required)
-- tag: section filter (optional, e.g. "all", "style", "api-reference")
+- tag: section filter (optional, e.g. "all", "style", "api")
 - locale: language filter (optional)
 - limit: maximum number of results to return (optional, default: 10, max: 50)
 

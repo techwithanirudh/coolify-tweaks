@@ -25,10 +25,10 @@ export default function DocsPage(): ReactElement {
         />
 
         <DocumentationItem
-          title="API Reference"
-          description="Get started with Fumadocs's API reference feature."
-          icon={{ icon: WebhookIcon, id: "api-reference" }}
-          href="/docs/api-reference"
+          title="API"
+          description="Get started with Coolify Tweaks's API."
+          icon={{ icon: WebhookIcon, id: "api" }}
+          href="/docs/api"
         />
       </div>
     </main>
