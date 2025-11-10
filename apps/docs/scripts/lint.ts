@@ -39,7 +39,7 @@ async function checkLinks() {
 }
 
 function getHeadings({ data }: InferPageType<AnySource>): string[] {
-  const headings = data.toc.map((item) => item.url.slice(1));
+  const headings = data.toc?.map((item) => item.url.slice(1)) ?? [];
   const elementIds = data._exports?.elementIds;
   if (Array.isArray(elementIds)) {
     headings.push(...elementIds);

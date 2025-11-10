@@ -46,5 +46,8 @@
     "treeview",
     "intitle",
     "inurl",
-  ],
+    "vercel",
+    "jsxs",
+    "tocnav"
+  ]
 }
