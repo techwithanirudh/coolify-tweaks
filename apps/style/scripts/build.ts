@@ -74,10 +74,10 @@ export async function build(
 
   const TRANSFORM_ENABLED = typeof params.transformed === "string";
   const TRANSFORMED = TRANSFORM_ENABLED
-    ? path.resolve(cwd, params.transformed as string)
+    ? path.resolve(cwd, String(params.transformed))
     : undefined;
   const TRANSFORMED_DIR = TRANSFORM_ENABLED
-    ? path.dirname(TRANSFORMED as string)
+    ? path.dirname(String(TRANSFORMED))
     : undefined;
   const TRANSFORMED_MAP = TRANSFORM_ENABLED ? `${TRANSFORMED}.map` : undefined;
 
@@ -145,7 +145,7 @@ export async function build(
 
     if (!SILENT) spinner.text = "Writing main output";
     await fs.writeFile(OUT, postcssMain.css, "utf8");
-    const mainMapText = postcssMain.map?.toString();
+    const mainMapText = postcssMain.map.toString();
     if (mainMapText) await fs.writeFile(OUT_MAP, mainMapText, "utf8");
 
     let kbTransformed: number | undefined;
@@ -168,7 +168,7 @@ export async function build(
 
       if (!SILENT) spinner.text = "Writing transformed output";
       await fs.writeFile(TRANSFORMED, postcssTransformed.css, "utf8");
-      const transformedMapText = postcssTransformed.map?.toString();
+      const transformedMapText = postcssTransformed.map.toString();
       if (transformedMapText)
         await fs.writeFile(TRANSFORMED_MAP, transformedMapText, "utf8");
 
@@ -191,7 +191,7 @@ export async function build(
           `Built ${path.relative(cwd, OUT)} (${kbMain} kB)` +
             ` and ${path.relative(
               cwd,
-              TRANSFORMED!,
+              String(TRANSFORMED),
             )} (${kbTransformed ?? 0} kB) in ${dt}s`,
         );
       } else {
