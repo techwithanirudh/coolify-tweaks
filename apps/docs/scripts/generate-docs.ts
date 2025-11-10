@@ -18,5 +18,14 @@ export async function generateDocs() {
     per: "operation",
     includeDescription: true,
     groupBy: "tag",
+    beforeWrite: (files) => {
+      for (let i = files.length - 1; i >= 0; i--) {
+        if (
+          files[i]!.path.includes("internal")
+        ) {
+          files.splice(i, 1);
+        }
+      }
+    },
   });
 }
