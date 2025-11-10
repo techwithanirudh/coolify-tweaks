@@ -104,7 +104,7 @@ export default async function Page(
             AutoTypeTable: (props) => (
               <AutoTypeTable generator={generator} {...props} />
             ),
-            DocsCategory: ({ url }) => {
+            DocsCategory: ({ url }: { url?: string }) => {
               return <DocsCategory url={url ?? page.url} />;
             },
           })}

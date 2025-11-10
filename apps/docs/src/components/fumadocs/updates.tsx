@@ -24,7 +24,7 @@ export function Updates({ children, className }: UpdatesProps) {
 }
 
 export function Update({ children, label, id, className }: UpdateProps) {
-  const updateId = id || label.toLowerCase().replace(/\s+/g, "-");
+  const updateId = id ?? label.toLowerCase().replace(/\s+/g, "-");
 
   return (
     <div

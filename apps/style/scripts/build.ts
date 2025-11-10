@@ -77,7 +77,7 @@ export async function build(
     const targets = browserslistToTargets(browserslist(blQueries));
     const lightningResult = lcTransform({
       filename: SRC,
-      code: Buffer.from(sassResult.css!),
+      code: Buffer.from(sassResult.css),
       minify: MINIFY,
       sourceMap: true,
       targets,
@@ -162,25 +162,24 @@ if (import.meta.main) {
     .allowUnknownOption(false)
     .parse(process.argv);
 
-  const cli = program.opts() as {
-    src: string;
-    out: string;
-    loadPath: string;
-    minify: boolean;
-    format: boolean;
-    silent: boolean;
-  };
+  const opts = program.opts();
+  const src = String(opts.src ?? "src/main.scss");
+  const out = String(opts.out ?? "dist/main.user.css");
+  const loadPathStr = String(opts.loadPath ?? "src");
+  const minify = Boolean(opts.minify);
+  const format = Boolean(opts.format);
+  const silent = Boolean(opts.silent);
 
   build({
-    src: cli.src,
-    out: cli.out,
-    loadPath: cli.loadPath
+    src,
+    out,
+    loadPath: loadPathStr
       .split(",")
-      .map((x) => x.trim())
+      .map((x: string) => x.trim())
       .filter(Boolean),
-    minify: cli.minify,
-    format: cli.format,
-    silent: cli.silent,
+    minify,
+    format,
+    silent,
   }).catch((err: unknown) => {
     const message =
       err instanceof Error ? (err.stack ?? err.message) : String(err);

@@ -24,9 +24,11 @@ export function ThemeToggle({
   const { setTheme, theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
+  /* eslint-disable react-hooks/set-state-in-effect -- mounted state initialization */
   useLayoutEffect(() => {
     setMounted(true);
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const container = cn(
     "ring-border relative isolate inline-flex items-center overflow-hidden rounded-full p-1 ring-1",

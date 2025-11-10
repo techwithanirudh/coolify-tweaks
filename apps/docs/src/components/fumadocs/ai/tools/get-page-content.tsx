@@ -81,7 +81,7 @@ export function GetPageContentVisualizer({
       )}
       {output?.success === false && (
         <div className="text-fd-destructive text-xs">
-          {output.data || "Page not found"}
+          {output.data ?? "Page not found"}
         </div>
       )}
     </div>

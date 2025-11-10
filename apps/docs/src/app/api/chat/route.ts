@@ -39,11 +39,8 @@ function getLLMsTxt() {
 }
 
 export async function POST(request: Request) {
-  const {
-    messages,
-  }: {
-    messages: UIMessage[];
-  } = await request.json();
+  const body = await request.json() as { messages: UIMessage[] };
+  const { messages } = body;
 
   const result = streamText({
     model: provider.languageModel("chat-model"),
@@ -62,7 +59,7 @@ export async function POST(request: Request) {
       chunking: "line",
     }),
     stopWhen: stepCountIs(15),
-    onStepFinish: async ({ toolResults }) => {
+    onStepFinish: ({ toolResults }) => {
       if (env.NODE_ENV !== "production") {
         console.log(`Step Results: ${JSON.stringify(toolResults, null, 2)}`);
       }

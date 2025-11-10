@@ -9,7 +9,7 @@ export const { GET } = createSearchAPI("advanced", {
     description: page.data.description,
     url: page.url,
     id: page.url,
-    structuredData: page.data.structuredData ?? undefined,
+    structuredData: page.data.structuredData,
     tag: page.slugs[0],
   })),
 });

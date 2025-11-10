@@ -6,9 +6,11 @@ import { useTheme } from "next-themes";
 export function Mermaid({ chart }: { chart: string }) {
   const [mounted, setMounted] = useState(false);
 
+  /* eslint-disable react-hooks/set-state-in-effect -- mounted state initialization */
   useEffect(() => {
     setMounted(true);
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   if (!mounted) return null;
   return <MermaidContent chart={chart} />;

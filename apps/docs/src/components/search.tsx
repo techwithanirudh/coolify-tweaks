@@ -56,6 +56,7 @@ export default function CustomSearchDialog(props: SharedProps) {
     for (const item of full.children) onNode(item);
     return map;
   }, [full]);
+  // eslint-disable-next-line react-hooks/preserve-manual-memoization -- React Compiler optimization
   const pageTreeAction = useMemo<SearchItemType | undefined>(() => {
     if (search.length === 0) return;
 

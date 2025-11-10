@@ -17,7 +17,7 @@ const fontSemiBold = readFileSync(
 const fontBold = readFileSync("./src/app/og/[...slug]/fonts/Inter-Bold.ttf");
 const fontPixy = readFileSync("./src/app/og/[...slug]/fonts/Pixy-Regular.ttf");
 
-export async function getImageResponseOptions(): Promise<ImageResponseOptions> {
+export function getImageResponseOptions(): ImageResponseOptions {
   return {
     format: "webp",
     width: 1200,
@@ -102,6 +102,7 @@ export function generate({ title, description, tag }: GenerateProps) {
             color: primaryTextColor,
           }}
         >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="logo.svg"
             alt={siteName}

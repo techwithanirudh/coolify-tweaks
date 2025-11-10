@@ -18,7 +18,7 @@ type ToolState =
   | "output-error";
 
 export function ProvideLinksVisualizer({
-  state,
+  state: _state,
   input,
   output,
   ...props
@@ -40,6 +40,7 @@ export function ProvideLinksVisualizer({
       )}
     >
       {links.map((item, i) => {
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- item can be undefined
         if (!item?.url) return null;
         const href = item.url.startsWith("http")
           ? item.url
@@ -50,11 +51,10 @@ export function ProvideLinksVisualizer({
             href={href}
             className="hover:bg-fd-accent hover:text-fd-accent-foreground block rounded-lg border p-3 text-xs transition-colors"
           >
-            <p className="font-medium">{item.title || item.url}</p>
-            {item.label && (
+            <p className="font-medium">{item.title ?? item.url}</p>
+            {item.label ? (
               <p className="text-fd-muted-foreground">Reference {item.label}</p>
-            )}
-            {!item.label && (
+            ) : (
               <p className="text-fd-muted-foreground">
                 {item.type === "documentation" ? "Documentation" : "External"}
               </p>

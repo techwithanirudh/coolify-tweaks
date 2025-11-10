@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CheckIcon, CopyIcon } from "lucide-react";
 
 import { Button } from "@repo/ui/button";
@@ -30,7 +30,6 @@ export function ThemeConfigCard() {
   const [mode, setMode] = useState<Mode>("dynamic");
   const [themeId, setThemeId] = useState("");
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
-  const [generatedUrl, setGeneratedUrl] = useState("");
   const { copyToClipboard, isCopied } = useCopyToClipboard({ timeout: 2000 });
 
   useEffect(() => {
@@ -43,14 +42,12 @@ export function ThemeConfigCard() {
     return () => clearInterval(interval);
   }, [themeId]);
 
-  useEffect(() => {
+  const generatedUrl = useMemo(() => {
     if (themeId.trim()) {
       const baseUrl = `https://coolify.io/tweaks/${mode === "dynamic" ? "main.css" : "main.user.css"}`;
-      const url = `${baseUrl}?theme=${themeId.trim()}`;
-      setGeneratedUrl(url);
-    } else {
-      setGeneratedUrl("");
+      return `${baseUrl}?theme=${themeId.trim()}`;
     }
+    return "";
   }, [themeId, mode]);
 
   return (

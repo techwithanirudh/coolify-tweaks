@@ -11,14 +11,16 @@ function remarkElementIds() {
     file.data.elementIds ??= [];
 
     visit(tree, "mdxJsxFlowElement", (element) => {
-      if (!element.name || !element.attributes) return;
+      if (!element.name) return;
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- element.attributes can be undefined
+      if (!element.attributes) return;
 
       const idAttr = element.attributes.find(
         (attr) => attr.type === "mdxJsxAttribute" && attr.name === "id",
       );
 
-      if (idAttr && typeof idAttr.value === "string") {
-        file.data!.elementIds!.push(idAttr.value);
+      if (idAttr && typeof idAttr.value === "string" && file.data) {
+        file.data.elementIds?.push(idAttr.value);
       }
     });
   };

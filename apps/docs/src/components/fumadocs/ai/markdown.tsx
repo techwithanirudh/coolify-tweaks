@@ -68,7 +68,7 @@ function createProcessor(): Processor {
           pre: Pre,
           img: undefined, // use JSX
         },
-      });
+      }) as ReactNode;
     },
   };
 }

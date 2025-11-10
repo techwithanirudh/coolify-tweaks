@@ -5,7 +5,7 @@ import { source } from "@/lib/source";
 
 export const revalidate = false;
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default function sitemap(): MetadataRoute.Sitemap {
   const url = (path: string): string => new URL(path, baseUrl).toString();
 
   return [

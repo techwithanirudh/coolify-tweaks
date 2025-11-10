@@ -20,9 +20,10 @@ export async function generateDocs() {
     groupBy: "none",
     beforeWrite: (files) => {
       for (let i = files.length - 1; i >= 0; i--) {
+        const file = files[i];
         if (
-          files[i]!.path.includes("_docs") ||
-          files[i]!.path.includes("_nitro")
+          file &&
+          (file.path.includes("_docs") || file.path.includes("_nitro"))
         ) {
           files.splice(i, 1);
         }
