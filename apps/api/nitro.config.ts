@@ -11,6 +11,7 @@ export default defineNitroConfig({
   },
   openAPI: {
     route: "/_docs/openapi.json",
+    production: "runtime",
     meta: {
       title: "Coolify Tweaks API",
       description: "Proxies GitHub release assets for Coolify Tweaks",

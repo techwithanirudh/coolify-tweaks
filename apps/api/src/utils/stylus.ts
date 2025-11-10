@@ -25,7 +25,7 @@ const buildThemeUrl = (id: string) => {
   return `https://tweakcn.com/r/themes/${safeId}${isCUID(id) ? "" : ".json"}`;
 };
 
-export async function getThemeCss(themeId: string): Promise<string | null> {
+export async function getThemeCss(themeId: string): Promise<string> {
   const url = buildThemeUrl(themeId);
 
   try {
@@ -37,7 +37,7 @@ export async function getThemeCss(themeId: string): Promise<string | null> {
     const parsed = registryItemSchema.safeParse(theme);
     if (!parsed.success) {
       throw new HTTPError({
-        statusCode: 400,
+        status: 400,
         statusMessage: "Invalid theme data",
         data: parsed.error.issues,
       });
@@ -47,8 +47,9 @@ export async function getThemeCss(themeId: string): Promise<string | null> {
     return cssVarsToCss(registryItem.cssVars ?? {});
   } catch {
     throw new HTTPError({
-      statusCode: 404,
-      statusMessage: `Theme not found: ${themeId}`,
+      status: 404,
+      statusMessage: "Not Found",
+      message: `Theme not found: ${themeId}`,
     });
   }
 }
@@ -76,13 +77,6 @@ export async function processContent({
 
   if (theme && asset === "main.user.css") {
     const css = await getThemeCss(theme);
-    if (!css) {
-      throw new HTTPError({
-        statusCode: 404,
-        statusMessage: `CSS not found for theme: ${theme}`,
-      });
-    }
-
     const transformedCss = transformCss(css);
     const wrappedCss = `${THEME_START}\n\n${transformedCss}\n\n${THEME_END}`;
 
