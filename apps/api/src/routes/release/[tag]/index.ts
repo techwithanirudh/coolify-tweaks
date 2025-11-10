@@ -1,6 +1,7 @@
+import type { H3Event } from "nitro/h3";
 import { lookup as getType } from "mime-types";
 import { $fetch } from "nitro/deps/ofetch";
-import { getQuery, getRouterParam, H3Event, HTTPError } from "nitro/h3";
+import { getQuery, getRouterParam, HTTPError } from "nitro/h3";
 import { defineRouteMeta } from "nitro/runtime";
 
 import { allowedHeaders, owner, repo } from "@/config";
