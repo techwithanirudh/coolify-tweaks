@@ -52,11 +52,15 @@ const Context = createContext<{
 } | null>(null);
 
 function useChatContext() {
-  return use(Context)!.chat;
+  const context = use(Context);
+  if (!context) throw new Error("useChatContext must be used within Context");
+  return context.chat;
 }
 
 function Header() {
-  const { setOpen } = use(Context)!;
+  const context = use(Context);
+  if (!context) throw new Error("Header must be used within Context");
+  const { setOpen } = context;
 
   return (
     <div className="sticky top-0 flex items-start gap-2">
