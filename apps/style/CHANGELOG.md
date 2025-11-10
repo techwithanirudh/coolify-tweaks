@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.9.6
+
+### Patch Changes
+
+- feat: add support for injectio
+
 ## 3.9.5
 
 ### Patch Changes
