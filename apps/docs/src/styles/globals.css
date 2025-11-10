@@ -49,11 +49,6 @@
     background-color: var(--color-accent);
     color: var(--color-foreground);
   }
-
-  .dark ::selection {
-    background-color: var(--color-accent);
-    color: var(--color-foreground);
-  }
 }
 
 .dark [data-hide-on-theme="dark"],
