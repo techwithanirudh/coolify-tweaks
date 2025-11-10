@@ -10,9 +10,6 @@ export const env = createEnv({
       .default("development"),
   },
   server: {
-    NODE_ENV: z
-      .enum(["development", "production", "test"])
-      .default("development"),
     OPENAI_API_KEY: z.string().startsWith("sk-"),
   },
   client: {

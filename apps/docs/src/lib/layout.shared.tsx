@@ -16,7 +16,6 @@ export const logo = (
       height={28}
       className="size-7 object-contain"
       style={{ borderRadius: "8px" }}
-      aria-label={title}
     />
   </>
 );
