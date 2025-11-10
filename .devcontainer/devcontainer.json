@@ -28,7 +28,7 @@
     }
   },
   "postAttachCommand": {
-    "server": "bun run dev"
+    "server": "pnpm run dev"
   },
   "postCreateCommand": {
     "corepack": "corepack enable",

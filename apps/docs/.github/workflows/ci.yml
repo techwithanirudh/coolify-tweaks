@@ -17,7 +17,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Build app
-        run: bun run build
+        run: pnpm run build
 
       - name: Run type check
         run: bun typecheck
