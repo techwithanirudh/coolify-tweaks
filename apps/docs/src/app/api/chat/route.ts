@@ -39,7 +39,7 @@ function getLLMsTxt() {
 }
 
 export async function POST(request: Request) {
-  const body = await request.json() as { messages: UIMessage[] };
+  const body = (await request.json()) as { messages: UIMessage[] };
   const { messages } = body;
 
   const result = streamText({

@@ -40,7 +40,7 @@ async function checkLinks() {
 
 function getHeadings({ data }: InferPageType<AnySource>): string[] {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- data.toc can be undefined
-  const headings = (data.toc?.map((item) => item.url.slice(1)) ?? []);
+  const headings = data.toc?.map((item) => item.url.slice(1)) ?? [];
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- data._exports?.elementIds can be undefined
   const elementIds = data._exports?.elementIds;
   if (Array.isArray(elementIds)) {

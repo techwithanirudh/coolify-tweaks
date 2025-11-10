@@ -5,7 +5,7 @@ const ALLOW_METHODS = "GET,POST,PUT,PATCH,DELETE,OPTIONS";
 const FALLBACK_ALLOW_HEADERS = "Content-Type,Authorization";
 const MAX_AGE_SECONDS = "86400";
 
-// @ts-expect-error - this is expected behaviour
+// @ts-expect-error - this is expected
 export default defineHandler((event) => {
   event.res.headers.set("Access-Control-Allow-Origin", ALLOW_ORIGIN);
   event.res.headers.set("Access-Control-Allow-Credentials", "true");

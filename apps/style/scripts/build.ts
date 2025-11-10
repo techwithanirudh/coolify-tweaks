@@ -79,9 +79,7 @@ export async function build(
   const TRANSFORMED_DIR = TRANSFORM_ENABLED
     ? path.dirname(TRANSFORMED as string)
     : undefined;
-  const TRANSFORMED_MAP = TRANSFORM_ENABLED
-    ? `${TRANSFORMED}.map`
-    : undefined;
+  const TRANSFORMED_MAP = TRANSFORM_ENABLED ? `${TRANSFORMED}.map` : undefined;
 
   const LOAD_PATHS = params.loadPath.map((p) => path.resolve(cwd, p));
   const MINIFY = params.minify;
@@ -125,7 +123,8 @@ export async function build(
         ? lightningResult.code
         : Buffer.from(lightningResult.code).toString("utf8");
 
-    const lightningMapText = lightningResult.map?.toString() ?? sassResult.sourceMap ?? undefined;
+    const lightningMapText =
+      lightningResult.map?.toString() ?? sassResult.sourceMap ?? undefined;
 
     if (!SILENT) spinner.text = "Loading PostCSS config (OUT)";
     const { plugins, options } = await loadConfig({}, cwd);
@@ -177,7 +176,7 @@ export async function build(
         Number(
           (
             new TextEncoder().encode(postcssTransformed.css).length / 1024
-          ).toFixed(1)
+          ).toFixed(1),
         ) || 0;
     }
 
@@ -218,7 +217,7 @@ export async function build(
       }
     }
     const message =
-      err instanceof Error ? err.stack ?? err.message : String(err);
+      err instanceof Error ? (err.stack ?? err.message) : String(err);
     console.error(message);
     throw err;
   }
@@ -259,7 +258,7 @@ if (import.meta.main) {
     silent,
   }).catch((err: unknown) => {
     const message =
-      err instanceof Error ? err.stack ?? err.message : String(err);
+      err instanceof Error ? (err.stack ?? err.message) : String(err);
     console.error(message);
     process.exit(1);
   });
