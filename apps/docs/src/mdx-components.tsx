@@ -31,6 +31,7 @@ export function getMDXComponents(components?: MDXComponents) {
     blockquote: Callout as unknown as FC<ComponentProps<"blockquote">>,
     APIPage,
     Banner,
+    img: (props: ComponentProps<"img">) => <img {...props} className="rounded-xl" />,
     ...components,
   } satisfies MDXComponents;
 }

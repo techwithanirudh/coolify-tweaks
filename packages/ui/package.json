@@ -4,7 +4,8 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./*": "./src/*.tsx"
+    "./*": "./src/*.tsx",
+    "./hooks/*": "./src/hooks/*.tsx"
   },
   "license": "MIT",
   "scripts": {

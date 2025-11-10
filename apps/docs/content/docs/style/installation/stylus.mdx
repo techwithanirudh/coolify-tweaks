@@ -18,7 +18,9 @@ Stylus is the quickest way to get Coolify Tweaks running inside your browser. It
 
    [![install with Stylus](https://img.shields.io/badge/Install%20directly%20with-Stylus-116b59.svg?longCache=true&style=flat)](https://coolify-tweaks-api.techwithanirudh.com/release/latest/?asset=main.user.css)
 
-2. If your Coolify instance runs on a custom domain, open the style’s **Settings** and add a wildcard entry under **Custom included sites** so the CSS can load everywhere you reach the dashboard:
+2. If your Coolify instance runs on a custom domain, open the style's **Settings** and add a wildcard entry under **Custom included sites** so the CSS can load everywhere you reach the dashboard:
+
+   <img src="/assets/stylus-settings.png" alt="Stylus Settings" className="h-128 mx-auto rounded-xl dark:invert" />
 
    ```css
    *://your.coolify.host:8000/*
@@ -26,7 +28,7 @@ Stylus is the quickest way to get Coolify Tweaks running inside your browser. It
 
 3. Enable **Instant Mode** in Stylus so the style injects immediately instead of waiting for DOM stabilization. This prevents visual glitches while Stylus applies the tweak.
 
-4. (Optional) Use Stylus’s **Advanced** pane to disable caching or manual updates when you are experimenting with custom themes.
+   <img src="/assets/stylus-instant-mode.png" alt="Stylus Instant Mode" className="h-128 mx-auto rounded-xl invert dark:invert-0" />
 
 ## Custom themes via TweakCN
 
@@ -42,6 +44,5 @@ More information about custom themes can be found in the [Theming](/docs/style/t
 
 ## Troubleshooting
 
-- **Styles not injecting**: Enable “Allow cross-site requests” in Stylus and refresh the tab.
 - **Host not matched**: Confirm the wildcard entry covers your domain/port (e.g., `*://coolify.local:*/*`).
-- **Theme seems stale**: Reinstall the style from the badge or disable and re-enable Instant Mode.
+- **Theme seems stale**: Reinstall the style from the badge, and force-reload the page.

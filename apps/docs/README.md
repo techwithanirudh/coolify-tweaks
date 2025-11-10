@@ -1,6 +1,6 @@
-# Coolify Tweaks Web
+# Coolify Tweaks Docs
 
-The web app is the landing page for Coolify Tweaks. It shares packages from the Turborepo and consumes the compiled style during development.
+The docs app is the landing + docs page for Coolify Tweaks. It shares packages from the Turborepo and consumes the compiled style during development.
 
 ## Getting Started
 
@@ -24,12 +24,11 @@ The app runs on `http://localhost:3000` by default. Environment variables can be
 - Next.js 15 with React 19
 - Tailwind CSS v4 (using shared config in `tooling/tailwind`)
 - Shared UI primitives sourced from `packages/ui`
-- Drizzle ORM integration via `packages/db`
 
 ## Project Structure
 
 ```text
-apps/web
+apps/docs
 ├── public/           # static assets
 ├── src/              # application source
 ├── tsconfig.json
@@ -41,8 +40,8 @@ apps/web
 
 You can deploy the web app to Vercel or any platform that supports Next.js 15. When using Vercel:
 
-1. Set the project root to `apps/web`.
-2. Add required environment variables (e.g., `POSTGRES_URL`) to the project.
+1. Set the project root to `apps/docs`.
+2. Add required environment variables (e.g., `OPENAI_API_KEY`) to the project.
 3. Deploy via `vercel` CLI or Git integration.
 
 ## Contributing

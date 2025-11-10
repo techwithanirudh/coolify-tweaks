@@ -5,7 +5,8 @@
     "jsx": "preserve",
     "paths": {
       "@/*": ["./src/*"],
-      "@/.source": ["./.source/index.ts"]
+      "@/.source": ["./.source/index.ts"],
+      "@/public/*": ["./public/*"]
     },
     "plugins": [{ "name": "next" }]
   },

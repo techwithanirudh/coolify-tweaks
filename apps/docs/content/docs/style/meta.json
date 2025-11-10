@@ -5,16 +5,14 @@
   "icon": "Palette",
   "root": true,
   "pages": [
-    "---Getting Started---",
     "index",
+    "changelog",
+    "screenshots",
     "---Installation---",
     "...installation",
     "---Usage---",
     "updating",
     "theming",
-    "screenshots",
-    "---Changelog---",
-    "changelog",
     "---Contributing---",
     "contributing"
   ]
