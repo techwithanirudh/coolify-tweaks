@@ -77,7 +77,7 @@ export async function build(
     const targets = browserslistToTargets(browserslist(blQueries));
     const lightningResult = lcTransform({
       filename: SRC,
-      code: Buffer.from(sassResult.css),
+      code: Buffer.from(sassResult.css!),
       minify: MINIFY,
       sourceMap: true,
       targets,
@@ -162,14 +162,14 @@ if (import.meta.main) {
     .allowUnknownOption(false)
     .parse(process.argv);
 
-  const cli = program.opts<{
+  const cli = program.opts() as {
     src: string;
     out: string;
     loadPath: string;
     minify: boolean;
     format: boolean;
     silent: boolean;
-  }>();
+  };
 
   build({
     src: cli.src,

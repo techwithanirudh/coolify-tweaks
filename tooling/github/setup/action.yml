@@ -19,7 +19,7 @@ runs:
     - name: Create environment variables file
       shell: bash
       run: |
-        cat << EOF > .env.local
+        cat << EOF > .env
         OPENAI_API_KEY=sk-proj-1234567890
         NEXT_PUBLIC_API_URL=http://localhost:3001
         NEXT_PUBLIC_DOCS_URL=http://localhost:3002
