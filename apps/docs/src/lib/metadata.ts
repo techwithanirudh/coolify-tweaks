@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { env } from '@/env'
 import { title } from '@/lib/layout.shared'
+import type { Page } from './source'
 
 export function createMetadata(override: Metadata): Metadata {
   return {
@@ -21,6 +22,14 @@ export function createMetadata(override: Metadata): Metadata {
       images: '/banner.png',
       ...override.twitter,
     },
+  }
+}
+
+export function getPageImage(page: Page) {
+  const segments = [...page.slugs, 'image.png']
+  return {
+    segments,
+    url: `/og/${segments.join('/')}`,
   }
 }
 

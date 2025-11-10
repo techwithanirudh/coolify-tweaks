@@ -14,7 +14,7 @@ servers:
     description: Production server
   - url: 'http://localhost:3001'
     description: Local development server
-  - url: '{protocol}://{domain}/api'
+  - url: '{protocol}://{domain}'
     description: Custom Name
     variables:
       protocol:
@@ -78,7 +78,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /api/health:
+  /health:
     get:
       summary: Health check
       description: Returns service status information for monitoring.
@@ -95,7 +95,7 @@ paths:
               examples:
                 default_example:
                   $ref: '#/components/examples/HealthResponseExample'
-  /api/:
+  /:
     get:
       summary: API information
       description: Returns basic information about the API service.

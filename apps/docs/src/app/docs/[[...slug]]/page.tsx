@@ -17,7 +17,7 @@ import {
   HoverCardTrigger,
 } from '@repo/ui/hover-card'
 import { owner, repo } from '@/lib/github'
-import { createMetadata } from '@/lib/metadata'
+import { createMetadata, getPageImage } from '@/lib/metadata'
 import { source } from '@/lib/source'
 import { getMDXComponents } from '@/mdx-components'
 
@@ -139,7 +139,7 @@ export async function generateMetadata(
     page.data.description ?? 'The library for building documentation sites'
 
   const image = {
-    url: ['/og', ...slug, 'image.webp'].join('/'),
+    url: getPageImage(page).url,
     width: 1200,
     height: 630,
   }

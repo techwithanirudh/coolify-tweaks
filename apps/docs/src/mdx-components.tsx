@@ -1,4 +1,3 @@
-import { APIPage } from 'fumadocs-openapi/ui'
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion'
 import { Banner } from 'fumadocs-ui/components/banner'
 import { Callout } from 'fumadocs-ui/components/callout'
@@ -9,9 +8,9 @@ import defaultMdxComponents from 'fumadocs-ui/mdx'
 import * as icons from 'lucide-react'
 import type { MDXComponents } from 'mdx/types'
 import type { ComponentProps, FC } from 'react'
+import { APIPage } from '@/components/api-page'
 import { Update, Updates } from '@/components/fumadocs/updates'
 import { Mermaid } from '@/components/mdx/mermaid'
-import { openapi } from '@/lib/openapi'
 
 export function getMDXComponents(components?: MDXComponents) {
   return {
@@ -27,7 +26,7 @@ export function getMDXComponents(components?: MDXComponents) {
     TypeTable,
     Callout,
     blockquote: Callout as unknown as FC<ComponentProps<'blockquote'>>,
-    APIPage: (props) => <APIPage {...openapi.getAPIPageProps(props)} />,
+    APIPage,
     Banner,
     ...components,
   } satisfies MDXComponents

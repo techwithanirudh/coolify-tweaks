@@ -34,13 +34,14 @@
     "@takumi-rs/helpers": "^0.40.1",
     "@takumi-rs/image-response": "^0.40.1",
     "ai": "^5.0.85",
-    "fumadocs-core": "^16.0.5",
-    "fumadocs-docgen": "^3.0.3",
-    "fumadocs-mdx": "^13.0.2",
-    "fumadocs-openapi": "^9.7.1",
-    "fumadocs-twoslash": "^3.1.9",
-    "fumadocs-typescript": "^4.0.12",
-    "fumadocs-ui": "^16.0.5",
+    "class-variance-authority": "^0.7.1",
+    "fumadocs-core": "^16.0.8",
+    "fumadocs-docgen": "^3.0.4",
+    "fumadocs-mdx": "^13.0.5",
+    "fumadocs-openapi": "^10.0.2",
+    "fumadocs-twoslash": "^3.1.10",
+    "fumadocs-typescript": "^4.0.13",
+    "fumadocs-ui": "^16.0.8",
     "hast-util-to-jsx-runtime": "^2.3.6",
     "jiti": "^2.5.1",
     "katex": "^0.16.25",
@@ -76,6 +77,7 @@
     "@repo/tsconfig": "workspace:*",
     "@types/bun": "catalog:",
     "@types/hast": "^3.0.4",
+    "@types/mdast": "^4.0.4",
     "@types/mdx": "^2.0.13",
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",
@@ -95,9 +97,6 @@
   },
   "peerDependencies": {
     "ajv": "^8.17.1"
-  },
-  "engines": {
-    "node": ">=22"
   },
   "trustedDependencies": [
     "@tailwindcss/oxide",

@@ -58,38 +58,5 @@
     "typescript": "catalog:"
   },
   "prettier": "@repo/prettier-config",
-  "workspaces": {
-    "packages": [
-      "apps/*",
-      "packages/*",
-      "tooling/*"
-    ],
-    "catalog": {
-      "@eslint/js": "^9.38.0",
-      "@tailwindcss/postcss": "^4.1.16",
-      "@tailwindcss/vite": "^4.1.16",
-      "@tanstack/react-form": "^1.23.8",
-      "@types/node": "^22.18.12",
-      "@vitejs/plugin-react": "5.1.0",
-      "eslint": "^9.38.0",
-      "prettier": "^3.6.2",
-      "tailwindcss": "^4.1.16",
-      "typescript": "^5.9.3",
-      "zod": "^4.1.12",
-      "vite": "7.1.12"
-    },
-    "catalogs": {
-      "react19": {
-        "@types/react": "^19.1.12",
-        "@types/react-dom": "^19.1.9",
-        "react": "19.1.1",
-        "react-dom": "19.1.1"
-      }
-    }
-  },
-  "overrides": {
-    "@types/minimatch": "5.1.2",
-    "vite": "7.1.12"
-  },
   "packageManager": "pnpm@10.19.0"
 }
