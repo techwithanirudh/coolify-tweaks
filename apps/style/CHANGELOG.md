@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- feat: add support for injectio
+- feat: add support for injection
 
 ## 3.9.5
 
