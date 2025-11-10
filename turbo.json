@@ -51,6 +51,9 @@
   },
   "globalEnv": [
     "POSTGRES_URL",
+    "OPENAI_API_KEY",
+    "NEXT_PUBLIC_API_URL",
+    "NEXT_PUBLIC_DOCS_URL",
     "PORT"
   ],
   "globalPassThroughEnv": [
