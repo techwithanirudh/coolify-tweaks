@@ -1,4 +1,5 @@
 import { createOpenAPI } from "fumadocs-openapi/server";
+
 import { env } from "@/env";
 
 const API_URL = env.NEXT_PUBLIC_API_URL;

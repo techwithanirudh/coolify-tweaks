@@ -4,5 +4,12 @@
   "description": "Coolify Tweaks's API",
   "root": true,
   "icon": "Webhook",
-  "pages": ["---Introduction---", "index", "---API Reference---", "...(generated)", "---Deployment---", "deployment"]
+  "pages": [
+    "---Introduction---",
+    "index",
+    "---API Reference---",
+    "...(generated)",
+    "---Deployment---",
+    "deployment"
+  ]
 }

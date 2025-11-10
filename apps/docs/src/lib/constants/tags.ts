@@ -18,5 +18,5 @@ export const tags: Tag[] = [
     name: "API",
     description: "Only results about the API",
     value: "api",
-  }
+  },
 ];

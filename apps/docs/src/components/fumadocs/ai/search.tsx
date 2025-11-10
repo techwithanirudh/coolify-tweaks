@@ -317,8 +317,7 @@ function ToolRenderer({
   const toolName = part.type.replace("tool-", "");
   const input = part.input;
   const output = part.output;
-  const errorText =
-    "errorText" in part ? (part.errorText) : undefined;
+  const errorText = "errorText" in part ? part.errorText : undefined;
 
   const getToolIcon = () => {
     switch (toolName) {

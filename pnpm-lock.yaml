@@ -363,6 +363,9 @@ importers:
       dotenv-cli:
         specifier: ^10.0.0
         version: 10.0.0
+      eslint:
+        specifier: 'catalog:'
+        version: 9.38.0(jiti@2.6.1)
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3

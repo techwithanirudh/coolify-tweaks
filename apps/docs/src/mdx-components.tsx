@@ -4,6 +4,7 @@ import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import { Banner } from "fumadocs-ui/components/banner";
 import { Callout } from "fumadocs-ui/components/callout";
 import * as FilesComponents from "fumadocs-ui/components/files";
+import * as StepsComponents from "fumadocs-ui/components/steps";
 import * as TabsComponents from "fumadocs-ui/components/tabs";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 import defaultMdxComponents from "fumadocs-ui/mdx";
@@ -12,7 +13,6 @@ import * as icons from "lucide-react";
 import { APIPage } from "@/components/api-page";
 import { Update, Updates } from "@/components/fumadocs/updates";
 import { Mermaid } from "@/components/mdx/mermaid";
-import * as StepsComponents from "fumadocs-ui/components/steps";
 
 export function getMDXComponents(components?: MDXComponents) {
   return {
@@ -31,7 +31,9 @@ export function getMDXComponents(components?: MDXComponents) {
     blockquote: Callout as unknown as FC<ComponentProps<"blockquote">>,
     APIPage,
     Banner,
-    img: (props: ComponentProps<"img">) => <img {...props} className="rounded-xl" />,
+    img: (props: ComponentProps<"img">) => (
+      <img {...props} className="rounded-xl" />
+    ),
     ...components,
   } satisfies MDXComponents;
 }

@@ -85,6 +85,7 @@
     "chokidar": "^4.0.3",
     "cspell": "catalog:",
     "dotenv-cli": "^10.0.0",
+    "eslint": "catalog:",
     "gray-matter": "^4.0.3",
     "next-validate-link": "^1.6.3",
     "prettier": "catalog:",

@@ -21,7 +21,8 @@ export async function generateDocs() {
     beforeWrite: (files) => {
       for (let i = files.length - 1; i >= 0; i--) {
         if (
-          files[i]!.path.includes("_docs") || files[i]!.path.includes("_nitro")
+          files[i]!.path.includes("_docs") ||
+          files[i]!.path.includes("_nitro")
         ) {
           files.splice(i, 1);
         }

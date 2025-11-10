@@ -3,8 +3,5 @@
   "title": "Installation",
   "description": "Install Coolify Tweaks",
   "icon": "Download",
-  "pages": [
-    "stylus",
-    "dynamic-config"
-  ]
+  "pages": ["stylus", "dynamic-config"]
 }

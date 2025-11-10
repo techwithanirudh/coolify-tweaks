@@ -16,7 +16,7 @@ export async function GET(
   const page = source.getPage(slug.slice(0, -1));
   if (!page) notFound();
   const slugs = page.slugs;
-  const tag = categories[slugs[0] ?? 'style'] ?? slugs[0];
+  const tag = categories[slugs[0] ?? "style"] ?? slugs[0];
 
   return new ImageResponse(
     (

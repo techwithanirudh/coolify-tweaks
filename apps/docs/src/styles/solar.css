@@ -1,5 +1,5 @@
 @theme {
-  --color-fd-article: oklch(0.982 0.010 286.7);
+  --color-fd-article: oklch(0.982 0.01 286.7);
 }
 
 :root {
@@ -9,7 +9,7 @@
 }
 
 .dark {
-  --color-fd-article: oklch(0.30 0.020 300);
+  --color-fd-article: oklch(0.3 0.02 300);
 }
 
 @variant md {
