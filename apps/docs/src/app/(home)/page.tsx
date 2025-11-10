@@ -2,7 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import type { LinkProps } from "next/link";
 import type { ReactElement, ReactNode } from "react";
 import Link from "next/link";
-import { BookIcon, WebhookIcon } from "lucide-react";
+import { PaletteIcon, WebhookIcon } from "lucide-react";
 
 import { cn } from "@repo/ui";
 
@@ -18,10 +18,10 @@ export default function DocsPage(): ReactElement {
 
       <div className="mt-8 grid grid-cols-1 gap-4 text-left md:grid-cols-2">
         <DocumentationItem
-          title="Documentation"
-          description="Get started with the Fumadocs framework."
-          icon={{ icon: BookIcon, id: "(index)" }}
-          href="/docs"
+          title="Style"
+          description="Get started with the Style framework."
+          icon={{ icon: PaletteIcon, id: "style" }}
+          href="/docs/style"
         />
 
         <DocumentationItem

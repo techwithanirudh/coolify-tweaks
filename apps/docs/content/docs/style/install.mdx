@@ -1,0 +1,61 @@
+---
+title: Installing Coolify Tweaks
+description: Add the userstyle via Stylus, customize the included sites, and apply TweakCN palettes.
+icon: Download
+---
+
+## Install with Stylus
+
+1. Install the [Stylus extension](https://add0n.com/stylus.html) for your browser.
+2. Click the badge below to add the style. Stylus will fetch the latest release automatically.
+
+   [![install with Stylus](https://img.shields.io/badge/Install%20directly%20with-Stylus-116b59.svg?longCache=true&style=flat)](https://coolify-tweaks-api.techwithanirudh.com/release/latest/?asset=main.user.css)
+
+3. If your Coolify instance uses a custom hostname, open Stylus, edit the style’s **Settings**, and add a wildcard host to **Custom included sites**:
+
+   ```css
+   *://your.coolify.host:8000/*
+   ```
+
+   Replace the host above with your own IP/port, then click **Save**.
+
+4. If styling seems slow or inconsistent, enable **Instant Mode** in Stylus so the CSS injects immediately instead of waiting for the DOM to settle.
+
+## Stylus Settings
+
+<div class="flex flex-col gap-2">
+  <img alt="Stylus Settings" src="/assets/stylus-settings.png" class="rounded-xl border" />
+  <img alt="Stylus Instant Mode" src="/assets/stylus-instant-mode.png" class="rounded-xl border" />
+</div>
+
+## Theme customisation with TweakCN
+
+Coolify Tweaks delegates theming to [TweakCN](https://tweakcn.com). To apply a custom palette:
+
+1. Browse themes or build your own at [https://tweakcn.com/editor/theme](https://tweakcn.com/editor/theme).
+2. Click **Share**, copy the theme ID (e.g. `bubblegum`, `claude`, or a long hash), and append it to the installation URL.
+3. Install the themed version of the style by pointing Stylus at:
+
+   ```txt
+   https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=THEME_ID&asset=main.user.css
+   ```
+
+   Be sure the `theme` query parameter appears before `asset=main.user.css`, otherwise Stylus might treat the URL as a different style.
+
+## Troubleshooting
+
+- **Styles not applying?**
+  - Confirm Stylus has `Accept cross-site requests` enabled.
+  - Re-run the install badge to refresh the CSS.
+  - Disable conflicting extensions/styles.
+- **Theme looks wrong?** Refresh the page or re-save the style so the new theme loads.
+- **Layout still feels tight?** Try clearing the browser cache and restarting the tab.
+
+## Video walkthrough
+
+[![Watch the video](https://i.ibb.co/FLxtT5Y2/Clean-Shot-2025-10-24-at-11-14-01-2x.png)](https://fixupx.com/AnirudhWith/status/1981595703978713311.mp4)
+
+## Next steps
+
+- [Install with Traefik](/docs/traefik)
+- [Preview the before/after screenshots](/docs/screenshots)

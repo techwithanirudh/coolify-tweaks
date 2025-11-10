@@ -10,6 +10,6 @@ export const { GET } = createSearchAPI("advanced", {
     url: page.url,
     id: page.url,
     structuredData: page.data.structuredData ?? undefined,
-    tag: page.path.split("/")[0],
+    tag: page.slugs[0],
   })),
 });

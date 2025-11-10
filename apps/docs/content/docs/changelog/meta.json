@@ -1,7 +1,0 @@
-{
-  "title": "Changelog",
-  "description": "Updates and changes",
-  "icon": "History",
-  "root": true,
-  "pages": ["---Changelog---", "index", "..."]
-}

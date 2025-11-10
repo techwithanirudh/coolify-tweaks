@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../../.source/json-schema/docs.meta.json",
+  "title": "Installation",
+  "description": "Install Coolify Tweaks",
+  "icon": "Download",
+  "pages": [
+    "stylus",
+    "dynamic-config"
+  ]
+}

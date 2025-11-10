@@ -4,8 +4,8 @@ import { categories } from "@/lib/constants";
 import { owner, repo } from "@/lib/github";
 
 export async function getLLMText(page: Page) {
-  const slugs = page.path.split("/");
-  const category = categories[slugs[0]] ?? slugs[0];
+  const slugs = page.slugs;
+  const category = categories[slugs[0] ?? 'style'] ?? slugs[0];
 
   const processed = await page.data.getText("processed");
   const path = `content/docs/${page.path}`;

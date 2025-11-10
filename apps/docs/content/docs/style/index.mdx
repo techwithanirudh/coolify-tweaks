@@ -1,0 +1,33 @@
+---
+title: Introduction
+description: A brief overview of Coolify Tweaks, and how it works.
+icon: Album
+---
+
+## Introduction
+
+Coolify Tweaks is a userstyle that softens the edges of Coolify's dashboard with better spacing, typography, and color graduation. The goal is not to rebuild the UI but to make everything feel more intentional—so your control plane can stay useful without seeming cramped.
+
+> Coolify Tweaks is not affiliated with Coolify or its developers. It is a standalone project that styles the dashboard on your behalf.
+
+## How does it work?
+
+There are two supported install paths today:
+
+- **Stylus (browser extension)** injects the CSS on load, so every refresh floats the polished theme right on top of Coolify.
+- **Dynamic Config (Traefik rewrite)** rewrites Coolify’s HTML responses, which means every browser and device hitting your dashboard picks up the tweak without installing anything extra.
+
+When you need to ship the polish everywhere, the Traefik route is the most comprehensive. When you want to experiment or keep things simple, Stylus stays quick and reversible.
+
+## Quick start
+
+Pick the workflow that matches your setup:
+
+<Cards>
+  <Card href="/docs/installation/stylus" title="Stylus" icon={<Palette />}>
+    Install the userstyle via Stylus, add your host, and enable Instant Mode for consistent renders.
+  </Card>
+  <Card href="/docs/installation/dynamic-config" title="Dynamic Config" icon={<Settings2 />}>
+    Inject the tweaks through Traefik’s `rewrite-body` plugin so every dashboard response includes the CSS.
+  </Card>
+</Cards>

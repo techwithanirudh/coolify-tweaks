@@ -6,7 +6,7 @@ export const revalidate = false;
 export async function GET() {
   const scan = source
     .getPages()
-    .filter((page) => page.path.split("/")[0] !== "api-reference")
+    .filter((page) => page.slugs[0] !== "api-reference")
     .map(getLLMText);
   const scanned = await Promise.all(scan);
 

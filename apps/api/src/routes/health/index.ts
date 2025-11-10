@@ -26,7 +26,7 @@ defineRouteMeta({
                 timestamp: {
                   type: "string",
                   format: "date-time",
-                  example: "2024-01-15T10:30:00.000Z",
+                  example: "2025-01-01T00:00:00Z",
                 },
               },
               required: ["status", "message", "timestamp"],
@@ -37,7 +37,7 @@ defineRouteMeta({
                 value: {
                   status: "ok",
                   message: "Server is running",
-                  timestamp: "2024-01-15T10:30:00.000Z",
+                  timestamp: "2025-01-01T00:00:00Z",
                 },
               },
             },

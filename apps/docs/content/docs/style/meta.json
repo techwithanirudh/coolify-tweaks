@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../.source/json-schema/docs.meta.json",
+  "title": "Style",
+  "description": "The style framework",
+  "icon": "Palette",
+  "root": true,
+  "pages": [
+    "---Getting Started---",
+    "index",
+    "---Installation---",
+    "...installation"
+  ]
+}

@@ -24,10 +24,9 @@ export default function Layout({ children }: LayoutProps<"/docs">) {
             const meta = source.getNodeMeta(node);
             if (!meta || !node.icon) return option;
 
-            const segments = meta.path.split("/");
-            const segment = serializeSegment(segments[0]);
-
+            const segment = meta.path.split("/")[0];
             const color = `var(--${segment}-color, var(--color-fd-foreground))`;
+
             return {
               ...option,
               icon: (
@@ -72,16 +71,4 @@ export default function Layout({ children }: LayoutProps<"/docs">) {
       <AISearchTrigger />
     </DocsLayout>
   );
-}
-
-function serializeSegment(segment: string | undefined): string {
-  const raw = (segment ?? "").trim();
-
-  const kebab = raw
-    .toLowerCase()
-    .replace(/[_\s]+/g, "-")
-    .replace(/[^a-z0-9-]/g, "")
-    .replace(/^-+/, "")
-    .replace(/-+$/, "");
-  return kebab || "fd";
 }

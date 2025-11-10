@@ -13,7 +13,7 @@ const server = initAdvancedSearch({
     description: page.data.description,
     structuredData: page.data.structuredData,
     url: page.url,
-    tag: page.path.split("/")[0],
+    tag: page.slugs[0],
   })),
 });
 

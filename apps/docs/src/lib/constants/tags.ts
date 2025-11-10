@@ -10,18 +10,13 @@ export const tags: Tag[] = [
     value: undefined,
   },
   {
-    name: "Home",
-    description: "Only results about the main documentation page",
-    value: "(index)",
+    name: "Style",
+    description: "Only results about the style",
+    value: "style",
   },
   {
     name: "API Reference",
     description: "Only results about the API reference",
     value: "api-reference",
-  },
-  {
-    name: "Changelog",
-    description: "Only results about the changelog",
-    value: "changelog",
-  },
+  }
 ];
