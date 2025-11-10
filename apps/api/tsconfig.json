@@ -1,12 +1,24 @@
 {
-  "extends": ["@repo/tsconfig/base.json", "./.nitro/types/tsconfig.json"],
+  "extends": "@repo/tsconfig/base.json",
   "compilerOptions": {
+    "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "noEmit": true,
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.api.tsbuildinfo",
-    "strictNullChecks": true,
-    "types": ["nitropack", "node"]
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "jsx": "preserve",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    // Additional Safety
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "useUnknownInCatchVariables": true,
+    "noUnusedLocals": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["server", "nitro.config.ts", ".nitro/types/**/*.d.ts"]
+  "include": ["src", "nitro.config.ts"],
+  "exclude": ["node_modules"]
 }

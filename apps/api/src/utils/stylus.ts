@@ -1,8 +1,8 @@
-import type { H3Event } from "h3";
-import type { RegistryItem } from "shadcn/registry";
-import { createError, getQuery, getRequestURL } from "h3";
-import { ofetch } from "ofetch";
-import { registryItemSchema } from "shadcn/registry";
+import type { H3Event } from "nitro/h3";
+import type { RegistryItem } from "shadcn/schema";
+import { getQuery, getRequestURL, HTTPError } from "nitro/h3";
+import { $fetch } from "nitro/deps/ofetch";
+import { registryItemSchema } from "shadcn/schema";
 
 import { transformCss } from "./css-compiler";
 import { cssVarsToCss } from "./css-transformer";
@@ -29,14 +29,14 @@ export async function getThemeCss(themeId: string): Promise<string | null> {
   const url = buildThemeUrl(themeId);
 
   try {
-    const theme = await ofetch<RegistryItem>(url, {
+    const theme = await $fetch<RegistryItem>(url, {
       retry: 0,
       ignoreResponseError: true,
     });
 
     const parsed = registryItemSchema.safeParse(theme);
     if (!parsed.success) {
-      throw createError({
+      throw new HTTPError({
         statusCode: 400,
         statusMessage: "Invalid theme data",
         data: parsed.error.issues,
@@ -46,7 +46,7 @@ export async function getThemeCss(themeId: string): Promise<string | null> {
     const registryItem = parsed.data;
     return cssVarsToCss(registryItem.cssVars ?? {});
   } catch {
-    throw createError({
+    throw new HTTPError({
       statusCode: 404,
       statusMessage: `Theme not found: ${themeId}`,
     });
@@ -70,14 +70,14 @@ export async function processContent({
   event: H3Event;
 }): Promise<string | null | undefined> {
   const { theme, asset = "main.user.css" } =
-    getQuery<Record<string, string>>(event);
+    getQuery(event) as Record<string, string>;
 
   let result = content;
 
   if (theme && asset === "main.user.css") {
     const css = await getThemeCss(theme);
     if (!css) {
-      throw createError({
+      throw new HTTPError({
         statusCode: 404,
         statusMessage: `CSS not found for theme: ${theme}`,
       });

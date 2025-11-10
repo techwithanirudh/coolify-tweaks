@@ -1,17 +1,16 @@
 import {
-  createError,
-  defineEventHandler,
   getQuery,
   getRouterParam,
-  processContent,
-} from "#imports";
-import { setHeader } from "h3";
-import mime from "mime";
-import { ofetch } from "ofetch";
+  H3Event,
+  HTTPError,
+} from "nitro/h3";
+import { lookup as getType } from "mime-types";
+import { processContent } from "@/utils/stylus";
+import { $fetch } from "nitro/deps/ofetch";
 
-import { allowedHeaders, owner, repo } from "~/config";
+import { allowedHeaders, owner, repo } from "@/config";
 
-export default defineEventHandler(async (event) => {
+export default async (event: H3Event) => {
   const tag = getRouterParam(event, "tag");
   const assetParam = getQuery(event).asset;
   const asset =
@@ -20,7 +19,7 @@ export default defineEventHandler(async (event) => {
       : "main.user.css";
 
   if (!(tag && asset)) {
-    throw createError({
+    throw new HTTPError({
       status: 400,
       statusMessage: "Bad Request",
       message: "Invalid input",
@@ -40,7 +39,7 @@ export default defineEventHandler(async (event) => {
       status,
       statusText,
       ok,
-    } = await ofetch.raw(url, {
+    } = await $fetch.raw(url, {
       method: "GET",
       responseType: "text",
       ignoreResponseError: true,
@@ -49,7 +48,7 @@ export default defineEventHandler(async (event) => {
     });
 
     if (!ok) {
-      throw createError({
+      throw new HTTPError({
         status,
         statusMessage: statusText,
         message: `GitHub returned ${status}: ${statusText}`,
@@ -60,27 +59,27 @@ export default defineEventHandler(async (event) => {
     const contentText = typeof content === "string" ? content : "";
     const processed = await processContent({ content: contentText, event });
 
-    const detected = mime.getType(asset);
+    const detected = getType(asset);
 
-    setHeader(event, "Content-Type", detected ?? "application/octet-stream");
-    setHeader(event, "X-Proxy-Host", "github.com");
+    event.res.headers.set("Content-Type", detected || "application/octet-stream");
+    event.res.headers.set("X-Proxy-Host", "github.com");
 
     const headers = new Headers(rawHeaders);
 
     for (const headerName of allowedHeaders) {
       const value = headers.get(headerName);
       if (value) {
-        setHeader(event, headerName, value);
+        event.res.headers.set(headerName, value);
       }
     }
 
     return processed;
   } catch (error) {
-    throw createError({
+    throw new HTTPError({
       status: 500,
       statusMessage: "Internal Server Error",
       message: `${error instanceof Error ? error.message : "Unknown error"}`,
       data: { url, tag },
     });
   }
-});
+};

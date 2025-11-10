@@ -1,9 +1,7 @@
-import { defineEventHandler } from "#imports";
-
-export default defineEventHandler((_event) => {
+export default () => {
   return {
     status: "ok",
     message: "Server is running",
     timestamp: new Date().toISOString(),
   };
-});
+};

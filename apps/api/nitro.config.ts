@@ -1,13 +1,13 @@
-import { defineNitroConfig } from "nitropack/config";
+import { defineNitroConfig } from "nitro/config";
+import { fileURLToPath } from "node:url";
 
 export default defineNitroConfig({
-  srcDir: "server",
-  compatibilityDate: "2025-07-15",
-  imports: {
-    autoImport: false,
-  },
+  srcDir: "src",
   experimental: {
     openAPI: true,
+  },
+  alias: {
+    '@': fileURLToPath(new URL('./src', import.meta.url)),
   },
   openAPI: {
     route: "/_docs/openapi.json",
@@ -18,8 +18,7 @@ export default defineNitroConfig({
     },
     ui: {
       scalar: {
-        route: "/_docs/scalar",
-        theme: "purple",
+        route: "/_docs/scalar"
       },
       swagger: {
         route: "/_docs/swagger",
