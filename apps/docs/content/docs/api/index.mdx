@@ -1,7 +1,33 @@
 ---
 title: Introduction
-description: This is a page to check fumadocs's OpenAPI example.
+description: This is the introduction to the API.
 icon: Book
 ---
 
-Welcome to the OpenAPI example! You can update the openapi in the 'openapi.yml' file.
+Coolify Tweaks API is a lightweight Nitro server that serves `coolify-tweaks` release assets with optional [TweakCN](https://tweakcn.com) theme injection. It keeps the userstyle install links fast, consistent, and free from GitHub CDN hiccups.
+
+The CDN is hosted on Vercel.
+
+## Why This Exists
+
+- **Bypass CDN quirks** – serve release assets directly without CORS surprises.
+- **Dynamic theme injection** – apply TweakCN themes on demand so every install link stays themed.
+- **Edge-friendly** – deploys on Vercel (Nitro) with smart caching and global reach.
+
+## Usage
+
+### `GET /release/:tag`
+
+Fetch a release asset (defaults to `main.user.css`) with optional theme injection.
+
+- `asset` – asset filename, defaults to `main.user.css`
+- `theme` – TweakCN theme identifier for CSS transformation
+
+Examples:
+
+- `/release/latest`
+- `/release/v3.8.10`
+- `/release/latest?theme=claude`
+- `/release/latest?asset=coolify-tweaks.zip`
+
+Check the API Reference for more details.

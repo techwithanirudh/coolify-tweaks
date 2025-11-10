@@ -26,18 +26,8 @@ Coolify Tweaks is a userstyle that layers polished spacing, typography, and colo
 
 1. Install [Stylus](https://add0n.com/stylus.html) in the browser you use for Coolify.
 2. Hit the Stylus badge above or visit `https://coolify-tweaks-api.techwithanirudh.com/release/latest/?asset=main.user.css` to install the latest build.
-3. Add your instance’s host to Stylus’s **Custom included sites** when Coolify does not run on `coolify.local`.
-4. Explore the live documentation site (see below) for theme IDs, Traefik injection, screenshots, and troubleshooting tips.
-
-## Documentation
-
-All user-facing docs now live inside `apps/docs` and are rendered through the Fumadocs-powered site. Run the docs stack locally with:
-
-```
-pnpm --filter @repo/docs dev
-```
-
-The site offers in-depth guidance on Stylus installs, TweakCN theming, Traefik injection, screenshot comparisons, and more.
+3. Add your instance's host to Stylus's **Custom included sites** when Coolify does not run on `coolify.local`.
+4. Explore the [live documentation site](https://coolify-tweaks.techwithanirudh.com) for theme IDs, Traefik injection, screenshots, and troubleshooting tips.
 
 ## Repository context
 

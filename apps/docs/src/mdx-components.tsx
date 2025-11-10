@@ -12,6 +12,7 @@ import * as icons from "lucide-react";
 import { APIPage } from "@/components/api-page";
 import { Update, Updates } from "@/components/fumadocs/updates";
 import { Mermaid } from "@/components/mdx/mermaid";
+import * as StepsComponents from "fumadocs-ui/components/steps";
 
 export function getMDXComponents(components?: MDXComponents) {
   return {
@@ -19,6 +20,7 @@ export function getMDXComponents(components?: MDXComponents) {
     ...defaultMdxComponents,
     ...TabsComponents,
     ...FilesComponents,
+    ...StepsComponents,
     Accordion,
     Accordions,
     Updates,

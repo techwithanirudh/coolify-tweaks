@@ -1,18 +1,50 @@
 ---
 title: Installing with Dynamic Config
-description: Install Coolify Tweaks with Dynamic Config
+description: Inject Coolify Tweaks through Traefik’s rewrite-body middleware.
 icon: Settings2
 ---
 
+## Introduction
+
+Dynamic Config lets Traefik rewrite HTML responses so Coolify Tweaks loads without a browser extension. Once configured, every browser, device, and automation hitting your dashboard will get the polish automatically.
+
 ## Prerequisites
 
-- [Dynamic Config](https://docs.coolify.io/docs/dynamic-config) enabled in your Coolify instance.
+- A Coolify deployment that already routes through Traefik (check `/data/coolify/proxy/docker-compose.yml`).
+- Access to the `/data/coolify/proxy/` directory so you can edit the compose and dynamic config files.
 
-## Installation
+## Manual installation
 
-### Manual Installation
+1. In `/data/coolify/proxy/docker-compose.yml`, add port `3000:3000`, enable the `rewrite-body` plugin, and declare a new `coolify_dashboard` entrypoint (keep your existing configuration untouched).
+2. Create `/data/coolify/proxy/dynamic/coolify-tweaks.yml` with a middleware chain that buffers the response, forces `Accept-Encoding: identity`, and rewrites `</head>` to include the `<link>` the plugin needs.
+3. Add a router that binds the `coolify_dashboard` entrypoint to the `coolify` instance using the middleware chain so the injected CSS is served at `http://<host>:3000`.
+4. Restart Traefik through the Coolify Proxy Settings to load the new compose and dynamic config.
+5. Visit `http://<host>:3000` and inspect the source to confirm the `<link rel="stylesheet" href="https://coolify-tweaks-api.techwithanirudh.com/release/latest/?asset=main.css">` tag appears before `</head>`.
 
-### Automatic Installation
+## Automatic installation
 
-### Troubleshooting
-- Dashboard not loading? Check your Traefik logs for rewrite errors.
+For domains already pointing to your Coolify instance (including webhooks or remote dashboards):
+
+- Add a second router (e.g., `coolify-https-inject`) bound to the `https` entrypoint.
+- Match the host (e.g., `Host(`coolify.yourdomain.com`) && !PathPrefix(`/app`, `/terminal/ws`)`) so only the regular pages get rewritten.
+- Reuse the same `coolify-tweaks` middleware chain so the CSS injects identically to the manual path.
+- With TLS handled by your existing resolver, visitors on HTTPS load the tweaked CSS without a custom port.
+
+## Custom themes via TweakCN
+
+If you want every visitor to enjoy a specific palette, update the injected URL to include `?theme=THEME_ID` (matching the ID you copied from [TweakCN](https://tweakcn.com/editor/theme)) and point at the `main.css` asset:
+
+```
+https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=THEME_ID&asset=main.css
+```
+
+Change the `<link>` tag you use to reflect the themed URL so Traefik serves the correct stylesheet.
+
+More information about custom themes can be found in the [Theming](/docs/style/theming) section.
+
+## Troubleshooting
+
+- **Ports missing**: Traefik needs port `3000` exposed for the dashboard entrypoint.
+- **No injected CSS**: Verify the middleware chain sets `Accept-Encoding: identity` so the HTML isn’t gzipped before rewrite.
+- **Rewrite plugin doesn’t load**: Look for `rewrite-body` initialization errors in the Traefik logs and ensure the plugin version matches `v1.2.0`.
+- **Need to rollback**: Delete `/data/coolify/proxy/dynamic/coolify-tweaks.yml`, remove the added ports/command flags from the compose file, and restart Traefik.
