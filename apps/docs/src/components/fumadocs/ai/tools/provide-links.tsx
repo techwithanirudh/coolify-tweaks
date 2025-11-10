@@ -7,9 +7,9 @@ import { cn } from "@repo/ui";
 
 type ProvideLinksInput = z.infer<typeof ProvideLinksToolSchema>;
 
-type ProvideLinksOutput = {
+interface ProvideLinksOutput {
   links?: ProvideLinksInput["links"];
-};
+}
 
 type ToolState =
   | "input-streaming"

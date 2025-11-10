@@ -4,29 +4,29 @@ import Link from "fumadocs-core/link";
 import { cn } from "@repo/ui";
 import { Skeleton } from "@repo/ui/skeleton";
 
-type SearchDocsInput = {
+interface SearchDocsInput {
   query: string;
   tag?: string;
   locale?: string;
   limit?: number;
-};
+}
 
-export type SearchDocsOutput = {
+export interface SearchDocsOutput {
   success: boolean;
-  data?: Array<{
+  data?: {
     id: string;
     url: string;
     title?: string;
     description?: string;
     content?: string;
-    contentWithHighlights?: Array<{
+    contentWithHighlights?: {
       type: string;
       content: string;
       styles?: { highlight?: boolean };
-    }>;
-  }>;
+    }[];
+  }[];
   total?: number;
-};
+}
 
 type ToolState =
   | "input-streaming"

@@ -1,7 +1,8 @@
 "use client"
 
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+import type * as React from "react"
+import { cva } from "class-variance-authority"
+import type { VariantProps } from "class-variance-authority"
 
 import { cn } from "@repo/ui"
 import { Button } from "@repo/ui/button"

@@ -42,7 +42,7 @@ export async function POST(request: Request) {
   const {
     messages,
   }: {
-    messages: Array<UIMessage>;
+    messages: UIMessage[];
   } = await request.json();
 
   const result = streamText({

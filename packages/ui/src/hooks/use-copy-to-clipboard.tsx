@@ -9,10 +9,15 @@ export interface useCopyToClipboardProps {
 export function useCopyToClipboard({
   timeout = 2000
 }: useCopyToClipboardProps) {
-  const [isCopied, setIsCopied] = React.useState<Boolean>(false)
+  const [isCopied, setIsCopied] = React.useState<boolean>(false)
 
   const copyToClipboard = (value: string) => {
-    if (typeof window === 'undefined' || !navigator.clipboard?.writeText) {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    if (!navigator.clipboard?.writeText) {
       return
     }
 
@@ -20,7 +25,7 @@ export function useCopyToClipboard({
       return
     }
 
-    navigator.clipboard.writeText(value).then(() => {
+    void navigator.clipboard.writeText(value).then(() => {
       setIsCopied(true)
 
       setTimeout(() => {

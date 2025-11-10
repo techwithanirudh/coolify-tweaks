@@ -315,17 +315,10 @@ function ToolRenderer({
 
   const { toolCallId, state } = part;
   const toolName = part.type.replace("tool-", "");
-  const input = part.input as unknown;
-  const output = part.output as unknown;
+  const input = part.input;
+  const output = part.output;
   const errorText =
-    "errorText" in part ? (part.errorText as string | undefined) : undefined;
-
-  const toolState =
-    (state as
-      | "input-streaming"
-      | "input-available"
-      | "output-available"
-      | "output-error") ?? "input-available";
+    "errorText" in part ? (part.errorText) : undefined;
 
   const getToolIcon = () => {
     switch (toolName) {
@@ -349,7 +342,7 @@ function ToolRenderer({
       case "searchDocs":
         return (
           <SearchDocsVisualizer
-            state={toolState}
+            state={state}
             input={input as { query?: string; tag?: string; locale?: string }}
             output={output as SearchDocsOutput | undefined}
           />
@@ -357,7 +350,7 @@ function ToolRenderer({
       case "getPageContent":
         return (
           <GetPageContentVisualizer
-            state={toolState}
+            state={state}
             input={input as { path?: string }}
             output={output as GetPageContentOutput | undefined}
           />
@@ -372,16 +365,16 @@ function ToolRenderer({
   return (
     <Tool key={toolCallId} open={isOpen} onOpenChange={setIsOpen}>
       <ToolHeader
-        state={toolState}
+        state={state}
         type={part.type as `tool-${string}`}
         icon={getToolIcon()}
       />
       <ToolContent>
-        {(toolState === "input-streaming" ||
-          toolState === "input-available" ||
-          toolState === "output-available") &&
+        {(state === "input-streaming" ||
+          state === "input-available" ||
+          state === "output-available") &&
           renderVisualizer()}
-        {toolState === "output-error" && (
+        {state === "output-error" && (
           <ToolOutput errorText={errorText} output={undefined} />
         )}
       </ToolContent>

@@ -4,14 +4,14 @@ import Link from "fumadocs-core/link";
 import { cn } from "@repo/ui";
 import { Skeleton } from "@repo/ui/skeleton";
 
-type GetPageContentInput = {
+interface GetPageContentInput {
   path: string;
-};
+}
 
-export type GetPageContentOutput = {
+export interface GetPageContentOutput {
   success: boolean;
   data?: string;
-};
+}
 
 type ToolState =
   | "input-streaming"
