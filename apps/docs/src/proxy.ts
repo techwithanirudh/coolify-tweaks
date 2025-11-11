@@ -2,6 +2,7 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { isMarkdownPreferred, rewritePath } from "fumadocs-core/negotiation";
 
+// eslint-disable-next-line @typescript-eslint/unbound-method
 const { rewrite: rewriteLLM } = rewritePath("/docs/*path", "/llms.mdx/*path");
 
 export default function proxy(request: NextRequest) {

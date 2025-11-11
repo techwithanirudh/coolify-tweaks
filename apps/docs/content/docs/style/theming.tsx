@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CheckIcon, CopyIcon } from "lucide-react";
 import { useLocalStorage } from "usehooks-ts";
 
@@ -29,9 +29,11 @@ export function ThemeConfigCard() {
   const [mounted, setMounted] = useState(false);
   const { copyToClipboard, isCopied } = useCopyToClipboard({ timeout: 2000 });
 
-  useLayoutEffect(() => {
+  /* eslint-disable react-hooks/set-state-in-effect -- mounted state initialization */
+  useEffect(() => {
     setMounted(true);
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
     if (themeId.trim()) return;
