@@ -1,11 +1,10 @@
 import { lookup as getType } from "mime-types";
-import { $fetch } from "nitro/deps/ofetch";
-import { getQuery, getRouterParam, HTTPError } from "nitro/h3";
 import { defineRouteMeta } from "nitro";
+import { $fetch } from "nitro/deps/ofetch";
+import { defineHandler, getQuery, getRouterParam, HTTPError } from "nitro/h3";
 
 import { allowedHeaders, owner, repo } from "@/config";
 import { processContent } from "@/utils/stylus";
-import { defineHandler } from "nitro/h3";
 
 defineRouteMeta({
   openAPI: {

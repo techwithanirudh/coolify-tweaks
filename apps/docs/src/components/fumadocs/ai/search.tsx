@@ -506,11 +506,7 @@ export function AISearchTrigger() {
               {chat.messages
                 .filter((msg) => msg.role !== "system")
                 .map((item) => (
-                  <Message
-                    key={item.id}
-                    message={item}
-                    status={chat.status}
-                  />
+                  <Message key={item.id} message={item} status={chat.status} />
                 ))}
             </div>
           </List>

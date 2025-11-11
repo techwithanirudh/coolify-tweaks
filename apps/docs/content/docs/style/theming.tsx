@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { CheckIcon, CopyIcon } from "lucide-react";
+import { useLocalStorage } from "usehooks-ts";
 
 import { Button } from "@repo/ui/button";
 import { ButtonGroup } from "@repo/ui/button-group";
@@ -16,15 +17,8 @@ import {
 } from "@repo/ui/input-group";
 import { Label } from "@repo/ui/label";
 import { Skeleton } from "@repo/ui/skeleton";
-import { useLocalStorage } from 'usehooks-ts'
 
-const placeholders = [
-  "claude",
-  "caffeine",
-  "cyberpunk",
-  "violet-bloom",
-  "cmh4ecxjc000404l78qwda7o0",
-];
+const placeholders = ["claude", "caffeine", "cyberpunk", "violet-bloom"];
 
 export type Mode = "stylus" | "dynamic";
 
@@ -35,7 +29,7 @@ export function ThemeConfigCard() {
   const [mounted, setMounted] = useState(false);
   const { copyToClipboard, isCopied } = useCopyToClipboard({ timeout: 2000 });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setMounted(true);
   }, []);
 
@@ -51,9 +45,14 @@ export function ThemeConfigCard() {
 
   const generatedUrl = useMemo(() => {
     if (themeId.trim()) {
-      const url = new URL(`https://coolify-tweaks-api.techwithanirudh.com/release/latest/`);
-      url.searchParams.set('theme', themeId.trim());
-      url.searchParams.set('asset', mode === "dynamic" ? "main.css" : "main.user.css");
+      const url = new URL(
+        `https://coolify-tweaks-api.techwithanirudh.com/release/latest/`,
+      );
+      url.searchParams.set("theme", themeId.trim());
+      url.searchParams.set(
+        "asset",
+        mode === "dynamic" ? "main.css" : "main.user.css",
+      );
       return url.toString();
     }
     return "";
@@ -75,20 +74,22 @@ export function ThemeConfigCard() {
             <ButtonGroup>
               <Button
                 onClick={() => setMode("stylus")}
-                className={`transition-all ${mode === "stylus"
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:bg-accent"
-                  }`}
+                className={`transition-all ${
+                  mode === "stylus"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground hover:bg-accent"
+                }`}
                 size="sm"
               >
                 Stylus
               </Button>
               <Button
                 onClick={() => setMode("dynamic")}
-                className={`transition-all ${mode === "dynamic"
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:bg-accent"
-                  }`}
+                className={`transition-all ${
+                  mode === "dynamic"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground hover:bg-accent"
+                }`}
                 size="sm"
               >
                 Dynamic
