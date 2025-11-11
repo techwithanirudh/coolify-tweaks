@@ -306,11 +306,7 @@ function ToolRenderer({
   const [isOpen, setIsOpen] = useState(isActive);
 
   useEffect(() => {
-    if (isActive) {
-      setIsOpen(true);
-    } else if (!isActive) {
-      setIsOpen(false);
-    }
+    setIsOpen(isActive);
   }, [isActive]);
 
   if (!part.type.startsWith("tool-") || !("input" in part)) {
@@ -387,18 +383,16 @@ function ToolRenderer({
 
 function Message({
   message,
-  isLoading,
   status,
   ...props
 }: {
   message: UIMessage;
-  isLoading: boolean;
   status: string;
 } & ComponentProps<"div">) {
   let markdown = "";
   let links: z.infer<typeof ProvideLinksToolSchema>["links"] = [];
 
-  for (const part of message.parts ?? []) {
+  for (const part of message.parts) {
     if (part.type === "text") {
       markdown += part.text;
       continue;
@@ -409,7 +403,7 @@ function Message({
     }
   }
 
-  const parts = message.parts ?? [];
+  const parts = message.parts;
   const isStreaming = status === "streaming";
 
   return (
@@ -428,7 +422,7 @@ function Message({
             const isPartActive = isStreaming && parts.length - 1 === idx;
             return (
               <ToolRenderer
-                key={`tool-${part.toolCallId ?? idx}`}
+                key={`tool-${part.toolCallId || idx}`}
                 part={part}
                 isActive={isPartActive}
               />
@@ -468,7 +462,6 @@ export function AISearchTrigger() {
     }
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: biome doesn't understand the effect
   useEffect(() => {
     const listener = (e: KeyboardEvent) => onKeyPress(e);
     window.addEventListener("keydown", listener);
@@ -512,14 +505,10 @@ export function AISearchTrigger() {
             <div className="flex flex-col gap-4">
               {chat.messages
                 .filter((msg) => msg.role !== "system")
-                .map((item, idx) => (
+                .map((item) => (
                   <Message
                     key={item.id}
                     message={item}
-                    isLoading={
-                      chat.status === "streaming" &&
-                      chat.messages.length - 1 === idx
-                    }
                     status={chat.status}
                   />
                 ))}

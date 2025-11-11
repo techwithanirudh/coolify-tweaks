@@ -1,1 +1,1 @@
-# scripts = ["./scripts/preload.ts"]
+scripts = ["./scripts/preload.ts"]

@@ -26,7 +26,7 @@ export async function GET(
         tag={tag}
       />
     ),
-    await getImageResponseOptions(),
+    getImageResponseOptions(),
   );
 }
 
