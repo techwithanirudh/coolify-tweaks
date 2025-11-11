@@ -16,6 +16,12 @@ runs:
     - shell: bash
       run: pnpm install
 
-    - name: Copy env
+    - name: Create environment variables file
       shell: bash
-      run: cp .env.example .env
+      run: |
+        cat << EOF > .env
+        POSTGRES_URL="postgresql://[USERNAME]:[PASSWORD]@[xyz]-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+        OPENAI_API_KEY=sk-proj-1234567890
+        NEXT_PUBLIC_API_URL=https://coolify-tweaks-api.techwithanirudh.com
+        NEXT_PUBLIC_DOCS_URL=https://coolify-tweaks.techwithanirudh.com
+        EOF
