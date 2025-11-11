@@ -59,10 +59,10 @@ export default function Layout({ children }: LayoutProps<"/docs">) {
         ...base.nav,
         mode: "top",
         title: (
-          <>
+          <div className="inline-flex items-center gap-2.5 -ml-3">
             {logo}
             <span className="font-medium max-md:hidden">Coolify Tweaks</span>
-          </>
+          </div>
         ),
       }}
     >
