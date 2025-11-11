@@ -31,8 +31,9 @@
     "@types/node": "catalog:",
     "cspell": "catalog:",
     "eslint": "catalog:",
-    "nitro": "npm:nitro-nightly@latest",
+    "nitro": "latest",
     "prettier": "catalog:",
+    "rolldown": "latest",
     "typescript": "catalog:"
   },
   "prettier": "@repo/prettier-config"

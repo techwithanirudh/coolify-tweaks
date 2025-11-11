@@ -1,8 +1,8 @@
 import { fileURLToPath } from "node:url";
-import { defineNitroConfig } from "nitro/config";
+import { defineConfig } from "nitro";
 
-export default defineNitroConfig({
-  apiDir: "src",
+export default defineConfig({
+  serverDir: "src",
   experimental: {
     openAPI: true,
   },

@@ -1,11 +1,11 @@
-import type { H3Event } from "nitro/h3";
 import { lookup as getType } from "mime-types";
 import { $fetch } from "nitro/deps/ofetch";
 import { getQuery, getRouterParam, HTTPError } from "nitro/h3";
-import { defineRouteMeta } from "nitro/runtime";
+import { defineRouteMeta } from "nitro";
 
 import { allowedHeaders, owner, repo } from "@/config";
 import { processContent } from "@/utils/stylus";
+import { defineHandler } from "nitro/h3";
 
 defineRouteMeta({
   openAPI: {
@@ -282,7 +282,7 @@ defineRouteMeta({
   },
 });
 
-export default async (event: H3Event) => {
+export default defineHandler(async (event) => {
   const tag = getRouterParam(event, "tag");
   const assetParam = getQuery(event).asset;
   const asset =
@@ -361,4 +361,4 @@ export default async (event: H3Event) => {
       data: { url, tag },
     });
   }
-};
+});

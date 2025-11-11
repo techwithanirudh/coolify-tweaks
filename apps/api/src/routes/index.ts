@@ -1,4 +1,5 @@
-import { defineRouteMeta } from "nitro/runtime";
+import { defineRouteMeta } from "nitro";
+import { defineHandler } from "nitro/h3";
 
 defineRouteMeta({
   openAPI: {
@@ -47,10 +48,10 @@ defineRouteMeta({
   },
 });
 
-export default () => {
+export default defineHandler(() => {
   return {
     service: "Coolify Tweaks API",
     description: "Proxies GitHub release assets for Coolify Tweaks",
     version: "1.0",
   };
-};
+});

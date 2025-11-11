@@ -1,4 +1,5 @@
-import { defineRouteMeta } from "nitro/runtime";
+import { defineRouteMeta } from "nitro";
+import { defineHandler } from "nitro/h3";
 
 defineRouteMeta({
   openAPI: {
@@ -48,10 +49,10 @@ defineRouteMeta({
   },
 });
 
-export default () => {
+export default defineHandler(() => {
   return {
     status: "ok",
     message: "Server is running",
     timestamp: new Date().toISOString(),
   };
-};
+});
