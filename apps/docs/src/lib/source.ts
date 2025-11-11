@@ -7,7 +7,7 @@ import { docs } from "@/.source";
 
 export const source = loader(docs.toFumadocsSource(), {
   baseUrl: "/docs",
-  plugins: [lucideIconsPlugin(), openapiPlugin()],
+  plugins: [lucideIconsPlugin()],
 });
 
 export type Page = InferPageType<typeof source>;
