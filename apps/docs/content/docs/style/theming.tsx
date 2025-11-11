@@ -15,22 +15,29 @@ import {
   InputGroupInput,
 } from "@repo/ui/input-group";
 import { Label } from "@repo/ui/label";
+import { Skeleton } from "@repo/ui/skeleton";
+import { useLocalStorage } from 'usehooks-ts'
 
 const placeholders = [
   "claude",
-  "c12345678",
-  "theme-001",
-  "gpt-theme",
-  "t_abc123",
+  "caffeine",
+  "cyberpunk",
+  "violet-bloom",
+  "cmh4ecxjc000404l78qwda7o0",
 ];
 
-type Mode = "dynamic" | "stylus";
+export type Mode = "stylus" | "dynamic";
 
 export function ThemeConfigCard() {
-  const [mode, setMode] = useState<Mode>("dynamic");
+  const [mode, setMode] = useLocalStorage<Mode>("theme-mode", "stylus");
   const [themeId, setThemeId] = useState("");
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const [mounted, setMounted] = useState(false);
   const { copyToClipboard, isCopied } = useCopyToClipboard({ timeout: 2000 });
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (themeId.trim()) return;
@@ -44,8 +51,10 @@ export function ThemeConfigCard() {
 
   const generatedUrl = useMemo(() => {
     if (themeId.trim()) {
-      const baseUrl = `https://coolify.io/tweaks/${mode === "dynamic" ? "main.css" : "main.user.css"}`;
-      return `${baseUrl}?theme=${themeId.trim()}`;
+      const url = new URL(`https://coolify-tweaks-api.techwithanirudh.com/release/latest/`);
+      url.searchParams.set('theme', themeId.trim());
+      url.searchParams.set('asset', mode === "dynamic" ? "main.css" : "main.user.css");
+      return url.toString();
     }
     return "";
   }, [themeId, mode]);
@@ -57,30 +66,35 @@ export function ThemeConfigCard() {
           <Label className="text-muted-foreground text-sm font-medium">
             Mode
           </Label>
-          <ButtonGroup>
-            <Button
-              onClick={() => setMode("dynamic")}
-              className={`transition-all ${
-                mode === "dynamic"
+          {!mounted ? (
+            <div className="flex">
+              <Skeleton className="h-8 w-16 rounded-r-none" />
+              <Skeleton className="h-8 w-18 rounded-l-none" />
+            </div>
+          ) : (
+            <ButtonGroup>
+              <Button
+                onClick={() => setMode("stylus")}
+                className={`transition-all ${mode === "stylus"
                   ? "bg-primary text-primary-foreground"
                   : "bg-muted text-muted-foreground hover:bg-accent"
-              }`}
-              size="sm"
-            >
-              Dynamic
-            </Button>
-            <Button
-              onClick={() => setMode("stylus")}
-              className={`transition-all ${
-                mode === "stylus"
+                  }`}
+                size="sm"
+              >
+                Stylus
+              </Button>
+              <Button
+                onClick={() => setMode("dynamic")}
+                className={`transition-all ${mode === "dynamic"
                   ? "bg-primary text-primary-foreground"
                   : "bg-muted text-muted-foreground hover:bg-accent"
-              }`}
-              size="sm"
-            >
-              Stylus
-            </Button>
-          </ButtonGroup>
+                  }`}
+                size="sm"
+              >
+                Dynamic
+              </Button>
+            </ButtonGroup>
+          )}
         </div>
 
         {/* Theme ID input */}
@@ -123,6 +137,7 @@ export function ThemeConfigCard() {
                 onClick={() => {
                   copyToClipboard(generatedUrl);
                 }}
+                className="animate-in fade-in slide-in-from-right-2 duration-300"
               >
                 {isCopied ? <CheckIcon /> : <CopyIcon />}
               </InputGroupButton>
