@@ -16,9 +16,9 @@
     "useUnknownInCatchVariables": true,
     "noUnusedLocals": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./server/*"]
     }
   },
-  "include": ["src", "nitro.config.ts"],
+  "include": ["server", "nitro.config.ts"],
   "exclude": ["node_modules"]
 }
