@@ -31,7 +31,7 @@
     "@types/node": "catalog:",
     "cspell": "catalog:",
     "eslint": "catalog:",
-    "nitro": "latest",
+    "nitro": "npm:nitro-nightly@latest",
     "prettier": "catalog:",
     "typescript": "catalog:"
   },
