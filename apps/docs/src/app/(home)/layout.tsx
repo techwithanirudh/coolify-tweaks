@@ -11,7 +11,7 @@ export default function Layout({ children }: LayoutProps<"/">) {
       links={linkItems}
       style={
         {
-          "--spacing-fd-container": "1300px",
+          "--spacing-fd-container": "1400px"
         } as object
       }
     >
