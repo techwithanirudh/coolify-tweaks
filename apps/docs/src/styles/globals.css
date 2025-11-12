@@ -73,3 +73,7 @@
 #nd-sidebar a {
   @apply text-sidebar-accent-foreground/60;
 }
+
+#nd-sidebar a.bg-fd-primary\/10 {
+  @apply text-primary-foreground;
+}
