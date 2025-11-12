@@ -92,4 +92,8 @@
     );
     background-size: 0.25rem 0.25rem;
   }
+
+  .bg-gradient-radial {
+    background-image: radial-gradient(circle, var(--tw-gradient-stops));
+  }
 }

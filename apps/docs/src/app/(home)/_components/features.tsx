@@ -1,10 +1,10 @@
 "use client";
 
-import { Badge } from "./badge";
-import { SmartSimpleBrilliant } from "./smart-simple-brilliant";
-import { YourWorkInSync } from "./your-work-in-sync";
-import { EffortlessIntegration } from "./effortless-integration-updated";
+import { Badge } from "@repo/ui/badge";
+import ManyInstallMethods from "./install-methods";
 import { NumbersThatSpeak } from "./numbers-that-speak";
+import { Grid2X2 } from "lucide-react";
+import { BlurImage } from "@/components/blur-image";
 
 export function Features() {
   return (
@@ -13,16 +13,12 @@ export function Features() {
       <div className="self-stretch px-4 sm:px-6 md:px-8 lg:px-0 py-8 sm:py-12 md:py-16 border-b border-border flex justify-center items-center gap-6">
         <div className="w-full px-4 sm:px-6 py-4 sm:py-5 shadow-[0px_2px_4px_rgba(50,45,43,0.06)] overflow-hidden rounded-lg flex flex-col justify-start items-center gap-3 sm:gap-4 shadow-none">
           <Badge
-            icon={
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1" y="1" width="4" height="4" stroke="#37322F" strokeWidth="1" fill="none" />
-                <rect x="7" y="1" width="4" height="4" stroke="#37322F" strokeWidth="1" fill="none" />
-                <rect x="1" y="7" width="4" height="4" stroke="#37322F" strokeWidth="1" fill="none" />
-                <rect x="7" y="7" width="4" height="4" stroke="#37322F" strokeWidth="1" fill="none" />
-              </svg>
-            }
-            text="Features"
-          />
+            variant="secondary"
+            className="border-border h-fit shadow-xs border px-2 py-1 text-sm"
+          >
+            <Grid2X2 />
+            <span>Features</span>
+          </Badge>
           <div className="w-full text-center flex justify-center flex-col text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
             Polished spacing, typography, and colors
           </div>
@@ -49,11 +45,12 @@ export function Features() {
                 Improved spacing, typography, and colors make your Coolify dashboard feel polished and intentional.
               </p>
             </div>
-            <div className="w-full aspect-video rounded-lg flex items-center justify-center overflow-hidden bg-card border border-border">
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/dsadsadsa.jpg-xTHS4hGwCWp2H5bTj8np6DXZUyrxX7.jpeg"
+            <div className="w-full aspect-video rounded-lg flex items-center justify-center overflow-hidden bg-card border border-border relative">
+              <BlurImage
+                src="/assets/screenshots/dashboard-grid_themed.png"
                 alt="Coolify Tweaks Dashboard Screenshot"
-                className="w-full h-full object-cover"
+                fill
+                imageClassName="object-cover"
               />
             </div>
           </div>
@@ -68,12 +65,12 @@ export function Features() {
                 Use built-in themes or bring your own. Fully customizable to match your preferences and brand.
               </p>
             </div>
-            <div className="w-full aspect-video rounded-lg flex overflow-hidden text-right items-center justify-center bg-card border border-border">
-              <YourWorkInSync
-                width="400"
-                height="250"
-                theme="light"
-                className="scale-60 sm:scale-75 md:scale-90"
+            <div className="w-full aspect-video rounded-lg flex overflow-hidden items-center justify-center bg-card border border-border relative">
+              <BlurImage
+                src="/assets/screenshots/servers-page_themed.png"
+                alt="Custom themes showcase"
+                fill
+                imageClassName="object-cover"
               />
             </div>
           </div>
@@ -88,12 +85,8 @@ export function Features() {
                 Install directly through Traefik or use Stylus. Works with any Coolify instance and fully customizable.
               </p>
             </div>
-            <div className="w-full aspect-video rounded-lg flex overflow-hidden justify-center items-center relative bg-transparent">
-              <div className="w-full h-full flex items-center justify-center bg-transparent">
-                <EffortlessIntegration width={400} height={250} className="max-w-full max-h-full" />
-              </div>
-              {/* Gradient mask for soft bottom edge */}
-              <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-background to-transparent pointer-events-none"></div>
+            <div className="w-full aspect-video rounded-lg flex overflow-hidden justify-center items-center bg-card border border-border">
+              <ManyInstallMethods width={400} height={250} className="w-full h-full" />
             </div>
           </div>
 
