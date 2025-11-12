@@ -88,6 +88,7 @@
     "dotenv-cli": "^10.0.0",
     "eslint": "catalog:",
     "gray-matter": "^4.0.3",
+    "mdast-util-mdx": "^3.0.0",
     "next-validate-link": "^1.6.3",
     "prettier": "catalog:",
     "shadcn": "^3.5.0",
@@ -95,7 +96,8 @@
     "tailwindcss": "catalog:",
     "tinyglobby": "^0.2.15",
     "ts-morph": "^27.0.2",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "unist-util-is": "^6.0.0"
   },
   "peerDependencies": {
     "ajv": "^8.17.1"

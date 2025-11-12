@@ -4,7 +4,9 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { remark } from "remark";
 import remarkMdx from "remark-mdx";
-import type { Heading, Root, RootContent } from "mdast";
+import type { BlockContent, Heading, Root, RootContent } from "mdast";
+import type { MdxJsxFlowElement, MdxJsxAttribute } from "mdast-util-mdx";
+import { is } from "unist-util-is";
 
 import matter from "gray-matter";
 
@@ -55,32 +57,39 @@ function buildDoc(updates: ReleaseEntry[]): Root {
   return {
     type: "root",
     children: [
-      {
-        type: "mdxJsxFlowElement",
-        name: "Updates",
-        attributes: [],
-        children: updates.map(buildUpdateNode),
-      } as unknown as RootContent,
+      createMdxJsxFlowElement("Updates", [], updates.map(buildUpdateNode)),
     ],
   };
 }
 
-function buildUpdateNode(entry: ReleaseEntry): RootContent {
-  return {
-    type: "mdxJsxFlowElement",
-    name: "Update",
-    attributes: [
-      {
-        type: "mdxJsxAttribute",
-        name: "label",
-        value: entry.version,
-      },
-    ],
-    children: trimNodes(entry.nodes),
-  } as unknown as RootContent;
+function buildUpdateNode(entry: ReleaseEntry): MdxJsxFlowElement {
+  return createMdxJsxFlowElement(
+    "Update",
+    [{ name: "label", value: entry.version }],
+    trimNodes(entry.nodes),
+  );
 }
 
-type ReleaseEntry = { version: string; nodes: RootContent[] };
+function createMdxJsxFlowElement(
+  name: string,
+  attributes: Array<{ name: string; value: string | null }>,
+  children: BlockContent[],
+): MdxJsxFlowElement {
+  return {
+    type: "mdxJsxFlowElement",
+    name,
+    attributes: attributes.map(
+      (attr): MdxJsxAttribute => ({
+        type: "mdxJsxAttribute",
+        name: attr.name,
+        value: attr.value,
+      }),
+    ),
+    children,
+  };
+}
+
+type ReleaseEntry = { version: string; nodes: BlockContent[] };
 
 function extractUpdates(markdown: string): ReleaseEntry[] {
   const tree = parser.parse(markdown) as Root;
@@ -100,7 +109,7 @@ function extractUpdates(markdown: string): ReleaseEntry[] {
       continue;
     }
 
-    if (current) {
+    if (current && isBlockContent(node)) {
       current.nodes.push(node);
     }
   }
@@ -112,17 +121,18 @@ function extractUpdates(markdown: string): ReleaseEntry[] {
   return entries;
 }
 
-function trimNodes(nodes: RootContent[]) {
+function trimNodes(nodes: RootContent[]): BlockContent[] {
+  const blockNodes = nodes.filter(isBlockContent);
   let start = 0;
-  let end = nodes.length;
+  let end = blockNodes.length;
 
-  while (start < end && isWhitespaceNode(nodes[start]!)) start += 1;
-  while (end > start && isWhitespaceNode(nodes[end - 1]!)) end -= 1;
+  while (start < end && isWhitespaceNode(blockNodes[start]!)) start += 1;
+  while (end > start && isWhitespaceNode(blockNodes[end - 1]!)) end -= 1;
 
-  return nodes.slice(start, end);
+  return blockNodes.slice(start, end);
 }
 
-function isWhitespaceNode(node: RootContent) {
+function isWhitespaceNode(node: BlockContent) {
   if (node.type !== "paragraph") return false;
   return node.children.every(
     (child) =>
@@ -130,6 +140,19 @@ function isWhitespaceNode(node: RootContent) {
       typeof child.value === "string" &&
       child.value.trim() === "",
   );
+}
+
+function isBlockContent(node: RootContent): node is BlockContent {
+  return is(node, [
+    "paragraph",
+    "heading",
+    "code",
+    "blockquote",
+    "list",
+    "table",
+    "thematicBreak",
+    "html",
+  ]);
 }
 
 function isReleaseHeading(node: RootContent): node is Heading {
