@@ -55,11 +55,11 @@ export function Hero() {
       <div className="w-full flex flex-col justify-center items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative z-10 mt-6">
         <div className="backdrop-blur-[8.25px] flex justify-start items-center gap-4">
           <a
-            href="/docs"
+            href="/docs/style"
             className="h-10 sm:h-11 md:h-12 px-6 sm:px-8 md:px-10 lg:px-12 py-2 sm:py-[6px] relative bg-primary text-primary-foreground overflow-hidden rounded-full flex justify-center items-center hover:bg-primary/90 transition-colors"
           >
             <div className="flex flex-col justify-center text-sm sm:text-base md:text-[15px] font-medium leading-5 font-sans">
-              Get Started
+              Read The Docs
             </div>
           </a>
         </div>
@@ -81,7 +81,7 @@ export function Hero() {
             {/* Main Content */}
             <div className="w-full h-full flex items-center justify-center">
               <div className="relative w-full h-full overflow-hidden">
-                {/* Product Image 1 - Plan your schedules */}
+                {/* Product Image 1 - Better UI */}
                 <div
                   className={`absolute inset-0 transition-all duration-500 ease-in-out ${
                     activeCard === 0 ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-sm"
@@ -89,11 +89,11 @@ export function Hero() {
                 >
                   <img
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/dsadsadsa.jpg-xTHS4hGwCWp2H5bTj8np6DXZUyrxX7.jpeg"
-                    alt="Schedules Dashboard - Customer Subscription Management"
+                    alt="Coolify Tweaks - Better UI Dashboard"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                {/* Product Image 2 - Data to insights */}
+                {/* Product Image 2 - Custom themes */}
                 <div
                   className={`absolute inset-0 transition-all duration-500 ease-in-out ${
                     activeCard === 1 ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-sm"
@@ -101,11 +101,11 @@ export function Hero() {
                 >
                   <img
                     src="/analytics-dashboard-with-charts-graphs-and-data-vi.jpg"
-                    alt="Analytics Dashboard"
+                    alt="Coolify Tweaks - Custom Themes"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                {/* Product Image 3 - Data visualization */}
+                {/* Product Image 3 - Many install methods */}
                 <div
                   className={`absolute inset-0 transition-all duration-500 ease-in-out ${
                     activeCard === 2 ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-sm"
@@ -113,7 +113,7 @@ export function Hero() {
                 >
                   <img
                     src="/data-visualization-dashboard-with-interactive-char.jpg"
-                    alt="Data Visualization Dashboard"
+                    alt="Coolify Tweaks - Installation Methods"
                     className="w-full h-full object-contain"
                   />
                 </div>
@@ -125,25 +125,25 @@ export function Hero() {
 
       <div className="self-stretch flex justify-center items-start">
         <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch bg-dashed"></div>
-        <div className="flex-1 px-0 sm:px-2 md:px-0 flex flex-col md:flex-row justify-center items-stretch gap-0">
+        <div className="flex-1 px-0 sm:px-2 md:px-0 flex flex-col md:flex-row justify-center items-stretch gap-0 divide-x divide-border">
           {/* Feature Cards */}
           <FeatureCard
-            title="Better spacing"
-            description="Improved padding and margins make the dashboard feel less cramped and more intentional."
+            title="Better UI"
+            description="Improved spacing, typography, and colors make your Coolify dashboard feel polished and intentional."
             isActive={activeCard === 0}
             progress={activeCard === 0 ? progress : 0}
             onClick={() => handleCardClick(0)}
           />
           <FeatureCard
-            title="Refined typography"
-            description="Enhanced font weights, sizes, and line heights improve readability across all pages."
+            title="Custom themes"
+            description="Use built-in themes or bring your own. Fully customizable to match your preferences and brand."
             isActive={activeCard === 1}
             progress={activeCard === 1 ? progress : 0}
             onClick={() => handleCardClick(1)}
           />
           <FeatureCard
-            title="Subtle theming"
-            description="Polished colorwork and shadows lift the entire control plane without changing functionality."
+            title="Many install methods"
+            description="Install directly through Traefik or use Stylus. Works with any Coolify instance and fully customizable."
             isActive={activeCard === 2}
             progress={activeCard === 2 ? progress : 0}
             onClick={() => handleCardClick(2)}

@@ -1,6 +1,6 @@
 "use client";
 
-export function CTASection() {
+export function CTA() {
   return (
     <div className="w-full relative overflow-hidden flex flex-col justify-center items-center gap-2">
       {/* Content */}
@@ -19,11 +19,11 @@ export function CTASection() {
           <div className="w-full flex flex-col justify-center items-center gap-12">
             <div className="flex justify-start items-center gap-4">
               <a
-                href="/docs/style/installation/stylus"
+                href="/docs/style"
                 className="h-10 px-12 py-[6px] relative bg-primary text-primary-foreground overflow-hidden rounded-full flex justify-center items-center cursor-pointer hover:bg-primary/90 transition-colors"
               >
                 <div className="flex flex-col justify-center text-[13px] font-medium leading-5 font-sans">
-                  Get Started
+                  Read The Docs
                 </div>
               </a>
             </div>
