@@ -22,6 +22,7 @@ import { owner, repo } from "@/lib/github";
 import { createMetadata, getPageImage } from "@/lib/metadata";
 import { source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
+import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
 
 const generator = createGenerator();
 
@@ -107,6 +108,7 @@ export default async function Page(
             DocsCategory: ({ url }: { url?: string }) => {
               return <DocsCategory url={url ?? page.url} />;
             },
+            img: (props) => <ImageZoom {...(props as any)} />
           })}
         />
         {page.data.index ? <DocsCategory url={page.url} /> : null}
