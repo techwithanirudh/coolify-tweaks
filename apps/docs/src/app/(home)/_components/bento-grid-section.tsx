@@ -8,7 +8,7 @@ import { NumbersThatSpeak } from "./numbers-that-speak";
 
 export function BentoGridSection() {
   return (
-    <div className="w-full border-b border-border flex flex-col justify-center items-center">
+    <div className="w-full flex flex-col justify-center items-center">
       {/* Header Section */}
       <div className="self-stretch px-4 sm:px-6 md:px-8 lg:px-0 py-8 sm:py-12 md:py-16 border-b border-border flex justify-center items-center gap-6">
         <div className="w-full px-4 sm:px-6 py-4 sm:py-5 shadow-[0px_2px_4px_rgba(50,45,43,0.06)] overflow-hidden rounded-lg flex flex-col justify-start items-center gap-3 sm:gap-4 shadow-none">
@@ -36,17 +36,7 @@ export function BentoGridSection() {
 
       {/* Bento Grid Content */}
       <div className="self-stretch flex justify-center items-start">
-        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden">
-          {/* Left decorative pattern */}
-          <div className="w-[120px] sm:w-[140px] md:w-[162px] left-[-40px] sm:left-[-50px] md:left-[-58px] top-[-120px] absolute flex flex-col justify-start items-start">
-            {Array.from({ length: 200 }).map((_, i) => (
-              <div
-                key={i}
-                className="self-stretch h-3 sm:h-4 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
-              />
-            ))}
-          </div>
-        </div>
+        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch bg-dashed"></div>
 
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-0 border-l border-r border-border">
           {/* Top Left - Better spacing */}
@@ -133,17 +123,7 @@ export function BentoGridSection() {
           </div>
         </div>
 
-        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden">
-          {/* Right decorative pattern */}
-          <div className="w-[120px] sm:w-[140px] md:w-[162px] left-[-40px] sm:left-[-50px] md:left-[-58px] top-[-120px] absolute flex flex-col justify-start items-start">
-            {Array.from({ length: 200 }).map((_, i) => (
-              <div
-                key={i}
-                className="self-stretch h-3 sm:h-4 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
-              />
-            ))}
-          </div>
-        </div>
+        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch bg-dashed"></div>
       </div>
     </div>
   );

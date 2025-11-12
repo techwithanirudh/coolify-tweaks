@@ -1,5 +1,3 @@
-"use client";
-
 import type { ReactElement } from "react";
 import { Hero } from "./_components/hero";
 import { BentoGridSection } from "./_components/bento-grid-section";
@@ -9,21 +7,12 @@ import { FooterSection } from "./_components/footer-section";
 
 export default function LandingPage(): ReactElement {
   return (
-    <div className="w-full flex flex-col justify-start items-center container border px-0">
-      {/* Hero Section */}
+    <main className='flex flex-1 flex-col divide-y divide-border container border-x px-0'>
       <Hero />
-
-      {/* Bento Grid Section */}
       <BentoGridSection />
-
-      {/* Testimonials Section */}
       <TestimonialsSection />
-
-      {/* CTA Section */}
       <CTASection />
-
-      {/* Footer Section */}
       <FooterSection />
-    </div>
+    </main>
   );
 }

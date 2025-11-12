@@ -41,21 +41,21 @@ export function Hero() {
   };
 
   return (
-    <div className="pt-16 sm:pt-20 md:pt-24 lg:pt-[216px] pb-8 sm:pb-12 md:pb-16 flex flex-col justify-start items-center px-2 sm:px-4 md:px-8 lg:px-0 w-full sm:pl-0 sm:pr-0 pl-0 pr-0">
+    <div className="pt-16 sm:pt-20 md:pt-24 flex flex-col justify-start items-center px-2 sm:px-4 md:px-8 lg:px-0 w-full sm:pl-0 sm:pr-0 pl-0 pr-0">
       <div className="w-full flex flex-col justify-center items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
-        <div className="self-stretch rounded-[3px] flex flex-col justify-center items-center gap-4 sm:gap-5 md:gap-6 lg:gap-8">
-          <div className="w-full text-center flex justify-center flex-col text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal leading-tight font-serif px-2 sm:px-4 md:px-0">
+        <div className="self-stretch rounded-[3px] flex flex-col justify-center items-center gap-4">
+          <div className="w-full text-center flex justify-center flex-col text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal leading-tight px-2 sm:px-4 md:px-0">
             Polished Coolify dashboard
           </div>
-          <div className="w-full text-center flex justify-center flex-col text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed font-sans px-2 sm:px-4 md:px-0">
+          <div className="w-full text-center flex justify-center flex-col text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed px-2 sm:px-4 md:px-0">
             Layer polished spacing, typography on top of Coolify.
           </div>
         </div>
       </div>
-      <div className="w-full flex flex-col justify-center items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative z-10 mt-6 sm:mt-8 md:mt-10 lg:mt-12">
+      <div className="w-full flex flex-col justify-center items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative z-10 mt-6">
         <div className="backdrop-blur-[8.25px] flex justify-start items-center gap-4">
           <a
-            href="/docs/style/installation/stylus"
+            href="/docs"
             className="h-10 sm:h-11 md:h-12 px-6 sm:px-8 md:px-10 lg:px-12 py-2 sm:py-[6px] relative bg-primary text-primary-foreground overflow-hidden rounded-full flex justify-center items-center hover:bg-primary/90 transition-colors"
           >
             <div className="flex flex-col justify-center text-sm sm:text-base md:text-[15px] font-medium leading-5 font-sans">
@@ -123,18 +123,8 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="self-stretch border-t border-b border-border flex justify-center items-start">
-        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden">
-          {/* Left decorative pattern */}
-          <div className="w-[120px] sm:w-[140px] md:w-[162px] left-[-40px] sm:left-[-50px] md:left-[-58px] top-[-120px] absolute flex flex-col justify-start items-start">
-            {Array.from({ length: 50 }).map((_, i) => (
-              <div
-                key={i}
-                className="self-stretch h-3 sm:h-4 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
-              ></div>
-            ))}
-          </div>
-        </div>
+      <div className="self-stretch flex justify-center items-start">
+        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch bg-dashed"></div>
         <div className="flex-1 px-0 sm:px-2 md:px-0 flex flex-col md:flex-row justify-center items-stretch gap-0">
           {/* Feature Cards */}
           <FeatureCard
@@ -159,17 +149,7 @@ export function Hero() {
             onClick={() => handleCardClick(2)}
           />
         </div>
-        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden">
-          {/* Right decorative pattern */}
-          <div className="w-[120px] sm:w-[140px] md:w-[162px] left-[-40px] sm:left-[-50px] md:left-[-58px] top-[-120px] absolute flex flex-col justify-start items-start">
-            {Array.from({ length: 50 }).map((_, i) => (
-              <div
-                key={i}
-                className="self-stretch h-3 sm:h-4 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
-              ></div>
-            ))}
-          </div>
-        </div>
+        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch bg-dashed"></div>
       </div>
     </div>
   );
