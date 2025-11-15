@@ -54,7 +54,7 @@
     "dotenv-cli": "^10.0.0",
     "lefthook": "^2.0.1",
     "prettier": "catalog:",
-    "turbo": "^2.5.8",
+    "turbo": "^2.6.1",
     "typescript": "catalog:"
   },
   "prettier": "@repo/prettier-config",

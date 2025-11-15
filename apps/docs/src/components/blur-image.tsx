@@ -1,3 +1,4 @@
+"use client";
 /**
  * website
  * Copyright (c) Delba de Oliveira

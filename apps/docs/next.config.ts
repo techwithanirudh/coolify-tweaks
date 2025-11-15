@@ -41,6 +41,7 @@ async function createNextConfig(): Promise<NextConfig> {
           port: "",
         },
       ],
+      qualities: [75,100],
     },
     async rewrites() {
       return [
