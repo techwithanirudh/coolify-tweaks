@@ -1,53 +1,61 @@
 import { BlurImage } from "@/components/blur-image";
 import { Badge } from "@repo/ui/badge";
 import { MessageCircle } from "lucide-react";
+import { Card } from "@repo/ui/card";
+
+interface Testimonial {
+  name: string;
+  handle: string;
+  avatar: string;
+  content: string;
+}
+
+const TESTIMONIALS: Testimonial[] = [
+  {
+    name: "Sarah Chen",
+    handle: "@sarahchen",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
+    content:
+      "Coolify Tweaks has completely transformed how we interact with our Coolify dashboard. The improved spacing and typography make everything so much more readable and professional.",
+  },
+  {
+    name: "Marcus Rodriguez",
+    handle: "@marcusdev",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus",
+    content:
+      "Been using Coolify Tweaks for the past 3 months and I'm blown away. The polished UI saves us hours every week and makes the dashboard feel intentional.",
+  },
+  {
+    name: "Jamie Lee",
+    handle: "@jamielee_",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jamie",
+    content:
+      "If you're not using Coolify Tweaks yet, you're missing out. It's a game-changer for making your Coolify dashboard feel polished without any complexity.",
+  },
+  {
+    name: "Alex Thompson",
+    handle: "@alexthompson",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
+    content:
+      "The subtle theming in Coolify Tweaks is incredible. Our dashboard feels more intentional and the improved spacing makes everything easier to scan.",
+  },
+  {
+    name: "Priya Patel",
+    handle: "@priyapatdev",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Priya",
+    content:
+      "I've tried many dashboard themes, but Coolify Tweaks stands out. The attention to detail and how it keeps the UI familiar while smoothing rough edges is top-notch.",
+  },
+  {
+    name: "David Kim",
+    handle: "@davidkim_tech",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
+    content:
+      "Coolify Tweaks has become an essential part of our setup. The easy installation and polished spacing are exactly what we needed for our Coolify instance.",
+  },
+];
 
 export function Testimonials() {
-  const testimonials = [
-    {
-      name: "Sarah Chen",
-      handle: "@sarahchen",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
-      content:
-        "Coolify Tweaks has completely transformed how we interact with our Coolify dashboard. The improved spacing and typography make everything so much more readable and professional.",
-    },
-    {
-      name: "Marcus Rodriguez",
-      handle: "@marcusdev",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus",
-      content:
-        "Been using Coolify Tweaks for the past 3 months and I'm blown away. The polished UI saves us hours every week and makes the dashboard feel intentional.",
-    },
-    {
-      name: "Jamie Lee",
-      handle: "@jamielee_",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jamie",
-      content:
-        "If you're not using Coolify Tweaks yet, you're missing out. It's a game-changer for making your Coolify dashboard feel polished without any complexity.",
-    },
-    {
-      name: "Alex Thompson",
-      handle: "@alexthompson",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
-      content:
-        "The subtle theming in Coolify Tweaks is incredible. Our dashboard feels more intentional and the improved spacing makes everything easier to scan.",
-    },
-    {
-      name: "Priya Patel",
-      handle: "@priyapatdev",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Priya",
-      content:
-        "I've tried many dashboard themes, but Coolify Tweaks stands out. The attention to detail and how it keeps the UI familiar while smoothing rough edges is top-notch.",
-    },
-    {
-      name: "David Kim",
-      handle: "@davidkim_tech",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
-      content:
-        "Coolify Tweaks has become an essential part of our setup. The easy installation and polished spacing are exactly what we needed for our Coolify instance.",
-    },
-  ];
-
   return (
     <section className="py-8">
       <div className="max-w-6xl mx-auto px-4">
@@ -69,8 +77,8 @@ export function Testimonials() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-card border border-border p-6 flex flex-col gap-4 rounded-lg">
+            {TESTIMONIALS.map((testimonial, index) => (
+              <Card key={index} className="gap-4 p-6">
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
                     <BlurImage
@@ -90,7 +98,7 @@ export function Testimonials() {
                 </div>
 
                 <p className="text-muted-foreground text-sm leading-relaxed">{testimonial.content}</p>
-              </div>
+              </Card>
             ))}
           </div>
         </div>

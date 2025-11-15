@@ -1,18 +1,15 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { cn } from "@repo/ui";
 import { Shimmer } from "@repo/ui/shimmer";
 
-export function CommitCard({
-    className,
-    comment,
-    icon,
-}: {
+export interface CommitCardProps {
     className?: string;
     comment: string;
-    icon: ReactNode;
-}) {
+    icon: React.ReactNode;
+}
+
+export function CommitCard({ className, comment, icon }: CommitCardProps) {
     return (
         <div
             className={cn(
@@ -20,7 +17,9 @@ export function CommitCard({
                 className,
             )}
         >
-            <span className="shrink-0">{icon}</span>
+            <span className="shrink-0">
+                {icon}
+            </span>
             <Shimmer as="p" className="font-mono text-xs">
                 {comment}
             </Shimmer>

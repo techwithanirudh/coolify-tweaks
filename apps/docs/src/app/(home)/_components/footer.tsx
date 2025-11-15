@@ -1,4 +1,4 @@
-import { Github, HeartIcon } from "lucide-react";
+import { DollarSignIcon, Github, HeartIcon } from "lucide-react";
 import { Button } from "@repo/ui/button";
 import { owner, repo } from "@/lib/github";
 import Link from "next/link";
@@ -19,7 +19,7 @@ export function Footer() {
             size="icon-sm"
             asChild
           >
-            <a 
+            <a
               href={`https://github.com/${owner}/${repo}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -50,7 +50,7 @@ export function Footer() {
             <div className="flex flex-col justify-start items-start gap-2">
               <div className="flex items-center gap-2">
                 <div className="size-4 bg-muted-foreground/70 rounded flex items-center justify-center">
-                  <span className="text-background text-xs font-bold">$</span>
+                  <DollarSignIcon className="size-2.5" />
                 </div>
                 <div className="text-sm">
                   hello@techwithanirudh.com
@@ -58,7 +58,7 @@ export function Footer() {
               </div>
               <div className="text-sm text-muted-foreground">
                 Have questions or feedback? Feel free to reach out or{" "}
-                <a 
+                <a
                   href={`https://github.com/${owner}/${repo}/issues`}
                   target="_blank"
                   rel="noopener noreferrer"

@@ -77,8 +77,8 @@ export async function Features() {
                 Install directly through Traefik or use Stylus. Works with any Coolify instance and fully customizable.
               </p>
             </div>
-            <div className="w-full aspect-video rounded-lg flex overflow-hidden justify-center items-center bg-card border border-border">
-              <InstallMethods width={400} height={250} className="w-full h-full" />
+            <div className="w-full aspect-video rounded-lg flex overflow-hidden justify-center items-center bg-card border border-border overflow-y-auto">
+              <InstallMethods className="p-1 sm:p-3" />
             </div>
           </div>
 
