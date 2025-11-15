@@ -78,7 +78,7 @@ export function Testimonials() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
             {TESTIMONIALS.map((testimonial, index) => (
-              <Card key={index} className="gap-4 p-6">
+              <Card key={index} className="gap-4 p-6 hover:scale-[1.02] transition-transform duration-200">
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
                     <BlurImage
