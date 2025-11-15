@@ -173,3 +173,8 @@ $breakpoints: (
   --color-warning: var(--warning);
   --color-info: var(--info);
 }
+
+.scrollbar {
+  --scrollbar-thumb: var(--primary)!important;
+  --scrollbar-track: var(--background)!important;
+}

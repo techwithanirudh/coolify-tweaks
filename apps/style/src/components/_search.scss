@@ -27,7 +27,7 @@ div.relative:has(
     > div[\@click*="openCategoryDropdown"] ~ div[x-show="openCategoryDropdown"]
   ) {
   div[\@click*="openCategoryDropdown"].py-1\.5 {
-    @include input.input-base;
+    @include button.button-base;
     background: var(--input) !important;
     color: var(--foreground);
     box-shadow: none !important;
@@ -44,6 +44,14 @@ div.relative:has(
     box-shadow: var(--shadow-lg);
     display: flex;
     flex-direction: column;
+
+    input[x-ref="categorySearchInput"] {
+      @include input.input-base;
+      padding: s(2) s(3);
+      background: var(--background) !important;
+      color: var(--foreground);
+      box-shadow: none !important;
+    }
 
     .scrollbar {
       border-radius: var(--radius-lg);
