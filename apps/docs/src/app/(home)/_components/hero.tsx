@@ -82,7 +82,7 @@ export function Hero() {
             href="/docs/style"
             className="h-10 sm:h-11 md:h-12 px-6 sm:px-8 md:px-10 lg:px-12 py-2 sm:py-[6px] relative bg-primary text-primary-foreground overflow-hidden rounded-full flex justify-center items-center hover:bg-primary/90 transition-colors"
           >
-            <div className="flex flex-col justify-center text-sm sm:text-base md:text-[15px] font-medium leading-5 font-sans">
+            <div className="flex flex-col justify-center text-sm sm:text-base md:text-[15px] font-medium leading-5">
               Read The Docs
             </div>
           </Link>

@@ -1,16 +1,12 @@
 import type React from "react";
 
-interface ManyInstallMethodsProps {
+interface InstallMethodsProps {
   width?: number | string;
   height?: number | string;
   className?: string;
 }
 
-/**
- * Many Install Methods Component
- * Displays browser extension and server injection options
- */
-const ManyInstallMethods: React.FC<ManyInstallMethodsProps> = ({
+const InstallMethods: React.FC<InstallMethodsProps> = ({
   width = 400,
   height = 250,
   className = "",
@@ -103,4 +99,4 @@ const ManyInstallMethods: React.FC<ManyInstallMethodsProps> = ({
   );
 };
 
-export default ManyInstallMethods;
+export default InstallMethods;

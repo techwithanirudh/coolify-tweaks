@@ -30,10 +30,10 @@ export function FeatureCard({
           />
         </div>
       )}
-      <div className="self-stretch flex justify-center flex-col text-sm font-semibold leading-6 font-sans">
+      <div className="self-stretch flex justify-center flex-col text-sm font-semibold leading-6">
         {title}
       </div>
-      <div className="self-stretch text-muted-foreground text-[13px] font-normal leading-[22px] font-sans">
+      <div className="self-stretch text-muted-foreground text-xs">
         {description}
       </div>
     </div>

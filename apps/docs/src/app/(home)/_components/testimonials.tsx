@@ -60,10 +60,10 @@ export function Testimonials() {
               <MessageCircle />
               <span>Testimonials</span>
             </Badge>
-            <div className="w-full text-center flex justify-center flex-col text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold leading-tight font-sans tracking-tight">
+            <div className="w-full text-center flex justify-center flex-col text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold leading-tight tracking-tight">
               Loved by the community
             </div>
-            <div className="self-stretch text-center text-muted-foreground text-sm sm:text-base font-normal leading-6 sm:leading-7 font-sans">
+            <div className="self-stretch text-center text-muted-foreground text-sm sm:text-base font-normal leading-6 sm:leading-7">
               See what people are saying about Coolify Tweaks.
             </div>
           </div>

@@ -1,86 +1,87 @@
+import { Github, HeartIcon } from "lucide-react";
+import { Button } from "@repo/ui/button";
+import { owner, repo } from "@/lib/github";
+import Link from "next/link";
+
 export function Footer() {
   return (
     <div className="w-full pt-10 flex flex-col justify-start items-start">
       <div className="self-stretch h-auto flex flex-col md:flex-row justify-between items-stretch pr-0 pb-8 pt-0">
-        <div className="h-auto p-4 md:p-8 flex flex-col justify-start items-start gap-8">
+        <div className="h-auto p-4 md:p-8 flex flex-col justify-start items-start gap-4">
           <div className="self-stretch flex justify-start items-center gap-3">
-            <div className="text-center text-xl font-semibold leading-4 font-sans">Coolify Tweaks</div>
+            <div className="text-center text-xl font-semibold leading-4">Coolify Tweaks</div>
           </div>
-          <div className="text-muted-foreground text-sm font-medium leading-[18px] font-sans">
+          <div className="text-muted-foreground text-sm">
             Polished spacing, typography, and colors for Coolify
           </div>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            asChild
+          >
+            <a 
+              href={`https://github.com/${owner}/${repo}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="size-5" />
+            </a>
+          </Button>
         </div>
 
         <div className="self-stretch p-4 md:p-8 flex flex-col sm:flex-row flex-wrap justify-start sm:justify-between items-start gap-6 md:gap-8">
           <div className="flex flex-col justify-start items-start gap-3 flex-1 min-w-[120px]">
-            <div className="self-stretch text-muted-foreground/70 text-sm font-medium leading-5 font-sans">
-              Product
-            </div>
-            <div className="flex flex-col justify-end items-start gap-2">
-              <div className="text-sm font-normal leading-5 font-sans cursor-pointer hover:opacity-80 transition-opacity">
-                Features
-              </div>
-              <div className="text-sm font-normal leading-5 font-sans cursor-pointer hover:opacity-80 transition-opacity">
-                Pricing
-              </div>
-              <div className="text-sm font-normal leading-5 font-sans cursor-pointer hover:opacity-80 transition-opacity">
-                Integrations
-              </div>
-              <div className="text-sm font-normal leading-5 font-sans cursor-pointer hover:opacity-80 transition-opacity">
-                Real-time Previews
-              </div>
-              <div className="text-sm font-normal leading-5 font-sans cursor-pointer hover:opacity-80 transition-opacity">
-                Multi-Agent Coding
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col justify-start items-start gap-3 flex-1 min-w-[120px]">
-            <div className="text-muted-foreground/70 text-sm font-medium leading-5 font-sans">Company</div>
-            <div className="flex flex-col justify-center items-start gap-2">
-              <div className="text-sm font-normal leading-5 font-sans cursor-pointer hover:opacity-80 transition-opacity">
-                About us
-              </div>
-              <div className="text-sm font-normal leading-5 font-sans cursor-pointer hover:opacity-80 transition-opacity">
-                Our team
-              </div>
-              <div className="text-sm font-normal leading-5 font-sans cursor-pointer hover:opacity-80 transition-opacity">
-                Careers
-              </div>
-              <div className="text-sm font-normal leading-5 font-sans cursor-pointer hover:opacity-80 transition-opacity">
-                Brand
-              </div>
-              <div className="text-sm font-normal leading-5 font-sans cursor-pointer hover:opacity-80 transition-opacity">
-                Contact
-              </div>
-            </div>
-          </div>
-
-          {/* Resources Column */}
-          <div className="flex flex-col justify-start items-start gap-3 flex-1 min-w-[120px]">
-            <div className="text-muted-foreground/70 text-sm font-medium leading-5 font-sans">Resources</div>
-            <div className="flex flex-col justify-center items-center gap-2">
-              <div className="self-stretch text-sm font-normal leading-5 font-sans cursor-pointer hover:opacity-80 transition-opacity">
-                Terms of use
-              </div>
-              <div className="self-stretch text-sm font-normal leading-5 font-sans cursor-pointer hover:opacity-80 transition-opacity">
-                API Reference
-              </div>
-              <div className="self-stretch text-sm font-normal leading-5 font-sans cursor-pointer hover:opacity-80 transition-opacity">
+            <div className="text-muted-foreground/70 text-sm">Resources</div>
+            <div className="flex flex-col justify-start items-start gap-2">
+              <a className="text-sm cursor-pointer hover:opacity-80 transition-opacity" href={`https://github.com/${owner}/${repo}`} target="_blank" rel="noopener noreferrer">
+                GitHub Repository
+              </a>
+              <Link className="text-sm cursor-pointer hover:opacity-80 transition-opacity" href="/docs/style">
                 Documentation
+              </Link>
+              <Link className="text-sm cursor-pointer hover:opacity-80 transition-opacity" href="/docs/style/screenshots">
+                Screenshots
+              </Link>
+            </div>
+          </div>
+
+          <div className="flex flex-col justify-start items-start gap-3 flex-1 min-w-[120px]">
+            <div className="text-muted-foreground/70 text-sm">Contact</div>
+            <div className="flex flex-col justify-start items-start gap-2">
+              <div className="flex items-center gap-2">
+                <div className="size-4 bg-muted-foreground/70 rounded flex items-center justify-center">
+                  <span className="text-background text-xs font-bold">$</span>
+                </div>
+                <div className="text-sm">
+                  hello@techwithanirudh.com
+                </div>
               </div>
-              <div className="self-stretch text-sm font-normal leading-5 font-sans cursor-pointer hover:opacity-80 transition-opacity">
-                Community
-              </div>
-              <div className="self-stretch text-sm font-normal leading-5 font-sans cursor-pointer hover:opacity-80 transition-opacity">
-                Support
+              <div className="text-sm text-muted-foreground">
+                Have questions or feedback? Feel free to reach out or{" "}
+                <a 
+                  href={`https://github.com/${owner}/${repo}/issues`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary/80 hover:text-primary underline underline-offset-4"
+                >
+                  open an issue on GitHub
+                </a>
+                .
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="self-stretch h-12 border-b border-border bg-dashed border-t"></div>
+      <div className="self-stretch h-px border-t border-border"></div>
+      <div className="self-stretch flex flex-col sm:flex-row justify-between items-center py-4 px-4 md:px-8 gap-4">
+        <div className="text-sm text-muted-foreground">
+          © 2025 Coolify Tweaks. All rights reserved.
+        </div>
+        <div className="text-sm text-muted-foreground inline-flex items-center gap-1.5">
+          Made with <HeartIcon className="size-4 fill-primary/80 text-primary" />
+        </div>
+      </div>
     </div>
   );
 }

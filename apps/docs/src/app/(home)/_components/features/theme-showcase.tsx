@@ -12,37 +12,45 @@ interface ThemeShowcaseProps {
   className?: string;
 }
 
-const THEMED_SCREENSHOTS = [
+interface Screenshot {
+  light: string;
+  dark: string;
+  alt: string;
+}
+
+const THEMED_SCREENSHOTS: Screenshot[] = [
   {
-    src: "/assets/screenshots/dashboard-grid_themed.png",
+    light: "/assets/screenshots/dashboard-grid_original.png",
+    dark: "/assets/screenshots/dashboard-grid_themed.png",
     alt: "Dashboard Grid - Themed",
   },
   {
-    src: "/assets/screenshots/servers-page_themed.png",
+    light: "/assets/screenshots/servers-page_original.png",
+    dark: "/assets/screenshots/servers-page_themed.png",
     alt: "Servers Page - Themed",
   },
   {
-    src: "/assets/screenshots/new-resource-page_themed.png",
+    light: "/assets/screenshots/new-resource-page_original.png",
+    dark: "/assets/screenshots/new-resource-page_themed.png",
     alt: "New Resource Page - Themed",
   },
   {
-    src: "/assets/screenshots/resource-logs-page_themed.png",
+    light: "/assets/screenshots/resource-logs-page_original.png",
+    dark: "/assets/screenshots/resource-logs-page_themed.png",
     alt: "Resource Logs - Themed",
   },
   {
-    src: "/assets/screenshots/environments-page_themed.png",
+    light: "/assets/screenshots/environments-page_original.png",
+    dark: "/assets/screenshots/environments-page_themed.png",
     alt: "Environments Page - Themed",
   },
   {
-    src: "/assets/screenshots/profile-page_themed.png",
+    light: "/assets/screenshots/profile-page_original.png",
+    dark: "/assets/screenshots/profile-page_themed.png",
     alt: "Profile Page - Themed",
   },
 ];
 
-/**
- * Theme Showcase Component
- * Displays themed screenshots in a vertical carousel with autoplay
- */
 export const ThemeShowcase: React.FC<ThemeShowcaseProps> = ({
   className = "",
 }) => {
@@ -74,10 +82,16 @@ export const ThemeShowcase: React.FC<ThemeShowcaseProps> = ({
           <SwiperSlide key={index}>
             <div className="relative w-full h-full rounded-lg overflow-hidden">
               <BlurImage
-                src={screenshot.src}
+                src={screenshot.light}
                 alt={screenshot.alt}
                 fill
-                imageClassName="object-cover rounded-lg"
+                imageClassName="object-cover rounded-lg dark:hidden"
+              />
+              <BlurImage
+                src={screenshot.dark}
+                alt={screenshot.alt}
+                fill
+                imageClassName="object-cover rounded-lg hidden dark:block"
               />
             </div>
           </SwiperSlide>

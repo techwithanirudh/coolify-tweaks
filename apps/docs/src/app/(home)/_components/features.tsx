@@ -1,9 +1,9 @@
 import { Badge } from "@repo/ui/badge";
-import ManyInstallMethods from "./install-methods";
+import InstallMethods from "./features/install-methods";
 import { Grid2X2 } from "lucide-react";
 import { BlurImage } from "@/components/blur-image";
-import { ThemeShowcase } from "./theme-showcase";
-import { GitHubShowcase } from "./github-showcase";
+import { ThemeShowcase } from "./features/theme-showcase";
+import { GitHubShowcase } from "./features/github-showcase";
 import { owner, repo, getRepoStarsAndForks } from "@/lib/github";
 
 export async function Features() {
@@ -20,10 +20,10 @@ export async function Features() {
             <Grid2X2 />
             <span>Features</span>
           </Badge>
-          <div className="w-full text-center flex justify-center flex-col text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold leading-tight font-sans tracking-tight">
+          <div className="w-full text-center flex justify-center flex-col text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold leading-tight tracking-tight">
             Polished spacing, typography, and colors
           </div>
-          <div className="self-stretch text-center text-muted-foreground text-sm sm:text-base font-normal leading-6 font-sans">
+          <div className="self-stretch text-center text-muted-foreground text-sm sm:text-base font-normal leading-6">
             Layer polished spacing, typography, and colorwork on top of Coolify's dashboard.
             <br />
             Keep the UI familiar while smoothing out rough edges.
@@ -37,10 +37,10 @@ export async function Features() {
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-0 border-l border-r border-border">
           <div className="border-b border-r-0 md:border-r border-border p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-start items-start gap-4 sm:gap-6">
             <div className="flex flex-col gap-2">
-              <h3 className="text-lg sm:text-xl font-semibold leading-tight font-sans">
+              <h3 className="text-lg sm:text-xl font-semibold leading-tight">
                 Better UI
               </h3>
-              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed font-sans">
+              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed">
                 Improved spacing, typography, and colors make your Coolify dashboard feel polished and intentional.
               </p>
             </div>
@@ -56,10 +56,10 @@ export async function Features() {
 
           <div className="border-b border-border p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-start items-start gap-4 sm:gap-6 overflow-hidden">
             <div className="flex flex-col gap-2">
-              <h3 className="font-semibold leading-tight font-sans text-lg sm:text-xl">
+              <h3 className="font-semibold leading-tight text-lg sm:text-xl">
                 Custom themes
               </h3>
-              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed font-sans">
+              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed">
                 Use built-in themes or bring your own. Fully customizable to match your preferences and brand.
               </p>
             </div>
@@ -70,24 +70,24 @@ export async function Features() {
 
           <div className="border-r-0 md:border-r border-border p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-start items-start gap-4 sm:gap-6 bg-transparent">
             <div className="flex flex-col gap-2">
-              <h3 className="text-lg sm:text-xl font-semibold leading-tight font-sans">
+              <h3 className="text-lg sm:text-xl font-semibold leading-tight">
                 Many install methods
               </h3>
-              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed font-sans">
+              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed">
                 Install directly through Traefik or use Stylus. Works with any Coolify instance and fully customizable.
               </p>
             </div>
             <div className="w-full aspect-video rounded-lg flex overflow-hidden justify-center items-center bg-card border border-border">
-              <ManyInstallMethods width={400} height={250} className="w-full h-full" />
+              <InstallMethods width={400} height={250} className="w-full h-full" />
             </div>
           </div>
 
           <div className="p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-start items-start gap-4 sm:gap-6">
             <div className="flex flex-col gap-2">
-              <h3 className="text-lg sm:text-xl font-semibold leading-tight font-sans">
+              <h3 className="text-lg sm:text-xl font-semibold leading-tight">
                 Fully open-source
               </h3>
-              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed font-sans">
+              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed">
                 Built in the open with community contributions. View the code, suggest improvements, or fork your own version.
               </p>
             </div>
