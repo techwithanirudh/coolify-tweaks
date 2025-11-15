@@ -6,6 +6,7 @@ import { useInterval } from "usehooks-ts";
 import { BlurImage } from "@/components/blur-image";
 import { FeatureCard } from "./feature-card";
 import { Button } from "@repo/ui/button";
+import { ArrowUpRight } from "lucide-react";
 
 const FEATURES = [
   {
@@ -79,11 +80,12 @@ export function Hero() {
         <Button
           variant="default"
           size="lg"
-          className="rounded-full h-10 sm:h-11 md:h-12 px-6 sm:px-8 md:px-10 lg:px-12"
+          className="rounded-full h-9 md:h-11 px-6 sm:px-8 md:px-10 lg:px-12 group/button"
           asChild
         >
           <Link href="/docs/style">
             Read The Docs
+            <ArrowUpRight className='group-hover/button:-rotate-12 size-4 transition-transform' />
           </Link>
         </Button>
       </div>
@@ -118,7 +120,7 @@ export function Hero() {
 
       <div className="self-stretch flex justify-center items-start">
         <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch bg-dashed"></div>
-        <div className="flex-1 px-0 sm:px-2 md:px-0 flex flex-col md:flex-row justify-center items-stretch gap-0 border-t md:divide-x divide-border">
+        <div className="flex-1 flex flex-col md:flex-row justify-center items-stretch gap-0 border-t md:divide-x divide-border">
           {FEATURES.map((feature, index) => (
             <FeatureCard
               key={index}

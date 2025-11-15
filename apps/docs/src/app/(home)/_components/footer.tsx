@@ -31,7 +31,7 @@ export function Footer() {
 
         <div className="self-stretch p-4 md:p-8 flex flex-col sm:flex-row flex-wrap justify-start sm:justify-between items-start gap-6 md:gap-8">
           <div className="flex flex-col justify-start items-start gap-3 flex-1 min-w-[120px]">
-            <div className="text-muted-foreground/70 text-sm">Resources</div>
+            <div className="text-muted-foreground text-sm">Resources</div>
             <div className="flex flex-col justify-start items-start gap-2">
               <a className="text-sm cursor-pointer hover:opacity-80 transition-opacity" href={`https://github.com/${owner}/${repo}`} target="_blank" rel="noopener noreferrer">
                 GitHub Repository
@@ -46,11 +46,11 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col justify-start items-start gap-3 flex-1 min-w-[120px]">
-            <div className="text-muted-foreground/70 text-sm">Contact</div>
+            <div className="text-muted-foreground text-sm">Contact</div>
             <div className="flex flex-col justify-start items-start gap-2">
               <div className="flex items-center gap-2">
-                <div className="size-4 bg-muted-foreground/70 rounded flex items-center justify-center">
-                  <DollarSignIcon className="size-2.5" />
+                <div className="size-4 bg-primary/80 rounded flex items-center justify-center">
+                  <DollarSignIcon className="size-2.5 text-primary-foreground" />
                 </div>
                 <div className="text-sm">
                   hello@techwithanirudh.com
@@ -73,8 +73,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="self-stretch h-px border-t border-border"></div>
-      <div className="self-stretch flex flex-col sm:flex-row justify-between items-center py-4 px-4 md:px-8 gap-4">
+      <div className="self-stretch flex flex-col sm:flex-row justify-between items-center py-4 px-4 md:px-8 gap-4 bg-dashed  border-t border-border">
         <div className="text-sm text-muted-foreground">
           © 2025 Coolify Tweaks. All rights reserved.
         </div>

@@ -65,8 +65,15 @@ export function GitHubShowcase({ owner, repo, stars }: {
                     </span>
                 </a>
                 <div className="flex items-center gap-1 text-xs text-muted-foreground shrink-0">
-                    <Star className="size-3" />
-                    <span>{humanizeNumber(stars)}</span>
+                    <a
+                        className="flex items-center gap-1 text-xs sm:text-sm hover:text-yellow-500 dark:hover:text-yellow-700 transition-colors duration-200 group/stars"
+                        href={`https://github.com/${owner}/${repo}/stargazers`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Star className="size-3" />
+                        <span>{humanizeNumber(stars)}</span>
+                    </a>
                 </div>
             </div>
 
@@ -77,7 +84,7 @@ export function GitHubShowcase({ owner, repo, stars }: {
                             key={`mobile-${index}`}
                             comment={comment}
                             Icon={Icon}
-                            className={className}
+                            className={cn("w-full relative", className)}
                         />
                     ))}
                 </div>

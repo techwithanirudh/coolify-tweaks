@@ -1,5 +1,6 @@
 import { Button } from "@repo/ui/button";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 export function CTA() {
   return (
@@ -21,11 +22,12 @@ export function CTA() {
               <Button
                 variant="default"
                 size="lg"
-                className="rounded-full"
+                className="rounded-full group/button"
                 asChild
               >
                 <Link href="/docs/style">
                   Read The Docs
+                  <ArrowUpRight className='group-hover/button:-rotate-12 size-4 transition-transform' />
                 </Link>
               </Button>
             </div>

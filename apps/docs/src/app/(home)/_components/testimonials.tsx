@@ -63,9 +63,9 @@ export function Testimonials() {
           <div className="flex flex-col items-center gap-3">
             <Badge
               variant="secondary"
-              className="border-border h-fit shadow-xs border px-2 py-1 text-sm"
+              className="border-border h-fit shadow-xs border px-2 py-1 text-sm group/badge"
             >
-              <MessageCircle />
+              <MessageCircle className="group-hover/badge:scale-110 group-hover/badge:-rotate-12 transition-transform duration-200" />
               <span>Testimonials</span>
             </Badge>
             <div className="w-full text-center flex justify-center flex-col text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold leading-tight tracking-tight">
