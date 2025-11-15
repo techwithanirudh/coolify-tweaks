@@ -79,7 +79,7 @@ export function Footer() {
           © 2025 Coolify Tweaks. All rights reserved.
         </div>
         <div className="text-sm text-muted-foreground inline-flex items-center gap-1.5">
-          Made with <HeartIcon className="size-4 fill-primary/80 text-primary" />
+          Made with <HeartIcon className="size-4 fill-primary/80 text-primary hover:scale-120 hover:fill-primary hover:-rotate-12 transition-all duration-300" />
         </div>
       </div>
     </div>
