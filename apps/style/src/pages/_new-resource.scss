@@ -38,6 +38,10 @@ div.grid[class*="cols"]:is(
   ) {
   background: none;
   padding: s(0.5);
+
+  .box-without-bg {
+    padding: s(1);
+  }
 }
 
 div[x-show="filteredServices.length > 0"]:has(> div[x-init="loadResources"]) {
@@ -73,6 +77,7 @@ div[x-show="filteredServices.length > 0"]:has(> div[x-init="loadResources"]) {
 
     .box-without-bg {
       min-height: 100%;
+      padding: s(1);
     }
   }
 }
