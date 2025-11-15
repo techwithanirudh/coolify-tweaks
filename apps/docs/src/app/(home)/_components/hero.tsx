@@ -7,8 +7,18 @@ import { BlurImage } from "@/components/blur-image";
 import { FeatureCard } from "./feature-card";
 import { Button } from "@repo/ui/button";
 import { ArrowUpRight } from "lucide-react";
+import { cn } from "@repo/ui";
 
-const FEATURES = [
+interface FeatureHero {
+  title: string;
+  description: string;
+  image: {
+    light: string;
+    dark: string;
+  };
+}
+
+const FEATURES_HERO: FeatureHero[] = [
   {
     title: "Better UI",
     description: "Improved spacing, typography, and colors make your Coolify dashboard feel polished and intentional.",
@@ -33,7 +43,7 @@ const FEATURES = [
       dark: "/assets/screenshots/new-resource-page_themed.png",
     },
   },
-] as const;
+];
 
 export function Hero() {
   const [activeCard, setActiveCard] = useState(0);
@@ -54,7 +64,7 @@ export function Hero() {
   useInterval(
     () => {
       if (progress >= 100) {
-        setActiveCard((current) => (current + 1) % FEATURES.length);
+        setActiveCard((current) => (current + 1) % FEATURES_HERO.length);
         setProgress(0);
       }
     },
@@ -77,22 +87,38 @@ export function Hero() {
         </div>
       </div>
       <div className="w-full flex flex-col justify-center items-center relative z-10">
-        <Button
-          variant="default"
-          size="lg"
-          className="rounded-full h-9 md:h-11 px-6 sm:px-8 md:px-10 lg:px-12 group/button"
-          asChild
-        >
-          <Link href="/docs/style">
-            Read The Docs
-            <ArrowUpRight className='group-hover/button:-rotate-12 size-4 transition-transform' />
-          </Link>
-        </Button>
+        <div
+          aria-hidden="true"
+          className={cn(
+            "pointer-events-none absolute left-1/2 -translate-x-1/2",
+            "top-[48px]",
+            "w-[380px] h-[320px] sm:w-[520px] sm:h-[360px]",
+            "bg-radial-[at_center]",
+            "from-primary/35 from-10%",
+            "via-primary/20 via-35%",
+            "to-transparent to-90%",
+            "opacity-80 blur-3xl"
+          )}
+        />
+
+        <div className="relative">
+          <Button
+            variant="default"
+            size="lg"
+            className="rounded-full h-9 md:h-11 lg:h-12 sm:px-6! md:px-8! lg:px-12! group/button bg-linear-to-r from-primary via-primary/80 to-primary/70 relative z-10"
+            asChild
+          >
+            <Link href="/docs/style">
+              Read The Docs
+              <ArrowUpRight className='group-hover/button:-rotate-12 size-4 transition-transform' />
+            </Link>
+          </Button>
+        </div>
       </div>
-      <div className="w-full pt-2 sm:pt-4 pb-6 sm:pb-8 md:pb-10 px-2 sm:px-4 md:px-6 lg:px-11 flex flex-col justify-center items-center gap-2 relative z-5 my-8 lg:pb-0">
+      <div className="w-full pt-2 sm:pt-4 pb-6 sm:pb-8 md:pb-10 px-2 sm:px-4 md:px-6 lg:px-11 flex flex-col justify-center items-center gap-2 relative z-10 my-8 lg:pb-0">
         <div className="w-full aspect-video overflow-hidden rounded-sm sm:rounded-md md:rounded-lg lg:rounded-xl flex flex-col justify-start items-start">
           <div className="relative w-full h-full overflow-hidden">
-            {FEATURES.map((feature, index) => (
+            {FEATURES_HERO.map((feature, index) => (
               <div
                 key={index}
                 className={`absolute inset-0 transition-all duration-500 ease-in-out ${activeCard === index ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-sm"
@@ -121,7 +147,7 @@ export function Hero() {
       <div className="self-stretch flex justify-center items-start">
         <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch bg-dashed"></div>
         <div className="flex-1 flex flex-col md:flex-row justify-center items-stretch gap-0 border-t md:divide-x divide-border">
-          {FEATURES.map((feature, index) => (
+          {FEATURES_HERO.map((feature, index) => (
             <FeatureCard
               key={index}
               title={feature.title}

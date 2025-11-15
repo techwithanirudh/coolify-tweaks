@@ -1,4 +1,4 @@
-import { DollarSignIcon, Github, HeartIcon } from "lucide-react";
+import { Github, HeartIcon, MailIcon } from "lucide-react";
 import { Button } from "@repo/ui/button";
 import { owner, repo } from "@/lib/github";
 import Link from "next/link";
@@ -48,9 +48,9 @@ export function Footer() {
           <div className="flex flex-col justify-start items-start gap-3 flex-1 min-w-[120px]">
             <div className="text-muted-foreground text-sm">Contact</div>
             <div className="flex flex-col justify-start items-start gap-2">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 group/contact">
                 <div className="size-4 bg-primary/80 rounded flex items-center justify-center">
-                  <DollarSignIcon className="size-2.5 text-primary-foreground" />
+                  <MailIcon className="size-2.5 text-primary-foreground group-hover/contact:scale-120 group-hover/contact:-rotate-12 transition-all duration-300" />
                 </div>
                 <div className="text-sm">
                   hello@techwithanirudh.com

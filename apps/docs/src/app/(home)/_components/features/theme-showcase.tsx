@@ -79,21 +79,19 @@ export const ThemeShowcase: React.FC<ThemeShowcaseProps> = ({
         }}
       >
         {THEMED_SCREENSHOTS.map((screenshot, index) => (
-          <SwiperSlide key={index}>
-            <div className="relative w-full h-full rounded-lg overflow-hidden">
-              <BlurImage
-                src={screenshot.light}
-                alt={screenshot.alt}
-                fill
-                imageClassName="object-cover rounded-lg dark:hidden"
-              />
-              <BlurImage
-                src={screenshot.dark}
-                alt={screenshot.alt}
-                fill
-                imageClassName="object-cover rounded-lg hidden dark:block"
-              />
-            </div>
+          <SwiperSlide key={index} className="rounded-lg border border-border relative">
+            <BlurImage
+              src={screenshot.light}
+              alt={screenshot.alt}
+              fill
+              imageClassName="object-cover rounded-lg dark:hidden"
+            />
+            <BlurImage
+              src={screenshot.dark}
+              alt={screenshot.alt}
+              fill
+              imageClassName="object-cover rounded-lg hidden dark:block"
+            />
           </SwiperSlide>
         ))}
       </Swiper>
