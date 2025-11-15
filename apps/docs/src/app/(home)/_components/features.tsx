@@ -3,12 +3,16 @@ import ManyInstallMethods from "./install-methods";
 import { Grid2X2 } from "lucide-react";
 import { BlurImage } from "@/components/blur-image";
 import { ThemeShowcase } from "./theme-showcase";
+import { GitHubShowcase } from "./github-showcase";
+import { owner, repo, getRepoStarsAndForks } from "@/lib/github";
 
-export function Features() {
+export async function Features() {
+  const { stars } = await getRepoStarsAndForks(owner, repo);
+
   return (
-    <div className="w-full flex flex-col justify-center items-center">
-      <div className="self-stretch px-4 sm:px-6 md:px-8 lg:px-0 py-8 sm:py-12 md:py-16 border-b border-border flex justify-center items-center gap-6">
-        <div className="w-full px-4 sm:px-6 py-4 sm:py-5 overflow-hidden rounded-lg flex flex-col justify-start items-center gap-3 sm:gap-4">
+    <section className="w-full flex flex-col justify-center items-center">
+      <div className="self-stretch px-6 sm:px-8 md:px-12 lg:px-0 py-12 sm:py-16 md:py-20 lg:py-24 border-b border-border flex justify-center items-center">
+        <div className="w-full flex flex-col justify-start items-center gap-3 sm:gap-4">
           <Badge
             variant="secondary"
             className="border-border h-fit shadow-xs border px-2 py-1 text-sm"
@@ -88,16 +92,14 @@ export function Features() {
               </p>
             </div>
             <div className="w-full aspect-video rounded-lg flex overflow-hidden items-center justify-center relative bg-card border border-border">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <>github component</>
-              </div>
+              <GitHubShowcase owner={owner} repo={repo} stars={stars} />
             </div>
           </div>
         </div>
 
         <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch bg-dashed"></div>
       </div>
-    </div>
+    </section>
   );
 }
 
