@@ -1,6 +1,6 @@
 import { BlurImage } from "@/components/blur-image";
 import { Badge } from "@repo/ui/badge";
-import { MessageCircle } from "lucide-react";
+import { Info, MessageCircle } from "lucide-react";
 import { Card } from "@repo/ui/card";
 
 interface Testimonial {
@@ -8,50 +8,58 @@ interface Testimonial {
   handle: string;
   avatar: string;
   content: string;
+  link: string;
 }
 
 const TESTIMONIALS: Testimonial[] = [
   {
-    name: "Sarah Chen",
-    handle: "@sarahchen",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
+    name: "Aditya Tripathi",
+    handle: "@AdityaTripathiD",
+    avatar: "https://pbs.twimg.com/profile_images/1846547196285505536/518NaEuI_400x400.jpg",
+    link: "https://x.com/AdityaTripathiD/status/1949205413897101786",
     content:
-      "Coolify Tweaks has completely transformed how we interact with our Coolify dashboard. The improved spacing and typography make everything so much more readable and professional.",
+      "Colliding worlds with Coolify looking like Vercel 😂. Shout out to Anirudh for making this theming tool which works with TweakCN!",
   },
   {
-    name: "Marcus Rodriguez",
-    handle: "@marcusdev",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus",
+    name: "Noah Dunnagen",
+    handle: "@itsnoahd",
+    avatar: "https://pbs.twimg.com/profile_images/1934393746973511680/tR0dyR1A_400x400.jpg",
+    link: "https://x.com/itsnoahd/status/1949226795691327954",
     content:
-      "Been using Coolify Tweaks for the past 3 months and I'm blown away. The polished UI saves us hours every week and makes the dashboard feel intentional.",
+      "Ohhhh sick! He(Anirudh)'s goated with user styles!",
   },
   {
-    name: "Jamie Lee",
-    handle: "@jamielee_",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jamie",
+    name: "Devarsh",
+    handle: "@webdev03",
+    avatar: "https://github.com/webdev03.png",
+    // link: "https://discord.com/channels/@me/1164801461352411167/1393567808603816028",
+    link: "https://devarsh.me/",
     content:
-      "If you're not using Coolify Tweaks yet, you're missing out. It's a game-changer for making your Coolify dashboard feel polished without any complexity.",
+      "coolify looks amazing with your tweaks",
   },
   {
-    name: "Alex Thompson",
-    handle: "@alexthompson",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
+    name: "🏔️ Peak",
+    handle: "@peaklabs_dev",
+    avatar: "https://pbs.twimg.com/profile_images/1839743450490531840/HUFCe3IH_400x400.jpg",
+    link: "https://discord.com/channels/459365938081431553/1401119937279299796/1401302578477666496",
     content:
-      "The subtle theming in Coolify Tweaks is incredible. Our dashboard feels more intentional and the improved spacing makes everything easier to scan.",
+      "Really cool stuff! ",
   },
   {
-    name: "Priya Patel",
-    handle: "@priyapatdev",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Priya",
+    name: "JustSerdar",
+    handle: "@JustSerdarDev",
+    avatar: "https://pbs.twimg.com/profile_images/1950271763356540928/4iQpXbJB_400x400.jpg",
+    link: "https://discord.com/channels/459365938081431553/1009177753230245928/1399740065764085895",
     content:
-      "I've tried many dashboard themes, but Coolify Tweaks stands out. The attention to detail and how it keeps the UI familiar while smoothing rough edges is top-notch.",
+      "Honestly this is pretty cool theme! It looks like cool tech",
   },
   {
-    name: "David Kim",
-    handle: "@davidkim_tech",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
+    name: "Ben",
+    handle: "@0x5b62656e5d",
+    avatar: "https://pbs.twimg.com/profile_images/1967914627364425731/_A-tjVMq_400x400.jpg",
+    link: "https://discord.com/channels/1369422992676880424/1369422992676880427/1431141172797112422",
     content:
-      "Coolify Tweaks has become an essential part of our setup. The easy installation and polished spacing are exactly what we needed for our Coolify instance.",
+      "yooo damn",
   },
 ];
 
@@ -73,31 +81,38 @@ export function Testimonials() {
             </div>
             <div className="self-stretch text-center text-muted-foreground text-sm sm:text-base font-normal leading-6 sm:leading-7">
               See what people are saying about Coolify Tweaks.
+              <br />
+              <span className="text-xs text-muted-foreground bg-card p-2 rounded-lg mt-2 flex items-center gap-2 group/note">
+                <Info className="size-4 group-hover/note:scale-110 group-hover/note:-rotate-12 transition-transform duration-200" />
+                Note: This section is still a work in progress, and will be updated with detailed testimonials soon.
+              </span>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
             {TESTIMONIALS.map((testimonial, index) => (
-              <Card key={index} className="gap-4 p-6 hover:scale-[1.02] transition-transform duration-200">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center gap-3">
-                    <BlurImage
-                      src={testimonial.avatar || "/placeholder.svg"}
-                      alt={testimonial.name}
-                      className="rounded-full"
-                      width={48}
-                      height={48}
-                    />
-                    <div>
-                      <div className="flex items-center gap-1">
-                        <span className="font-semibold text-sm">{testimonial.name}</span>
+              <Card key={index} className="p-6 hover:scale-[1.02] transition-transform duration-200">
+                <a href={testimonial.link} target="_blank" rel="noopener noreferrer" className="space-y-4">
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-center gap-3">
+                      <BlurImage
+                        src={testimonial.avatar || "/placeholder.svg"}
+                        alt={testimonial.name}
+                        className="rounded-full"
+                        width={48}
+                        height={48}
+                      />
+                      <div>
+                        <div className="flex items-center gap-1">
+                          <span className="font-semibold text-sm">{testimonial.name}</span>
+                        </div>
+                        <span className="text-xs text-muted-foreground">{testimonial.handle}</span>
                       </div>
-                      <span className="text-xs text-muted-foreground">{testimonial.handle}</span>
                     </div>
                   </div>
-                </div>
 
-                <p className="text-muted-foreground text-sm leading-relaxed">{testimonial.content}</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{testimonial.content}</p>
+                </a>
               </Card>
             ))}
           </div>

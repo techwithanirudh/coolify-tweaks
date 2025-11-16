@@ -27,10 +27,16 @@ function getFeatures(stars: number): Feature[] {
       background: (
         <div className="w-full aspect-video rounded-lg flex items-center justify-center overflow-hidden bg-card border border-border relative">
           <BlurImage
-            src="/assets/screenshots/dashboard-grid_themed.png"
-            alt="Coolify Tweaks Dashboard Screenshot"
+            src="/assets/hero-light.png"
+            alt="Coolify Tweaks Dashboard"
             fill
-            imageClassName="object-cover"
+            imageClassName="object-cover dark:hidden"
+          />
+          <BlurImage
+            src="/assets/hero-dark.png"
+            alt="Coolify Tweaks Dashboard"
+            fill
+            imageClassName="object-cover hidden dark:block"
           />
         </div>
       ),

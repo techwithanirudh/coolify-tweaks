@@ -23,8 +23,8 @@ const FEATURES_HERO: FeatureHero[] = [
     title: "Better UI",
     description: "Improved spacing, typography, and colors make your Coolify dashboard feel polished and intentional.",
     image: {
-      light: "/assets/screenshots/dashboard-grid_original.png",
-      dark: "/assets/screenshots/dashboard-grid_themed.png",
+      light: "/assets/hero-light.png",
+      dark: "/assets/hero-dark.png",
     },
   },
   {
@@ -80,10 +80,10 @@ export function Hero() {
     <div className="pt-16 sm:pt-20 md:pt-24 flex flex-col justify-start items-center px-2 sm:px-4 md:px-8 lg:px-0 w-full sm:pl-0 sm:pr-0 pl-0 pr-0 gap-6">
       <div className="self-stretch rounded-[3px] flex flex-col justify-center items-center gap-2">
         <div className="w-full text-center flex justify-center flex-col text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal leading-tight px-2 sm:px-4 md:px-0">
-          Polished Coolify dashboard
+          Polish your Coolify dashboard
         </div>
         <div className="w-full text-center flex justify-center flex-col text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed px-2 sm:px-4 md:px-0">
-          Layer polished spacing, typography on top of Coolify.
+          Polished spacing, typography, and colors for your Coolify dashboard.
         </div>
       </div>
       <div className="w-full flex flex-col justify-center items-center relative z-10">
