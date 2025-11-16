@@ -20,34 +20,34 @@ interface Screenshot {
 
 const THEMED_SCREENSHOTS: Screenshot[] = [
   {
-    light: "/assets/screenshots/dashboard-grid_original.png",
-    dark: "/assets/screenshots/dashboard-grid_themed.png",
-    alt: "Dashboard Grid - Themed",
+    light: "/assets/themes/claude-light.png",
+    dark: "/assets/themes/claude-dark.png",
+    alt: "Claude Theme",
   },
   {
-    light: "/assets/screenshots/servers-page_original.png",
-    dark: "/assets/screenshots/servers-page_themed.png",
-    alt: "Servers Page - Themed",
+    light: "/assets/themes/bubblegum-light.png",
+    dark: "/assets/themes/bubblegum-dark.png",
+    alt: "Bubblegum Theme",
   },
   {
-    light: "/assets/screenshots/new-resource-page_original.png",
-    dark: "/assets/screenshots/new-resource-page_themed.png",
-    alt: "New Resource Page - Themed",
+    light: "/assets/themes/nature-light.png",
+    dark: "/assets/themes/nature-dark.png",
+    alt: "Nature Theme",
   },
   {
-    light: "/assets/screenshots/resource-logs-page_original.png",
-    dark: "/assets/screenshots/resource-logs-page_themed.png",
-    alt: "Resource Logs - Themed",
+    light: "/assets/themes/soft-pop-light.png",
+    dark: "/assets/themes/soft-pop-dark.png",
+    alt: "Soft Pop Theme",
   },
   {
-    light: "/assets/screenshots/environments-page_original.png",
-    dark: "/assets/screenshots/environments-page_themed.png",
-    alt: "Environments Page - Themed",
+    light: "/assets/themes/t3-chat-light.png",
+    dark: "/assets/themes/t3-chat-dark.png",
+    alt: "T3 Chat Theme",
   },
   {
-    light: "/assets/screenshots/profile-page_original.png",
-    dark: "/assets/screenshots/profile-page_themed.png",
-    alt: "Profile Page - Themed",
+    light: "/assets/themes/vercel-light.png",
+    dark: "/assets/themes/vercel-dark.png",
+    alt: "Vercel Theme",
   },
 ];
 

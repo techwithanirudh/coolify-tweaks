@@ -36,7 +36,7 @@ export function CommitCard({ className, comment, Icon, ...props }: CommitCardPro
             {...props}
         >
             <span className="shrink-0">
-                <Icon className="size-3 sm:size-4 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
+                <Icon className="size-3 lg:size-4 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
             </span>
             <Shimmer as="p" className="font-mono text-xs">
                 {comment}
@@ -52,9 +52,9 @@ export function GitHubShowcase({ owner, repo, stars }: {
 }) {
     return (
         <div className="flex flex-col size-full relative group">
-            <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 border-b border-border z-10 shrink-0">
+            <div className="flex items-center justify-between px-3 lg:px-4 py-2 lg:py-3 border-b border-border z-10 shrink-0">
                 <a
-                    className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-primary/80 hover:text-primary"
+                    className="flex items-center gap-1.5 lg:gap-2 text-xs lg:text-sm text-primary/80 hover:text-primary"
                     href={`https://github.com/${owner}/${repo}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -66,7 +66,7 @@ export function GitHubShowcase({ owner, repo, stars }: {
                 </a>
                 <div className="flex items-center gap-1 text-xs text-muted-foreground shrink-0">
                     <a
-                        className="flex items-center gap-1 text-xs sm:text-sm hover:text-yellow-500 dark:hover:text-yellow-700 transition-colors duration-200 group/stars"
+                        className="flex items-center gap-1 text-xs lg:text-sm hover:text-yellow-500 dark:hover:text-yellow-700 transition-colors duration-200 group/stars"
                         href={`https://github.com/${owner}/${repo}/stargazers`}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -103,8 +103,8 @@ export function GitHubShowcase({ owner, repo, stars }: {
                                 className={cn(
                                     "max-w-full transition-transform duration-200",
                                     "absolute top-1/2 left-1/2 group-hover:translate-x-[-50%]",
-                                    `translate-x-[calc(-50%+var(--offset)*(--spacing(6)))]`,
-                                    `translate-y-[calc(-50%+var(--offset)*(--spacing(12)))]`,
+                                    `translate-x-[calc(-50%+var(--offset)*(--spacing(4)))]`,
+                                    `translate-y-[calc(-50%+var(--offset)*(--spacing(10.5)))]`,
                                     className
                                 )}
                                 style={{ zIndex: zIndex, "--offset": offset } as React.CSSProperties}

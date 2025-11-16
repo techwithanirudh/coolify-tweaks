@@ -31,8 +31,8 @@ const FEATURES_HERO: FeatureHero[] = [
     title: "Custom themes",
     description: "Use built-in themes or bring your own. Fully customizable to match your preferences and brand.",
     image: {
-      light: "/assets/screenshots/servers-page_original.png",
-      dark: "/assets/screenshots/servers-page_themed.png",
+      light: "/assets/themes/claude-light.png",
+      dark: "/assets/themes/claude-dark.png",
     },
   },
   {

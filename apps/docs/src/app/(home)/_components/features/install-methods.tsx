@@ -53,17 +53,17 @@ const InstallMethods: React.FC<InstallMethodsProps> = ({
 }) => {
   return (
     <div
-      className={cn("flex flex-col gap-1 sm:gap-2 size-full relative", className)}
+      className={cn("flex flex-col gap-1 lg:gap-2 size-full relative", className)}
     >
       {INSTALL_METHODS.map(({ slug, title, subtitle, Icon, tags }) => (
-        <Card key={slug} className="flex-1 transform hover:scale-[1.02] transition-transform duration-200 py-2 px-2 sm:py-3 sm:px-3 gap-1 bg-background">
+        <Card key={slug} className="flex-1 transform hover:scale-[1.02] transition-transform duration-200 py-2 px-2 lg:py-3 lg:px-3 gap-1 bg-background">
           <Link href={`/docs/style/installation/${slug}`} className="w-full h-full flex flex-col justify-between">
-            <div className="flex flex-col gap-1.5 sm:gap-2">
-              <div className="flex items-center gap-1.5 sm:gap-2">
+            <div className="flex flex-col gap-1.5 lg:gap-2">
+              <div className="flex items-center gap-1.5 lg:gap-2">
                 <div className="size-6 bg-primary rounded-md flex items-center justify-center shrink-0">
                   <Icon className="text-primary-foreground size-3" />
                 </div>
-                <h4 className="text-foreground font-semibold text-xs sm:text-sm">
+                <h4 className="text-foreground font-semibold text-xs lg:text-sm">
                   {title}
                 </h4>
               </div>
@@ -72,12 +72,12 @@ const InstallMethods: React.FC<InstallMethodsProps> = ({
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-1 sm:gap-1.5">
+            <div className="flex flex-wrap gap-1 lg:gap-1.5">
               {tags.map((tag) => (
                 <Badge
                   key={tag.label}
                   variant={tag.variant}
-                  className="text-[10px] md:text-xs px-1 sm:px-1.5 py-0.5 "
+                  className="text-[10px] lg:text-xs px-1 lg:px-1.5 py-0.5 "
                 >
                   {tag.label}
                 </Badge>
