@@ -4,6 +4,17 @@ description: How to theme Coolify Tweaks
 icon: PaintbrushVertical
 ---
 
-import { ThemeConfigCard } from "./theming";
+import { ThemeConfigCard, ModeContent, ModeContentStylus, ModeContentDynamic } from "./theming";
 
 <ThemeConfigCard />
+
+## Usage
+
+<ModeContent>
+  <ModeContentStylus>
+    For **Stylus**, the URL points to `main.user.css` which you can install directly in the Stylus extension.
+  </ModeContentStylus>
+  <ModeContentDynamic>
+    For **Dynamic Config**, the URL points to `main.css` which you'll inject through Traefik's rewrite-body plugin.
+  </ModeContentDynamic>
+</ModeContent>

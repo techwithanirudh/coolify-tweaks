@@ -83,7 +83,7 @@ export function Hero() {
           Polish your Coolify dashboard
         </div>
         <div className="w-full text-center flex justify-center flex-col text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed px-2 sm:px-4 md:px-0">
-          A style layer that refines spacing, typography, and colorwork.
+          A style layer that refines spacing, typography, and colors.
         </div>
       </div>
       <div className="w-full flex flex-col justify-center items-center relative z-10">

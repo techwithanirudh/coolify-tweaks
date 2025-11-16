@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import type { ReactNode } from "react";
 import { CheckIcon, CopyIcon } from "lucide-react";
 import { useLocalStorage } from "usehooks-ts";
 
@@ -21,6 +22,13 @@ import { Skeleton } from "@repo/ui/skeleton";
 const placeholders = ["claude", "caffeine", "cyberpunk", "violet-bloom"];
 
 export type Mode = "stylus" | "dynamic";
+
+interface ModeContentContextValue {
+  mode: Mode;
+  mounted: boolean;
+}
+
+const ModeContentContext = createContext<ModeContentContextValue | null>(null);
 
 export function ThemeConfigCard() {
   const [mode, setMode] = useLocalStorage<Mode>("theme-mode", "stylus");
@@ -152,5 +160,58 @@ export function ThemeConfigCard() {
         </div>
       )}
     </Card>
+  );
+}
+
+
+export function ModeContentStylus({ children }: { children: ReactNode }) {
+  const context = useContext(ModeContentContext);
+
+  const mode = context?.mode;
+  const mounted = context?.mounted;
+
+  if (!mounted || mode !== "stylus") {
+    return null;
+  }
+
+  return <>{children}</>;
+}
+
+export function ModeContentDynamic({ children }: { children: ReactNode }) {
+  const context = useContext(ModeContentContext);
+
+  const mode = context?.mode;
+  const mounted = context?.mounted;
+
+  if (!mounted || mode !== "dynamic") {
+    return null;
+  }
+
+  return <>{children}</>;
+}
+
+export function ModeContent({ children }: { children: ReactNode }) {
+  const [mode] = useLocalStorage<Mode>("theme-mode", "stylus");
+  const [mounted, setMounted] = useState(false);
+
+  /* eslint-disable react-hooks/set-state-in-effect -- mounted state initialization */
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
+
+  if (!mounted) {
+    return (
+      <div className="flex items-center gap-2 py-2">
+        <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+        <span className="text-sm text-muted-foreground">Loading...</span>
+      </div>
+    );
+  }
+
+  return (
+    <ModeContentContext.Provider value={{ mode, mounted }}>
+      {children}
+    </ModeContentContext.Provider>
   );
 }

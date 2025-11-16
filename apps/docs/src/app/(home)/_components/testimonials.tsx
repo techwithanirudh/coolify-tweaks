@@ -21,12 +21,12 @@ const TESTIMONIALS: Testimonial[] = [
       "Colliding worlds with Coolify looking like Vercel 😂. Shout out to Anirudh for making this theming tool which works with TweakCN!",
   },
   {
-    name: "Noah Dunnagen",
-    handle: "@itsnoahd",
-    avatar: "https://pbs.twimg.com/profile_images/1934393746973511680/tR0dyR1A_400x400.jpg",
-    link: "https://x.com/itsnoahd/status/1949226795691327954",
+    name: "🏔️ Peak",
+    handle: "@peaklabs_dev",
+    avatar: "https://pbs.twimg.com/profile_images/1839743450490531840/HUFCe3IH_400x400.jpg",
+    link: "https://discord.com/channels/459365938081431553/1401119937279299796/1401302578477666496",
     content:
-      "Ohhhh sick! He(Anirudh)'s goated with user styles!",
+      "Really cool stuff! ",
   },
   {
     name: "Devarsh",
@@ -38,20 +38,20 @@ const TESTIMONIALS: Testimonial[] = [
       "coolify looks amazing with your tweaks",
   },
   {
-    name: "🏔️ Peak",
-    handle: "@peaklabs_dev",
-    avatar: "https://pbs.twimg.com/profile_images/1839743450490531840/HUFCe3IH_400x400.jpg",
-    link: "https://discord.com/channels/459365938081431553/1401119937279299796/1401302578477666496",
-    content:
-      "Really cool stuff! ",
-  },
-  {
     name: "JustSerdar",
     handle: "@JustSerdarDev",
     avatar: "https://pbs.twimg.com/profile_images/1950271763356540928/4iQpXbJB_400x400.jpg",
     link: "https://discord.com/channels/459365938081431553/1009177753230245928/1399740065764085895",
     content:
-      "Honestly this is pretty cool theme! It looks like cool tech",
+      "Honestly this is (a) pretty cool theme! It looks like cool tech",
+  },
+  {
+    name: "Noah Dunnagen",
+    handle: "@itsnoahd",
+    avatar: "https://pbs.twimg.com/profile_images/1934393746973511680/tR0dyR1A_400x400.jpg",
+    link: "https://x.com/itsnoahd/status/1949226795691327954",
+    content:
+      "Ohhhh sick! He(Anirudh)'s goated with user styles!",
   },
   {
     name: "Ben",

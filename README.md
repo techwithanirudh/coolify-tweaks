@@ -18,7 +18,7 @@
 
 ## About
 
-Coolify Tweaks is a userstyle that layers polished spacing, typography, and colorwork on top of Coolify's dashboard. It keeps the UI familiar while smoothing out rough edges and lifting the entire control plane with subtle theming.
+Coolify Tweaks is a userstyle that layers polished spacing, typography, and colors on top of Coolify's dashboard. It keeps the UI familiar while smoothing out rough edges and lifting the entire control plane with subtle theming.
 
 ## Quick start
 
@@ -30,7 +30,7 @@ Coolify Tweaks is a userstyle that layers polished spacing, typography, and colo
 
 ## Contributing
 
-Have a tweak idea? [Open an issue](https://github.com/techwithanirudh/coolify-tweaks/issues) and let’s discuss. When you contribute, document the change so it can be added to the docs site and showcased in the before/after gallery.
+Have a tweak idea? [Open an issue](https://github.com/techwithanirudh/coolify-tweaks/issues) and let's discuss. When you contribute, document the change so it can be added to the docs site and showcased in the before/after gallery.
 
 ## License
 
