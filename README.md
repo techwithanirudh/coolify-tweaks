@@ -27,12 +27,6 @@ Coolify Tweaks is a userstyle that layers polished spacing, typography, and colo
 3. Add your instance's host to Stylus's **Custom included sites** when Coolify does not run on `coolify.local`.
 4. Explore the [live documentation site](https://coolify-tweaks.techwithanirudh.com) for theme IDs, Traefik injection, screenshots, and troubleshooting tips.
 
-## Repository context
-
-- `apps/style` builds the Stylus userstyle, publishes CSS bundles, and ships the Nitro API assets.
-- `apps/api` proxies assets so install badges always fetch the latest release without exposing GitHub tokens.
-- `apps/docs` is this Fumadocs site and contains the Markdown, navigation, and assets for the official documentation.
-- `packages/ui` offers shared primitives and theming helpers reused across the docs, web landing page, and any future demos.
 
 ## Contributing
 
