@@ -1,7 +1,8 @@
-import { Github, HeartIcon, MailIcon } from "lucide-react";
+import { Github, MailIcon } from "lucide-react";
 import { Button } from "@repo/ui/button";
 import { owner, repo } from "@/lib/github";
 import Link from "next/link";
+import { Love } from "./love";
 
 export function Footer() {
   return (
@@ -78,10 +79,9 @@ export function Footer() {
           © 2025 Coolify Tweaks. All rights reserved.
         </div>
         <div className="text-sm text-muted-foreground inline-flex items-center gap-1.5">
-          Made with <HeartIcon className="size-4 fill-primary/80 text-primary hover:scale-120 hover:fill-primary hover:-rotate-12 transition-all duration-300" />
+          Made with <Love />
         </div>
       </div>
     </div>
   );
 }
-

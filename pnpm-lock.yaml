@@ -345,6 +345,9 @@ importers:
       '@types/bun':
         specifier: 'catalog:'
         version: 1.3.2(@types/react@19.2.2)
+      '@types/canvas-confetti':
+        specifier: ^1.9.0
+        version: 1.9.0
       '@types/hast':
         specifier: ^3.0.4
         version: 3.0.4
@@ -363,6 +366,9 @@ importers:
       '@types/react-dom':
         specifier: catalog:react19
         version: 19.2.2(@types/react@19.2.2)
+      canvas-confetti:
+        specifier: ^1.9.4
+        version: 1.9.4
       chokidar:
         specifier: ^4.0.3
         version: 4.0.3
@@ -3813,6 +3819,9 @@ packages:
   '@types/bun@1.3.2':
     resolution: {integrity: sha512-t15P7k5UIgHKkxwnMNkJbWlh/617rkDGEdSsDbu+qNHTaz9SKf7aC8fiIlUdD5RPpH6GEkP0cK7WlvmrEBRtWg==}
 
+  '@types/canvas-confetti@1.9.0':
+    resolution: {integrity: sha512-aBGj/dULrimR1XDZLtG9JwxX1b4HPRF6CX9Yfwh3NvstZEm1ZL7RBnel4keCPSqs1ANRu1u2Aoz9R+VmtjYuTg==}
+
   '@types/conventional-commits-parser@5.0.2':
     resolution: {integrity: sha512-BgT2szDXnVypgpNxOK8aL5SGjUdaQbC++WZNjF1Qge3Og2+zhHj+RWhmehLhYyvQwqAmvezruVfOf8+3m74W+g==}
 
@@ -4371,6 +4380,9 @@ packages:
 
   caniuse-lite@1.0.30001751:
     resolution: {integrity: sha512-A0QJhug0Ly64Ii3eIqHu5X51ebln3k4yTUkY1j8drqpWHVreg/VLijN48cZ1bYPiqOQuqpkIKnzr/Ul8V+p6Cw==}
+
+  canvas-confetti@1.9.4:
+    resolution: {integrity: sha512-yxQbJkAVrFXWNbTUjPqjF7G+g6pDotOUHGbkZq2NELZUMDpiJ85rIEazVb8GTaAptNW2miJAXbs1BtioA251Pw==}
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -11971,6 +11983,8 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
+  '@types/canvas-confetti@1.9.0': {}
+
   '@types/conventional-commits-parser@5.0.2':
     dependencies:
       '@types/node': 24.9.1
@@ -12618,6 +12632,8 @@ snapshots:
   camelcase@7.0.1: {}
 
   caniuse-lite@1.0.30001751: {}
+
+  canvas-confetti@1.9.4: {}
 
   ccount@2.0.1: {}
 
