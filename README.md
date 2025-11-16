@@ -1,7 +1,5 @@
 <div align="center">
-
-  <img alt="" src="/.github/assets/cover.png" />
-
+  <img alt="banner" src="./apps/docs/public/banner.png" />
 <h1>
   Coolify Tweaks
 </h1>
