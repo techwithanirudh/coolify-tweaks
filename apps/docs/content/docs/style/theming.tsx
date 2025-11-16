@@ -129,8 +129,11 @@ export function ThemeConfigCard() {
               type="text"
               value={generatedUrl}
               readOnly
-              className="font-mono text-sm"
-              onClick={(e) => e.currentTarget.select()}
+              className="font-mono text-sm cursor-pointer"
+              onClick={(e) => {
+                e.currentTarget.select();
+                copyToClipboard(generatedUrl);
+              }}
             />
             <InputGroupAddon align="inline-end">
               <InputGroupButton

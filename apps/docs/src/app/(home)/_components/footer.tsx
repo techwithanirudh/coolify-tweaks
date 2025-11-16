@@ -1,10 +1,16 @@
-import { Github, MailIcon } from "lucide-react";
+"use client";
+
+import { Github, MailIcon, Copy, Check } from "lucide-react";
 import { Button } from "@repo/ui/button";
 import { owner, repo } from "@/lib/github";
 import Link from "next/link";
 import { Love } from "./love";
+import { useCopyToClipboard } from "@repo/ui/hooks/use-copy-to-clipboard";
 
 export function Footer() {
+  const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 2000 });
+  const email = "hello@techwithanirudh.com";
+
   return (
     <div className="w-full pt-10 flex flex-col justify-start items-start">
       <div className="self-stretch h-auto flex flex-col md:flex-row justify-between items-stretch pr-0 pb-8 pt-0">
@@ -50,11 +56,22 @@ export function Footer() {
             <div className="text-muted-foreground text-sm">Contact</div>
             <div className="flex flex-col justify-start items-start gap-2">
               <div className="flex items-center gap-2 group/contact">
-                <div className="size-4 bg-primary/80 rounded flex items-center justify-center">
-                  <MailIcon className="size-2.5 text-primary-foreground group-hover/contact:scale-120 group-hover/contact:-rotate-12 transition-all duration-300" />
-                </div>
-                <div className="text-sm">
-                  hello@techwithanirudh.com
+                <button
+                  onClick={() => copyToClipboard(email)}
+                  className="size-4 bg-primary/80 rounded flex items-center justify-center cursor-pointer hover:bg-primary transition-colors relative"
+                  aria-label="Copy email"
+                >
+                  {isCopied ? (
+                    <Check className="size-2.5 text-primary-foreground" />
+                  ) : (
+                    <>
+                      <MailIcon className="size-2.5 text-primary-foreground group-hover/contact:opacity-0 group-hover/contact:scale-0 transition-all duration-300 absolute" />
+                      <Copy className="size-2.5 text-primary-foreground opacity-0 scale-0 group-hover/contact:opacity-100 group-hover/contact:scale-100 transition-all duration-300" />
+                    </>
+                  )}
+                </button>
+                <div className="text-sm cursor-pointer group-hover/contact:opacity-80 transition-opacity" onClick={() => copyToClipboard(email)}>
+                  {email}
                 </div>
               </div>
               <div className="text-sm text-muted-foreground">

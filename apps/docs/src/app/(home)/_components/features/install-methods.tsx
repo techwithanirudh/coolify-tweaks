@@ -53,7 +53,7 @@ const InstallMethods: React.FC<InstallMethodsProps> = ({
 }) => {
   return (
     <div
-      className={cn("flex flex-col gap-1 lg:gap-2 size-full relative", className)}
+      className={cn("flex flex-col gap-1 lg:gap-2 w-full relative", className)}
     >
       {INSTALL_METHODS.map(({ slug, title, subtitle, Icon, tags }) => (
         <Card key={slug} className="flex-1 transform hover:scale-[1.02] transition-transform duration-200 py-2 px-2 lg:py-3 lg:px-3 gap-1 bg-background">

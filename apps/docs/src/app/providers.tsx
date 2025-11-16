@@ -6,6 +6,7 @@ import { ProgressProvider } from "@bprogress/next/app";
 import { RootProvider } from "fumadocs-ui/provider/base";
 
 import { TooltipProvider } from "@repo/ui/tooltip";
+import { Toaster } from "@repo/ui/toast";
 
 const SearchDialog = dynamic(() => import("@/components/search"), {
   ssr: false,
@@ -30,6 +31,7 @@ export function Providers({ children }: { children: ReactNode }) {
         shallowRouting
       >
         <TooltipProvider>{children}</TooltipProvider>
+        <Toaster />
       </ProgressProvider>
     </RootProvider>
   );

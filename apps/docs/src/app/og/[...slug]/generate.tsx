@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import type { ImageResponseOptions } from "@takumi-rs/image-response";
 import type { ReactNode } from "react";
 
@@ -10,12 +11,14 @@ export interface GenerateProps {
   tag?: string;
 }
 
-const font = readFileSync("./src/app/og/[...slug]/fonts/Inter-Regular.ttf");
-const fontSemiBold = readFileSync(
-  "./src/app/og/[...slug]/fonts/Inter-SemiBold.ttf",
-);
-const fontBold = readFileSync("./src/app/og/[...slug]/fonts/Inter-Bold.ttf");
-const fontPixy = readFileSync("./src/app/og/[...slug]/fonts/Pixy-Regular.ttf");
+const fontsDir = join(process.cwd(), "src/app/og/[...slug]/fonts");
+
+const geistThin = readFileSync(join(fontsDir, "Geist-Thin.ttf"));
+const geistRegular = readFileSync(join(fontsDir, "Geist-Regular.ttf"));
+const geistMedium = readFileSync(join(fontsDir, "Geist-Medium.ttf"));
+const geistSemiBold = readFileSync(join(fontsDir, "Geist-SemiBold.ttf"));
+const geistBold = readFileSync(join(fontsDir, "Geist-Bold.ttf"));
+const geistExtraBold = readFileSync(join(fontsDir, "Geist-ExtraBold.ttf"));
 
 export function getImageResponseOptions(): ImageResponseOptions {
   return {
@@ -30,33 +33,50 @@ export function getImageResponseOptions(): ImageResponseOptions {
     ],
     fonts: [
       {
-        name: "Inter",
-        data: font,
-        weight: 400,
+        name: "Geist",
+        data: geistThin,
+        weight: 100,
+        style: "normal",
       },
       {
-        name: "Inter",
-        data: fontSemiBold,
+        name: "Geist",
+        data: geistRegular,
+        weight: 400,
+        style: "normal",
+      },
+      {
+        name: "Geist",
+        data: geistMedium,
         weight: 500,
+        style: "normal",
       },
       {
-        name: "Inter",
-        data: fontBold,
+        name: "Geist",
+        data: geistSemiBold,
+        weight: 600,
+        style: "normal",
+      },
+      {
+        name: "Geist",
+        data: geistBold,
         weight: 700,
+        style: "normal",
       },
       {
-        name: "Pixy",
-        data: fontPixy,
-        weight: 400,
+        name: "Geist",
+        data: geistExtraBold,
+        weight: 800,
+        style: "normal",
       },
     ],
   };
 }
 
 export function generate({ title, description, tag }: GenerateProps) {
-  const primaryTextColor = "rgb(240,240,240)";
-  const primaryColor = "rgb(123, 111, 111)";
-  const gridColor = "rgba(123, 111, 111, 0.2)"; // subtler grid tone
+  const backgroundColor = "rgb(59, 59, 64)"; 
+  const primaryTextColor = "rgb(253, 253, 253)"; 
+  const primaryColor = "rgb(168, 141, 212)";
+  const gridColor = "rgba(78, 75, 85, 0.4)";
 
   return (
     <div
@@ -65,14 +85,14 @@ export function generate({ title, description, tag }: GenerateProps) {
         flexDirection: "column",
         width: "100%",
         height: "100%",
-        color: "white",
-        backgroundColor: "#0c0c0c",
+        color: primaryTextColor,
+        backgroundColor: backgroundColor,
         backgroundImage: `linear-gradient(to top right, ${primaryColor}, transparent), noise-v1(opacity(0.3) frequency(1.0) octaves(4))`,
       }}
     >
       <div
         style={{
-          background: "#000",
+          background: backgroundColor,
           backgroundImage: `
           linear-gradient(to right, ${gridColor} 1px, transparent 1px),
           linear-gradient(to bottom, ${gridColor} 1px, transparent 1px)
@@ -97,7 +117,7 @@ export function generate({ title, description, tag }: GenerateProps) {
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            gap: "24px",
+            gap: "16px",
             marginBottom: "auto",
             color: primaryTextColor,
           }}
@@ -106,12 +126,13 @@ export function generate({ title, description, tag }: GenerateProps) {
           <img
             src="logo.svg"
             alt={siteName}
-            style={{ width: 60, height: 60 }}
+            style={{ width: 60, height: 60, borderRadius: "16px" }}
           />
           <span
             style={{
               fontSize: "46px",
               fontWeight: 600,
+              fontFamily: "Geist",
             }}
           >
             {siteName}
@@ -122,15 +143,16 @@ export function generate({ title, description, tag }: GenerateProps) {
             fontWeight: 600,
             fontSize: "26px",
             textTransform: "uppercase",
+            fontFamily: "Geist",
           }}
         >
           {tag?.replace(/-/g, " ")}
         </p>
         <span
           style={{
-            fontWeight: 600,
+            fontWeight: 700,
             fontSize: "76px",
-            fontFamily: "Pixy",
+            fontFamily: "Geist",
             marginLeft: "1px",
           }}
         >
@@ -139,7 +161,9 @@ export function generate({ title, description, tag }: GenerateProps) {
         <p
           style={{
             fontSize: "48px",
-            color: "#a0a0a0",
+            color: "rgba(253, 253, 253, 0.7)", // --foreground with reduced opacity
+            fontFamily: "Geist",
+            fontWeight: 400,
           }}
         >
           {description}

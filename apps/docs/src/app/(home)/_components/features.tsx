@@ -60,8 +60,10 @@ function getFeatures(stars: number): Feature[] {
         "Install directly through Traefik or use Stylus. Works with any Coolify instance and fully customizable.",
       className: "bg-transparent",
       background: (
-        <div className="w-full aspect-video rounded-lg flex overflow-hidden justify-center items-center bg-card border border-border overflow-y-auto">
-          <InstallMethods className="p-1 sm:p-3" />
+        <div className="w-full aspect-video rounded-lg bg-card border border-border overflow-hidden">
+          <div className="size-full overflow-y-auto p-1 sm:p-3">
+            <InstallMethods className="size-full" />
+          </div>
         </div>
       ),
     },
