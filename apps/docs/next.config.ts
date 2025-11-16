@@ -51,6 +51,27 @@ async function createNextConfig(): Promise<NextConfig> {
         },
       ];
     },
+    async headers() {
+      return [
+        {
+          source: "/:path*",
+          headers: [
+            {
+              key: "x-vercel-cache",
+              value: "",
+            },
+            {
+              key: "x-vercel-id",
+              value: "",
+            },
+            {
+              key: "server",
+              value: "",
+            },
+          ],
+        },
+      ];
+    },
   };
 
   return nextConfig;
