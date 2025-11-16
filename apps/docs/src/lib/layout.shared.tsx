@@ -15,7 +15,7 @@ export const logo = (
       width={28}
       height={28}
       className="size-7 overflow-hidden object-contain"
-      style={{ borderRadius: "8px" }}
+      style={{ borderRadius: "10px" }}
     />
   </>
 );
@@ -47,7 +47,7 @@ export function baseOptions(): BaseLayoutProps {
       title: (
         <>
           {logo}
-          <span className="font-medium [header_&]:text-[15px]">{title}</span>
+          <span className="font-medium in-[header]:text-[15px]">{title}</span>
         </>
       ),
       transparentMode: "top",

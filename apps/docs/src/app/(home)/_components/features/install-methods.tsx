@@ -56,8 +56,8 @@ const InstallMethods: React.FC<InstallMethodsProps> = ({
       className={cn("flex flex-col gap-1 lg:gap-2 w-full relative", className)}
     >
       {INSTALL_METHODS.map(({ slug, title, subtitle, Icon, tags }) => (
-        <Card key={slug} className="flex-1 transform hover:scale-[1.02] transition-transform duration-200 py-2 px-2 lg:py-3 lg:px-3 gap-1 bg-background">
-          <Link href={`/docs/style/installation/${slug}`} className="w-full h-full flex flex-col justify-between">
+        <Card key={slug} className="flex-1 transform hover:scale-[1.02] transition-transform duration-200 gap-1 bg-background px-0 py-0">
+          <Link href={`/docs/style/installation/${slug}`} className="w-full h-full flex flex-col justify-between py-2 px-2 lg:py-3 lg:px-3">
             <div className="flex flex-col gap-1.5 lg:gap-2">
               <div className="flex items-center gap-1.5 lg:gap-2">
                 <div className="size-6 bg-primary rounded-md flex items-center justify-center shrink-0">

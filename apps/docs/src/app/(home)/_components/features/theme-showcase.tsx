@@ -18,7 +18,7 @@ interface Screenshot {
   alt: string;
 }
 
-const THEMED_SCREENSHOTS: Screenshot[] = [
+const SCREENSHOTS: Screenshot[] = [
   {
     light: "/assets/themes/claude-light.png",
     dark: "/assets/themes/claude-dark.png",
@@ -78,7 +78,7 @@ export const ThemeShowcase: React.FC<ThemeShowcaseProps> = ({
           slideShadows: true,
         }}
       >
-        {THEMED_SCREENSHOTS.map((screenshot, index) => (
+        {SCREENSHOTS.map((screenshot, index) => (
           <SwiperSlide key={index} className="rounded-lg border border-border relative">
             <BlurImage
               src={screenshot.light}

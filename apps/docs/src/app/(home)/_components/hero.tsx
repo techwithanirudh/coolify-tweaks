@@ -21,7 +21,7 @@ interface FeatureHero {
 const FEATURES_HERO: FeatureHero[] = [
   {
     title: "Better UI",
-    description: "Improved spacing, typography, and colors make your Coolify dashboard feel polished and intentional.",
+    description: "Refined spacing, typography, and colors for a more polished interface.",
     image: {
       light: "/assets/hero-light.png",
       dark: "/assets/hero-dark.png",
@@ -35,14 +35,14 @@ const FEATURES_HERO: FeatureHero[] = [
       dark: "/assets/themes/claude-dark.png",
     },
   },
-  {
-    title: "Many install methods",
-    description: "Install directly through Traefik or use Stylus. Works with any Coolify instance and fully customizable.",
-    image: {
-      light: "/assets/screenshots/new-resource-page_original.png",
-      dark: "/assets/screenshots/new-resource-page_themed.png",
-    },
-  },
+  // {
+  //   title: "Many install methods",
+  //   description: "Install directly through Traefik or use Stylus. Works with any Coolify instance and fully customizable.",
+  //   image: {
+  //     light: "/assets/screenshots/new-resource-page_original.png",
+  //     dark: "/assets/screenshots/new-resource-page_themed.png",
+  //   },
+  // },
 ];
 
 export function Hero() {
@@ -83,7 +83,7 @@ export function Hero() {
           Polish your Coolify dashboard
         </div>
         <div className="w-full text-center flex justify-center flex-col text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed px-2 sm:px-4 md:px-0">
-          Polished spacing, typography, and colors for your Coolify dashboard.
+          A style layer that refines spacing, typography, and colorwork.
         </div>
       </div>
       <div className="w-full flex flex-col justify-center items-center relative z-10">

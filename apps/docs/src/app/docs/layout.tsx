@@ -50,7 +50,7 @@ export default function Layout({ children }: LayoutProps<"/docs">) {
         components: {
           lg: (
             <div className="flex gap-1.5 max-md:hidden">
-              <LargeSearchToggle className="flex-1 rounded-xl" />
+              <LargeSearchToggle className="flex-1" />
             </div>
           ),
         },
@@ -59,7 +59,7 @@ export default function Layout({ children }: LayoutProps<"/docs">) {
         ...base.nav,
         mode: "top",
         title: (
-          <div className="-ml-3 inline-flex items-center gap-2.5 md:-ml-0">
+          <div className="-ml-3 inline-flex items-center gap-2.5 md:ml-0">
             {logo}
             <span className="font-medium max-md:hidden">Coolify Tweaks</span>
           </div>

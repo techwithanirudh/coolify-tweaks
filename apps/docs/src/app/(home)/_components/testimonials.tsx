@@ -91,8 +91,8 @@ export function Testimonials() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
             {TESTIMONIALS.map((testimonial, index) => (
-              <Card key={index} className="p-6 hover:scale-[1.02] transition-transform duration-200">
-                <a href={testimonial.link} target="_blank" rel="noopener noreferrer" className="space-y-4">
+              <Card key={index} className="px-0 py-0 hover:scale-[1.02] transition-transform duration-200">
+                <a href={testimonial.link} target="_blank" rel="noopener noreferrer" className="space-y-4 size-full p-6">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
                       <BlurImage

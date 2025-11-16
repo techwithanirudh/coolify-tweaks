@@ -23,7 +23,7 @@ function getFeatures(stars: number): Feature[] {
       Icon: Sparkles,
       name: "Better UI",
       description:
-        "Improved spacing, typography, and colors make your Coolify dashboard feel polished and intentional.",
+        "Refined spacing, typography, and colors for a more polished Coolify dashboard.",
       background: (
         <div className="w-full aspect-video rounded-lg flex items-center justify-center overflow-hidden bg-card border border-border relative">
           <BlurImage
@@ -100,9 +100,9 @@ export async function Features() {
             Polished spacing, typography, and colors
           </div>
           <div className="self-stretch text-center text-muted-foreground text-sm sm:text-base font-normal leading-6">
-            Layer polished spacing, typography, and colorwork on top of Coolify's dashboard.
+            A style layer that refines spacing, typography, and colorwork.
             <br />
-            Keep the UI familiar while smoothing out rough edges.
+            Keeps the interface familiar while smoothing out rough edges.
           </div>
         </div>
       </div>

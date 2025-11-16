@@ -19,7 +19,7 @@ export function Footer() {
             <div className="text-center text-xl font-semibold leading-4">Coolify Tweaks</div>
           </div>
           <div className="text-muted-foreground text-sm">
-            Polished spacing, typography, and colors for Coolify
+            A style layer for refined spacing, typography, and colors
           </div>
           <Button
             variant="ghost"
