@@ -5,17 +5,17 @@ export async function getRepoStarsAndForks(
   owner: string,
   repo: string,
   token?: string,
-  baseUrl = 'https://api.github.com',
+  baseUrl = "https://api.github.com",
 ): Promise<{
   stars: number;
   forks: number;
 }> {
   const endpoint = `${baseUrl}/repos/${owner}/${repo}`;
   const headers = new Headers({
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   });
 
-  if (token) headers.set('Authorization', `Bearer ${token}`);
+  if (token) headers.set("Authorization", `Bearer ${token}`);
 
   const response = await fetch(endpoint, {
     headers,
@@ -30,7 +30,7 @@ export async function getRepoStarsAndForks(
     throw new Error(`Failed to fetch repository data: ${message}`);
   }
 
-  const data = await response.json() as {
+  const data = (await response.json()) as {
     stargazers_count: number;
     forks_count: number;
   };
@@ -48,7 +48,7 @@ export function humanizeNumber(num: number): string {
 
   if (num < 100000) {
     const value = (num / 1000).toFixed(1);
-    const formattedValue = value.endsWith('.0') ? value.slice(0, -2) : value;
+    const formattedValue = value.endsWith(".0") ? value.slice(0, -2) : value;
 
     return `${formattedValue}K`;
   }

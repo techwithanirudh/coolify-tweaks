@@ -1,7 +1,7 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { CheckIcon, CopyIcon } from "lucide-react";
 import { useLocalStorage } from "usehooks-ts";
 
@@ -137,7 +137,7 @@ export function ThemeConfigCard() {
               type="text"
               value={generatedUrl}
               readOnly
-              className="font-mono text-sm cursor-pointer"
+              className="cursor-pointer font-mono text-sm"
               onClick={(e) => {
                 e.currentTarget.select();
                 copyToClipboard(generatedUrl);
@@ -162,7 +162,6 @@ export function ThemeConfigCard() {
     </Card>
   );
 }
-
 
 export function ModeContentStylus({ children }: { children: ReactNode }) {
   const context = useContext(ModeContentContext);
@@ -203,8 +202,8 @@ export function ModeContent({ children }: { children: ReactNode }) {
   if (!mounted) {
     return (
       <div className="flex items-center gap-2 py-2">
-        <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-        <span className="text-sm text-muted-foreground">Loading...</span>
+        <div className="border-primary h-4 w-4 animate-spin rounded-full border-2 border-t-transparent" />
+        <span className="text-muted-foreground text-sm">Loading...</span>
       </div>
     );
   }

@@ -29,18 +29,18 @@ services:
     # ...your existing keys
     ports:
       # existing ports
-      - '80:80'
-      - '443:443'
-      - '8080:8080'
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
       # ✅ port for the Coolify dashboard entrypoint
-      - '3000:3000' # [!code ++]
+      - "3000:3000" # [!code ++]
     command:
       # keep your existing flags, then add:
       # ✅ enable rewrite-body plugin to modify HTML
-      - '--experimental.plugins.rewritebody.modulename=github.com/packruler/rewrite-body' # [!code ++]
-      - '--experimental.plugins.rewritebody.version=v1.2.0' # [!code ++]
+      - "--experimental.plugins.rewritebody.modulename=github.com/packruler/rewrite-body" # [!code ++]
+      - "--experimental.plugins.rewritebody.version=v1.2.0" # [!code ++]
       # ✅ add entrypoint for dashboard traffic on port 3000
-      - '--entrypoints.coolify_dashboard.address=:3000' # [!code ++]
+      - "--entrypoints.coolify_dashboard.address=:3000" # [!code ++]
 ```
 
 Save and close. **Don't restart yet.**
@@ -68,11 +68,11 @@ http:
         rewritebody:
           lastModified: true
           rewrites:
-            - regex: '(?is)</head>'
+            - regex: "(?is)</head>"
               replacement: '<link rel="stylesheet" href="https://coolify-tweaks-api.techwithanirudh.com/release/latest/?asset=main.css" referrerpolicy="no-referrer" crossorigin="anonymous"></head>'
           monitoring:
             methods: [GET]
-            types: ['text/html']
+            types: ["text/html"]
     coolify-tweaks:
       chain:
         middlewares:
@@ -171,14 +171,14 @@ To revert:
 
 ```yaml
 ports:
-  - '80:80'
-  - '443:443'
-  - '8080:8080'
-  - '3000:3000' # [!code --]
+  - "80:80"
+  - "443:443"
+  - "8080:8080"
+  - "3000:3000" # [!code --]
 command:
-  - '--experimental.plugins.rewritebody.modulename=github.com/packruler/rewrite-body' # [!code --]
-  - '--experimental.plugins.rewritebody.version=v1.2.0' # [!code --]
-  - '--entrypoints.coolify_dashboard.address=:3000' # [!code --]
+  - "--experimental.plugins.rewritebody.modulename=github.com/packruler/rewrite-body" # [!code --]
+  - "--experimental.plugins.rewritebody.version=v1.2.0" # [!code --]
+  - "--entrypoints.coolify_dashboard.address=:3000" # [!code --]
 ```
 
 3. Restart Traefik

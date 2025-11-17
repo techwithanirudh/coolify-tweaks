@@ -1,8 +1,9 @@
 "use client";
 
 import type * as React from "react";
+import { Autoplay, EffectCards } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCards, Autoplay } from "swiper/modules";
+
 import { BlurImage } from "@/components/blur-image";
 
 import "swiper/css";
@@ -56,7 +57,7 @@ export const ThemeShowcase: React.FC<ThemeShowcaseProps> = ({
 }) => {
   return (
     <div
-      className={`w-full h-full ${className}`}
+      className={`h-full w-full ${className}`}
       style={{
         position: "relative",
       }}
@@ -69,7 +70,7 @@ export const ThemeShowcase: React.FC<ThemeShowcaseProps> = ({
           disableOnInteraction: false,
         }}
         modules={[EffectCards, Autoplay]}
-        className={`w-full h-full`}
+        className={`h-full w-full`}
         loop={true}
         cardsEffect={{
           perSlideOffset: 2,
@@ -79,7 +80,10 @@ export const ThemeShowcase: React.FC<ThemeShowcaseProps> = ({
         }}
       >
         {SCREENSHOTS.map((screenshot, index) => (
-          <SwiperSlide key={index} className="rounded-lg border border-border relative">
+          <SwiperSlide
+            key={index}
+            className="border-border relative rounded-lg border"
+          >
             <BlurImage
               src={screenshot.light}
               alt={screenshot.alt}

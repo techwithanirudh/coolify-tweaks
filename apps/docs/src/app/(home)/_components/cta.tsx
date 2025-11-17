@@ -1,33 +1,34 @@
-import { Button } from "@repo/ui/button";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
+import { Button } from "@repo/ui/button";
+
 export function CTA() {
   return (
-    <div className="w-full relative overflow-hidden flex flex-col justify-center items-center gap-2">
-      <div className="self-stretch px-6 md:px-24 py-12 md:py-12 flex justify-center items-center gap-6 relative z-10 bg-dashed">
-        <div className="w-full px-6 py-5 md:py-8 overflow-hidden rounded-lg flex flex-col justify-start items-center gap-6 relative z-20">
-          <div className="self-stretch flex flex-col justify-start items-start gap-3">
-            <div className="self-stretch text-center flex justify-center flex-col text-3xl font-semibold leading-tight tracking-tight">
+    <div className="relative flex w-full flex-col items-center justify-center gap-2 overflow-hidden">
+      <div className="bg-dashed relative z-10 flex items-center justify-center gap-6 self-stretch px-6 py-12 md:px-24 md:py-12">
+        <div className="relative z-20 flex w-full flex-col items-center justify-start gap-6 overflow-hidden rounded-lg px-6 py-5 md:py-8">
+          <div className="flex flex-col items-start justify-start gap-3 self-stretch">
+            <div className="flex flex-col justify-center self-stretch text-center text-3xl leading-tight font-semibold tracking-tight">
               Ready to polish your Coolify dashboard?
             </div>
-            <div className="self-stretch text-center text-muted-foreground text-base font-medium leading-7">
+            <div className="text-muted-foreground self-stretch text-center text-base leading-7 font-medium">
               Install Coolify Tweaks in minutes and transform your dashboard
               <br />
               with better spacing, typography, and colors.
             </div>
           </div>
-          <div className="w-full flex flex-col justify-center items-center gap-12">
-            <div className="flex justify-start items-center gap-4">
+          <div className="flex w-full flex-col items-center justify-center gap-12">
+            <div className="flex items-center justify-start gap-4">
               <Button
                 variant="default"
                 size="lg"
-                className="rounded-full group/button"
+                className="group/button rounded-full"
                 asChild
               >
                 <Link href="/docs/style">
                   Read The Docs
-                  <ArrowUpRight className='group-hover/button:-rotate-12 size-4 transition-transform' />
+                  <ArrowUpRight className="size-4 transition-transform group-hover/button:-rotate-12" />
                 </Link>
               </Button>
             </div>
@@ -37,4 +38,3 @@ export function CTA() {
     </div>
   );
 }
-

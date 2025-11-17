@@ -73,8 +73,8 @@ export function getImageResponseOptions(): ImageResponseOptions {
 }
 
 export function generate({ title, description, tag }: GenerateProps) {
-  const backgroundColor = "rgb(59, 59, 64)"; 
-  const primaryTextColor = "rgb(253, 253, 253)"; 
+  const backgroundColor = "rgb(59, 59, 64)";
+  const primaryTextColor = "rgb(253, 253, 253)";
   const primaryColor = "rgb(168, 141, 212)";
   const gridColor = "rgba(78, 75, 85, 0.4)";
 

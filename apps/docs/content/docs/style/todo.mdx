@@ -6,45 +6,56 @@ icon: List
 
 # Todo
 
-- [x] Add a introduction guide, describing the project and the purpose of the project, and not its relation to coolify (add a thing in copyright footer and readme its not related to coolify)
-- [ ] Add the Analytics Tracking DB
-- [ ] Fix the Ugly Colors (WIP)
-- [ ] Coolify Tweaks API, and development mode for tweaks api that will piggyback on localhost:3000 and auto reload once it changes + theme injection
-- [x] changelog
-- contributing setup
-- move openapi section insline
-- [x] tweakcn theming custom component to enter theme id / theme css and get the url
-- all sections like the traefik and tweakcn will have both manual and automatic installation guides.
+## Core Tasks
 
-[x] for the tweakcn one, it will have a custom component to enter theme id / theme css and get the tweaks url, and for theme css it will programatically call the api to get the tweaks url.
+- [x] Add an introduction guide describing the project and its purpose (also clarify in footer and README that it's not related to Coolify).
+- [ ] Add the analytics tracking DB.
+- [ ] Fix the ugly colors (WIP).
+- [ ] Implement the Coolify Tweaks API, plus a development mode that piggybacks on localhost:3000 with auto-reload and theme injection.
+- [x] Add changelog.
+- [ ] Add contributing setup.
+- [ ] Move OpenAPI section inline.
+- [x] Add the tweakcn theming component to enter theme ID / CSS and auto-generate the URL.
+- [ ] Ensure all sections like Traefik and tweakcn have both manual and automatic installation guides.
+- [x] Move the root to the /docs section; add a landing page like Fumadocs.
+- [ ] Move API to api.coolify-tweaks.techwithanirudh.com.
+- [ ] Add contributing guides per section (api, style, docs): dev server, deploy steps, tests, CI/CD.
 
-- [x] move the root to the /docs section and add a landing page like fumadocs does
-- move to api.coolify-tweaks.techwithanirudh.com
-- add contributing guide to each section, like api, style, docs. so it's easier to contribute. include how to get the dev server running, how to deploy, what tests ci / cd i mean.
+## TweakCN Enhancements
 
-Landing Page:
-[x] Move X Icons to it's own directory i mean icons.tsx through svgl
-[x] Define two images for the landing, dark and light so we dont invert so it looks good on both modes. 
-[x] Integrate the new testimonials section into the landing page.
-[x] take inspiration from next-forge, and shadcn-saas-landing.
-- [x] use a proper logo for the landing page.
-- [x]use a new font that matches the design.
-- [x] optimize mobile ui
+- [x] Custom component to enter theme ID / theme CSS and fetch tweaks URL (programmatically calling the API).
 
-[x] add visualizations for the features section.
-[x] de slop the ai code
-[x] add both light and dark mode screenshots to the features and other section, landing image
-stop img cropping
-fix openapi proxy not working
+## Landing Page
 
-- [x] on mobile there is no border-t for features
-add a general issues section to the docs on how to report and fix common issues.
-add a theme examples section to the docs.
+- [x] Move X icons into their own directory (icons.tsx via SVGL).
+- [x] Define separate dark and light mode images so no inversion is needed.
+- [x] Integrate the new testimonials section.
+- [x] Take inspiration from next-forge and shadcn-saas-landing.
+- [x] Use a proper logo for the landing page.
+- [x] Use a new font matching the design.
+- [x] Optimize mobile UI.
 
-update the ai thing fumadocs starter with new fuamdocs mdx version plus ai context like components build
-[x] too negative towards cooilify it speaks like u rewrote the ui
-[x] change many installation methods to be proper image in hero
-update readme to properly refer to docs
-add light mode for screenshots
-for the changelog for 4.0, talking about the huge turborepo refactor, and the new docs website, also add a roadmap section to the docs, build improvements.
-ask consent and improve testimonials section.
+## Visuals, Features, and Docs
+
+- [x] Add visualizations to the features section.
+- [x] Clean up the AI-related code.
+- [x] Add both light and dark mode screenshots to features and landing sections.
+- [ ] Stop image cropping.
+- [ ] Fix OpenAPI proxy not working.
+- [x] Add missing border-t for features on mobile.
+- [ ] Add a general issues section in docs (how to report and fix common problems).
+- [ ] Add a theme examples section.
+
+## Docs Improvements
+
+- [ ] Update the AI section with the new Fumadocs MDX version and AI context.
+- [x] Remove negative wording toward Coolify (avoid implying a UI rewrite).
+- [x] Change installation methods to proper hero images.
+- [ ] Update README to properly refer to docs.
+- [ ] Add light-mode screenshot variants.
+- [ ] Expand the changelog for 4.0 to mention:
+  - the large Turborepo refactor,
+  - the new docs website,
+  - and add a roadmap section.
+- [ ] Ask consent and improve testimonials section.
+

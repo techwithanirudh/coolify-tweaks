@@ -15,28 +15,25 @@ export function FeatureCard({
 }) {
   return (
     <div
-      className={`w-full md:flex-1 self-stretch px-6 py-5 overflow-hidden flex flex-col justify-start items-start gap-2 cursor-pointer relative border-b last:border-b-0 md:border-b-0 border-border md:first:border-l md:last:border-r ${
-        isActive
-          ? "bg-card border-t-0 -mt-px"
-          : ""
+      className={`border-border relative flex w-full cursor-pointer flex-col items-start justify-start gap-2 self-stretch overflow-hidden border-b px-6 py-5 last:border-b-0 md:flex-1 md:border-b-0 md:first:border-l md:last:border-r ${
+        isActive ? "bg-card -mt-px border-t-0" : ""
       }`}
       onClick={onClick}
     >
       {isActive && (
-        <div className="absolute top-0 left-0 w-full h-px bg-border">
+        <div className="bg-border absolute top-0 left-0 h-px w-full">
           <div
-            className="h-full bg-primary transition-all duration-100 ease-linear"
+            className="bg-primary h-full transition-all duration-100 ease-linear"
             style={{ width: `${progress}%` }}
           />
         </div>
       )}
-      <div className="self-stretch flex justify-center flex-col text-sm font-semibold leading-6">
+      <div className="flex flex-col justify-center self-stretch text-sm leading-6 font-semibold">
         {title}
       </div>
-      <div className="self-stretch text-muted-foreground text-xs">
+      <div className="text-muted-foreground self-stretch text-xs">
         {description}
       </div>
     </div>
   );
 }
-

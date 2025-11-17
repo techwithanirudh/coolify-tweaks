@@ -1,15 +1,14 @@
 "use client";
+
 /**
  * website
  * Copyright (c) Delba de Oliveira
  * Source: https://github.com/delbaoliveira/website/blob/59e6f181ad75751342ceaa8931db4cbcef86b018/ui/BlurImage.tsx
- *
- * Modified by: tszhong0411
  */
+import { useState } from "react";
+import NextImage from "next/image";
 
 import { cn } from "@repo/ui";
-import NextImage from "next/image";
-import { useState } from "react";
 
 type ImageProps = {
   imageClassName?: string;
@@ -21,9 +20,14 @@ const BlurImage = (props: ImageProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className={cn("overflow-hidden", isLoading && "animate-pulse", className)}>
+    <div
+      className={cn("overflow-hidden", isLoading && "animate-pulse", className)}
+    >
       <NextImage
-        className={cn(isLoading && "scale-[1.02] blur-xl grayscale", imageClassName)}
+        className={cn(
+          isLoading && "scale-[1.02] blur-xl grayscale",
+          imageClassName,
+        )}
         style={{
           transition: "filter 700ms ease, scale 150ms ease",
         }}
@@ -40,4 +44,3 @@ const BlurImage = (props: ImageProps) => {
 };
 
 export { BlurImage };
-

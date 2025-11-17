@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { toast } from "sonner";
 import { CopyCheckIcon } from "lucide-react";
+import { toast } from "sonner";
 
 export interface useCopyToClipboardProps {
   timeout?: number;
@@ -29,9 +29,9 @@ export function useCopyToClipboard({
 
     void navigator.clipboard.writeText(value).then(() => {
       setIsCopied(true);
-      toast.success('Copied to clipboard!', {
-        icon: <CopyCheckIcon className='size-4' />,
-        description: 'The value has been copied to your clipboard.',
+      toast.success("Copied to clipboard!", {
+        icon: <CopyCheckIcon className="size-4" />,
+        description: "The value has been copied to your clipboard.",
       });
       setTimeout(() => {
         setIsCopied(false);

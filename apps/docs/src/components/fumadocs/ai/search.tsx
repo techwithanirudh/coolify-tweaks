@@ -466,6 +466,7 @@ export function AISearchTrigger() {
     const listener = (e: KeyboardEvent) => onKeyPress(e);
     window.addEventListener("keydown", listener);
     return () => window.removeEventListener("keydown", listener);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only run on mount
   }, []);
 
   return (
@@ -520,7 +521,7 @@ export function AISearchTrigger() {
       </Presence>
       <button
         className={cn(
-          "bg-fd-secondary text-fd-muted-foreground fixed bottom-4 z-20 flex h-10 w-24 items-center gap-2 gap-3 rounded-2xl border px-2 text-sm font-medium shadow-lg transition-[translate,opacity]",
+          "bg-fd-secondary text-fd-muted-foreground fixed bottom-4 z-20 flex h-10 w-24 items-center gap-3 rounded-2xl border px-2 text-sm font-medium shadow-lg transition-[translate,opacity]",
           "end-[calc(var(--removed-body-scroll-bar-size,0px)+var(--fd-layout-offset)+1rem)]",
           open && "translate-y-10 opacity-0",
         )}

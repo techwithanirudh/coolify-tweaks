@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { ReactElement } from "react";
+import type { ComponentProps, ReactElement } from "react";
 import { notFound } from "next/navigation";
 import Link from "fumadocs-core/link";
 import { getPageTreePeers } from "fumadocs-core/page-tree";
@@ -8,6 +8,7 @@ import * as Twoslash from "fumadocs-twoslash/ui";
 import { createGenerator } from "fumadocs-typescript";
 import { AutoTypeTable } from "fumadocs-typescript/ui";
 import { Card, Cards } from "fumadocs-ui/components/card";
+import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 import { DocsPage } from "fumadocs-ui/page";
 
@@ -22,7 +23,6 @@ import { owner, repo } from "@/lib/github";
 import { createMetadata, getPageImage } from "@/lib/metadata";
 import { source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
-import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
 
 const generator = createGenerator();
 
@@ -51,7 +51,7 @@ export default async function Page(
           {page.data.title}
         </h1>
 
-        <div className="ml-auto flex hidden shrink-0 flex-row items-center justify-end gap-2 sm:flex">
+        <div className="ml-auto hidden shrink-0 flex-row items-center justify-end gap-2 sm:flex">
           <LLMCopyButton markdownUrl={`${page.url}.mdx`} />
           <ViewOptions
             markdownUrl={`${page.url}.mdx`}
@@ -108,7 +108,7 @@ export default async function Page(
             DocsCategory: ({ url }: { url?: string }) => {
               return <DocsCategory url={url ?? page.url} />;
             },
-            img: (props) => <ImageZoom {...(props as any)} />
+            img: (props) => <ImageZoom {...(props as ComponentProps<typeof ImageZoom>)} />,
           })}
         />
         {page.data.index ? <DocsCategory url={page.url} /> : null}

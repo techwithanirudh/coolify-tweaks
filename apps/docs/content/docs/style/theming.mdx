@@ -4,7 +4,12 @@ description: How to theme Coolify Tweaks
 icon: PaintbrushVertical
 ---
 
-import { ThemeConfigCard, ModeContent, ModeContentStylus, ModeContentDynamic } from "./theming";
+import {
+  ModeContent,
+  ModeContentDynamic,
+  ModeContentStylus,
+  ThemeConfigCard,
+} from "./theming";
 
 <ThemeConfigCard />
 
@@ -12,9 +17,11 @@ import { ThemeConfigCard, ModeContent, ModeContentStylus, ModeContentDynamic } f
 
 <ModeContent>
   <ModeContentStylus>
-    For **Stylus**, the URL points to `main.user.css` which you can install directly in the Stylus extension.
+    For **Stylus**, the URL points to `main.user.css` which you can install
+    directly in the Stylus extension.
   </ModeContentStylus>
   <ModeContentDynamic>
-    For **Dynamic Config**, the URL points to `main.css` which you'll inject through Traefik's rewrite-body plugin.
+    For **Dynamic Config**, the URL points to `main.css` which you'll inject
+    through Traefik's rewrite-body plugin.
   </ModeContentDynamic>
 </ModeContent>

@@ -5,8 +5,8 @@ import dynamic from "next/dynamic";
 import { ProgressProvider } from "@bprogress/next/app";
 import { RootProvider } from "fumadocs-ui/provider/base";
 
-import { TooltipProvider } from "@repo/ui/tooltip";
 import { Toaster } from "@repo/ui/toast";
+import { TooltipProvider } from "@repo/ui/tooltip";
 
 const SearchDialog = dynamic(() => import("@/components/search"), {
   ssr: false,

@@ -1,7 +1,7 @@
-import {withSentryConfig} from "@sentry/nextjs";
 import { fileURLToPath } from "node:url";
 import type { NextConfig } from "next";
 import bundleAnalyzer from "@next/bundle-analyzer";
+import { withSentryConfig } from "@sentry/nextjs";
 import { createMDX } from "fumadocs-mdx/next";
 
 async function createNextConfig(): Promise<NextConfig> {
@@ -42,7 +42,7 @@ async function createNextConfig(): Promise<NextConfig> {
           port: "",
         },
       ],
-      qualities: [75,100],
+      qualities: [75, 100],
     },
     async rewrites() {
       return [
@@ -99,5 +99,5 @@ export default withSentryConfig(NextApp, {
   // See the following for more information:
   // https://docs.sentry.io/product/crons/
   // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: true
+  automaticVercelMonitors: true,
 });

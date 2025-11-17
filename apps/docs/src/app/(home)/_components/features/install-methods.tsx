@@ -1,12 +1,13 @@
-import type React from "react";
-import { cn } from "@repo/ui";
-import { Puzzle, ServerCog } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-import { Card } from "@repo/ui/card";
-import { Badge } from "@repo/ui/badge";
-import type { badgeVariants } from "@repo/ui/badge";
 import type { VariantProps } from "class-variance-authority";
+import type { LucideIcon } from "lucide-react";
+import type React from "react";
 import Link from "next/link";
+import { Puzzle, ServerCog } from "lucide-react";
+
+import type { badgeVariants } from "@repo/ui/badge";
+import { cn } from "@repo/ui";
+import { Badge } from "@repo/ui/badge";
+import { Card } from "@repo/ui/card";
 
 interface InstallMethodsProps {
   className?: string;
@@ -48,22 +49,26 @@ const INSTALL_METHODS: InstallMethodConfig[] = [
   },
 ];
 
-const InstallMethods: React.FC<InstallMethodsProps> = ({
-  className = ""
-}) => {
+const InstallMethods: React.FC<InstallMethodsProps> = ({ className = "" }) => {
   return (
     <div
-      className={cn("flex flex-col gap-1 lg:gap-2 w-full relative", className)}
+      className={cn("relative flex w-full flex-col gap-1 lg:gap-2", className)}
     >
       {INSTALL_METHODS.map(({ slug, title, subtitle, Icon, tags }) => (
-        <Card key={slug} className="flex-1 transform hover:scale-[1.02] transition-transform duration-200 gap-1 bg-background px-0 py-0">
-          <Link href={`/docs/style/installation/${slug}`} className="w-full h-full flex flex-col justify-between py-2 px-2 lg:py-3 lg:px-3">
+        <Card
+          key={slug}
+          className="bg-background flex-1 transform gap-1 px-0 py-0 transition-transform duration-200 hover:scale-[1.02]"
+        >
+          <Link
+            href={`/docs/style/installation/${slug}`}
+            className="flex h-full w-full flex-col justify-between px-2 py-2 lg:px-3 lg:py-3"
+          >
             <div className="flex flex-col gap-1.5 lg:gap-2">
               <div className="flex items-center gap-1.5 lg:gap-2">
-                <div className="size-6 bg-primary rounded-md flex items-center justify-center shrink-0">
+                <div className="bg-primary flex size-6 shrink-0 items-center justify-center rounded-md">
                   <Icon className="text-primary-foreground size-3" />
                 </div>
-                <h4 className="text-foreground font-semibold text-xs lg:text-sm">
+                <h4 className="text-foreground text-xs font-semibold lg:text-sm">
                   {title}
                 </h4>
               </div>
@@ -77,7 +82,7 @@ const InstallMethods: React.FC<InstallMethodsProps> = ({
                 <Badge
                   key={tag.label}
                   variant={tag.variant}
-                  className="text-[10px] lg:text-xs px-1 lg:px-1.5 py-0.5 "
+                  className="px-1 py-0.5 text-[10px] lg:px-1.5 lg:text-xs"
                 >
                   {tag.label}
                 </Badge>

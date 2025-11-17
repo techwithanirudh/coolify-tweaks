@@ -1,14 +1,12 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-
+import type { BlockContent, Heading, Root, RootContent } from "mdast";
+import type { MdxJsxAttribute, MdxJsxFlowElement } from "mdast-util-mdx";
+import matter from "gray-matter";
 import { remark } from "remark";
 import remarkMdx from "remark-mdx";
-import type { BlockContent, Heading, Root, RootContent } from "mdast";
-import type { MdxJsxFlowElement, MdxJsxAttribute } from "mdast-util-mdx";
 import { is } from "unist-util-is";
-
-import matter from "gray-matter";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -72,7 +70,7 @@ function buildUpdateNode(entry: ReleaseEntry): MdxJsxFlowElement {
 
 function createMdxJsxFlowElement(
   name: string,
-  attributes: Array<{ name: string; value: string | null }>,
+  attributes: { name: string; value: string | null }[],
   children: BlockContent[],
 ): MdxJsxFlowElement {
   return {
@@ -89,10 +87,10 @@ function createMdxJsxFlowElement(
   };
 }
 
-type ReleaseEntry = { version: string; nodes: BlockContent[] };
+interface ReleaseEntry { version: string; nodes: BlockContent[] }
 
 function extractUpdates(markdown: string): ReleaseEntry[] {
-  const tree = parser.parse(markdown) as Root;
+  const tree = parser.parse(markdown);
   const entries: ReleaseEntry[] = [];
   let current: ReleaseEntry | null = null;
 
@@ -126,8 +124,16 @@ function trimNodes(nodes: RootContent[]): BlockContent[] {
   let start = 0;
   let end = blockNodes.length;
 
-  while (start < end && isWhitespaceNode(blockNodes[start]!)) start += 1;
-  while (end > start && isWhitespaceNode(blockNodes[end - 1]!)) end -= 1;
+  while (start < end) {
+    const node = blockNodes[start];
+    if (!node || !isWhitespaceNode(node)) break;
+    start += 1;
+  }
+  while (end > start) {
+    const node = blockNodes[end - 1];
+    if (!node || !isWhitespaceNode(node)) break;
+    end -= 1;
+  }
 
   return blockNodes.slice(start, end);
 }

@@ -1,13 +1,15 @@
 import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
+import { Download, Github, Grid2X2, Palette, Sparkles } from "lucide-react";
+
+import { cn } from "@repo/ui";
 import { Badge } from "@repo/ui/badge";
-import { Grid2X2, Sparkles, Palette, Download, Github } from "lucide-react";
+
 import { BlurImage } from "@/components/blur-image";
+import { getRepoStarsAndForks, owner, repo } from "@/lib/github";
+import { GitHubShowcase } from "./features/github-showcase";
 import InstallMethods from "./features/install-methods";
 import { ThemeShowcase } from "./features/theme-showcase";
-import { GitHubShowcase } from "./features/github-showcase";
-import { owner, repo, getRepoStarsAndForks } from "@/lib/github";
-import { cn } from "@repo/ui";
 
 interface Feature {
   Icon: LucideIcon;
@@ -25,7 +27,7 @@ function getFeatures(stars: number): Feature[] {
       description:
         "Refined spacing, typography, and colors for a more polished Coolify dashboard.",
       background: (
-        <div className="w-full aspect-video rounded-lg flex items-center justify-center overflow-hidden bg-card border border-border relative">
+        <div className="bg-card border-border relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg border">
           <BlurImage
             src="/assets/hero-light.png"
             alt="Coolify Tweaks Dashboard"
@@ -48,8 +50,8 @@ function getFeatures(stars: number): Feature[] {
         "Use built-in themes or bring your own. Fully customizable to match your preferences and brand.",
       className: "overflow-hidden",
       background: (
-        <div className="w-full aspect-video rounded-lg flex items-center justify-center overflow-visible relative">
-          <ThemeShowcase className="w-full h-full" />
+        <div className="relative flex aspect-video w-full items-center justify-center overflow-visible rounded-lg">
+          <ThemeShowcase className="h-full w-full" />
         </div>
       ),
     },
@@ -60,7 +62,7 @@ function getFeatures(stars: number): Feature[] {
         "Install directly through Traefik or use Stylus. Works with any Coolify instance and fully customizable.",
       className: "bg-transparent",
       background: (
-        <div className="w-full aspect-video rounded-lg bg-card border border-border overflow-hidden">
+        <div className="bg-card border-border aspect-video w-full overflow-hidden rounded-lg border">
           <div className="size-full overflow-y-auto p-1 sm:p-3">
             <InstallMethods className="size-full" />
           </div>
@@ -73,7 +75,7 @@ function getFeatures(stars: number): Feature[] {
       description:
         "Built in the open with community contributions. View the code, suggest improvements, or fork your own version.",
       background: (
-        <div className="w-full aspect-video rounded-lg flex overflow-hidden items-center justify-center relative bg-card border border-border">
+        <div className="bg-card border-border relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg border">
           <GitHubShowcase owner={owner} repo={repo} stars={stars} />
         </div>
       ),
@@ -86,20 +88,20 @@ export async function Features() {
   const features = getFeatures(stars);
 
   return (
-    <section className="w-full flex flex-col justify-center items-center">
-      <div className="self-stretch px-6 sm:px-8 md:px-12 lg:px-0 py-12 sm:py-16 md:py-20 lg:py-24 border-b border-border flex justify-center items-center">
-        <div className="w-full flex flex-col justify-start items-center gap-3 sm:gap-4">
+    <section className="flex w-full flex-col items-center justify-center">
+      <div className="border-border flex items-center justify-center self-stretch border-b px-6 py-12 sm:px-8 sm:py-16 md:px-12 md:py-20 lg:px-0 lg:py-24">
+        <div className="flex w-full flex-col items-center justify-start gap-3 sm:gap-4">
           <Badge
             variant="secondary"
-            className="border-border h-fit shadow-xs border px-2 py-1 text-sm group/badge"
+            className="border-border group/badge h-fit border px-2 py-1 text-sm shadow-xs"
           >
-            <Grid2X2 className="group-hover/badge:scale-110 group-hover/badge:-rotate-12 transition-transform duration-200" />
+            <Grid2X2 className="transition-transform duration-200 group-hover/badge:scale-110 group-hover/badge:-rotate-12" />
             <span>Features</span>
           </Badge>
-          <div className="w-full text-center flex justify-center flex-col text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold leading-tight tracking-tight">
+          <div className="flex w-full flex-col justify-center text-center text-xl leading-tight font-semibold tracking-tight sm:text-2xl md:text-3xl lg:text-5xl">
             Polished spacing, typography, and colors
           </div>
-          <div className="self-stretch text-center text-muted-foreground text-sm sm:text-base font-normal leading-6">
+          <div className="text-muted-foreground self-stretch text-center text-sm leading-6 font-normal sm:text-base">
             A style layer that refines spacing, typography, and colors.
             <br />
             Keeps the interface familiar while smoothing out rough edges.
@@ -107,25 +109,25 @@ export async function Features() {
         </div>
       </div>
 
-      <div className="self-stretch flex justify-center items-start">
-        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch bg-dashed"></div>
+      <div className="flex items-start justify-center self-stretch">
+        <div className="bg-dashed w-4 self-stretch sm:w-6 md:w-8 lg:w-12"></div>
 
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-0 border-l border-r border-border divide-y md:divide-y-0 divide-border">
+        <div className="border-border divide-border grid flex-1 grid-cols-1 gap-0 divide-y border-r border-l md:grid-cols-2 md:divide-y-0">
           {features.map((feature) => (
             <div
               key={feature.name}
               className={cn(
-                "p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-start items-start gap-4 sm:gap-6",
-                "nth-[-n+2]:border-b nth-[-n+2]:border-border",
-                "odd:border-r-0 md:odd:border-r odd:border-border",
-                feature.className
+                "flex flex-col items-start justify-start gap-4 p-4 sm:gap-6 sm:p-6 md:p-8 lg:p-12",
+                "nth-[-n+2]:border-border nth-[-n+2]:border-b",
+                "odd:border-border odd:border-r-0 md:odd:border-r",
+                feature.className,
               )}
             >
               <div className="flex flex-col gap-2">
-                <h3 className="text-lg sm:text-xl font-semibold leading-tight">
+                <h3 className="text-lg leading-tight font-semibold sm:text-xl">
                   {feature.name}
                 </h3>
-                <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed font-normal md:text-base">
                   {feature.description}
                 </p>
               </div>
@@ -134,9 +136,8 @@ export async function Features() {
           ))}
         </div>
 
-        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch bg-dashed"></div>
+        <div className="bg-dashed w-4 self-stretch sm:w-6 md:w-8 lg:w-12"></div>
       </div>
     </section>
   );
 }
-

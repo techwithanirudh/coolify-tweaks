@@ -5,12 +5,16 @@ import { z } from "zod";
 export const env = createEnv({
   extends: [vercel()],
   shared: {
+    NEXT_RUNTIME: z
+      .enum(["nodejs", "edge"])
+      .default("nodejs"),
     NODE_ENV: z
       .enum(["development", "production", "test"])
       .default("development"),
   },
   server: {
     OPENAI_API_KEY: z.string().startsWith("sk-"),
+    SENTRY_AUTH_TOKEN: z.string().startsWith("sntrys_"),
   },
   client: {
     NEXT_PUBLIC_API_URL: z.preprocess(
@@ -27,8 +31,9 @@ export const env = createEnv({
     ),
   },
   experimental__runtimeEnv: {
+    NODE_ENV: process.env.NODE_ENV,
+    NEXT_RUNTIME: process.env.NEXT_RUNTIME,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     NEXT_PUBLIC_DOCS_URL: process.env.NEXT_PUBLIC_DOCS_URL,
-    NODE_ENV: process.env.NODE_ENV,
   },
 });
