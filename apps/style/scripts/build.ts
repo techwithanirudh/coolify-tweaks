@@ -74,14 +74,12 @@ export async function build(
 
   const TRANSFORM_ENABLED = typeof params.transformed === "string";
   const TRANSFORMED = TRANSFORM_ENABLED
-    ? path.resolve(cwd, params.transformed as string)
+    ? path.resolve(cwd, String(params.transformed))
     : undefined;
   const TRANSFORMED_DIR = TRANSFORM_ENABLED
-    ? path.dirname(TRANSFORMED as string)
+    ? path.dirname(String(TRANSFORMED))
     : undefined;
-  const TRANSFORMED_MAP = TRANSFORM_ENABLED
-    ? `${TRANSFORMED}.map`
-    : undefined;
+  const TRANSFORMED_MAP = TRANSFORM_ENABLED ? `${TRANSFORMED}.map` : undefined;
 
   const LOAD_PATHS = params.loadPath.map((p) => path.resolve(cwd, p));
   const MINIFY = params.minify;
@@ -125,7 +123,8 @@ export async function build(
         ? lightningResult.code
         : Buffer.from(lightningResult.code).toString("utf8");
 
-    const lightningMapText = lightningResult.map?.toString() ?? sassResult.sourceMap ?? undefined;
+    const lightningMapText =
+      lightningResult.map?.toString() ?? sassResult.sourceMap ?? undefined;
 
     if (!SILENT) spinner.text = "Loading PostCSS config (OUT)";
     const { plugins, options } = await loadConfig({}, cwd);
@@ -146,7 +145,7 @@ export async function build(
 
     if (!SILENT) spinner.text = "Writing main output";
     await fs.writeFile(OUT, postcssMain.css, "utf8");
-    const mainMapText = postcssMain.map?.toString();
+    const mainMapText = postcssMain.map.toString();
     if (mainMapText) await fs.writeFile(OUT_MAP, mainMapText, "utf8");
 
     let kbTransformed: number | undefined;
@@ -169,7 +168,7 @@ export async function build(
 
       if (!SILENT) spinner.text = "Writing transformed output";
       await fs.writeFile(TRANSFORMED, postcssTransformed.css, "utf8");
-      const transformedMapText = postcssTransformed.map?.toString();
+      const transformedMapText = postcssTransformed.map.toString();
       if (transformedMapText)
         await fs.writeFile(TRANSFORMED_MAP, transformedMapText, "utf8");
 
@@ -177,7 +176,7 @@ export async function build(
         Number(
           (
             new TextEncoder().encode(postcssTransformed.css).length / 1024
-          ).toFixed(1)
+          ).toFixed(1),
         ) || 0;
     }
 
@@ -192,7 +191,7 @@ export async function build(
           `Built ${path.relative(cwd, OUT)} (${kbMain} kB)` +
             ` and ${path.relative(
               cwd,
-              TRANSFORMED!,
+              String(TRANSFORMED),
             )} (${kbTransformed ?? 0} kB) in ${dt}s`,
         );
       } else {
@@ -218,7 +217,7 @@ export async function build(
       }
     }
     const message =
-      err instanceof Error ? err.stack ?? err.message : String(err);
+      err instanceof Error ? (err.stack ?? err.message) : String(err);
     console.error(message);
     throw err;
   }
@@ -241,30 +240,25 @@ if (import.meta.main) {
     .allowUnknownOption(false)
     .parse(process.argv);
 
-  const cli = program.opts<{
-    src: string;
-    out: string;
-    transformed: string | boolean;
-    loadPath: string;
-    minify: boolean | string;
-    silent: boolean | string;
-  }>();
+  const opts = program.opts();
+  const src = String(opts.src ?? "src/main.scss");
+  const out = String(opts.out ?? "dist/main.user.css");
+  const loadPathStr = String(opts.loadPath ?? "src");
+  const minify = Boolean(opts.minify);
+  const silent = Boolean(opts.silent);
 
   build({
-    src: cli.src,
-    out: cli.out,
-    transformed: cli.transformed as string | boolean,
-    loadPath: typeof cli.loadPath === "string"
-      ? cli.loadPath
-          .split(",")
-          .map((x) => x.trim())
-          .filter(Boolean)
-      : [],
-    minify: Boolean(boolish(cli.minify)),
-    silent: Boolean(boolish(cli.silent)),
+    src,
+    out,
+    loadPath: loadPathStr
+      .split(",")
+      .map((x: string) => x.trim())
+      .filter(Boolean),
+    minify,
+    silent,
   }).catch((err: unknown) => {
     const message =
-      err instanceof Error ? err.stack ?? err.message : String(err);
+      err instanceof Error ? (err.stack ?? err.message) : String(err);
     console.error(message);
     process.exit(1);
   });

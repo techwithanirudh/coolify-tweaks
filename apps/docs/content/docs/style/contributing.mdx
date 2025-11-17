@@ -1,0 +1,155 @@
+---
+title: Contributing
+description: How to contribute to Coolify Tweaks
+icon: HeartHandshake
+---
+
+## Before you start
+
+- **Engines:** Install Node.js `^22.21.0` and PNPM `^10.19.0` (see `package.json#engines`).
+- **Bootstrap:** Run `pnpm install` from the repo root to hydrate every workspace.
+- **Environment:** Copy `.env.example` to `.env` and tweak the values used by the website/API/db packages.
+- **Database:** Run `pnpm db:push` to sync Drizzle migrations against your development Neon/Postgres instance.
+- **Hooks:** Install Lefthook (`pnpm exec lefthook install`) if you want the same commit-msg guard locally.
+
+## Walkthrough: from clone to PR
+
+1. **Clone**
+   ```bash
+   git clone https://github.com/techwithanirudh/coolify-tweaks.git
+   cd coolify-tweaks
+   ```
+2. **Install**
+   ```bash
+   pnpm install
+   cp .env.example .env
+   pnpm db:push
+   ```
+3. **Run the docs site** (Next.js dev server at http://localhost:3002 by default):
+   ```bash
+   pnpm --filter @repo/docs dev
+   ```
+4. **Run the style watcher** (Sass → Lightning CSS on http://localhost:3000):
+   ```bash
+   pnpm --filter @repo/style dev
+   ```
+   While this server runs you can open `http://localhost:3000/main.user.css` in your browser, hit **Install style** inside Stylus, add `http://localhost:3000/*` to **Custom included sites**, and enable **Live Reload** so Sass edits become visible the moment they compile.
+5. **API server** (if you need release proxy endpoints):
+   ```bash
+   pnpm --filter @repo/api dev
+   ```
+6. **Edit files** following the sections below, run tests/linting, then commit with Conventional Commit messages.
+7. **Push + PR** once `pnpm lint`, `pnpm format`, and `pnpm typecheck` pass locally.
+
+## Repository overview
+
+Coolify Tweaks is a Turborepo monorepo that contains:
+
+<Files>
+  <Folder name="coolify-tweaks" defaultOpen>
+    <Folder name="apps" defaultOpen>
+      <Folder name="api" description="Nitro proxy for releases" />
+      <Folder name="docs" description="Next.js 16 docs + marketing site" />
+      <Folder name="style" description="Sass pipeline for the Coolify theme" />
+    </Folder>
+    <Folder name="packages" defaultOpen>
+      <Folder name="db" description="Drizzle + Neon helpers" />
+      <Folder name="ui" description="shadcn/ui component library" />
+      <Folder name="validators" description="Zod schema helpers" />
+    </Folder>
+    <Folder name="tooling" defaultOpen>
+      <Folder name="eslint" description="Shared ESLint configs" />
+      <Folder name="prettier" description="Shared Prettier configs" />
+      <Folder name="tailwind" description="Shared Tailwind configs" />
+      <Folder name="cspell" description="Shared cspell configs" />
+      <Folder name="typescript" description="Shared TypeScript configs" />
+    </Folder>
+  </Folder>
+</Files>
+
+> All internal packages are scoped under `@repo/*`.
+
+### Directory cheat sheet
+
+- `apps/docs/src/app/(home)/_components` → hero tiles, install cards, and testimonial grids for the marketing page (`install-methods.tsx`, `features.tsx`, `testimonials.tsx`, etc.).
+- `apps/docs/src/components` → shared primitives like `progressive-blur.tsx`, `mdx-components.tsx`, and callouts that can be reused across routes.
+- `apps/docs/content/docs/**` → MDX files for product docs. Frontmatter is validated by `packages/validators` and rendered through MDX remote components.
+- `apps/docs/src/lib` & `utils` → data loaders (release notes, theme metadata, site config) plus utility helpers.
+- `apps/api/src/routes` → Nitro handlers for release downloads, analytics, and diagnostics. Middleware lives under `middleware/` and reuses helpers inside `utils/`.
+- `apps/style/src/theme` & `components` → Sass source files grouped by concern (variables, layout, pages, mixins). `main.scss` imports everything and feeds the Lightning CSS/PostCSS pipeline.
+- `packages/ui/src` → shadcn/ui-derived React components plus tokens exposed via a single entrypoint.
+- `tooling/**` → actual ESLint/Prettier/Tailwind/cspell configs used everywhere. If you need a rule change, start here instead of per-package configs.
+
+## Branch + commit workflow
+
+1. Fork the repository and sync `main`.
+2. Create a descriptively named branch that follows the conventional pattern, e.g. `feat/improve-style-palette`, `fix/style-build`, or `chore/update-tailwind`.
+3. Commit frequently with Conventional Commit messages (`feat: add accent color`). Lefthook + Commitlint will block non-compliant messages during `git commit`.
+4. Push, open a PR, and keep it rebased on `main` so CI stays happy.
+
+## Core scripts
+
+- `pnpm dev` → runs Turbo in watch mode for every `dev` target.
+- `pnpm dev:web` / `dev:api` / `dev:style` → focus on one app without filters.
+- `pnpm build` → executes every `build` pipeline via Turbo.
+- `pnpm typecheck` → runs TypeScript against every package.
+- `pnpm format` / `pnpm format:fix` → Prettier with shared cache.
+- `pnpm lint` / `pnpm lint:fix` → ESLint with the repo-level presets.
+- `pnpm lint:ws` → runs Sherif to guarantee every workspace has required fields (postinstall hook uses this too).
+- `pnpm check:spelling` → cspell pass to keep docs/components typo-free.
+- `pnpm ui-add` → launches the shadcn/ui code generator for `@repo/ui`.
+- `pnpm turbo gen init` → scaffold a brand-new package with configs wired up.
+
+## Work on individual apps
+
+Thanks to PNPM filters plus Turbo pipelines you can keep the feedback loop tight when only one service matters:
+
+```bash
+# Style-only Sass/Tailwind watcher (outputs dist/main.user.css)
+pnpm --filter @repo/style dev
+
+# Next.js docs site (used for marketing + live previews)
+pnpm --filter @repo/docs dev
+
+# Nitro API for release assets + health checks
+pnpm --filter @repo/api dev
+```
+
+Add `--filter ... build` to run the production build of a single target, or append any other script (e.g. `pnpm --filter @repo/style lint`).
+
+## Apps, packages, and what they do
+
+- **apps/style** → Pure styling pipeline that blends Sass, Lightning CSS, and PostCSS. Outputs the `main.user.css` theme plus hashed assets under `dist/`. Driven by `apps/style/src` Sass maps, utilities, and CSS variables.
+- **apps/api** → Nitro server that fronts GitHub release assets, proxies analytics, and exposes health endpoints. Lives in `apps/api/src`, consumes environment vars defined in `apps/api/.env.example`.
+- **apps/docs** → Next.js 16 app that renders the public docs + marketing site (see `apps/docs/src/app`). Integrates MDX docs from `apps/docs/content`, uses `mdx-components.tsx` for custom elements, and consumes shared UI primitives.
+- **packages/ui** → Reusable shadcn/ui components plus design tokens shared between docs and future Coolify experiences. Generated via `pnpm ui-add`.
+- **packages/db** → Drizzle + Neon wrappers, Drizzle schema, migration scripts, and CLI tasks used by Nitro.
+- **packages/validators** → Zod schema helpers for request validation and docs frontmatter parsing.
+- **tooling/** → Centralized configuration for ESLint, Prettier, Tailwind, TypeScript, GitHub metadata, cspell, etc. Every workspace extends from these presets to stay consistent.
+
+## Building new pieces
+
+1. **UI work** (docs/layout): run `pnpm ui-add` to install new shadcn/ui components. They drop under `packages/ui/src/components` and can be imported from any app.
+2. **New packages**: `pnpm turbo gen init` scaffolds the package folder, `package.json`, `tsconfig`, and wires the lint/type targets in Turbo. Pick dependencies as prompted, then fill out the generated entry file.
+3. **Database changes**: update schemas in `packages/db/src/schema`, run `pnpm --filter @repo/db drizzle-kit generate`, then `pnpm db:push`.
+4. **Docs content**: add/modify MDX files inside `apps/docs/content`. Frontmatter is validated by `packages/validators`.
+5. **Style tweaks**: edit Sass partials in `apps/style/src`, run `pnpm --filter @repo/style dev`, confirm `dist/main.user.css` updates, then document the tweak in the docs.
+
+## Linting, formatting, and CI
+
+- **ESLint**: Shared presets in `tooling/eslint` enforce import order, React, accessibility, and stylistic rules. Run `pnpm lint` or `pnpm --filter <target> lint`.
+- **Prettier**: `@repo/prettier-config` guarantees consistent formatting. `pnpm format:fix` will write changes.
+- **cspell**: `pnpm check:spelling` scans docs + TSX for typos using `tooling/cspell`.
+- **Commitlint**: Configured via `commitlint.config.ts` and enforced by Lefthook on `commit-msg`.
+- **CI**: GitHub Actions under `.github/workflows` rerun lint, format check, typecheck, build, and Commitlint on every push + PR. Broken checks block merges.
+
+Keep your local commands green before you push; it mirrors exactly what CI will run.
+
+## Deployment quick notes
+
+- **Style:** `pnpm --filter @repo/style build` compiles, autoprefixes, and minifies the stylesheet. Release `dist/main.user.css` through GitHub Releases or `pnpm release` (Turbo build + Changesets publish).
+- **Docs:** `pnpm --filter @repo/docs build` outputs the static Next.js site. Deploy to Vercel with `apps/docs` set as the root and the required env vars (`NEXT_PUBLIC_*`, analytics keys).
+- **API:** Deploy `apps/api` to Vercel's serverless Nitro preset. Only `POSTGRES_URL` is required.
+- **Automation:** `pnpm release` builds every app, then `changeset publish` tags + pushes packages while CI redistributes artifacts.
+
+Once your branch is reviewed and merged, the release automation takes it from there.

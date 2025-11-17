@@ -14,6 +14,9 @@
     },
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest"
+    },
+    "ghcr.io/devcontainers-extra/features/bun:1": {
+      "version": "latest"
     }
   },
   // Configure tool-specific properties.
@@ -24,7 +27,13 @@
       "extensions": ["streetsidesoftware.code-spell-checker"]
     }
   },
-  "postCreateCommand": "corepack enable",
+  "postAttachCommand": {
+    "server": "pnpm run dev"
+  },
+  "postCreateCommand": {
+    "corepack": "corepack enable",
+    "ni": "npm i -g @antfu/ni"
+  },
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
   // Use 'postCreateCommand' to run commands after the container is created.

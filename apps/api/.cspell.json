@@ -1,5 +1,15 @@
 {
   "version": "0.2",
   "import": ["@repo/cspell-config"],
-  "words": ["nitro", "shadcn", "ofetch"]
+  "words": [
+    "nitro",
+    "shadcn",
+    "ofetch",
+    "Segoe",
+    "Neue",
+    "Noto",
+    "Menlo",
+    "Consolas",
+    "srvx"
+  ]
 }

@@ -70,21 +70,24 @@
 
 /* Keep password/visibility toggles clickable when input is disabled (clean, grouped selectors) */
 /* Siblings of a disabled input (typical toggle button next to input) */
-:where(input:disabled, input[disabled]) ~ :is(button:not(:disabled), [role="button"], [x-on\:click], [\@click]) {
+:where(input:disabled, input[disabled])
+  ~ :is(button:not(:disabled), [role="button"], [x-on\:click], [\@click]) {
   pointer-events: auto !important;
   cursor: pointer !important;
   z-index: 2;
 }
 
 /* Controls inside a relative wrapper that contains a disabled input (absolute icons/toggles) */
-:where(div, label).relative:has(> :is(input:disabled, input[disabled])) :is(button:not(:disabled), [role="button"], [x-on\:click], [\@click]) {
+:where(div, label).relative:has(> :is(input:disabled, input[disabled]))
+  :is(button:not(:disabled), [role="button"], [x-on\:click], [\@click]) {
   pointer-events: auto !important;
   cursor: pointer !important;
   z-index: 2;
 }
 
 /* Entire fieldsets disabled but non-form controls should still be clickable */
-fieldset[disabled] :is(button:not(:disabled), [role="button"], [x-on\:click], [\@click]) {
+fieldset[disabled]
+  :is(button:not(:disabled), [role="button"], [x-on\:click], [\@click]) {
   pointer-events: auto !important;
   cursor: pointer !important;
   z-index: 2;
@@ -97,21 +100,16 @@ select.select {
   @include input-base;
 }
 
-/* Align search icon placed absolutely inside inputs with left padding */
-/* Targets inputs bound to Alpine's x-model="search" or inputs with class 'input--search' */
 input[x-model="search"],
 input.input--search {
-  /* Ensure the containing block is positioned for the absolute svg */
   position: relative;
 
-  /* Only add left padding when the input is followed by an svg (search icon) */
   &:has(+ svg),
   &:has(+ svg[aria-hidden]),
   &:has(+ svg[class*="w-4"]) {
     padding-left: s(10);
   }
 
-  /* Align the svg inside the input when it's absolutely positioned as in markup */
   & + svg,
   svg[aria-hidden][class*="w-4"] {
     position: absolute;

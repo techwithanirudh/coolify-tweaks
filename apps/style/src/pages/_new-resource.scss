@@ -1,9 +1,9 @@
 @use "globals" as *;
 
 // Round Resource Images
-img[class*="w-[4.5rem] aspect-square h-[4.5rem]"],
-svg[class*="w-[4.5rem] aspect-square h-[4.5rem]"],
-div[class*="w-[4.5rem] aspect-square h-[4.5rem]"] {
+img.w-full.h-full.p-2.transition-all.object-contain,
+svg.w-\[4\.5rem\].h-\[4\.5rem\].p-2.dark\:bg-white\/10.bg-black\/10,
+div.w-\[4\.5rem\].h-\[4\.5rem\].p-2.dark\:bg-white\/10.bg-black\/10 {
   overflow: hidden;
   border-radius: var(--radius-lg);
   filter: none;
@@ -15,12 +15,13 @@ div[class*="w-[4.5rem] aspect-square h-[4.5rem]"] {
   padding: s(1.5);
 }
 
-div[class*="w-[4.5rem] aspect-square h-[4.5rem]"] > svg {
+div.w-\[4\.5rem\].h-\[4\.5rem\].p-2.dark\:bg-white\/10.bg-black\/10 > svg {
   transform: translateX(-23px) translateY(-8px) scaleX(0.8) scaleY(0.7);
   transform-origin: center center;
 }
 
-div[class*="w-[4.5rem] aspect-square h-[4.5rem]"] > svg#svg1326 {
+div.w-\[4\.5rem\].h-\[4\.5rem\].p-2.dark\:bg-white\/10.bg-black\/10
+  > svg#svg1326 {
   transform: translateX(-19px) translateY(-9px) scaleX(0.8) scaleY(0.7);
   transform-origin: center center;
 }
@@ -37,6 +38,10 @@ div.grid[class*="cols"]:is(
   ) {
   background: none;
   padding: s(0.5);
+
+  .box-without-bg {
+    padding: s(1);
+  }
 }
 
 div[x-show="filteredServices.length > 0"]:has(> div[x-init="loadResources"]) {
@@ -72,6 +77,7 @@ div[x-show="filteredServices.length > 0"]:has(> div[x-init="loadResources"]) {
 
     .box-without-bg {
       min-height: 100%;
+      padding: s(1);
     }
   }
 }

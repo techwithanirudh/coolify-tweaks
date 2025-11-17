@@ -50,3 +50,11 @@ dist/
 
 # cspell
 .cspellcache
+
+# generated content
+.contentlayer
+.content-collections
+.source
+
+# sentry
+.env.sentry-build-plugin

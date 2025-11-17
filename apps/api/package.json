@@ -7,7 +7,7 @@
     "clean": "git clean -xdf .cache .next .nitro .turbo node_modules",
     "dev": "pnpm with-env nitro dev --port 3001",
     "prepare": "nitro prepare",
-    "preview": "node .output/server/index.mjs",
+    "preview": "npx srvx --prod .output/",
     "lint": "pnpm run prepare && eslint --flag unstable_native_nodejs_ts_config",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "typecheck": "pnpm run prepare && tsc --noEmit --skipLibCheck",
@@ -16,12 +16,10 @@
   },
   "dependencies": {
     "browserslist": "^4.27.0",
-    "h3": "^1.15.3",
     "lightningcss-wasm": "^1.30.2",
-    "mime": "^4.0.7",
-    "ofetch": "^1.4.1",
+    "mime-types": "^3.0.1",
     "postcss": "^8.5.6",
-    "shadcn": "^2.9.0",
+    "shadcn": "^3.5.0",
     "zod": "catalog:"
   },
   "devDependencies": {
@@ -29,11 +27,13 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/prettier-config": "workspace:*",
     "@repo/tsconfig": "workspace:*",
+    "@types/mime-types": "^3.0.1",
     "@types/node": "catalog:",
     "cspell": "catalog:",
     "eslint": "catalog:",
-    "nitropack": "latest",
+    "nitro": "latest",
     "prettier": "catalog:",
+    "rolldown": "latest",
     "typescript": "catalog:"
   },
   "prettier": "@repo/prettier-config"

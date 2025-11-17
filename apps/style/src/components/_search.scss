@@ -12,47 +12,72 @@
   background: var(--input) !important;
 }
 
-div.relative:has(
-    > input[type="hidden"] ~ div[\@click="openDropdown()"] ~ datalist
-  ) {
-  div[\@click="openDropdown()"] {
-    @include input.input-base;
-    padding: s(2.25);
-    background: var(--input) !important;
+.sticky.z-10.top-10:has(input[x-ref="searchInput"]) {
+  background: var(--popover) !important;
+  border-radius: var(--radius-lg);
+  padding: s(2);
+  box-shadow: var(--shadow-sm) !important;
 
-    > div.flex-1.flex.items-center.px-1 {
-      padding: s(0);
-      padding-left: s(1);
+  input[x-ref="searchInput"] {
+    box-shadow: none !important;
+  }
+}
+
+div.relative:has(
+    > div[\@click*="openCategoryDropdown"] ~ div[x-show="openCategoryDropdown"]
+  ) {
+  div[\@click*="openCategoryDropdown"].py-1\.5 {
+    @include button.button-base;
+    background: var(--input) !important;
+    color: var(--foreground);
+    box-shadow: none !important;
+
+    > span {
+      color: var(--foreground);
     }
   }
 
-  div[x-show="open && !false"] {
+  div[x-show="openCategoryDropdown"].absolute {
     border-radius: var(--radius-lg);
     background: var(--popover);
     border: 1px solid var(--border);
     box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
 
-    > div {
-      @include button.button-base;
-      width: 100%;
-      text-align: left;
+    input[x-ref="categorySearchInput"] {
+      @include input.input-base;
       padding: s(2) s(3);
-      color: var(--popover-foreground);
-      background: var(--popover);
-
-      &:hover {
-        background: var(--accent);
-        color: var(--accent-foreground);
-      }
-
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
-        border-color: var(--ring);
-      }
+      background: var(--background) !important;
+      color: var(--foreground);
+      box-shadow: none !important;
     }
 
-    padding: s(1);
+    .scrollbar {
+      border-radius: var(--radius-lg);
+
+      > div {
+        @include button.button-base;
+        width: 100%;
+        text-align: left;
+        padding: s(2) s(3);
+        color: var(--popover-foreground);
+        background: var(--popover);
+
+        &:hover {
+          background: var(--accent);
+          color: var(--accent-foreground);
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+          border-color: var(--ring);
+        }
+      }
+
+      padding: s(1);
+    }
   }
 
   padding: s(0);

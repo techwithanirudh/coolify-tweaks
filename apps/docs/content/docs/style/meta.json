@@ -1,0 +1,21 @@
+{
+  "$schema": "../../../.source/json-schema/docs.meta.json",
+  "title": "Style",
+  "description": "The style framework",
+  "icon": "Palette",
+  "root": true,
+  "pages": [
+    "index",
+    "changelog",
+    "screenshots",
+    "---Installation---",
+    "...installation",
+    "---Usage---",
+    "updating",
+    "theming",
+    "---Contributing---",
+    "contributing",
+    "!todo",
+    "..."
+  ]
+}

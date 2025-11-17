@@ -1,6 +1,7 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
+  "envMode": "loose",
   "tasks": {
     "topo": {
       "dependsOn": ["^topo"]
@@ -51,14 +52,21 @@
   },
   "globalEnv": [
     "POSTGRES_URL",
+    "OPENAI_API_KEY",
+    "NEXT_PUBLIC_API_URL",
+    "NEXT_PUBLIC_DOCS_URL",
     "PORT"
   ],
   "globalPassThroughEnv": [
     "NODE_ENV",
+    "NEXT_RUNTIME",
     "CI",
     "VERCEL",
     "VERCEL_ENV",
     "VERCEL_URL",
-    "npm_lifecycle_event"
+    "npm_lifecycle_event",
+    "NITRO_PRESET",
+    "NITRO_PRESET_CLOUD",
+    "SENTRY_AUTH_TOKEN"
   ]
 }

@@ -159,8 +159,22 @@ $breakpoints: (
   --color-coollabs: var(--primary);
   --color-text-primary: var(--foreground);
 
+  --color-coollabs-100: var(--primary);
+  --color-coollabs-200: var(--primary);
+
+  --color-coolgray-100: var(--border);
+  --color-coolgray-200: var(--input);
+  --color-coolgray-300: var(--border);
+  --color-coolgray-400: var(--accent);
+  --color-coolgray-500: var(--background);
+
   --color-error: var(--destructive);
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-info: var(--info);
+}
+
+.scrollbar {
+  --scrollbar-thumb: var(--primary) !important;
+  --scrollbar-track: var(--background) !important;
 }

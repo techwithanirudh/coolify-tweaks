@@ -8,9 +8,22 @@ runs:
     - uses: actions/setup-node@v6
       with:
         node-version-file: ".nvmrc"
+    - uses: oven-sh/setup-bun@v2
 
     - shell: bash
       run: pnpm add -g turbo
 
     - shell: bash
       run: pnpm install
+
+    - name: Create environment variables file
+      shell: bash
+      run: |
+        cat << EOF > .env
+        POSTGRES_URL="postgresql://[USERNAME]:[PASSWORD]@[xyz]-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+        OPENAI_API_KEY=sk-proj-1234567890
+        NEXT_PUBLIC_API_URL=https://coolify-tweaks-api.techwithanirudh.com
+        NEXT_PUBLIC_DOCS_URL=https://coolify-tweaks.techwithanirudh.com
+        SENTRY_AUTH_TOKEN="sntrys_1234567890"
+        SENTRY_DSN=""
+        EOF

@@ -1,16 +1,17 @@
-import { defineNitroConfig } from "nitropack/config";
+import { fileURLToPath } from "node:url";
+import { defineConfig } from "nitro";
 
-export default defineNitroConfig({
-  srcDir: "server",
-  compatibilityDate: "2025-07-15",
-  imports: {
-    autoImport: false,
-  },
+export default defineConfig({
+  serverDir: "src",
   experimental: {
     openAPI: true,
   },
+  alias: {
+    "@": fileURLToPath(new URL("./src", import.meta.url)),
+  },
   openAPI: {
     route: "/_docs/openapi.json",
+    production: "runtime",
     meta: {
       title: "Coolify Tweaks API",
       description: "Proxies GitHub release assets for Coolify Tweaks",
@@ -19,7 +20,6 @@ export default defineNitroConfig({
     ui: {
       scalar: {
         route: "/_docs/scalar",
-        theme: "purple",
       },
       swagger: {
         route: "/_docs/swagger",

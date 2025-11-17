@@ -20,7 +20,7 @@ export const restrictEnvAccess = defineConfig(
           object: "process",
           property: "env",
           message:
-            "Use `import { env } from '~/env'` instead to ensure validated types.",
+            "Use `import { env } from '@/env'` instead to ensure validated types.",
         },
       ],
       "no-restricted-imports": [
@@ -29,7 +29,7 @@ export const restrictEnvAccess = defineConfig(
           name: "process",
           importNames: ["env"],
           message:
-            "Use `import { env } from '~/env'` instead to ensure validated types.",
+            "Use `import { env } from '@/env'` instead to ensure validated types.",
         },
       ],
     },

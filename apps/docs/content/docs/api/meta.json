@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../.source/json-schema/docs.meta.json",
+  "title": "API",
+  "description": "Coolify Tweaks's API",
+  "root": true,
+  "icon": "Webhook",
+  "pages": [
+    "---Introduction---",
+    "index",
+    "---API Reference---",
+    "...(generated)"
+  ]
+}
