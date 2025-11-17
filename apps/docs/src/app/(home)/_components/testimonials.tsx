@@ -1,10 +1,15 @@
 // cspell:disable
+"use client";
+
+import { useState } from "react";
 import { MessageCircle } from "lucide-react";
 
 import { Badge } from "@repo/ui/badge";
-import { Card } from "@repo/ui/card";
+import { Button } from "@repo/ui/button";
 
 import { BlurImage } from "@/components/blur-image";
+import { ProgressiveBlur } from "@/components/progressive-blur";
+import { cn } from "@repo/ui";
 
 interface Testimonial {
   name: string;
@@ -59,26 +64,24 @@ const TESTIMONIALS: Testimonial[] = [
   {
     name: "Zach Latta",
     handle: "@zachlatta",
-    avatar:
-      "https://github.com/zachlatta.png",
+    avatar: "https://github.com/zachlatta.png",
     link: "https://github.com/zachlatta",
     content: "hack clubbers are so cool",
   },
   {
     name: "Echo",
     handle: "@3kh0",
-    avatar:
-      "https://github.com/3kh0.png",
+    avatar: "https://github.com/3kh0.png",
     link: "https://github.com/3kh0",
     content: "Dude your coolify styles thing is so cool",
   },
   {
     name: "shn",
     handle: "@xshn",
-    avatar:
-      "https://github.com/ghost.png",
+    avatar: "https://github.com/ghost.png",
     link: "https://discord.com/channels/459365938081431553/1009177753230245928/1391308542505390110",
-    content: "this looks so nice! i really like the modern design and the rounded corners. thank you for this",
+    content:
+      "this looks so nice! i really like the modern design and the rounded corners. thank you for this",
   },
   {
     name: "Ben",
@@ -90,7 +93,53 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
+interface TestimonialCardProps {
+  testimonial: Testimonial;
+  className?: string;
+}
+
+function TestimonialCard({ testimonial, className }: TestimonialCardProps) {
+  return (
+    <a
+      href={testimonial.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={cn("size-full space-y-4 p-6 bg-card text-card-foreground rounded-xl border shadow-sm ansition-transform duration-200 hover:scale-[1.02]", className)}
+    >
+      <div className="flex items-start justify-between">
+        <div className="flex items-center gap-3">
+          <BlurImage
+            src={testimonial.avatar || "/placeholder.svg"}
+            alt={testimonial.name}
+            className="rounded-full"
+            width={48}
+            height={48}
+          />
+          <div>
+            <div className="flex items-center gap-1">
+              <span className="text-sm font-semibold">
+                {testimonial.name}
+              </span>
+            </div>
+            <span className="text-muted-foreground text-xs">
+              {testimonial.handle}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <p className="text-muted-foreground text-sm leading-relaxed">
+        {testimonial.content}
+      </p>
+    </a>
+
+  );
+}
+
 export function Testimonials() {
+  const [showAll, setShowAll] = useState(false);
+  const hasMore = TESTIMONIALS.length > 6;
+
   return (
     <section className="py-8">
       <div className="mx-auto max-w-6xl px-4">
@@ -103,54 +152,79 @@ export function Testimonials() {
               <MessageCircle className="transition-transform duration-200 group-hover/badge:scale-110 group-hover/badge:-rotate-12" />
               <span>Testimonials</span>
             </Badge>
-            <div className="flex w-full flex-col justify-center text-center text-xl leading-tight font-semibold tracking-tight sm:text-2xl md:text-3xl lg:text-5xl">
+            <div className="flex w-full flex-col justify-center text-center text-xl font-semibold leading-tight tracking-tight sm:text-2xl md:text-3xl lg:text-5xl">
               Loved by the community
             </div>
-            <div className="text-muted-foreground self-stretch text-center text-sm leading-6 font-normal sm:text-base sm:leading-7">
+            <div className="text-muted-foreground self-stretch text-center text-sm font-normal leading-6 sm:text-base sm:leading-7">
               See what people are saying about Coolify Tweaks.
             </div>
           </div>
 
-          <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {TESTIMONIALS.map((testimonial, index) => (
-              <Card
-                key={index}
-                className="px-0 py-0 transition-transform duration-200 hover:scale-[1.02]"
-              >
-                <a
-                  href={testimonial.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="size-full space-y-4 p-6"
-                >
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-3">
-                      <BlurImage
-                        src={testimonial.avatar || "/placeholder.svg"}
-                        alt={testimonial.name}
-                        className="rounded-full"
-                        width={48}
-                        height={48}
-                      />
-                      <div>
-                        <div className="flex items-center gap-1">
-                          <span className="text-sm font-semibold">
-                            {testimonial.name}
-                          </span>
-                        </div>
-                        <span className="text-muted-foreground text-xs">
-                          {testimonial.handle}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+          <div className="relative w-full">
+            <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {TESTIMONIALS.map((testimonial, index) => {
+                const key = `${testimonial.handle}-${index}`;
 
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {testimonial.content}
-                  </p>
-                </a>
-              </Card>
-            ))}
+                if (showAll) {
+                  return (
+                    <TestimonialCard
+                      key={key}
+                      testimonial={testimonial}
+                    />
+                  );
+                }
+
+                if (index < 6) {
+                  return (
+                    <TestimonialCard
+                      key={key}
+                      testimonial={testimonial}
+                    />
+                  );
+                }
+
+                if (index === 6) {
+                  return (
+                    <TestimonialCard
+                      key={key}
+                      testimonial={testimonial}
+                      className="opacity-60 pointer-events-none"
+                    />
+                  );
+                }
+
+                if (index > 6 && index <= 9) {
+                  return (
+                    <TestimonialCard
+                      key={key}
+                      testimonial={testimonial}
+                      className="hidden opacity-60 md:block pointer-events-none"
+                    />
+                  );
+                }
+
+                return null;
+              })}
+            </div>
+
+            {hasMore && !showAll && (
+              <>
+                <ProgressiveBlur
+                  className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-[300px]"
+                  direction="bottom"
+                  blurIntensity={0.5}
+                  blurLayers={16}
+                />
+                <div className="relative z-20 flex justify-center">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowAll(true)}
+                  >
+                    Show more
+                  </Button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

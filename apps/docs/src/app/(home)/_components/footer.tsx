@@ -11,7 +11,7 @@ import { Love } from "./love";
 
 export function Footer() {
   const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 2000 });
-  const email = "hello@techwithanirudh.com";
+  const email = "coolify@techwithanirudh.com";
 
   return (
     <div className="flex w-full flex-col items-start justify-start pt-10">

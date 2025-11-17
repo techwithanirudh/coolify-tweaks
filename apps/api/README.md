@@ -4,9 +4,9 @@ A lightweight Nitro server that serves `coolify-tweaks` release assets with opti
 
 ## Why This Exists
 
-- **Bypass CDN quirks** – serve release assets directly without CORS surprises.
-- **Dynamic theme injection** – apply TweakCN themes on demand so every install link stays themed.
-- **Edge-friendly** – deploys on Vercel (Nitro) with smart caching and global reach.
+- **Bypass CDN quirks**: serve release assets directly without CORS surprises.
+- **Dynamic theme injection**: apply TweakCN themes on demand so every install link stays themed.
+- **Edge-friendly**: deploys on Vercel (Nitro) with smart caching and global reach.
 
 ## Quick Start
 
