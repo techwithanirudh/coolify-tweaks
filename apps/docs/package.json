@@ -27,6 +27,7 @@
     "@repo/db": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/validators": "workspace:*",
+    "@sentry/nextjs": "^10.25.0",
     "@shikijs/rehype": "^3.14.0",
     "@shikijs/transformers": "^3.14.0",
     "@t3-oss/env-nextjs": "^0.13.8",

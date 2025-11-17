@@ -6,8 +6,9 @@ import { useInterval } from "usehooks-ts";
 import { BlurImage } from "@/components/blur-image";
 import { FeatureCard } from "./feature-card";
 import { Button } from "@repo/ui/button";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 import { cn } from "@repo/ui";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@repo/ui/hover-card";
 
 interface FeatureHero {
   title: string;
@@ -79,8 +80,25 @@ export function Hero() {
   return (
     <div className="pt-16 sm:pt-20 md:pt-24 flex flex-col justify-start items-center px-2 sm:px-4 md:px-8 lg:px-0 w-full sm:pl-0 sm:pr-0 pl-0 pr-0 gap-6">
       <div className="self-stretch rounded-[3px] flex flex-col justify-center items-center gap-2">
-        <div className="w-full text-center flex justify-center flex-col text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal leading-tight px-2 sm:px-4 md:px-0">
-          Polish your Coolify dashboard
+        <div className="w-full text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal leading-tight px-2 sm:px-4 md:px-0">
+          Polish your{" "}
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <span className="inline-flex items-center gap-1.5 cursor-help group/trademark">
+                Coolify
+                <Sparkles className="size-4 sm:size-5 md:size-6 text-muted-foreground/60 group-hover/trademark:text-primary transition-colors" />
+              </span>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-64">
+              <div className="flex flex-col gap-2">
+                <div className="text-sm font-medium">Trademark Notice</div>
+                <div className="text-xs text-muted-foreground leading-relaxed">
+                  Coolify is trademark of coolLabs Technologies Bt. Coolify Tweaks is not affiliated with or endorsed by coolLabs.
+                </div>
+              </div>
+            </HoverCardContent>
+          </HoverCard>{" "}
+          dashboard
         </div>
         <div className="w-full text-center flex justify-center flex-col text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed px-2 sm:px-4 md:px-0">
           A style layer that refines spacing, typography, and colors.

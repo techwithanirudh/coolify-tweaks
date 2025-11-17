@@ -92,8 +92,13 @@ export function Footer() {
       </div>
 
       <div className="self-stretch flex flex-col sm:flex-row justify-between items-center py-4 px-4 md:px-8 gap-4 bg-dashed  border-t border-border">
-        <div className="text-sm text-muted-foreground">
-          © 2025 Coolify Tweaks. All rights reserved.
+        <div className="flex flex-col gap-1">
+          <div className="text-sm text-muted-foreground">
+            © 2025 Coolify Tweaks. All rights reserved.
+          </div>
+          <div className="text-xs text-muted-foreground/70">
+            Coolify is trademark of coolLabs Technologies Bt. Coolify Tweaks is not affiliated with or endorsed by coolLabs.
+          </div>
         </div>
         <div className="text-sm text-muted-foreground inline-flex items-center gap-1.5">
           Made with <Love />

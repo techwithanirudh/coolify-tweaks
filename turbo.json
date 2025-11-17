@@ -65,6 +65,7 @@
     "VERCEL_URL",
     "npm_lifecycle_event",
     "NITRO_PRESET",
-    "NITRO_PRESET_CLOUD"
+    "NITRO_PRESET_CLOUD",
+    "SENTRY_AUTH_TOKEN"
   ]
 }

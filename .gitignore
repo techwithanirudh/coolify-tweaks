@@ -55,3 +55,6 @@ dist/
 .contentlayer
 .content-collections
 .source
+
+# sentry
+.env.sentry-build-plugin

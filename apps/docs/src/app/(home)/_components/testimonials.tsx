@@ -81,11 +81,6 @@ export function Testimonials() {
             </div>
             <div className="self-stretch text-center text-muted-foreground text-sm sm:text-base font-normal leading-6 sm:leading-7">
               See what people are saying about Coolify Tweaks.
-              <br />
-              <span className="text-xs text-muted-foreground bg-card p-2 rounded-lg mt-2 flex items-center gap-2 group/note">
-                <Info className="size-4 group-hover/note:scale-110 group-hover/note:-rotate-12 transition-transform duration-200" />
-                Note: This section is still a work in progress, and will be updated with detailed testimonials soon.
-              </span>
             </div>
           </div>
 
