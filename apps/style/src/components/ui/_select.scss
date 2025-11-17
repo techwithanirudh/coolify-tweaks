@@ -1,4 +1,4 @@
-@use 'globals' as *;
+@use "globals" as *;
 
 @mixin select-base {
   appearance: base-select;
@@ -32,10 +32,10 @@
   &::picker-icon {
     color: var(--muted-foreground);
     transition: 0.4s rotate;
-    content: '';
+    content: "";
     width: s(4);
     height: s(4.5);
-    @include icon('caret-down-bold', 'bold');
+    @include icon("caret-down-bold", "bold");
   }
 
   &:open::picker-icon {
@@ -78,7 +78,6 @@ select {
     }
   }
 }
-
 
 // option items
 option {
@@ -124,10 +123,10 @@ option {
   &::checkmark {
     order: 1;
     margin-left: auto;
-    content: '';
+    content: "";
     width: s(4);
     height: s(4);
-    @include icon('check');
+    @include icon("check");
   }
 
   &:disabled {
