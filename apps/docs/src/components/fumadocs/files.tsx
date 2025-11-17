@@ -1,22 +1,23 @@
-'use client';
+"use client";
 
-import { cva } from 'class-variance-authority';
+import type { HTMLAttributes, ReactNode } from "react";
+import { useState } from "react";
+import { cva } from "class-variance-authority";
 import {
   File as FileIcon,
   Folder as FolderIcon,
   FolderOpen,
-} from 'lucide-react';
-import { useState } from 'react';
-import type { HTMLAttributes, ReactNode } from 'react';
-import { cn } from '@/lib/fumadocs/cn';
+} from "lucide-react";
+
+import { cn } from "@/lib/fumadocs/cn";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from './ui/collapsible';
+} from "./ui/collapsible";
 
 const itemVariants = cva(
-  'flex flex-row items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-fd-accent hover:text-fd-accent-foreground [&_svg]:size-4',
+  "hover:bg-fd-accent hover:text-fd-accent-foreground flex flex-row items-center gap-2 rounded-md px-2 py-1.5 text-sm [&_svg]:size-4",
 );
 
 export function Files({
@@ -25,7 +26,7 @@ export function Files({
 }: HTMLAttributes<HTMLDivElement>): React.ReactElement {
   return (
     <div
-      className={cn('not-prose rounded-md border bg-fd-card p-2', className)}
+      className={cn("not-prose bg-fd-card rounded-md border p-2", className)}
       {...props}
     >
       {props.children}
@@ -66,7 +67,7 @@ export function File({
       <div className="flex flex-row flex-wrap items-center text-left">
         <span>{name}</span>
         {description ? (
-          <span className="text-xs text-fd-muted-foreground">
+          <span className="text-fd-muted-foreground text-xs">
             {description}
           </span>
         ) : null}
@@ -87,14 +88,16 @@ export function Folder({
     <Collapsible open={open} onOpenChange={setOpen} {...props}>
       <CollapsibleTrigger
         className={cn(
-          itemVariants({ className: 'w-full [&_svg]:shrink-0 [&_svg]:self-start' }),
+          itemVariants({
+            className: "w-full [&_svg]:shrink-0 [&_svg]:self-start",
+          }),
         )}
       >
         {open ? <FolderOpen /> : <FolderIcon />}
         <div className="flex flex-row flex-wrap items-center gap-1 text-left">
           <span>{name}</span>
           {description ? (
-            <span className="text-xs text-fd-muted-foreground">
+            <span className="text-fd-muted-foreground text-xs">
               {description}
             </span>
           ) : null}

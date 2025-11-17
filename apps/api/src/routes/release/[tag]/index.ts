@@ -47,7 +47,7 @@ defineRouteMeta({
           type: "string",
           pattern: "^c[a-z0-9]{24}$",
         } as { type: "string"; pattern: string },
-        example: "cmh4ecxjc000404l78qwda7o0",
+        example: "cmh4ecxjc000404l78qwda7o0", // cspell:disable-line
       },
     ],
     responses: {

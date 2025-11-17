@@ -3,7 +3,6 @@ import type { ComponentProps, FC } from "react";
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import { Banner } from "fumadocs-ui/components/banner";
 import { Callout } from "fumadocs-ui/components/callout";
-import * as FilesComponents from "@/components/fumadocs/files";
 import * as StepsComponents from "fumadocs-ui/components/steps";
 import * as TabsComponents from "fumadocs-ui/components/tabs";
 import { TypeTable } from "fumadocs-ui/components/type-table";
@@ -11,6 +10,7 @@ import defaultMdxComponents from "fumadocs-ui/mdx";
 import * as icons from "lucide-react";
 
 import { APIPage } from "@/components/api-page";
+import * as FilesComponents from "@/components/fumadocs/files";
 import { Update, Updates } from "@/components/fumadocs/updates";
 import { Mermaid } from "@/components/mdx/mermaid";
 

@@ -5,9 +5,7 @@ import { z } from "zod";
 export const env = createEnv({
   extends: [vercel()],
   shared: {
-    NEXT_RUNTIME: z
-      .enum(["nodejs", "edge"])
-      .default("nodejs"),
+    NEXT_RUNTIME: z.enum(["nodejs", "edge"]).default("nodejs"),
     NODE_ENV: z
       .enum(["development", "production", "test"])
       .default("development"),

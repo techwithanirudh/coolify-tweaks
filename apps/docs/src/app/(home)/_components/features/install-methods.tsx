@@ -51,12 +51,15 @@ const INSTALL_METHODS: InstallMethodConfig[] = [
 const InstallMethods: React.FC<InstallMethodsProps> = ({ className = "" }) => {
   return (
     <div
-      className={cn("relative h-full w-full overflow-y-auto p-1 sm:p-3 flex flex-col gap-1 lg:gap-2", className)}
+      className={cn(
+        "relative flex h-full w-full flex-col gap-1 overflow-y-auto p-1 sm:p-3 lg:gap-2",
+        className,
+      )}
     >
       {INSTALL_METHODS.map(({ slug, title, subtitle, Icon, tags }) => (
         <Link
           href={`/docs/style/installation/${slug}`}
-          className="flex h-full w-full flex-col justify-between px-2 py-2 lg:px-3 lg:py-3 bg-background flex-1 duration-200 hover:scale-[1.02] transition-transform rounded-xl border shadow-sm"
+          className="bg-background flex h-full w-full flex-1 flex-col justify-between rounded-xl border px-2 py-2 shadow-sm transition-transform duration-200 hover:scale-[1.02] lg:px-3 lg:py-3"
           key={slug}
         >
           <div className="flex flex-col gap-1.5 lg:gap-2">
