@@ -4,12 +4,12 @@
 import { useState } from "react";
 import { MessageCircle } from "lucide-react";
 
+import { cn } from "@repo/ui";
 import { Badge } from "@repo/ui/badge";
 import { Button } from "@repo/ui/button";
 
 import { BlurImage } from "@/components/blur-image";
 import { ProgressiveBlur } from "@/components/progressive-blur";
-import { cn } from "@repo/ui";
 
 interface Testimonial {
   name: string;
@@ -104,7 +104,10 @@ function TestimonialCard({ testimonial, className }: TestimonialCardProps) {
       href={testimonial.link}
       target="_blank"
       rel="noopener noreferrer"
-      className={cn("size-full space-y-4 p-6 bg-card text-card-foreground rounded-xl border shadow-sm ansition-transform duration-200 hover:scale-[1.02]", className)}
+      className={cn(
+        "bg-card text-card-foreground ansition-transform size-full space-y-4 rounded-xl border p-6 shadow-sm duration-200 hover:scale-[1.02]",
+        className,
+      )}
     >
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
@@ -117,9 +120,7 @@ function TestimonialCard({ testimonial, className }: TestimonialCardProps) {
           />
           <div>
             <div className="flex items-center gap-1">
-              <span className="text-sm font-semibold">
-                {testimonial.name}
-              </span>
+              <span className="text-sm font-semibold">{testimonial.name}</span>
             </div>
             <span className="text-muted-foreground text-xs">
               {testimonial.handle}
@@ -132,7 +133,6 @@ function TestimonialCard({ testimonial, className }: TestimonialCardProps) {
         {testimonial.content}
       </p>
     </a>
-
   );
 }
 
@@ -152,10 +152,10 @@ export function Testimonials() {
               <MessageCircle className="transition-transform duration-200 group-hover/badge:scale-110 group-hover/badge:-rotate-12" />
               <span>Testimonials</span>
             </Badge>
-            <div className="flex w-full flex-col justify-center text-center text-xl font-semibold leading-tight tracking-tight sm:text-2xl md:text-3xl lg:text-5xl">
+            <div className="flex w-full flex-col justify-center text-center text-xl leading-tight font-semibold tracking-tight sm:text-2xl md:text-3xl lg:text-5xl">
               Loved by the community
             </div>
-            <div className="text-muted-foreground self-stretch text-center text-sm font-normal leading-6 sm:text-base sm:leading-7">
+            <div className="text-muted-foreground self-stretch text-center text-sm leading-6 font-normal sm:text-base sm:leading-7">
               See what people are saying about Coolify Tweaks.
             </div>
           </div>
@@ -167,19 +167,13 @@ export function Testimonials() {
 
                 if (showAll) {
                   return (
-                    <TestimonialCard
-                      key={key}
-                      testimonial={testimonial}
-                    />
+                    <TestimonialCard key={key} testimonial={testimonial} />
                   );
                 }
 
                 if (index < 6) {
                   return (
-                    <TestimonialCard
-                      key={key}
-                      testimonial={testimonial}
-                    />
+                    <TestimonialCard key={key} testimonial={testimonial} />
                   );
                 }
 
@@ -188,7 +182,7 @@ export function Testimonials() {
                     <TestimonialCard
                       key={key}
                       testimonial={testimonial}
-                      className="opacity-60 pointer-events-none"
+                      className="pointer-events-none opacity-60"
                     />
                   );
                 }
@@ -198,7 +192,7 @@ export function Testimonials() {
                     <TestimonialCard
                       key={key}
                       testimonial={testimonial}
-                      className="hidden opacity-60 md:block pointer-events-none"
+                      className="pointer-events-none hidden opacity-60 md:block"
                     />
                   );
                 }
@@ -210,16 +204,13 @@ export function Testimonials() {
             {hasMore && !showAll && (
               <>
                 <ProgressiveBlur
-                  className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-[300px]"
+                  className="pointer-events-none absolute right-0 bottom-0 left-0 z-10 h-[300px]"
                   direction="bottom"
                   blurIntensity={0.5}
                   blurLayers={16}
                 />
                 <div className="relative z-20 flex justify-center">
-                  <Button
-                    variant="outline"
-                    onClick={() => setShowAll(true)}
-                  >
+                  <Button variant="outline" onClick={() => setShowAll(true)}>
                     Show more
                   </Button>
                 </div>

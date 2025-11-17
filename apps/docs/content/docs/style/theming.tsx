@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { CheckIcon, CopyIcon } from "lucide-react";
-import { useLocalStorage } from "usehooks-ts";
+import { useInterval, useLocalStorage } from "usehooks-ts";
 
 import { Button } from "@repo/ui/button";
 import { ButtonGroup } from "@repo/ui/button-group";
@@ -43,15 +43,12 @@ export function ThemeConfigCard() {
   }, []);
   /* eslint-enable react-hooks/set-state-in-effect */
 
-  useEffect(() => {
-    if (themeId.trim()) return;
-
-    const interval = setInterval(() => {
+  useInterval(
+    () => {
       setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, [themeId]);
+    },
+    themeId.trim() ? null : 2000,
+  );
 
   const generatedUrl = useMemo(() => {
     if (themeId.trim()) {

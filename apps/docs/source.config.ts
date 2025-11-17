@@ -1,8 +1,8 @@
 import type { ElementContent } from "hast";
 import {
   rehypeCodeDefaultOptions,
+  remarkMdxFiles,
   remarkSteps,
-  remarkMdxFiles
 } from "fumadocs-core/mdx-plugins";
 import {
   defineConfig,
@@ -86,7 +86,12 @@ export default defineConfig({
         id: "package-manager",
       },
     },
-    remarkPlugins: [remarkSteps, remarkMath, remarkAutoTypeTable, remarkMdxFiles],
+    remarkPlugins: [
+      remarkSteps,
+      remarkMath,
+      remarkAutoTypeTable,
+      remarkMdxFiles,
+    ],
     rehypePlugins: (v) => [rehypeKatex, ...v],
   },
 });

@@ -69,17 +69,6 @@ Coolify Tweaks is a Turborepo monorepo that contains:
 
 > All internal packages are scoped under `@repo/*`.
 
-### Directory cheat sheet
-
-- `apps/docs/src/app/(home)/_components` → hero tiles, install cards, and testimonial grids for the marketing page (`install-methods.tsx`, `features.tsx`, `testimonials.tsx`, etc.).
-- `apps/docs/src/components` → shared primitives like `progressive-blur.tsx`, `mdx-components.tsx`, and callouts that can be reused across routes.
-- `apps/docs/content/docs/**` → MDX files for product docs. Frontmatter is validated by `packages/validators` and rendered through MDX remote components.
-- `apps/docs/src/lib` & `utils` → data loaders (release notes, theme metadata, site config) plus utility helpers.
-- `apps/api/src/routes` → Nitro handlers for release downloads, analytics, and diagnostics. Middleware lives under `middleware/` and reuses helpers inside `utils/`.
-- `apps/style/src/theme` & `components` → Sass source files grouped by concern (variables, layout, pages, mixins). `main.scss` imports everything and feeds the Lightning CSS/PostCSS pipeline.
-- `packages/ui/src` → shadcn/ui-derived React components plus tokens exposed via a single entrypoint.
-- `tooling/**` → actual ESLint/Prettier/Tailwind/cspell configs used everywhere. If you need a rule change, start here instead of per-package configs.
-
 ## Branch + commit workflow
 
 1. Fork the repository and sync `main`.

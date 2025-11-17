@@ -108,7 +108,9 @@ export default async function Page(
             DocsCategory: ({ url }: { url?: string }) => {
               return <DocsCategory url={url ?? page.url} />;
             },
-            img: (props) => <ImageZoom {...(props as ComponentProps<typeof ImageZoom>)} />,
+            img: (props) => (
+              <ImageZoom {...(props as ComponentProps<typeof ImageZoom>)} />
+            ),
           })}
         />
         {page.data.index ? <DocsCategory url={page.url} /> : null}

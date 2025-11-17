@@ -87,7 +87,10 @@ function createMdxJsxFlowElement(
   };
 }
 
-interface ReleaseEntry { version: string; nodes: BlockContent[] }
+interface ReleaseEntry {
+  version: string;
+  nodes: BlockContent[];
+}
 
 function extractUpdates(markdown: string): ReleaseEntry[] {
   const tree = parser.parse(markdown);
