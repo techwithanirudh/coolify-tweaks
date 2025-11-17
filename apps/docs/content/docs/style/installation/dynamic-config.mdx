@@ -109,12 +109,14 @@ This serves your modified dashboard on `http://<host>:3000`.
 
 If you use a public domain, add this **in addition** to the router above:
 
+> Replace yourdomain.com, with your public domain.
+
 ```yaml
 routers:
   # HTTPS injector for your domain
   coolify-https-inject:
     entryPoints: [https]
-    rule: 'Host(`coolify.yourdomain.com`) && (PathPrefix(`/app`) || PathPrefix(`/terminal/ws`))'
+    rule: 'Host(`coolify.yourdomain.com`) && !PathPrefix(`/app`) && !PathPrefix(`/terminal/ws`)'
     service: coolify@file
     middlewares: [coolify-tweaks]
     tls:
