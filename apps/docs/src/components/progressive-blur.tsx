@@ -32,8 +32,7 @@ export function ProgressiveBlur({
         const angle = GRADIENT_ANGLES[direction];
         const progress = index / (layers - 1);
         const blurAmount = Math.pow(progress, 1.5) * blurIntensity * layers;
-        
-        // Create a smooth gradient that fades from transparent to opaque
+
         const gradientStops = [
           `rgba(0, 0, 0, 0) ${Math.max(0, (progress - 0.1) * 100)}%`,
           `rgba(0, 0, 0, ${Math.min(1, progress * 2)}) ${progress * 100}%`,
