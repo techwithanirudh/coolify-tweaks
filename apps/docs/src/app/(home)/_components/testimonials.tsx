@@ -187,12 +187,22 @@ export function Testimonials() {
                   );
                 }
 
-                if (index > 6 && index <= 9) {
+                if (index === 7) {
                   return (
                     <TestimonialCard
                       key={key}
                       testimonial={testimonial}
                       className="pointer-events-none hidden opacity-60 md:block"
+                    />
+                  );
+                }
+
+                if (index > 7 && index <= 9) {
+                  return (
+                    <TestimonialCard
+                      key={key}
+                      testimonial={testimonial}
+                      className="pointer-events-none hidden opacity-60 lg:block"
                     />
                   );
                 }
