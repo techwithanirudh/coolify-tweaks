@@ -248,6 +248,9 @@ importers:
       hast-util-to-jsx-runtime:
         specifier: ^2.3.6
         version: 2.3.6
+      import-in-the-middle:
+        specifier: ^1.15.0
+        version: 1.15.0
       jiti:
         specifier: ^2.5.1
         version: 2.6.1
@@ -299,6 +302,9 @@ importers:
       remark-stringify:
         specifier: ^11.0.0
         version: 11.0.0
+      require-in-the-middle:
+        specifier: ^7.5.2
+        version: 7.5.2
       rimraf:
         specifier: ^6.0.1
         version: 6.1.0

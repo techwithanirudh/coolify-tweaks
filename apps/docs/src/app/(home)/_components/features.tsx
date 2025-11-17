@@ -63,9 +63,7 @@ function getFeatures(stars: number): Feature[] {
       className: "bg-transparent",
       background: (
         <div className="bg-card border-border aspect-video w-full overflow-hidden rounded-lg border">
-          <div className="size-full overflow-y-auto p-1 sm:p-3">
-            <InstallMethods className="size-full" />
-          </div>
+          <InstallMethods />
         </div>
       ),
     },

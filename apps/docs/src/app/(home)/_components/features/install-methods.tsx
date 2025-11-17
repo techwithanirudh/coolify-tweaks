@@ -52,7 +52,7 @@ const INSTALL_METHODS: InstallMethodConfig[] = [
 const InstallMethods: React.FC<InstallMethodsProps> = ({ className = "" }) => {
   return (
     <div
-      className={cn("relative flex w-full flex-col gap-1 lg:gap-2", className)}
+      className={cn("relative h-full w-full overflow-y-auto p-1 sm:p-3 flex flex-col gap-1 lg:gap-2", className)}
     >
       {INSTALL_METHODS.map(({ slug, title, subtitle, Icon, tags }) => (
         <Card
