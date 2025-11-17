@@ -23,6 +23,7 @@ export function createMetadata(override: Metadata): Metadata {
       images: "/banner.png",
       ...override.twitter,
     },
+    keywords: ["coolify", "tweaks", "style", "theme", "css", "userstyle", "usercss", "userstyles", "coolify tweaks", "coolify tweaks style", "coolify tweaks theme", "coolify tweaks css", "coolify tweaks userstyle", "coolify tweaks usercss", "coolify v4", "coolify v5"],
   };
 }
 
