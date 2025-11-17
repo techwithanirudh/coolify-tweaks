@@ -114,7 +114,7 @@ routers:
   # HTTPS injector for your domain
   coolify-https-inject:
     entryPoints: [https]
-      rule: 'Host(`coolify.techwithanirudh.com`) && !PathPrefix(`/app`, `/terminal/ws`)'
+    rule: 'Host(`coolify.yourdomain.com`) && (PathPrefix(`/app`) || PathPrefix(`/terminal/ws`))'
     service: coolify@file
     middlewares: [coolify-tweaks]
     tls:
