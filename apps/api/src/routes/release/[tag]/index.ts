@@ -347,12 +347,6 @@ export default defineHandler(async (event) => {
       }
     }
 
-    event.res.headers.delete("content-encoding");
-    event.res.headers.set(
-      "content-length",
-      Buffer.byteLength(processed ?? "", "utf8").toString(),
-    );
-
     return processed;
   } catch (error) {
     if (error instanceof HTTPError) {
