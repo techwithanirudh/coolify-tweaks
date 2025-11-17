@@ -37,7 +37,7 @@ const TESTIMONIALS: Testimonial[] = [
     handle: "@webdev03",
     avatar: "https://github.com/webdev03.png",
     // link: "https://discord.com/channels/@me/1164801461352411167/1393567808603816028",
-    link: "https://devarsh.me/",
+    link: "https://github.com/webdev03",
     content: "coolify looks amazing with your tweaks",
   },
   {
@@ -55,6 +55,30 @@ const TESTIMONIALS: Testimonial[] = [
       "https://pbs.twimg.com/profile_images/1934393746973511680/tR0dyR1A_400x400.jpg",
     link: "https://x.com/itsnoahd/status/1949226795691327954",
     content: "Ohhhh sick! He(Anirudh)'s goated with user styles!",
+  },
+  {
+    name: "Zach Latta",
+    handle: "@zachlatta",
+    avatar:
+      "https://github.com/zachlatta.png",
+    link: "https://github.com/zachlatta",
+    content: "hack clubbers are so cool",
+  },
+  {
+    name: "Echo",
+    handle: "@3kh0",
+    avatar:
+      "https://github.com/3kh0.png",
+    link: "https://github.com/3kh0",
+    content: "Dude your coolify styles thing is so cool",
+  },
+  {
+    name: "shn",
+    handle: "@xshn",
+    avatar:
+      "https://github.com/ghost.png",
+    link: "https://discord.com/channels/459365938081431553/1009177753230245928/1391308542505390110",
+    content: "this looks so nice! i really like the modern design and the rounded corners. thank you for this",
   },
   {
     name: "Ben",
