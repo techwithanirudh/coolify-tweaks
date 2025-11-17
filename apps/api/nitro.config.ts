@@ -6,6 +6,7 @@ export default defineConfig({
   experimental: {
     openAPI: true,
   },
+  compressPublicAssets: false,
   alias: {
     "@": fileURLToPath(new URL("./src", import.meta.url)),
   },
