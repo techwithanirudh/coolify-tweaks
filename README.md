@@ -20,7 +20,7 @@
 
 A userstyle that enhances Coolify's UI by applying opinionated tweaks, spacing, colors, and layout fixes, to make the UI more polished and user-friendly.
 
-**[View Screenshots →](SCREENSHOTS.md)**
+**[View Screenshots →](https://coolify-tweaks.techwithanirudh.com/docs/style/screenshots)**
 
 ## Backstory
 
