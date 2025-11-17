@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.9.8
+
+### Patch Changes
+
+- fix: select
+
 ## 3.9.7
 
 ### Patch Changes
