@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../.source/json-schema/docs.meta.json",
+  "title": "Development",
+  "description": "Development guides and contributing documentation",
+  "root": true,
+  "icon": "Code",
+  "pages": [
+    "index",
+    "---Apps---",
+    "...apps"
+  ]
+}

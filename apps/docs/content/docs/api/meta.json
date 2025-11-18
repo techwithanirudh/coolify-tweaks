@@ -5,7 +5,6 @@
   "root": true,
   "icon": "Webhook",
   "pages": [
-    "---Introduction---",
     "index",
     "---API Reference---",
     "...(generated)"
