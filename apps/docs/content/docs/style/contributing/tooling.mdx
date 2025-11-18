@@ -79,8 +79,6 @@ All tooling packages are scoped under `@repo/*` and are consumed by apps and pac
       "extends": "@repo/tsconfig/base.json"
     }
     ```
-
-    **Key settings:** `strict: true`, `noUncheckedIndexedAccess: true`, `moduleResolution: "Bundler"`
   </Accordion>
 
   <Accordion title="@repo/cspell-config">
@@ -93,7 +91,11 @@ All tooling packages are scoped under `@repo/*` and are consumed by apps and pac
     ```json
     {
       "version": "0.2",
-      "import": ["@repo/cspell-config"]
+      "import": ["@repo/cspell-config"],
+      "words": [
+        "abc",
+        "def",
+      ]
     }
     ```
   </Accordion>
@@ -131,7 +133,7 @@ All tooling packages are scoped under `@repo/*` and are consumed by apps and pac
   </Step>
 </Steps>
 
-## Testing tooling changes
+## Checks
 
 After modifying any tooling package, run the relevant checks:
 
@@ -143,11 +145,11 @@ After modifying any tooling package, run the relevant checks:
 
 ## Best practices
 
-- **Keep tooling packages focused** - Each package should have a single responsibility
-- **Version compatibility** - Tooling packages should work together harmoniously
-- **Documentation** - Update this page when adding new tooling or changing behavior
-- **Breaking changes** - Coordinate breaking changes across the monorepo
-- **Testing** - Always test tooling changes in consuming apps before committing
+- **Keep tooling packages focused:** Each package should have a single responsibility
+- **Version compatibility:** Tooling packages should work together harmoniously
+- **Documentation:** Update this page when adding new tooling or changing behavior
+- **Breaking changes:** Coordinate breaking changes across the monorepo
+- **Testing:** Always test tooling changes in consuming apps before committing
 
 ## Troubleshooting
 
