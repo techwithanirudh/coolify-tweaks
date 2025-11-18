@@ -61,8 +61,27 @@ Manual Stylus installs load `main.user.css`, while the API serves a published re
 
 ## Testing
 
-- `pnpm --filter @repo/style lint` / `typecheck` for the TypeScript helper scripts.
-- `pnpm --filter @repo/style check:spelling` keeps the doc strings tidy.
+Run these commands from the repo root:
+
+- **Linting:**
+  ```bash
+  pnpm --filter @repo/style lint
+  ```
+
+- **Formatting:**
+  ```bash
+  pnpm --filter @repo/style format
+  ```
+
+- **Type checking:**
+  ```bash
+  pnpm --filter @repo/style typecheck
+  ```
+
+- **Spell checking:**
+  ```bash
+  pnpm --filter @repo/style check:spelling
+  ```
 
 ## Deployment
 

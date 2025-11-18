@@ -5,6 +5,13 @@
 
 Welcome! This is a quick reference guide. For detailed documentation, visit the [Development docs](https://coolify-tweaks.techwithanirudh.com/docs/development).
 
+## Prerequisites
+
+- **Node.js** `^22.21.0`
+- **PNPM** `^10.19.0`
+- **Bun** `^1.3.0` (used for the TypeScript scripts that power docs and style)
+- A **Postgres / Neon** `POSTGRES_URL` if you touch analytics or the API
+
 ## Quick start
 
 1. **Clone and setup:**
@@ -42,11 +49,11 @@ All internal packages are scoped under `@repo/*`.
 
 For detailed guides on working with each app, see the [Development documentation](https://coolify-tweaks.techwithanirudh.com/docs/development):
 
-- **[Getting started](/docs/development)** - Prerequisites, repository layout, and quick start
-- **[Style app](/docs/development/style)** - Working with the Sass pipeline
-- **[API app](/docs/development/api)** - Working with the Nitro API
-- **[Docs app](/docs/development/docs)** - Working with the documentation site
-- **[Tooling](/docs/development/tooling)** - Shared configuration packages
+- **[Getting started](https://coolify-tweaks.techwithanirudh.com/docs/development)** - Prerequisites, repository layout, and quick start
+- **[Style app](https://coolify-tweaks.techwithanirudh.com/docs/development/style)** - Working with the Sass pipeline
+- **[API app](https://coolify-tweaks.techwithanirudh.com/docs/development/api)** - Working with the Nitro API
+- **[Docs app](https://coolify-tweaks.techwithanirudh.com/docs/development/docs)** - Working with the documentation site
+- **[Tooling](https://coolify-tweaks.techwithanirudh.com/docs/development/tooling)** - Shared configuration packages
 
 ## Commits and PRs
 

@@ -8,7 +8,7 @@ icon: Book
 
 - **Node.js** `^22.21.0`
 - **PNPM** `^10.19.0`
-- **Bun** `^1.0.0` (used for the TypeScript scripts that power docs and style)
+- **Bun** `^1.3.0` (used for the TypeScript scripts that power docs and style)
 - A **Postgres / Neon** `POSTGRES_URL` if you touch analytics or the API
 
 ## Repository layout
@@ -119,12 +119,3 @@ Commitlint + Lefthook enforce Conventional Commits on `commit-msg`, and `.github
 - Branch names: use descriptive keywords such as `feat/new-theme-toggle`, `fix/docs-typo`, or `chore/update-deps`.
 - Commits: follow Conventional Commits (`feat: ...`, `fix: ...`, `docs: ...`, `chore: ...`).
 - PRs: keep them focused, rerun the repo checks, and rebase on `main` when requested.
-
-## Releases
-
-- To release a new version:
-  1. Run `pnpm changeset` to create a changeset file describing your changes
-  2. Run `pnpm version` to update versions in `package.json` based on the changesets
-  3. Commit and push the changes
-- `.github/workflows/release.yml` handles building, publishing, and creating GitHub releases
-- Contributors usually ensure PRs are green; maintainers handle the release workflow

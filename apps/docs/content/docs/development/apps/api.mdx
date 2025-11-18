@@ -9,11 +9,10 @@ icon: Server
 The API app is a Nitro server that provides backend services for Coolify Tweaks:
 
 - **Release asset proxying:** Serves GitHub release assets (CSS bundles, source maps)
-- **CSS bundle serving:** Delivers published stylesheets to users
 - **Health checks:** Provides endpoint status and diagnostics
 - **Analytics:** Tracks usage and diagnostics when configured with a database
 
-If you're working on how users fetch styles programmatically, tracking usage, or serving release artifacts, you'll be working in this app.
+If you're working on serving release artifacts, or tracking usage you'll be working in this app.
 
 `packages/db` contains the Drizzle ORM schema and Neon database helpers that power analytics routes and other database-backed features.
 
@@ -29,18 +28,17 @@ If you're working on how users fetch styles programmatically, tracking usage, or
         </Folder>
         <Folder name="release">
           <Folder name="[tag]">
-            <File name="index.ts" description="Release asset proxying" />
+            <File name="index.ts" description="Release proxy" />
           </Folder>
         </Folder>
       </Folder>
       <Folder name="middleware">
         <File name="cors.ts" description="CORS configuration" />
       </Folder>
-      <Folder name="hooks" description="Nitro lifecycle hooks" />
       <Folder name="utils">
-        <File name="css-compiler.ts" description="CSS compilation utilities" />
-        <File name="css-transformer.ts" description="CSS transformation helpers" />
-        <File name="stylus.ts" description="Stylus-specific utilities" />
+        <File name="css-compiler.ts" />
+        <File name="css-transformer.ts" />
+        <File name="themes.ts"/>
       </Folder>
       <File name="config.ts" description="App configuration" />
     </Folder>
@@ -110,7 +108,7 @@ The API supports dynamic theme injection for `main.user.css` requests. Here's ho
    - Updates the `updateURL` in the userstyle metadata to preserve the theme parameter
 
 3. **Implementation**: The theme injection logic spans multiple utility files:
-   - `stylus.ts`: `getThemeCss()` fetches and validates theme data from TweakCN, `processContent()` handles the find-and-replace operation
+   - `themes.ts`: `getThemeCss()` fetches and validates theme data from TweakCN, `processContent()` handles the find-and-replace operation
    - `css-transformer.ts`: `cssVarsToCss()` converts theme variables to CSS format
    - `css-compiler.ts`: `transformCss()` applies Lightning CSS transformations for browser compatibility
 
@@ -141,6 +139,11 @@ Run these commands from the repo root:
 - **Linting:**
   ```bash
   pnpm --filter @repo/api lint
+  ```
+
+- **Formatting:**
+  ```bash
+  pnpm --filter @repo/api format
   ```
 
 - **Type checking:**
