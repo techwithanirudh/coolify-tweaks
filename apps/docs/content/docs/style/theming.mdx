@@ -9,6 +9,7 @@ import {
   ModeContentDynamic,
   ModeContentStylus,
   ThemeConfigCard,
+  ThemeCode,
 } from "./theming";
 
 Coolify Tweaks supports custom themes from [TweakCN](https://tweakcn.com), a theme editor for shadcn/ui components. You can apply any theme from the TweakCN gallery or create your own.
@@ -36,9 +37,10 @@ The steps to apply a theme depend on your installation method. **Select your ins
 
     Simply open the URL with your theme ID in a new tab. This will automatically overwrite the existing theme:
 
-    ```
-    https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=YOUR_THEME_ID&asset=main.user.css
-    ```
+    <ThemeCode
+      lang="text"
+      code="https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=YOUR_THEME_ID&asset=main.user.css"
+    />
 
     #### To change themes:
 
@@ -62,18 +64,22 @@ The steps to apply a theme depend on your installation method. **Select your ins
 
     2. Find the `rb-inject-css` middleware section and update the `replacement` URL to include your theme ID:
 
-       ```yaml
-       rb-inject-css:
-         plugin:
-           rewritebody:
-             lastModified: true
-             rewrites:
-               - regex: "(?is)</head>"
-                 replacement: '<link rel="stylesheet" href="https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=YOUR_THEME_ID&asset=main.css" referrerpolicy="no-referrer" crossorigin="anonymous"></head>'
-       ```
+    <ThemeCode
+      lang="yaml"
+      code={`rb-inject-css:
+  plugin:
+    rewritebody:
+      lastModified: true
+      rewrites:
+        - regex: "(?is)</head>"
+          replacement: '<link rel="stylesheet" href="https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=YOUR_THEME_ID&asset=main.css" referrerpolicy="no-referrer" crossorigin="anonymous"></head>'`}
+    />
 
     3. **Restart Traefik:**
-        - Go to **Servers → localhost → Proxy → Restart Proxy**
+
+       Go to **Servers → localhost → Proxy → Restart Proxy**
+
+       ![Restart Proxy](/assets/installation/dynamic-config/restart-proxy.png)
 
     4. **Refresh your browser** to see the new theme
 
