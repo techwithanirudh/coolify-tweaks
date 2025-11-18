@@ -6,33 +6,62 @@ icon: RefreshCw
 
 ## Introduction
 
-There are two ways to use Coolify Tweaks: 
-- Installing it directly into **Stylus** 
-- Installing it using the **Dynamic Config**. 
-
-Both approaches receive updates, but they handle them differently.
+Coolify Tweaks receives regular updates with bug fixes, new features, and improvements. The update process depends on your installation method.
 
 ## Stylus
 
-Stylus installs via the install URL are managed through Stylus' built-in update system. Whenever a new release is available you have two options:
+Stylus manages updates through its built-in update system. Here's how it works:
 
-1. Manually reinstall by re-importing the updated stylesheet.
-2. Visit the same install URL in Stylus and click **Update**.
-   
-   Note: Usually Stylus will automatically update the stylesheet when a new release is available.
+### Automatic updates
 
-Some notes:
+Stylus automatically checks for updates when:
+- The extension loads
+- You open the Stylus popup
+- You visit a page where the style is active
+- The update check interval elapses (usually every 24 hours)
 
-- Updates apply per browser/profile where Stylus is installed.
-- If you pinned a specific version manually, you'll need to re-import when you want to move to a newer release.
+When an update is available, Stylus will show a notification badge on the extension icon, or it will automatically update the style.
+
+### Manual updates
+
+- Open the Stylus extension settings
+- Open the editor for the "coolify-tweaks" style
+- Copy the Update URL
+![Stylus Update URL](/assets/installation/stylus/update-url.png)
+- Open the URL in a new tab and click the Update / Install button. This will manually update the style.
+
+### Notes
+
+- Updates apply per browser/profile where Stylus is installed
+- If you pinned a specific version, you'll need to unpin or re-import to get updates
+- Custom themes: If you're using a themed URL, updates will preserve your theme ID
 
 ## Dynamic Config
 
-If you are using the dynamic-config installation, no manual steps are required for updates.
+Dynamic Config installations update automatically since they always point to the latest release.
 
-- The injected stylesheet URL points at the latest published release (for example `.../release/latest/?asset=main.css`).
-- When a new version of Coolify Tweaks is released, the proxy automatically serves the new CSS on the next request (subject to normal browser caching).
-- Every user visiting through that proxy gets the updated styles at the same time, without needing Stylus or any browser extension.
+### How it works
 
-## Summary
-**Stylus** installs are updated from inside Stylus (or by re-importing), while the **Dynamic Config** tracks the latest version automatically once configured. 
+The injected URL in your Traefik config points to:
+```
+https://coolify-tweaks-api.techwithanirudh.com/release/latest/?asset=main.css
+```
+
+This means:
+- **No manual steps required**: New releases are served automatically
+- Updates apply to all users immediately (subject to browser caching)
+- The CSS is fetched fresh on each page load from the API
+
+### Verifying updates
+
+To confirm you're on the latest version:
+
+1. Check the page source (View → Developer → View Source)
+2. Look for the injected stylesheet link in the `<head>`
+3. The URL should point to `/release/latest/` (not a specific version)
+
+### Clearing cache
+
+If updates seem delayed, clear your browser cache or do a hard refresh:
+- **Chrome/Edge:** `Ctrl+Shift+R` (Windows/Linux) or `Cmd+Shift+R` (Mac)
+- **Firefox:** `Ctrl+F5` (Windows/Linux) or `Cmd+Shift+R` (Mac)

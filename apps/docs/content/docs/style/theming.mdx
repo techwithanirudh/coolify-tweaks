@@ -1,7 +1,7 @@
 ---
 title: Custom Themes
-description: How to theme Coolify Tweaks
-icon: PaintbrushVertical
+description: How to theme Coolify Tweaks with TweakCN themes
+icon: Palette
 ---
 
 import {
@@ -11,17 +11,88 @@ import {
   ThemeConfigCard,
 } from "./theming";
 
+Coolify Tweaks supports custom themes from [TweakCN](https://tweakcn.com), a theme editor for shadcn/ui components. You can apply any theme from the TweakCN gallery or create your own.
+
+## Getting a theme ID
+
+1. Visit [TweakCN Theme Editor](https://tweakcn.com/editor/theme)
+2. Browse themes or customize your own
+3. Click the share button, and copy the theme ID if it's a default theme it contains it'
+s name like claude, or if it's a custom theme (starts with `c` followed by 24 characters, e.g., `cmh4ecxjc000404l78qwda7o0`)
+
+## Generate theme URL
+
+The steps to apply a theme depend on your installation method. **Select your installation method below** to generate the correct URL and see instructions for your setup.
+
 <ThemeConfigCard />
 
-## Usage
+## Applying themes
 
 <ModeContent>
   <ModeContentStylus>
-    For **Stylus**, the URL points to `main.user.css` which you can install
-    directly in the Stylus extension.
+    ### Stylus installation
+
+    #### To apply a theme:
+
+    Simply open the URL with your theme ID in a new tab. This will automatically overwrite the existing theme:
+
+    ```
+    https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=YOUR_THEME_ID&asset=main.user.css
+    ```
+
+    #### To change themes:
+
+    Open the new theme URL in a new tab to overwrite the current theme.
+
+    #### To remove a theme:
+
+    1. Open Stylus extension settings
+    2. Find "coolify-tweaks" in your styles list
+    3. Click the **X** icon to remove the theme
   </ModeContentStylus>
   <ModeContentDynamic>
-    For **Dynamic Config**, the URL points to `main.css` which you'll inject
-    through Traefik's rewrite-body plugin.
+    ### Dynamic Config installation
+
+    #### To apply a theme:
+
+    1. Edit the dynamic config file:
+       ```
+       /data/coolify/proxy/dynamic/coolify-tweaks.yml
+       ```
+
+    2. Find the `rb-inject-css` middleware section and update the `replacement` URL to include your theme ID:
+
+       ```yaml
+       rb-inject-css:
+         plugin:
+           rewritebody:
+             lastModified: true
+             rewrites:
+               - regex: "(?is)</head>"
+                 replacement: '<link rel="stylesheet" href="https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=YOUR_THEME_ID&asset=main.css" referrerpolicy="no-referrer" crossorigin="anonymous"></head>'
+       ```
+
+    3. **Restart Traefik:**
+        - Go to **Servers → localhost → Proxy → Restart Proxy**
+
+    4. **Refresh your browser** to see the new theme
+
+    #### To change themes:
+
+    - Edit the YAML file and replace `YOUR_THEME_ID` with a new theme ID
+    - Restart Traefik and refresh your browser
+
+    #### To remove a theme:
+
+    - Edit the YAML file and remove `?theme=YOUR_THEME_ID&` from the URL:
+      ```yaml
+      replacement: '<link rel="stylesheet" href="https://coolify-tweaks-api.techwithanirudh.com/release/latest/?asset=main.css" referrerpolicy="no-referrer" crossorigin="anonymous"></head>'
+      ```
+    - Restart Traefik and refresh your browser
   </ModeContentDynamic>
 </ModeContent>
+
+## Tips
+
+- **Theme updates:** When you update a theme in TweakCN, the changes apply automatically since the theme ID stays the same
+- **Browser cache:** If theme changes don't appear, try a hard refresh (`Ctrl+Shift+R` or `Cmd+Shift+R`)
