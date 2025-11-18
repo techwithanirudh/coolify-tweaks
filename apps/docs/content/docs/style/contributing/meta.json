@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../../.source/json-schema/docs.meta.json",
+  "title": "Contributing",
+  "description": "Contributing to Coolify Tweaks",
+  "pages": [
+    "index",
+    "..."
+  ]
+}

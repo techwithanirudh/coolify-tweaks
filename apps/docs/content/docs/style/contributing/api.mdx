@@ -1,0 +1,175 @@
+---
+title: API
+description: Work on the Nitro API
+icon: Server
+---
+
+## Introduction
+
+The API app is a Nitro server that provides backend services for Coolify Tweaks:
+
+- **Release asset proxying** - Serves GitHub release assets (CSS bundles, source maps)
+- **CSS bundle serving** - Delivers published stylesheets to users
+- **Health checks** - Provides endpoint status and diagnostics
+- **Analytics** - Tracks usage and diagnostics when configured with a database
+
+If you're working on how users fetch styles programmatically, tracking usage, or serving release artifacts, you'll be working in this app.
+
+`packages/db` contains the Drizzle ORM schema and Neon database helpers that power analytics routes and other database-backed features.
+
+## File layout
+
+<Files>
+  <Folder name="apps/api" defaultOpen>
+    <Folder name="src" defaultOpen>
+      <Folder name="routes">
+        <File name="index.ts" description="Root route handler" />
+        <Folder name="health">
+          <File name="index.ts" description="Health check endpoints" />
+        </Folder>
+        <Folder name="release">
+          <Folder name="[tag]">
+            <File name="index.ts" description="Release asset proxying" />
+          </Folder>
+        </Folder>
+      </Folder>
+      <Folder name="middleware">
+        <File name="cors.ts" description="CORS configuration" />
+      </Folder>
+      <Folder name="hooks" description="Nitro lifecycle hooks" />
+      <Folder name="utils">
+        <File name="css-compiler.ts" description="CSS compilation utilities" />
+        <File name="css-transformer.ts" description="CSS transformation helpers" />
+        <File name="stylus.ts" description="Stylus-specific utilities" />
+      </Folder>
+      <File name="config.ts" description="App configuration" />
+    </Folder>
+    <File name="nitro.config.ts" description="Nitro configuration" />
+    <File name="package.json" />
+  </Folder>
+</Files>
+
+## Local workflow
+
+<Steps>
+  <Step>
+    **Start the dev server:**
+
+    ```bash
+    pnpm --filter @repo/api dev
+    ```
+
+    The API runs on `http://localhost:3001` by default.
+  </Step>
+  <Step>
+    **Edit routes** under `apps/api/src/routes/` or utility functions in `apps/api/src/utils/`.
+  </Step>
+  <Step>
+    **Database changes:** When you add analytics tables or modify schema definitions:
+
+    ```bash
+    pnpm db:push
+    ```
+
+    This syncs the Drizzle schema to your local Postgres/Neon database.
+  </Step>
+  <Step>
+    **Environment variables:** Configure via `.env` in the repo root:
+    - `POSTGRES_URL` - Required for analytics routes
+    - Other Nitro-specific variables as needed
+  </Step>
+</Steps>
+
+## Concepts
+
+### Theme injection
+
+The API supports dynamic theme injection for `main.user.css` requests. Here's how it works:
+
+1. **Build-time markers**: The Style app's PostCSS plugin (`theme-identifier.ts`) injects special comment markers around CSS variable definitions:
+   ```css
+   /* ==UI-THEME-VARS:START== */
+   :root {
+     --background: #fdfdfd;
+     --foreground: #000;
+     /* ... more variables ... */
+   }
+   .dark {
+     --background: #1f1c23;
+     /* ... more variables ... */
+   }
+   /* ==UI-THEME-VARS:END== */
+   ```
+
+2. **Theme request flow**: When a user requests CSS with `?theme=<theme-id>`:
+   - The API fetches the base CSS from GitHub releases
+   - Fetches theme data from [TweakCN](https://tweakcn.com) (shadcn registry) using the theme ID
+   - Converts the theme's CSS variables to CSS using `cssVarsToCss()` (creates `:root` and `.dark` selectors)
+   - Transforms the CSS using Lightning CSS for browser compatibility
+   - Uses regex to find and replace the content between `UI-THEME-VARS` markers
+   - Updates the `updateURL` in the userstyle metadata to preserve the theme parameter
+
+3. **Implementation**: The theme injection logic spans multiple utility files:
+   - `stylus.ts`: `getThemeCss()` fetches and validates theme data from TweakCN, `processContent()` handles the find-and-replace operation
+   - `css-transformer.ts`: `cssVarsToCss()` converts theme variables to CSS format
+   - `css-compiler.ts`: `transformCss()` applies Lightning CSS transformations for browser compatibility
+
+This allows users to install themed versions of the stylesheet while maintaining the same update mechanism.
+
+## Routes
+
+For more details about API usage, visit [/docs/api](/docs/api).
+
+<Accordions>
+  <Accordion title="Release routes">
+    - `GET /release/latest/?asset=main.css` - Serves the latest CSS bundle
+    - `GET /release/[tag]/[asset]` - Serves specific release assets
+  </Accordion>
+  <Accordion title="Health routes">
+    - `GET /health` - Basic health check
+    - Additional diagnostic endpoints as needed
+  </Accordion>
+  <Accordion title="Analytics routes">
+    - Database-backed routes for tracking usage (requires `POSTGRES_URL`)
+  </Accordion>
+</Accordions>
+
+## Testing
+
+Run these commands from the repo root:
+
+- **Linting:**
+  ```bash
+  pnpm --filter @repo/api lint
+  ```
+
+- **Type checking:**
+  ```bash
+  pnpm --filter @repo/api typecheck
+  ```
+
+- **Spell checking:**
+  ```bash
+  pnpm --filter @repo/api check:spelling
+  ```
+
+## Deployment
+
+### Vercel
+
+1. Create a new Vercel project.
+2. Set the root directory to `apps/api`.
+3. Vercel automatically detects Nitro and configures the build output.
+4. Configure environment variables:
+   - `POSTGRES_URL` - Required for analytics features
+   - Any other Nitro or app-specific variables
+5. Deploy. Once live, the API will:
+   - Serve release assets from GitHub releases
+   - Proxy CSS bundles generated by the Style app
+   - Respond to health check requests
+   - Handle analytics tracking (if configured)
+
+## Integration with other apps
+
+- **Style app** - API serves the built CSS bundles from releases
+- **Database** - Uses `@repo/db` for analytics and data persistence
