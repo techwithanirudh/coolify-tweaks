@@ -1,6 +1,6 @@
 ---
 title: Contributing
-description: How to contribute to Coolify Tweaks, broken down by app
+description: How to contribute to Coolify Tweaks
 icon: HeartHandshake
 ---
 
@@ -82,44 +82,35 @@ Internal packages are scoped under `@repo/*`.
 ## Apps
 
 <Cards>
-  <Card title="Style" href="/docs/style" icon={<Palette />}>
+  <Card title="Style" href="/docs/style/contributing/style" icon={<Palette />}>
     Sass + Lightning CSS pipeline that builds the Tweaks stylesheet.
     Produces both .user.css and standard CSS bundles.
   </Card>
 
-  <Card title="API" href="/docs/api" icon={<Server />}>
+  <Card title="API" href="/docs/style/contributing/api" icon={<Server />}>
     Nitro-based API for release proxying, analytics, and serving final CSS bundles.
   </Card>
 
-  <Card title="Docs" href="/docs/docs" icon={<Book />}>
+  <Card title="Docs" href="/docs/style/contributing/docs" icon={<Book />}>
     Next.js + Fumadocs documentation and marketing site powered by @repo/ui.
   </Card>
 
-  <Card title="Tooling" href="/docs/tooling" icon={<Settings />}>
+  <Card title="Tooling" href="/docs/style/contributing/tooling" icon={<Settings />}>
     Shared linting, formatting, Tailwind tokens, TypeScript bases, and spellcheck.
   </Card>
 </Cards>
 
 ## Core scripts
 
-- `pnpm dev` 
-  - Turbo watch mode for all `dev` targets.
-- `pnpm dev:web` / `pnpm dev:api` / `pnpm dev:style` 
-  - Focus on a single app.
-- `pnpm build` 
-  - Run every `build` pipeline.
-- `pnpm typecheck` 
-  - TypeScript across the repo.
-- `pnpm format` / `format:fix` 
-  - Prettier with the shared config.
-- `pnpm lint` / `lint:fix` 
-  - ESLint across apps + packages.
-- `pnpm check:spelling` 
-  - cspell spelling checks docs/TSX.
-- `pnpm ui-add` 
-  - Add shadcn/ui components to `@repo/ui`.
-- `pnpm turbo gen init` 
-  - Scaffold a new package/workspace with lint/type/build wiring.
+- `pnpm dev`: Turbo watch mode for all `dev` targets.
+- `pnpm dev:web` / `pnpm dev:api` / `pnpm dev:style`: Focus on a single app.
+- `pnpm build`: Run every `build` pipeline.
+- `pnpm typecheck`: TypeScript across the repo.
+- `pnpm format` / `format:fix`: Prettier with the shared config.
+- `pnpm lint` / `lint:fix`: ESLint across apps + packages.
+- `pnpm check:spelling`: cspell spelling checks docs/TSX.
+- `pnpm ui-add`: Add shadcn/ui components to `@repo/ui`.
+- `pnpm turbo gen init`: Scaffold a new package/workspace with lint/type/build wiring.
 
 Commitlint + Lefthook enforce Conventional Commits on `commit-msg`, and `.github/workflows` run the same commands in CI.
 

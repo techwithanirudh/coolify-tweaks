@@ -6,7 +6,7 @@ icon: Book
 
 ## Introduction
 
-The docs app is the public website and documentation hub. It is built with:
+The docs app is the public website and documentation. It is built with:
 
 - Next.js 16
 - React 19
@@ -36,7 +36,7 @@ It owns the landing page, docs, API docs, and any AI/search experiences.
       </Folder>
       <Folder name="components" description="Reusable UI components" />
       <Folder name="lib" description="AI wiring, OpenAPI, metadata, page tree, etc" />
-      <Folder name="styles" description="Tailwind entry CSS" />
+      <Folder name="styles" description="Tailwind CSS" />
       <Folder name="utils" description="Small helpers" />
     </Folder>
     <File name="package.json" />
@@ -79,7 +79,7 @@ The docs app uses Bun for TypeScript script execution:
 - `bun ./scripts/pre-build.ts` - Generate OpenAPI docs and sync changelog before build
 - Other helper scripts in `apps/docs/scripts/`
 
-**Adding UI components:**
+### Adding UI components
 
 Run `pnpm ui-add` from the repo root to add new shadcn/ui components. They'll be added to `packages/ui/src/components` and can be imported in the docs app.
 
