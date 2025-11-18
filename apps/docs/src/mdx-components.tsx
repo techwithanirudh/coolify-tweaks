@@ -13,6 +13,7 @@ import { APIPage } from "@/components/api-page";
 import * as FilesComponents from "@/components/fumadocs/files";
 import { Update, Updates } from "@/components/fumadocs/updates";
 import { Mermaid } from "@/components/mdx/mermaid";
+import { VideoPlayer, VideoPlayerContent } from "@/components/video-player";
 
 export function getMDXComponents(components?: MDXComponents) {
   return {
@@ -31,6 +32,8 @@ export function getMDXComponents(components?: MDXComponents) {
     blockquote: Callout as unknown as FC<ComponentProps<"blockquote">>,
     APIPage,
     Banner,
+    VideoPlayer,
+    VideoPlayerContent,
     ...components,
   } satisfies MDXComponents;
 }

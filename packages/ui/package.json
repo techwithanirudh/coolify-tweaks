@@ -5,7 +5,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./*": "./src/*.tsx",
-    "./hooks/*": "./src/hooks/*.tsx"
+    "./hooks/*": "./src/hooks/*.tsx",
+    "./kibo-ui/*": "./src/kibo-ui/*.tsx"
   },
   "license": "MIT",
   "scripts": {
@@ -28,6 +29,7 @@
     "@radix-ui/react-tooltip": "^1.2.8",
     "class-variance-authority": "^0.7.1",
     "lucide-react": "^0.552.0",
+    "media-chrome": "^4.16.0",
     "motion": "^12.23.24",
     "next-themes": "^0.4.6",
     "radix-ui": "^1.4.3",

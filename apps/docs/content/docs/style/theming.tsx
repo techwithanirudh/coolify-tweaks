@@ -50,9 +50,15 @@ export function ThemeCode({
 }) {
   const context = useModeContent();
   const themeId = context.themeId;
-  const processedCode = themeId
-    ? code.replace(/YOUR_THEME_ID/g, themeId.trim())
-    : code;
+  
+  if (!themeId) {
+    return <DynamicCodeBlock lang={lang} code={code.trimEnd()} />;
+  }
+
+  const trimmedThemeId = themeId.trim();
+  const encodedThemeId = encodeURIComponent(trimmedThemeId);
+  
+  const processedCode = code.replace(/YOUR_THEME_ID/g, encodedThemeId);
 
   return <DynamicCodeBlock lang={lang} code={processedCode.trimEnd()} />;
 }

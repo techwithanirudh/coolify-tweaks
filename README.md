@@ -20,6 +20,8 @@
 
 A userstyle that enhances Coolify's UI by applying opinionated tweaks, spacing, colors, and layout fixes, to make the UI more polished and user-friendly.
 
+> **Note**: Coolify Tweaks is not affiliated with Coolify or its developers. It is a standalone project that styles the dashboard on your behalf.
+
 **[View Screenshots →](https://coolify-tweaks.techwithanirudh.com/docs/style/screenshots)**
 
 ## Backstory
@@ -62,54 +64,7 @@ I cleaned up the spacing, adjusted the colors, tweaked the typography, and gave 
 
 Coolify Tweaks supports custom themes through integration with [TweakCN](https://tweakcn.com), allowing you to personalize your Coolify interface with beautiful color schemes and styling variations.
 
-### How to Apply a Custom Theme
-
-1. **Browse Available Themes**  
-   Visit [TweakCN](https://tweakcn.com/editor/theme) to explore available themes or create your own custom theme.
-
-2. **Get the Theme ID**  
-   When you find a theme you like:
-   - Click the **Share** button on the theme
-   - Copy the theme ID (e.g., `bubblegum`, `claude`, or `cmd1ndlp3000504l24z7vgywd`)
-
-3. **Install with Theme**  
-   Use the themed installation URL in Stylus:
-
-   ```
-   https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=THEME_ID&asset=main.user.css
-   ```
-
-   Replace `THEME_ID` with your copied theme identifier.
-
-   > **Note:** The theme query parameter should come first, as Stylus identifies user styles by URLs ending with `user.css`
-
-### Video Guide
-
-If you prefer watching instead, here’s a short walkthrough:
-
-[![Watch the video](https://i.ibb.co/FLxtT5Y2/Clean-Shot-2025-10-24-at-11-14-01-2x.png)](https://fixupx.com/AnirudhWith/status/1981595703978713311.mp4)
-
-### Troubleshooting Themes
-
-**Theme not applying?**
-
-- Ensure you're using the correct theme ID
-- Try refreshing the page or restarting your browser
-
-**Mixed styling issues?**
-
-- Clear your browser cache
-- Disable and re-enable the style in Stylus
-- Make sure you're not running multiple conflicting styles
-
-## Repo Context
-
-This repository is implemented as a Turborepo workspace so the userstyle, API proxy, and future tooling can evolve together.
-
-- `apps/style` holds the Sass build pipeline that compiles the userstyle and publishes assets via Changesets.
-- `apps/api` is a lightweight Nitro service that proxies release assets for easier distribution.
-- `apps/web` is a Next.js playground used to test UI integrations while sharing utilities from `packages`.
-- Shared tooling lives under `tooling/*` for linting, formatting, and TypeScript configuration, keeping all packages aligned.
+For detailed theming documentation, including installation methods, video guides, and troubleshooting, visit the [Theming documentation](https://coolify-tweaks.techwithanirudh.com/docs/style/theming).
 
 ## Contributing
 
