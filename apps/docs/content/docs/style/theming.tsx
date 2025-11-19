@@ -55,8 +55,7 @@ export function ThemeCode({
     return <DynamicCodeBlock lang={lang} code={code.trimEnd()} />;
   }
 
-  const trimmedThemeId = themeId.trim();
-  const encodedThemeId = encodeURIComponent(trimmedThemeId);
+  const encodedThemeId = encodeURIComponent(themeId.trim());
   
   const processedCode = code.replace(/YOUR_THEME_ID/g, encodedThemeId);
 

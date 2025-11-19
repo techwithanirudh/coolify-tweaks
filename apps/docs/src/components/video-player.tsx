@@ -1,47 +1,21 @@
 "use client";
 
-import type { ComponentProps, ReactElement } from "react";
-import {
-  VideoPlayer as BaseVideoPlayer,
-  VideoPlayerContent,
-  VideoPlayerControlBar,
-  VideoPlayerMuteButton,
-  VideoPlayerPlayButton,
-  VideoPlayerSeekBackwardButton,
-  VideoPlayerSeekForwardButton,
-  VideoPlayerTimeDisplay,
-  VideoPlayerTimeRange,
-  VideoPlayerVolumeRange,
-} from "@repo/ui/kibo-ui/video-player";
-import { cn } from "@repo/ui";
+import { useTheme } from "next-themes";
 
-export type VideoPlayerProps = Omit<
-  ComponentProps<typeof BaseVideoPlayer>,
-  "children"
-> & {
-  children: ReactElement<ComponentProps<typeof VideoPlayerContent>>;
-};
+import type { VideoPlayerProps as BaseVideoPlayerProps } from "@repo/ui/video-player";
+import { VideoPlayer as BaseVideoPlayer } from "@repo/ui/video-player";
 
-export function VideoPlayer({
-  className,
-  children,
-  ...props
-}: VideoPlayerProps) {
+export type VideoPlayerProps = BaseVideoPlayerProps;
+
+export function VideoPlayer(props: VideoPlayerProps) {
+  const { theme } = useTheme();
+
   return (
-    <BaseVideoPlayer className={cn("overflow-hidden rounded-lg border", className)} {...props}>
-      {children}
-      <VideoPlayerControlBar>
-        <VideoPlayerPlayButton />
-        <VideoPlayerSeekBackwardButton />
-        <VideoPlayerSeekForwardButton />
-        <VideoPlayerTimeRange />
-        <VideoPlayerTimeDisplay showDuration />
-        <VideoPlayerMuteButton />
-        <VideoPlayerVolumeRange />
-      </VideoPlayerControlBar>
-    </BaseVideoPlayer>
+    <BaseVideoPlayer
+      {...props}
+      colorScheme={
+        theme as "light" | "dark" | "system" | undefined
+      }
+    />
   );
 }
-
-export { VideoPlayerContent };
-
