@@ -11,14 +11,12 @@ import {
 export interface VideoPlayerProps extends ComponentProps<typeof MediaPlayer> {
   thumbnails?: string;
   poster?: string;
-  colorScheme?: "light" | "dark" | "system" | "default";
 }
 
 export function VideoPlayer({
   thumbnails,
   poster,
   className,
-  colorScheme,
   ...props
 }: VideoPlayerProps) {
   return (
@@ -30,12 +28,12 @@ export function VideoPlayer({
             --video-border-radius: var(--radius-md);
         }
 
-        [data-media-player] .vds-menu-items[data-root] {
+        .vds-menu-items[data-root] {
             --root-border: var(--border)!important;
             --root-border-radius: var(--radius-lg)!important;
         }
 
-        [data-media-player] .vds-menu-items[data-root] .vds-menu-item {
+        .vds-menu-items[data-root] .vds-menu-item {
             --item-border-radius: var(--radius-lg)!important;
         }
         `}
@@ -45,7 +43,7 @@ export function VideoPlayer({
         <DefaultVideoLayout
           thumbnails={thumbnails}
           icons={defaultLayoutIcons}
-          colorScheme={colorScheme}
+          colorScheme={'default'}
         />
       </MediaPlayer>
     </>
