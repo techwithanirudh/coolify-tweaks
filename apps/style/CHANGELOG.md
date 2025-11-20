@@ -11,9 +11,9 @@
 ### Patch Changes
 
 - fix: new resource cards are too big
-  fix: the resource filter has coolify's old UI
-  fix: the action buttons with different colors aren't shown
-  fix: match scrollbar to theme colors
+- fix: the resource filter has coolify's old UI
+- fix: the action buttons with different colors aren't shown
+- fix: match scrollbar to theme colors
 
 ## 3.9.6
 

@@ -4,7 +4,7 @@ import { $fetch } from "nitro/deps/ofetch";
 import { defineHandler, getQuery, getRouterParam, HTTPError } from "nitro/h3";
 
 import { allowedHeaders, owner, repo } from "@/config";
-import { processContent } from "@/utils/stylus";
+import { processContent } from "@/utils/themes";
 
 defineRouteMeta({
   openAPI: {

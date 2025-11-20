@@ -1,0 +1,5 @@
+# Generated API documentation
+content/docs/api/(generated)/**
+
+# Changelog (auto-generated)
+content/docs/style/changelog.mdx

@@ -2,8 +2,9 @@
 
 import type { ReactNode } from "react";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
 import { CheckIcon, CopyIcon } from "lucide-react";
-import { useInterval, useLocalStorage } from "usehooks-ts";
+import { useInterval, useLocalStorage, useSessionStorage } from "usehooks-ts";
 
 import { Button } from "@repo/ui/button";
 import { ButtonGroup } from "@repo/ui/button-group";
@@ -26,13 +27,44 @@ export type Mode = "stylus" | "dynamic";
 interface ModeContentContextValue {
   mode: Mode;
   mounted: boolean;
+  themeId: string;
 }
 
 const ModeContentContext = createContext<ModeContentContextValue | null>(null);
 
+export function useModeContent() {
+  const context = useContext(ModeContentContext);
+  if (!context) {
+    throw new Error("useModeContent must be used within a ModeContentProvider");
+  }
+
+  return context;
+}
+
+export function ThemeCode({
+  code,
+  lang = "text",
+}: {
+  code: string;
+  lang?: string;
+}) {
+  const context = useModeContent();
+  const themeId = context.themeId;
+
+  if (!themeId) {
+    return <DynamicCodeBlock lang={lang} code={code.trimEnd()} />;
+  }
+
+  const encodedThemeId = encodeURIComponent(themeId.trim());
+
+  const processedCode = code.replace(/YOUR_THEME_ID/g, encodedThemeId);
+
+  return <DynamicCodeBlock lang={lang} code={processedCode.trimEnd()} />;
+}
+
 export function ThemeConfigCard() {
   const [mode, setMode] = useLocalStorage<Mode>("theme-mode", "stylus");
-  const [themeId, setThemeId] = useState("");
+  const [themeId, setThemeId] = useSessionStorage<string>("theme-id", "");
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
   const { copyToClipboard, isCopied } = useCopyToClipboard({ timeout: 2000 });
@@ -161,10 +193,10 @@ export function ThemeConfigCard() {
 }
 
 export function ModeContentStylus({ children }: { children: ReactNode }) {
-  const context = useContext(ModeContentContext);
+  const context = useModeContent();
 
-  const mode = context?.mode;
-  const mounted = context?.mounted;
+  const mode = context.mode;
+  const mounted = context.mounted;
 
   if (!mounted || mode !== "stylus") {
     return null;
@@ -174,10 +206,10 @@ export function ModeContentStylus({ children }: { children: ReactNode }) {
 }
 
 export function ModeContentDynamic({ children }: { children: ReactNode }) {
-  const context = useContext(ModeContentContext);
+  const context = useModeContent();
 
-  const mode = context?.mode;
-  const mounted = context?.mounted;
+  const mode = context.mode;
+  const mounted = context.mounted;
 
   if (!mounted || mode !== "dynamic") {
     return null;
@@ -188,6 +220,7 @@ export function ModeContentDynamic({ children }: { children: ReactNode }) {
 
 export function ModeContent({ children }: { children: ReactNode }) {
   const [mode] = useLocalStorage<Mode>("theme-mode", "stylus");
+  const [themeId] = useSessionStorage<string>("theme-id", "");
   const [mounted, setMounted] = useState(false);
 
   /* eslint-disable react-hooks/set-state-in-effect -- mounted state initialization */
@@ -206,7 +239,7 @@ export function ModeContent({ children }: { children: ReactNode }) {
   }
 
   return (
-    <ModeContentContext.Provider value={{ mode, mounted }}>
+    <ModeContentContext.Provider value={{ mode, mounted, themeId }}>
       {children}
     </ModeContentContext.Provider>
   );

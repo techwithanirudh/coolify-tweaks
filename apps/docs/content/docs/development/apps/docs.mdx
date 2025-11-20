@@ -1,0 +1,143 @@
+---
+title: Docs
+description: Modify the Next.js/Fumadocs site and MDX content
+icon: Book
+---
+
+## Introduction
+
+The docs app is the public website and documentation. It is built with:
+
+- Next.js 16
+- React 19
+- Tailwind CSS v4
+- Fumadocs (for the docs system)
+- `@repo/ui` and shared tooling
+
+It owns the landing page, docs, API docs, and any AI/search experiences.
+
+## File layout
+
+<Files>
+  <Folder name="apps/docs" defaultOpen>
+    <Folder name="content">
+      <Folder name="docs">
+        <Folder
+          name="style"
+          description="Style docs: installation, updating, theming, changelog"
+        />
+        <Folder name="api" description="Generated API docs for the Nitro API" />
+      </Folder>
+    </Folder>
+    <Folder
+      name="scripts"
+      description="generate-docs, sync-changelog, lint helpers"
+    />
+    <Folder name="src" defaultOpen>
+      <Folder name="app">
+        <Folder
+          name="(home)"
+          description="Marketing homepage and its components"
+        />
+        <Folder name="docs" description="Fumadocs powered docs routes" />
+        <Folder name="api" description="Next API routes (chat, search, etc)" />
+        <Folder name="og" description="OG image generation" />
+      </Folder>
+      <Folder name="components" description="Reusable UI components" />
+      <Folder
+        name="lib"
+        description="AI wiring, OpenAPI, metadata, page tree, etc"
+      />
+      <Folder name="styles" description="Tailwind CSS" />
+      <Folder name="utils" description="Small helpers" />
+    </Folder>
+    <File name="package.json" />
+  </Folder>
+</Files>
+
+## Local workflow
+
+<Steps>
+  <Step>
+    **Start the dev server:**
+
+    ```bash
+    pnpm --filter @repo/docs dev
+    ```
+
+    The site runs on `http://localhost:3002`.
+
+  </Step>
+  <Step>
+    **Edit MDX files** under `apps/docs/content/docs/` or React components/layout in `apps/docs/src/app/`.
+  </Step>
+  <Step>
+    **For OpenAPI or changelog changes**, run the pre-build script first:
+
+    ```bash
+    pnpm --filter @repo/docs run build:pre
+    ```
+
+  </Step>
+  <Step>
+    **Use the in-browser search** to jump to the page you're modifying, and restart the dev server if Fumadocs metadata gets cached.
+  </Step>
+</Steps>
+
+## Scripts & tooling
+
+The docs app uses Bun for TypeScript script execution:
+
+- `bun ./scripts/lint.ts` - Lint MDX content and validate links
+- `bun ./scripts/pre-build.ts` - Generate OpenAPI docs and sync changelog before build
+- Other helper scripts in `apps/docs/scripts/`
+
+### Adding UI components
+
+Run `pnpm ui-add` from the repo root to add new shadcn/ui components. They'll be added to `packages/ui/src/components` and can be imported in the docs app.
+
+## Testing
+
+Run these commands from the repo root:
+
+- **Linting:**
+
+  ```bash
+  pnpm --filter @repo/docs lint
+  ```
+
+  This also validates internal and external links in MDX files.
+
+- **Formatting:**
+
+  ```bash
+  pnpm --filter @repo/docs format
+  ```
+
+- **Type checking:**
+
+  ```bash
+  pnpm --filter @repo/docs typecheck
+  ```
+
+- **Spell checking:**
+  ```bash
+  pnpm --filter @repo/docs check:spelling
+  ```
+  Keeps documentation spelling consistent across all MDX files.
+
+## Deployment
+
+### Vercel
+
+1. Create a new Vercel project.
+2. Set the root directory to `apps/docs`.
+3. Vercel automatically detects Next.js and configures the build.
+4. Configure environment variables:
+   - Analytics tracking (if used)
+   - Sentry error tracking (if configured)
+   - Any other app-specific variables
+5. Deploy. The docs site will automatically:
+   - Pull in shared UI components from `@repo/ui`
+   - Use Tailwind configuration from `tooling/tailwind`
+   - Include generated OpenAPI documentation from the API app

@@ -1,0 +1,114 @@
+---
+title: Style
+description: Work on the pipeline that produces the style.
+icon: Palette
+---
+
+## What this app owns
+
+`apps/style` is the Sass + Lightning CSS pipeline that produces the Coolify theme. The build emits:
+
+- `dist/main.user.css`: Stylus-friendly build with userstyle metadata.
+- `dist/main.css`: Raw CSS bundle referenced by the Traefik dynamic-config install.
+- Supporting assets and source maps consumed by the API release flow.
+
+Manual Stylus installs load `main.user.css`, while the API serves a published release and the dynamic proxy injects the latest CSS.
+
+## File layout
+
+<Files>
+  <Folder name="apps/style" defaultOpen>
+    <Folder name="dist" description="Built CSS bundles" />
+    <Folder name="plugins">
+      <Folder
+        name="postcss"
+        description="Custom PostCSS plugins (banner, theme identifier, moz wrapping)"
+      />
+    </Folder>
+    <Folder name="scripts" description="Build and watch helpers" />
+    <Folder name="src" defaultOpen>
+      <Folder
+        name="components"
+        description="Component level styling (sidebar, cards, navbar, etc)"
+      />
+      <Folder
+        name="pages"
+        description="Page specific tweaks (deployments, resources, onboarding)"
+      />
+      <Folder name="theme" description="Variables, base reset, typography" />
+      <Folder name="utilities" description="Misc helpers and overrides" />
+      <File name="_globals.scss" />
+      <File name="_mixins.scss" />
+      <File
+        name="main.scss"
+        description="Entry point that includes everything"
+      />
+    </Folder>
+    <File name="package.json" />
+  </Folder>
+</Files>
+
+## Local workflow
+
+<Steps>
+  <Step>
+    **Start the watcher:**
+
+    ```bash
+    pnpm --filter @repo/style dev
+    ```
+
+    This watches `apps/style/src/**` and serves `http://localhost:3000/main.user.css`.
+
+  </Step>
+  <Step>
+    **Install the stylesheet** inside Stylus, enable Live Reload, and add `http://localhost:3000/*` to allowed hosts.
+  </Step>
+  <Step>
+    **Edit Sass partials** for components, theme utilities, pages, etc., under `apps/style/src/`.
+  </Step>
+  <Step>
+    **Update documentation** when you change installation or update behavior. Update both `updating.mdx` and `installation/dynamic-config.mdx` so the documentation reflects Stylus and Traefik paths together.
+  </Step>
+</Steps>
+
+## Testing
+
+Run these commands from the repo root:
+
+- **Linting:**
+
+  ```bash
+  pnpm --filter @repo/style lint
+  ```
+
+- **Formatting:**
+
+  ```bash
+  pnpm --filter @repo/style format
+  ```
+
+- **Type checking:**
+
+  ```bash
+  pnpm --filter @repo/style typecheck
+  ```
+
+- **Spell checking:**
+  ```bash
+  pnpm --filter @repo/style check:spelling
+  ```
+
+## Deployment
+
+- Build the production bundle:
+
+  ```bash
+  pnpm --filter @repo/style build
+  ```
+
+- This outputs `dist/` artifacts that are published via GitHub Releases and served by the API.
+- To release a new version:
+  1. Run `pnpm changeset` to create a changeset describing your changes
+  2. Run `pnpm version` to update package versions based on changesets
+  3. Commit and push the changes (the GitHub workflow handles building and publishing)
