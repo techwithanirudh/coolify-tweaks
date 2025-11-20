@@ -69,13 +69,13 @@ The steps to apply a theme depend on your installation method. **Select your ins
     <ThemeCode
       lang="yaml"
       code={`rb-inject-css:
-
-plugin:
-rewritebody:
-lastModified: true
-rewrites: - regex: "(?is)</head>"
-replacement: '<link rel="stylesheet" href="https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=YOUR_THEME_ID&asset=main.css" referrerpolicy="no-referrer" crossorigin="anonymous"></head>'`}
-/>
+  plugin:
+    rewritebody:
+      lastModified: true
+      rewrites:
+        - regex: "(?is)</head>"
+          replacement: '<link rel="stylesheet" href="https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=YOUR_THEME_ID&asset=main.css" referrerpolicy="no-referrer" crossorigin="anonymous"></head>'`}
+    />
 
     3. **Restart Traefik:**
 
