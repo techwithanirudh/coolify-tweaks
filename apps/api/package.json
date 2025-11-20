@@ -7,7 +7,7 @@
     "clean": "git clean -xdf .cache .next .nitro .turbo node_modules",
     "dev": "pnpm with-env nitro dev --port 3001",
     "prepare": "nitro prepare",
-    "preview": "npx srvx --prod .output/",
+    "preview": "srvx --prod .output/",
     "lint": "pnpm run prepare && eslint --flag unstable_native_nodejs_ts_config",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "typecheck": "pnpm run prepare && tsc --noEmit --skipLibCheck",
