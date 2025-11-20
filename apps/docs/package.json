@@ -34,7 +34,6 @@
     "@takumi-rs/core": "^0.40.1",
     "@takumi-rs/helpers": "^0.40.1",
     "@takumi-rs/image-response": "^0.40.1",
-    "@vidstack/react": "^1.12.13",
     "ai": "^5.0.85",
     "class-variance-authority": "^0.7.1",
     "fumadocs-core": "^16.0.9",

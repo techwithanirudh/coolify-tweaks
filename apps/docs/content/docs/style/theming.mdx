@@ -18,8 +18,7 @@ Coolify Tweaks supports custom themes from [TweakCN](https://tweakcn.com), a the
 
 1. Visit [TweakCN Theme Editor](https://tweakcn.com/editor/theme)
 2. Browse themes or customize your own
-3. Click the share button, and copy the theme ID if it's a default theme it contains it'
-s name like claude, or if it's a custom theme (starts with `c` followed by 24 characters, e.g., `cmh4ecxjc000404l78qwda7o0`)
+3. Click the share button and copy the theme ID. If it's a default theme, it contains its name like `claude`, or if it's a custom theme, it starts with `c` followed by 24 characters (e.g., `cmh4ecxjc000404l78qwda7o0`)
 
 ## Generate theme URL
 
@@ -99,6 +98,69 @@ The steps to apply a theme depend on your installation method. **Select your ins
     - Restart Traefik and refresh your browser
   </ModeContentDynamic>
 </ModeContent>
+
+## Custom Themes
+
+If you have your own theme CSS and want to make it work with Coolify Tweaks, here's how you can do it:
+
+### 1. Create a new CSS file
+
+First, find the CSS you want to use and copy both the light and dark mode contents. (These should follow the ShadCN theme spec.)
+
+```css
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+
+  --primary:  oklch(0.205 0 0);
+  /* ... */
+}
+
+.dark {
+  --background: oklch(0.233 0.014 304.7);
+  --foreground: oklch(0.9938 0.0013 106.4231);
+
+  --primary:  oklch(0.922 0 0);
+  /* ... */
+}
+```
+
+### 2. Import the Theme into TweakCN
+
+Go to [TweakCN Theme Editor](https://tweakcn.com/editor/theme) and click the "Import" button.
+
+Then, paste the CSS file contents into the "CSS" field and click the "Import" button.
+
+![Import Theme](/assets/installation/themes/import-theme.png)
+
+### 3. Share the Theme
+
+Click the "Share" button and authenticate with TweakCN.
+
+![Share Theme](/assets/installation/themes/tweakcn-auth.png)
+
+After authenticating, you will be asked to name your theme.
+
+![Name Theme](/assets/installation/themes/name-theme.png)
+
+Now, you'll see the theme ID in the URL. Copy it.
+
+![Theme ID](/assets/installation/themes/share-theme.png)
+
+> Note: The theme ID is the string after `tweakcn.com/themes/` in the URL. It will look something like `cmh4ecxjc000404l78qwda7o0`.
+
+### 4. Apply the Theme
+
+Now, you can apply the theme to your Coolify Tweaks instance.
+
+```
+https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=THEME_ID&asset=main.user.css
+```
+
+Replace `THEME_ID` with the theme ID you copied.
+
+That's all! You can now use your custom theme with Coolify Tweaks.
 
 ## Video Guide
 
