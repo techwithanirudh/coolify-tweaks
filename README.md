@@ -52,7 +52,7 @@ Coolify Tweaks supports two installation methods:
 3. **Running Coolify on something other than `coolify.local`?**  
    Open the style's _Settings_ pane in Stylus, then under **Custom included sites** add your host using a wildcard. For example:
 
-   <img alt="Stylus Settings" src="./apps/docs/public/assets/stylus-settings.png" width="50%" />
+   <img alt="Stylus Settings" src="./apps/docs/public/assets/installation/stylus/settings.png" width="50%" />
 
    ```css
    *://192.168.0.123:8000/*
@@ -62,7 +62,7 @@ Coolify Tweaks supports two installation methods:
 
 4. **Experiencing Style Issues?**
    If you notice style changes are slow, laggy, or not applying immediately, enable Instant Mode in Stylus. This forces styles to inject instantly on page load, eliminating delays.  
-   <img alt="Stylus Instant Mode" src="./apps/docs/public/assets/stylus-instant-mode.png" width="50%" />
+   <img alt="Stylus Instant Mode" src="./apps/docs/public/assets/installation/stylus/instant-mode.png" width="50%" />
 
 ### Method 2: Dynamic Config (Traefik)
 
