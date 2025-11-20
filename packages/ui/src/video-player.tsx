@@ -37,7 +37,7 @@ export function VideoPlayer({
             --item-border-radius: var(--radius-lg);
         }
 
-        .vds-menu-checkbox {
+        :where(.vds-menu-checkbox) {
             --media-menu-checkbox-width: 35px!important;
             --media-menu-checkbox-handle-diameter: calc(var(--checkbox-height) - 4px))!important;
         }
@@ -46,7 +46,7 @@ export function VideoPlayer({
             margin-bottom: 0px!important;
         }
 
-        .vds-menu-section {
+        :where(.vds-menu-section) {
             margin-top: 0px!important;
         }
         `}
