@@ -8,8 +8,8 @@ import {
   ModeContent,
   ModeContentDynamic,
   ModeContentStylus,
-  ThemeConfigCard,
   ThemeCode,
+  ThemeConfigCard,
 } from "./theming";
 
 Coolify Tweaks supports custom themes from [TweakCN](https://tweakcn.com), a theme editor for shadcn/ui components. You can apply any theme from the TweakCN gallery or create your own.
@@ -52,6 +52,7 @@ The steps to apply a theme depend on your installation method. **Select your ins
     1. Open Stylus extension settings
     2. Find "coolify-tweaks" in your styles list
     3. Click the **X** icon to remove the theme
+
   </ModeContentStylus>
   <ModeContentDynamic>
     ### Dynamic Config installation
@@ -68,13 +69,13 @@ The steps to apply a theme depend on your installation method. **Select your ins
     <ThemeCode
       lang="yaml"
       code={`rb-inject-css:
-  plugin:
-    rewritebody:
-      lastModified: true
-      rewrites:
-        - regex: "(?is)</head>"
-          replacement: '<link rel="stylesheet" href="https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=YOUR_THEME_ID&asset=main.css" referrerpolicy="no-referrer" crossorigin="anonymous"></head>'`}
-    />
+
+plugin:
+rewritebody:
+lastModified: true
+rewrites: - regex: "(?is)</head>"
+replacement: '<link rel="stylesheet" href="https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=YOUR_THEME_ID&asset=main.css" referrerpolicy="no-referrer" crossorigin="anonymous"></head>'`}
+/>
 
     3. **Restart Traefik:**
 
@@ -96,6 +97,7 @@ The steps to apply a theme depend on your installation method. **Select your ins
       replacement: '<link rel="stylesheet" href="https://coolify-tweaks-api.techwithanirudh.com/release/latest/?asset=main.css" referrerpolicy="no-referrer" crossorigin="anonymous"></head>'
       ```
     - Restart Traefik and refresh your browser
+
   </ModeContentDynamic>
 </ModeContent>
 
@@ -108,12 +110,11 @@ If you have your own theme CSS and want to make it work with Coolify Tweaks, her
 First, find the CSS you want to use and copy both the light and dark mode contents. (These should follow the ShadCN theme spec.)
 
 ```css
-
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
 
-  --primary:  oklch(0.205 0 0);
+  --primary: oklch(0.205 0 0);
   /* ... */
 }
 
@@ -121,7 +122,7 @@ First, find the CSS you want to use and copy both the light and dark mode conten
   --background: oklch(0.233 0.014 304.7);
   --foreground: oklch(0.9938 0.0013 106.4231);
 
-  --primary:  oklch(0.922 0 0);
+  --primary: oklch(0.922 0 0);
   /* ... */
 }
 ```
@@ -166,12 +167,12 @@ That's all! You can now use your custom theme with Coolify Tweaks.
 
 If you prefer watching instead, here's a short walkthrough:
 
-<VideoPlayer 
-  className="w-full aspect-video" 
+<VideoPlayer
+  className="aspect-video w-full"
   crossOrigin=""
   muted
   preload="auto"
-  src="https://video.twimg.com/amplify_video/1981595617622134784/vid/avc1/1280x720/K0GKgQkgCMTcERwQ.mp4" 
+  src="https://video.twimg.com/amplify_video/1981595617622134784/vid/avc1/1280x720/K0GKgQkgCMTcERwQ.mp4"
 />
 
 ## Tips

@@ -15,6 +15,7 @@ Stylus manages updates through its built-in update system. Here's how it works:
 ### Automatic updates
 
 Stylus automatically checks for updates when:
+
 - The extension loads
 - You open the Stylus popup
 - You visit a page where the style is active
@@ -27,7 +28,7 @@ When an update is available, Stylus will show a notification badge on the extens
 - Open the Stylus extension settings
 - Open the editor for the "coolify-tweaks" style
 - Copy the Update URL
-![Stylus Update URL](/assets/installation/stylus/update-url.png)
+  ![Stylus Update URL](/assets/installation/stylus/update-url.png)
 - Open the URL in a new tab and click the Update / Install button. This will manually update the style.
 
 ### Notes
@@ -43,11 +44,13 @@ Dynamic Config installations update automatically since they always point to the
 ### How it works
 
 The injected URL in your Traefik config points to:
+
 ```
 https://coolify-tweaks-api.techwithanirudh.com/release/latest/?asset=main.css
 ```
 
 This means:
+
 - **No manual steps required**: New releases are served automatically
 - Updates apply to all users immediately (subject to browser caching)
 - The CSS is fetched fresh on each page load from the API
@@ -57,11 +60,13 @@ This means:
 To confirm you're on the latest version:
 
 1. Check the page source (View → Developer → View Source)
+   ![View Source](/assets/installation/verify-injection.png)
 2. Look for the injected stylesheet link in the `<head>`
 3. The URL should point to `/release/latest/` (not a specific version)
 
 ### Clearing cache
 
 If updates seem delayed, clear your browser cache or do a hard refresh:
+
 - **Chrome/Edge:** `Ctrl+Shift+R` (Windows/Linux) or `Cmd+Shift+R` (Mac)
 - **Firefox:** `Ctrl+F5` (Windows/Linux) or `Cmd+Shift+R` (Mac)

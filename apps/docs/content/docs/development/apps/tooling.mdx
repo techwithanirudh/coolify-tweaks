@@ -31,6 +31,7 @@ All tooling packages are scoped under `@repo/*` and are consumed by apps and pac
 
     export default [baseConfig, reactConfig, nextjsConfig];
     ```
+
   </Accordion>
 
   <Accordion title="@repo/prettier-config">
@@ -47,6 +48,7 @@ All tooling packages are scoped under `@repo/*` and are consumed by apps and pac
     ```
 
     **Import order:** Type imports, React/Next.js, third-party modules, `@repo/*` workspace packages, local imports
+
   </Accordion>
 
   <Accordion title="@repo/tailwind-config">
@@ -67,6 +69,7 @@ All tooling packages are scoped under `@repo/*` and are consumed by apps and pac
     ```css
     @import "@repo/tailwind-config/theme";
     ```
+
   </Accordion>
 
   <Accordion title="@repo/tsconfig">
@@ -79,6 +82,7 @@ All tooling packages are scoped under `@repo/*` and are consumed by apps and pac
       "extends": "@repo/tsconfig/base.json"
     }
     ```
+
   </Accordion>
 
   <Accordion title="@repo/cspell-config">
@@ -98,6 +102,7 @@ All tooling packages are scoped under `@repo/*` and are consumed by apps and pac
       ]
     }
     ```
+
   </Accordion>
 </Accordions>
 
@@ -114,6 +119,7 @@ All tooling packages are scoped under `@repo/*` and are consumed by apps and pac
     ```
 
     Enter the package name (e.g., `my-tool`). This creates it in `packages/`.
+
   </Step>
   <Step>
     **Move the package** to the `tooling/` directory:
@@ -121,6 +127,7 @@ All tooling packages are scoped under `@repo/*` and are consumed by apps and pac
     ```bash
     mv packages/my-tool tooling/my-tool
     ```
+
   </Step>
   <Step>
     **Update the package** if needed. Tooling packages typically:
@@ -160,6 +167,7 @@ After modifying any tooling package, run the relevant checks:
     ```bash
     rm -rf .cache/eslint
     ```
+
   </Accordion>
 
   <Accordion title="Prettier not formatting correctly">
@@ -170,6 +178,7 @@ After modifying any tooling package, run the relevant checks:
       "prettier": "@repo/prettier-config"
     }
     ```
+
   </Accordion>
 
   <Accordion title="TypeScript errors after tsconfig changes">
@@ -179,6 +188,7 @@ After modifying any tooling package, run the relevant checks:
     find . -name "tsconfig.tsbuildinfo" -delete
     find . -name ".cache" -type d -exec rm -rf {} +
     ```
+
   </Accordion>
 
   <Accordion title="Tailwind classes not working">
@@ -189,6 +199,6 @@ After modifying any tooling package, run the relevant checks:
     ```
 
     And that PostCSS config is set up correctly.
+
   </Accordion>
 </Accordions>
-

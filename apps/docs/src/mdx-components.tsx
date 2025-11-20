@@ -9,11 +9,12 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import * as icons from "lucide-react";
 
+import { VideoPlayer } from "@repo/ui/video-player";
+
 import { APIPage } from "@/components/api-page";
 import * as FilesComponents from "@/components/fumadocs/files";
 import { Update, Updates } from "@/components/fumadocs/updates";
 import { Mermaid } from "@/components/mdx/mermaid";
-import { VideoPlayer } from "@repo/ui/video-player";
 
 export function getMDXComponents(components?: MDXComponents) {
   return {
@@ -32,7 +33,9 @@ export function getMDXComponents(components?: MDXComponents) {
     blockquote: Callout as unknown as FC<ComponentProps<"blockquote">>,
     APIPage,
     Banner,
-    VideoPlayer: VideoPlayer as unknown as FC<ComponentProps<typeof VideoPlayer>>,
+    VideoPlayer: VideoPlayer as unknown as FC<
+      ComponentProps<typeof VideoPlayer>
+    >,
     ...components,
   } satisfies MDXComponents;
 }

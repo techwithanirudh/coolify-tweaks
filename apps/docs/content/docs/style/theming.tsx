@@ -2,9 +2,9 @@
 
 import type { ReactNode } from "react";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
 import { CheckIcon, CopyIcon } from "lucide-react";
 import { useInterval, useLocalStorage, useSessionStorage } from "usehooks-ts";
-import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
 
 import { Button } from "@repo/ui/button";
 import { ButtonGroup } from "@repo/ui/button-group";
@@ -37,7 +37,7 @@ export function useModeContent() {
   if (!context) {
     throw new Error("useModeContent must be used within a ModeContentProvider");
   }
-  
+
   return context;
 }
 
@@ -50,13 +50,13 @@ export function ThemeCode({
 }) {
   const context = useModeContent();
   const themeId = context.themeId;
-  
+
   if (!themeId) {
     return <DynamicCodeBlock lang={lang} code={code.trimEnd()} />;
   }
 
   const encodedThemeId = encodeURIComponent(themeId.trim());
-  
+
   const processedCode = code.replace(/YOUR_THEME_ID/g, encodedThemeId);
 
   return <DynamicCodeBlock lang={lang} code={processedCode.trimEnd()} />;
@@ -113,20 +113,22 @@ export function ThemeConfigCard() {
             <ButtonGroup>
               <Button
                 onClick={() => setMode("stylus")}
-                className={`transition-all ${mode === "stylus"
+                className={`transition-all ${
+                  mode === "stylus"
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-muted-foreground hover:bg-accent"
-                  }`}
+                }`}
                 size="sm"
               >
                 Stylus
               </Button>
               <Button
                 onClick={() => setMode("dynamic")}
-                className={`transition-all ${mode === "dynamic"
+                className={`transition-all ${
+                  mode === "dynamic"
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-muted-foreground hover:bg-accent"
-                  }`}
+                }`}
                 size="sm"
               >
                 Dynamic
@@ -242,4 +244,3 @@ export function ModeContent({ children }: { children: ReactNode }) {
     </ModeContentContext.Provider>
   );
 }
-

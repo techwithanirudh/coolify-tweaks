@@ -20,17 +20,29 @@ Manual Stylus installs load `main.user.css`, while the API serves a published re
   <Folder name="apps/style" defaultOpen>
     <Folder name="dist" description="Built CSS bundles" />
     <Folder name="plugins">
-      <Folder name="postcss" description="Custom PostCSS plugins (banner, theme identifier, moz wrapping)" />
+      <Folder
+        name="postcss"
+        description="Custom PostCSS plugins (banner, theme identifier, moz wrapping)"
+      />
     </Folder>
     <Folder name="scripts" description="Build and watch helpers" />
     <Folder name="src" defaultOpen>
-      <Folder name="components" description="Component level styling (sidebar, cards, navbar, etc)" />
-      <Folder name="pages" description="Page specific tweaks (deployments, resources, onboarding)" />
+      <Folder
+        name="components"
+        description="Component level styling (sidebar, cards, navbar, etc)"
+      />
+      <Folder
+        name="pages"
+        description="Page specific tweaks (deployments, resources, onboarding)"
+      />
       <Folder name="theme" description="Variables, base reset, typography" />
       <Folder name="utilities" description="Misc helpers and overrides" />
       <File name="_globals.scss" />
       <File name="_mixins.scss" />
-      <File name="main.scss" description="Entry point that includes everything" />
+      <File
+        name="main.scss"
+        description="Entry point that includes everything"
+      />
     </Folder>
     <File name="package.json" />
   </Folder>
@@ -47,6 +59,7 @@ Manual Stylus installs load `main.user.css`, while the API serves a published re
     ```
 
     This watches `apps/style/src/**` and serves `http://localhost:3000/main.user.css`.
+
   </Step>
   <Step>
     **Install the stylesheet** inside Stylus, enable Live Reload, and add `http://localhost:3000/*` to allowed hosts.
@@ -64,16 +77,19 @@ Manual Stylus installs load `main.user.css`, while the API serves a published re
 Run these commands from the repo root:
 
 - **Linting:**
+
   ```bash
   pnpm --filter @repo/style lint
   ```
 
 - **Formatting:**
+
   ```bash
   pnpm --filter @repo/style format
   ```
 
 - **Type checking:**
+
   ```bash
   pnpm --filter @repo/style typecheck
   ```

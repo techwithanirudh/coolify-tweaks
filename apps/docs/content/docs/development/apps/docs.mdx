@@ -22,27 +22,38 @@ It owns the landing page, docs, API docs, and any AI/search experiences.
   <Folder name="apps/docs" defaultOpen>
     <Folder name="content">
       <Folder name="docs">
-        <Folder name="style" description="Style docs: installation, updating, theming, changelog" />
+        <Folder
+          name="style"
+          description="Style docs: installation, updating, theming, changelog"
+        />
         <Folder name="api" description="Generated API docs for the Nitro API" />
       </Folder>
     </Folder>
-    <Folder name="scripts" description="generate-docs, sync-changelog, lint helpers" />
+    <Folder
+      name="scripts"
+      description="generate-docs, sync-changelog, lint helpers"
+    />
     <Folder name="src" defaultOpen>
       <Folder name="app">
-        <Folder name="(home)" description="Marketing homepage and its components" />
+        <Folder
+          name="(home)"
+          description="Marketing homepage and its components"
+        />
         <Folder name="docs" description="Fumadocs powered docs routes" />
         <Folder name="api" description="Next API routes (chat, search, etc)" />
         <Folder name="og" description="OG image generation" />
       </Folder>
       <Folder name="components" description="Reusable UI components" />
-      <Folder name="lib" description="AI wiring, OpenAPI, metadata, page tree, etc" />
+      <Folder
+        name="lib"
+        description="AI wiring, OpenAPI, metadata, page tree, etc"
+      />
       <Folder name="styles" description="Tailwind CSS" />
       <Folder name="utils" description="Small helpers" />
     </Folder>
     <File name="package.json" />
   </Folder>
 </Files>
-
 
 ## Local workflow
 
@@ -55,6 +66,7 @@ It owns the landing page, docs, API docs, and any AI/search experiences.
     ```
 
     The site runs on `http://localhost:3002`.
+
   </Step>
   <Step>
     **Edit MDX files** under `apps/docs/content/docs/` or React components/layout in `apps/docs/src/app/`.
@@ -65,6 +77,7 @@ It owns the landing page, docs, API docs, and any AI/search experiences.
     ```bash
     pnpm --filter @repo/docs run build:pre
     ```
+
   </Step>
   <Step>
     **Use the in-browser search** to jump to the page you're modifying, and restart the dev server if Fumadocs metadata gets cached.
@@ -88,17 +101,21 @@ Run `pnpm ui-add` from the repo root to add new shadcn/ui components. They'll be
 Run these commands from the repo root:
 
 - **Linting:**
+
   ```bash
   pnpm --filter @repo/docs lint
   ```
+
   This also validates internal and external links in MDX files.
 
 - **Formatting:**
+
   ```bash
   pnpm --filter @repo/docs format
   ```
 
 - **Type checking:**
+
   ```bash
   pnpm --filter @repo/docs typecheck
   ```

@@ -38,7 +38,7 @@ If you're working on serving release artifacts, or tracking usage you'll be work
       <Folder name="utils">
         <File name="css-compiler.ts" />
         <File name="css-transformer.ts" />
-        <File name="themes.ts"/>
+        <File name="themes.ts" />
       </Folder>
       <File name="config.ts" description="App configuration" />
     </Folder>
@@ -58,6 +58,7 @@ If you're working on serving release artifacts, or tracking usage you'll be work
     ```
 
     The API runs on `http://localhost:3001` by default.
+
   </Step>
   <Step>
     **Edit routes** under `apps/api/src/routes/` or utility functions in `apps/api/src/utils/`.
@@ -70,6 +71,7 @@ If you're working on serving release artifacts, or tracking usage you'll be work
     ```
 
     This syncs the Drizzle schema to your local Postgres/Neon database.
+
   </Step>
   <Step>
     **Environment variables:** Configure via `.env` in the repo root:
@@ -85,6 +87,7 @@ If you're working on serving release artifacts, or tracking usage you'll be work
 The API supports dynamic theme injection for `main.user.css` requests. Here's how it works:
 
 1. **Build-time markers**: The Style app's PostCSS plugin (`theme-identifier.ts`) injects special comment markers around CSS variable definitions:
+
    ```css
    /* ==UI-THEME-VARS:START== */
    :root {
@@ -120,12 +123,12 @@ For more details about API usage, visit [/docs/api](/docs/api).
 
 <Accordions>
   <Accordion title="Release routes">
-    - `GET /release/latest/?asset=main.css` - Serves the latest CSS bundle
-    - `GET /release/[tag]/[asset]` - Serves specific release assets
+    - `GET /release/latest/?asset=main.css` - Serves the latest CSS bundle -
+    `GET /release/[tag]/[asset]` - Serves specific release assets
   </Accordion>
   <Accordion title="Health routes">
-    - `GET /health` - Basic health check
-    - Additional diagnostic endpoints as needed
+    - `GET /health` - Basic health check - Additional diagnostic endpoints as
+    needed
   </Accordion>
   <Accordion title="Analytics routes">
     - Database-backed routes for tracking usage (requires `POSTGRES_URL`)
@@ -137,16 +140,19 @@ For more details about API usage, visit [/docs/api](/docs/api).
 Run these commands from the repo root:
 
 - **Linting:**
+
   ```bash
   pnpm --filter @repo/api lint
   ```
 
 - **Formatting:**
+
   ```bash
   pnpm --filter @repo/api format
   ```
 
 - **Type checking:**
+
   ```bash
   pnpm --filter @repo/api typecheck
   ```
