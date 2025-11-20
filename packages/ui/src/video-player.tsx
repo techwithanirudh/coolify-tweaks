@@ -36,6 +36,11 @@ export function VideoPlayer({
         .vds-menu-items[data-root] .vds-menu-item {
             --item-border-radius: var(--radius-lg)!important;
         }
+
+        .vds-menu-checkbox {
+            --media-menu-checkbox-width: 35px!important;
+            --media-menu-checkbox-handle-diameter: calc(var(--checkbox-height) - 4px))!important;
+        }
         `}
       </style>
       <MediaPlayer poster={poster} className={className} {...props}>
