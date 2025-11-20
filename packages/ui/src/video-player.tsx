@@ -43,7 +43,7 @@ export function VideoPlayer({
         <DefaultVideoLayout
           thumbnails={thumbnails}
           icons={defaultLayoutIcons}
-          colorScheme={'default'}
+          colorScheme={"default"}
         />
       </MediaPlayer>
     </>
