@@ -83,7 +83,7 @@ export function Hero() {
     <div className="flex w-full flex-col items-center justify-start gap-6 px-2 pt-16 pr-0 pl-0 sm:px-4 sm:pt-20 sm:pr-0 sm:pl-0 md:px-8 md:pt-24 lg:px-0">
       <div className="flex flex-col items-center justify-center gap-2 self-stretch rounded-[3px]">
         <div className="w-full px-2 text-center text-2xl leading-tight font-normal sm:px-4 sm:text-3xl md:px-0 md:text-4xl lg:text-5xl">
-          Polish your{" "}
+          Theme your{" "}
           <HoverCard>
             <HoverCardTrigger asChild>
               <span className="group/trademark inline-flex cursor-help items-center gap-1.5">
@@ -104,7 +104,7 @@ export function Hero() {
           dashboard
         </div>
         <div className="text-muted-foreground flex w-full flex-col justify-center px-2 text-center text-sm leading-relaxed sm:px-4 sm:text-base md:px-0 md:text-lg">
-          A style layer that refines spacing, typography, and colors.
+          A theme that refines spacing, typography, and colors.
         </div>
       </div>
       <div className="relative z-10 flex w-full flex-col items-center justify-center">

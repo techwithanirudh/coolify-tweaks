@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -13,6 +14,7 @@ const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, "..", "..", "..");
 
 const SOURCE_PATH = path.join(repoRoot, "apps/style/CHANGELOG.md");
+
 const DESTINATION_PATH = path.join(
   repoRoot,
   "apps/docs/content/docs/style/changelog.mdx",
@@ -24,6 +26,10 @@ const mdxStringifier = remark()
   .data("settings", { bullet: "-" });
 
 export async function syncChangelog() {
+  if (!existsSync(SOURCE_PATH)) {
+    console.warn(`Warning: ${SOURCE_PATH} not found, skipping changelog sync`);
+    return;
+  }
   const raw = await readFile(SOURCE_PATH, "utf8");
   const updates = extractUpdates(raw);
 

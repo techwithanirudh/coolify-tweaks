@@ -100,7 +100,7 @@ export async function Features() {
             Polished spacing, typography, and colors
           </div>
           <div className="text-muted-foreground self-stretch text-center text-sm leading-6 font-normal sm:text-base">
-            A style layer that refines spacing, typography, and colors.
+            A theme that refines spacing, typography, and colors.
             <br />
             Keeps the interface familiar while smoothing out rough edges.
           </div>

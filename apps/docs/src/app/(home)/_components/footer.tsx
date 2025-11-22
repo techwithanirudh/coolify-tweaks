@@ -23,7 +23,7 @@ export function Footer() {
             </div>
           </div>
           <div className="text-muted-foreground text-sm">
-            A style layer for refined spacing, typography, and colors
+            A theme for refined spacing, typography, and colors
           </div>
           <Button variant="ghost" size="icon-sm" asChild>
             <a
