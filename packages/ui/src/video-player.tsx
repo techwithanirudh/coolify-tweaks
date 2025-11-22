@@ -34,7 +34,20 @@ export function VideoPlayer({
         }
 
         .vds-menu-items[data-root] .vds-menu-item {
-            --item-border-radius: var(--radius-lg)!important;
+            --item-border-radius: var(--radius-lg);
+        }
+
+        :where(.vds-menu-checkbox) {
+            --media-menu-checkbox-width: 35px!important;
+            --media-menu-checkbox-handle-diameter: calc(var(--checkbox-height) - 4px))!important;
+        }
+
+        :where(.vds-menu-item[aria-expanded=true]) {
+            margin-bottom: 0px!important;
+        }
+
+        :where(.vds-menu-section) {
+            margin-top: 0px!important;
         }
         `}
       </style>
