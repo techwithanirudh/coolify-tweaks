@@ -81,6 +81,11 @@ http:
           - rb-buffer
           - rb-force-identity
           - rb-inject-css
+  services:
+    coolify:
+      loadBalancer:
+        servers:
+          - url: 'http://coolify:8080'
 ```
 
 ### 3. Add Routers
@@ -95,7 +100,7 @@ http:
     coolify-dashboard:
       entryPoints: [coolify_dashboard]
       rule: PathPrefix(`/`)
-      service: coolify@file
+      service: coolify
       middlewares: [coolify-tweaks]
       priority: 1000
 ```
@@ -115,7 +120,7 @@ http:
     coolify-https-inject:
       entryPoints: [https]
       rule: "Host(`coolify.yourdomain.com`) && !PathPrefix(`/app`) && !PathPrefix(`/terminal/ws`)"
-      service: coolify@file
+      service: coolify
       middlewares: [coolify-tweaks]
       tls:
         certResolver: letsencrypt
