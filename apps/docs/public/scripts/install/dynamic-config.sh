@@ -1,11 +1,11 @@
 #!/bin/bash
 ## Coolify Tweaks Installer
 ## Do not modify this file. You will lose the ability to install!
-
+##
 ## Environment variables that can be set:
 ## APP_PORT_DEFAULT       - Default bind address for Coolify dashboard (default: 0.0.0.0:3000)
 ## COOLIFY_TWEAKS_CSS_URL - Override the Tweaks CSS URL
-## SKIP_BACKUP            - Set to "true" to skip .env backup
+## SKIP_BACKUP            - Set to "true" to skip backup of docker-compose, and .env
 
 set -e          # Exit immediately if a command exits with a non-zero status
 ## $1 could be empty, so we need to disable this check
@@ -39,6 +39,45 @@ RED="\033[0;31m"
 BOLD="\033[1m"
 RESET="\033[0m"
 
+# yq
+YQ_VERSION="v4.49.2"
+YQ_BIN="/tmp/yq"
+
+install_yq() {
+  if [ -x "$YQ_BIN" ]; then
+    return 0
+  fi
+
+  echo " - Downloading yq $YQ_VERSION to $YQ_BIN"
+
+  ARCH=$(uname -m)
+  YQ_ARCH="amd64"
+
+  case "$ARCH" in
+    x86_64)        YQ_ARCH="amd64" ;;
+    aarch64|arm64) YQ_ARCH="arm64" ;;
+    armv7l)        YQ_ARCH="arm" ;;
+    *)
+      echo "   Unknown architecture '$ARCH', defaulting to amd64."
+      YQ_ARCH="amd64"
+      ;;
+  esac
+
+  curl -sL "https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_${YQ_ARCH}" \
+    -o "$YQ_BIN"
+
+  chmod +x "$YQ_BIN" || true
+
+  if ! "$YQ_BIN" --version >/dev/null 2>&1; then
+    echo -e "${RED}Failed to download yq. Please check network or install yq manually and re-run the installer.${RESET}"
+    rm -f "$YQ_BIN" 2>/dev/null || true
+    exit 1
+  fi
+
+  echo " - yq installed successfully"
+  echo "$("$YQ_BIN" --version 2>/dev/null || echo '')"
+}
+
 # Helpers
 getAJoke() {
   JOKES=$(curl -s --max-time 2 "https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&format=txt&type=single" || true)
@@ -69,39 +108,6 @@ update_env_var() {
   fi
 }
 
-insert_flag() {
-  local flag="$1"
-
-  if grep -q -- "$flag" "$COMPOSE_FILE"; then
-    echo "   - Flag already present: $flag"
-    return
-  fi
-
-  # Insert the flag into the traefik service under the command: list
-  sed -i "/traefik:/,/^[^[:space:]]/{
-    /command:/a \      - '$flag'
-  }" "$COMPOSE_FILE"
-
-  echo "   - Inserted flag: $flag"
-}
-
-insert_port_mapping() {
-  local mapping="$1"
-
-  if grep -q "^[[:space:]]*-[[:space:]]*\"$mapping\"" "$COMPOSE_FILE" || \
-     grep -q "^[[:space:]]*-[[:space:]]*'$mapping'" "$COMPOSE_FILE" || \
-     grep -q "^[[:space:]]*-[[:space:]]*$mapping" "$COMPOSE_FILE"; then
-    echo "   - Port mapping already present: $mapping"
-    return
-  fi
-
-  sed -i "/traefik:/,/^[^[:space:]]/{
-    /ports:/a \      - '$mapping'
-  }" "$COMPOSE_FILE"
-
-  echo "   - Inserted port mapping: $mapping"
-}
-
 print_step_header() {
   local num="$1"
   local title="$2"
@@ -121,10 +127,14 @@ if [ ! -d "/data/coolify" ]; then
   exit 1
 fi
 
-mkdir -p "$PROXY_DIR" "$DYNAMIC_DIR"
+if ! command -v docker >/dev/null 2>&1; then
+  echo -e "${RED}Docker is required but not found in PATH.${RESET}"
+  exit 1
+fi
+
+mkdir -p "$PROXY_DIR" "$DYNAMIC_DIR" "$SOURCE_DIR"
 
 # Redirect all output to logfile + stdout
-mkdir -p /data/coolify/source
 exec > >(tee -a "$LOGFILE") 2>&1
 
 echo -e "${BOLD}${PURPLE}Welcome to Coolify Tweaks Installer!${RESET}"
@@ -185,16 +195,41 @@ update_env_var "APP_PORT" "$NEW_APP_PORT"
 
 print_step_header "3" "Patching Traefik configuration"
 
-echo " - Backing up $COMPOSE_FILE -> $COMPOSE_FILE.bak-$DATE"
-cp "$COMPOSE_FILE" "$COMPOSE_FILE.bak-$DATE"
+if [ "$SKIP_BACKUP" != "true" ]; then
+  echo " - Backing up $COMPOSE_FILE -> $COMPOSE_FILE.bak-$DATE"
+  cp "$COMPOSE_FILE" "$COMPOSE_FILE.bak-$DATE"
+else
+  echo " - Skipping docker-compose.yml backup"
+fi
+
+install_yq
 
 echo " - Ensuring Traefik is configured for Coolify Tweaks"
 
-insert_flag "--experimental.plugins.rewritebody.modulename=github.com/traefik/plugin-rewritebody"
-insert_flag "--experimental.plugins.rewritebody.version=v0.3.1"
-insert_flag "--entrypoints.coolify_dashboard.address=:8000"
+if ! "$YQ_BIN" '.services.traefik' "$COMPOSE_FILE" >/dev/null 2>&1; then
+  echo -e "${RED}   Traefik service (services.traefik) not found in $COMPOSE_FILE.${RESET}"
+  exit 1
+fi
 
-insert_port_mapping "8000:8000"
+"$YQ_BIN" -i '
+  .services.traefik.ports = (
+    (.services.traefik.ports // [])
+    + ["8000:8000"]
+    | unique
+  )
+  |
+  .services.traefik.command = (
+    (.services.traefik.command // [])
+    + [
+      "--experimental.plugins.rewritebody.modulename=github.com/traefik/plugin-rewritebody",
+      "--experimental.plugins.rewritebody.version=v0.3.1",
+      "--entrypoints.coolify_dashboard.address=:8000"
+    ]
+    | unique
+  )
+' "$COMPOSE_FILE"
+
+echo " - Traefik ports and command flags updated."
 
 # Step 4: Create dynamic config for Coolify Tweaks
 
@@ -282,6 +317,9 @@ else
 fi
 
 echo -e "${GREEN} - Coolify restarted successfully.${RESET}"
+
+# Optional: clean up temp yq
+rm -f "$YQ_BIN" 2>/dev/null || true
 
 # Step 7: Final info
 
