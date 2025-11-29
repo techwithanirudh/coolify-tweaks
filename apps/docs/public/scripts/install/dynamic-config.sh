@@ -41,7 +41,7 @@ RESET="\033[0m"
 
 # yq
 YQ_VERSION="v4.49.2"
-YQ_BIN="/tmp/yq"
+YQ_BIN="/tmp/yq-${DATE}"
 
 install_yq() {
   if [ -x "$YQ_BIN" ]; then
