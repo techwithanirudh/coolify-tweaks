@@ -80,6 +80,7 @@ button[isError],
   background: var(--destructive)!important;
   color: var(--destructive-foreground)!important;
   box-shadow: var(--shadow-xs)!important;
+  border-color: color-mix(in srgb, var(--destructive) 40%, transparent)!important;
 
   &:hover {
     background: color-mix(in srgb, var(--destructive) 90%, transparent)!important;
@@ -93,6 +94,7 @@ button[isError],
 
     background: color-mix(in srgb, var(--destructive) 60%, var(--input))!important;
     color: var(--destructive-foreground)!important;
+    border-color: color-mix(in srgb, var(--destructive) 40%, var(--input))!important;
   }
 
   &:disabled {

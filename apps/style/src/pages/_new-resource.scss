@@ -46,6 +46,18 @@ div:has([x-show^="filteredGitBasedApplications.length > 0 || filteredDockerBased
   }
 }
 
+div:has([x-show^="filteredDatabases"]:has(> div.grid[class*="cols"] > div[x-on\:click="setType(database.id)"])) {
+  .grid[class*="cols"] {
+    background: none;
+    padding: s(0.5);
+    border-radius: 0;
+
+    .coolbox {
+      padding: s(1);
+    }
+  }
+}
+
 div[x-show="filteredServices.length > 0"]:has(> div[x-init="loadResources"]) {
   div[x-init="loadResources"] {
     button {
@@ -72,10 +84,13 @@ div[x-show="filteredServices.length > 0"]:has(> div[x-init="loadResources"]) {
     }
   }
 
-  div.grid[class*="cols"] {
+  div.relative.p-4.border.rounded-lg.bg-blue-50.dark\:bg-blue-900\/30.border-blue-300.dark\:border-blue-800 {
+    margin: s(0.5);
+  }
+
+  div.grid[class*="cols"]:has(.coolbox) {
     background: none;
     padding: s(0.5);
-    grid-template-columns: repeat(2, minmax(0, 1fr));
 
     .coolbox {
       min-height: 100%;
