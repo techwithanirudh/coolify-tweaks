@@ -74,8 +74,7 @@ install_yq() {
     exit 1
   fi
 
-  echo " - yq installed successfully"
-  echo "$("$YQ_BIN" --version 2>/dev/null || echo '')"
+  echo " - $("$YQ_BIN" --version 2>/dev/null || echo '') downloaded successfully"
 }
 
 # Helpers
@@ -92,19 +91,19 @@ update_env_var() {
   local value="$2"
 
   if [ ! -f "$ENV_FILE" ]; then
-    echo -e "${RED}ERROR:${RESET} $ENV_FILE not found. Is Coolify installed?"
+    echo -e "${RED} - ${RESET} $ENV_FILE not found. Is Coolify installed?"
     exit 1
   fi
 
   if grep -q "^${key}=$" "$ENV_FILE"; then
     sed -i "s|^${key}=$|${key}=${value}|" "$ENV_FILE"
-    echo "   - Updated value of ${key} (it was empty)"
+    echo " - Updated value of ${key} (it was empty)"
   elif ! grep -q "^${key}=" "$ENV_FILE"; then
     printf '%s=%s\n' "$key" "$value" >>"$ENV_FILE"
-    echo "   - Added ${key} (it was missing)"
+    echo " - Added ${key} (it was missing)"
   else
     sed -i "s|^${key}=.*|${key}=${value}|" "$ENV_FILE"
-    echo "   - Updated ${key}"
+    echo " - Updated ${key}"
   fi
 }
 
@@ -177,18 +176,8 @@ else
   echo " - Skipping .env backup (SKIP_BACKUP=true)"
 fi
 
-echo
-echo "Enter the dashboard bind address for APP_PORT (e.g. 0.0.0.0:8080)."
-echo "Press enter to use the default: ${BOLD}${APP_PORT_DEFAULT}${RESET}"
-read -r -p "APP_PORT = " NEW_APP_PORT
-
-if [ -z "$NEW_APP_PORT" ]; then
-  NEW_APP_PORT="$APP_PORT_DEFAULT"
-  echo " - No input given, using default APP_PORT=$NEW_APP_PORT"
-else
-  echo " - Using APP_PORT=$NEW_APP_PORT"
-fi
-
+read -r -p " - APP_PORT [${APP_PORT_DEFAULT}] = " NEW_APP_PORT
+NEW_APP_PORT="${NEW_APP_PORT:-$APP_PORT_DEFAULT}"
 update_env_var "APP_PORT" "$NEW_APP_PORT"
 
 # Step 3: Patch Traefik configuration
@@ -229,7 +218,7 @@ fi
   )
 ' "$COMPOSE_FILE"
 
-echo " - Traefik ports and command flags updated."
+echo " - Traefik configuration updated."
 
 # Step 4: Create dynamic config for Coolify Tweaks
 
@@ -287,7 +276,7 @@ echo " - Dynamic config written."
 
 # Step 5: Restart Traefik & Coolify
 
-print_step_header "5" "Restarting Traefik with new config"
+print_step_header "5" "Restarting Traefik"
 
 cd "$PROXY_DIR"
 echo " - Running: docker compose -f docker-compose.yml up -d --force-recreate --wait"
@@ -298,7 +287,7 @@ docker compose \
 
 echo -e "${GREEN} - Traefik restarted successfully.${RESET}"
 
-print_step_header "6" "Restarting Coolify with updated APP_PORT"
+print_step_header "6" "Restarting Coolify"
 
 cd "$SOURCE_DIR"
 if [ -f /data/coolify/source/docker-compose.custom.yml ]; then
