@@ -58,7 +58,7 @@ install_yq() {
     aarch64|arm64) YQ_ARCH="arm64" ;;
     armv7l)        YQ_ARCH="arm" ;;
     *)
-      echo "   Unknown architecture '$ARCH', defaulting to amd64."
+      echo " - Unknown architecture '$ARCH', defaulting to amd64."
       YQ_ARCH="amd64"
       ;;
   esac
@@ -69,7 +69,7 @@ install_yq() {
   chmod +x "$YQ_BIN" || true
 
   if ! "$YQ_BIN" --version >/dev/null 2>&1; then
-    echo -e "${RED}Failed to download yq. Please check network or install yq manually and re-run the installer.${RESET}"
+    echo -e "${RED} - Failed to download yq. Please check network or install yq manually and re-run the installer.${RESET}"
     rm -f "$YQ_BIN" 2>/dev/null || true
     exit 1
   fi
@@ -82,7 +82,7 @@ getAJoke() {
   JOKES=$(curl -s --max-time 2 "https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&format=txt&type=single" || true)
   if [ "$JOKES" != "" ]; then
     echo -e " - While Docker is thinking, here's a joke:\n"
-    echo -e "$JOKES\n"
+    echo -e "${YELLOW} - $JOKES${RESET}\n"
   fi
 }
 
@@ -91,7 +91,7 @@ update_env_var() {
   local value="$2"
 
   if [ ! -f "$ENV_FILE" ]; then
-    echo -e "${RED} - ${RESET} $ENV_FILE not found. Is Coolify installed?"
+    echo -e "${RED} - $ENV_FILE not found. Is Coolify installed?${RESET}"
     exit 1
   fi
 
@@ -293,7 +293,7 @@ else
     up -d --remove-orphans --force-recreate --wait --wait-timeout 60
 fi
 
-echo -e "${GREEN} - Coolify restarted successfully.${RESET}"
+echo -e "\n${GREEN} Coolify restarted successfully.${RESET}"
 
 print_step_header "6" "Restarting Traefik"
 
@@ -304,7 +304,7 @@ docker compose \
   -f docker-compose.yml \
   up -d --force-recreate --wait --wait-timeout 60
 
-echo -e "${GREEN} - Traefik restarted successfully.${RESET}"
+echo -e "\n${GREEN} Traefik restarted successfully.${RESET}"
 
 # Optional: clean up temp yq
 rm -f "$YQ_BIN" 2>/dev/null || true
@@ -324,7 +324,7 @@ ${RESET}"
 IPV4_PUBLIC_IP=$(curl -4s https://ifconfig.io || true)
 IPV6_PUBLIC_IP=$(curl -6s https://ifconfig.io || true)
 
-echo -e "\n${BOLD}Your instance is ready to use with Coolify Tweaks enabled!${RESET}\n"
+echo -e "\n${BOLD} Your instance is ready to use with Coolify Tweaks enabled!${RESET}\n"
 if [ -n "$IPV4_PUBLIC_IP" ]; then
   echo -e " - Public IPv4 dashboard: ${GREEN}http://$IPV4_PUBLIC_IP:8000${RESET}"
 fi
@@ -338,7 +338,7 @@ PRIVATE_IPS=$(hostname -I 2>/dev/null || ip -o addr show scope global | awk '{pr
 set -e
 
 if [ -n "$PRIVATE_IPS" ]; then
-  echo -e "\nIf your public IP is not accessible, you can use these private IPs inside your network:\n"
+  echo -e "\n If your public IP is not accessible, you can use these private IPs inside your network:\n"
   for IP in $PRIVATE_IPS; do
     if [ "$IP" != "$DEFAULT_PRIVATE_IP" ]; then
       echo -e " - ${GREEN}http://$IP:8000${RESET}"
@@ -346,4 +346,4 @@ if [ -n "$PRIVATE_IPS" ]; then
   done
 fi
 
-echo -e "${GREEN}Coolify Tweaks installed successfully. Enjoy your shiny dashboard.${RESET}"
+echo -e "\n${GREEN} Coolify Tweaks installed successfully. Enjoy your shiny dashboard.${RESET}"
