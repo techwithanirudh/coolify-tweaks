@@ -1,7 +1,8 @@
 @use "globals" as *;
 
 .box,
-.box-without-bg {
+.box-without-bg,
+.coolbox {
   overflow: hidden;
   padding: s(2.5) s(3);
   border: 1px solid var(--border);
@@ -19,8 +20,12 @@
 // todo: fix active state in servers/resources section
 
 .box:hover,
-.box-without-bg:hover {
+.box-without-bg:hover,
+.coolbox:hover {
   background-color: color-mix(in srgb, var(--card) 80%, transparent);
+  box-shadow: 
+    var(--shadow-sm),
+    0 0 0 2px var(--ring);
 }
 
 .box-title {

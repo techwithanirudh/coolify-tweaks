@@ -15,13 +15,12 @@ div.w-\[4\.5rem\].h-\[4\.5rem\].p-2.dark\:bg-white\/10.bg-black\/10 {
   padding: s(1.5);
 }
 
-div.w-\[4\.5rem\].h-\[4\.5rem\].p-2.dark\:bg-white\/10.bg-black\/10 > svg {
+div.w-\[4\.5rem\].h-\[4\.5rem\].p-2.dark\:bg-white\/10.bg-black\/10>svg {
   transform: translateX(-23px) translateY(-8px) scaleX(0.8) scaleY(0.7);
   transform-origin: center center;
 }
 
-div.w-\[4\.5rem\].h-\[4\.5rem\].p-2.dark\:bg-white\/10.bg-black\/10
-  > svg#svg1326 {
+div.w-\[4\.5rem\].h-\[4\.5rem\].p-2.dark\:bg-white\/10.bg-black\/10>svg#svg1326 {
   transform: translateX(-19px) translateY(-9px) scaleX(0.8) scaleY(0.7);
   transform-origin: center center;
 }
@@ -31,16 +30,19 @@ input.input-sticky {
   backdrop-filter: blur(var(--blur));
 }
 
-div.grid[class*="cols"]:is(
-    [x-show^="filteredGitBasedApplications"],
-    [x-show^="filteredDockerBasedApplications"],
-    [x-show^="filteredDatabases"]:has(> div[x-on\:click="setType(database.id)"])
-  ) {
-  background: none;
-  padding: s(0.5);
+div:has([x-show^="filteredGitBasedApplications.length > 0 || filteredDockerBasedApplications.length > 0"]) {
+  .grid[class*="cols"] {
+    background: none;
+    padding: s(0.5);
+    border-radius: 0;
 
-  .box-without-bg {
-    padding: s(1);
+    h4 {
+      color: var(--foreground);
+    }
+
+    .coolbox {
+      padding: s(1);
+    }
   }
 }
 
@@ -53,7 +55,7 @@ div[x-show="filteredServices.length > 0"]:has(> div[x-init="loadResources"]) {
       margin-inline: 0;
       text-indent: 0;
 
-      & > * {
+      &>* {
         display: none;
       }
     }
@@ -75,9 +77,22 @@ div[x-show="filteredServices.length > 0"]:has(> div[x-init="loadResources"]) {
     padding: s(0.5);
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    .box-without-bg {
+    .coolbox {
       min-height: 100%;
       padding: s(1);
     }
+  }
+}
+
+.sticky.z-10.top-0:has(input[x-ref="searchInput"]) {
+  background: var(--popover) !important;
+  top: s(1);
+  border-radius: var(--radius-lg);
+  padding: s(4);
+  box-shadow: var(--shadow-xs) !important;
+  border: none !important;
+
+  input[x-ref="searchInput"] {
+    box-shadow: none !important;
   }
 }

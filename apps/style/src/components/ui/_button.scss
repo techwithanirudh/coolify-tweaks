@@ -74,23 +74,30 @@ button.secondary,
 }
 
 button.destructive,
-button[iserror="isError"],
+button[isError],
 .destructive {
   @include button-base;
-  background: var(--destructive);
-  color: var(--destructive-foreground);
-  box-shadow: var(--shadow-xs);
+  background: var(--destructive)!important;
+  color: var(--destructive-foreground)!important;
+  box-shadow: var(--shadow-xs)!important;
 
   &:hover {
-    background: color-mix(in srgb, var(--destructive) 90%, transparent);
+    background: color-mix(in srgb, var(--destructive) 90%, transparent)!important;
   }
 
   @include for-dark {
     &:hover {
-      background: color-mix(in srgb, var(--destructive) 80%, var(--input));
+      background: color-mix(in srgb, var(--destructive) 80%, var(--input))!important;
+      color: var(--destructive-foreground)!important;
     }
 
-    background: color-mix(in srgb, var(--destructive) 60%, var(--input));
+    background: color-mix(in srgb, var(--destructive) 60%, var(--input))!important;
+    color: var(--destructive-foreground)!important;
+  }
+
+  &:disabled {
+    background: color-mix(in srgb, var(--destructive) 40%, transparent)!important;
+    color: var(--destructive-foreground)!important;
   }
 }
 
