@@ -82,7 +82,12 @@ getAJoke() {
   JOKES=$(curl -s --max-time 2 "https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&format=txt&type=single" || true)
   if [ "$JOKES" != "" ]; then
     echo -e " - While Docker is thinking, here's a joke:\n"
-    echo -e "${YELLOW} - $JOKES${RESET}\n"
+    echo "$JOKES" | while IFS= read -r line; do
+      if [ -n "$line" ]; then
+        echo -e "${YELLOW} - $line${RESET}"
+      fi
+    done
+    echo ""
   fi
 }
 
