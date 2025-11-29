@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 3.9.9
+
+### Patch Changes
+
+- fix: ui fixes for new version
+
 ## 3.9.8
 
 ### Patch Changes
