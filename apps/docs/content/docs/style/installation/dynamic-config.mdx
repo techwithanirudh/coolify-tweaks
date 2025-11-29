@@ -31,7 +31,7 @@ The steps below show how to do the same changes manually.
 
 ## Manual Installation
 
-### 1. Update `.env` (APP_PORT)
+### 1. Update `.env`
 
 Edit `/data/coolify/source/.env` and set Coolify's dashboard port to `3000` so the dashboard stays reachable even if Traefik is down:
 
@@ -159,7 +159,9 @@ docker compose \
 
 If you have a `docker-compose.custom.yml`, include it with `-f docker-compose.custom.yml` like the installer does.
 
-Then restart Traefik from `/data/coolify/proxy`:
+### 6. Restart Traefik
+
+Restart Traefik from `/data/coolify/proxy`:
 
 ```bash
 docker compose \
@@ -167,13 +169,13 @@ docker compose \
   up -d --force-recreate --wait --wait-timeout 60
 ```
 
-OR 
+**OR from the web interface:**
 
 Go to **Servers → localhost → Proxy → Restart Proxy**
 
 ![Restart Proxy](/assets/installation/dynamic-config/restart-proxy.png)
 
-### 6. Verify
+### 7. Verify
 
 Visit either:
 
