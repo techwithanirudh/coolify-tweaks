@@ -8,7 +8,7 @@ export async function getLLMText(page: Page) {
   const category = categories[slugs[0] ?? "style"] ?? slugs[0];
 
   const processed = await page.data.getText("processed");
-  const path = `content/docs/${page.path}`;
+  const path = `apps/docs/content/docs/${page.path}`;
 
   return `# ${category}: ${page.data.title}
 URL: ${page.url}
