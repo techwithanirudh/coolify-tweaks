@@ -178,7 +178,7 @@ if [ "$SKIP_BACKUP" != "true" ]; then
     echo " - No existing .env file found to backup"
   fi
 else
-  echo " - Skipping .env backup (SKIP_BACKUP=true)"
+  echo " - Skipping .env backup"
 fi
 
 read -r -p " - APP_PORT [${APP_PORT_DEFAULT}] = " NEW_APP_PORT
