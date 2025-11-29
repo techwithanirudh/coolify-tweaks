@@ -17,7 +17,6 @@ Dynamic Config lets Traefik rewrite HTML responses so Coolify Tweaks loads witho
 
 > Note: Although this guide refers to `/data/coolify/proxy/` as a terminal guide, you can also do this through the web interface by going to Servers → localhost → Proxy → Dynamic Config, and Proxy Configuration.
 
-
 ## Automatic Installation
 
 Run the installer if you want everything applied automatically (backs up `.env` and `docker-compose.yml`, updates APP_PORT, writes the dynamic config, and restarts Coolify + Traefik):
@@ -63,7 +62,7 @@ services:
       - "--entrypoints.coolify_dashboard.address=:8000" # [!code ++]
 ```
 
-Save and close. 
+Save and close.
 
 ### 3. Create Dynamic Config
 
@@ -103,7 +102,7 @@ http:
     coolify:
       loadBalancer:
         servers:
-          - url: 'http://coolify:8080'
+          - url: "http://coolify:8080"
 ```
 
 ### 4. Add Routers

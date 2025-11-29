@@ -10,6 +10,7 @@
     "vite",
     "atrule",
     "iserror",
-    "boolish"
+    "boolish",
+    "fumadocs"
   ]
 }

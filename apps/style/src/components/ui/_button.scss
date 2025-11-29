@@ -77,29 +77,53 @@ button.destructive,
 button[isError],
 .destructive {
   @include button-base;
-  background: var(--destructive)!important;
-  color: var(--destructive-foreground)!important;
-  box-shadow: var(--shadow-xs)!important;
-  border-color: color-mix(in srgb, var(--destructive) 40%, transparent)!important;
+  background: var(--destructive) !important;
+  color: var(--destructive-foreground) !important;
+  box-shadow: var(--shadow-xs) !important;
+  border-color: color-mix(
+    in srgb,
+    var(--destructive) 40%,
+    transparent
+  ) !important;
 
   &:hover {
-    background: color-mix(in srgb, var(--destructive) 90%, transparent)!important;
+    background: color-mix(
+      in srgb,
+      var(--destructive) 90%,
+      transparent
+    ) !important;
   }
 
   @include for-dark {
     &:hover {
-      background: color-mix(in srgb, var(--destructive) 80%, var(--input))!important;
-      color: var(--destructive-foreground)!important;
+      background: color-mix(
+        in srgb,
+        var(--destructive) 80%,
+        var(--input)
+      ) !important;
+      color: var(--destructive-foreground) !important;
     }
 
-    background: color-mix(in srgb, var(--destructive) 60%, var(--input))!important;
-    color: var(--destructive-foreground)!important;
-    border-color: color-mix(in srgb, var(--destructive) 40%, var(--input))!important;
+    background: color-mix(
+      in srgb,
+      var(--destructive) 60%,
+      var(--input)
+    ) !important;
+    color: var(--destructive-foreground) !important;
+    border-color: color-mix(
+      in srgb,
+      var(--destructive) 40%,
+      var(--input)
+    ) !important;
   }
 
   &:disabled {
-    background: color-mix(in srgb, var(--destructive) 40%, transparent)!important;
-    color: var(--destructive-foreground)!important;
+    background: color-mix(
+      in srgb,
+      var(--destructive) 40%,
+      transparent
+    ) !important;
+    color: var(--destructive-foreground) !important;
   }
 }
 

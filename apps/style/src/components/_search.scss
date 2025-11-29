@@ -18,7 +18,7 @@ div.relative:has(
   div[\@click*="openCategoryDropdown"].py-1\.5 {
     @include button.button-base;
     background: transparent;
-    
+
     @include for-dark {
       background: color-mix(in srgb, var(--input) 30%, transparent);
     }

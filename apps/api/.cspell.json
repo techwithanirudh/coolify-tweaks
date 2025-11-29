@@ -10,6 +10,7 @@
     "Noto",
     "Menlo",
     "Consolas",
-    "srvx"
+    "srvx",
+    "libc"
   ]
 }

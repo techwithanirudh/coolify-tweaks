@@ -23,7 +23,7 @@
 .box-without-bg:hover,
 .coolbox:hover {
   background-color: color-mix(in srgb, var(--card) 80%, transparent);
-  box-shadow: 
+  box-shadow:
     var(--shadow-sm),
     0 0 0 2px var(--ring);
 }
