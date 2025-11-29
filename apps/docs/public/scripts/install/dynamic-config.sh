@@ -351,4 +351,9 @@ if [ -n "$PRIVATE_IPS" ]; then
   done
 fi
 
-echo -e "\n${GREEN} Coolify Tweaks installed successfully. Enjoy your shiny dashboard.${RESET}"
+echo -e "\n Here's some things you might like to do:\n"
+echo -e " - ${GREEN}Themes${RESET}: https://coolify-tweaks.techwithanirudh.com/docs/style/theming"
+echo -e " - ${GREEN}Apply to custom domain${RESET}: https://coolify-tweaks.techwithanirudh.com/docs/style/installation/dynamic-config#option-b-custom-domain"
+echo -e " - ${GREEN}Read the docs${RESET}: https://coolify-tweaks.techwithanirudh.com/"
+
+echo -e "\n${GREEN} Enjoy your shiny dashboard.${RESET}"
