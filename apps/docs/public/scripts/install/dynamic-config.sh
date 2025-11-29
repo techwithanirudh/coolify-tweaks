@@ -274,20 +274,8 @@ EOF
 
 echo " - Dynamic config written."
 
-# Step 5: Restart Traefik & Coolify
-
-print_step_header "5" "Restarting Traefik"
-
-cd "$PROXY_DIR"
-echo " - Running: docker compose -f docker-compose.yml up -d --force-recreate --wait"
-getAJoke
-docker compose \
-  -f docker-compose.yml \
-  up -d --force-recreate --wait --wait-timeout 60
-
-echo -e "${GREEN} - Traefik restarted successfully.${RESET}"
-
-print_step_header "6" "Restarting Coolify"
+# Step 5: Restart Coolify & Traefik
+print_step_header "5" "Restarting Coolify"
 
 cd "$SOURCE_DIR"
 if [ -f /data/coolify/source/docker-compose.custom.yml ]; then
@@ -306,6 +294,17 @@ else
 fi
 
 echo -e "${GREEN} - Coolify restarted successfully.${RESET}"
+
+print_step_header "6" "Restarting Traefik"
+
+cd "$PROXY_DIR"
+echo " - Running: docker compose -f docker-compose.yml up -d --force-recreate --wait"
+getAJoke
+docker compose \
+  -f docker-compose.yml \
+  up -d --force-recreate --wait --wait-timeout 60
+
+echo -e "${GREEN} - Traefik restarted successfully.${RESET}"
 
 # Optional: clean up temp yq
 rm -f "$YQ_BIN" 2>/dev/null || true
