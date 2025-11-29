@@ -38,10 +38,8 @@ services:
       - "3000:3000" # [!code ++]
     command:
       # keep your existing flags, then add:
-      # ✅ enable rewrite-body plugin to modify HTML
       - "--experimental.plugins.rewritebody.modulename=github.com/traefik/plugin-rewritebody" # [!code ++]
       - "--experimental.plugins.rewritebody.version=v0.3.1" # [!code ++]
-      # ✅ add entrypoint for dashboard traffic on port 3000
       - "--entrypoints.coolify_dashboard.address=:3000" # [!code ++]
 ```
 
@@ -81,6 +79,11 @@ http:
           - rb-buffer
           - rb-force-identity
           - rb-inject-css
+  services:
+    coolify:
+      loadBalancer:
+        servers:
+          - url: 'http://coolify:8080'
 ```
 
 ### 3. Add Routers
@@ -95,7 +98,7 @@ http:
     coolify-dashboard:
       entryPoints: [coolify_dashboard]
       rule: PathPrefix(`/`)
-      service: coolify@file
+      service: coolify
       middlewares: [coolify-tweaks]
       priority: 1000
 ```
@@ -115,20 +118,12 @@ http:
     coolify-https-inject:
       entryPoints: [https]
       rule: "Host(`coolify.yourdomain.com`) && !PathPrefix(`/app`) && !PathPrefix(`/terminal/ws`)"
-      service: coolify@file
+      service: coolify
       middlewares: [coolify-tweaks]
       tls:
         certResolver: letsencrypt
       priority: 2000
 ```
-
-What this does:
-
-- Matches only normal dashboard pages (skips `/app` and `/terminal/ws`, which use WebSockets)
-- Reuses Coolify's existing HTTPS setup with Let's Encrypt
-- Injects Coolify Tweaks without touching Coolify's built-in routers
-
-**No HTTP router is needed**, Coolify's internal config already redirects HTTP → HTTPS automatically.
 
 ### 4. Restart Traefik
 
