@@ -17,9 +17,29 @@ Dynamic Config lets Traefik rewrite HTML responses so Coolify Tweaks loads witho
 
 > Note: Although this guide refers to `/data/coolify/proxy/` as a terminal guide, you can also do this through the web interface by going to Servers → localhost → Proxy → Dynamic Config, and Proxy Configuration.
 
-## Steps
 
-### 1. Update Traefik Compose
+## Automatic Installation
+
+Run the installer if you want everything applied automatically (backs up `.env` and `docker-compose.yml`, updates APP_PORT, writes the dynamic config, and restarts Coolify + Traefik):
+
+```bash
+curl -fsSL https://coolify-tweaks.techwithanirudh.com/scripts/install/dynamic-config.sh -o dynamic-config.sh
+sudo bash dynamic-config.sh
+```
+
+The steps below show how to do the same changes manually.
+
+## Manual Installation
+
+### 1. Update `.env` (APP_PORT)
+
+Edit `/data/coolify/source/.env` and set Coolify's dashboard port to `3000` so the dashboard stays reachable even if Traefik is down:
+
+```
+APP_PORT=0.0.0.0:3000
+```
+
+### 2. Update Traefik Compose
 
 Edit `/data/coolify/proxy/docker-compose.yml`.
 
@@ -35,17 +55,17 @@ services:
       - "443:443"
       - "8080:8080"
       # ✅ port for the Coolify dashboard entrypoint
-      - "3000:3000" # [!code ++]
+      - "8000:8000" # [!code ++]
     command:
       # keep your existing flags, then add:
       - "--experimental.plugins.rewritebody.modulename=github.com/traefik/plugin-rewritebody" # [!code ++]
       - "--experimental.plugins.rewritebody.version=v0.3.1" # [!code ++]
-      - "--entrypoints.coolify_dashboard.address=:3000" # [!code ++]
+      - "--entrypoints.coolify_dashboard.address=:8000" # [!code ++]
 ```
 
-Save and close. **Don't restart yet.**
+Save and close. 
 
-### 2. Create Dynamic Config
+### 3. Create Dynamic Config
 
 Create a new file:
 
@@ -86,7 +106,7 @@ http:
           - url: 'http://coolify:8080'
 ```
 
-### 3. Add Routers
+### 4. Add Routers
 
 #### Option A: Local Dashboard (no custom domain)
 
@@ -103,7 +123,7 @@ http:
       priority: 1000
 ```
 
-This serves your modified dashboard on `http://<host>:3000`.
+This serves your modified dashboard on `http://<host>:8000`.
 
 #### Option B: Custom Domain
 
@@ -125,17 +145,39 @@ http:
       priority: 2000
 ```
 
-### 4. Restart Traefik
+### 5. Restart Coolify and Traefik
 
-Open the Coolify Proxy Settings, and Restart the Proxy.
+From `/data/coolify/source`, restart Coolify to pick up the new `APP_PORT`:
+
+```bash
+docker compose \
+  --env-file .env \
+  -f docker-compose.yml \
+  -f docker-compose.prod.yml \
+  up -d --remove-orphans --force-recreate --wait --wait-timeout 60
+```
+
+If you have a `docker-compose.custom.yml`, include it with `-f docker-compose.custom.yml` like the installer does.
+
+Then restart Traefik from `/data/coolify/proxy`:
+
+```bash
+docker compose \
+  -f docker-compose.yml \
+  up -d --force-recreate --wait --wait-timeout 60
+```
+
+OR 
+
+Go to **Servers → localhost → Proxy → Restart Proxy**
 
 ![Restart Proxy](/assets/installation/dynamic-config/restart-proxy.png)
 
-### 5. Verify
+### 6. Verify
 
 Visit either:
 
-- `http://<host>:3000`
+- `http://<host>:8000`
 - `https://coolify.yourdomain.com`
 
 ![Page Source](/assets/installation/verify-injection.png)
@@ -166,23 +208,24 @@ More information about custom themes can be found in the [Theming](/docs/style/t
 To revert:
 
 1. Delete `/data/coolify/proxy/dynamic/coolify-tweaks.yml`
-2. Remove:
+2. Reset `APP_PORT` in `/data/coolify/source/.env` to your previous value (default Coolify uses `0.0.0.0:8000`).
+3. Remove:
 
 ```yaml
 ports:
   - "80:80"
   - "443:443"
   - "8080:8080"
-  - "3000:3000" # [!code --]
+  - "8000:8000" # [!code --]
 command:
   - "--experimental.plugins.rewritebody.modulename=github.com/traefik/plugin-rewritebody" # [!code --]
   - "--experimental.plugins.rewritebody.version=v0.3.1" # [!code --]
-  - "--entrypoints.coolify_dashboard.address=:3000" # [!code --]
+  - "--entrypoints.coolify_dashboard.address=:8000" # [!code --]
 ```
 
-3. Restart Traefik
+4. Restart Coolify and Traefik
 
 ## Troubleshooting
 
-- **404 on `:3000`**: Ensure the router `coolify-dashboard` exists and port `3000:3000` is mapped.
+- **404 on `:8000`**: Ensure the router `coolify-dashboard` exists and port `8000:8000` is mapped.
 - **Plugin not loading**: Check Traefik logs for `rewrite-body` initialization errors and ensure the plugin version matches `v0.3.1`.
