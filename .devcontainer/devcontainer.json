@@ -10,8 +10,7 @@
       "userGid": "1000"
     },
     "ghcr.io/devcontainers/features/git:1": {
-      "version": "latest",
-      "ppa": "false"
+      "version": "os-provided"
     },
     "ghcr.io/devcontainers/features/node:1": {
       "version": "24",
