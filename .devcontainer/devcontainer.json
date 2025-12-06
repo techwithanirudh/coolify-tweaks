@@ -74,11 +74,7 @@
 		// See: https://github.com/devcontainers/spec/issues/132
 		"source=${localEnv:HOME},target=/mnt/home/coder,type=bind,readonly"
 	],
-  "postAttachCommand": {
-    "server": "pnpm run dev"
-  },
   "postCreateCommand": {
-    "corepack": "corepack enable",
     "ni": "npm i -g @antfu/ni"
   },
   "postStartCommand": {
