@@ -2,16 +2,9 @@
   "name": "Node + ZSH",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
   "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "installZsh": "true",
-      "configureZshAsDefaultShell": "true",
-      "installOhMyZsh": "true",
-      "installOhMyZshConfig": "true",
-      "username": "root",
-      "userUid": "1000",
-      "userGid": "1000",
-      "upgradePackages": "true"
-    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"moby": "false"
+		},
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest"
     },
@@ -19,14 +12,68 @@
       "version": "latest"
     }
   },
-  // Configure tool-specific properties.
-  "customizations": {
-    // Configure properties specific to VS Code.
-    "vscode": {
-      "settings": {},
-      "extensions": ["streetsidesoftware.code-spell-checker"]
-    }
-  },
+	"customizations": {
+		"vscode": {
+			"extensions": ["biomejs.biome"]
+		},
+		"coder": {
+			"apps": [
+				{
+					"slug": "cursor",
+					"displayName": "Cursor Desktop",
+					"url": "cursor://coder.coder-remote/openDevContainer?owner=${localEnv:CODER_WORKSPACE_OWNER_NAME}&workspace=${localEnv:CODER_WORKSPACE_NAME}&agent=${localEnv:CODER_WORKSPACE_PARENT_AGENT_NAME}&url=${localEnv:CODER_URL}&token=$SESSION_TOKEN&devContainerName=${localEnv:CONTAINER_ID}&devContainerFolder=${containerWorkspaceFolder}&localWorkspaceFolder=${localWorkspaceFolder}",
+					"external": true,
+					"icon": "/icon/cursor.svg",
+					"order": 1
+				},
+				{
+					"slug": "windsurf",
+					"displayName": "Windsurf Editor",
+					"url": "windsurf://coder.coder-remote/openDevContainer?owner=${localEnv:CODER_WORKSPACE_OWNER_NAME}&workspace=${localEnv:CODER_WORKSPACE_NAME}&agent=${localEnv:CODER_WORKSPACE_PARENT_AGENT_NAME}&url=${localEnv:CODER_URL}&token=$SESSION_TOKEN&devContainerName=${localEnv:CONTAINER_ID}&devContainerFolder=${containerWorkspaceFolder}&localWorkspaceFolder=${localWorkspaceFolder}",
+					"external": true,
+					"icon": "/icon/windsurf.svg",
+					"order": 4
+				},
+				{
+					"slug": "zed",
+					"displayName": "Zed Editor",
+					"url": "zed://ssh/${localEnv:CODER_WORKSPACE_AGENT_NAME}.${localEnv:CODER_WORKSPACE_NAME}.${localEnv:CODER_WORKSPACE_OWNER_NAME}.coder${containerWorkspaceFolder}",
+					"external": true,
+					"icon": "/icon/zed.svg",
+					"order": 5
+				},
+				// Reproduce `code-server` app here from the code-server
+				// feature so that we can set the correct folder and order.
+				// Currently, the order cannot be specified via option because
+				// we parse it as a number whereas variable interpolation
+				// results in a string. Additionally we set health check which
+				// is not yet set in the feature.
+				{
+					"slug": "code-server",
+					"displayName": "code-server",
+					"url": "http://${localEnv:FEATURE_CODE_SERVER_OPTION_HOST:127.0.0.1}:${localEnv:FEATURE_CODE_SERVER_OPTION_PORT:8080}/?folder=${containerWorkspaceFolder}",
+					"openIn": "${localEnv:FEATURE_CODE_SERVER_OPTION_APPOPENIN:slim-window}",
+					"share": "${localEnv:FEATURE_CODE_SERVER_OPTION_APPSHARE:owner}",
+					"icon": "/icon/code.svg",
+					"group": "${localEnv:FEATURE_CODE_SERVER_OPTION_APPGROUP:Web Editors}",
+					"order": 3,
+					"healthCheck": {
+						"url": "http://${localEnv:FEATURE_CODE_SERVER_OPTION_HOST:127.0.0.1}:${localEnv:FEATURE_CODE_SERVER_OPTION_PORT:8080}/healthz",
+						"interval": 5,
+						"threshold": 2
+					}
+				}
+			]
+		}
+	},
+	"mounts": [
+		// Add a volume for the Coder home directory to persist shell history,
+		// and speed up dotfiles init and/or personalization.
+		"source=coder-coder-devcontainer-home,target=/home/coder,type=volume",
+		// Mount the entire home because conditional mounts are not supported.
+		// See: https://github.com/devcontainers/spec/issues/132
+		"source=${localEnv:HOME},target=/mnt/home/coder,type=bind,readonly"
+	],
   "postAttachCommand": {
     "server": "pnpm run dev"
   },
@@ -34,10 +81,7 @@
     "corepack": "corepack enable",
     "ni": "npm i -g @antfu/ni"
   },
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [],
-  // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "./.devcontainer/scripts/configure-p10k.sh",
-  // Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "root"
+  "postStartCommand": {
+    "docker": "sudo service docker start"
+  }
 }
