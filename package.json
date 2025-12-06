@@ -15,8 +15,8 @@
   },
   "homepage": "https://coolify-tweaks.techwithanirudh.com",
   "engines": {
-    "node": "^22.21.0",
-    "pnpm": "^10.19.0"
+    "node": ">=22.21.0",
+    "pnpm": ">=10.19.0"
   },
   "scripts": {
     "build": "turbo run build",

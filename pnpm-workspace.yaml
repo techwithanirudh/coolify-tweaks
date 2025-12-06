@@ -30,7 +30,6 @@ onlyBuiltDependencies:
   - '@parcel/watcher'
   - '@prisma/client'
   - '@prisma/engines'
-  - '@sentry/cli'
   - '@tailwindcss/oxide'
   - better-sqlite3
   - bufferutil
