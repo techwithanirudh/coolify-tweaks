@@ -31,19 +31,12 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         # Required for PostgreSQL
         libpq-dev \
         # Required for ts
-        moreutils \
         rsync \
         zip \
-        libgdiplus \
         jq \
         # By default pip is not available in the buildpacks image
         python3-pip \
         #.NET Core related pre-requisites
-        sqlite3 \
-        libsqlite3-dev \
-        software-properties-common \
-        tk-dev \
-        uuid-dev \
         curl \
         gettext \
         inotify-tools \
@@ -57,7 +50,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get update \
     && apt-get -y install build-essential cmake cppcheck valgrind clang lldb llvm gdb python3-dev \
     # Install tools and shells not in common script
-    && apt-get install -yq vim vim-doc xtail software-properties-common libsecret-1-dev \
+    && apt-get install -yq vim vim-doc software-properties-common libsecret-1-dev \
     # Clean up
     && apt-get autoremove -y && apt-get clean -y \
     # Install and setup fish
