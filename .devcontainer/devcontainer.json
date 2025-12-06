@@ -17,8 +17,7 @@
       "additionalVersions": "22"
     },
     "ghcr.io/devcontainers/features/python:1": {
-      "version": "3.12.1",
-      "additionalVersions": "3.11.9"
+      "version": "os-provided"
     },
     "ghcr.io/devcontainers/features/git-lfs:1": {
       "version": "latest"
