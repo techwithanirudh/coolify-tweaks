@@ -120,5 +120,6 @@
   ],
   "postStartCommand": {
     "docker": "sudo service docker start"
-  }
+  },
+	"postCreateCommand": ["./.devcontainer/scripts/post_create.sh"]
 }

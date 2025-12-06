@@ -51,7 +51,7 @@
     "@turbo/gen": "^2.6.3",
     "conventional-changelog-atom": "^5.0.0",
     "cspell": "catalog:",
-    "dotenv-cli": "^10.0.0",
+    "dotenv-cli": "^11.0.0",
     "lefthook": "^2.0.8",
     "prettier": "catalog:",
     "turbo": "^2.6.3",
