@@ -1,82 +1,120 @@
 {
-  "name": "Node + ZSH",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  "build": {
+    "dockerfile": "./Dockerfile",
+    "context": "."
+  },
   "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {
-			"moby": "false"
-		},
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "username": "coder",
+      "userUid": "1000",
+      "userGid": "1000"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest",
+      "ppa": "false"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "24",
+      "additionalVersions": "22"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12.1",
+      "additionalVersions": "3.11.9"
+    },
+    "ghcr.io/devcontainers/features/git-lfs:1": {
+      "version": "latest"
+    },
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "moby": "false"
     },
     "ghcr.io/devcontainers-extra/features/bun:1": {
       "version": "latest"
     }
   },
-	"customizations": {
-		"vscode": {
-			"extensions": ["biomejs.biome"]
-		},
-		"coder": {
-			"apps": [
-				{
-					"slug": "cursor",
-					"displayName": "Cursor Desktop",
-					"url": "cursor://coder.coder-remote/openDevContainer?owner=${localEnv:CODER_WORKSPACE_OWNER_NAME}&workspace=${localEnv:CODER_WORKSPACE_NAME}&agent=${localEnv:CODER_WORKSPACE_PARENT_AGENT_NAME}&url=${localEnv:CODER_URL}&token=$SESSION_TOKEN&devContainerName=${localEnv:CONTAINER_ID}&devContainerFolder=${containerWorkspaceFolder}&localWorkspaceFolder=${localWorkspaceFolder}",
-					"external": true,
-					"icon": "/icon/cursor.svg",
-					"order": 1
-				},
-				{
-					"slug": "windsurf",
-					"displayName": "Windsurf Editor",
-					"url": "windsurf://coder.coder-remote/openDevContainer?owner=${localEnv:CODER_WORKSPACE_OWNER_NAME}&workspace=${localEnv:CODER_WORKSPACE_NAME}&agent=${localEnv:CODER_WORKSPACE_PARENT_AGENT_NAME}&url=${localEnv:CODER_URL}&token=$SESSION_TOKEN&devContainerName=${localEnv:CONTAINER_ID}&devContainerFolder=${containerWorkspaceFolder}&localWorkspaceFolder=${localWorkspaceFolder}",
-					"external": true,
-					"icon": "/icon/windsurf.svg",
-					"order": 4
-				},
-				{
-					"slug": "zed",
-					"displayName": "Zed Editor",
-					"url": "zed://ssh/${localEnv:CODER_WORKSPACE_AGENT_NAME}.${localEnv:CODER_WORKSPACE_NAME}.${localEnv:CODER_WORKSPACE_OWNER_NAME}.coder${containerWorkspaceFolder}",
-					"external": true,
-					"icon": "/icon/zed.svg",
-					"order": 5
-				},
-				// Reproduce `code-server` app here from the code-server
-				// feature so that we can set the correct folder and order.
-				// Currently, the order cannot be specified via option because
-				// we parse it as a number whereas variable interpolation
-				// results in a string. Additionally we set health check which
-				// is not yet set in the feature.
-				{
-					"slug": "code-server",
-					"displayName": "code-server",
-					"url": "http://${localEnv:FEATURE_CODE_SERVER_OPTION_HOST:127.0.0.1}:${localEnv:FEATURE_CODE_SERVER_OPTION_PORT:8080}/?folder=${containerWorkspaceFolder}",
-					"openIn": "${localEnv:FEATURE_CODE_SERVER_OPTION_APPOPENIN:slim-window}",
-					"share": "${localEnv:FEATURE_CODE_SERVER_OPTION_APPSHARE:owner}",
-					"icon": "/icon/code.svg",
-					"group": "${localEnv:FEATURE_CODE_SERVER_OPTION_APPGROUP:Web Editors}",
-					"order": 3,
-					"healthCheck": {
-						"url": "http://${localEnv:FEATURE_CODE_SERVER_OPTION_HOST:127.0.0.1}:${localEnv:FEATURE_CODE_SERVER_OPTION_PORT:8080}/healthz",
-						"interval": 5,
-						"threshold": 2
-					}
-				}
-			]
-		}
-	},
-	"mounts": [
-		// Add a volume for the Coder home directory to persist shell history,
-		// and speed up dotfiles init and/or personalization.
-		"source=coder-coder-devcontainer-home,target=/home/coder,type=volume",
-		// Mount the entire home because conditional mounts are not supported.
-		// See: https://github.com/devcontainers/spec/issues/132
-		"source=${localEnv:HOME},target=/mnt/home/coder,type=bind,readonly"
-	],
-  "postCreateCommand": {
-    "ni": "npm i -g @antfu/ni"
+  "overrideFeatureInstallOrder": [
+    "ghcr.io/devcontainers/features/common-utils",
+    "ghcr.io/devcontainers/features/git",
+    "ghcr.io/devcontainers/features/node",
+    "ghcr.io/devcontainers-extra/features/bun:1",
+    "ghcr.io/devcontainers/features/python",
+    "ghcr.io/devcontainers/features/git-lfs",
+    "ghcr.io/devcontainers/features/github-cli",
+    "ghcr.io/devcontainers/features/docker-in-docker",
+    "./local-features/setup-user"
+  ],
+  "remoteUser": "coder",
+  "containerUser": "coder",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "biomejs.biome"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/home/coder/.python/current/bin/python3",
+      }
+    },
+    "coder": {
+      "apps": [
+        {
+          "slug": "cursor",
+          "displayName": "Cursor Desktop",
+          "url": "cursor://coder.coder-remote/openDevContainer?owner=${localEnv:CODER_WORKSPACE_OWNER_NAME}&workspace=${localEnv:CODER_WORKSPACE_NAME}&agent=${localEnv:CODER_WORKSPACE_PARENT_AGENT_NAME}&url=${localEnv:CODER_URL}&token=$SESSION_TOKEN&devContainerName=${localEnv:CONTAINER_ID}&devContainerFolder=${containerWorkspaceFolder}&localWorkspaceFolder=${localWorkspaceFolder}",
+          "external": true,
+          "icon": "/icon/cursor.svg",
+          "order": 1
+        },
+        {
+          "slug": "windsurf",
+          "displayName": "Windsurf Editor",
+          "url": "windsurf://coder.coder-remote/openDevContainer?owner=${localEnv:CODER_WORKSPACE_OWNER_NAME}&workspace=${localEnv:CODER_WORKSPACE_NAME}&agent=${localEnv:CODER_WORKSPACE_PARENT_AGENT_NAME}&url=${localEnv:CODER_URL}&token=$SESSION_TOKEN&devContainerName=${localEnv:CONTAINER_ID}&devContainerFolder=${containerWorkspaceFolder}&localWorkspaceFolder=${localWorkspaceFolder}",
+          "external": true,
+          "icon": "/icon/windsurf.svg",
+          "order": 4
+        },
+        {
+          "slug": "zed",
+          "displayName": "Zed Editor",
+          "url": "zed://ssh/${localEnv:CODER_WORKSPACE_AGENT_NAME}.${localEnv:CODER_WORKSPACE_NAME}.${localEnv:CODER_WORKSPACE_OWNER_NAME}.coder${containerWorkspaceFolder}",
+          "external": true,
+          "icon": "/icon/zed.svg",
+          "order": 5
+        },
+        // Reproduce `code-server` app here from the code-server
+        // feature so that we can set the correct folder and order.
+        // Currently, the order cannot be specified via option because
+        // we parse it as a number whereas variable interpolation
+        // results in a string. Additionally we set health check which
+        // is not yet set in the feature.
+        {
+          "slug": "code-server",
+          "displayName": "code-server",
+          "url": "http://${localEnv:FEATURE_CODE_SERVER_OPTION_HOST:127.0.0.1}:${localEnv:FEATURE_CODE_SERVER_OPTION_PORT:8080}/?folder=${containerWorkspaceFolder}",
+          "openIn": "${localEnv:FEATURE_CODE_SERVER_OPTION_APPOPENIN:slim-window}",
+          "share": "${localEnv:FEATURE_CODE_SERVER_OPTION_APPSHARE:owner}",
+          "icon": "/icon/code.svg",
+          "group": "${localEnv:FEATURE_CODE_SERVER_OPTION_APPGROUP:Web Editors}",
+          "order": 3,
+          "healthCheck": {
+            "url": "http://${localEnv:FEATURE_CODE_SERVER_OPTION_HOST:127.0.0.1}:${localEnv:FEATURE_CODE_SERVER_OPTION_PORT:8080}/healthz",
+            "interval": 5,
+            "threshold": 2
+          }
+        }
+      ]
+    }
   },
+  "mounts": [
+    // Add a volume for the Coder home directory to persist shell history,
+    // and speed up dotfiles init and/or personalization.
+    "source=coder-coder-devcontainer-home,target=/home/coder,type=volume",
+    // Mount the entire home because conditional mounts are not supported.
+    // See: https://github.com/devcontainers/spec/issues/132
+    "source=${localEnv:HOME},target=/mnt/home/coder,type=bind,readonly"
+  ],
   "postStartCommand": {
     "docker": "sudo service docker start"
   }
