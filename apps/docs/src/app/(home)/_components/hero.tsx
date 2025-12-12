@@ -95,8 +95,8 @@ export function Hero() {
               <div className="flex flex-col gap-2">
                 <div className="text-sm font-medium">Trademark Notice</div>
                 <div className="text-muted-foreground text-xs leading-relaxed">
-                  Coolify is trademark of coolLabs Solutions Kft. Coolify
-                  Tweaks is not affiliated with or endorsed by coolLabs.
+                  Coolify is trademark of coolLabs Solutions Kft. Coolify Tweaks
+                  is not affiliated with or endorsed by coolLabs.
                 </div>
               </div>
             </HoverCardContent>

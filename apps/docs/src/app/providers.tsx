@@ -1,9 +1,9 @@
 "use client";
 
+import type { ReactNode } from "react";
+import dynamic from "next/dynamic";
 import { ProgressProvider } from "@bprogress/next/app";
 import { RootProvider } from "fumadocs-ui/provider/base";
-import dynamic from "next/dynamic";
-import type { ReactNode } from "react";
 
 import { TooltipProvider } from "@repo/ui/tooltip";
 

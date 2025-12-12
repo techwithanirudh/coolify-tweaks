@@ -10,8 +10,8 @@ import {
   streamText,
 } from "ai";
 
-import { env } from "@/env";
 import type { MyUIMessage } from "./types";
+import { env } from "@/env";
 import { systemPrompt } from "./utils/prompts";
 import { getPageContent } from "./utils/tools/get-page-content";
 import { createSearchDocsTool } from "./utils/tools/search-docs";
@@ -68,13 +68,13 @@ export async function POST(request: Request) {
             delayInMs: 20,
             chunking: "line",
           }),
-          stopWhen: stepCountIs(15)
+          stopWhen: stepCountIs(15),
         });
 
         writer.merge(
           result.toUIMessageStream({
             onError: handleStreamError,
-          })
+          }),
         );
       },
     });

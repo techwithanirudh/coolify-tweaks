@@ -1,6 +1,18 @@
 "use client";
 
-import { type UIMessage, type UseChatHelpers, useChat } from "@ai-sdk/react";
+import type { MyUIMessage } from "@/app/api/chat/types";
+import type { UIMessage, UseChatHelpers } from "@ai-sdk/react";
+import type { ComponentProps, ReactNode, SyntheticEvent } from "react";
+import {
+  createContext,
+  use,
+  useEffect,
+  useEffectEvent,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { buttonVariants } from "fumadocs-ui/components/ui/button";
 import {
@@ -11,20 +23,7 @@ import {
   TrashIcon,
   X,
 } from "lucide-react";
-import {
-  type ComponentProps,
-  createContext,
-  type ReactNode,
-  type SyntheticEvent,
-  use,
-  useEffect,
-  useEffectEvent,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
 
-import type { MyUIMessage } from "@/app/api/chat/types";
 import { cn } from "@repo/ui";
 import { Presence } from "@repo/ui/presence";
 
@@ -46,8 +45,8 @@ function Header() {
 
   return (
     <div className="sticky top-0 flex items-start gap-2">
-      <div className="flex flex-1 items-center justify-between rounded-xl bg-secondary px-3 py-2 text-secondary-foreground">
-        <p className="font-medium text-sm">Ask AI</p>
+      <div className="bg-secondary text-secondary-foreground flex flex-1 items-center justify-between rounded-xl px-3 py-2">
+        <p className="text-sm font-medium">Ask AI</p>
         <div className="flex items-center gap-1.5">
           <button
             className={cn(
@@ -159,7 +158,7 @@ function SearchAIInput(props: ComponentProps<"form">) {
               color: "secondary",
               size: "icon-sm",
               className:
-                "mt-2 rounded-b-md rounded-tl-md rounded-tr-lg transition-all [&_svg]:size-3.5",
+                "mt-2 rounded-tl-md rounded-tr-lg rounded-b-md transition-all [&_svg]:size-3.5",
             }),
           )}
           key="bn"
@@ -175,7 +174,7 @@ function SearchAIInput(props: ComponentProps<"form">) {
               color: "secondary",
               size: "icon-sm",
               className:
-                "mt-2 rounded-b-md rounded-tl-md rounded-tr-lg transition-all [&_svg]:size-4",
+                "mt-2 rounded-tl-md rounded-tr-lg rounded-b-md transition-all [&_svg]:size-4",
             }),
           )}
           disabled={input.length === 0}
@@ -252,7 +251,7 @@ function Input(props: ComponentProps<"textarea">) {
         id="nd-ai-input"
         {...props}
         className={cn(
-          "resize-none bg-transparent placeholder:text-fd-muted-foreground focus-visible:outline-none",
+          "placeholder:text-fd-muted-foreground resize-none bg-transparent focus-visible:outline-none",
           shared,
         )}
       />
@@ -282,7 +281,7 @@ function Message({
     <div {...props}>
       <p
         className={cn(
-          "mb-1 font-medium text-fd-muted-foreground text-sm",
+          "text-fd-muted-foreground mb-1 text-sm font-medium",
           message.role === "assistant" && "text-fd-primary",
         )}
       >
@@ -295,10 +294,7 @@ function Message({
             return null;
           }
           return (
-            <div
-              className="prose text-sm"
-              key={`${message.id}-text-${idx}`}
-            >
+            <div className="prose text-sm" key={`${message.id}-text-${idx}`}>
               <Markdown text={part.text} />
             </div>
           );
@@ -333,7 +329,7 @@ export function AISearchTrigger() {
         buttonVariants({
           variant: "secondary",
         }),
-        "fixed end-4 bottom-4 z-20 w-24 gap-3 rounded-2xl text-fd-muted-foreground shadow-lg transition-all",
+        "text-fd-muted-foreground fixed end-4 bottom-4 z-20 w-24 gap-3 rounded-2xl shadow-lg transition-all",
         open && "translate-y-10 opacity-0",
       )}
       onClick={() => setOpen(true)}
@@ -390,7 +386,7 @@ export function AISearchPanel() {
       <Presence present={open}>
         <button
           aria-label="Close AI search panel"
-          className="fixed inset-0 z-30 bg-fd-overlay backdrop-blur-xs data-[state=closed]:animate-fd-fade-out data-[state=open]:animate-fd-fade-in lg:hidden"
+          className="bg-fd-overlay data-[state=closed]:animate-fd-fade-out data-[state=open]:animate-fd-fade-in fixed inset-0 z-30 backdrop-blur-xs lg:hidden"
           data-state={open ? "open" : "closed"}
           onClick={() => setOpen(false)}
           type="button"
@@ -399,9 +395,9 @@ export function AISearchPanel() {
       <Presence present={open}>
         <div
           className={cn(
-            "z-30 overflow-hidden bg-fd-popover text-fd-popover-foreground",
+            "bg-fd-popover text-fd-popover-foreground z-30 overflow-hidden",
             "max-lg:fixed max-lg:inset-x-2 max-lg:top-4 max-lg:rounded-2xl max-lg:border max-lg:shadow-xl",
-            "fixed inset-y-2 z-30 flex flex-col rounded-2xl border bg-fd-popover text-fd-popover-foreground shadow-xl max-sm:inset-x-2 sm:end-2 sm:w-[460px]",
+            "bg-fd-popover text-fd-popover-foreground fixed inset-y-2 z-30 flex flex-col rounded-2xl border shadow-xl max-sm:inset-x-2 sm:end-2 sm:w-[460px]",
             open ? "animate-fd-dialog-in" : "animate-fd-dialog-out",
           )}
         >
@@ -430,7 +426,7 @@ export function AISearchPanel() {
                   ))}
               </div>
             </List>
-            <div className="rounded-xl border bg-fd-card text-fd-card-foreground has-focus-visible:ring-2 has-focus-visible:ring-fd-ring">
+            <div className="bg-fd-card text-fd-card-foreground has-focus-visible:ring-fd-ring rounded-xl border has-focus-visible:ring-2">
               <SearchAIInput />
               <div className="flex items-center gap-1.5 p-2">
                 <SearchAIActions />

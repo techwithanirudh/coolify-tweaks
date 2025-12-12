@@ -20,7 +20,7 @@ export async function getImageResponseOptions(): Promise<ImageResponseOptions> {
     format: "webp",
     width: 1200,
     height: 630,
-    persistentImages: [await logo]
+    persistentImages: [await logo],
   };
 }
 

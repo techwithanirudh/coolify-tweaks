@@ -1,4 +1,5 @@
-import { tool, type UIMessageStreamWriter } from "ai";
+import type { UIMessageStreamWriter } from "ai";
+import { tool } from "ai";
 import { initAdvancedSearch } from "fumadocs-core/search/server";
 import { z } from "zod";
 
@@ -20,7 +21,7 @@ const server = initAdvancedSearch({
           url: page.url,
           tag: page.path.split("/")[0],
         };
-      })
+      }),
     );
     return indexes;
   },
@@ -37,7 +38,7 @@ export const createSearchDocsTool = (writer: UIMessageStreamWriter) =>
     inputSchema: z.object({
       query: z.string().describe("The query to search for."),
       tag: Tag.default("all").describe(
-        "Optional tag filter, e.g. a top-level section."
+        "Optional tag filter, e.g. a top-level section.",
       ),
       locale: z
         .string()
@@ -50,7 +51,7 @@ export const createSearchDocsTool = (writer: UIMessageStreamWriter) =>
         .max(50)
         .default(10)
         .describe(
-          "Maximum number of results to return (default: 10, max: 50)."
+          "Maximum number of results to return (default: 10, max: 50).",
         ),
     }),
     execute: async ({ query, tag: tagParam, locale, limit }) => {

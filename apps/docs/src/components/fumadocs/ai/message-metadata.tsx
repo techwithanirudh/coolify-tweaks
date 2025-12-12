@@ -1,16 +1,16 @@
 "use client";
 
+import type { MyUIMessage } from "@/app/api/chat/types";
 import { isToolUIPart } from "ai";
 import {
   Brain,
   ChevronDownIcon,
   LinkIcon,
+  Loader2,
   SearchIcon,
   WrenchIcon,
 } from "lucide-react";
-import { Loader2 } from "lucide-react";
 
-import type { MyUIMessage } from "@/app/api/chat/types";
 import { Shimmer } from "@/components/fumadocs/ai/shimmer";
 import {
   Source,
@@ -108,7 +108,7 @@ export const MessageMetadata = ({
     }
 
     return (
-      <div className="flex animate-pulse items-center gap-2 text-muted-foreground">
+      <div className="text-muted-foreground flex animate-pulse items-center gap-2">
         <Icon className="size-4" />
         <Shimmer>{label}</Shimmer>
       </div>

@@ -44,12 +44,12 @@ export default async function Page(
       }}
       toc={toc}
     >
-      <div className="relative flex @sm:flex-row flex-col items-start @sm:items-center gap-2">
-        <h1 className="break-all font-semibold text-[1.75em]">
+      <div className="relative flex flex-col items-start gap-2 @sm:flex-row @sm:items-center">
+        <h1 className="text-[1.75em] font-semibold break-all">
           {page.data.title}
         </h1>
 
-        <div className="ml-auto @sm:flex flex hidden shrink-0 flex-row items-center justify-end gap-2">
+        <div className="ml-auto flex hidden shrink-0 flex-row items-center justify-end gap-2 @sm:flex">
           <LLMCopyButton markdownUrl={`${page.url}.mdx`} />
           <ViewOptions
             markdownUrl={`${page.url}.mdx`}
@@ -60,7 +60,7 @@ export default async function Page(
       <p className="text-fd-muted-foreground mb-2 text-lg">
         {page.data.description}
       </p>
-      <div className="flex @sm:hidden items-center gap-2 pb-6">
+      <div className="flex items-center gap-2 pb-6 @sm:hidden">
         <LLMCopyButton markdownUrl={`${page.url}.mdx`} />
         <ViewOptions
           markdownUrl={`${page.url}.mdx`}

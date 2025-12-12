@@ -1,3 +1,5 @@
+import type { ElementContent } from "hast";
+import type { ShikiTransformer } from "shiki";
 import {
   defineConfig,
   defineDocs,
@@ -6,8 +8,6 @@ import {
 } from "fumadocs-mdx/config";
 import jsonSchema from "fumadocs-mdx/plugins/json-schema";
 import lastModified from "fumadocs-mdx/plugins/last-modified";
-import type { ElementContent } from "hast";
-import type { ShikiTransformer } from "shiki";
 import { z } from "zod";
 
 export const docs = defineDocs({
@@ -60,16 +60,13 @@ export default defineConfig({
     lastModified(),
   ],
   mdxOptions: async () => {
-    const { rehypeCodeDefaultOptions } = await import(
-      "fumadocs-core/mdx-plugins/rehype-code"
-    );
-    const { remarkSteps } = await import(
-      "fumadocs-core/mdx-plugins/remark-steps"
-    );
+    const { rehypeCodeDefaultOptions } =
+      await import("fumadocs-core/mdx-plugins/rehype-code");
+    const { remarkSteps } =
+      await import("fumadocs-core/mdx-plugins/remark-steps");
     const { transformerTwoslash } = await import("fumadocs-twoslash");
-    const { createFileSystemTypesCache } = await import(
-      "fumadocs-twoslash/cache-fs"
-    );
+    const { createFileSystemTypesCache } =
+      await import("fumadocs-twoslash/cache-fs");
     const { default: remarkMath } = await import("remark-math");
     const { default: rehypeKatex } = await import("rehype-katex");
     const { remarkAutoTypeTable } = await import("fumadocs-typescript");

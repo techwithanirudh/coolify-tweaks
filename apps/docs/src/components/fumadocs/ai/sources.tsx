@@ -1,14 +1,15 @@
 "use client";
 
-import { BookIcon, ChevronDownIcon } from "lucide-react";
 import type { ComponentProps } from "react";
+import { BookIcon, ChevronDownIcon } from "lucide-react";
+
+import { cn } from "@repo/ui";
 
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/fumadocs/ui/collapsible";
-import { cn } from "@repo/ui";
 
 export type SourcesProps = ComponentProps<"div">;
 
@@ -16,9 +17,7 @@ export const Sources = ({ className, ...props }: SourcesProps) => (
   <Collapsible className={cn("not-prose text-base", className)} {...props} />
 );
 
-export type SourcesTriggerProps = ComponentProps<
-  typeof CollapsibleTrigger
-> & {
+export type SourcesTriggerProps = ComponentProps<typeof CollapsibleTrigger> & {
   count: number;
 };
 
@@ -34,7 +33,7 @@ export const SourcesTrigger = ({
   >
     {children ?? (
       <>
-        <p className="font-medium text-base">Used {count} sources</p>
+        <p className="text-base font-medium">Used {count} sources</p>
         <ChevronDownIcon className="h-4 w-4" />
       </>
     )}
@@ -43,11 +42,14 @@ export const SourcesTrigger = ({
 
 export type SourcesContentProps = ComponentProps<typeof CollapsibleContent>;
 
-export const SourcesContent = ({ className, ...props }: SourcesContentProps) => (
+export const SourcesContent = ({
+  className,
+  ...props
+}: SourcesContentProps) => (
   <CollapsibleContent
     className={cn(
       "mt-3 flex w-fit flex-col gap-2",
-      "data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2 data-[state=open]:slide-in-from-top-2 text-primary text-sm outline-none data-[state=closed]:animate-out data-[state=open]:animate-in",
+      "data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2 data-[state=open]:slide-in-from-top-2 text-primary data-[state=closed]:animate-out data-[state=open]:animate-in text-sm outline-none",
       className,
     )}
     {...props}
