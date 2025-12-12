@@ -23,9 +23,12 @@ RUN turbo prune @repo/docs --docker
 FROM base AS builder
 # Propagate build-time env so Next.js and scripts have the correct values.
 # NEXT_PUBLIC_* variables are needed at build time for Next.js to embed them in the bundle.
-# These are provided via docker-compose build context - docker-compose automatically makes
-# build args available as environment variables during the build process.
+# ARG receives values from docker-compose build args, then ENV makes them available to Next.js.
 # OPENAI_API_KEY is NOT included here - it's only available at runtime via docker-compose environment.
+ARG NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_DOCS_URL
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+ENV NEXT_PUBLIC_DOCS_URL=${NEXT_PUBLIC_DOCS_URL}
 ENV NODE_ENV=production
 # First install the dependencies (as they change less often)
 COPY --from=prepare /app/out/json/ .
