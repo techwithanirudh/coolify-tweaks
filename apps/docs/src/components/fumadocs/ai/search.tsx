@@ -46,7 +46,7 @@ function Header() {
 
   return (
     <div className="sticky top-0 flex items-start gap-2">
-      <div className="flex flex-1 items-center justify-between rounded-xl bg-fd-card px-3 py-2 text-fd-card-foreground">
+      <div className="flex flex-1 items-center justify-between rounded-xl bg-secondary px-3 py-2 text-secondary-foreground">
         <p className="font-medium text-sm">Ask AI</p>
         <div className="flex items-center gap-1.5">
           <button

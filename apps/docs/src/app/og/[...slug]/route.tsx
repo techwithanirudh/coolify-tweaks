@@ -15,18 +15,16 @@ export async function GET(
   const { slug } = await params;
   const page = source.getPage(slug.slice(0, -1));
   if (!page) notFound();
-  const slugs = page.slugs;
-  const tag = categories[slugs[0] ?? "style"] ?? slugs[0];
+  const slugs = page.path.split("/");
+  const tag = categories[slugs[0]] ?? slugs[0];
 
   return new ImageResponse(
-    (
-      <MetadataImage
-        title={page.data.title}
-        description={page.data.description}
-        tag={tag}
-      />
-    ),
-    getImageResponseOptions(),
+    <MetadataImage
+      title={page.data.title}
+      description={page.data.description}
+      tag={tag}
+    />,
+    await getImageResponseOptions(),
   );
 }
 

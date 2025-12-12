@@ -1,5 +1,4 @@
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import { readFile } from "node:fs/promises";
 import type { ImageResponseOptions } from "@takumi-rs/image-response";
 import type { ReactNode } from "react";
 
@@ -11,64 +10,17 @@ export interface GenerateProps {
   tag?: string;
 }
 
-const fontsDir = join(process.cwd(), "src/app/og/[...slug]/fonts");
+const logo = readFile("./public/logo.svg").then((data) => ({
+  src: "logo.svg",
+  data,
+}));
 
-const geistThin = readFileSync(join(fontsDir, "Geist-Thin.ttf"));
-const geistRegular = readFileSync(join(fontsDir, "Geist-Regular.ttf"));
-const geistMedium = readFileSync(join(fontsDir, "Geist-Medium.ttf"));
-const geistSemiBold = readFileSync(join(fontsDir, "Geist-SemiBold.ttf"));
-const geistBold = readFileSync(join(fontsDir, "Geist-Bold.ttf"));
-const geistExtraBold = readFileSync(join(fontsDir, "Geist-ExtraBold.ttf"));
-
-export function getImageResponseOptions(): ImageResponseOptions {
+export async function getImageResponseOptions(): Promise<ImageResponseOptions> {
   return {
     format: "webp",
     width: 1200,
     height: 630,
-    persistentImages: [
-      {
-        src: "logo.svg",
-        data: readFileSync("./public/logo.svg"),
-      },
-    ],
-    fonts: [
-      {
-        name: "Geist",
-        data: geistThin,
-        weight: 100,
-        style: "normal",
-      },
-      {
-        name: "Geist",
-        data: geistRegular,
-        weight: 400,
-        style: "normal",
-      },
-      {
-        name: "Geist",
-        data: geistMedium,
-        weight: 500,
-        style: "normal",
-      },
-      {
-        name: "Geist",
-        data: geistSemiBold,
-        weight: 600,
-        style: "normal",
-      },
-      {
-        name: "Geist",
-        data: geistBold,
-        weight: 700,
-        style: "normal",
-      },
-      {
-        name: "Geist",
-        data: geistExtraBold,
-        weight: 800,
-        style: "normal",
-      },
-    ],
+    persistentImages: [await logo]
   };
 }
 
@@ -76,7 +28,6 @@ export function generate({ title, description, tag }: GenerateProps) {
   const backgroundColor = "rgb(59, 59, 64)";
   const primaryTextColor = "rgb(253, 253, 253)";
   const primaryColor = "rgb(168, 141, 212)";
-  const gridColor = "rgba(78, 75, 85, 0.4)";
 
   return (
     <div
@@ -87,22 +38,9 @@ export function generate({ title, description, tag }: GenerateProps) {
         height: "100%",
         color: primaryTextColor,
         backgroundColor: backgroundColor,
-        backgroundImage: `linear-gradient(to top right, ${primaryColor}, transparent), noise-v1(opacity(0.3) frequency(1.0) octaves(4))`,
+        backgroundImage: `linear-gradient(to top right, ${primaryColor}, transparent)`,
       }}
     >
-      <div
-        style={{
-          background: backgroundColor,
-          backgroundImage: `
-          linear-gradient(to right, ${gridColor} 1px, transparent 1px),
-          linear-gradient(to bottom, ${gridColor} 1px, transparent 1px)
-        `,
-          backgroundSize: "25px 25px",
-          position: "absolute",
-          inset: 0,
-          zIndex: 0,
-        }}
-      />
       <div
         style={{
           display: "flex",
@@ -117,7 +55,7 @@ export function generate({ title, description, tag }: GenerateProps) {
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            gap: "16px",
+            gap: "24px",
             marginBottom: "auto",
             color: primaryTextColor,
           }}

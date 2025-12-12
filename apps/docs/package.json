@@ -35,6 +35,7 @@
     "@takumi-rs/image-response": "^0.57.3",
     "ai": "^5.0.108",
     "class-variance-authority": "^0.7.1",
+    "feed": "^5.1.0",
     "fumadocs-core": "^16.2.4",
     "fumadocs-docgen": "^3.0.4",
     "fumadocs-mdx": "^14.1.0",

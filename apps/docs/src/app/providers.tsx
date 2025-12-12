@@ -1,11 +1,10 @@
 "use client";
 
-import type { ReactNode } from "react";
-import dynamic from "next/dynamic";
 import { ProgressProvider } from "@bprogress/next/app";
 import { RootProvider } from "fumadocs-ui/provider/base";
+import dynamic from "next/dynamic";
+import type { ReactNode } from "react";
 
-import { Toaster } from "@repo/ui/toast";
 import { TooltipProvider } from "@repo/ui/tooltip";
 
 const SearchDialog = dynamic(() => import("@/components/search"), {
@@ -20,18 +19,17 @@ export function Providers({ children }: { children: ReactNode }) {
       }}
     >
       <ProgressProvider
-        height="2px"
         color="var(--color-primary)"
+        delay={1000}
+        height="2px"
         options={{
           showSpinner: false,
         }}
-        stopDelay={1000}
-        delay={1000}
-        startOnLoad
         shallowRouting
+        startOnLoad
+        stopDelay={1000}
       >
         <TooltipProvider>{children}</TooltipProvider>
-        <Toaster />
       </ProgressProvider>
     </RootProvider>
   );

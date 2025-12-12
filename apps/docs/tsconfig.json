@@ -1,12 +1,13 @@
 {
   "extends": "@repo/tsconfig/base.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "lib": ["esnext", "dom", "dom.iterable"],
     "jsx": "preserve",
     "paths": {
       "@/*": ["./src/*"],
-      "@/.source": ["./.source/index.ts"],
-      "@/public/*": ["./public/*"]
+      "@/public/*": ["./public/*"],
+      "fumadocs-mdx:collections/*": [".source/*"]
     },
     "plugins": [{ "name": "next" }]
   },

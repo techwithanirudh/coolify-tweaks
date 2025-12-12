@@ -8,9 +8,8 @@ import * as Twoslash from "fumadocs-twoslash/ui";
 import { createGenerator } from "fumadocs-typescript";
 import { AutoTypeTable } from "fumadocs-typescript/ui";
 import { Card, Cards } from "fumadocs-ui/components/card";
-import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { TypeTable } from "fumadocs-ui/components/type-table";
-import { DocsPage } from "fumadocs-ui/page";
+import { DocsPage, PageLastUpdate } from "fumadocs-ui/layouts/notebook/page";
 
 import {
   HoverCard,
@@ -36,22 +35,21 @@ export default async function Page(
 
   if (!page) return notFound();
 
-  const { body: Mdx, toc, lastModified } = page.data;
+  const { body: Mdx, toc, lastModified } = await page.data.load();
 
   return (
     <DocsPage
-      toc={toc}
-      lastUpdate={lastModified ? new Date(lastModified) : undefined}
       tableOfContent={{
         style: "clerk",
       }}
+      toc={toc}
     >
-      <div className="relative flex flex-col items-start gap-2 sm:flex-row sm:items-center">
-        <h1 className="text-[1.75em] font-semibold break-all">
+      <div className="relative flex @sm:flex-row flex-col items-start @sm:items-center gap-2">
+        <h1 className="break-all font-semibold text-[1.75em]">
           {page.data.title}
         </h1>
 
-        <div className="ml-auto hidden shrink-0 flex-row items-center justify-end gap-2 sm:flex">
+        <div className="ml-auto @sm:flex flex hidden shrink-0 flex-row items-center justify-end gap-2">
           <LLMCopyButton markdownUrl={`${page.url}.mdx`} />
           <ViewOptions
             markdownUrl={`${page.url}.mdx`}
@@ -62,7 +60,7 @@ export default async function Page(
       <p className="text-fd-muted-foreground mb-2 text-lg">
         {page.data.description}
       </p>
-      <div className="flex items-center gap-2 pb-6 sm:hidden">
+      <div className="flex @sm:hidden items-center gap-2 pb-6">
         <LLMCopyButton markdownUrl={`${page.url}.mdx`} />
         <ViewOptions
           markdownUrl={`${page.url}.mdx`}
@@ -73,24 +71,26 @@ export default async function Page(
         <Mdx
           components={getMDXComponents({
             ...Twoslash,
-            a: ({ href, ...props }) => {
+            a: ({ href, ...linkProps }) => {
               const found = source.getPageByHref(href ?? "", {
                 dir: PathUtils.dirname(page.path),
               });
 
-              if (!found) return <Link href={href} {...props} />;
+              if (!found) {
+                return <Link href={href} {...linkProps} />;
+              }
 
               return (
                 <HoverCard>
-                  <HoverCardTrigger asChild>
-                    <Link
-                      href={
-                        found.hash
-                          ? `${found.page.url}#${found.hash}`
-                          : found.page.url
-                      }
-                      {...props}
-                    />
+                  <HoverCardTrigger
+                    href={
+                      found.hash
+                        ? `${found.page.url}#${found.hash}`
+                        : found.page.url
+                    }
+                    {...linkProps}
+                  >
+                    {linkProps.children}
                   </HoverCardTrigger>
                   <HoverCardContent className="text-sm">
                     <p className="font-medium">{found.page.data.title}</p>
@@ -102,19 +102,15 @@ export default async function Page(
               );
             },
             TypeTable,
-            AutoTypeTable: (props) => (
-              <AutoTypeTable generator={generator} {...props} />
+            AutoTypeTable: (autoTypeProps) => (
+              <AutoTypeTable generator={generator} {...autoTypeProps} />
             ),
-            DocsCategory: ({ url }: { url?: string }) => {
-              return <DocsCategory url={url ?? page.url} />;
-            },
-            img: (props) => (
-              <ImageZoom {...(props as ComponentProps<typeof ImageZoom>)} />
-            ),
+            DocsCategory: ({ url }) => <DocsCategory url={url ?? page.url} />,
           })}
         />
         {page.data.index ? <DocsCategory url={page.url} /> : null}
       </div>
+      {lastModified && <PageLastUpdate date={lastModified} />}
     </DocsPage>
   );
 }
@@ -123,7 +119,7 @@ function DocsCategory({ url }: { url: string }) {
   return (
     <Cards>
       {getPageTreePeers(source.pageTree, url).map((peer) => (
-        <Card key={peer.url} title={peer.name} href={peer.url}>
+        <Card href={peer.url} key={peer.url} title={peer.name}>
           {peer.description}
         </Card>
       ))}
