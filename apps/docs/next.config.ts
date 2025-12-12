@@ -33,7 +33,6 @@ async function createNextConfig(): Promise<NextConfig> {
     ],
     transpilePackages: ["@repo/db", "@repo/ui", "@repo/validators"],
     images: {
-      unoptimized: true,
       remotePatterns: [
         {
           protocol: "https",

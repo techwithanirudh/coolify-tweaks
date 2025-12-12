@@ -1,43 +1,39 @@
-"use client";
+'use client'
+import * as CollapsiblePrimitive from '@radix-ui/react-collapsible'
+import { useEffect, useState } from 'react'
+import { cn } from '@/lib/fumadocs/cn'
 
-import { forwardRef, useEffect, useState } from "react";
-import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
+const Collapsible = CollapsiblePrimitive.Root
 
-import { cn } from "@repo/ui";
+const CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger
 
-const Collapsible = CollapsiblePrimitive.Root;
+function CollapsibleContent({
+  children,
+  className,
+  ...props
+}: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleContent>) {
+  const [mounted, setMounted] = useState(false)
 
-const CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger;
-
-const CollapsibleContent = forwardRef<
-  HTMLDivElement,
-  React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.CollapsibleContent>
->(({ children, ...props }, ref) => {
-  const [mounted, setMounted] = useState(false);
-
-  /* eslint-disable react-hooks/set-state-in-effect -- mounted state initialization */
   useEffect(() => {
-    setMounted(true);
-  }, []);
-  /* eslint-enable react-hooks/set-state-in-effect */
+    setMounted(true)
+  }, [])
 
   return (
     <CollapsiblePrimitive.CollapsibleContent
-      ref={ref}
       {...props}
       className={cn(
-        "overflow-hidden",
+        'overflow-hidden',
         mounted &&
-          "data-[state=closed]:animate-fd-collapsible-up data-[state=open]:animate-fd-collapsible-down",
-        props.className,
+          'data-[state=closed]:animate-fd-collapsible-up data-[state=open]:animate-fd-collapsible-down',
+        className
       )}
     >
       {children}
     </CollapsiblePrimitive.CollapsibleContent>
-  );
-});
+  )
+}
 
 CollapsibleContent.displayName =
-  CollapsiblePrimitive.CollapsibleContent.displayName;
+  CollapsiblePrimitive.CollapsibleContent.displayName
 
-export { Collapsible, CollapsibleTrigger, CollapsibleContent };
+export { Collapsible, CollapsibleTrigger, CollapsibleContent }
