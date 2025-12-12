@@ -1,5 +1,4 @@
-import type { LinkItemType } from "fumadocs-ui/layouts/docs";
-import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
+import type { BaseLayoutProps, LinkItemType } from "fumadocs-ui/layouts/shared";
 import Image from "next/image";
 
 import { ThemeToggle } from "@/components/theme-toggle";

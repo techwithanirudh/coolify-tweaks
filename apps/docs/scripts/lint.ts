@@ -9,14 +9,14 @@ type AnySource = typeof source;
 async function checkLinks() {
   const scanned = await scanURLs({
     populate: {
-      "docs/[[...slug]]": source.getPages().map((page) => {
-        return {
+      "docs/[[...slug]]": await Promise.all(
+        source.getPages().map(async (page) => ({
           value: {
             slug: page.slugs,
           },
-          hashes: getHeadings(page),
-        };
-      }),
+          hashes: await getHeadings(page),
+        })),
+      ),
     },
   });
 
@@ -38,25 +38,30 @@ async function checkLinks() {
   );
 }
 
-function getHeadings({ data }: InferPageType<AnySource>): string[] {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- data.toc can be undefined
-  const headings = data.toc?.map((item) => item.url.slice(1)) ?? [];
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- data._exports?.elementIds can be undefined
-  const elementIds = data._exports?.elementIds;
+async function getHeadings({
+  data,
+}: InferPageType<AnySource>): Promise<string[]> {
+  const { _exports, toc } = await data.load();
+  const headings = toc.map((item) => item.url.slice(1));
+  const elementIds = _exports?.elementIds;
   if (Array.isArray(elementIds)) {
-    headings.push(...(elementIds as string[]));
+    headings.push(...elementIds);
   }
 
   return headings;
 }
 
-async function getFiles(source: AnySource) {
+async function getFiles(docsSource: AnySource) {
   const files: FileObject[] = [];
-  for (const page of source.getPages()) {
+  for (const page of docsSource.getPages()) {
+    if ("type" in page.data && page.data.type === "openapi") {
+      continue;
+    }
+
     files.push({
       data: page.data,
       url: page.url,
-      path: page.absolutePath,
+      path: page.data.info.fullPath,
       content: await page.data.getText("raw"),
     });
   }
@@ -64,4 +69,4 @@ async function getFiles(source: AnySource) {
   return files;
 }
 
-void checkLinks();
+await checkLinks();
