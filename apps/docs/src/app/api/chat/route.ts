@@ -68,14 +68,7 @@ export async function POST(request: Request) {
             delayInMs: 20,
             chunking: "line",
           }),
-          stopWhen: stepCountIs(15),
-          onStepFinish: ({ toolResults }) => {
-            if (env.NODE_ENV !== "production") {
-              console.log(
-                `Step Results: ${JSON.stringify(toolResults, null, 2)}`
-              );
-            }
-          },
+          stopWhen: stepCountIs(15)
         });
 
         writer.merge(

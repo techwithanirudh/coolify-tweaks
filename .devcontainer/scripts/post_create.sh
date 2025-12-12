@@ -1,15 +1,19 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
 # Copy env file
-cp .env.example .env
+if [[ -f ".env" ]]; then
+  echo ".env already exists; skipping copy"
+else
+  cp .env.example .env
+fi
 
 # Install turbo
 pnpm add -g turbo
 
 # Install ni
-pnpm add @antfu/ni --global
+pnpm add -g @antfu/ni
 
 # Install dependencies
 pnpm install

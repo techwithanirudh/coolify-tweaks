@@ -48,4 +48,4 @@ export const directivesPrompt = `
 - Maintain a consistent, structured, and professional tone.
 </directive>
 </directives>
-`;
+`.trim();

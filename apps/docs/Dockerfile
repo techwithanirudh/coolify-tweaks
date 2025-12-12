@@ -1,7 +1,3 @@
-ARG NEXT_PUBLIC_API_URL
-ARG NEXT_PUBLIC_DOCS_URL
-ARG OPENAI_API_KEY
-
 FROM node:24-alpine AS base
 
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
@@ -26,12 +22,9 @@ RUN turbo prune @repo/docs --docker
 # ---
 FROM base AS builder
 # Propagate build-time env so Next.js and scripts have the correct values.
-ARG NEXT_PUBLIC_API_URL
-ARG NEXT_PUBLIC_DOCS_URL
-ARG OPENAI_API_KEY
-ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
-ENV NEXT_PUBLIC_DOCS_URL=${NEXT_PUBLIC_DOCS_URL}
-ENV OPENAI_API_KEY=${OPENAI_API_KEY}
+# NEXT_PUBLIC_* variables are needed at build time for Next.js to embed them in the bundle.
+# These are passed via docker-compose build args (accessible as environment variables during build).
+# OPENAI_API_KEY is NOT included here - it's only available at runtime via docker-compose environment.
 ENV NODE_ENV=production
 # First install the dependencies (as they change less often)
 COPY --from=prepare /app/out/json/ .
@@ -50,12 +43,7 @@ RUN pnpm turbo build
 
 # ---
 FROM base AS runner
-ARG NEXT_PUBLIC_API_URL
-ARG NEXT_PUBLIC_DOCS_URL
-ARG OPENAI_API_KEY
-ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
-ENV NEXT_PUBLIC_DOCS_URL=${NEXT_PUBLIC_DOCS_URL}
-ENV OPENAI_API_KEY=${OPENAI_API_KEY}
+# Runtime environment variables are provided via docker-compose environment section
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
