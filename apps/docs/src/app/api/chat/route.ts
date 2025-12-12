@@ -1,6 +1,8 @@
-import type { UIMessage } from "ai";
+import { openai } from "@ai-sdk/openai";
 import {
   convertToModelMessages,
+  createUIMessageStream,
+  createUIMessageStreamResponse,
   InvalidToolInputError,
   NoSuchToolError,
   smoothStream,
@@ -9,65 +11,20 @@ import {
 } from "ai";
 
 import { env } from "@/env";
-import { systemPrompt } from "@/lib/ai/prompts";
-import { provider } from "@/lib/ai/providers";
-import { getPageContent } from "@/lib/ai/tools/get-page-content";
-import { provideLinks } from "@/lib/ai/tools/provide-links";
-import { searchDocs } from "@/lib/ai/tools/search-docs";
-import { categories } from "@/lib/constants";
-import { source } from "@/lib/source";
-
-function getLLMsTxt() {
-  const scanned: string[] = [];
-  scanned.push("# Docs");
-  const map = new Map<string, string[]>();
-
-  for (const page of source.getPages()) {
-    const dir = page.slugs[0];
-    if (!dir) continue;
-    const list = map.get(dir) ?? [];
-    list.push(`- [${page.data.title}](${page.url}): ${page.data.description}`);
-    map.set(dir, list);
-  }
-
-  for (const [key, value] of map) {
-    scanned.push(`## ${categories[key] ?? key}`);
-    scanned.push(value.join("\n"));
-  }
-
-  return scanned.join("\n\n");
-}
+import type { MyUIMessage } from "./types";
+import { systemPrompt } from "./utils/prompts";
+import { getPageContent } from "./utils/tools/get-page-content";
+import { createSearchDocsTool } from "./utils/tools/search-docs";
 
 export async function POST(request: Request) {
-  const body = (await request.json()) as { messages: UIMessage[] };
-  const { messages } = body;
+  try {
+    const {
+      messages,
+    }: {
+      messages: MyUIMessage[];
+    } = await request.json();
 
-  const result = streamText({
-    model: provider.languageModel("chat-model"),
-    system: systemPrompt({ llms: getLLMsTxt() }),
-    tools: {
-      provideLinks,
-      searchDocs,
-      getPageContent,
-    },
-    messages: convertToModelMessages(messages, {
-      ignoreIncompleteToolCalls: true,
-    }),
-    toolChoice: "auto",
-    experimental_transform: smoothStream({
-      delayInMs: 20,
-      chunking: "line",
-    }),
-    stopWhen: stepCountIs(15),
-    onStepFinish: ({ toolResults }) => {
-      if (env.NODE_ENV !== "production") {
-        console.log(`Step Results: ${JSON.stringify(toolResults, null, 2)}`);
-      }
-    },
-  });
-
-  return result.toUIMessageStreamResponse({
-    onError: (error) => {
+    const handleStreamError = (error: unknown) => {
       if (env.NODE_ENV !== "production") {
         console.error("An error occurred:", {
           name: (error as Error).name,
@@ -77,11 +34,69 @@ export async function POST(request: Request) {
 
       if (NoSuchToolError.isInstance(error)) {
         return "The model tried to call an unknown tool.";
-      } else if (InvalidToolInputError.isInstance(error)) {
-        return "The model called a tool with invalid arguments.";
-      } else {
-        return "An unknown error occurred.";
       }
-    },
-  });
+      if (InvalidToolInputError.isInstance(error)) {
+        return "The model called a tool with invalid arguments.";
+      }
+
+      return "An unknown error occurred.";
+    };
+
+    const stream = createUIMessageStream({
+      originalMessages: messages,
+      execute: ({ writer }) => {
+        const result = streamText({
+          model: openai("gpt-5-mini"),
+          system: systemPrompt(),
+          providerOptions: {
+            openai: {
+              reasoningEffort: "minimal",
+              reasoningSummary: "auto",
+              textVerbosity: "medium",
+              serviceTier: "priority",
+            },
+          },
+          tools: {
+            searchDocs: createSearchDocsTool(writer),
+            getPageContent,
+          },
+          messages: convertToModelMessages(messages, {
+            ignoreIncompleteToolCalls: true,
+          }),
+          toolChoice: "auto",
+          experimental_transform: smoothStream({
+            delayInMs: 20,
+            chunking: "line",
+          }),
+          stopWhen: stepCountIs(15),
+          onStepFinish: ({ toolResults }) => {
+            if (env.NODE_ENV !== "production") {
+              console.log(
+                `Step Results: ${JSON.stringify(toolResults, null, 2)}`
+              );
+            }
+          },
+        });
+
+        writer.merge(
+          result.toUIMessageStream({
+            onError: handleStreamError,
+          })
+        );
+      },
+    });
+
+    return createUIMessageStreamResponse({ stream });
+  } catch (error) {
+    if (env.NODE_ENV !== "production") {
+      console.error("Failed to process chat request:", {
+        name: (error as Error).name,
+        message: (error as Error).message,
+      });
+    }
+
+    return new Response("Failed to process chat request.", {
+      status: 500,
+    });
+  }
 }

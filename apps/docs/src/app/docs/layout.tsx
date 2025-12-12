@@ -1,7 +1,11 @@
 import { LargeSearchToggle } from "fumadocs-ui/components/layout/search-toggle";
 import { DocsLayout } from "fumadocs-ui/layouts/notebook";
 
-import { AISearchTrigger } from "@/components/fumadocs/ai/search";
+import {
+  AISearch,
+  AISearchPanel,
+  AISearchTrigger,
+} from "@/components/fumadocs/ai/search";
 import { baseOptions, linkItems, logo } from "@/lib/layout.shared";
 import { source } from "@/lib/source";
 
@@ -68,7 +72,10 @@ export default function Layout({ children }: LayoutProps<"/docs">) {
     >
       {children}
       {/* <DocsBackground /> */}
-      <AISearchTrigger />
+      <AISearch>
+        <AISearchPanel />
+        <AISearchTrigger />
+      </AISearch>
     </DocsLayout>
   );
 }
