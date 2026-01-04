@@ -58,3 +58,6 @@ dist/
 
 # sentry
 .env.sentry-build-plugin
+
+# pnpm
+.pnpm-store
