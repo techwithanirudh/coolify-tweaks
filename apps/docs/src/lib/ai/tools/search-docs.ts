@@ -7,14 +7,23 @@ import { source } from "@/lib/source";
 
 const server = initAdvancedSearch({
   language: "english",
-  indexes: source.getPages().map((page) => ({
-    id: page.url,
-    title: page.data.title,
-    description: page.data.description,
-    structuredData: page.data.structuredData,
-    url: page.url,
-    tag: page.slugs[0],
-  })),
+  indexes: async () => {
+    const pages = source.getPages();
+    const indexes = await Promise.all(
+      pages.map(async (page) => {
+        const { structuredData } = await page.data.load();
+        return {
+          id: page.url,
+          title: page.data.title,
+          description: page.data.description,
+          structuredData: structuredData ?? undefined,
+          url: page.url,
+          tag: page.slugs[0],
+        };
+      }),
+    );
+    return indexes;
+  },
 });
 
 const Tag = z.union([

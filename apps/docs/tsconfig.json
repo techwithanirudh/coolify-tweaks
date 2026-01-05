@@ -5,7 +5,7 @@
     "jsx": "preserve",
     "paths": {
       "@/*": ["./src/*"],
-      "@/.source": ["./.source/index.ts"],
+      "fumadocs-mdx:collections/*": ["./.source/*"],
       "@/public/*": ["./public/*"]
     },
     "plugins": [{ "name": "next" }]

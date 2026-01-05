@@ -1,3 +1,4 @@
+import { title } from "@/lib/layout.shared";
 import { baseUrl, createMetadata } from "@/lib/metadata";
 
 import "@/styles/globals.css";
@@ -14,6 +15,7 @@ import { NextProvider } from "fumadocs-core/framework/next";
 import { TreeContextProvider } from "fumadocs-ui/contexts/tree";
 
 import { source } from "@/lib/source";
+import { url } from "@/lib/url";
 
 const geist = Geist({
   variable: "--font-sans",
@@ -33,6 +35,16 @@ export const metadata = createMetadata({
   description:
     "Opinionated tweaks for Coolify: better spacing, layout, and colors.",
   metadataBase: baseUrl,
+  alternates: {
+    types: {
+      "application/rss+xml": [
+        {
+          title,
+          url: url("/rss.xml"),
+        },
+      ],
+    },
+  },
 });
 
 export const viewport: Viewport = {
