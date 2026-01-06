@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactElement } from "react";
 import { notFound } from "next/navigation";
 import Link from "fumadocs-core/link";
-import { getPageTreePeers } from "fumadocs-core/page-tree";
+import { findSiblings } from 'fumadocs-core/page-tree';
 import { PathUtils } from "fumadocs-core/source";
 import * as Twoslash from "fumadocs-twoslash/ui";
 import { createGenerator } from "fumadocs-typescript";
@@ -118,14 +118,23 @@ export default async function Page(
 function DocsCategory({ url }: { url: string }) {
   return (
     <Cards>
-      {getPageTreePeers(source.pageTree, url).map((peer) => (
-        <Card href={peer.url} key={peer.url} title={peer.name}>
-          {peer.description}
-        </Card>
-      ))}
+      {findSiblings(source.getPageTree(), url).map((item) => {
+        if (item.type === 'separator') return;
+        if (item.type === 'folder') {
+          if (!item.index) return;
+          item = item.index;
+        }
+
+        return (
+          <Card key={item.url} title={item.name} href={item.url}>
+            {item.description}
+          </Card>
+        );
+      })}
     </Cards>
   );
 }
+
 
 export async function generateMetadata(
   props: PageProps<"/docs/[[...slug]]">,
