@@ -11,6 +11,6 @@
     },
     "plugins": [{ "name": "next" }]
   },
-  "include": [".", ".next/types/**/*.ts", "content/**/*.mdx"],
+  "include": [".", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
