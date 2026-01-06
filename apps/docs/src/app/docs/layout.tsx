@@ -1,4 +1,3 @@
-import { LargeSearchToggle } from "fumadocs-ui/components/layout/search-toggle";
 import { DocsLayout } from "fumadocs-ui/layouts/notebook";
 
 import { AISearchTrigger } from "@/components/fumadocs/ai/search";
@@ -46,15 +45,6 @@ export default function Layout({ children }: LayoutProps<"/docs">) {
         },
       }}
       tabMode="navbar"
-      searchToggle={{
-        components: {
-          lg: (
-            <div className="flex gap-1.5 max-md:hidden">
-              <LargeSearchToggle className="flex-1" />
-            </div>
-          ),
-        },
-      }}
       nav={{
         ...base.nav,
         mode: "top",
