@@ -17,7 +17,7 @@ const server = initAdvancedSearch({
           id: page.url,
           title: page.data.title,
           description: page.data.description,
-          structuredData: structuredData ?? undefined,
+          structuredData,
           url: page.url,
           tag: page.path.split("/")[0],
         };

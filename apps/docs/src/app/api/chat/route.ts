@@ -18,6 +18,7 @@ import { createSearchDocsTool } from "./utils/tools/search-docs";
 
 export async function POST(request: Request) {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const {
       messages,
     }: {

@@ -20,7 +20,7 @@ function pageTreeCodeTitles(): LoaderPlugin {
       file(node) {
         if (
           typeof node.name === "string" &&
-          (node.name.endsWith("()") || node.name.match(/^<\w+ \/>$/))
+          (node.name.endsWith("()") || (/^<\w+ \/>$/.exec(node.name)))
         ) {
           return {
             ...node,

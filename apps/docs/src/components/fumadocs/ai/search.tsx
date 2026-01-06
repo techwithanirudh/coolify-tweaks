@@ -37,10 +37,11 @@ const Context = createContext<{
 } | null>(null);
 
 function useChatContext() {
-  return use(Context)!.chat;
+  return use(Context)?.chat;
 }
 
 function Header() {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const { setOpen, chat } = use(Context)!;
 
   return (
@@ -275,7 +276,7 @@ function Message({
   message: MyUIMessage;
   isInProgress: boolean;
 } & ComponentProps<"div">) {
-  const parts = (message.parts ?? []) as MyUIMessage["parts"];
+  const { parts } = message;
 
   return (
     <div {...props}>

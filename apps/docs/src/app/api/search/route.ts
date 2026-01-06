@@ -16,7 +16,7 @@ export const { GET } = createSearchAPI("advanced", {
           description: page.data.description,
           url: page.url,
           id: page.url,
-          structuredData: structuredData ?? undefined,
+          structuredData,
           tag: page.path.split("/")[0],
         };
       }),

@@ -1,12 +1,12 @@
 import type { UIMessage } from "ai";
 
-export type MyUIMessage = UIMessage & {
-  parts: Array<
-    | UIMessage["parts"][number]
-    | {
-        type: "source-url";
-        url: string;
-        title: string;
-      }
-  >;
-};
+export interface SourceUrlPart {
+  type: "source-url";
+  sourceId: string;
+  url: string;
+  title: string;
+}
+
+export interface MyUIMessage extends UIMessage {
+  parts: (UIMessage["parts"][number] | SourceUrlPart)[];
+}

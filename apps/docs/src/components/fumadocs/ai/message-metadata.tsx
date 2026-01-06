@@ -19,10 +19,16 @@ import {
   SourcesTrigger,
 } from "@/components/fumadocs/ai/sources";
 
-type MessageMetadataProps = {
+interface MessageMetadataProps {
   parts: MyUIMessage["parts"];
   inProgress: boolean;
-};
+}
+
+function isSourcePart(
+  part: MyUIMessage["parts"][number],
+): part is Extract<MyUIMessage["parts"][number], { type: "source-url" }> {
+  return part.type === "source-url";
+}
 
 export const MessageMetadata = ({
   parts,
@@ -54,13 +60,11 @@ export const MessageMetadata = ({
 
   const sources = Array.from(
     new Map(
-      parts
-        .filter((part) => part.type === "source-url")
-        .map((part) => [part.url, part]),
+      parts.filter(isSourcePart).map((part) => [part.url, part]),
     ).values(),
   );
 
-  if (sources.length > 0 && !(tool && inProgress)) {
+  if (sources.length > 0 && (!tool || !inProgress)) {
     return (
       <Sources className="group/source peer/source">
         <SourcesTrigger count={sources.length}>

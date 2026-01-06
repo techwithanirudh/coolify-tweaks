@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { ComponentProps, ReactElement } from "react";
+import type { ReactElement } from "react";
 import { notFound } from "next/navigation";
 import Link from "fumadocs-core/link";
 import { getPageTreePeers } from "fumadocs-core/page-tree";
