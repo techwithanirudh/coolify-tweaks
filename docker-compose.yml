@@ -4,7 +4,20 @@ services:
     build:
       context: .
       dockerfile: ./apps/docs/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: https://coolify-tweaks-api.techwithanirudh.com
+        NEXT_PUBLIC_DOCS_URL: https://coolify-tweaks.techwithanirudh.com
     restart: always
+    environment:
+      NODE_ENV: production
+      NEXT_RUNTIME: nodejs
+      NEXT_PUBLIC_API_URL: https://coolify-tweaks-api.techwithanirudh.com
+      NEXT_PUBLIC_DOCS_URL: https://coolify-tweaks.techwithanirudh.com
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+    depends_on:
+      - api
     ports:
       - 3000:3000
     networks:
@@ -15,13 +28,14 @@ services:
       context: .
       dockerfile: ./apps/api/Dockerfile
     restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 3001
     ports:
       - 3001:3001
     networks:
       - app_network
 
-# Define a network, which allows containers to communicate
-# with each other, by using their container name as a hostname
 networks:
   app_network:
     external: true

@@ -1,11 +1,11 @@
 @import "tailwindcss";
+@import "@repo/tailwind-config/theme";
+@import "fumadocs-ui/css/shadcn.css";
 @import "fumadocs-ui/css/preset.css";
 @import "./solar.css";
-@import "fumadocs-ui/css/shadcn.css";
 @import "fumadocs-twoslash/twoslash.css";
 @import "fumadocs-openapi/css/preset.css";
 @import "tw-animate-css";
-@import "@repo/tailwind-config/theme";
 
 @source "../../../../packages/ui/src/**/*.{ts,tsx}";
 
@@ -40,6 +40,34 @@
   );
 }
 
+/* TODO: Remove this once fumadocs fixes this issue */
+.dark {
+  --color-fd-background: var(--background);
+  --color-fd-foreground: var(--foreground);
+
+  --color-fd-muted: var(--muted);
+  --color-fd-muted-foreground: var(--muted-foreground);
+
+  --color-fd-popover: var(--popover);
+  --color-fd-popover-foreground: var(--popover-foreground);
+
+  --color-fd-card: var(--card);
+  --color-fd-card-foreground: var(--card-foreground);
+
+  --color-fd-border: var(--border);
+
+  --color-fd-primary: var(--primary);
+  --color-fd-primary-foreground: var(--primary-foreground);
+
+  --color-fd-secondary: var(--secondary);
+  --color-fd-secondary-foreground: var(--secondary-foreground);
+
+  --color-fd-accent: var(--accent);
+  --color-fd-accent-foreground: var(--accent-foreground);
+
+  --color-fd-ring: var(--ring);
+}
+
 @layer base {
   body {
     overscroll-behavior-y: none;
@@ -58,16 +86,6 @@
 
 #nd-sidebar {
   @apply border-e;
-  background-color: var(--color-background);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
 }
 
 #nd-sidebar a {
@@ -96,4 +114,17 @@
   .bg-gradient-radial {
     background-image: radial-gradient(circle, var(--tw-gradient-stops));
   }
+}
+
+header &[data-search-full] {
+  @apply rounded-xl;
+}
+
+[data-header-tabs],
+[data-header-body] {
+  @apply border-none;
+}
+
+#nd-page {
+  @apply @container;
 }

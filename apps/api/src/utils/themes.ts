@@ -74,9 +74,9 @@ export async function processContent({
 
   let result = content;
 
-  if (theme && asset === "main.user.css") {
+  if (theme && (asset === "main.user.css" || asset === "main.css")) {
     const css = await getThemeCss(theme);
-    const transformedCss = transformCss(css);
+    const transformedCss = transformCss(css, asset);
     const wrappedCss = `${THEME_START}\n\n${transformedCss}\n\n${THEME_END}`;
 
     const url = getRequestURL(event);

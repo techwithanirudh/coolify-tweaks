@@ -30,7 +30,7 @@
     "@repo/tsconfig": "workspace:*",
     "@types/bun": "catalog:",
     "@types/serve-handler": "^6.1.4",
-    "browserslist": "^4.27.0",
+    "browserslist": "^4.28.1",
     "commander": "^14.0.1",
     "concurrently": "^9.2.1",
     "cspell": "catalog:",

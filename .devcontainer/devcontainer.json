@@ -31,28 +31,31 @@
     },
     "ghcr.io/devcontainers-extra/features/bun:1": {
       "version": "latest"
+    },
+    "ghcr.io/coder/devcontainer-features/code-server:1": {
+      "auth": "none",
+      "port": 13337
     }
   },
   "overrideFeatureInstallOrder": [
     "ghcr.io/devcontainers/features/common-utils",
     "ghcr.io/devcontainers/features/git",
     "ghcr.io/devcontainers/features/node",
-    "ghcr.io/devcontainers-extra/features/bun:1",
+    "ghcr.io/devcontainers-extra/features/bun",
     "ghcr.io/devcontainers/features/python",
     "ghcr.io/devcontainers/features/git-lfs",
     "ghcr.io/devcontainers/features/github-cli",
     "ghcr.io/devcontainers/features/docker-in-docker",
+    "ghcr.io/coder/devcontainer-features/code-server",
     "./local-features/setup-user"
   ],
   "remoteUser": "coder",
   "containerUser": "coder",
   "customizations": {
     "vscode": {
-      "extensions": [
-        "biomejs.biome"
-      ],
+      "extensions": ["biomejs.biome"],
       "settings": {
-        "python.defaultInterpreterPath": "/home/coder/.python/current/bin/python3",
+        "python.defaultInterpreterPath": "/home/coder/.python/current/bin/python3"
       }
     },
     "coder": {
@@ -115,5 +118,6 @@
   ],
   "postStartCommand": {
     "docker": "sudo service docker start"
-  }
+  },
+  "postCreateCommand": ["./.devcontainer/scripts/post_create.sh"]
 }

@@ -1,13 +1,19 @@
-import { LargeSearchToggle } from "fumadocs-ui/components/layout/search-toggle";
 import { DocsLayout } from "fumadocs-ui/layouts/notebook";
 
-import { AISearchTrigger } from "@/components/fumadocs/ai/search";
+import {
+  AISearch,
+  AISearchPanel,
+  AISearchTrigger,
+} from "@/components/fumadocs/ai/search";
 import { baseOptions, linkItems, logo } from "@/lib/layout.shared";
 import { source } from "@/lib/source";
 
 import "katex/dist/katex.min.css";
 
 import type { CSSProperties } from "react";
+
+const LEADING_DASHES = /^-+/;
+const TRAILING_DASHES = /-+$/;
 
 export default function Layout({ children }: LayoutProps<"/docs">) {
   const base = baseOptions();
@@ -16,17 +22,29 @@ export default function Layout({ children }: LayoutProps<"/docs">) {
     <DocsLayout
       {...base}
       links={linkItems.filter((item) => item.type === "icon")}
-      tree={source.pageTree}
+      nav={{
+        ...base.nav,
+        mode: "top",
+        title: (
+          <>
+            {logo}
+            <span className="font-medium max-md:hidden">Coolify Tweaks</span>
+          </>
+        ),
+      }}
       sidebar={{
         collapsible: false,
         tabs: {
           transform(option, node) {
             const meta = source.getNodeMeta(node);
-            if (!meta || !node.icon) return option;
+            if (!(meta && node.icon)) {
+              return option;
+            }
 
-            const segment = meta.path.split("/")[0];
+            const segments = meta.path.split("/");
+            const segment = serializeSegment(segments[0]);
+
             const color = `var(--${segment}-color, var(--color-fd-foreground))`;
-
             return {
               ...option,
               icon: (
@@ -46,29 +64,26 @@ export default function Layout({ children }: LayoutProps<"/docs">) {
         },
       }}
       tabMode="navbar"
-      searchToggle={{
-        components: {
-          lg: (
-            <div className="flex gap-1.5 max-md:hidden">
-              <LargeSearchToggle className="flex-1" />
-            </div>
-          ),
-        },
-      }}
-      nav={{
-        ...base.nav,
-        mode: "top",
-        title: (
-          <div className="-ml-3 inline-flex items-center gap-2.5 md:ml-0">
-            {logo}
-            <span className="font-medium max-md:hidden">Coolify Tweaks</span>
-          </div>
-        ),
-      }}
+      tree={source.pageTree}
     >
       {children}
-      {/* <DocsBackground /> */}
-      <AISearchTrigger />
+
+      <AISearch>
+        <AISearchPanel />
+        <AISearchTrigger />
+      </AISearch>
     </DocsLayout>
   );
+}
+
+function serializeSegment(segment: string | undefined): string {
+  const raw = (segment ?? "").trim();
+
+  const kebab = raw
+    .toLowerCase()
+    .replace(/[_\s]+/g, "-")
+    .replace(/[^a-z0-9-]/g, "")
+    .replace(LEADING_DASHES, "")
+    .replace(TRAILING_DASHES, "");
+  return kebab || "fd";
 }
