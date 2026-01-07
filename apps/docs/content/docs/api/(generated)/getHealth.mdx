@@ -3,6 +3,7 @@ title: Health check
 full: true
 _openapi:
   method: GET
+  route: /health
   toc: []
   structuredData:
     headings: []
@@ -14,4 +15,9 @@ _openapi:
 
 Returns service status information for monitoring.
 
-<APIPage document={"http://localhost:3001/_docs/openapi.json"} operations={[{"path":"/health","method":"get"}]} />
+<APIPage
+  document={"http://localhost:3001/_docs/openapi.json"}
+  operations={[{ path: "/health", method: "get" }]}
+  webhooks={[]}
+  hasHead={false}
+/>

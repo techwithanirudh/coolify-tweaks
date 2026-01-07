@@ -3,6 +3,7 @@ title: API information
 full: true
 _openapi:
   method: GET
+  route: /
   toc: []
   structuredData:
     headings: []
@@ -14,4 +15,9 @@ _openapi:
 
 Returns basic information about the API service.
 
-<APIPage document={"http://localhost:3001/_docs/openapi.json"} operations={[{"path":"/","method":"get"}]} />
+<APIPage
+  document={"http://localhost:3001/_docs/openapi.json"}
+  operations={[{ path: "/", method: "get" }]}
+  webhooks={[]}
+  hasHead={false}
+/>
