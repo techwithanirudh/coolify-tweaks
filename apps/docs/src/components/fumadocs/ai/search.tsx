@@ -1,14 +1,13 @@
 "use client";
 
-import type { ProvideLinksToolSchema } from "@/lib/ai/qa-schema";
+import type { MyUIMessage } from "@/app/api/chat/types";
 import type { UIMessage, UseChatHelpers } from "@ai-sdk/react";
-import type { ComponentProps, SyntheticEvent } from "react";
-import type { z } from "zod";
+import type { ComponentProps, ReactNode, SyntheticEvent } from "react";
 import {
   createContext,
   use,
   useEffect,
-  useId,
+  useEffectEvent,
   useMemo,
   useRef,
   useState,
@@ -17,33 +16,19 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { buttonVariants } from "fumadocs-ui/components/ui/button";
 import {
-  Download,
-  FileText,
-  Globe,
-  Globe2,
-  Loader2,
+  ArrowUpIcon,
   MessageCircleIcon,
   RefreshCw,
-  Search,
-  Send,
+  SquareIcon,
+  TrashIcon,
   X,
 } from "lucide-react";
 
 import { cn } from "@repo/ui";
 import { Presence } from "@repo/ui/presence";
 
-import type { GetPageContentOutput } from "./tools/get-page-content";
-import type { SearchDocsOutput } from "./tools/search-docs";
-import {
-  Tool,
-  ToolContent,
-  ToolHeader,
-  ToolOutput,
-} from "@/components/fumadocs/ai/tool";
 import { Markdown } from "./markdown";
-import { GetPageContentVisualizer } from "./tools/get-page-content";
-import { ProvideLinksVisualizer } from "./tools/provide-links";
-import { SearchDocsVisualizer } from "./tools/search-docs";
+import { MessageMetadata } from "./message-metadata";
 
 const Context = createContext<{
   open: boolean;
@@ -52,25 +37,39 @@ const Context = createContext<{
 } | null>(null);
 
 function useChatContext() {
-  const context = use(Context);
-  if (!context) throw new Error("useChatContext must be used within Context");
-  return context.chat;
+  const ctx = use(Context);
+  if (!ctx) {
+    throw new Error("useChatContext must be used within AISearch provider");
+  }
+  return ctx.chat;
 }
 
 function Header() {
-  const context = use(Context);
-  if (!context) throw new Error("Header must be used within Context");
-  const { setOpen } = context;
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const { setOpen, chat } = use(Context)!;
 
   return (
     <div className="sticky top-0 flex items-start gap-2">
-      <div className="bg-fd-card text-fd-card-foreground flex-1 rounded-xl p-3">
+      <div className="bg-secondary text-secondary-foreground flex flex-1 items-center justify-between rounded-xl px-3 py-2">
         <p className="text-sm font-medium">Ask AI</p>
+        <div className="flex items-center gap-1.5">
+          <button
+            className={cn(
+              buttonVariants({
+                color: "secondary",
+                size: "icon-xs",
+                className: "[&_svg]:size-3.5",
+              }),
+            )}
+            onClick={() => chat.setMessages([])}
+            type="button"
+          >
+            <TrashIcon />
+          </button>
+        </div>
       </div>
       <button
-        type="button"
         aria-label="Close"
-        tabIndex={-1}
         className={cn(
           buttonVariants({
             size: "icon-sm",
@@ -79,6 +78,8 @@ function Header() {
           }),
         )}
         onClick={() => setOpen(false)}
+        tabIndex={-1}
+        type="button"
       >
         <X />
       </button>
@@ -87,43 +88,29 @@ function Header() {
 }
 
 function SearchAIActions() {
-  const { messages, status, setMessages, regenerate } = useChatContext();
+  const { messages, status, regenerate } = useChatContext();
   const isLoading = status === "streaming";
 
-  if (messages.length === 0) return null;
-
   return (
-    <>
-      {!isLoading && messages.at(-1)?.role === "assistant" && (
-        <button
-          type="button"
-          className={cn(
-            buttonVariants({
-              color: "secondary",
-              size: "sm",
-              className: "gap-1.5 rounded-full",
-            }),
-          )}
-          onClick={() => regenerate()}
-        >
-          <RefreshCw className="size-4" />
-          Retry
-        </button>
+    <button
+      className={cn(
+        buttonVariants({
+          color: "secondary",
+          size: "icon-sm",
+          className:
+            "gap-1.5 rounded-t-md rounded-br-md rounded-bl-lg transition-opacity duration-200 [&_svg]:size-4",
+        }),
+        !isLoading &&
+          messages.length > 0 &&
+          messages.at(-1)?.role === "assistant"
+          ? "opacity-100"
+          : "opacity-0",
       )}
-      <button
-        type="button"
-        className={cn(
-          buttonVariants({
-            color: "secondary",
-            size: "sm",
-            className: "rounded-full",
-          }),
-        )}
-        onClick={() => setMessages([])}
-      >
-        Clear Chat
-      </button>
-    </>
+      onClick={() => regenerate()}
+      type="button"
+    >
+      <RefreshCw />
+    </button>
   );
 }
 
@@ -134,16 +121,18 @@ function SearchAIInput(props: ComponentProps<"form">) {
     () => localStorage.getItem(StorageKeyInput) ?? "",
   );
   const isLoading = status === "streaming" || status === "submitted";
-  const onStart = (e?: SyntheticEvent) => {
+  const onStart = async (e?: SyntheticEvent) => {
     e?.preventDefault();
-    void sendMessage({ text: input });
+    await sendMessage({ text: input });
     setInput("");
   };
 
   localStorage.setItem(StorageKeyInput, input);
 
   useEffect(() => {
-    if (isLoading) document.getElementById("nd-ai-input")?.focus();
+    if (isLoading) {
+      document.getElementById("nd-ai-input")?.focus();
+    }
   }, [isLoading]);
 
   return (
@@ -153,10 +142,8 @@ function SearchAIInput(props: ComponentProps<"form">) {
       onSubmit={onStart}
     >
       <Input
-        value={input}
-        placeholder={isLoading ? "AI is answering..." : "Ask a question"}
         autoFocus
-        className="p-3"
+        className={cn("p-3", isLoading && "text-fd-muted-foreground")}
         disabled={status === "streaming" || status === "submitted"}
         onChange={(e) => {
           setInput(e.target.value);
@@ -166,35 +153,40 @@ function SearchAIInput(props: ComponentProps<"form">) {
             onStart(event);
           }
         }}
+        placeholder={isLoading ? "Generating..." : "Ask a question"}
+        value={input}
       />
       {isLoading ? (
         <button
-          key="bn"
-          type="button"
           className={cn(
             buttonVariants({
               color: "secondary",
-              className: "mt-2 gap-2 rounded-full transition-all",
+              size: "icon-sm",
+              className:
+                "mt-2 rounded-tl-md rounded-tr-lg rounded-b-md transition-all [&_svg]:size-3.5",
             }),
           )}
+          key="bn"
           onClick={stop}
+          type="button"
         >
-          <Loader2 className="text-fd-muted-foreground size-4 animate-spin" />
-          Abort Answer
+          <SquareIcon className="fill-fd-foreground" />
         </button>
       ) : (
         <button
-          key="bn"
-          type="submit"
           className={cn(
             buttonVariants({
               color: "secondary",
-              className: "mt-2 rounded-full transition-all",
+              size: "icon-sm",
+              className:
+                "mt-2 rounded-tl-md rounded-tr-lg rounded-b-md transition-all [&_svg]:size-4",
             }),
           )}
           disabled={input.length === 0}
+          key="bn"
+          type="submit"
         >
-          <Send className="size-4" />
+          <ArrowUpIcon />
         </button>
       )}
     </form>
@@ -203,51 +195,40 @@ function SearchAIInput(props: ComponentProps<"form">) {
 
 function List(props: Omit<ComponentProps<"div">, "dir">) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const stateRef = useRef({ lastHeight: 0, isUserScrolled: false });
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    if (!containerRef.current) {
+      return;
+    }
+    function callback() {
+      const container = containerRef.current;
+      if (!container) {
+        return;
+      }
 
-    function handleResize() {
-      if (!container) return;
-      const currentHeight = container.scrollHeight;
-      const scrollTop = container.scrollTop;
-      const clientHeight = container.clientHeight;
-      const isNearBottom = scrollTop + clientHeight >= currentHeight - 100;
-      const heightIncreased = currentHeight > stateRef.current.lastHeight;
+      const isNearBottom =
+        container.scrollHeight - container.scrollTop - container.clientHeight <
+        100;
 
-      if (
-        heightIncreased &&
-        (isNearBottom || !stateRef.current.isUserScrolled)
-      ) {
+      if (isNearBottom) {
         container.scrollTo({
           top: container.scrollHeight,
           behavior: "instant",
         });
       }
-
-      stateRef.current.lastHeight = currentHeight;
     }
 
-    function handleScroll() {
-      if (!container) return;
-      const scrollTop = container.scrollTop;
-      const clientHeight = container.clientHeight;
-      const scrollHeight = container.scrollHeight;
-      stateRef.current.isUserScrolled =
-        scrollTop + clientHeight < scrollHeight - 100;
+    const observer = new ResizeObserver(callback);
+    callback();
+
+    const element = containerRef.current.firstElementChild;
+
+    if (element) {
+      observer.observe(element);
     }
-
-    const observer = new ResizeObserver(handleResize);
-    observer.observe(container.firstElementChild ?? container);
-    handleResize();
-
-    container.addEventListener("scroll", handleScroll);
 
     return () => {
       observer.disconnect();
-      container.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -267,20 +248,19 @@ function List(props: Omit<ComponentProps<"div">, "dir">) {
 
 function Input(props: ComponentProps<"textarea">) {
   const ref = useRef<HTMLDivElement>(null);
-  const id = useId();
   const shared = cn("col-start-1 row-start-1", props.className);
 
   return (
     <div className="grid flex-1">
       <textarea
-        id={id}
+        id="nd-ai-input"
         {...props}
         className={cn(
           "placeholder:text-fd-muted-foreground resize-none bg-transparent focus-visible:outline-none",
           shared,
         )}
       />
-      <div ref={ref} className={cn(shared, "invisible break-all")}>
+      <div className={cn(shared, "invisible break-all")} ref={ref}>
         {`${props.value?.toString() ?? ""}\n`}
       </div>
     </div>
@@ -292,119 +272,15 @@ const roleName: Record<string, string> = {
   assistant: "assistant",
 };
 
-function ToolRenderer({
-  part,
-  isActive,
-}: {
-  part: UIMessage["parts"][number] & {
-    type: string;
-    toolCallId?: string;
-    state?: string;
-  };
-  isActive: boolean;
-}) {
-  const [isOpen, setIsOpen] = useState(isActive);
-
-  useEffect(() => {
-    setIsOpen(isActive);
-  }, [isActive]);
-
-  if (!part.type.startsWith("tool-") || !("input" in part)) {
-    return null;
-  }
-
-  const { toolCallId, state } = part;
-  const toolName = part.type.replace("tool-", "");
-  const input = part.input;
-  const output = part.output;
-  const errorText = "errorText" in part ? part.errorText : undefined;
-
-  const getToolIcon = () => {
-    switch (toolName) {
-      case "searchDocs":
-        return <Search className="text-muted-foreground size-4" />;
-      case "webSearch":
-        return <Globe className="text-muted-foreground size-4" />;
-      case "getPageContent":
-        return <FileText className="text-muted-foreground size-4" />;
-      case "scrape":
-        return <Download className="text-muted-foreground size-4" />;
-      case "search":
-        return <Globe2 className="text-muted-foreground size-4" />;
-      default:
-        return undefined;
-    }
-  };
-
-  const renderVisualizer = () => {
-    switch (toolName) {
-      case "searchDocs":
-        return (
-          <SearchDocsVisualizer
-            state={state}
-            input={input as { query?: string; tag?: string; locale?: string }}
-            output={output as SearchDocsOutput | undefined}
-          />
-        );
-      case "getPageContent":
-        return (
-          <GetPageContentVisualizer
-            state={state}
-            input={input as { path?: string }}
-            output={output as GetPageContentOutput | undefined}
-          />
-        );
-      default:
-        return null;
-    }
-  };
-
-  if (part.type === "tool-provideLinks") return null;
-
-  return (
-    <Tool key={toolCallId} open={isOpen} onOpenChange={setIsOpen}>
-      <ToolHeader
-        state={state}
-        type={part.type as `tool-${string}`}
-        icon={getToolIcon()}
-      />
-      <ToolContent>
-        {(state === "input-streaming" ||
-          state === "input-available" ||
-          state === "output-available") &&
-          renderVisualizer()}
-        {state === "output-error" && (
-          <ToolOutput errorText={errorText} output={undefined} />
-        )}
-      </ToolContent>
-    </Tool>
-  );
-}
-
 function Message({
   message,
-  status,
+  isInProgress,
   ...props
 }: {
-  message: UIMessage;
-  status: string;
+  message: MyUIMessage;
+  isInProgress: boolean;
 } & ComponentProps<"div">) {
-  let markdown = "";
-  let links: z.infer<typeof ProvideLinksToolSchema>["links"] = [];
-
-  for (const part of message.parts) {
-    if (part.type === "text") {
-      markdown += part.text;
-      continue;
-    }
-
-    if (part.type === "tool-provideLinks" && part.input) {
-      links = (part.input as z.infer<typeof ProvideLinksToolSchema>).links;
-    }
-  }
-
-  const parts = message.parts;
-  const isStreaming = status === "streaming";
+  const { parts } = message;
 
   return (
     <div {...props}>
@@ -416,32 +292,24 @@ function Message({
       >
         {roleName[message.role] ?? "unknown"}
       </p>
-      <div className="prose text-sm">
+      <div className="flex flex-col gap-2">
+        <MessageMetadata inProgress={isInProgress} parts={parts} />
         {parts.map((part, idx) => {
-          if (part.type.startsWith("tool-") && "input" in part) {
-            const isPartActive = isStreaming && parts.length - 1 === idx;
-            return (
-              <ToolRenderer
-                key={`tool-${part.toolCallId || idx}`}
-                part={part}
-                isActive={isPartActive}
-              />
-            );
+          if (part.type !== "text") {
+            return null;
           }
-          return null;
+          return (
+            <div className="prose text-sm" key={`${message.id}-text-${idx}`}>
+              <Markdown text={part.text} />
+            </div>
+          );
         })}
-        {markdown && <Markdown text={markdown} />}
-      </div>
-      <div className="mt-2 empty:hidden">
-        {links && links.length > 0 && (
-          <ProvideLinksVisualizer input={{ links }} output={{ links }} />
-        )}
       </div>
     </div>
   );
 }
 
-export function AISearchTrigger() {
+export function AISearch({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const chat = useChat({
     id: "search",
@@ -450,7 +318,41 @@ export function AISearchTrigger() {
     }),
   });
 
-  const onKeyPress = (e: KeyboardEvent) => {
+  return (
+    <Context value={useMemo(() => ({ chat, open, setOpen }), [chat, open])}>
+      {children}
+    </Context>
+  );
+}
+
+export function AISearchTrigger() {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- Context is guaranteed by parent AISearch
+  const { open, setOpen } = use(Context)!;
+
+  return (
+    <button
+      className={cn(
+        buttonVariants({
+          variant: "secondary",
+        }),
+        "text-fd-muted-foreground fixed end-4 bottom-4 z-20 w-24 gap-3 rounded-2xl shadow-lg transition-all",
+        open && "translate-y-10 opacity-0",
+      )}
+      onClick={() => setOpen(true)}
+      type="button"
+    >
+      <MessageCircleIcon className="size-4.5" />
+      Ask AI
+    </button>
+  );
+}
+
+export function AISearchPanel() {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- Context is guaranteed by parent AISearch
+  const { open, setOpen } = use(Context)!;
+  const chat = useChatContext();
+
+  const onKeyPress = useEffectEvent((e: KeyboardEvent) => {
     if (e.key === "Escape" && open) {
       setOpen(false);
       e.preventDefault();
@@ -460,77 +362,86 @@ export function AISearchTrigger() {
       setOpen(true);
       e.preventDefault();
     }
-  };
+  });
 
   useEffect(() => {
-    const listener = (e: KeyboardEvent) => onKeyPress(e);
-    window.addEventListener("keydown", listener);
-    return () => window.removeEventListener("keydown", listener);
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- only run on mount
+    window.addEventListener("keydown", onKeyPress);
+    return () => window.removeEventListener("keydown", onKeyPress);
   }, []);
 
   return (
-    <Context value={useMemo(() => ({ chat, open, setOpen }), [chat, open])}>
+    <>
       <style>
         {`
         @keyframes ask-ai-open {
           from {
-            translate: 100% 0;
+            width: 0px;
+          }
+          to {
+            width: var(--ai-chat-width);
           }
         }
-        
         @keyframes ask-ai-close {
+          from {
+            width: var(--ai-chat-width);
+          }
           to {
-            translate: 100% 0;
-            opacity: 0;
+            width: 0px;
           }
         }`}
       </style>
       <Presence present={open}>
+        <button
+          aria-label="Close AI search panel"
+          className="bg-fd-overlay data-[state=closed]:animate-fd-fade-out data-[state=open]:animate-fd-fade-in fixed inset-0 z-30 backdrop-blur-xs lg:hidden"
+          data-state={open ? "open" : "closed"}
+          onClick={() => setOpen(false)}
+          type="button"
+        />
+      </Presence>
+      <Presence present={open}>
         <div
           className={cn(
-            "bg-fd-popover text-fd-popover-foreground fixed inset-y-2 z-30 flex flex-col rounded-2xl border p-2 shadow-lg max-sm:inset-x-2 sm:end-2 sm:w-[460px]",
-            open
-              ? "animate-[ask-ai-open_300ms]"
-              : "animate-[ask-ai-close_300ms]",
+            "bg-fd-popover text-fd-popover-foreground z-30 overflow-hidden",
+            "max-lg:fixed max-lg:inset-x-2 max-lg:top-4 max-lg:rounded-2xl max-lg:border max-lg:shadow-xl",
+            "bg-fd-popover text-fd-popover-foreground fixed inset-y-2 z-30 flex flex-col rounded-2xl border shadow-xl max-sm:inset-x-2 sm:end-2 sm:w-[460px]",
+            open ? "animate-fd-dialog-in" : "animate-fd-dialog-out",
           )}
         >
-          <Header />
-          <List
-            className="flex-1 overscroll-contain px-3 py-4"
-            style={{
-              maskImage:
-                "linear-gradient(to bottom, transparent, white 1rem, white calc(100% - 1rem), transparent 100%)",
-            }}
-          >
-            <div className="flex flex-col gap-4">
-              {chat.messages
-                .filter((msg) => msg.role !== "system")
-                .map((item) => (
-                  <Message key={item.id} message={item} status={chat.status} />
-                ))}
-            </div>
-          </List>
-          <div className="bg-fd-card text-fd-card-foreground has-focus-visible:ring-fd-ring rounded-xl border has-focus-visible:ring-2">
-            <SearchAIInput />
-            <div className="flex items-center gap-1.5 p-1 empty:hidden">
-              <SearchAIActions />
+          <div className="flex size-full flex-col p-2 xl:p-4">
+            <Header />
+            <List
+              className="flex-1 overscroll-contain px-3 py-4"
+              style={{
+                maskImage:
+                  "linear-gradient(to bottom, transparent, white 1rem, white calc(100% - 1rem), transparent 100%)",
+              }}
+            >
+              <div className="flex flex-col gap-4">
+                {chat.messages
+                  .filter((msg) => msg.role !== "system")
+                  .map((item, idx) => (
+                    <Message
+                      isInProgress={
+                        chat.messages.length - 1 === idx &&
+                        (chat.status === "streaming" ||
+                          chat.status === "submitted")
+                      }
+                      key={item.id}
+                      message={item}
+                    />
+                  ))}
+              </div>
+            </List>
+            <div className="bg-fd-card text-fd-card-foreground has-focus-visible:ring-fd-ring rounded-xl border has-focus-visible:ring-2">
+              <SearchAIInput />
+              <div className="flex items-center gap-1.5 p-2">
+                <SearchAIActions />
+              </div>
             </div>
           </div>
         </div>
       </Presence>
-      <button
-        className={cn(
-          "bg-fd-secondary text-fd-muted-foreground fixed bottom-4 z-20 flex h-10 w-24 items-center gap-3 rounded-2xl border px-2 text-sm font-medium shadow-lg transition-[translate,opacity]",
-          "end-[calc(var(--removed-body-scroll-bar-size,0px)+var(--fd-layout-offset)+1rem)]",
-          open && "translate-y-10 opacity-0",
-        )}
-        onClick={() => setOpen(true)}
-        type="button"
-      >
-        <MessageCircleIcon className="size-4.5" />
-        Ask AI
-      </button>
-    </Context>
+    </>
   );
 }

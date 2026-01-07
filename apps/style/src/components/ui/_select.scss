@@ -38,45 +38,46 @@
     @include icon("caret-down-bold", "bold");
   }
 
-  /* Note: :open::picker-icon is not valid CSS syntax */
-  /* &:open::picker-icon {
+  &:open::picker-icon {
     rotate: 180deg;
-  } */
+  }
 }
 
 select {
   @include select-base;
 }
 
-/* Note: ::picker(select) is a pseudo-element and cannot be combined with pseudo-classes */
-/* ::picker(select) {
-  @include select-base;
-} */
-
 // dropdown panel
-/* Note: ::picker(select) pseudo-element cannot be combined with pseudo-classes like :popover-open */
-/* ::picker(select) {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background: var(--popover);
-  top: calc(anchor(bottom) + 4px);
-  opacity: 0;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s cubic-bezier(0, 0, 0.3, 1),
-    display 0.2s allow-discrete,
-    overlay 0.2s allow-discrete;
+select {
+  appearance: base-select;
 
-  &:popover-open {
+  &::picker(select) {
+    appearance: base-select;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--popover);
+    top: calc(anchor(bottom) + 4px);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s cubic-bezier(0, 0, 0.3, 1),
+      display 0.2s allow-discrete,
+      overlay 0.2s allow-discrete;
+  }
+
+  &:open::picker(select) {
     opacity: 1;
+    transform: translateY(0);
   }
 
   @starting-style {
-    &:popover-open {
+    &:open::picker(select) {
       opacity: 0;
+      transform: translateY(-4px);
     }
   }
-} */
+}
 
 // option items
 option {

@@ -4,12 +4,24 @@ import { source } from "@/lib/source";
 
 export const { GET } = createSearchAPI("advanced", {
   language: "english",
-  indexes: source.getPages().map((page) => ({
-    title: page.data.title,
-    description: page.data.description,
-    url: page.url,
-    id: page.url,
-    structuredData: page.data.structuredData,
-    tag: page.slugs[0],
-  })),
+  indexes: async () => {
+    const pages = source.getPages();
+
+    const indexes = await Promise.all(
+      pages.map(async (page) => {
+        const { structuredData } = await page.data.load();
+
+        return {
+          title: page.data.title,
+          description: page.data.description,
+          url: page.url,
+          id: page.url,
+          structuredData,
+          tag: page.path.split("/")[0],
+        };
+      }),
+    );
+
+    return indexes;
+  },
 });

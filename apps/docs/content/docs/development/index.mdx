@@ -1,0 +1,122 @@
+---
+title: Introduction
+description: How to contribute to Coolify Tweaks
+icon: Book
+---
+
+## Prerequisites
+
+- **Node.js** `^22.21.0`
+- **PNPM** `^10.19.0`
+- **Bun** `^1.3.0` (used for the TypeScript scripts that power docs and style)
+- A **Postgres / Neon** `POSTGRES_URL` if you touch analytics or the API
+
+## Repository layout
+
+<Files>
+  <Folder name="coolify-tweaks" defaultOpen>
+    <Folder name="apps" defaultOpen>
+      <Folder name="docs" description="Next.js/Fumadocs site" />
+      <Folder name="api" description="Nitro release + analytics proxy" />
+      <Folder name="style" description="Sass + Lightning CSS pipeline" />
+    </Folder>
+    <Folder name="packages" defaultOpen>
+      <Folder name="db" description="Drizzle + Neon helpers" />
+      <Folder name="ui" description="Shared shadcn/ui components" />
+      <Folder name="validators" description="Zod helpers for docs/API" />
+    </Folder>
+    <Folder name="tooling" defaultOpen>
+      <Folder name="eslint" description="Shared ESLint configs" />
+      <Folder name="prettier" description="Prettier config" />
+      <Folder name="tailwind" description="Tailwind v4 theme and tokens" />
+      <Folder name="cspell" description="Spellcheck configuration" />
+      <Folder name="typescript" description="Shared tsconfig bases" />
+    </Folder>
+  </Folder>
+</Files>
+
+Internal packages are scoped under `@repo/*`.
+
+## Quick start
+
+1. Clone the repo and install dependencies:
+
+   ```bash
+   git clone https://github.com/techwithanirudh/coolify-tweaks.git
+   cd coolify-tweaks
+   pnpm install
+   cp .env.example .env
+   ```
+
+2. Sync the database (only if you need analytics):
+
+   ```bash
+   pnpm db:push
+   ```
+
+3. Run the apps you care about:
+
+   ```bash
+   pnpm --filter @repo/style dev
+   pnpm --filter @repo/docs dev
+   pnpm --filter @repo/api dev
+   ```
+
+   Or run all of them together:
+
+   ```bash
+   pnpm dev
+   ```
+
+4. Make changes and run the repo checks:
+
+   ```bash
+   pnpm lint
+   pnpm format
+   pnpm typecheck
+   pnpm check:spelling
+   ```
+
+5. Push a branch with a Conventional Commit message, open a PR, and address any CI feedback.
+
+## Apps
+
+<Cards>
+  <Card title="Style" href="/docs/development/apps/style" icon={<Palette />}>
+    Sass + Lightning CSS pipeline that builds the Tweaks stylesheet.
+    Produces both .user.css and standard CSS bundles.
+  </Card>
+
+<Card title="API" href="/docs/development/apps/api" icon={<Server />}>
+  Nitro-based API for release proxying, analytics, and serving final CSS
+  bundles.
+</Card>
+
+<Card title="Docs" href="/docs/development/apps/docs" icon={<Book />}>
+  Next.js + Fumadocs documentation and marketing site powered by @repo/ui.
+</Card>
+
+  <Card title="Tooling" href="/docs/development/apps/tooling" icon={<Settings />}>
+    Shared linting, formatting, Tailwind tokens, TypeScript bases, and spellcheck.
+  </Card>
+</Cards>
+
+## Core scripts
+
+- `pnpm dev`: Turbo watch mode for all `dev` targets.
+- `pnpm dev:web` / `pnpm dev:api` / `pnpm dev:style`: Focus on a single app.
+- `pnpm build`: Run every `build` pipeline.
+- `pnpm typecheck`: TypeScript across the repo.
+- `pnpm format` / `format:fix`: Prettier with the shared config.
+- `pnpm lint` / `lint:fix`: ESLint across apps + packages.
+- `pnpm check:spelling`: cspell spelling checks docs/TSX.
+- `pnpm ui-add`: Add shadcn/ui components to `@repo/ui`.
+- `pnpm turbo gen init`: Scaffold a new package/workspace with lint/type/build wiring.
+
+Commitlint + Lefthook enforce Conventional Commits on `commit-msg`, and `.github/workflows` run the same commands in CI.
+
+## Branches, commits, and PRs
+
+- Branch names: use descriptive keywords such as `feat/new-theme-toggle`, `fix/docs-typo`, or `chore/update-deps`.
+- Commits: follow Conventional Commits (`feat: ...`, `fix: ...`, `docs: ...`, `chore: ...`).
+- PRs: keep them focused, rerun the repo checks, and rebase on `main` when requested.

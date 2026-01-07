@@ -7,10 +7,12 @@ body:
     attributes:
       label: Provide environment information
       description: |
-        Run this command in your project root and paste the results in a code block:
-        ```bash
-        npx envinfo --system --binaries
-        ```
+        Please include the following details:
+          - Coolify Tweaks version  
+          - Coolify version  
+          - Installation method (Stylus, Traefik, etc.).  
+            If using Stylus, include your Stylus extension version  
+          - Browser version and operating system
     validations:
       required: true
   - type: textarea

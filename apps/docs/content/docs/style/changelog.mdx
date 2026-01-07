@@ -3,90 +3,110 @@ title: Changelog
 description: Latest updates to the Coolify Tweaks userstyle.
 icon: List
 ---
-
 <Updates>
+  <Update label="4.0.0">
+    ### Major Changes
+
+    Coolify Tweaks has a new website and docs powered by Fumadocs! This allows us to ship custom components like the theme installer, OpenAPI docs, and other UI pieces.
+
+    The project has been refactored into a monorepo using Turborepo, consolidating the landing page, API, and styles into a single repository. This enables faster iteration and keeps everything in sync.
+
+    We've also adopted a custom style-build pipeline with LightningCSS, which is approximately 25× faster than the previous setup.
+
+    A new install method has been introduced to make it easier to get started with Coolify Tweaks.
+  </Update>
+
+  <Update label="3.9.9">
+    ### Patch Changes
+
+    - fix: ui fixes for new version
+  </Update>
+
+  <Update label="3.9.8">
+    ### Patch Changes
+
+    - fix: select
+  </Update>
+
+  <Update label="3.9.7">
+    ### Patch Changes
+
+    - fix: new resource cards are too big
+    - fix: the resource filter has coolify's old UI
+    - fix: the action buttons with different colors aren't shown
+    - fix: match scrollbar to theme colors
+  </Update>
+
   <Update label="3.9.6">
     ### Patch Changes
 
     - feat: add support for injection
-
   </Update>
 
   <Update label="3.9.5">
     ### Patch Changes
 
     - fix: use lightning again
-
   </Update>
 
   <Update label="3.9.4">
     ### Patch Changes
 
     - fix: tweakcn themes
-
   </Update>
 
   <Update label="3.9.3">
     ### Patch Changes
 
     - fix: un-minify output
-
   </Update>
 
   <Update label="3.9.2">
     ### Patch Changes
 
     - fix: build
-
   </Update>
 
   <Update label="3.9.1">
     ### Patch Changes
 
     - 3.9.1
-
   </Update>
 
   <Update label="3.9.0">
     ### Minor Changes
 
     - internal-refactoring: turborepo
-
   </Update>
 
   <Update label="3.8.10">
     ### Patch Changes
 
     - fix: use accent foreground for accent bg
-
   </Update>
 
   <Update label="3.8.9">
     ### Patch Changes
 
     - fix: (preferences hover style)
-
   </Update>
 
   <Update label="3.8.8">
     ### Patch Changes
 
     - fix: ui fixes for coolify beta 427
-
   </Update>
 
   <Update label="3.8.7">
     ### Patch Changes
 
     - fix: undo changes for new version
-
   </Update>
 
   <Update label="3.8.6">
     ### Patch Changes
 
     - style: update z-index for deployment floating element and enhance expanded state styles
-
   </Update>
 
   <Update label="3.8.5">
@@ -94,35 +114,30 @@ icon: List
 
     - fix: base color
     - 90f9104: fix: run vite build when starting dev server
-
   </Update>
 
   <Update label="3.8.4">
     ### Patch Changes
 
     - fix: make "Maybe next time" text visible in light mode
-
   </Update>
 
   <Update label="3.8.3">
     ### Patch Changes
 
     - fix: colors for search input
-
   </Update>
 
   <Update label="3.8.2">
     ### Patch Changes
 
     - fix: tweaks for new coolify version
-
   </Update>
 
   <Update label="3.8.1">
     ### Patch Changes
 
     - fix: general bug fixes and improvements
-
   </Update>
 
   <Update label="3.8.0">
@@ -134,63 +149,54 @@ icon: List
       - Round cards and adjust background/radius for improved visual consistency
       - Fix badge dimensions using shorthand spacing function
       - Update overrides for width utility classes
-
   </Update>
 
   <Update label="3.7.8">
     ### Patch Changes
 
     - fix: grid and search styles & feat: round cards and apply card bg
-
   </Update>
 
   <Update label="3.7.7">
     ### Patch Changes
 
     - fix: search bar alignment
-
   </Update>
 
   <Update label="3.7.6">
     ### Patch Changes
 
     - fix: match deployment item colors
-
   </Update>
 
   <Update label="3.7.5">
     ### Patch Changes
 
     - fix: styles broken due to new coolify update
-
   </Update>
 
   <Update label="3.7.4">
     ### Patch Changes
 
     - fix: tweak gear icon
-
   </Update>
 
   <Update label="3.7.3">
     ### Patch Changes
 
     - feat: replace theme-selector with settings-menu and add styling for settings dropdown
-
   </Update>
 
   <Update label="3.7.2">
     ### Patch Changes
 
     - feat: add new icons for theme selector; fix: search icon position for changelog modal; fix: highlight settings button on active (dropdownOpen)
-
   </Update>
 
   <Update label="3.7.1">
     ### Patch Changes
 
     - refactor: theme selector logic for new settings menu
-
   </Update>
 
   <Update label="3.7.0">
@@ -203,14 +209,12 @@ icon: List
       - Enhanced onboarding page layout and styling
       - Removed !important declarations for better maintainability
       - Improved UI component organization and theming
-
   </Update>
 
   <Update label="3.6.4">
     ### Patch Changes
 
     - fix: destructive colors & fix width inconsistencies
-
   </Update>
 
   <Update label="3.6.3">
@@ -222,7 +226,6 @@ icon: List
       - Clean PostCSS plugin for handling import rules placement
       - Removed redundant code and simplified build pipeline
       - Better maintainability and cleaner output
-
   </Update>
 
   <Update label="3.6.2">
@@ -233,7 +236,6 @@ icon: List
       - Update hover state styles for theme selector button to enhance visual feedback
       - Support all theme states for improved functionality
       - Remove unnecessary styles for cleaner design
-
   </Update>
 
   <Update label="3.6.1">
@@ -247,7 +249,6 @@ icon: List
       - Cleaned up unnecessary styles from theme selector button
       - Refined README backstory section for better clarity
       - Updated README with enhanced project backstory and UI descriptions
-
   </Update>
 
   <Update label="3.6.0">
@@ -271,42 +272,36 @@ icon: List
       ## Breaking Changes
 
       None - this is purely an internal architectural improvement that maintains the same output functionality while improving code quality and maintainability.
-
   </Update>
 
   <Update label="3.5.4">
     ### Patch Changes
 
     - fix: deployments section ui
-
   </Update>
 
   <Update label="3.5.3">
     ### Patch Changes
 
     - fix: allow pointer events for disabled inputs
-
   </Update>
 
   <Update label="3.5.2">
     ### Patch Changes
 
     - refactor: radius logic
-
   </Update>
 
   <Update label="3.5.1">
     ### Patch Changes
 
     - refactor: update system
-
   </Update>
 
   <Update label="3.5.0">
     ### Minor Changes
 
     - fix: tweakcn
-
   </Update>
 
   <Update label="3.4.0">
@@ -350,49 +345,42 @@ icon: List
       - Monaco editor respects radius and overflow properly now
 
       This update smooths everything out and makes Coolify feel way more unified, nothing breaks, just a nicer, themeable experience overall.
-
   </Update>
 
   <Update label="3.3.1">
     ### Patch Changes
 
     - feat: add new font and update colors, and radius
-
   </Update>
 
   <Update label="3.3.0">
     ### Minor Changes
 
     - feat: redesign dashboard project cards
-
   </Update>
 
   <Update label="3.2.3">
     ### Patch Changes
 
     - fix: select styling
-
   </Update>
 
   <Update label="3.2.2">
     ### Patch Changes
 
     - fix: icon rendering for the feedback icon
-
   </Update>
 
   <Update label="3.2.1">
     ### Patch Changes
 
     - use phosphor icons for the sidebar
-
   </Update>
 
   <Update label="3.2.0">
     ### Minor Changes
 
     - refactor selector logic to be easier to read
-
   </Update>
 
   <Update label="3.1.0">
@@ -405,27 +393,23 @@ icon: List
       - Added GitHub funding configuration to support project development
       - Improved release workflow by switching trigger branch from main to dev
       - Added engine requirements and spell checking script to package.json
-
   </Update>
 
   <Update label="3.0.3">
     ### Patch Changes
 
     - fix: release cycle
-
   </Update>
 
   <Update label="3.0.2">
     ### Patch Changes
 
     - Fixes release workflow for changesets.
-
   </Update>
 
   <Update label="3.0.1">
     ### Patch Changes
 
     - Migrate to Changeset CLI for better version management and changelog generation. This improves the development workflow by providing automated changelog generation and semantic versioning.
-
   </Update>
 </Updates>

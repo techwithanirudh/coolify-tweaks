@@ -4,7 +4,7 @@ import { $fetch } from "nitro/deps/ofetch";
 import { defineHandler, getQuery, getRouterParam, HTTPError } from "nitro/h3";
 
 import { allowedHeaders, owner, repo } from "@/config";
-import { processContent } from "@/utils/stylus";
+import { processContent } from "@/utils/themes";
 
 defineRouteMeta({
   openAPI: {
@@ -42,7 +42,7 @@ defineRouteMeta({
         name: "theme",
         required: false,
         description:
-          "TweakCN theme identifier for CSS variable injection. Only applies when requesting `main.user.css`. Browse available themes at https://tweakcn.com/themes.",
+          "TweakCN theme identifier for CSS variable injection. Browse available themes at https://tweakcn.com/themes.",
         schema: {
           type: "string",
           pattern: "^c[a-z0-9]{24}$",

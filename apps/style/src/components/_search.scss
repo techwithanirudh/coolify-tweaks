@@ -12,23 +12,19 @@
   background: var(--input) !important;
 }
 
-.sticky.z-10.top-10:has(input[x-ref="searchInput"]) {
-  background: var(--popover) !important;
-  border-radius: var(--radius-lg);
-  padding: s(2);
-  box-shadow: var(--shadow-sm) !important;
-
-  input[x-ref="searchInput"] {
-    box-shadow: none !important;
-  }
-}
-
 div.relative:has(
     > div[\@click*="openCategoryDropdown"] ~ div[x-show="openCategoryDropdown"]
   ) {
   div[\@click*="openCategoryDropdown"].py-1\.5 {
     @include button.button-base;
-    background: var(--input) !important;
+    background: transparent;
+
+    @include for-dark {
+      background: color-mix(in srgb, var(--input) 30%, transparent);
+    }
+
+    border: 1px solid var(--input);
+
     color: var(--foreground);
     box-shadow: none !important;
 

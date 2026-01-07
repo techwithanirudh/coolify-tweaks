@@ -25,6 +25,7 @@ div.grid[class*="cols"]:is(
     :has([\@click^="$wire.navigateToProject"]),
     [x-show^="filteredApplications"],
     [x-show^="filteredServices"],
+    [x-show^="filteredDatabases"]:has(> span > a.coolbox),
     [x-show^="filteredDatabases"]:has(> span > a.box)
   ) {
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -45,6 +46,7 @@ div.grid[class*="cols"]:is(
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
+  .coolbox,
   .box {
     height: 150px;
     padding: s(4) s(5);

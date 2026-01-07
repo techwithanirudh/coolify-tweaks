@@ -1,4 +1,4 @@
-:root {
+@theme {
   --background: oklch(0.994 0 0);
   --foreground: oklch(0 0 0);
 
@@ -80,7 +80,7 @@
   --primary: oklch(0.62 0.2 286.7);
   --primary-foreground: oklch(1 0 0);
 
-  --secondary: var(--card);
+  --secondary: oklch(0.275 0.012 292);
   --secondary-foreground: oklch(0.86 0.012 298);
 
   --muted: oklch(0.27 0.025 290);

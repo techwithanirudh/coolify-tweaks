@@ -10,12 +10,12 @@ export function CTA() {
         <div className="relative z-20 flex w-full flex-col items-center justify-start gap-6 overflow-hidden rounded-lg px-6 py-5 md:py-8">
           <div className="flex flex-col items-start justify-start gap-3 self-stretch">
             <div className="flex flex-col justify-center self-stretch text-center text-3xl leading-tight font-semibold tracking-tight">
-              Ready to polish your Coolify dashboard?
+              Ready to theme your Coolify dashboard?
             </div>
             <div className="text-muted-foreground self-stretch text-center text-base leading-7 font-medium">
               Install Coolify Tweaks in minutes and transform your dashboard
               <br />
-              with better spacing, typography, and colors.
+              with custom themes, better spacing, typography, and colors.
             </div>
           </div>
           <div className="flex w-full flex-col items-center justify-center gap-12">

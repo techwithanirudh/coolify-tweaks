@@ -12,7 +12,6 @@ export const env = createEnv({
   },
   server: {
     OPENAI_API_KEY: z.string().startsWith("sk-"),
-    SENTRY_AUTH_TOKEN: z.string().startsWith("sntrys_"),
   },
   client: {
     NEXT_PUBLIC_API_URL: z.preprocess(

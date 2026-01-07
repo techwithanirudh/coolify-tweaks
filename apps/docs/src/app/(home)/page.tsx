@@ -8,7 +8,7 @@ import { Testimonials } from "./_components/testimonials";
 
 export default function LandingPage(): ReactElement {
   return (
-    <main className="divide-border container flex flex-1 flex-col divide-y border-x px-0">
+    <main className="divide-border mx-auto flex w-full max-w-[1400px] flex-1 flex-col divide-y border-x px-0">
       <Hero />
       <Features />
       <Testimonials />

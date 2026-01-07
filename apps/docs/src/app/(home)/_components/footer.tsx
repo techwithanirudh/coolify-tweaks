@@ -23,7 +23,7 @@ export function Footer() {
             </div>
           </div>
           <div className="text-muted-foreground text-sm">
-            A style layer for refined spacing, typography, and colors
+            A theme for refined spacing, typography, and colors
           </div>
           <Button variant="ghost" size="icon-sm" asChild>
             <a
@@ -69,7 +69,7 @@ export function Footer() {
               <div className="group/contact flex items-center gap-2">
                 <button
                   onClick={() => copyToClipboard(email)}
-                  className="bg-primary/80 hover:bg-primary relative flex size-4 cursor-pointer items-center justify-center rounded transition-colors"
+                  className="bg-primary/80 hover:bg-primary relative flex size-4 cursor-pointer items-center justify-center rounded-[0.25rem] transition-colors"
                   aria-label="Copy email"
                 >
                   {isCopied ? (
@@ -111,7 +111,7 @@ export function Footer() {
             © 2025 Coolify Tweaks. All rights reserved.
           </div>
           <div className="text-muted-foreground/70 text-xs">
-            Coolify is trademark of coolLabs Technologies Bt. Coolify Tweaks is
+            Coolify is trademark of coolLabs Solutions Kft. Coolify Tweaks is
             not affiliated with or endorsed by coolLabs.
           </div>
         </div>

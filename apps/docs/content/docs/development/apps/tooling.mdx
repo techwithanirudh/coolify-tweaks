@@ -1,0 +1,204 @@
+---
+title: Tooling
+description: Shared tooling packages used across the entire monorepo
+icon: Settings
+---
+
+## Introduction
+
+The `tooling/` directory contains shared configuration packages used across the entire monorepo. These packages ensure consistency in code style, type checking, formatting, spellcheck, and other development workflows.
+
+All tooling packages are scoped under `@repo/*` and are consumed by apps and packages via workspace dependencies.
+
+## Package overview
+
+<Accordions>
+  <Accordion title="@repo/eslint-config">
+    Shared ESLint presets for consistent code quality.
+
+    **Exports:**
+    - `base` - Base TypeScript and JavaScript rules
+    - `react` - React and React Hooks rules
+    - `nextjs` - Next.js specific rules
+
+    **Usage:**
+
+    ```js
+    // eslint.config.js
+    import { baseConfig } from "@repo/eslint-config/base";
+    import { reactConfig } from "@repo/eslint-config/react";
+    import { nextjsConfig } from "@repo/eslint-config/nextjs";
+
+    export default [baseConfig, reactConfig, nextjsConfig];
+    ```
+
+  </Accordion>
+
+  <Accordion title="@repo/prettier-config">
+    Shared Prettier configuration with automatic import sorting and Tailwind class sorting.
+
+    **Usage:**
+
+    Add to `package.json`:
+
+    ```json
+    {
+      "prettier": "@repo/prettier-config"
+    }
+    ```
+
+    **Import order:** Type imports, React/Next.js, third-party modules, `@repo/*` workspace packages, local imports
+
+  </Accordion>
+
+  <Accordion title="@repo/tailwind-config">
+    Shared Tailwind CSS v4 theme and PostCSS configuration.
+
+    **Exports:**
+    - `theme` - Tailwind theme CSS file
+    - `postcss-config` - PostCSS configuration
+
+    **Usage:**
+
+    ```js
+    // postcss.config.js
+    import postcssConfig from "@repo/tailwind-config/postcss-config";
+    export default postcssConfig;
+    ```
+
+    ```css
+    @import "@repo/tailwind-config/theme";
+    ```
+
+  </Accordion>
+
+  <Accordion title="@repo/tsconfig">
+    Base TypeScript configuration with strict type checking and modern bundler resolution.
+
+    **Usage:**
+
+    ```json
+    {
+      "extends": "@repo/tsconfig/base.json"
+    }
+    ```
+
+  </Accordion>
+
+  <Accordion title="@repo/cspell-config">
+    Shared spellcheck configuration with custom dictionaries for technical terms, NPM packages, and Bash scripts.
+
+    **Usage:**
+
+    Create `.cspell.json`:
+
+    ```json
+    {
+      "version": "0.2",
+      "import": ["@repo/cspell-config"],
+      "words": [
+        "abc",
+        "def",
+      ]
+    }
+    ```
+
+  </Accordion>
+</Accordions>
+
+## Development workflow
+
+### Adding a new tooling package
+
+<Steps>
+  <Step>
+    **Generate the package** using turbo gen:
+
+    ```bash
+    pnpm turbo gen init
+    ```
+
+    Enter the package name (e.g., `my-tool`). This creates it in `packages/`.
+
+  </Step>
+  <Step>
+    **Move the package** to the `tooling/` directory:
+
+    ```bash
+    mv packages/my-tool tooling/my-tool
+    ```
+
+  </Step>
+  <Step>
+    **Update the package** if needed. Tooling packages typically:
+    - Export configuration files (not code)
+    - May not need a `src/` directory
+    - Should have appropriate `exports` in `package.json`
+  </Step>
+  <Step>
+    **Run `pnpm install`** to link the workspace package.
+  </Step>
+</Steps>
+
+## Checks
+
+After modifying any tooling package, run the relevant checks:
+
+- **ESLint changes:** `pnpm lint`
+- **Prettier changes:** `pnpm format`
+- **TypeScript changes:** `pnpm typecheck`
+- **Spellcheck changes:** `pnpm check:spelling`
+- **Tailwind changes:** Test in the docs app, verify theme tokens, and check PostCSS processing
+
+## Best practices
+
+- **Keep tooling packages focused:** Each package should have a single responsibility
+- **Version compatibility:** Tooling packages should work together harmoniously
+- **Documentation:** Update this page when adding new tooling or changing behavior
+- **Breaking changes:** Coordinate breaking changes across the monorepo
+- **Testing:** Always test tooling changes in consuming apps before committing
+
+## Troubleshooting
+
+<Accordions>
+  <Accordion title="ESLint errors after updating config">
+    Clear ESLint cache and restart your editor:
+
+    ```bash
+    rm -rf .cache/eslint
+    ```
+
+  </Accordion>
+
+  <Accordion title="Prettier not formatting correctly">
+    Ensure the package extends `@repo/prettier-config`:
+
+    ```json
+    {
+      "prettier": "@repo/prettier-config"
+    }
+    ```
+
+  </Accordion>
+
+  <Accordion title="TypeScript errors after tsconfig changes">
+    Clear TypeScript build info:
+
+    ```bash
+    find . -name "tsconfig.tsbuildinfo" -delete
+    find . -name ".cache" -type d -exec rm -rf {} +
+    ```
+
+  </Accordion>
+
+  <Accordion title="Tailwind classes not working">
+    Verify the theme is imported in your CSS entry point:
+
+    ```css
+    @import "@repo/tailwind-config/theme";
+    ```
+
+    And that PostCSS config is set up correctly.
+
+  </Accordion>
+</Accordions>

@@ -56,8 +56,5 @@ dist/
 .content-collections
 .source
 
-# sentry
-.env.sentry-build-plugin
-
 # pnpm
-.pnpm-store
+**/.pnpm-store/

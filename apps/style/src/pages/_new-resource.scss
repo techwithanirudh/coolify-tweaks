@@ -31,16 +31,37 @@ input.input-sticky {
   backdrop-filter: blur(var(--blur));
 }
 
-div.grid[class*="cols"]:is(
-    [x-show^="filteredGitBasedApplications"],
-    [x-show^="filteredDockerBasedApplications"],
-    [x-show^="filteredDatabases"]:has(> div[x-on\:click="setType(database.id)"])
-  ) {
-  background: none;
-  padding: s(0.5);
+div:has(
+  [x-show^="filteredGitBasedApplications.length > 0 || filteredDockerBasedApplications.length > 0"]
+) {
+  .grid[class*="cols"] {
+    background: none;
+    padding: s(0.5);
+    border-radius: 0;
 
-  .box-without-bg {
-    padding: s(1);
+    h4 {
+      color: var(--foreground);
+    }
+
+    .coolbox {
+      padding: s(1);
+    }
+  }
+}
+
+div:has(
+  [x-show^="filteredDatabases"]:has(
+    > div.grid[class*="cols"] > div[x-on\:click="setType(database.id)"]
+  )
+) {
+  .grid[class*="cols"] {
+    background: none;
+    padding: s(0.5);
+    border-radius: 0;
+
+    .coolbox {
+      padding: s(1);
+    }
   }
 }
 
@@ -70,14 +91,30 @@ div[x-show="filteredServices.length > 0"]:has(> div[x-init="loadResources"]) {
     }
   }
 
-  div.grid[class*="cols"] {
+  div.relative.p-4.border.rounded-lg.bg-blue-50.dark\:bg-blue-900\/30.border-blue-300.dark\:border-blue-800 {
+    margin: s(0.5);
+  }
+
+  div.grid[class*="cols"]:has(.coolbox) {
     background: none;
     padding: s(0.5);
-    grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    .box-without-bg {
+    .coolbox {
       min-height: 100%;
       padding: s(1);
     }
+  }
+}
+
+.sticky.z-10.top-0:has(input[x-ref="searchInput"]) {
+  background: var(--popover) !important;
+  top: s(1);
+  border-radius: var(--radius-lg);
+  padding: s(4);
+  box-shadow: var(--shadow-xs) !important;
+  border: none !important;
+
+  input[x-ref="searchInput"] {
+    box-shadow: none !important;
   }
 }

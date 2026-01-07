@@ -3,7 +3,6 @@ title: Get release asset
 full: true
 _openapi:
   method: GET
-  route: /release/{tag}
   toc: []
   structuredData:
     headings: []
@@ -19,9 +18,4 @@ _openapi:
 
 Fetch a release asset from GitHub releases with optional theme injection. Defaults to `main.user.css` if no asset is specified. When a theme is provided, CSS variables from TweakCN are injected into the userstyle.
 
-<APIPage
-  document={"http://localhost:3001/_docs/openapi.json"}
-  operations={[{ path: "/release/{tag}", method: "get" }]}
-  webhooks={[]}
-  hasHead={false}
-/>
+<APIPage document={"http://localhost:3001/_docs/openapi.json"} operations={[{"path":"/release/{tag}","method":"get"}]} />

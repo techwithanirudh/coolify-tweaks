@@ -20,19 +20,25 @@
 
 A userstyle that enhances Coolify's UI by applying opinionated tweaks, spacing, colors, and layout fixes, to make the UI more polished and user-friendly.
 
-**[View Screenshots →](https://coolify-tweaks.techwithanirudh.com/docs/style/screenshots)**
+> **Note**: Coolify Tweaks is not affiliated with Coolify or its developers. It is a standalone project that styles the dashboard on your behalf.
 
-## Backstory
+**[Visit the Website →](https://coolify-tweaks.techwithanirudh.com)** | **[View Screenshots →](https://coolify-tweaks.techwithanirudh.com/docs/style/screenshots)**
 
-With Coolify v5's redesign set for 2026, I couldn't just sit around waiting for the visual upgrades. Coolify is really powerful, but a lot of people in the community feel like the UI gets in the way sometimes.
+### Features
 
-Instead of waiting for the official update, I decided to take things into my own hands. **Coolify Tweaks isn't a full redesign, it's a restyle.** It's a preview of what Coolify v5 _might_ look and feel like.
-
-I cleaned up the spacing, adjusted the colors, tweaked the typography, and gave the layout a more modern vibe. It's still the same Coolify under the hood, just with a smoother, more intuitive interface.
+- **Better UI** - Refined spacing, typography, and colors for a more polished Coolify dashboard
+- **Custom Themes** - Use built-in themes or bring your own through [TweakCN](https://tweakcn.com) integration
+- **Multiple Installation Methods** - Install via Stylus browser extension or inject through Traefik's dynamic config
+- **Fully Open-Source** - Built in the open with community contributions
+- **Comprehensive Documentation** - Detailed guides, API docs, and troubleshooting resources
 
 ## Installation
 
 > **Note:** The bundled Nitro API in this Monorepo serves dynamic builds of the style, injecting [TweakCN](https://tweakcn.com) theme code on demand so every installation link stays up to date.
+
+Coolify Tweaks supports two installation methods:
+
+### Method 1: Stylus (Browser Extension)
 
 1. Install [Stylus](https://add0n.com/stylus.html).
 2. Hit the badge below to add the style:
@@ -44,72 +50,35 @@ I cleaned up the spacing, adjusted the colors, tweaked the typography, and gave 
    [![install from userstyles.world](https://img.shields.io/badge/Install%20from-userstyles.world-116b59.svg?longCache=true&style=flat)](https://userstyles.world/style/22850/coolify-enhanced-ui)
 
 3. **Running Coolify on something other than `coolify.local`?**  
-   Open the style’s _Settings_ pane in Stylus, then under **Custom included sites** add your host using a wildcard. For example:
+   Open the style's _Settings_ pane in Stylus, then under **Custom included sites** add your host using a wildcard. For example:
 
-   <img alt="Stylus Settings" src="./apps/docs/public/assets/stylus-settings.png" width="50%" />
+   <img alt="Stylus Settings" src="./apps/docs/public/assets/installation/stylus/settings.png" width="50%" />
 
    ```css
    *://192.168.0.123:8000/*
    ```
 
-   Replace the IP and port above with your Coolify instance’s address, then click **Save**.
+   Replace the IP and port above with your Coolify instance's address, then click **Save**.
 
 4. **Experiencing Style Issues?**
    If you notice style changes are slow, laggy, or not applying immediately, enable Instant Mode in Stylus. This forces styles to inject instantly on page load, eliminating delays.  
-   <img alt="Stylus Instant Mode" src="./apps/docs/public/assets/stylus-instant-mode.png" width="50%" />
+   <img alt="Stylus Instant Mode" src="./apps/docs/public/assets/installation/stylus/instant-mode.png" width="50%" />
 
-## Theming
+### Method 2: Dynamic Config (Traefik)
 
-Coolify Tweaks supports custom themes through integration with [TweakCN](https://tweakcn.com), allowing you to personalize your Coolify interface with beautiful color schemes and styling variations.
+Inject the tweaks through Traefik's `rewrite-body` plugin so every dashboard response includes the CSS automatically, no browser extension needed. This method works across all browsers and devices.
 
-### How to Apply a Custom Theme
+For detailed setup instructions, see the [Dynamic Config installation guide](https://coolify-tweaks.techwithanirudh.com/docs/style/installation/dynamic-config).
 
-1. **Browse Available Themes**  
-   Visit [TweakCN](https://tweakcn.com/editor/theme) to explore available themes or create your own custom theme.
+## Documentation
 
-2. **Get the Theme ID**  
-   When you find a theme you like:
-   - Click the **Share** button on the theme
-   - Copy the theme ID (e.g., `bubblegum`, `claude`, or `cmd1ndlp3000504l24z7vgywd`)
+The [documentation website](https://coolify-tweaks.techwithanirudh.com) provides comprehensive guides and resources:
 
-3. **Install with Theme**  
-   Use the themed installation URL in Stylus:
-
-   ```
-   https://coolify-tweaks-api.techwithanirudh.com/release/latest/?theme=THEME_ID&asset=main.user.css
-   ```
-
-   Replace `THEME_ID` with your copied theme identifier.
-
-   > **Note:** The theme query parameter should come first, as Stylus identifies user styles by URLs ending with `user.css`
-
-### Video Guide
-
-If you prefer watching instead, here’s a short walkthrough:
-
-[![Watch the video](https://i.ibb.co/FLxtT5Y2/Clean-Shot-2025-10-24-at-11-14-01-2x.png)](https://fixupx.com/AnirudhWith/status/1981595703978713311.mp4)
-
-### Troubleshooting Themes
-
-**Theme not applying?**
-
-- Ensure you're using the correct theme ID
-- Try refreshing the page or restarting your browser
-
-**Mixed styling issues?**
-
-- Clear your browser cache
-- Disable and re-enable the style in Stylus
-- Make sure you're not running multiple conflicting styles
-
-## Repo Context
-
-This repository is implemented as a Turborepo workspace so the userstyle, API proxy, and future tooling can evolve together.
-
-- `apps/style` holds the Sass build pipeline that compiles the userstyle and publishes assets via Changesets.
-- `apps/api` is a lightweight Nitro service that proxies release assets for easier distribution.
-- `apps/web` is a Next.js playground used to test UI integrations while sharing utilities from `packages`.
-- Shared tooling lives under `tooling/*` for linting, formatting, and TypeScript configuration, keeping all packages aligned.
+- **[Installation Guides](https://coolify-tweaks.techwithanirudh.com/docs/style/installation)** - Step-by-step instructions for Stylus and Dynamic Config methods
+- **[Screenshots](https://coolify-tweaks.techwithanirudh.com/docs/style/screenshots)** - Before/after comparisons showing the visual improvements
+- **[Theming](https://coolify-tweaks.techwithanirudh.com/docs/style/theming)** - Custom themes through [TweakCN](https://tweakcn.com) integration with video guides and troubleshooting
+- **[Changelog](https://coolify-tweaks.techwithanirudh.com/docs/style/changelog)** - Track updates and new features
+- **[API Documentation](https://coolify-tweaks.techwithanirudh.com/docs/api)** - Reference for the Nitro API that serves dynamic style builds
 
 ## Contributing
 

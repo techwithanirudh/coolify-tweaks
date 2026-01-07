@@ -1,0 +1,8 @@
+# Generated API documentation
+content/docs/api/(generated)/**
+
+# Changelog (auto-generated)
+content/docs/style/changelog.mdx
+
+# Theming guide (contains formatted YAML code blocks)
+content/docs/style/theming.mdx

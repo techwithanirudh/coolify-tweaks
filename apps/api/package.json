@@ -7,7 +7,7 @@
     "clean": "git clean -xdf .cache .next .nitro .turbo node_modules",
     "dev": "pnpm with-env nitro dev --port 3001",
     "prepare": "nitro prepare",
-    "preview": "npx srvx --prod .output/",
+    "preview": "srvx --prod .output/",
     "lint": "pnpm run prepare && eslint --flag unstable_native_nodejs_ts_config",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "typecheck": "pnpm run prepare && tsc --noEmit --skipLibCheck",
@@ -15,11 +15,11 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "browserslist": "^4.27.0",
+    "browserslist": "^4.28.1",
     "lightningcss-wasm": "^1.30.2",
-    "mime-types": "^3.0.1",
+    "mime-types": "^3.0.2",
     "postcss": "^8.5.6",
-    "shadcn": "^3.5.0",
+    "shadcn": "^3.5.1",
     "zod": "catalog:"
   },
   "devDependencies": {

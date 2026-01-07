@@ -1,5 +1,38 @@
 # coolify-tweaks
 
+## 4.0.0
+
+### Major Changes
+
+Coolify Tweaks has a new website and docs powered by Fumadocs! This allows us to ship custom components like the theme installer, OpenAPI docs, and other UI pieces.
+
+The project has been refactored into a monorepo using Turborepo, consolidating the landing page, API, and styles into a single repository. This enables faster iteration and keeps everything in sync.
+
+We've also adopted a custom style-build pipeline with LightningCSS, which is approximately 25× faster than the previous setup.
+
+A new install method has been introduced to make it easier to get started with Coolify Tweaks.
+
+## 3.9.9
+
+### Patch Changes
+
+- fix: ui fixes for new version
+
+## 3.9.8
+
+### Patch Changes
+
+- fix: select
+
+## 3.9.7
+
+### Patch Changes
+
+- fix: new resource cards are too big
+- fix: the resource filter has coolify's old UI
+- fix: the action buttons with different colors aren't shown
+- fix: match scrollbar to theme colors
+
 ## 3.9.6
 
 ### Patch Changes

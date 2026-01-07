@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "main": "src/main.scss",
-  "version": "3.9.6",
+  "version": "4.0.0",
   "scripts": {
     "build": "pnpm with-env bun scripts/build.ts",
     "build:watch": "pnpm with-env bun scripts/watch.ts",
@@ -30,7 +30,7 @@
     "@repo/tsconfig": "workspace:*",
     "@types/bun": "catalog:",
     "@types/serve-handler": "^6.1.4",
-    "browserslist": "^4.27.0",
+    "browserslist": "^4.28.1",
     "commander": "^14.0.1",
     "concurrently": "^9.2.1",
     "cspell": "catalog:",

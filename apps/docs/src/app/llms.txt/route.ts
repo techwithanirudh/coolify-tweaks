@@ -9,7 +9,8 @@ export function GET() {
   const map = new Map<string, string[]>();
 
   for (const page of source.getPages()) {
-    const dir = page.slugs[0] ?? "style";
+    const dir = page.path.split("/")[0];
+    if (!dir) continue;
     const list = map.get(dir) ?? [];
     list.push(`- [${page.data.title}](${page.url}): ${page.data.description}`);
     map.set(dir, list);
