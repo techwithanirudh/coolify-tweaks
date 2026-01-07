@@ -82,15 +82,15 @@ export default async function Page(
 
               return (
                 <HoverCard>
-                  <HoverCardTrigger
-                    href={
-                      found.hash
-                        ? `${found.page.url}#${found.hash}`
-                        : found.page.url
-                    }
-                    {...linkProps}
-                  >
-                    {linkProps.children}
+                  <HoverCardTrigger asChild>
+                    <Link
+                      href={
+                        found.hash
+                          ? `${found.page.url}#${found.hash}`
+                          : found.page.url
+                      }
+                      {...linkProps}
+                    />
                   </HoverCardTrigger>
                   <HoverCardContent className="text-sm">
                     <p className="font-medium">{found.page.data.title}</p>
