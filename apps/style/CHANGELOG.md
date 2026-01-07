@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 4.0.1
+
+### Patch Changes
+
+- fix: add proper font support
+
 ## 4.0.0
 
 ### Major Changes
