@@ -1,7 +1,7 @@
 import root from "../../package.json";
 import { version } from "./package.json";
 import postcssBanner from "./plugins/postcss/banner";
-import appendThemeIdentifier from "./plugins/postcss/theme-identifier";
+import themeMarkers from "./plugins/postcss/theme-markers";
 import wrapMozDocument from "./plugins/postcss/wrap-moz-document";
 
 const banner = `==UserStyle==
@@ -30,6 +30,6 @@ export default {
       banner,
       inline: true,
     }),
-    appendThemeIdentifier(),
+    themeMarkers(),
   ],
 };

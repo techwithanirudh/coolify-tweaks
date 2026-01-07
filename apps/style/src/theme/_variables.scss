@@ -39,6 +39,14 @@ $breakpoints: (
   --input: oklch(0.9401 0 0);
   --ring: oklch(0 0 0);
 
+  --chart-1: oklch(0.5393 0.2713 286.7462);
+  --chart-2: oklch(0.577 0.245 27.325);
+  --chart-3: oklch(0.7459 0.1483 156.4499);
+  --chart-4: oklch(0.7336 0.1758 50.5517);
+  --chart-5: oklch(0.5828 0.1809 259.7276);
+
+  --radius: 0.875rem;
+
   --sidebar: oklch(0.97 0.0029 264.542);
   --sidebar-foreground: oklch(0 0 0);
   --sidebar-primary: oklch(0 0 0);
@@ -47,6 +55,10 @@ $breakpoints: (
   --sidebar-accent-foreground: oklch(0 0 0);
   --sidebar-border: oklch(0.9401 0 0);
   --sidebar-ring: oklch(0 0 0);
+
+  --font-sans: "Geist", sans-serif;
+  --font-serif: "Georgia", serif;
+  --font-mono: "Geist Mono", monospace;
 
   --shadow-2xs: 0px 2px 3px 0px hsl(0 0% 0% / 0.08);
   --shadow-xs: 0px 2px 3px 0px hsl(0 0% 0% / 0.08);
@@ -62,10 +74,8 @@ $breakpoints: (
     0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 8px 10px -1px hsl(0 0% 0% / 0.16);
   --shadow-2xl: 0px 2px 3px 0px hsl(0 0% 0% / 0.4);
 
-  --tracking-normal: -0.025em;
   --spacing: 0.27rem;
-
-  --radius: 0.875rem;
+  --tracking-normal: -0.025em;
 }
 
 .dark {
@@ -97,6 +107,14 @@ $breakpoints: (
   --input: oklch(0.3343 0.0111 308.0912);
   --ring: oklch(0.6132 0.2294 291.7437);
 
+  --chart-1: oklch(0.4039 0.1475 287.6846);
+  --chart-2: oklch(0.704 0.191 22.216);
+  --chart-3: oklch(0.8003 0.1821 151.711);
+  --chart-4: oklch(0.7336 0.1758 50.5517);
+  --chart-5: oklch(0.6691 0.1569 260.1063);
+
+  --radius: 0.875rem;
+
   --sidebar: oklch(0.2172 0.0117 293.0436);
   --sidebar-foreground: oklch(0.9864 0.0028 308.429);
   --sidebar-primary: oklch(0.284 0.0091 294.9832);
@@ -105,6 +123,10 @@ $breakpoints: (
   --sidebar-accent-foreground: oklch(0.9842 0.0034 325.6025);
   --sidebar-border: oklch(0.3289 0.0092 268.3843);
   --sidebar-ring: oklch(0.6132 0.2294 291.7437);
+
+  --font-sans: "Geist", sans-serif;
+  --font-serif: "Georgia", serif;
+  --font-mono: "Geist Mono", monospace;
 
   --shadow-2xs: 0px 2px 3px 0px hsl(0 0% 0% / 0.08);
   --shadow-xs: 0px 2px 3px 0px hsl(0 0% 0% / 0.08);
@@ -119,8 +141,10 @@ $breakpoints: (
   --shadow-xl:
     0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 8px 10px -1px hsl(0 0% 0% / 0.16);
   --shadow-2xl: 0px 2px 3px 0px hsl(0 0% 0% / 0.4);
-}
 
+  --spacing: 0.27rem;
+  --tracking-normal: -0.025em;
+}
 /* ==UI-THEME-VARS:END== */
 
 // Color variables for success, warning, and info states

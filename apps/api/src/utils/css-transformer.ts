@@ -6,7 +6,8 @@ export function cssVarsToCss(cssVars: Record<string, Record<string, string>>) {
   const root = postcss.root();
 
   for (const [themeKey, vars] of Object.entries(cssVars)) {
-    const selector = themeKey === "light" ? ":root" : `.${themeKey}`;
+    const selector =
+      themeKey === "light" || themeKey === "theme" ? ":root" : `.${themeKey}`;
 
     const ruleNode = postcss.rule({
       selector,

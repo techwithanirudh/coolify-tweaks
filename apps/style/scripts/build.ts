@@ -10,7 +10,7 @@ import loadConfig from "postcss-load-config";
 import * as sass from "sass-embedded";
 import { z } from "zod";
 
-import appendThemeIdentifier from "../plugins/postcss/theme-identifier";
+import themeMarkers from "../plugins/postcss/theme-markers";
 
 /**
  * Coerce CLI strings to boolean where appropriate.
@@ -152,7 +152,7 @@ export async function build(
 
     if (TRANSFORM_ENABLED && TRANSFORMED && TRANSFORMED_MAP) {
       if (!SILENT) spinner.text = "PostCSS (TRANSFORMED)";
-      const processorTransformed = postcss([appendThemeIdentifier()]);
+      const processorTransformed = postcss([themeMarkers()]);
       const postcssTransformed = await processorTransformed.process(
         lightningCss,
         {
