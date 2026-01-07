@@ -6,26 +6,30 @@ import { registryItemSchema } from "shadcn/schema";
 
 import { transformCss } from "./css-compiler";
 import { cssVarsToCss } from "./css-transformer";
+import { buildFontImportBlock, extractFontFamily } from "./fonts";
 
 const THEME_START = "/* ==UI-THEME-VARS:START== */";
 const THEME_END = "/* ==UI-THEME-VARS:END== */";
+const FONT_IMPORT_START = "/* ==FONT-IMPORT:START== */";
+const FONT_IMPORT_END = "/* ==FONT-IMPORT:END== */";
 
-const ESCAPED_THEME_BLOCK = new RegExp(
-  `${THEME_START.replace(/[-[\]{}()*+?.\\^$|]/g, "\\$&")}` +
-    "[\\s\\S]*?" +
-    `${THEME_END.replace(/[-[\]{}()*+?.\\^$|]/g, "\\$&")}`,
-  "m",
-);
+const escapeRegex = (s: string) => s.replace(/[-[\]{}()*+?.\\^$|]/g, "\\$&");
+const markerRegex = (start: string, end: string) =>
+  new RegExp(`${escapeRegex(start)}[\\s\\S]*?${escapeRegex(end)}`, "m");
 
-const CUID_REGEX = /^c[a-z0-9]{24}$/;
-const isCUID = (id: string) => CUID_REGEX.test(id);
+const THEME_BLOCK_RE = markerRegex(THEME_START, THEME_END);
+const FONT_BLOCK_RE = markerRegex(FONT_IMPORT_START, FONT_IMPORT_END);
 
-const buildThemeUrl = (id: string) => {
-  const safeId = encodeURIComponent(id);
-  return `https://tweakcn.com/r/themes/${safeId}${isCUID(id) ? "" : ".json"}`;
-};
+const CUID_RE = /^c[a-z0-9]{24}$/;
+const buildThemeUrl = (id: string) =>
+  `https://tweakcn.com/r/themes/${encodeURIComponent(id)}${CUID_RE.test(id) ? "" : ".json"}`;
 
-export async function getThemeCss(themeId: string): Promise<string> {
+interface ThemeData {
+  css: string;
+  fonts: { sans?: string; mono?: string };
+}
+
+export async function getThemeData(themeId: string): Promise<ThemeData> {
   const url = buildThemeUrl(themeId);
 
   try {
@@ -43,8 +47,21 @@ export async function getThemeCss(themeId: string): Promise<string> {
       });
     }
 
-    const registryItem = parsed.data;
-    return cssVarsToCss(registryItem.cssVars ?? {});
+    const cssVars = parsed.data.cssVars ?? {};
+    const themeVars = cssVars.theme ?? {};
+    const lightVars = cssVars.light ?? {};
+
+    return {
+      css: cssVarsToCss(cssVars),
+      fonts: {
+        sans:
+          extractFontFamily(themeVars["font-sans"] ?? lightVars["font-sans"]) ??
+          undefined,
+        mono:
+          extractFontFamily(themeVars["font-mono"] ?? lightVars["font-mono"]) ??
+          undefined,
+      },
+    };
   } catch {
     throw new HTTPError({
       status: 404,
@@ -54,13 +71,16 @@ export async function getThemeCss(themeId: string): Promise<string> {
   }
 }
 
+export async function getThemeCss(themeId: string): Promise<string> {
+  return (await getThemeData(themeId)).css;
+}
+
 export function changeMetadata(
   content: string,
   field: string,
   value: string,
 ): string {
-  const rx = new RegExp(`^(@${field}\\s+).+$`, "m");
-  return content.replace(rx, `$1${value}`);
+  return content.replace(new RegExp(`^(@${field}\\s+).+$`, "m"), `$1${value}`);
 }
 
 export async function processContent({
@@ -69,29 +89,36 @@ export async function processContent({
 }: {
   content: string;
   event: H3Event;
-}): Promise<string | null | undefined> {
+}): Promise<string> {
   const { theme, asset = "main.user.css" } = getQuery(event);
+
+  if (!theme || (asset !== "main.user.css" && asset !== "main.css")) {
+    return content;
+  }
+
+  const themeData = await getThemeData(theme);
+  const themeCss = transformCss(themeData.css, asset);
 
   let result = content;
 
-  if (theme && (asset === "main.user.css" || asset === "main.css")) {
-    const css = await getThemeCss(theme);
-    const transformedCss = transformCss(css, asset);
-    const wrappedCss = `${THEME_START}\n\n${transformedCss}\n\n${THEME_END}`;
+  const url = getRequestURL(event);
+  result = changeMetadata(
+    result,
+    "updateURL",
+    `${url.origin}/release/latest/?${url.search.slice(1)}`,
+  );
 
-    const url = getRequestURL(event);
-    const searchParams = new URLSearchParams(url.search);
+  result = result.replace(
+    THEME_BLOCK_RE,
+    `${THEME_START}\n\n${themeCss}\n\n${THEME_END}`,
+  );
 
-    result = changeMetadata(
-      result,
-      "updateURL",
-      `${url.origin}/release/latest/?${searchParams.toString()}`,
-    );
-
-    // biome-ignore lint/style/useBlockStatements: the code is more readable this way
-    if (ESCAPED_THEME_BLOCK.test(result))
-      result = result.replace(ESCAPED_THEME_BLOCK, wrappedCss);
-  }
+  const fontBlock = buildFontImportBlock(
+    [themeData.fonts.sans, themeData.fonts.mono],
+    FONT_IMPORT_START,
+    FONT_IMPORT_END,
+  );
+  result = result.replace(FONT_BLOCK_RE, fontBlock);
 
   return result;
 }
