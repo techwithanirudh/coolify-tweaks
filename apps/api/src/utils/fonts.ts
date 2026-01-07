@@ -39,7 +39,7 @@ export function buildFontImportBlock(
   const url =
     validFonts.length === 0
       ? defaultUrl
-      : `https://fonts.googleapis.com/css2?${validFonts.map((f) => `family=${encodeURIComponent(f).replace(/%20/g, "+")}:wght@100..900`).join("&")}&display=swap`;
+      : `https://fonts.googleapis.com/css2?${validFonts.map((f) => `family=${encodeURIComponent(f).replace(/%20/g, "+")}`).join("&")}&display=swap`;
 
   return `${startMarker}\n@import url("${url}");\n${endMarker}`;
 }
