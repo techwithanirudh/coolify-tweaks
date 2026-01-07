@@ -8,7 +8,7 @@ type AnySource = typeof source;
 
 async function checkLinks() {
   const scanned = await scanURLs({
-    preset: 'next',
+    preset: "next",
     populate: {
       "docs/[[...slug]]": await Promise.all(
         source.getPages().map(async (page) => ({
@@ -44,8 +44,8 @@ async function getHeadings({
 }: InferPageType<AnySource>): Promise<string[]> {
   const { _exports, toc } = await data.load();
   const headings = toc.map((item) => item.url.slice(1));
-  const elementIds = _exports?.elementIds;
-  if (Array.isArray(elementIds)) {
+  const elementIds = _exports.elementIds as string[] | undefined;
+  if (elementIds) {
     headings.push(...elementIds);
   }
 

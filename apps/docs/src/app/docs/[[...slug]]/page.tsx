@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactElement } from "react";
 import { notFound } from "next/navigation";
 import Link from "fumadocs-core/link";
-import { findSiblings } from 'fumadocs-core/page-tree';
+import { findSiblings } from "fumadocs-core/page-tree";
 import { PathUtils } from "fumadocs-core/source";
 import * as Twoslash from "fumadocs-twoslash/ui";
 import { createGenerator } from "fumadocs-typescript";
@@ -105,7 +105,9 @@ export default async function Page(
             AutoTypeTable: (autoTypeProps) => (
               <AutoTypeTable generator={generator} {...autoTypeProps} />
             ),
-            DocsCategory: ({ url }) => <DocsCategory url={url ?? page.url} />,
+            DocsCategory: ({ url }: { url?: string }) => (
+              <DocsCategory url={url ?? page.url} />
+            ),
           })}
         />
         {page.data.index ? <DocsCategory url={page.url} /> : null}
@@ -119,8 +121,8 @@ function DocsCategory({ url }: { url: string }) {
   return (
     <Cards>
       {findSiblings(source.getPageTree(), url).map((item) => {
-        if (item.type === 'separator') return;
-        if (item.type === 'folder') {
+        if (item.type === "separator") return;
+        if (item.type === "folder") {
           if (!item.index) return;
           item = item.index;
         }
@@ -134,7 +136,6 @@ function DocsCategory({ url }: { url: string }) {
     </Cards>
   );
 }
-
 
 export async function generateMetadata(
   props: PageProps<"/docs/[[...slug]]">,

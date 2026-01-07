@@ -37,7 +37,11 @@ const Context = createContext<{
 } | null>(null);
 
 function useChatContext() {
-  return use(Context)?.chat;
+  const ctx = use(Context);
+  if (!ctx) {
+    throw new Error("useChatContext must be used within AISearch provider");
+  }
+  return ctx.chat;
 }
 
 function Header() {
@@ -97,7 +101,7 @@ function SearchAIActions() {
             "gap-1.5 rounded-t-md rounded-br-md rounded-bl-lg transition-opacity duration-200 [&_svg]:size-4",
         }),
         !isLoading &&
-          messages?.length > 0 &&
+          messages.length > 0 &&
           messages.at(-1)?.role === "assistant"
           ? "opacity-100"
           : "opacity-0",
@@ -217,7 +221,7 @@ function List(props: Omit<ComponentProps<"div">, "dir">) {
     const observer = new ResizeObserver(callback);
     callback();
 
-    const element = containerRef.current?.firstElementChild;
+    const element = containerRef.current.firstElementChild;
 
     if (element) {
       observer.observe(element);
@@ -322,6 +326,7 @@ export function AISearch({ children }: { children: ReactNode }) {
 }
 
 export function AISearchTrigger() {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- Context is guaranteed by parent AISearch
   const { open, setOpen } = use(Context)!;
 
   return (
@@ -343,6 +348,7 @@ export function AISearchTrigger() {
 }
 
 export function AISearchPanel() {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- Context is guaranteed by parent AISearch
   const { open, setOpen } = use(Context)!;
   const chat = useChatContext();
 
