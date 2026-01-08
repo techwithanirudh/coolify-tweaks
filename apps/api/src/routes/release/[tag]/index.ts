@@ -1,13 +1,20 @@
 import { lookup as getType } from "mime-types";
+import { nanoid } from "nanoid";
 import { defineRouteMeta } from "nitro";
 import { $fetch } from "nitro/deps/ofetch";
-import { defineHandler, getQuery, getRouterParam, HTTPError } from "nitro/h3";
+import {
+  defineHandler,
+  getQuery,
+  getRequestIP,
+  getRouterParam,
+  HTTPError,
+} from "nitro/h3";
 import { useRuntimeConfig } from "nitro/runtime-config";
 
 import { logRequest } from "@repo/db/queries";
 
 import { allowedHeaders, owner, repo } from "@/config";
-import { getClientIp, hashIp, isValidTrk, mintTrk } from "@/utils/analytics";
+import { hashIp, isValidId } from "@/utils/analytics";
 import { processContent } from "@/utils/themes";
 
 defineRouteMeta({
@@ -43,8 +50,8 @@ defineRouteMeta({
       },
       {
         in: "query",
-        name: "trk",
-        description: "Analytics tracker ID (auto-set on first install).",
+        name: "id",
+        description: "Session ID.",
         schema: { type: "string", pattern: "^[\\w-]{8,32}$" } as {
           type: "string";
           pattern: string;
@@ -79,7 +86,7 @@ export default defineHandler(async (event) => {
       : "main.user.css";
   const theme =
     typeof query.theme === "string" && query.theme ? query.theme : null;
-  const inboundTrk = isValidTrk(query.trk) ? query.trk : null;
+  const inboundId = isValidId(query.id) ? query.id : null;
 
   if (!tag) {
     throw new HTTPError({
@@ -89,8 +96,8 @@ export default defineHandler(async (event) => {
     });
   }
 
-  const isInstall = !inboundTrk && asset === "main.user.css";
-  const sessionId = isInstall ? mintTrk() : inboundTrk;
+  const isInstall = !inboundId && asset === "main.user.css";
+  const sessionId = isInstall ? nanoid(16) : inboundId;
 
   const url =
     tag === "latest"
@@ -119,7 +126,7 @@ export default defineHandler(async (event) => {
     const processed = await processContent({
       content,
       event,
-      trk: isInstall && sessionId ? sessionId : undefined,
+      id: isInstall && sessionId ? sessionId : undefined,
     });
 
     event.res.headers.set(
@@ -142,7 +149,7 @@ export default defineHandler(async (event) => {
         theme,
         tag,
         statusCode: response.status,
-        ipHash: hashIp(getClientIp(event), hashSalt),
+        ipHash: hashIp(getRequestIP(event, { xForwardedFor: true }), hashSalt),
         isNewSession: isInstall,
       });
     }

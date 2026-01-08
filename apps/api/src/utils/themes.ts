@@ -79,7 +79,7 @@ export function changeMetadata(
   return content.replace(new RegExp(`^(@${field}\\s+).+$`, "m"), `$1${value}`);
 }
 
-function buildUpdateUrl(event: H3Event, trk?: string): string {
+function buildUpdateUrl(event: H3Event, id?: string): string {
   const requestUrl = getRequestURL(event);
   const updateUrl = new URL(`${requestUrl.origin}/release/latest/`);
 
@@ -87,8 +87,8 @@ function buildUpdateUrl(event: H3Event, trk?: string): string {
     updateUrl.searchParams.set(key, value);
   }
 
-  if (trk) {
-    updateUrl.searchParams.set("trk", trk);
+  if (id) {
+    updateUrl.searchParams.set("id", id);
   }
 
   return updateUrl.toString();
@@ -97,21 +97,20 @@ function buildUpdateUrl(event: H3Event, trk?: string): string {
 export interface ProcessContentOptions {
   content: string;
   event: H3Event;
-  trk?: string;
+  id?: string;
 }
 
 export async function processContent({
   content,
   event,
-  trk,
+  id,
 }: ProcessContentOptions): Promise<string> {
   const { theme, asset = "main.user.css" } = getQuery(event);
 
   let result = content;
 
-  // Rewrite @updateURL for userstyle (trk propagation)
   if (asset === "main.user.css") {
-    result = changeMetadata(result, "updateURL", buildUpdateUrl(event, trk));
+    result = changeMetadata(result, "updateURL", buildUpdateUrl(event, id));
   }
 
   // Theme injection only for CSS assets
