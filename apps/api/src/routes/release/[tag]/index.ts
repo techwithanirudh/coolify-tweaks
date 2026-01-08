@@ -1,4 +1,3 @@
-import { randomUUID } from "node:crypto";
 import { lookup as getType } from "mime-types";
 import { defineRouteMeta } from "nitro";
 import { $fetch } from "nitro/deps/ofetch";
@@ -14,7 +13,7 @@ import { useRuntimeConfig } from "nitro/runtime-config";
 import { logRequest } from "@repo/db/queries";
 
 import { allowedHeaders, owner, repo } from "@/config";
-import { hashIp, isValidId } from "@/utils/analytics";
+import { hashIp } from "@/utils/hash";
 import { processContent } from "@/utils/themes";
 
 defineRouteMeta({
@@ -48,15 +47,6 @@ defineRouteMeta({
           pattern: string;
         },
       },
-      {
-        in: "query",
-        name: "id",
-        description: "Session ID.",
-        schema: { type: "string", pattern: "^[\\w-]{8,32}$" } as {
-          type: "string";
-          pattern: string;
-        },
-      },
     ],
     responses: {
       "200": {
@@ -86,7 +76,6 @@ export default defineHandler(async (event) => {
       : "main.user.css";
   const theme =
     typeof query.theme === "string" && query.theme ? query.theme : null;
-  const inboundId = isValidId(query.id) ? query.id : null;
 
   if (!tag) {
     throw new HTTPError({
@@ -95,11 +84,6 @@ export default defineHandler(async (event) => {
       message: "Missing tag parameter",
     });
   }
-
-  const isInstall = !inboundId && asset === "main.user.css";
-  const sessionId = isInstall
-    ? randomUUID().replace(/-/g, "").slice(0, 16)
-    : inboundId;
 
   const url =
     tag === "latest"
@@ -125,11 +109,7 @@ export default defineHandler(async (event) => {
     }
 
     const content = typeof response._data === "string" ? response._data : "";
-    const processed = await processContent({
-      content,
-      event,
-      id: isInstall && sessionId ? sessionId : undefined,
-    });
+    const processed = await processContent({ content, event });
 
     event.res.headers.set(
       "Content-Type",
@@ -143,18 +123,13 @@ export default defineHandler(async (event) => {
       if (value) event.res.headers.set(name, value);
     }
 
-    if (sessionId) {
-      void logRequest({
-        sessionId,
-        eventType: isInstall ? "install" : "update",
-        asset,
-        theme,
-        tag,
-        statusCode: response.status,
-        ipHash: hashIp(getRequestIP(event, { xForwardedFor: true }), hashSalt),
-        isNewSession: isInstall,
-      });
-    }
+    void logRequest({
+      asset,
+      theme,
+      tag,
+      statusCode: response.status,
+      ipHash: hashIp(getRequestIP(event, { xForwardedFor: true }), hashSalt),
+    });
 
     return processed;
   } catch (error) {
