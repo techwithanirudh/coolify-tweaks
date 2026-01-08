@@ -1,5 +1,5 @@
+import { randomUUID } from "node:crypto";
 import { lookup as getType } from "mime-types";
-import { nanoid } from "nanoid";
 import { defineRouteMeta } from "nitro";
 import { $fetch } from "nitro/deps/ofetch";
 import {
@@ -97,7 +97,9 @@ export default defineHandler(async (event) => {
   }
 
   const isInstall = !inboundId && asset === "main.user.css";
-  const sessionId = isInstall ? nanoid(16) : inboundId;
+  const sessionId = isInstall
+    ? randomUUID().replace(/-/g, "").slice(0, 16)
+    : inboundId;
 
   const url =
     tag === "latest"
