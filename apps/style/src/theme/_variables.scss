@@ -154,7 +154,7 @@ $breakpoints: (
   --info: oklch(0.5828 0.1809 259.7276);
 
   --color-base: var(--foreground);
-  --livewire-progress-bar-color: var(--primary)
+  --livewire-progress-bar-color: var(--primary);
 }
 
 .dark {
@@ -163,7 +163,7 @@ $breakpoints: (
   --info: oklch(0.6691 0.1569 260.1063);
 
   --color-base: var(--background);
-  --livewire-progress-bar-color: var(--primary)
+  --livewire-progress-bar-color: var(--primary);
 }
 
 :root {

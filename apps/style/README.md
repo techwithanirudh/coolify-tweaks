@@ -49,6 +49,7 @@ The Sass entry file is `src/main.scss`. Individual components live under `src/co
 While `pnpm --filter @repo/style dev` is running, the watcher automatically rebuilds the CSS when you edit Sass files. The API server (`pnpm --filter @repo/api dev`) reads the built CSS directly from `dist/` in development mode, so changes are reflected immediately.
 
 To test locally:
+
 1. Start the style watcher: `pnpm --filter @repo/style dev`
 2. Start the API server: `pnpm --filter @repo/api dev`
 3. Load the CSS from `http://localhost:8080/release/latest` in Stylus
