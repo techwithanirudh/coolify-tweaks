@@ -1,9 +1,9 @@
 import { lookup as getType } from "mime-types";
 import { defineRouteMeta } from "nitro";
-import { $fetch } from "nitro/deps/ofetch";
 import {
   defineHandler,
   getQuery,
+  getRequestHeader,
   getRequestIP,
   getRouterParam,
   HTTPError,
@@ -12,7 +12,8 @@ import { useRuntimeConfig } from "nitro/runtime-config";
 
 import { logRequest } from "@repo/db/queries";
 
-import { allowedHeaders, owner, repo } from "@/config";
+import { allowedHeaders } from "@/config";
+import { fetchAsset } from "@/utils/fetcher";
 import { hashIp } from "@/utils/hash";
 import { processContent } from "@/utils/themes";
 
@@ -85,47 +86,31 @@ export default defineHandler(async (event) => {
     });
   }
 
-  const url =
-    tag === "latest"
-      ? `https://github.com/${owner}/${repo}/releases/latest/download/${encodeURIComponent(asset)}`
-      : `https://github.com/${owner}/${repo}/releases/download/${encodeURIComponent(tag)}/${encodeURIComponent(asset)}`;
-
   const ipHash = hashIp(getRequestIP(event, { xForwardedFor: true }), hashSalt);
+  const referer = getRequestHeader(event, "referer") ?? null;
   let statusCode = 500;
 
   try {
-    const response = await $fetch.raw(url, {
-      method: "GET",
-      responseType: "text",
-      ignoreResponseError: true,
-      retry: 0,
-      headers: { Accept: "*/*" },
-    });
+    const { content, headers } = await fetchAsset(tag, asset);
+    statusCode = 200;
 
-    statusCode = response.status;
-
-    if (!response.ok) {
-      throw new HTTPError({
-        status: response.status,
-        statusMessage: response.statusText,
-        message: `GitHub returned ${response.status}: ${response.statusText}`,
-        data: { url, tag },
-      });
-    }
-
-    const content = typeof response._data === "string" ? response._data : "";
     const processed = await processContent({ content, event });
 
     event.res.headers.set(
       "Content-Type",
       getType(asset) || "application/octet-stream",
     );
-    event.res.headers.set("X-Proxy-Host", "github.com");
 
-    const headers = new Headers(response.headers);
-    for (const name of allowedHeaders) {
-      const value = headers.get(name);
-      if (value) event.res.headers.set(name, value);
+    if (import.meta.dev) {
+      event.res.headers.set("X-Source", "local");
+    } else {
+      event.res.headers.set("X-Source", "github");
+      if (headers) {
+        for (const name of allowedHeaders) {
+          const value = headers.get(name);
+          if (value) event.res.headers.set(name, value);
+        }
+      }
     }
 
     return processed;
@@ -139,15 +124,8 @@ export default defineHandler(async (event) => {
       status: 500,
       statusMessage: "Internal Server Error",
       message: error instanceof Error ? error.message : "Unknown error",
-      data: { url, tag },
     });
   } finally {
-    void logRequest({
-      asset,
-      theme,
-      tag,
-      statusCode,
-      ipHash,
-    });
+    void logRequest({ asset, theme, tag, statusCode, ipHash, referer });
   }
 });

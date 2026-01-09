@@ -11,4 +11,5 @@ export const events = pgTable("events", (t) => ({
     .defaultNow()
     .notNull(),
   ipHash: t.text(),
+  referer: t.text(),
 }));

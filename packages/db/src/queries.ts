@@ -7,6 +7,7 @@ export interface LogPayload {
   tag: string;
   statusCode: number;
   ipHash: string | null;
+  referer: string | null;
 }
 
 export async function logRequest(payload: LogPayload): Promise<void> {
