@@ -74,7 +74,7 @@ POSTGRES_URL="postgresql://[USERNAME]:[PASSWORD]@[host]/neondb?sslmode=require"
 OPENAI_API_KEY="sk-proj-..."
 
 # URLs
-NEXT_PUBLIC_API_URL="http://localhost:3001"
+NEXT_PUBLIC_API_URL="http://localhost:3000"
 NEXT_PUBLIC_DOCS_URL="http://localhost:3002"
 ```
 
@@ -93,9 +93,9 @@ pnpm db:push
 pnpm dev
 
 # Run specific apps using filter
-pnpm --filter @repo/style dev   # Style app (port 3000)
+pnpm --filter @repo/style dev   # Style watcher (rebuilds CSS)
 pnpm --filter @repo/docs dev    # Docs site (port 3002)
-pnpm --filter @repo/api dev     # API server (port 3001)
+pnpm --filter @repo/api dev     # API server (port 3000)
 
 # Or use the shorthand scripts
 pnpm dev:web      # Docs site only
@@ -124,7 +124,6 @@ The Sass + Lightning CSS pipeline that produces the Coolify theme.
 - **Tech:** Sass, PostCSS, LightningCSS
 - **Entry:** `src/main.scss`
 - **Output:** `dist/`
-- **Dev port:** 3000
 
 **Build outputs:**
 
@@ -153,9 +152,10 @@ apps/style/
 **Local Workflow:**
 
 1. Start the watcher: `pnpm --filter @repo/style dev`
-2. Install the stylesheet in Stylus, enable Live Reload, add `http://localhost:3000/*` to allowed hosts
-3. Edit Sass partials under `apps/style/src/`
-4. Update documentation when changing installation or update behavior
+2. Start the API server: `pnpm --filter @repo/api dev`
+3. Install the stylesheet in Stylus from `http://localhost:3000/release/latest`
+4. Edit Sass partials under `apps/style/src/` - changes are reflected immediately
+5. Update documentation when changing installation or update behavior
 
 **Testing:**
 
@@ -168,11 +168,11 @@ pnpm --filter @repo/style check:spelling
 
 ### API App (`apps/api/`)
 
-Nitro server that serves dynamic style builds with TweakCN theme injection.
+Nitro server that serves dynamic style builds with TweakCN theme injection. In development, it reads CSS directly from the style app's `dist/` folder for instant feedback.
 
 - **Package:** `@repo/api`
 - **Tech:** Nitro, PostCSS, LightningCSS
-- **Dev port:** 3001
+- **Dev port:** 3000
 
 **File Layout:**
 
@@ -743,7 +743,7 @@ OPENAI_API_KEY="sk-proj-..."       # AI features in docs
 ### Development URLs
 
 ```env
-NEXT_PUBLIC_API_URL="http://localhost:3001"
+NEXT_PUBLIC_API_URL="http://localhost:3000"
 NEXT_PUBLIC_DOCS_URL="http://localhost:3002"
 ```
 

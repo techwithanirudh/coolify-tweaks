@@ -30,9 +30,9 @@ services:
     restart: always
     environment:
       NODE_ENV: production
-      PORT: 3001
+      PORT: 3000
     ports:
-      - 3001:3001
+      - 3000:3000
     networks:
       - app_network
 
