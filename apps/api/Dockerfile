@@ -30,4 +30,4 @@ RUN adduser --system --uid 1001 nitro
 USER nitro
 COPY --from=installer /app .
 
-CMD pnpm srvx --prod .output/ --port 3000
+CMD pnpm srvx --prod .output/ --port 8080

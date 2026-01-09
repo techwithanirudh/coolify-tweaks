@@ -51,7 +51,7 @@ While `pnpm --filter @repo/style dev` is running, the watcher automatically rebu
 To test locally:
 1. Start the style watcher: `pnpm --filter @repo/style dev`
 2. Start the API server: `pnpm --filter @repo/api dev`
-3. Load the CSS from `http://localhost:3000/release/latest` in Stylus
+3. Load the CSS from `http://localhost:8080/release/latest` in Stylus
 
 ## Releasing
 

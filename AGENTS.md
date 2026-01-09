@@ -74,8 +74,8 @@ POSTGRES_URL="postgresql://[USERNAME]:[PASSWORD]@[host]/neondb?sslmode=require"
 OPENAI_API_KEY="sk-proj-..."
 
 # URLs
-NEXT_PUBLIC_API_URL="http://localhost:3000"
-NEXT_PUBLIC_DOCS_URL="http://localhost:3002"
+NEXT_PUBLIC_API_URL="http://localhost:8080"
+NEXT_PUBLIC_DOCS_URL="http://localhost:3000"
 ```
 
 ### 3. Sync the Database (Optional)
@@ -94,8 +94,8 @@ pnpm dev
 
 # Run specific apps using filter
 pnpm --filter @repo/style dev   # Style watcher (rebuilds CSS)
-pnpm --filter @repo/docs dev    # Docs site (port 3002)
-pnpm --filter @repo/api dev     # API server (port 3000)
+pnpm --filter @repo/docs dev    # Docs site (port 3000)
+pnpm --filter @repo/api dev     # API server (port 8080)
 
 # Or use the shorthand scripts
 pnpm dev:web      # Docs site only
@@ -153,7 +153,7 @@ apps/style/
 
 1. Start the watcher: `pnpm --filter @repo/style dev`
 2. Start the API server: `pnpm --filter @repo/api dev`
-3. Install the stylesheet in Stylus from `http://localhost:3000/release/latest`
+3. Install the stylesheet in Stylus from `http://localhost:8080/release/latest`
 4. Edit Sass partials under `apps/style/src/` - changes are reflected immediately
 5. Update documentation when changing installation or update behavior
 
@@ -172,7 +172,7 @@ Nitro server that serves dynamic style builds with TweakCN theme injection. In d
 
 - **Package:** `@repo/api`
 - **Tech:** Nitro, PostCSS, LightningCSS
-- **Dev port:** 3000
+- **Dev port:** 8080
 
 **File Layout:**
 
@@ -258,7 +258,7 @@ Next.js documentation site built with Fumadocs.
 
 - **Package:** `@repo/docs`
 - **Tech:** Next.js 16, Fumadocs, React 19, Tailwind CSS 4
-- **Dev port:** 3002
+- **Dev port:** 3000
 
 **File Layout:**
 
@@ -743,8 +743,8 @@ OPENAI_API_KEY="sk-proj-..."       # AI features in docs
 ### Development URLs
 
 ```env
-NEXT_PUBLIC_API_URL="http://localhost:3000"
-NEXT_PUBLIC_DOCS_URL="http://localhost:3002"
+NEXT_PUBLIC_API_URL="http://localhost:8080"
+NEXT_PUBLIC_DOCS_URL="http://localhost:3000"
 ```
 
 ### Production URLs

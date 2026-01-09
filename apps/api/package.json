@@ -5,7 +5,7 @@
   "scripts": {
     "build": "pnpm with-env nitro build",
     "clean": "git clean -xdf .cache .next .nitro .turbo node_modules",
-    "dev": "pnpm with-env nitro dev --port 3000",
+    "dev": "pnpm with-env nitro dev --port 8080",
     "prepare": "nitro prepare",
     "preview": "srvx --prod .output/",
     "lint": "pnpm run prepare && eslint --flag unstable_native_nodejs_ts_config",
