@@ -90,6 +90,9 @@ export default defineHandler(async (event) => {
       ? `https://github.com/${owner}/${repo}/releases/latest/download/${encodeURIComponent(asset)}`
       : `https://github.com/${owner}/${repo}/releases/download/${encodeURIComponent(tag)}/${encodeURIComponent(asset)}`;
 
+  const ipHash = hashIp(getRequestIP(event, { xForwardedFor: true }), hashSalt);
+  let statusCode = 500;
+
   try {
     const response = await $fetch.raw(url, {
       method: "GET",
@@ -98,6 +101,8 @@ export default defineHandler(async (event) => {
       retry: 0,
       headers: { Accept: "*/*" },
     });
+
+    statusCode = response.status;
 
     if (!response.ok) {
       throw new HTTPError({
@@ -123,23 +128,26 @@ export default defineHandler(async (event) => {
       if (value) event.res.headers.set(name, value);
     }
 
-    void logRequest({
-      asset,
-      theme,
-      tag,
-      statusCode: response.status,
-      ipHash: hashIp(getRequestIP(event, { xForwardedFor: true }), hashSalt),
-    });
-
     return processed;
   } catch (error) {
-    if (error instanceof HTTPError) throw error;
+    if (error instanceof HTTPError) {
+      statusCode = error.status;
+      throw error;
+    }
 
     throw new HTTPError({
       status: 500,
       statusMessage: "Internal Server Error",
       message: error instanceof Error ? error.message : "Unknown error",
       data: { url, tag },
+    });
+  } finally {
+    void logRequest({
+      asset,
+      theme,
+      tag,
+      statusCode,
+      ipHash,
     });
   }
 });
