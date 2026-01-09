@@ -6,6 +6,13 @@
   border-radius: 0px;
 }
 
+div:has(button[x-show="searchQuery"]) {
+  input {
+    @include input.input-base;
+    padding-left: s(7);
+  }
+}
+
 [x-show="modalOpen"] input[x-ref="searchInput"].pl-12 {
   @include input.input-base;
   padding: s(3) s(36) s(3) s(12);
