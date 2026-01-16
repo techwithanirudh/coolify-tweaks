@@ -54,7 +54,7 @@ defineRouteMeta({
         description: "Session ID",
         schema: {
           type: "string",
-          pattern: "^[a-z0-9]{8}$",
+          pattern: "^[a-z0-9]{6}$",
         } as {
           type: "string";
           pattern: string;

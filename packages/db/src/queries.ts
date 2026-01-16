@@ -4,7 +4,7 @@ import { eq } from "drizzle-orm";
 import { db } from "./client";
 import { events, sessions } from "./schema";
 
-const createId = init({ length: 8 });
+const createId = init({ length: 6 });
 
 export interface TrackSessionInput {
   id: string | null;
