@@ -229,6 +229,15 @@ The API supports dynamic theme injection for `main.user.css` requests:
    - `css-transformer.ts`: `cssVarsToCss()` for variable conversion
    - `css-compiler.ts`: `transformCss()` for Lightning CSS transformations
 
+**Analytics:**
+
+The API tracks anonymous usage for counting installs vs updates:
+
+- **Session matching**: First by hashed IP, then by session ID fallback
+- **Data stored**: Hashed IP (SHA256 + salt), session ID, asset, theme, tag, referer
+- **Opt-out**: Users can add `?notrack=1` to any request to disable tracking
+- **Implementation**: `trackSession()` in `@repo/db/queries`, schema in `@repo/db/schema`
+
 **Local Workflow:**
 
 1. Start the dev server: `pnpm --filter @repo/api dev`

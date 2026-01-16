@@ -82,6 +82,20 @@ If you're working on serving release artifacts, or tracking usage you'll be work
 
 ## Concepts
 
+### Analytics & Privacy
+
+The API tracks anonymous usage for counting installs and updates:
+
+- **Session matching**: First by IP hash, then by session ID (for users whose IP changes)
+- **Data stored**: Hashed IP, session ID, asset, theme, tag, referer, timestamp
+- **Opt-out**: Users can add `?notrack=1` to disable tracking
+
+The tracking is privacy-focused:
+
+- IPs are hashed with SHA256 + salt (irreversible)
+- Session IDs are random 6-character strings (cuid2)
+- No cookies or browser fingerprinting
+
 ### Theme injection
 
 The API supports dynamic theme injection for `main.user.css` requests. Here's how it works:

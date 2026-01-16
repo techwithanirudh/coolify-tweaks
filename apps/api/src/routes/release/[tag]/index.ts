@@ -57,6 +57,12 @@ defineRouteMeta({
           pattern: string;
         },
       },
+      {
+        in: "query",
+        name: "notrack",
+        description: "Disable anonymous analytics tracking",
+        schema: { type: "string", enum: ["1"] },
+      },
     ],
     responses: {
       "200": {
@@ -95,26 +101,38 @@ export default defineHandler(async (event) => {
   const theme =
     typeof query.theme === "string" && query.theme ? query.theme : null;
   const sessionId = isValidId(query.id) ? query.id : null;
-  const ipHash = hashIp(getRequestIP(event, { xForwardedFor: true }), hashSalt);
-  const referer = getRequestHeader(event, "referer") ?? null;
+  const notrack = query.notrack === "1";
 
   try {
     const { content, headers } = await fetchAsset(tag, asset);
 
-    const { sessionId: resolvedId, isNewSession } = await trackSession({
-      ipHash,
-      sessionId,
-      asset,
-      theme,
-      tag,
-      statusCode: 200,
-      referer,
-    });
+    let resolvedId: string | undefined;
+    if (!notrack) {
+      const ipHash = hashIp(
+        getRequestIP(event, { xForwardedFor: true }),
+        hashSalt,
+      );
+      const referer = getRequestHeader(event, "referer") ?? null;
+
+      const result = await trackSession({
+        ipHash,
+        sessionId,
+        asset,
+        theme,
+        tag,
+        statusCode: 200,
+        referer,
+      });
+
+      if (result.isNewSession) {
+        resolvedId = result.sessionId;
+      }
+    }
 
     const processed = await processContent({
       content,
       event,
-      sessionId: isNewSession ? resolvedId : undefined,
+      sessionId: resolvedId,
     });
 
     event.res.headers.set(
