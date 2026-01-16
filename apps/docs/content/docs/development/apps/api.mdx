@@ -86,8 +86,8 @@ If you're working on serving release artifacts, or tracking usage you'll be work
 
 The API tracks anonymous usage for counting installs and updates:
 
-- **Session matching**: First by IP hash, then by session ID (for users whose IP changes)
-- **Data stored**: Hashed IP, session ID, asset, theme, tag, referer, timestamp
+- **Session matching**: Session ID first (if provided), then IP hash fallback
+- **Data stored**: Hashed IP, session ID, asset, theme, tag, timestamp
 - **Opt-out**: Users can add `?notrack=1` to disable tracking
 
 The tracking is privacy-focused:

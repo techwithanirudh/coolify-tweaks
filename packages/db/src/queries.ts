@@ -15,28 +15,22 @@ export interface TrackSessionInput {
   statusCode: number;
 }
 
-async function findSession(ipHash: string | null, sessionId: string | null) {
-  if (sessionId) {
-    const [found] = await db
-      .select({ id: sessions.id })
-      .from(sessions)
-      .where(eq(sessions.id, sessionId))
-      .limit(1);
-    if (found) return found;
-  }
+async function findBySessionId(sessionId: string) {
+  const [found] = await db
+    .select({ id: sessions.id })
+    .from(sessions)
+    .where(eq(sessions.id, sessionId))
+    .limit(1);
+  return found ?? null;
+}
 
-  if (ipHash) {
-    const [found] = await db
-      .select({ id: sessions.id })
-      .from(sessions)
-      .where(
-        or(eq(sessions.firstIpHash, ipHash), eq(sessions.lastIpHash, ipHash)),
-      )
-      .limit(1);
-    if (found) return found;
-  }
-
-  return null;
+async function findByIp(ipHash: string) {
+  const [found] = await db
+    .select({ id: sessions.id })
+    .from(sessions)
+    .where(or(eq(sessions.firstIpHash, ipHash), eq(sessions.lastIpHash, ipHash)))
+    .limit(1);
+  return found ?? null;
 }
 
 async function writeEvent(
@@ -56,50 +50,87 @@ async function writeEvent(
 }
 
 export async function trackSession(input: TrackSessionInput) {
-  const { ipHash, sessionId } = input;
+  const { ipHash, sessionId, asset, theme, tag, statusCode } = input;
 
   try {
-    const existing = await findSession(ipHash, sessionId);
+    if (sessionId) {
+      const existing = await findBySessionId(sessionId);
+      if (existing) {
+        const updates = {
+          lastSeenAt: new Date(),
+          ...(ipHash ? { lastIpHash: ipHash } : {}),
+        };
+        await db
+          .update(sessions)
+          .set(updates)
+          .where(eq(sessions.id, existing.id));
 
-    if (existing) {
-      const updates = {
-        lastSeenAt: new Date(),
-        ...(ipHash ? { lastIpHash: ipHash } : {}),
-      };
-      await db
-        .update(sessions)
-        .set(updates)
-        .where(eq(sessions.id, existing.id));
+        await writeEvent(existing.id, "update", {
+          ipHash,
+          asset,
+          theme,
+          tag,
+          statusCode,
+        });
 
-      await writeEvent(existing.id, "update", {
-        ipHash,
-        asset: input.asset,
-        theme: input.theme,
-        tag: input.tag,
-        statusCode: input.statusCode,
+        return { sessionId: existing.id, isNewSession: false };
+      }
+
+      await db.insert(sessions).values({
+        id: sessionId,
+        asset,
+        ...(ipHash ? { firstIpHash: ipHash, lastIpHash: ipHash } : {}),
       });
 
-      return { sessionId: existing.id, isNewSession: false };
+      await writeEvent(sessionId, "install", {
+        ipHash,
+        asset,
+        theme,
+        tag,
+        statusCode,
+      });
+
+      return { sessionId, isNewSession: true };
     }
 
-    const newId = sessionId || createId();
+    if (ipHash) {
+      const existing = await findByIp(ipHash);
+      if (existing) {
+        await db
+          .update(sessions)
+          .set({ lastSeenAt: new Date(), lastIpHash: ipHash })
+          .where(eq(sessions.id, existing.id));
+
+        await writeEvent(existing.id, "update", {
+          ipHash,
+          asset,
+          theme,
+          tag,
+          statusCode,
+        });
+
+        return { sessionId: existing.id, isNewSession: false };
+      }
+    }
+
+    const newId = createId();
     await db.insert(sessions).values({
       id: newId,
-      asset: input.asset,
+      asset,
       ...(ipHash ? { firstIpHash: ipHash, lastIpHash: ipHash } : {}),
     });
 
     await writeEvent(newId, "install", {
       ipHash,
-      asset: input.asset,
-      theme: input.theme,
-      tag: input.tag,
-      statusCode: input.statusCode,
+      asset,
+      theme,
+      tag,
+      statusCode,
     });
 
     return { sessionId: newId, isNewSession: true };
   } catch (error) {
     console.error("[analytics] Failed to track session:", error);
-    return { sessionId: sessionId || createId(), isNewSession: true };
+    return { sessionId: null, isNewSession: false };
   }
 }

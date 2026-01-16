@@ -121,7 +121,7 @@ export default defineHandler(async (event) => {
         statusCode: 200,
       });
 
-      resolvedId = result.sessionId;
+      resolvedId = result.sessionId ?? undefined;
     }
 
     const processed = await processContent({

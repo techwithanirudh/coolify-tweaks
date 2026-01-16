@@ -233,8 +233,8 @@ The API supports dynamic theme injection for `main.user.css` requests:
 
 The API tracks anonymous usage for counting installs vs updates:
 
-- **Session matching**: First by hashed IP, then by session ID fallback
-- **Data stored**: Hashed IP (SHA256 + salt), session ID, asset, theme, tag, referer
+- **Session matching**: Session ID first (if provided), then hashed IP fallback
+- **Data stored**: Hashed IP (SHA256 + salt), session ID, asset, theme, tag
 - **Opt-out**: Users can add `?notrack=1` to any request to disable tracking
 - **Implementation**: `trackSession()` in `@repo/db/queries`, schema in `@repo/db/schema`
 
