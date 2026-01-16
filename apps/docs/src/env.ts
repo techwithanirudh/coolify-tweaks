@@ -17,13 +17,13 @@ export const env = createEnv({
     NEXT_PUBLIC_API_URL: z.preprocess(
       (val) =>
         val ??
-        (process.env.NODE_ENV !== "production" ? "http://localhost:3001" : val),
+        (process.env.NODE_ENV !== "production" ? "http://localhost:8080" : val),
       z.url(),
     ),
     NEXT_PUBLIC_DOCS_URL: z.preprocess(
       (val) =>
         val ??
-        (process.env.NODE_ENV !== "production" ? "http://localhost:3002" : val),
+        (process.env.NODE_ENV !== "production" ? "http://localhost:3000" : val),
       z.url(),
     ),
   },

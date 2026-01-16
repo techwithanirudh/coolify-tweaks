@@ -29,7 +29,7 @@ interface ThemeData {
   fonts: { sans?: string; mono?: string };
 }
 
-export async function getThemeData(themeId: string): Promise<ThemeData> {
+async function getThemeData(themeId: string): Promise<ThemeData> {
   const url = buildThemeUrl(themeId);
 
   try {
@@ -71,10 +71,6 @@ export async function getThemeData(themeId: string): Promise<ThemeData> {
   }
 }
 
-export async function getThemeCss(themeId: string): Promise<string> {
-  return (await getThemeData(themeId)).css;
-}
-
 export function changeMetadata(
   content: string,
   field: string,
@@ -83,30 +79,51 @@ export function changeMetadata(
   return content.replace(new RegExp(`^(@${field}\\s+).+$`, "m"), `$1${value}`);
 }
 
+function buildUpdateUrl(event: H3Event, sessionId?: string): string {
+  const requestUrl = getRequestURL(event);
+  const updateUrl = new URL(`${requestUrl.origin}/release/latest/`);
+
+  for (const [key, value] of requestUrl.searchParams.entries()) {
+    updateUrl.searchParams.set(key, value);
+  }
+
+  if (sessionId) {
+    updateUrl.searchParams.set("id", sessionId);
+  }
+
+  return updateUrl.toString();
+}
+
+export interface ProcessContentOptions {
+  content: string;
+  event: H3Event;
+  sessionId?: string;
+}
+
 export async function processContent({
   content,
   event,
-}: {
-  content: string;
-  event: H3Event;
-}): Promise<string> {
+  sessionId,
+}: ProcessContentOptions): Promise<string> {
   const { theme, asset = "main.user.css" } = getQuery(event);
 
+  let result = content;
+
+  if (asset === "main.user.css") {
+    result = changeMetadata(
+      result,
+      "updateURL",
+      buildUpdateUrl(event, sessionId),
+    );
+  }
+
+  // Theme injection only for CSS assets
   if (!theme || (asset !== "main.user.css" && asset !== "main.css")) {
-    return content;
+    return result;
   }
 
   const themeData = await getThemeData(theme);
   const themeCss = transformCss(themeData.css, asset);
-
-  let result = content;
-
-  const url = getRequestURL(event);
-  result = changeMetadata(
-    result,
-    "updateURL",
-    `${url.origin}/release/latest/?${url.search.slice(1)}`,
-  );
 
   result = result.replace(
     THEME_BLOCK_RE,

@@ -58,12 +58,14 @@ nav > ul > li > ul > li {
   border-radius: var(--radius-lg);
 }
 
-.menu-item {
+.menu-item,
+.sub-menu-item {
   display: flex;
   align-items: center;
+  width: 100%;
+  min-width: 0;
   padding: s(2.25) s(3.75);
   border-radius: var(--radius-lg);
-  color: var(--sidebar-foreground);
   font-weight: 500;
   transition:
     background 0.18s,
@@ -71,8 +73,12 @@ nav > ul > li > ul > li {
   gap: s(2.5);
 }
 
-// target settings sidebar (edit service)
-div > .menu-item {
+.menu-item {
+  color: var(--sidebar-foreground);
+}
+
+div > .menu-item,
+.sub-menu-item {
   color: var(--foreground);
 }
 
@@ -83,12 +89,17 @@ div > .menu-item {
 }
 
 div > .menu-item:hover,
-div > .menu-item-active {
+div > .menu-item-active,
+.sub-menu-item:hover,
+.sub-menu-item-active {
   background: var(--accent);
   color: var(--accent-foreground);
 }
 
-.menu-item .icon {
+.menu-item .icon,
+.menu-item .menu-item-icon,
+.sub-menu-item .icon,
+.sub-menu-item .sub-menu-item-icon {
   flex-shrink: 0;
   width: 20px;
   height: 20px;
@@ -100,71 +111,88 @@ div > .menu-item-active {
   }
 }
 
-.menu-item[title="Dashboard"] .icon {
+.menu-item[title="Dashboard"] .icon,
+.menu-item[title="Dashboard"] .menu-item-icon {
   @include icon("house-fill", "fill");
 }
 
-.menu-item[title="Projects"] .icon {
+.menu-item[title="Projects"] .icon,
+.menu-item[title="Projects"] .menu-item-icon {
   @include icon("folder-fill", "fill");
 }
 
-.menu-item[title="Servers"] .icon {
+.menu-item[title="Servers"] .icon,
+.menu-item[title="Servers"] .menu-item-icon {
   @include icon("hard-drives-fill", "fill");
 }
 
-.menu-item[title="Sources"] .icon {
+.menu-item[title="Sources"] .icon,
+.menu-item[title="Sources"] .menu-item-icon {
   @include icon("github-logo-fill", "fill");
 }
 
-.menu-item[title="Destinations"] .icon {
+.menu-item[title="Destinations"] .icon,
+.menu-item[title="Destinations"] .menu-item-icon {
   @include icon("map-pin-fill", "fill");
 }
 
-.menu-item[title="S3\ Storages"] .icon {
+.menu-item[title="S3\ Storages"] .icon,
+.menu-item[title="S3\ Storages"] .menu-item-icon {
   @include icon("database-fill", "fill");
 }
 
-.menu-item[title="Shared\ variables"] .icon {
+.menu-item[title="Shared\ variables"] .icon,
+.menu-item[title="Shared\ variables"] .menu-item-icon {
   @include icon("function-fill", "fill");
 }
 
-.menu-item[title="Notifications"] .icon {
+.menu-item[title="Notifications"] .icon,
+.menu-item[title="Notifications"] .menu-item-icon {
   @include icon("bell-fill", "fill");
 }
 
-.menu-item[title="Keys\ \&\ Tokens"] .icon {
+.menu-item[title="Keys\ \&\ Tokens"] .icon,
+.menu-item[title="Keys\ \&\ Tokens"] .menu-item-icon {
   @include icon("key-fill", "fill");
 }
 
-.menu-item[title="Tags"] .icon {
+.menu-item[title="Tags"] .icon,
+.menu-item[title="Tags"] .menu-item-icon {
   @include icon("tag-fill", "fill");
 }
 
-.menu-item[title="Terminal"] .icon {
+.menu-item[title="Terminal"] .icon,
+.menu-item[title="Terminal"] .menu-item-icon {
   @include icon("terminal-fill", "fill");
 }
 
-.menu-item[title="Profile"] .icon {
+.menu-item[title="Profile"] .icon,
+.menu-item[title="Profile"] .menu-item-icon {
   @include icon("user-circle-fill", "fill");
 }
 
-.menu-item[title="Teams"] .icon {
+.menu-item[title="Teams"] .icon,
+.menu-item[title="Teams"] .menu-item-icon {
   @include icon("users-fill", "fill");
 }
 
-.menu-item[title="Settings"] .icon {
+.menu-item[title="Settings"] .icon,
+.menu-item[title="Settings"] .menu-item-icon {
   @include icon("gear-fill", "fill");
 }
 
-.menu-item[title="Sponsor\ us"] .icon {
+.menu-item[title="Sponsor\ us"] .icon,
+.menu-item[title="Sponsor\ us"] .menu-item-icon {
   @include icon("heart-fill", "fill");
 }
 
-.menu-item[title="Send\ us\ feedback\ or\ get\ help!"] .icon {
+.menu-item[title="Send\ us\ feedback\ or\ get\ help!"] .icon,
+.menu-item[title="Send\ us\ feedback\ or\ get\ help!"] .menu-item-icon {
   @include icon("chat-text-fill", "fill");
 }
 
-.menu-item[title="Logout"] .icon {
+.menu-item[title="Logout"] .icon,
+.menu-item[title="Logout"] .menu-item-icon {
   @include icon("sign-out-fill", "fill");
 }
 
@@ -195,5 +223,20 @@ div > .menu-item-active {
 @include mq(lg) {
   body:has(nav[class*="dark:border-coolgray-200"]) main {
     padding-left: var(--sidebar-width);
+  }
+}
+
+.sub-menu-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: var(--sidebar-width);
+  width: 100%;
+  gap: s(2);
+
+  @media (min-width: 640px) {
+    width: auto;
+    max-width: 100%;
+    flex-shrink: 1;
   }
 }

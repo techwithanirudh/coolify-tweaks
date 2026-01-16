@@ -58,11 +58,21 @@ Manual Stylus installs load `main.user.css`, while the API serves a published re
     pnpm --filter @repo/style dev
     ```
 
-    This watches `apps/style/src/**` and serves `http://localhost:3000/main.user.css`.
+    This watches `apps/style/src/**` and rebuilds CSS to `dist/`.
 
   </Step>
   <Step>
-    **Install the stylesheet** inside Stylus, enable Live Reload, and add `http://localhost:3000/*` to allowed hosts.
+    **Start the API server:**
+
+    ```bash
+    pnpm --filter @repo/api dev
+    ```
+
+    The API serves the CSS from `http://localhost:8080/release/latest`. In development, it reads directly from the style app's `dist/` folder.
+
+  </Step>
+  <Step>
+    **Install the stylesheet** inside Stylus, enable Live Reload, and add `http://localhost:8080/*` to allowed hosts.
   </Step>
   <Step>
     **Edit Sass partials** for components, theme utilities, pages, etc., under `apps/style/src/`.

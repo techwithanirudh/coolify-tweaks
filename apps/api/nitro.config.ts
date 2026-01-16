@@ -9,6 +9,10 @@ export default defineConfig({
   alias: {
     "@": fileURLToPath(new URL("./src", import.meta.url)),
   },
+  runtimeConfig: {
+    hashSalt: process.env.HASH_SALT ?? "",
+    styleDistPath: fileURLToPath(new URL("../style/dist", import.meta.url)),
+  },
   openAPI: {
     route: "/_docs/openapi.json",
     production: "runtime",
