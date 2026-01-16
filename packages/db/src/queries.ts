@@ -64,7 +64,7 @@ export async function trackSession(input: TrackSessionInput) {
       return { sessionId: existing.id, isNewSession: false };
     }
 
-    const newId = createId();
+    const newId = sessionId || createId();
     await db.insert(sessions).values({
       id: newId,
       asset,
@@ -85,6 +85,6 @@ export async function trackSession(input: TrackSessionInput) {
     return { sessionId: newId, isNewSession: true };
   } catch (error) {
     console.error("[analytics] Failed to track session:", error);
-    return { sessionId: createId(), isNewSession: true };
+    return { sessionId: sessionId || createId(), isNewSession: true };
   }
 }

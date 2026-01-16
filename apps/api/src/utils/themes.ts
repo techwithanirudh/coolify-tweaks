@@ -83,11 +83,20 @@ function buildUpdateUrl(event: H3Event, sessionId?: string): string {
   const requestUrl = getRequestURL(event);
   const updateUrl = new URL(`${requestUrl.origin}/release/latest/`);
 
-  for (const [key, value] of requestUrl.searchParams.entries()) {
-    updateUrl.searchParams.set(key, value);
+  const asset = requestUrl.searchParams.get("asset");
+  if (asset) {
+    updateUrl.searchParams.set("asset", asset);
   }
 
-  if (sessionId) {
+  const theme = requestUrl.searchParams.get("theme");
+  if (theme) {
+    updateUrl.searchParams.set("theme", theme);
+  }
+
+  const notrack = requestUrl.searchParams.get("notrack");
+  if (notrack === "1") {
+    updateUrl.searchParams.set("notrack", "1");
+  } else if (sessionId) {
     updateUrl.searchParams.set("id", sessionId);
   }
 
