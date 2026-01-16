@@ -11,7 +11,7 @@ export default defineConfig({
   },
   runtimeConfig: {
     hashSalt: process.env.HASH_SALT ?? "",
-    styleDistPath: fileURLToPath(new URL("../style/dist", import.meta.url)),
+    stylePath: fileURLToPath(new URL("../style/dist", import.meta.url)),
   },
   openAPI: {
     route: "/_docs/openapi.json",

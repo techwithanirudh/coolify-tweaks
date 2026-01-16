@@ -53,10 +53,10 @@ async function fetchFromGitHub(
 }
 
 async function fetchFromLocal(asset: string): Promise<FetchResult> {
-  const { styleDistPath } = useRuntimeConfig();
+  const { stylePath } = useRuntimeConfig();
 
   try {
-    const content = await readFile(resolve(styleDistPath, asset), "utf-8");
+    const content = await readFile(resolve(stylePath, asset), "utf-8");
     return { content };
   } catch {
     throw new HTTPError({
