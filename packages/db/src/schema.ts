@@ -2,20 +2,27 @@ import { index, pgEnum, pgTable } from "drizzle-orm/pg-core";
 
 export const eventTypeEnum = pgEnum("event_type", ["install", "update"]);
 
-export const sessions = pgTable("sessions", (t) => ({
-  id: t.text().notNull().primaryKey(),
-  asset: t.text().notNull(),
-  firstIpHash: t.text(),
-  lastIpHash: t.text(),
-  firstSeenAt: t
-    .timestamp({ mode: "date", withTimezone: true })
-    .defaultNow()
-    .notNull(),
-  lastSeenAt: t
-    .timestamp({ mode: "date", withTimezone: true })
-    .defaultNow()
-    .notNull(),
-}));
+export const sessions = pgTable(
+  "sessions",
+  (t) => ({
+    id: t.text().notNull().primaryKey(),
+    asset: t.text().notNull(),
+    firstIpHash: t.text(),
+    lastIpHash: t.text(),
+    firstSeenAt: t
+      .timestamp({ mode: "date", withTimezone: true })
+      .defaultNow()
+      .notNull(),
+    lastSeenAt: t
+      .timestamp({ mode: "date", withTimezone: true })
+      .defaultNow()
+      .notNull(),
+  }),
+  (table) => [
+    index("sessions_first_ip_idx").on(table.firstIpHash),
+    index("sessions_last_ip_idx").on(table.lastIpHash),
+  ],
+);
 
 export const events = pgTable(
   "events",

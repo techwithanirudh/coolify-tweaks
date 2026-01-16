@@ -52,10 +52,7 @@ defineRouteMeta({
         in: "query",
         name: "id",
         description: "Session ID",
-        schema: {
-          type: "string",
-          pattern: "^[a-z0-9]{6}$",
-        } as {
+        schema: { type: "string", pattern: "^[a-z0-9]{6}$" } as {
           type: "string";
           pattern: string;
         },
@@ -83,14 +80,6 @@ export default defineHandler(async (event) => {
   const tag = getRouterParam(event, "tag");
   const query = getQuery(event);
 
-  const asset =
-    typeof query.asset === "string" && query.asset
-      ? query.asset
-      : "main.user.css";
-  const theme =
-    typeof query.theme === "string" && query.theme ? query.theme : null;
-  const id = isValidId(query.id) ? query.id : null;
-
   if (!tag) {
     throw new HTTPError({
       status: 400,
@@ -99,28 +88,33 @@ export default defineHandler(async (event) => {
     });
   }
 
+  const asset =
+    typeof query.asset === "string" && query.asset
+      ? query.asset
+      : "main.user.css";
+  const theme =
+    typeof query.theme === "string" && query.theme ? query.theme : null;
+  const sessionId = isValidId(query.id) ? query.id : null;
   const ipHash = hashIp(getRequestIP(event, { xForwardedFor: true }), hashSalt);
   const referer = getRequestHeader(event, "referer") ?? null;
-  let statusCode = 500;
 
   try {
     const { content, headers } = await fetchAsset(tag, asset);
-    statusCode = 200;
 
-    const { sessionId, isNewSession } = await trackSession({
-      id,
+    const { sessionId: resolvedId, isNewSession } = await trackSession({
+      ipHash,
+      sessionId,
       asset,
       theme,
       tag,
-      statusCode,
-      ipHash,
+      statusCode: 200,
       referer,
     });
 
     const processed = await processContent({
       content,
       event,
-      sessionId: isNewSession ? sessionId : undefined,
+      sessionId: isNewSession ? resolvedId : undefined,
     });
 
     event.res.headers.set(
@@ -132,20 +126,15 @@ export default defineHandler(async (event) => {
       event.res.headers.set("X-Source", "local");
     } else {
       event.res.headers.set("X-Source", "github");
-      if (headers) {
-        for (const name of allowedHeaders) {
-          const value = headers.get(name);
-          if (value) event.res.headers.set(name, value);
-        }
+      for (const name of allowedHeaders) {
+        const value = headers?.get(name);
+        if (value) event.res.headers.set(name, value);
       }
     }
 
     return processed;
   } catch (error) {
-    if (error instanceof HTTPError) {
-      statusCode = error.status;
-      throw error;
-    }
+    if (error instanceof HTTPError) throw error;
 
     throw new HTTPError({
       status: 500,
