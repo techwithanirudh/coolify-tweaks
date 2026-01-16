@@ -3,7 +3,6 @@ import { defineRouteMeta } from "nitro";
 import {
   defineHandler,
   getQuery,
-  getRequestHeader,
   getRequestIP,
   getRouterParam,
   HTTPError,
@@ -112,7 +111,7 @@ export default defineHandler(async (event) => {
         getRequestIP(event, { xForwardedFor: true }),
         hashSalt,
       );
-      const referer = getRequestHeader(event, "referer") ?? null;
+      const referer = event.req.headers.get("referer") ?? null;
 
       const result = await trackSession({
         ipHash,
@@ -124,9 +123,7 @@ export default defineHandler(async (event) => {
         referer,
       });
 
-      if (result.isNewSession) {
-        resolvedId = result.sessionId;
-      }
+      resolvedId = result.sessionId;
     }
 
     const processed = await processContent({
