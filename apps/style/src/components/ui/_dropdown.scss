@@ -2,7 +2,7 @@
 @use "components/ui/_button" as button;
 @use "components/ui/_input" as input;
 
-[x-show="dropdownOpen"]>div {
+[x-show="dropdownOpen"] > div {
   border-radius: var(--radius-lg);
   background: var(--popover);
   border: 1px solid var(--border);
@@ -40,12 +40,12 @@
 }
 
 div[x-data]:has(div[x-show^="open"]) {
-  &>div:has(input[x-ref="searchInput"]) {
+  & > div:has(input[x-ref="searchInput"]) {
     @include input.input-base;
     padding: s(2.25);
   }
 
-  &>div[\@click="openDropdown()"] {
+  & > div[\@click="openDropdown()"] {
     border: 1px solid var(--input);
     border-radius: var(--radius-md);
     background: transparent;
@@ -58,7 +58,7 @@ div[x-data]:has(div[x-show^="open"]) {
     border: 1px solid var(--border);
     box-shadow: var(--shadow-lg);
 
-    &>div {
+    & > div {
       padding: s(2) s(3);
       color: var(--popover-foreground);
       background: var(--popover);
