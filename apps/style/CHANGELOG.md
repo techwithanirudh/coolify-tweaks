@@ -1,5 +1,16 @@
 # coolify-tweaks
 
+## 4.0.2
+
+### Patch Changes
+
+- Deliver UI fixes aligned with the latest Coolify release, including layout polish
+  and typography adjustments for more consistent rendering across browsers.
+  Update theme-related metadata handling so userstyle update URLs remain accurate
+  when a theme is applied, and refine build/runtime naming for clarity.
+  Refresh documentation around installation paths, tracking behavior, and the
+  release workflow to reduce confusion during upgrades.
+
 ## 4.0.1
 
 ### Patch Changes
