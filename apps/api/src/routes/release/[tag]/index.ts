@@ -10,9 +10,10 @@ import {
 import { useRuntimeConfig } from "nitro/runtime-config";
 
 import { trackSession } from "@repo/db/queries";
+import { isValidSessionId, releaseQuerySchema } from "@repo/validators";
 
 import { allowedHeaders } from "@/config";
-import { hashIp, isValidId } from "@/utils/analytics";
+import { hashIp } from "@/utils/analytics";
 import { fetchAsset } from "@/utils/fetcher";
 import { processContent } from "@/utils/themes";
 
@@ -83,7 +84,7 @@ defineRouteMeta({
 export default defineHandler(async (event) => {
   const { hashSalt } = useRuntimeConfig();
   const tag = getRouterParam(event, "tag");
-  const query = getQuery(event);
+  const query = releaseQuerySchema.parse(getQuery(event));
 
   if (!tag) {
     throw new HTTPError({
@@ -93,14 +94,10 @@ export default defineHandler(async (event) => {
     });
   }
 
-  const asset =
-    typeof query.asset === "string" && query.asset
-      ? query.asset
-      : "main.user.css";
-  const theme =
-    typeof query.theme === "string" && query.theme ? query.theme : null;
-  const sessionId = isValidId(query.id) ? query.id : null;
-  const notrack = query.notrack === "1";
+  const asset = query.asset ?? "main.user.css";
+  const theme = query.theme ?? null;
+  const sessionId = isValidSessionId(query.id) ? query.id : null;
+  const notrack = Boolean(query.notrack);
 
   try {
     const { content, headers } = await fetchAsset(tag, asset);

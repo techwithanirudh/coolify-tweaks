@@ -4,6 +4,8 @@ import { $fetch } from "nitro/deps/ofetch";
 import { getQuery, getRequestURL, HTTPError } from "nitro/h3";
 import { registryItemSchema } from "shadcn/schema";
 
+import { themeIdSchema } from "@repo/validators";
+
 import { transformCss } from "./css-compiler";
 import { cssVarsToCss } from "./css-transformer";
 import { buildFontImportBlock, extractFontFamily } from "./fonts";
@@ -20,9 +22,10 @@ const markerRegex = (start: string, end: string) =>
 const THEME_BLOCK_RE = markerRegex(THEME_START, THEME_END);
 const FONT_BLOCK_RE = markerRegex(FONT_IMPORT_START, FONT_IMPORT_END);
 
-const CUID_RE = /^c[a-z0-9]{24}$/;
-const buildThemeUrl = (id: string) =>
-  `https://tweakcn.com/r/themes/${encodeURIComponent(id)}${CUID_RE.test(id) ? "" : ".json"}`;
+const buildThemeUrl = (id: string) => {
+  const isCuid = themeIdSchema.safeParse(id).success;
+  return `https://tweakcn.com/r/themes/${encodeURIComponent(id)}${isCuid ? "" : ".json"}`;
+};
 
 interface ThemeData {
   css: string;

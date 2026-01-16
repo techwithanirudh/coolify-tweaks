@@ -1,4 +1,6 @@
+import type { z } from "zod/v4";
 import { index, pgEnum, pgTable } from "drizzle-orm/pg-core";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 export const eventTypeEnum = pgEnum("event_type", ["install", "update"]);
 
@@ -24,6 +26,11 @@ export const sessions = pgTable(
   ],
 );
 
+export const sessionInsertSchema = createInsertSchema(sessions);
+export const sessionSelectSchema = createSelectSchema(sessions);
+export type SessionInsert = z.infer<typeof sessionInsertSchema>;
+export type Session = z.infer<typeof sessionSelectSchema>;
+
 export const events = pgTable(
   "events",
   (t) => ({
@@ -48,3 +55,8 @@ export const events = pgTable(
     index("events_session_id_idx").on(table.sessionId),
   ],
 );
+
+export const eventInsertSchema = createInsertSchema(events);
+export const eventSelectSchema = createSelectSchema(events);
+export type EventInsert = z.infer<typeof eventInsertSchema>;
+export type Event = z.infer<typeof eventSelectSchema>;
