@@ -10,11 +10,11 @@ import {
 } from "nitro/h3";
 import { useRuntimeConfig } from "nitro/runtime-config";
 
-import { logRequest } from "@repo/db/queries";
+import { trackSession } from "@repo/db/queries";
 
 import { allowedHeaders } from "@/config";
+import { hashIp } from "@/utils/analytics";
 import { fetchAsset } from "@/utils/fetcher";
-import { hashIp } from "@/utils/hash";
 import { processContent } from "@/utils/themes";
 
 defineRouteMeta({
@@ -48,6 +48,15 @@ defineRouteMeta({
           pattern: string;
         },
       },
+      {
+        in: "query",
+        name: "id",
+        description: "Session ID",
+        schema: { type: "string", pattern: "^[\\w-]{8,32}$" } as {
+          type: "string";
+          pattern: string;
+        },
+      },
     ],
     responses: {
       "200": {
@@ -77,6 +86,10 @@ export default defineHandler(async (event) => {
       : "main.user.css";
   const theme =
     typeof query.theme === "string" && query.theme ? query.theme : null;
+  const id =
+    typeof query.id === "string" && /^[\w-]{8,32}$/.test(query.id)
+      ? query.id
+      : null;
 
   if (!tag) {
     throw new HTTPError({
@@ -94,7 +107,21 @@ export default defineHandler(async (event) => {
     const { content, headers } = await fetchAsset(tag, asset);
     statusCode = 200;
 
-    const processed = await processContent({ content, event });
+    const { sessionId, isNewSession } = await trackSession({
+      id,
+      asset,
+      theme,
+      tag,
+      statusCode,
+      ipHash,
+      referer,
+    });
+
+    const processed = await processContent({
+      content,
+      event,
+      sessionId: isNewSession ? sessionId : undefined,
+    });
 
     event.res.headers.set(
       "Content-Type",
@@ -125,7 +152,5 @@ export default defineHandler(async (event) => {
       statusMessage: "Internal Server Error",
       message: error instanceof Error ? error.message : "Unknown error",
     });
-  } finally {
-    void logRequest({ asset, theme, tag, statusCode, ipHash, referer });
   }
 });
