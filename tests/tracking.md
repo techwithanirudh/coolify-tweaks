@@ -31,6 +31,7 @@ The API should be at `http://localhost:8080`.
 - Use `x-forwarded-for` to simulate different client IPs.
 - Use `-i` on curl to capture headers and the userstyle body.
 - The `@updateURL` is in the CSS metadata for `main.user.css`.
+- Theme IDs must match `^c[a-z0-9]{24}$` (25 chars total). Invalid theme IDs are ignored by analytics.
 
 Example curl:
 
@@ -41,6 +42,8 @@ curl -i \
 ```
 
 ### Database Helpers
+
+You must have `psql` installed. Installing `psql` without a confirmation prompt is required (non-interactive installs only).
 
 Run SQL against the database configured in `POSTGRES_URL`:
 
