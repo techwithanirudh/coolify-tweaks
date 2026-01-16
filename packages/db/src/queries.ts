@@ -62,6 +62,34 @@ async function writeEvent(
   });
 }
 
+async function createSession(
+  id: string,
+  asset: string,
+  ipHash: string | null,
+  options: { allowConflict?: boolean } = {},
+): Promise<"inserted" | "conflict"> {
+  if (options.allowConflict) {
+    const inserted = await db
+      .insert(sessions)
+      .values({
+        id,
+        asset,
+        ...(ipHash ? { firstIpHash: ipHash, lastIpHash: ipHash } : {}),
+      })
+      .onConflictDoNothing()
+      .returning({ id: sessions.id });
+
+    return inserted.length > 0 ? "inserted" : "conflict";
+  }
+
+  await db.insert(sessions).values({
+    id,
+    asset,
+    ...(ipHash ? { firstIpHash: ipHash, lastIpHash: ipHash } : {}),
+  });
+  return "inserted";
+}
+
 export async function trackSession(
   input: TrackSessionInput,
 ): Promise<TrackSessionResult> {
@@ -90,7 +118,29 @@ export async function trackSession(
         return { sessionId: existing.id, isNewSession: false };
       }
 
-      await createSession(sessionId, asset, ipHash);
+      const createResult = await createSession(sessionId, asset, ipHash, {
+        allowConflict: true,
+      });
+
+      if (createResult === "conflict") {
+        await db
+          .update(sessions)
+          .set({
+            lastSeenAt: new Date(),
+            ...(ipHash ? { lastIpHash: ipHash } : {}),
+          })
+          .where(eq(sessions.id, sessionId));
+
+        await writeEvent(sessionId, "update", {
+          ipHash,
+          asset,
+          theme,
+          tag,
+          statusCode,
+        });
+
+        return { sessionId, isNewSession: false };
+      }
 
       await writeEvent(sessionId, "install", {
         ipHash,
@@ -141,10 +191,3 @@ export async function trackSession(
   }
 }
 
-async function createSession(id: string, asset: string, ipHash: string | null) {
-  await db.insert(sessions).values({
-    id,
-    asset,
-    ...(ipHash ? { firstIpHash: ipHash, lastIpHash: ipHash } : {}),
-  });
-}
