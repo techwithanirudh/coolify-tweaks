@@ -39,26 +39,44 @@ async function findSession(ipHash: string | null, sessionId: string | null) {
   return null;
 }
 
+async function writeEvent(
+  sessionId: string,
+  eventType: "install" | "update",
+  input: Omit<TrackSessionInput, "sessionId">,
+) {
+  await db.insert(events).values({
+    sessionId,
+    eventType,
+    asset: input.asset,
+    theme: input.theme,
+    tag: input.tag,
+    statusCode: input.statusCode,
+    ipHash: input.ipHash,
+  });
+}
+
 export async function trackSession(input: TrackSessionInput) {
-  const { ipHash, sessionId, asset, theme, tag, statusCode } = input;
+  const { ipHash, sessionId } = input;
 
   try {
     const existing = await findSession(ipHash, sessionId);
 
     if (existing) {
+      const updates = {
+        lastSeenAt: new Date(),
+        ...(ipHash ? { lastIpHash: ipHash } : {}),
+      };
       await db
         .update(sessions)
-        .set({ lastSeenAt: new Date(), lastIpHash: ipHash })
+        .set(updates)
         .where(eq(sessions.id, existing.id));
 
-      await db.insert(events).values({
-        sessionId: existing.id,
-        eventType: "update",
-        asset,
-        theme,
-        tag,
-        statusCode,
+      await writeEvent(existing.id, "update", {
         ipHash,
+        asset: input.asset,
+        theme: input.theme,
+        tag: input.tag,
+        statusCode: input.statusCode,
       });
 
       return { sessionId: existing.id, isNewSession: false };
@@ -67,19 +85,16 @@ export async function trackSession(input: TrackSessionInput) {
     const newId = sessionId || createId();
     await db.insert(sessions).values({
       id: newId,
-      asset,
-      firstIpHash: ipHash,
-      lastIpHash: ipHash,
+      asset: input.asset,
+      ...(ipHash ? { firstIpHash: ipHash, lastIpHash: ipHash } : {}),
     });
 
-    await db.insert(events).values({
-      sessionId: newId,
-      eventType: "install",
-      asset,
-      theme,
-      tag,
-      statusCode,
+    await writeEvent(newId, "install", {
       ipHash,
+      asset: input.asset,
+      theme: input.theme,
+      tag: input.tag,
+      statusCode: input.statusCode,
     });
 
     return { sessionId: newId, isNewSession: true };
