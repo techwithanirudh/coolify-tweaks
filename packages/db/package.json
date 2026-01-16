@@ -34,10 +34,10 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
+    "@paralleldrive/cuid2": "^3.0.6",
     "@vercel/postgres": "^0.10.0",
     "drizzle-orm": "^0.45.0",
     "drizzle-zod": "^0.8.3",
-    "nanoid": "^5.1.6",
     "zod": "catalog:"
   },
   "devDependencies": {

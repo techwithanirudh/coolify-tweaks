@@ -13,7 +13,7 @@ import { useRuntimeConfig } from "nitro/runtime-config";
 import { trackSession } from "@repo/db/queries";
 
 import { allowedHeaders } from "@/config";
-import { hashIp } from "@/utils/analytics";
+import { hashIp, isValidId } from "@/utils/analytics";
 import { fetchAsset } from "@/utils/fetcher";
 import { processContent } from "@/utils/themes";
 
@@ -52,7 +52,10 @@ defineRouteMeta({
         in: "query",
         name: "id",
         description: "Session ID",
-        schema: { type: "string", pattern: "^[\\w-]{8,32}$" } as {
+        schema: {
+          type: "string",
+          pattern: "^[a-z0-9]{8}$",
+        } as {
           type: "string";
           pattern: string;
         },
@@ -86,10 +89,7 @@ export default defineHandler(async (event) => {
       : "main.user.css";
   const theme =
     typeof query.theme === "string" && query.theme ? query.theme : null;
-  const id =
-    typeof query.id === "string" && /^[\w-]{8,32}$/.test(query.id)
-      ? query.id
-      : null;
+  const id = isValidId(query.id) ? query.id : null;
 
   if (!tag) {
     throw new HTTPError({

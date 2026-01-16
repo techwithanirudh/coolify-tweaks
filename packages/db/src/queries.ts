@@ -1,8 +1,10 @@
+import { init } from "@paralleldrive/cuid2";
 import { eq } from "drizzle-orm";
-import { nanoid } from "nanoid";
 
 import { db } from "./client";
 import { events, sessions } from "./schema";
+
+const createId = init({ length: 8 });
 
 export interface TrackSessionInput {
   id: string | null;
@@ -25,7 +27,7 @@ export async function trackSession(
   const { id, asset, theme, tag, statusCode, ipHash, referer } = input;
 
   const isNewSession = !id;
-  const sessionId = id ?? nanoid(16);
+  const sessionId = id ?? createId();
   const eventType = isNewSession ? "install" : "update";
 
   try {
