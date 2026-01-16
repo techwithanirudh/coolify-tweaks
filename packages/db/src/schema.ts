@@ -39,7 +39,6 @@ export const events = pgTable(
       .defaultNow()
       .notNull(),
     ipHash: t.text(),
-    referer: t.text(),
   }),
   (table) => [
     index("events_created_at_idx").on(table.createdAt),

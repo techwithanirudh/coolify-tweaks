@@ -13,7 +13,6 @@ export interface TrackSessionInput {
   theme: string | null;
   tag: string;
   statusCode: number;
-  referer: string | null;
 }
 
 async function findSession(ipHash: string | null, sessionId: string | null) {
@@ -41,7 +40,7 @@ async function findSession(ipHash: string | null, sessionId: string | null) {
 }
 
 export async function trackSession(input: TrackSessionInput) {
-  const { ipHash, sessionId, asset, theme, tag, statusCode, referer } = input;
+  const { ipHash, sessionId, asset, theme, tag, statusCode } = input;
 
   try {
     const existing = await findSession(ipHash, sessionId);
@@ -60,7 +59,6 @@ export async function trackSession(input: TrackSessionInput) {
         tag,
         statusCode,
         ipHash,
-        referer,
       });
 
       return { sessionId: existing.id, isNewSession: false };
@@ -82,7 +80,6 @@ export async function trackSession(input: TrackSessionInput) {
       tag,
       statusCode,
       ipHash,
-      referer,
     });
 
     return { sessionId: newId, isNewSession: true };

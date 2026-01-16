@@ -111,7 +111,6 @@ export default defineHandler(async (event) => {
         getRequestIP(event, { xForwardedFor: true }),
         hashSalt,
       );
-      const referer = event.req.headers.get("referer") ?? null;
 
       const result = await trackSession({
         ipHash,
@@ -120,7 +119,6 @@ export default defineHandler(async (event) => {
         theme,
         tag,
         statusCode: 200,
-        referer,
       });
 
       resolvedId = result.sessionId;
