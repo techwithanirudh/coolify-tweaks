@@ -16,6 +16,15 @@ export interface TrackSessionInput {
 }
 
 async function findSession(ipHash: string | null, sessionId: string | null) {
+  if (sessionId) {
+    const [found] = await db
+      .select({ id: sessions.id })
+      .from(sessions)
+      .where(eq(sessions.id, sessionId))
+      .limit(1);
+    if (found) return found;
+  }
+
   if (ipHash) {
     const [found] = await db
       .select({ id: sessions.id })
@@ -23,15 +32,6 @@ async function findSession(ipHash: string | null, sessionId: string | null) {
       .where(
         or(eq(sessions.firstIpHash, ipHash), eq(sessions.lastIpHash, ipHash)),
       )
-      .limit(1);
-    if (found) return found;
-  }
-
-  if (sessionId) {
-    const [found] = await db
-      .select({ id: sessions.id })
-      .from(sessions)
-      .where(eq(sessions.id, sessionId))
       .limit(1);
     if (found) return found;
   }
