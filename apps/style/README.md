@@ -52,7 +52,7 @@ To test locally:
 
 1. Start the style watcher: `pnpm --filter @repo/style dev`
 2. Start the API server: `pnpm --filter @repo/api dev`
-3. Load the CSS from `http://localhost:8080/release/latest` in Stylus
+3. Load the CSS from `http://localhost:8080/release/latest/?asset=main.user.css` in Stylus
 
 ## Releasing
 

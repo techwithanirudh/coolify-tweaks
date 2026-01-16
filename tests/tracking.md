@@ -31,6 +31,7 @@ The API should be at `http://localhost:8080`.
 - Use `x-forwarded-for` to simulate different client IPs.
 - Use `-i` on curl to capture headers and the userstyle body.
 - The `@updateURL` is in the CSS metadata for `main.user.css`.
+- `main.css` does not include userstyle metadata, so it will not contain `@updateURL`.
 - Theme IDs must match `^c[a-z0-9]{24}$` (25 chars total). Invalid theme IDs are ignored by analytics.
 
 Example curl:
@@ -197,6 +198,8 @@ curl -i -H "x-forwarded-for: 7.7.7.7" \
 
 2. Verify `@updateURL` still includes `asset=main.css`, `theme=...`, `notrack=1`.
 
+Note: `@updateURL` only exists in `main.user.css`. For `main.css`, this check should be run with `asset=main.user.css`.
+
 ### 13: main.css vs main.user.css
 
 1. Request `asset=main.css` with theme.
@@ -213,3 +216,16 @@ Expect: no ID embedded (avoid phantom IDs) and no session created.
 Simulate two concurrent requests with same `id` from different IPs.
 
 Expect: only one session row, events recorded for both requests.
+
+### 16: Theme not found should log status
+
+1. Request with a valid-format theme that does not exist:
+
+```
+curl -i -H "x-forwarded-for: 19.19.19.19" \
+  "http://localhost:8080/release/latest/?asset=main.user.css&theme=c1234567890abcdef12345678"
+```
+
+2. Verify:
+   - HTTP status is 404.
+   - `events.status_code` reflects 404.

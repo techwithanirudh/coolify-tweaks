@@ -153,7 +153,7 @@ apps/style/
 
 1. Start the watcher: `pnpm --filter @repo/style dev`
 2. Start the API server: `pnpm --filter @repo/api dev`
-3. Install the stylesheet in Stylus from `http://localhost:8080/release/latest`
+3. Install the stylesheet in Stylus from `http://localhost:8080/release/latest/?asset=main.user.css`
 4. Edit Sass partials under `apps/style/src/` - changes are reflected immediately
 5. Update documentation when changing installation or update behavior
 
