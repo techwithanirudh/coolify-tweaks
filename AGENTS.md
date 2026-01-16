@@ -558,55 +558,15 @@ Commits are validated with `commitlint` (configured in `commitlint.config.ts`) u
 - Reference related issues
 - Rebase on `main` when requested
 
-## Changesets (Version Management)
+## Releases
 
-This project uses [Changesets](https://github.com/changesets/changesets) for version management and changelog generation.
+When you are requested to make a release:
 
-### Creating a Changeset
-
-When you make changes that should be in the next release:
-
-```bash
-pnpm changeset
-```
-
-This interactive prompt will:
-
-1. Ask which packages are affected
-2. Ask the type of change (major, minor, patch)
-3. Ask for a summary of your changes
-4. Create a markdown file in `.changeset/`
-
-### Change Types
-
-| Type      | When to Use                                            |
-| --------- | ------------------------------------------------------ |
-| **Major** | Breaking API changes, major feature rewrites           |
-| **Minor** | New features, new components, significant improvements |
-| **Patch** | Bug fixes, small improvements, documentation updates   |
-
-### Releasing
-
-Releases are automated via GitHub Actions on push to `dev`:
-
-1. Changesets action creates a "Version Packages" PR
-2. Merging that PR triggers the release
-3. Style assets are uploaded to GitHub Releases
-
-**Manual version bump (if needed):**
-
-```bash
-pnpm run version    # Updates versions based on changesets
-pnpm run release    # Builds and publishes
-```
-
-### Configuration
-
-Changeset config in `.changeset/config.json`:
-
-- **Base branch:** `dev`
-- **Access:** restricted (private packages)
-- **Private packages:** versioned and tagged
+1. Gather the X number of git commits up until the last release.
+2. Run `pnpm changeset --empty`.
+3. Update the empty changeset with the release content. Keep it simple and clear.
+4. Run `pnpm version` to apply the version bump.
+5. Ask the user to review and then commit.
 
 ## CI/CD Pipeline
 
