@@ -104,7 +104,7 @@ export default defineHandler(async (event) => {
     const { content, headers } = await fetchAsset(tag, asset);
 
     let resolvedId: string | undefined;
-    if (!notrack) {
+    if (!notrack && !import.meta.dev) {
       const ipHash = hashIp(
         getRequestIP(event, { xForwardedFor: true }),
         hashSalt,
