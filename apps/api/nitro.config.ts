@@ -30,4 +30,12 @@ export default defineConfig({
       },
     },
   },
+  routeRules: {
+    "/main.user.css": {
+      redirect: "/release/latest/?asset=main.user.css",
+    },
+    "/main.css": {
+      redirect: "/release/latest/?asset=main.css",
+    },
+  },
 });
