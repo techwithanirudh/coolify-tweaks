@@ -10,7 +10,7 @@ import {
 import { useRuntimeConfig } from "nitro/runtime-config";
 
 import { trackSession } from "@repo/db/queries";
-import { isValidSessionId, releaseQuerySchema } from "@repo/validators";
+import { releaseQuerySchema } from "@repo/validators";
 
 import { allowedHeaders } from "@/config";
 import { hashIp } from "@/utils/analytics";
@@ -44,15 +44,6 @@ defineRouteMeta({
         name: "theme",
         description: "TweakCN theme ID for CSS variable injection.",
         schema: { type: "string", pattern: "^c[a-z0-9]{24}$" } as {
-          type: "string";
-          pattern: string;
-        },
-      },
-      {
-        in: "query",
-        name: "id",
-        description: "Session ID",
-        schema: { type: "string", pattern: "^[a-z0-9]{6}$" } as {
           type: "string";
           pattern: string;
         },
@@ -97,35 +88,29 @@ export default defineHandler(async (event) => {
 
   const asset = query.asset ?? "main.user.css";
   const theme = query.theme ?? null;
-  const sessionId = isValidSessionId(query.id) ? query.id : null;
   const notrack = Boolean(query.notrack);
 
   try {
     const { content, headers } = await fetchAsset(tag, asset);
 
-    let resolvedId: string | undefined;
     if (!notrack && !import.meta.dev) {
       const ipHash = hashIp(
         getRequestIP(event, { xForwardedFor: true }),
         hashSalt,
       );
 
-      const result = await trackSession({
+      await trackSession({
         ipHash,
-        sessionId,
         asset,
         theme,
         tag,
         statusCode: 200,
       });
-
-      resolvedId = result.sessionId ?? undefined;
     }
 
     const processed = await processContent({
       content,
       event,
-      sessionId: resolvedId,
       asset,
       theme,
     });

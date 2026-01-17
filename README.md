@@ -86,7 +86,7 @@ Got an idea or feature request? [Open an issue](https://github.com/techwithaniru
 
 ## Privacy
 
-We collect minimal analytics to count installs and updates. Only hashed IPs and random session IDs are stored, no personal data. This helps us understand usage patterns and improve the project.
+We collect minimal analytics to count installs and updates. We store hashed IPs plus basic request metadata (asset, theme, tag, status) and no personal data. This helps us understand usage patterns and improve the project.
 
 **To opt out**, add `?notrack=1` to the install URL:
 

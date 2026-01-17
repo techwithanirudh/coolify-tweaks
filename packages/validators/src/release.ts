@@ -1,6 +1,5 @@
 import { z } from "zod/v4";
 
-export const sessionIdSchema = z.string().regex(/^[a-z0-9]{6}$/);
 export const themeIdSchema = z.string().regex(/^c[a-z0-9]{24}$/);
 export const notrackSchema = z.preprocess((value) => {
   if (typeof value === "string") {
@@ -14,9 +13,6 @@ export const notrackSchema = z.preprocess((value) => {
   if (typeof value === "boolean") return value;
   return undefined;
 }, z.boolean());
-
-export const isValidSessionId = (value: unknown): value is string =>
-  sessionIdSchema.safeParse(value).success;
 
 const optionalStringParam = (schema: z.ZodString) =>
   z
@@ -32,6 +28,5 @@ const optionalParam = (schema: z.ZodTypeAny) =>
 export const releaseQuerySchema = z.object({
   asset: optionalStringParam(z.string()),
   theme: optionalStringParam(themeIdSchema),
-  id: optionalStringParam(sessionIdSchema),
   notrack: optionalParam(notrackSchema),
 });

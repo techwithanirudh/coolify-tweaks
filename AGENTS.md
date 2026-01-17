@@ -119,8 +119,8 @@ Request with `?theme=<theme-id>` to apply a TweakCN theme:
 
 **Analytics:**
 - Tracks anonymous usage (installs vs updates)
-- Session matching: Session ID first, then hashed IP (SHA256 + salt) fallback
-- Data stored: hashed IP, session ID, asset, theme, tag
+- Session matching: hashed IP only (SHA256 + salt)
+- Data stored: hashed IP, asset, theme, tag, status code
 - Opt-out with `?notrack=1`
 - Implementation: `trackSession()` in `@repo/db/queries`, schema in `@repo/db/schema`
 

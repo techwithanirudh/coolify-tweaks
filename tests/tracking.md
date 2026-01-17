@@ -71,13 +71,13 @@ curl -i -H "x-forwarded-for: 1.1.1.1" \
 ```
 
 2. Verify:
-   - CSS `@updateURL` contains `?id=<sessionId>`.
-   - `sessions` has a new row with that `id`.
-   - `events` has an `install` event for that `sessionId`.
+   - CSS `@updateURL` does not include any `id` parameter.
+   - `sessions` has a new row.
+   - `events` has an `install` event logged.
 
-### Check 2: Same IP, no session ID, logs update to same session
+### Check 2: Same IP logs update to same session
 
-1. Request again with same IP, no id:
+1. Request again with same IP:
 
 ```
 curl -i -H "x-forwarded-for: 1.1.1.1" \
@@ -88,19 +88,18 @@ curl -i -H "x-forwarded-for: 1.1.1.1" \
    - No new session row.
    - New `events` row with `eventType = 'update'`.
 
-### Check 3: UpdateURL used with different IP
+### Check 3: Different IP creates a new session
 
-1. Extract the `id` from `@updateURL` in Check 1.
-2. Request with a new IP:
+1. Request with a new IP:
 
 ```
 curl -i -H "x-forwarded-for: 2.2.2.2" \
-  "http://localhost:8080/release/latest/?asset=main.user.css&id=<id>"
+  "http://localhost:8080/release/latest/?asset=main.user.css"
 ```
 
-3. Verify:
-   - `events` row has new `ipHash`.
-   - `sessions.lastIpHash` is updated to new hash.
+2. Verify:
+   - New `sessions` row is created.
+   - New `events` row is `install`.
 
 ### Check 4: Theme parameter is logged
 
@@ -114,80 +113,30 @@ curl -i -H "x-forwarded-for: 3.3.3.3" \
 2. Verify:
    - `events.theme` has the theme value.
 
-### Check 5: Session ID provided but missing in DB
-
-1. Request with a fake ID:
-
-```
-curl -i -H "x-forwarded-for: 4.4.4.4" \
-  "http://localhost:8080/release/latest/?asset=main.user.css&id=abc123"
-```
-
-2. Verify:
-   - New session created with `id = abc123`.
-   - `events` row is `install`.
-
-### Check 6: Return to original IP after IP change
-
-1. Use the `id` from Check 3.
-2. Send request from original IP:
-
-```
-curl -i -H "x-forwarded-for: 1.1.1.1" \
-  "http://localhost:8080/release/latest/?asset=main.user.css&id=<id>"
-```
-
-3. Verify:
-   - `events` uses same `sessionId`.
-   - `sessions.firstIpHash` unchanged.
-   - `sessions.lastIpHash` updated to original IP hash.
-
 ## Additional Edge Cases
 
-### 7: Invalid session ID (bad format)
-
-```
-curl -i -H "x-forwarded-for: 5.5.5.5" \
-  "http://localhost:8080/release/latest/?asset=main.user.css&id=BAD123"
-```
-
-Expect: ID ignored, behavior falls back to IP or creates new session.
-
-### 8: notrack overrides everything
+### 5: notrack overrides everything
 
 ```
 curl -i -H "x-forwarded-for: 6.6.6.6" \
-  "http://localhost:8080/release/latest/?asset=main.user.css&notrack=1&id=abc123"
+  "http://localhost:8080/release/latest/?asset=main.user.css&notrack=1"
 ```
 
 Expect: no session created, no events logged, updateURL keeps `notrack=1`.
 
-### 9: HASH_SALT missing
+### 6: HASH_SALT missing
 
 1. Temporarily unset `HASH_SALT` and restart API.
 2. Make a request:
 
 ```
 curl -i \
-  "http://localhost:8080/release/latest/?asset=main.user.css&id=abc123"
+  "http://localhost:8080/release/latest/?asset=main.user.css"
 ```
 
-Expect: session created (by ID), `firstIpHash`/`lastIpHash` remain null, no IP-based matching.
+Expect: session created, `firstIpHash`/`lastIpHash` remain null, no IP-based matching.
 
-### 10: IP changes without session ID
-
-1. Request from IP A without ID.
-2. Request from IP B without ID.
-
-Expect: two separate sessions (no linking across IPs).
-
-### 11: Session ID used from multiple IPs
-
-1. Use a known session ID with IP A, then IP B.
-
-Expect: same session ID, `lastIpHash` updates, `firstIpHash` stays from the initial IP.
-
-### 12: UpdateURL preserves asset + theme + notrack
+### 7: UpdateURL preserves asset + theme + notrack
 
 1. Request:
 
@@ -200,24 +149,18 @@ curl -i -H "x-forwarded-for: 7.7.7.7" \
 
 Note: `@updateURL` only exists in `main.user.css`.
 
-### 13: main.css vs main.user.css
+### 8: main.css vs main.user.css
 
 1. Request `asset=main.css` with theme.
 2. Verify `events.asset` and updateURL reflect `main.css`.
 
-### 14: Event insert failure safety
+### 9: Event insert failure safety
 
-Simulate DB failure (stop Postgres) and request with `id=abc123`.
+Simulate DB failure (stop Postgres) and request:
 
 Expect: no ID embedded (avoid phantom IDs) and no session created.
 
-### 15: Duplicate session ID race
-
-Simulate two concurrent requests with same `id` from different IPs.
-
-Expect: only one session row, events recorded for both requests.
-
-### 16: Theme not found should log status
+### 10: Theme not found should log status
 
 1. Request with a valid-format theme that does not exist:
 
