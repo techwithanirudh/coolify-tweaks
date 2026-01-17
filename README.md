@@ -86,12 +86,12 @@ Got an idea or feature request? [Open an issue](https://github.com/techwithaniru
 
 ## Privacy
 
-We collect anonymous analytics to count installs and updates. Only hashed IPs and random session IDs are stored. These are treated as pseudonymous identifiers that reduce identifiability, though re-identification may be possible in some circumstances. This data helps us understand usage patterns and improve the project.
+We collect minimal analytics to count installs and updates. Only hashed IPs and random session IDs are stored, no personal data. This helps us understand usage patterns and improve the project.
 
 **To opt out**, add `?notrack=1` to the install URL:
 
 ```
-https://coolify-tweaks-api.techwithanirudh.com/release/latest/?asset=main.user.css&notrack=1
+https://coolify-tweaks-api.techwithanirudh.com/release/latest/?notrack=1&asset=main.user.css
 ```
 
 ## License

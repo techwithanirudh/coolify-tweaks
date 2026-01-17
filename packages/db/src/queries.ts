@@ -5,7 +5,7 @@ import { z } from "zod/v4";
 import { db } from "./client";
 import { events, sessions } from "./schema";
 
-const createId = init({ length: 12 });
+const createId = init({ length: 6 });
 
 export const trackSessionInputSchema = z.object({
   ipHash: z.string().nullable(),
