@@ -6,7 +6,8 @@
   border-radius: 0px;
 }
 
-div:has(button[x-show="searchQuery"]) {
+// Search bar with clear button - scoped to avoid bleeding styles
+div.flex.flex-1:has(button[x-show="searchQuery"]) {
   input {
     @include input.input-base;
     padding-left: s(7);

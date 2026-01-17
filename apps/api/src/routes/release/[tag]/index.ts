@@ -60,8 +60,9 @@ defineRouteMeta({
       {
         in: "query",
         name: "notrack",
-        description: "Disable anonymous analytics tracking",
-        schema: { type: "string", enum: ["1"] },
+        description:
+          "Disable anonymous analytics tracking. Accepts 1, 0, true, or false.",
+        schema: { type: "string", enum: ["0", "1", "true", "false"] },
       },
     ],
     responses: {
@@ -125,6 +126,8 @@ export default defineHandler(async (event) => {
       content,
       event,
       sessionId: resolvedId,
+      asset,
+      theme,
     });
 
     event.res.headers.set(

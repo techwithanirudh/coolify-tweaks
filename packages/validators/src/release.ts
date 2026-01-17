@@ -24,14 +24,10 @@ const optionalStringParam = (schema: z.ZodString) =>
       (value) => (typeof value === "string" ? value : undefined),
       schema,
     )
-    .optional()
-    .catch(undefined);
+    .optional();
 
 const optionalParam = (schema: z.ZodTypeAny) =>
-  z
-    .preprocess((value) => value, schema)
-    .optional()
-    .catch(undefined);
+  z.preprocess((value) => value, schema).optional();
 
 export const releaseQuerySchema = z.object({
   asset: optionalStringParam(z.string()),

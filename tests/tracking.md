@@ -193,12 +193,12 @@ Expect: same session ID, `lastIpHash` updates, `firstIpHash` stays from the init
 
 ```
 curl -i -H "x-forwarded-for: 7.7.7.7" \
-  "http://localhost:8080/release/latest/?asset=main.css&theme=c1234567890abcdef1234567&notrack=1"
+  "http://localhost:8080/release/latest/?asset=main.user.css&theme=c1234567890abcdef1234567&notrack=1"
 ```
 
-2. Verify `@updateURL` still includes `asset=main.css`, `theme=...`, `notrack=1`.
+2. Verify `@updateURL` still includes `asset=main.user.css`, `theme=...`, `notrack=1`.
 
-Note: `@updateURL` only exists in `main.user.css`. For `main.css`, this check should be run with `asset=main.user.css`.
+Note: `@updateURL` only exists in `main.user.css`.
 
 ### 13: main.css vs main.user.css
 

@@ -1,11 +1,11 @@
 import { init } from "@paralleldrive/cuid2";
-import { eq, or } from "drizzle-orm";
+import { desc, eq, or } from "drizzle-orm";
 import { z } from "zod/v4";
 
 import { db } from "./client";
 import { events, sessions } from "./schema";
 
-const createId = init({ length: 6 });
+const createId = init({ length: 12 });
 
 export const trackSessionInputSchema = z.object({
   ipHash: z.string().nullable(),
@@ -40,6 +40,7 @@ async function findByIp(ipHash: string) {
     .where(
       or(eq(sessions.firstIpHash, ipHash), eq(sessions.lastIpHash, ipHash)),
     )
+    .orderBy(desc(sessions.lastSeenAt))
     .limit(1);
   return found ?? null;
 }

@@ -39,10 +39,21 @@
   }
 }
 
-div[x-data]:has(div[x-show^="open"]) {
+// Dropdown component - scoped to specific dropdown patterns
+[data-dropdown],
+div[x-data][x-init*="dropdown"]:has(div[x-show^="open"]),
+div[x-data]:has(div[x-show^="open"]):has([\@click*="Dropdown"]) {
   & > div:has(input[x-ref="searchInput"]) {
-    @include input.input-base;
     padding: s(2.25);
+    border: 1px solid var(--input);
+    border-radius: var(--radius-md);
+    background: var(--background);
+
+    input[x-ref="searchInput"] {
+      @include input.input-base;
+      border: none;
+      background: transparent;
+    }
   }
 
   & > div[\@click="openDropdown()"] {
