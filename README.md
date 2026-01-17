@@ -82,7 +82,17 @@ The [documentation website](https://coolify-tweaks.techwithanirudh.com) provides
 
 ## Contributing
 
-Got an idea or feature request? [Open an issue](https://github.com/techwithanirudh/coolify-tweaks/issues) and let’s chat, or read the [contributing guide](CONTRIBUTING.md).
+Got an idea or feature request? [Open an issue](https://github.com/techwithanirudh/coolify-tweaks/issues) and let's chat, or read the [contributing guide](CONTRIBUTING.md).
+
+## Privacy
+
+We collect minimal analytics to count installs and updates. Only hashed IPs and random session IDs are stored, no personal data. This helps us understand usage patterns and improve the project.
+
+**To opt out**, add `?notrack=1` to the install URL:
+
+```
+https://coolify-tweaks-api.techwithanirudh.com/release/latest/?notrack=1&asset=main.user.css
+```
 
 ## License
 

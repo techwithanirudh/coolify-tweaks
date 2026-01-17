@@ -9,6 +9,10 @@ export default defineConfig({
   alias: {
     "@": fileURLToPath(new URL("./src", import.meta.url)),
   },
+  runtimeConfig: {
+    hashSalt: process.env.HASH_SALT ?? "",
+    stylePath: fileURLToPath(new URL("../style/dist", import.meta.url)),
+  },
   openAPI: {
     route: "/_docs/openapi.json",
     production: "runtime",
@@ -24,6 +28,14 @@ export default defineConfig({
       swagger: {
         route: "/_docs/swagger",
       },
+    },
+  },
+  routeRules: {
+    "/main.user.css": {
+      redirect: "/release/latest/?asset=main.user.css",
+    },
+    "/main.css": {
+      redirect: "/release/latest/?asset=main.css",
     },
   },
 });

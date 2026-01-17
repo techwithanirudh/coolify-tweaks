@@ -10,7 +10,7 @@ All commands are invoked from the repo root with PNPM filters:
 # Install dependencies (once per repo)
 pnpm install
 
-# Watch mode: rebuild on change & serve preview
+# Watch mode: rebuild on change
 pnpm --filter @repo/style dev
 
 # One-off build
@@ -44,12 +44,18 @@ apps/style
 
 The Sass entry file is `src/main.scss`. Individual components live under `src/components`, while `src/theme` contains token definitions and CSS variables.
 
-## Previewing the Style
+## Development Workflow
 
-While `pnpm --filter @repo/style dev` is running, the preview server (powered by `serve`) exposes the compiled CSS at `http://localhost:3000`. You can load that file directly in Stylus or via the web playground.
+While `pnpm --filter @repo/style dev` is running, the watcher automatically rebuilds the CSS when you edit Sass files. The API server (`pnpm --filter @repo/api dev`) reads the built CSS directly from `dist/` in development mode, so changes are reflected immediately.
+
+To test locally:
+
+1. Start the style watcher: `pnpm --filter @repo/style dev`
+2. Start the API server: `pnpm --filter @repo/api dev`
+3. Load the CSS from `http://localhost:8080/release/latest/?asset=main.user.css` in Stylus
 
 ## Releasing
 
 1. Create a Changeset describing the update.
 2. Merge to `dev`; CI will run and publish when you trigger the release workflow.
-3. Once published, the API app serves the new CSS.
+3. Once published, the API app serves the new CSS from GitHub releases.

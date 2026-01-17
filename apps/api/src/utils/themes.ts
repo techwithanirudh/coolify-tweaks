@@ -4,6 +4,8 @@ import { $fetch } from "nitro/deps/ofetch";
 import { getQuery, getRequestURL, HTTPError } from "nitro/h3";
 import { registryItemSchema } from "shadcn/schema";
 
+import { themeIdSchema } from "@repo/validators";
+
 import { transformCss } from "./css-compiler";
 import { cssVarsToCss } from "./css-transformer";
 import { buildFontImportBlock, extractFontFamily } from "./fonts";
@@ -20,16 +22,17 @@ const markerRegex = (start: string, end: string) =>
 const THEME_BLOCK_RE = markerRegex(THEME_START, THEME_END);
 const FONT_BLOCK_RE = markerRegex(FONT_IMPORT_START, FONT_IMPORT_END);
 
-const CUID_RE = /^c[a-z0-9]{24}$/;
-const buildThemeUrl = (id: string) =>
-  `https://tweakcn.com/r/themes/${encodeURIComponent(id)}${CUID_RE.test(id) ? "" : ".json"}`;
+const buildThemeUrl = (id: string) => {
+  const isCuid = themeIdSchema.safeParse(id).success;
+  return `https://tweakcn.com/r/themes/${encodeURIComponent(id)}${isCuid ? "" : ".json"}`;
+};
 
 interface ThemeData {
   css: string;
   fonts: { sans?: string; mono?: string };
 }
 
-export async function getThemeData(themeId: string): Promise<ThemeData> {
+async function getThemeData(themeId: string): Promise<ThemeData> {
   const url = buildThemeUrl(themeId);
 
   try {
@@ -71,10 +74,6 @@ export async function getThemeData(themeId: string): Promise<ThemeData> {
   }
 }
 
-export async function getThemeCss(themeId: string): Promise<string> {
-  return (await getThemeData(themeId)).css;
-}
-
 export function changeMetadata(
   content: string,
   field: string,
@@ -83,30 +82,77 @@ export function changeMetadata(
   return content.replace(new RegExp(`^(@${field}\\s+).+$`, "m"), `$1${value}`);
 }
 
+function isNotrackEnabled(value: string | null): boolean {
+  if (!value) return false;
+  const normalized = value.toLowerCase();
+  return normalized === "1" || normalized === "true";
+}
+
+function buildUpdateUrl(event: H3Event, sessionId?: string): string {
+  const requestUrl = getRequestURL(event);
+  const updateUrl = new URL(`${requestUrl.origin}/release/latest/`);
+
+  const asset = requestUrl.searchParams.get("asset");
+  if (asset) {
+    updateUrl.searchParams.set("asset", asset);
+  }
+
+  const theme = requestUrl.searchParams.get("theme");
+  if (theme) {
+    updateUrl.searchParams.set("theme", theme);
+  }
+
+  const notrack = requestUrl.searchParams.get("notrack");
+  if (isNotrackEnabled(notrack)) {
+    updateUrl.searchParams.set("notrack", "1");
+  } else if (sessionId) {
+    updateUrl.searchParams.set("id", sessionId);
+  }
+
+  return updateUrl.toString();
+}
+
+export interface ProcessContentOptions {
+  content: string;
+  event: H3Event;
+  sessionId?: string;
+  asset?: string;
+  theme?: string | null;
+}
+
 export async function processContent({
   content,
   event,
-}: {
-  content: string;
-  event: H3Event;
-}): Promise<string> {
-  const { theme, asset = "main.user.css" } = getQuery(event);
+  sessionId,
+  asset: validatedAsset,
+  theme: validatedTheme,
+}: ProcessContentOptions): Promise<string> {
+  const query = getQuery(event);
+  const asset =
+    validatedAsset ??
+    (typeof query.asset === "string" ? query.asset : null) ??
+    "main.user.css";
+  const theme =
+    validatedTheme ??
+    (typeof query.theme === "string" ? query.theme : undefined);
 
+  let result = content;
+
+  if (asset === "main.user.css") {
+    result = changeMetadata(
+      result,
+      "updateURL",
+      buildUpdateUrl(event, sessionId),
+    );
+  }
+
+  // Theme injection only for CSS assets
   if (!theme || (asset !== "main.user.css" && asset !== "main.css")) {
-    return content;
+    return result;
   }
 
   const themeData = await getThemeData(theme);
   const themeCss = transformCss(themeData.css, asset);
-
-  let result = content;
-
-  const url = getRequestURL(event);
-  result = changeMetadata(
-    result,
-    "updateURL",
-    `${url.origin}/release/latest/?${url.search.slice(1)}`,
-  );
 
   result = result.replace(
     THEME_BLOCK_RE,

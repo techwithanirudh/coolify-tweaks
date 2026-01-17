@@ -1,0 +1,1 @@
+This file has moved to ./AGENTS.md, please refer to the updated file before starting.

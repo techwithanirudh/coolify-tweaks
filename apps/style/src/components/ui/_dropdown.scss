@@ -1,5 +1,6 @@
 @use "globals" as *;
 @use "components/ui/_button" as button;
+@use "components/ui/_input" as input;
 
 [x-show="dropdownOpen"] > div {
   border-radius: var(--radius-lg);
@@ -34,6 +35,49 @@
     &:focus {
       box-shadow: 0 0 0 1px color-mix(in srgb, var(--ring) 50%, transparent);
       border-color: var(--ring);
+    }
+  }
+}
+
+div[x-data]:has(div[x-show^="open"]) {
+  & > div:has(input[x-ref="searchInput"]) {
+    @include input.input-base;
+    padding: s(2.25);
+  }
+
+  & > div[\@click="openDropdown()"] {
+    border: 1px solid var(--input);
+    border-radius: var(--radius-md);
+    background: transparent;
+    padding: s(0);
+  }
+
+  div[x-show^="open"] {
+    border-radius: var(--radius-lg);
+    background: var(--popover);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+
+    & > div {
+      padding: s(2) s(3);
+      color: var(--popover-foreground);
+      background: var(--popover);
+      transition:
+        background 0.15s,
+        color 0.15s;
+
+      &:first-child {
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      }
+
+      &:hover {
+        background: var(--accent);
+        color: var(--accent-foreground);
+      }
     }
   }
 }

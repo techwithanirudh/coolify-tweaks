@@ -57,7 +57,7 @@ If you're working on serving release artifacts, or tracking usage you'll be work
     pnpm --filter @repo/api dev
     ```
 
-    The API runs on `http://localhost:3001` by default.
+    The API runs on `http://localhost:8080` by default. In development, it reads CSS directly from the style app's `dist/` folder for instant feedback.
 
   </Step>
   <Step>
@@ -81,6 +81,20 @@ If you're working on serving release artifacts, or tracking usage you'll be work
 </Steps>
 
 ## Concepts
+
+### Analytics & Privacy
+
+The API tracks anonymous usage for counting installs and updates:
+
+- **Session matching**: Session ID first (if provided), then IP hash fallback
+- **Data stored**: Hashed IP, session ID, asset, theme, tag, timestamp
+- **Opt-out**: Users can add `?notrack=1` to disable tracking
+
+The tracking is privacy-focused:
+
+- IPs are hashed with SHA256 + salt (irreversible)
+- Session IDs are random 6-character strings (cuid2)
+- No cookies or browser fingerprinting
 
 ### Theme injection
 

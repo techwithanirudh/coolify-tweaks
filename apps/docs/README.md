@@ -17,7 +17,7 @@ pnpm --filter @repo/docs typecheck
 pnpm --filter @repo/docs test
 ```
 
-The app runs on `http://localhost:3000` by default. Environment variables can be configured via `.env` in the repository root (see `.env.example`).
+The app runs on `http://localhost:3000` by default (docs site). Environment variables can be configured via `.env` in the repository root (see `.env.example`).
 
 ## Features
 
