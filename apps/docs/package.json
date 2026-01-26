@@ -24,7 +24,6 @@
     "@next/bundle-analyzer": "16.0.10",
     "@next/env": "16.0.10",
     "@radix-ui/react-collapsible": "^1.1.12",
-    "@repo/db": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/validators": "workspace:*",
     "@shikijs/rehype": "^3.19.0",

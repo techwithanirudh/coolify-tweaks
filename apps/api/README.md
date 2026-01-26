@@ -59,7 +59,7 @@ Browse available themes at [TweakCN → Themes](https://tweakcn.com/themes).
 
 2. Vercel automatically detects the Nitro preset; no extra build settings are required.
 
-3. Add your `POSTGRES_URL` environment variable.
+3. Add any required environment variables.
 
 4. Done! Your app should successfully deploy.
 

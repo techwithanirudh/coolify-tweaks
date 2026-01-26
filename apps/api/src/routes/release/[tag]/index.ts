@@ -1,19 +1,10 @@
 import { lookup as getType } from "mime-types";
 import { defineRouteMeta } from "nitro";
-import {
-  defineHandler,
-  getQuery,
-  getRequestIP,
-  getRouterParam,
-  HTTPError,
-} from "nitro/h3";
-import { useRuntimeConfig } from "nitro/runtime-config";
+import { defineHandler, getQuery, getRouterParam, HTTPError } from "nitro/h3";
 
-import { trackSession } from "@repo/db/queries";
-import { isValidSessionId, releaseQuerySchema } from "@repo/validators";
+import { releaseQuerySchema } from "@repo/validators";
 
 import { allowedHeaders } from "@/config";
-import { hashIp } from "@/utils/analytics";
 import { fetchAsset } from "@/utils/fetcher";
 import { processContent } from "@/utils/themes";
 
@@ -48,22 +39,6 @@ defineRouteMeta({
           pattern: string;
         },
       },
-      {
-        in: "query",
-        name: "id",
-        description: "Session ID",
-        schema: { type: "string", pattern: "^[a-z0-9]{6}$" } as {
-          type: "string";
-          pattern: string;
-        },
-      },
-      {
-        in: "query",
-        name: "notrack",
-        description:
-          "Disable anonymous analytics tracking. Accepts 1, 0, true, or false.",
-        schema: { type: "string", enum: ["0", "1", "true", "false"] },
-      },
     ],
     responses: {
       "200": {
@@ -83,7 +58,6 @@ defineRouteMeta({
 });
 
 export default defineHandler(async (event) => {
-  const { hashSalt } = useRuntimeConfig();
   const tag = getRouterParam(event, "tag");
   const query = releaseQuerySchema.parse(getQuery(event));
 
@@ -97,35 +71,13 @@ export default defineHandler(async (event) => {
 
   const asset = query.asset ?? "main.user.css";
   const theme = query.theme ?? null;
-  const sessionId = isValidSessionId(query.id) ? query.id : null;
-  const notrack = Boolean(query.notrack);
 
   try {
     const { content, headers } = await fetchAsset(tag, asset);
 
-    let resolvedId: string | undefined;
-    if (!notrack && !import.meta.dev) {
-      const ipHash = hashIp(
-        getRequestIP(event, { xForwardedFor: true }),
-        hashSalt,
-      );
-
-      const result = await trackSession({
-        ipHash,
-        sessionId,
-        asset,
-        theme,
-        tag,
-        statusCode: 200,
-      });
-
-      resolvedId = result.sessionId ?? undefined;
-    }
-
     const processed = await processContent({
       content,
       event,
-      sessionId: resolvedId,
       asset,
       theme,
     });

@@ -10,7 +10,6 @@ export default defineConfig({
     "@": fileURLToPath(new URL("./src", import.meta.url)),
   },
   runtimeConfig: {
-    hashSalt: process.env.HASH_SALT ?? "",
     stylePath: fileURLToPath(new URL("../style/dist", import.meta.url)),
   },
   openAPI: {

@@ -15,7 +15,6 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@repo/db": "workspace:^",
     "@repo/validators": "workspace:^",
     "browserslist": "^4.28.1",
     "lightningcss-wasm": "^1.30.2",

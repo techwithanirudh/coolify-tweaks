@@ -22,8 +22,6 @@
     "build": "turbo run build",
     "clean": "git clean -xdf node_modules",
     "clean:workspaces": "turbo run clean",
-    "db:push": "turbo -F @repo/db push",
-    "db:studio": "turbo -F @repo/db studio",
     "dev": "turbo watch dev --continue",
     "dev:web": "turbo watch dev -F @repo/docs...",
     "dev:style": "turbo watch dev -F @repo/style...",

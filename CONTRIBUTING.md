@@ -10,11 +10,11 @@ Welcome! This is a quick reference guide. For detailed documentation, visit the 
 - **Node.js** `^22.21.0`
 - **PNPM** `^10.19.0`
 - **Bun** `^1.3.0` (used for the TypeScript scripts that power docs and style)
-- A **Postgres / Neon** `POSTGRES_URL` if you touch analytics or the API
 
 ## Quick start
 
 1. **Clone and setup:**
+
    ```bash
    git clone https://github.com/techwithanirudh/coolify-tweaks.git
    cd coolify-tweaks
@@ -23,6 +23,7 @@ Welcome! This is a quick reference guide. For detailed documentation, visit the 
    ```
 
 2. **Run the apps:**
+
    ```bash
    pnpm dev
    ```
@@ -40,7 +41,7 @@ Welcome! This is a quick reference guide. For detailed documentation, visit the 
 Coolify Tweaks is a Turborepo monorepo with:
 
 - **`apps/`** - Style (Sass pipeline), API (Nitro server), Docs (Next.js site)
-- **`packages/`** - Shared packages (`@repo/db`, `@repo/ui`, `@repo/validators`)
+- **`packages/`** - Shared packages (`@repo/ui`, `@repo/validators`)
 - **`tooling/`** - Shared configs (ESLint, Prettier, Tailwind, TypeScript, cspell)
 
 All internal packages are scoped under `@repo/*`.
