@@ -82,13 +82,7 @@ export function changeMetadata(
   return content.replace(new RegExp(`^(@${field}\\s+).+$`, "m"), `$1${value}`);
 }
 
-function isNotrackEnabled(value: string | null): boolean {
-  if (!value) return false;
-  const normalized = value.toLowerCase();
-  return normalized === "1" || normalized === "true";
-}
-
-function buildUpdateUrl(event: H3Event, sessionId?: string): string {
+function buildUpdateUrl(event: H3Event): string {
   const requestUrl = getRequestURL(event);
   const updateUrl = new URL(`${requestUrl.origin}/release/latest/`);
 
@@ -102,20 +96,12 @@ function buildUpdateUrl(event: H3Event, sessionId?: string): string {
     updateUrl.searchParams.set("theme", theme);
   }
 
-  const notrack = requestUrl.searchParams.get("notrack");
-  if (isNotrackEnabled(notrack)) {
-    updateUrl.searchParams.set("notrack", "1");
-  } else if (sessionId) {
-    updateUrl.searchParams.set("id", sessionId);
-  }
-
   return updateUrl.toString();
 }
 
 export interface ProcessContentOptions {
   content: string;
   event: H3Event;
-  sessionId?: string;
   asset?: string;
   theme?: string | null;
 }
@@ -123,7 +109,6 @@ export interface ProcessContentOptions {
 export async function processContent({
   content,
   event,
-  sessionId,
   asset: validatedAsset,
   theme: validatedTheme,
 }: ProcessContentOptions): Promise<string> {
@@ -139,11 +124,7 @@ export async function processContent({
   let result = content;
 
   if (asset === "main.user.css") {
-    result = changeMetadata(
-      result,
-      "updateURL",
-      buildUpdateUrl(event, sessionId),
-    );
+    result = changeMetadata(result, "updateURL", buildUpdateUrl(event));
   }
 
   // Theme injection only for CSS assets

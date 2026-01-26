@@ -28,8 +28,8 @@ Fix empty state for no projects
 Fix add resources page
 
 # v3.9
+
 - [x] Refactor to turborepo
-- Add analytics through coolify-tweaks-api
 - Create a new landing page with fumadocs (move screenshots, etc)
 - Move api to api.coolify-tweaks.techwithanirudh.com
 - Make a user-style template
@@ -39,6 +39,7 @@ Fix add resources page
 - theme installer UI in nextjs fumadocs
 
 # backlog
+
 Um, dump all HTML into o3 or 2.5 Pro and ask it to fix my selectors 😭
 Fix coolify cloud
 In the project's page the icon color is messed up (restart button etc.)

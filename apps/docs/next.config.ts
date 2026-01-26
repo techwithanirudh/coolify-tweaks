@@ -31,7 +31,7 @@ async function createNextConfig(): Promise<NextConfig> {
       "shiki",
       "@takumi-rs/core",
     ],
-    transpilePackages: ["@repo/db", "@repo/ui", "@repo/validators"],
+    transpilePackages: ["@repo/ui", "@repo/validators"],
     images: {
       remotePatterns: [
         {
