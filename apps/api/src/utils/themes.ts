@@ -1,7 +1,7 @@
 import type { H3Event } from "nitro/h3";
 import type { RegistryItem } from "shadcn/schema";
 import { $fetch } from "nitro/deps/ofetch";
-import { getQuery, getRequestURL, HTTPError } from "nitro/h3";
+import { getRequestURL, HTTPError } from "nitro/h3";
 import { registryItemSchema } from "shadcn/schema";
 
 import { themeIdSchema } from "@repo/validators";
@@ -102,25 +102,16 @@ function buildUpdateUrl(event: H3Event): string {
 export interface ProcessContentOptions {
   content: string;
   event: H3Event;
-  asset?: string;
-  theme?: string | null;
+  asset: string;
+  theme: string | null;
 }
 
 export async function processContent({
   content,
   event,
-  asset: validatedAsset,
-  theme: validatedTheme,
+  asset,
+  theme,
 }: ProcessContentOptions): Promise<string> {
-  const query = getQuery(event);
-  const asset =
-    validatedAsset ??
-    (typeof query.asset === "string" ? query.asset : null) ??
-    "main.user.css";
-  const theme =
-    validatedTheme ??
-    (typeof query.theme === "string" ? query.theme : undefined);
-
   let result = content;
 
   if (asset === "main.user.css") {

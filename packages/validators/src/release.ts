@@ -12,5 +12,5 @@ const optionalStringParam = (schema: z.ZodString) =>
 
 export const releaseQuerySchema = z.object({
   asset: optionalStringParam(z.string()),
-  theme: optionalStringParam(themeIdSchema),
+  theme: optionalStringParam(z.string()),
 });
