@@ -61,7 +61,7 @@ export async function POST(request: Request) {
             searchDocs: createSearchDocsTool(writer),
             getPageContent,
           },
-          messages: convertToModelMessages(messages, {
+          messages: await convertToModelMessages(messages, {
             ignoreIncompleteToolCalls: true,
           }),
           toolChoice: "auto",

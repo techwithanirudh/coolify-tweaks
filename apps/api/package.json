@@ -17,10 +17,10 @@
   "dependencies": {
     "@repo/validators": "workspace:^",
     "browserslist": "^4.28.1",
-    "lightningcss-wasm": "^1.30.2",
+    "lightningcss-wasm": "^1.31.1",
     "mime-types": "^3.0.2",
     "postcss": "^8.5.6",
-    "shadcn": "^3.5.1",
+    "shadcn": "^3.7.0",
     "zod": "catalog:"
   },
   "devDependencies": {
