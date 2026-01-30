@@ -1,11 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 
-type ScreenshotSide = {
+interface ScreenshotSide {
   alt: string;
   src: string;
 };
 
-type ScreenshotCompareProps = {
+interface ScreenshotCompareProps {
   title?: string;
   before: ScreenshotSide;
   after: ScreenshotSide;
