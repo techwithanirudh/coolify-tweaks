@@ -3,18 +3,21 @@ import type { ComponentProps, FC } from "react";
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import { Banner } from "fumadocs-ui/components/banner";
 import { Callout } from "fumadocs-ui/components/callout";
+import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import * as StepsComponents from "fumadocs-ui/components/steps";
 import * as TabsComponents from "fumadocs-ui/components/tabs";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import * as icons from "lucide-react";
 
+import { cn } from "@repo/ui";
 import { VideoPlayer } from "@repo/ui/video-player";
 
 import { APIPage } from "@/components/api-page";
 import * as FilesComponents from "@/components/fumadocs/files";
 import { Update, Updates } from "@/components/fumadocs/updates";
 import { Mermaid } from "@/components/mdx/mermaid";
+import { ScreenshotCompare } from "@/components/mdx/screenshot-compare";
 
 export function getMDXComponents(components?: MDXComponents) {
   return {
@@ -28,9 +31,17 @@ export function getMDXComponents(components?: MDXComponents) {
     Updates,
     Update,
     Mermaid,
+    ScreenshotCompare,
     TypeTable,
     Callout,
     blockquote: Callout as unknown as FC<ComponentProps<"blockquote">>,
+    img: ({ src, className, ...props }) => (
+      <ImageZoom
+        src={src as unknown as string}
+        className={cn("rounded-md", className)}
+        {...props}
+      />
+    ),
     APIPage,
     Banner,
     VideoPlayer: VideoPlayer as unknown as FC<

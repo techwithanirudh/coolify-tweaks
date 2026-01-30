@@ -19,4 +19,9 @@ export const tags: Tag[] = [
     description: "Only results about the API",
     value: "api",
   },
+  {
+    name: "Development",
+    description: "Only results about development",
+    value: "development",
+  },
 ];

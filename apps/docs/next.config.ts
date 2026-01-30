@@ -39,6 +39,16 @@ async function createNextConfig(): Promise<NextConfig> {
           hostname: "avatars.githubusercontent.com",
           port: "",
         },
+        {
+          protocol: "https",
+          hostname: "pbs.twimg.com",
+          port: "",
+        },
+        {
+          protocol: "https",
+          hostname: "github.com",
+          port: "",
+        },
       ],
       qualities: [75, 100],
     },

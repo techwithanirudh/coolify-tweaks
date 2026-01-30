@@ -45,7 +45,7 @@ export async function POST(request: Request) {
 
     const stream = createUIMessageStream({
       originalMessages: messages,
-      execute: ({ writer }) => {
+      execute: async ({ writer }) => {
         const result = streamText({
           model: openai("gpt-5-mini"),
           system: systemPrompt(),
@@ -61,7 +61,7 @@ export async function POST(request: Request) {
             searchDocs: createSearchDocsTool(writer),
             getPageContent,
           },
-          messages: convertToModelMessages(messages, {
+          messages: await convertToModelMessages(messages, {
             ignoreIncompleteToolCalls: true,
           }),
           toolChoice: "auto",

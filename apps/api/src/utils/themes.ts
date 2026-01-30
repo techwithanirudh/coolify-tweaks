@@ -1,7 +1,7 @@
 import type { H3Event } from "nitro/h3";
 import type { RegistryItem } from "shadcn/schema";
-import { $fetch } from "nitro/deps/ofetch";
 import { getRequestURL, HTTPError } from "nitro/h3";
+import { $fetch } from "ofetch";
 import { registryItemSchema } from "shadcn/schema";
 
 import { themeIdSchema } from "@repo/validators";
