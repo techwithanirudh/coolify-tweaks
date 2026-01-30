@@ -15,7 +15,9 @@ import { APIPage } from "@/components/api-page";
 import * as FilesComponents from "@/components/fumadocs/files";
 import { Update, Updates } from "@/components/fumadocs/updates";
 import { Mermaid } from "@/components/mdx/mermaid";
+import { ScreenshotCompare } from "@/components/mdx/screenshot-compare";
 import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
+import { cn } from "@repo/ui";
 
 export function getMDXComponents(components?: MDXComponents) {
   return {
@@ -29,10 +31,11 @@ export function getMDXComponents(components?: MDXComponents) {
     Updates,
     Update,
     Mermaid,
+    ScreenshotCompare,
     TypeTable,
     Callout,
     blockquote: Callout as unknown as FC<ComponentProps<"blockquote">>,
-    img: (props) => <ImageZoom {...props} />,
+    img: ({ src, className, ...props}) => <ImageZoom src={(src as unknown as string)} className={cn("rounded-md", className)} {...props} />,
     APIPage,
     Banner,
     VideoPlayer: VideoPlayer as unknown as FC<
