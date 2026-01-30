@@ -86,14 +86,14 @@ function buildUpdateUrl(event: H3Event): string {
   const requestUrl = getRequestURL(event);
   const updateUrl = new URL(`${requestUrl.origin}/release/latest/`);
 
-  const asset = requestUrl.searchParams.get("asset");
-  if (asset) {
-    updateUrl.searchParams.set("asset", asset);
-  }
-
   const theme = requestUrl.searchParams.get("theme");
   if (theme) {
     updateUrl.searchParams.set("theme", theme);
+  }
+
+  const asset = requestUrl.searchParams.get("asset");
+  if (asset) {
+    updateUrl.searchParams.set("asset", asset);
   }
 
   return updateUrl.toString();

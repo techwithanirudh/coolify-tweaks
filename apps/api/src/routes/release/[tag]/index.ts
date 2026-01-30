@@ -91,6 +91,7 @@ export default defineHandler(async (event) => {
       event.res.headers.set("X-Source", "local");
     } else {
       event.res.headers.set("X-Source", "github");
+      event.res.headers.set("X-Proxy-Host", "github.com");
       for (const name of allowedHeaders) {
         const value = headers?.get(name);
         if (value) event.res.headers.set(name, value);

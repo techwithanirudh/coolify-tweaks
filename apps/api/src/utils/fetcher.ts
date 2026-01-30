@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { resolve } from "node:path";
+import { isAbsolute, resolve } from "node:path";
 import { HTTPError } from "nitro/h3";
 import { useRuntimeConfig } from "nitro/runtime-config";
 import { $fetch } from "ofetch";
@@ -54,9 +54,26 @@ async function fetchFromGitHub(
 
 async function fetchFromLocal(asset: string): Promise<FetchResult> {
   const { stylePath } = useRuntimeConfig();
+  const basePath = resolve(stylePath);
+  if (isAbsolute(asset)) {
+    throw new HTTPError({
+      status: 400,
+      statusMessage: "Bad Request",
+      message: "Absolute asset paths are not allowed.",
+    });
+  }
+
+  const resolvedPath = resolve(basePath, asset);
+  if (!resolvedPath.startsWith(`${basePath}/`)) {
+    throw new HTTPError({
+      status: 400,
+      statusMessage: "Bad Request",
+      message: "Invalid asset path.",
+    });
+  }
 
   try {
-    const content = await readFile(resolve(stylePath, asset), "utf-8");
+    const content = await readFile(resolvedPath, "utf-8");
     return { content };
   } catch {
     throw new HTTPError({
