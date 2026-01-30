@@ -3,6 +3,7 @@ import { defineConfig } from "nitro";
 
 export default defineConfig({
   serverDir: "src",
+  traceDeps: ["lightningcss-wasm"],
   experimental: {
     openAPI: true,
   },
