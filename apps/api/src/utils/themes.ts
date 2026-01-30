@@ -1,6 +1,6 @@
 import type { H3Event } from "nitro/h3";
 import type { RegistryItem } from "shadcn/schema";
-import { $fetch } from "nitro/deps/ofetch";
+import { $fetch } from "ofetch";
 import { getRequestURL, HTTPError } from "nitro/h3";
 import { registryItemSchema } from "shadcn/schema";
 

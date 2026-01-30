@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { $fetch } from "nitro/deps/ofetch";
+import { $fetch } from "ofetch";
 import { HTTPError } from "nitro/h3";
 import { useRuntimeConfig } from "nitro/runtime-config";
 
