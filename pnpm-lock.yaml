@@ -81,9 +81,6 @@ importers:
       '@turbo/gen':
         specifier: ^2.8.0
         version: 2.8.0(@types/node@25.1.0)(typescript@5.9.3)
-      conventional-changelog-atom:
-        specifier: ^5.0.0
-        version: 5.0.0
       cspell:
         specifier: 'catalog:'
         version: 9.6.2
@@ -4495,10 +4492,6 @@ packages:
 
   conventional-changelog-angular@8.1.0:
     resolution: {integrity: sha512-GGf2Nipn1RUCAktxuVauVr1e3r8QrLP/B0lEUsFktmGqc3ddbQkhoJZHJctVU829U1c6mTSWftrVOCHaL85Q3w==}
-    engines: {node: '>=18'}
-
-  conventional-changelog-atom@5.0.0:
-    resolution: {integrity: sha512-WfzCaAvSCFPkznnLgLnfacRAzjgqjLUjvf3MftfsJzQdDICqkOOpcMtdJF3wTerxSpv2IAAjX8doM3Vozqle3g==}
     engines: {node: '>=18'}
 
   conventional-changelog-conventionalcommits@9.1.0:
@@ -12695,8 +12688,6 @@ snapshots:
   conventional-changelog-angular@8.1.0:
     dependencies:
       compare-func: 2.0.0
-
-  conventional-changelog-atom@5.0.0: {}
 
   conventional-changelog-conventionalcommits@9.1.0:
     dependencies:

@@ -15,6 +15,7 @@ import { APIPage } from "@/components/api-page";
 import * as FilesComponents from "@/components/fumadocs/files";
 import { Update, Updates } from "@/components/fumadocs/updates";
 import { Mermaid } from "@/components/mdx/mermaid";
+import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
 
 export function getMDXComponents(components?: MDXComponents) {
   return {
@@ -31,6 +32,7 @@ export function getMDXComponents(components?: MDXComponents) {
     TypeTable,
     Callout,
     blockquote: Callout as unknown as FC<ComponentProps<"blockquote">>,
+    img: (props) => <ImageZoom {...props} />,
     APIPage,
     Banner,
     VideoPlayer: VideoPlayer as unknown as FC<

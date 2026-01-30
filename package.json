@@ -47,7 +47,6 @@
     "@repo/cspell-config": "workspace:*",
     "@repo/prettier-config": "workspace:*",
     "@turbo/gen": "^2.8.0",
-    "conventional-changelog-atom": "^5.0.0",
     "cspell": "catalog:",
     "dotenv-cli": "^11.0.0",
     "lefthook": "^2.0.16",
