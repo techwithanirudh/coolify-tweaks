@@ -5,7 +5,6 @@ import { defineHandler, getQuery, getRouterParam, HTTPError } from "nitro/h3";
 import { releaseQuerySchema } from "@repo/validators";
 
 import { allowedHeaders } from "@/config";
-import { applyCors } from "@/utils/cors";
 import { fetchAsset } from "@/utils/fetcher";
 import { processContent } from "@/utils/themes";
 
@@ -59,7 +58,6 @@ defineRouteMeta({
 });
 
 export default defineHandler(async (event) => {
-  applyCors(event);
   const tag = getRouterParam(event, "tag");
   const query = releaseQuerySchema.parse(getQuery(event));
 
