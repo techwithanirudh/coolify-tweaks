@@ -78,7 +78,6 @@ $breakpoints: (
   --tracking-normal: -0.025em;
 }
 
-
 .dark {
   --background: oklch(0.2329 0.014 304.7344);
   --foreground: oklch(0.9938 0.0013 106.4231);
@@ -92,10 +91,10 @@ $breakpoints: (
   --primary: oklch(0.4039 0.1475 287.6846);
   --primary-foreground: oklch(1 0 0);
 
-  --secondary: oklch(0.31 0.010 294);
+  --secondary: oklch(0.31 0.01 294);
   --secondary-foreground: oklch(0.955 0 0);
 
-  --muted: oklch(0.294 0.013 272.9312);
+  --muted: oklch(0.27 0.009 294);
   --muted-foreground: oklch(0.7058 0 0);
 
   --accent: oklch(0.284 0.0091 294.9832);
