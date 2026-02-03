@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 4.0.6
+
+### Patch Changes
+
+- Improve light mode contrast for surfaces, borders, and sidebar tokens.
+
 ## 4.0.5
 
 ### Patch Changes
