@@ -1,0 +1,7 @@
+@use "globals" as *;
+
+div[x-data*="activeTab"] {
+    div.flex.border-b > button {
+        border-radius: 0px;
+    }
+}
