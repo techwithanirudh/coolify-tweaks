@@ -39,7 +39,7 @@
   }
 }
 
-div[x-data]:has(div[x-show^="open"]) {
+div[x-data]:has(div.fixed.top-0.left-0[x-show^="open"]) {
   & > div:has(input[x-ref="searchInput"]) {
     @include input.input-base;
     padding: s(2.25);
