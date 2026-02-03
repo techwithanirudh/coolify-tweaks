@@ -1,5 +1,12 @@
 # coolify-tweaks
 
+## 4.0.3
+
+### Patch Changes
+
+- 8c2fb04: Improve UI style consistency across cards, navigation, search, tables, tabs, and theme variables.
+- 8c2fb04: Refine UI styling for deployment logs, navigation icons, and table surfaces.
+
 ## 4.0.2
 
 ### Patch Changes
