@@ -37,17 +37,17 @@ Before creating a changeset, check if a changeset file already exists for the cu
 
 ### 1. Check Current State
 
-- Read `apps/style/package.json`’s `version` and add `v` to get the tag to compare against (`vX.Y.Z`).
-- Run `git fetch --tags` then `git log <tag>..HEAD` (or `origin/main..<tag>` if needed) to confirm there are commits after that release.
-- If the tag is missing, fall back to `git log main..HEAD` and mention the missing tag.
-- Stop here if there are no commits to release.
+- Run `git fetch --tags`, then determine the latest release tag (`git tag --list 'v*' --sort=-v:refname | head -n1`).
+- Use `git log <latest-tag>..HEAD` (or `origin/main..<latest-tag>` if needed) to verify there are commits to release.
+- If no tags exist, fall back to `git log main..HEAD` and explain why you're using the branch range.
+- Stop if there are no commits since the latest tag.
 
 ### 2. Analyze Changes
 
-- Run `git diff <tag>..HEAD` (or the fetched equivalent) to see changes since the tagged release.
-- Focus on files under `apps/style/` (and any shared tooling that affects its build output); ignore unrelated packages.
-- Review commits with `git log <tag>..HEAD --oneline` to understand the Conventional Commit intent.
-- Note files outside `apps/style/` only when they clearly impact the style build.
+- Diff against the latest tag (`git diff <latest-tag>..HEAD`) to inspect committed changes.
+- Keep the focus on `apps/style/` and its build tooling, since `@repo/style` is the only changeset-published package.
+- Summaries: use `git log <latest-tag>..HEAD --oneline` for Conventional Commit intents.
+- Only mention files outside `apps/style/` if they clearly affect the generated CSS.
 
 ### 3. Determine Version Bump Type
 
