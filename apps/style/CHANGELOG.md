@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 4.0.4
+
+### Patch Changes
+
+- Fix box hover behavior and ensure table text color consistency.
+
 ## 4.0.3
 
 ### Patch Changes

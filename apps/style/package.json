@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "main": "src/main.scss",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "scripts": {
     "build": "pnpm with-env bun scripts/build.ts",
     "build:watch": "pnpm with-env bun scripts/watch.ts",
