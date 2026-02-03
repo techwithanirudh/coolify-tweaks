@@ -178,6 +178,9 @@ $menu-icons: (
   gap: s(2);
 
   @include mq(sm) {
+    position: sticky;
+    top: s(2);
+    height: min-content;
     width: auto;
     max-width: 100%;
     flex-shrink: 1;
