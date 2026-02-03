@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 4.0.5
+
+### Patch Changes
+
+- Refine box interactions and table text readability.
+
 ## 4.0.4
 
 ### Patch Changes
