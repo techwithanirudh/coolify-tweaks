@@ -17,17 +17,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-// todo: fix active state in servers/resources section
-
-.box:hover,
-.box-without-bg:hover,
-.coolbox:hover {
-  background-color: color-mix(in srgb, var(--card) 80%, transparent);
-  box-shadow:
-    var(--shadow-sm),
-    0 0 0 2px var(--ring);
-}
-
 .box-title {
   font-weight: 600;
   font-size: 1.05rem;
