@@ -6,7 +6,8 @@ table {
   overflow: hidden;
   margin-top: s(4);
   border-radius: var(--radius-md);
-  background: var(--card);
+  background: var(--secondary);
+  color: var(--secondary-foreground);
 
   /* row separators */
   > :not(:last-child) {
@@ -15,21 +16,29 @@ table {
 
   /* header */
   thead {
-    background: var(--card);
+    background: var(--secondary);
     text-transform: uppercase;
 
-    tr th {
-      padding-block: s(3.5);
-      padding-inline: s(3);
-      text-align: left;
-      font-weight: var(--font-weight-medium);
-      color: var(--foreground);
+    tr {
+      th {
+        padding-block: s(3.5);
+        padding-inline: s(3);
+        text-align: left;
+        font-weight: var(--font-weight-medium);
+        color: var(--secondary-foreground);
 
-      /* extra left padding on first col */
-      &:first-child {
-        padding-left: s(4);
-        @media (min-width: 40rem) {
-          padding-left: s(6);
+        /* extra left padding on first col */
+        &:first-child {
+          padding-left: s(4);
+          @media (min-width: 40rem) {
+            padding-left: s(6);
+          }
+        }
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          background: color-mix(in srgb, var(--muted) 50%, transparent);
         }
       }
     }

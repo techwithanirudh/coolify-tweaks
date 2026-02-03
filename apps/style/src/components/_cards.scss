@@ -33,39 +33,6 @@ a.border-l-2.bg-white.dark\:bg-coolgray-100 {
   border: var(--border);
 }
 
-div#screen {
-  background: var(--card);
-  color: var(--card-foreground);
-  border-radius: var(--radius-lg);
-  border: var(--border);
-  overflow: hidden;
-
-  & > div[x-show="expanded"] {
-    padding: s(0);
-
-    div[class*="flex"] > form[wire\:submit="getLogs(true)"] {
-      & > input {
-        padding-right: s(2);
-        padding-left: s(11);
-      }
-    }
-
-    & > div {
-      background-color: var(--accent);
-    }
-
-    input {
-      box-shadow: none;
-      padding-block: s(1.5);
-    }
-  }
-}
-
-div:has(> div#screen) {
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-}
-
 div.bg-white.border.dark\:bg-base.dark\:border-coolgray-300.border-neutral-200 {
   border-radius: var(--radius-lg);
 }

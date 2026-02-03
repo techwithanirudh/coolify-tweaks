@@ -45,3 +45,9 @@
 .navbar-main .flex-1 {
   flex: 1 1 auto;
 }
+
+.navbar-main div button[class*="button"] {
+  & > svg {
+    color: var(--primary-foreground);
+  }
+}
