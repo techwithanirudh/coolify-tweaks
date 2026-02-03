@@ -25,7 +25,7 @@ table {
         padding-inline: s(3);
         text-align: left;
         font-weight: var(--font-weight-medium);
-        color: var(--secondary-foreground);
+        color: var(--secondary-foreground)!important;
 
         /* extra left padding on first col */
         &:first-child {
@@ -52,6 +52,7 @@ table {
 
     tr {
       td {
+        color: var(--secondary-foreground)!important;
         padding-block: s(4);
         padding-inline: s(3);
         white-space: nowrap;
@@ -72,29 +73,6 @@ table {
           background: color-mix(in srgb, var(--muted) 50%, transparent);
         }
       }
-    }
-  }
-}
-
-/* dark‑mode via class */
-:where(.dark, .dark *) {
-  table {
-    > :not(:last-child) {
-      border-color: var(--border);
-    }
-
-    tr {
-      color: var(--muted-foreground);
-
-      @media (hover: hover) {
-        &:hover {
-          background: var(--card);
-        }
-      }
-    }
-
-    th {
-      color: var(--foreground);
     }
   }
 }
