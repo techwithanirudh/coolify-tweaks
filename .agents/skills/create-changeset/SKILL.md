@@ -31,17 +31,23 @@ Before creating a changeset, check if a changeset file already exists for the cu
 - Look for `.changeset/*.md` files (excluding README.md)
 - If exists, ask user: "A changeset already exists. Create another one?"
 
+> **Repository note:** Only the `@repo/style` package currently publishes via changesets. No other workspace packages emit changeset-based releases, so focus analysis on `apps/style/` files and the surrounding tooling that affects it.
+
 ## Implementation Steps
 
 ### 1. Check Current State
 
-Execute `git log main..HEAD` (or `origin/main..HEAD`) to check for committed changes on the branch. If no commits exist, exit early without creating a changeset.
+- Read `apps/style/package.json`’s `version` and add `v` to get the tag to compare against (`vX.Y.Z`).
+- Run `git fetch --tags` then `git log <tag>..HEAD` (or `origin/main..<tag>` if needed) to confirm there are commits after that release.
+- If the tag is missing, fall back to `git log main..HEAD` and mention the missing tag.
+- Stop here if there are no commits to release.
 
 ### 2. Analyze Changes
 
-Use `git diff main...HEAD` (or `origin/main...HEAD`) to analyze **committed changes only**.
-
-Identify which packages are affected by checking files under `packages/*/`. Review commit messages using `git log main..HEAD --oneline` (or `origin/main..HEAD`).
+- Run `git diff <tag>..HEAD` (or the fetched equivalent) to see changes since the tagged release.
+- Focus on files under `apps/style/` (and any shared tooling that affects its build output); ignore unrelated packages.
+- Review commits with `git log <tag>..HEAD --oneline` to understand the Conventional Commit intent.
+- Note files outside `apps/style/` only when they clearly impact the style build.
 
 ### 3. Determine Version Bump Type
 
