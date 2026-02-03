@@ -76,7 +76,10 @@ div#screen {
     }
 
     & > div {
-      background-color: var(--accent);
+      padding: s(0);
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      border-radius: 0px;
     }
 
     input {
