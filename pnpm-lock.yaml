@@ -520,8 +520,8 @@ importers:
         specifier: ^1.2.8
         version: 1.2.8(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@vidstack/react':
-        specifier: ^1.12.13
-        version: 1.12.13(@types/react@19.2.10)(react@19.2.4)
+        specifier: 1.12.6
+        version: 1.12.6(@types/react@19.2.10)(react@19.2.4)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -3939,13 +3939,14 @@ packages:
   '@vercel/postgres@0.10.0':
     resolution: {integrity: sha512-fSD23DxGND40IzSkXjcFcxr53t3Tiym59Is0jSYIFpG4/0f0KO9SGtcp1sXiebvPaGe7N/tU05cH4yt2S6/IPg==}
     engines: {node: '>=18.14'}
+    deprecated: '@vercel/postgres is deprecated. If you are setting up a new database, you can choose an alternate storage solution from the Vercel Marketplace. If you had an existing Vercel Postgres database, it should have been migrated to Neon as a native Vercel integration. You can find more details and the guide to migrate to Neon''s SDKs here: https://neon.com/docs/guides/vercel-postgres-transition-guide'
 
-  '@vidstack/react@1.12.13':
-    resolution: {integrity: sha512-zyNydy1+HtoK6cJ8EmqFNkPPGHIFMrr2KH+ef3654EqXx4IcJ8A5LCNMXBuALQE8IMxtk040JMoR9OKyeXjBOQ==}
+  '@vidstack/react@1.12.6':
+    resolution: {integrity: sha512-HaQPctvJ29FTSRHWNkWlpC8QgmxX3Jmak2/IgjO85PihUzzbH7ztv7HfJ6x38bBZB+9lqU/h23i1YzMm6rfXkw==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/react': ^18.0.0 || ^19.0.0
-      react: ^18.0.0 || ^19.0.0
+      '@types/react': ^18.0.0
+      react: ^18.0.0
 
   '@zeit/schemas@2.36.0':
     resolution: {integrity: sha512-7kjMwcChYEzMKjeex9ZFXkt1AyNov9R5HZtjBKVsmVpw7pa7ZtlCGvCBC2vnnXctaYN+aRI61HjIqeetZW5ROg==}
@@ -12112,7 +12113,7 @@ snapshots:
       - utf-8-validate
     optional: true
 
-  '@vidstack/react@1.12.13(@types/react@19.2.10)(react@19.2.4)':
+  '@vidstack/react@1.12.6(@types/react@19.2.10)(react@19.2.4)':
     dependencies:
       '@floating-ui/dom': 1.7.4
       '@types/react': 19.2.10
