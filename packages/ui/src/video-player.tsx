@@ -21,7 +21,7 @@ export function VideoPlayer({
   ...props
 }: VideoPlayerProps) {
   return (
-    <MediaPlayer poster={poster} className={className} playsinline {...props}>
+    <MediaPlayer poster={poster} className={className} {...props}>
       <MediaProvider />
       <DefaultVideoLayout
         thumbnails={thumbnails}
