@@ -180,7 +180,7 @@ When requested to make a release:
 1. Gather git commits since the last release tag
 2. Run `pnpm changeset --empty`
 3. Update the empty changeset with release content (keep it simple and clear)
-4. Run `pnpm version` to apply the version bump
+4. Run `pnpm run version` to apply the version bump
 5. Ask user to review, then commit
 
 ## Project-Specific Rules
