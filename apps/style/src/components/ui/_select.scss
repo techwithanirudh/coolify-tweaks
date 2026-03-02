@@ -2,6 +2,8 @@
 
 @mixin select-base {
   appearance: base-select;
+  display: inline-flex;
+  align-items: center;
   border: 1px solid var(--input);
   border-radius: var(--radius-md);
   background: transparent;
