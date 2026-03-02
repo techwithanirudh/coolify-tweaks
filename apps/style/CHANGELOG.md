@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 4.0.8
+
+### Patch Changes
+
+- fix: resolve spacing between project header
+
 ## 4.0.7
 
 ### Patch Changes
