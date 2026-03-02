@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 4.0.7
+
+### Patch Changes
+
+- fix: resolve select box picker icon alignment issue
+
 ## 4.0.6
 
 ### Patch Changes
