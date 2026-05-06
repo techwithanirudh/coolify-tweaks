@@ -76,7 +76,7 @@ nav > ul > li > ul > li {
   gap: s(2.5);
 
   &:active {
-    scale: 0.96;
+    scale: 0.98;
 
     &:not([aria-haspopup]) {
       translate: 0 1px;
@@ -86,7 +86,7 @@ nav > ul > li > ul > li {
       content: '';
       position: absolute;
       inset: 0;
-      scale: 1.06;
+      scale: 1.03;
     }
   }
 }
