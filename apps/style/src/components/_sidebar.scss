@@ -67,10 +67,28 @@ nav > ul > li > ul > li {
   padding: s(2.25) s(3.75);
   border-radius: var(--radius-lg);
   font-weight: 500;
+  position: relative;
   transition:
     background 0.18s,
-    color 0.18s;
+    color 0.18s,
+    scale 0.18s,
+    translate 0.18s;
   gap: s(2.5);
+
+  &:active {
+    scale: 0.96;
+
+    &:not([aria-haspopup]) {
+      translate: 0 1px;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      scale: 1.06;
+    }
+  }
 }
 
 .menu-item {
