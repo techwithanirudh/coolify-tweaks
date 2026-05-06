@@ -80,7 +80,7 @@ export function Hero() {
   };
 
   return (
-    <div className="flex w-full flex-col items-center justify-start gap-6 px-2 pt-16 pr-0 pl-0 sm:px-4 sm:pt-20 sm:pr-0 sm:pl-0 md:px-8 md:pt-24 lg:px-0">
+    <div className="flex w-full flex-col items-center justify-start gap-6 pt-16 sm:pt-20 md:pt-24">
       <div className="flex flex-col items-center justify-center gap-2 self-stretch rounded-[3px]">
         <div className="w-full px-2 text-center text-2xl leading-tight font-normal sm:px-4 sm:text-3xl md:px-0 md:text-4xl lg:text-5xl">
           Theme your{" "}
@@ -136,12 +136,12 @@ export function Hero() {
           </Button>
         </div>
       </div>
-      <div className="relative z-10 my-8 flex w-full flex-col items-center justify-center gap-2 px-2 pt-2 pb-6 sm:px-4 sm:pt-4 sm:pb-8 md:px-6 md:pb-10 lg:px-11 lg:pb-0">
+      <div className="relative z-10 my-8 flex w-full flex-col items-center justify-center gap-2 px-4 pt-2 pb-6 sm:px-6 sm:pt-4 sm:pb-8 md:px-8 md:pb-10 lg:px-11 lg:pb-0">
         <div className="flex aspect-video w-full flex-col items-start justify-start overflow-hidden rounded-sm sm:rounded-md md:rounded-lg lg:rounded-xl">
           <div className="relative h-full w-full overflow-hidden">
             {FEATURES_HERO.map((feature, index) => (
               <div
-                key={index}
+                key={feature.title}
                 className={`absolute inset-0 transition-all duration-500 ease-in-out ${
                   activeCard === index
                     ? "blur-0 scale-100 opacity-100"
@@ -173,7 +173,7 @@ export function Hero() {
         <div className="divide-border flex flex-1 flex-col items-stretch justify-center gap-0 border-t md:flex-row md:divide-x">
           {FEATURES_HERO.map((feature, index) => (
             <FeatureCard
-              key={index}
+              key={feature.title}
               title={feature.title}
               description={feature.description}
               isActive={activeCard === index}

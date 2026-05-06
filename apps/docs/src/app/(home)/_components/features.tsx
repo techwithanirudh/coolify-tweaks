@@ -1,6 +1,5 @@
-import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
-import { Download, GitFork, Grid2X2, Palette, Sparkles } from "lucide-react";
+import { Grid2X2 } from "lucide-react";
 
 import { cn } from "@repo/ui";
 import { Badge } from "@repo/ui/badge";
@@ -12,7 +11,6 @@ import InstallMethods from "./features/install-methods";
 import { ThemeShowcase } from "./features/theme-showcase";
 
 interface Feature {
-  Icon: LucideIcon;
   name: string;
   description: string;
   className?: string;
@@ -22,7 +20,6 @@ interface Feature {
 function getFeatures(stars: number): Feature[] {
   return [
     {
-      Icon: Sparkles,
       name: "Better UI",
       description:
         "Refined spacing, typography, and colors for a more polished Coolify dashboard.",
@@ -44,7 +41,6 @@ function getFeatures(stars: number): Feature[] {
       ),
     },
     {
-      Icon: Palette,
       name: "Custom themes",
       description:
         "Use built-in themes or bring your own. Fully customizable to match your preferences and brand.",
@@ -56,7 +52,6 @@ function getFeatures(stars: number): Feature[] {
       ),
     },
     {
-      Icon: Download,
       name: "Many install methods",
       description:
         "Install directly through Traefik or use Stylus. Works with any Coolify instance and fully customizable.",
@@ -68,7 +63,6 @@ function getFeatures(stars: number): Feature[] {
       ),
     },
     {
-      Icon: GitFork,
       name: "Fully open-source",
       description:
         "Built in the open with community contributions. View the code, suggest improvements, or fork your own version.",

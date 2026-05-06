@@ -105,7 +105,7 @@ function TestimonialCard({ testimonial, className }: TestimonialCardProps) {
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "bg-card text-card-foreground ansition-transform size-full space-y-4 rounded-xl border p-6 shadow-sm duration-200 hover:scale-[1.02]",
+        "bg-card text-card-foreground size-full space-y-4 rounded-xl border p-6 shadow-sm transition-transform duration-200 hover:scale-[1.02]",
         className,
       )}
     >
