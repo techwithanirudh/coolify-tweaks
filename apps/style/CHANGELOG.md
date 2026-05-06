@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 4.0.9
+
+### Patch Changes
+
+- Fix select dropdown class targeting and polish spacing in resource grids and navigation.
+
 ## 4.0.8
 
 ### Patch Changes
