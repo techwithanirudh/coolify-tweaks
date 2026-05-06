@@ -82,6 +82,11 @@ div.grid[class*="cols"]:is(
       padding: 0;
     }
 
+    .box-description[x-text="item.description"] {
+      margin-top: auto;
+      padding-bottom: 2px;
+    }
+
     a[href*="/edit"],
     a[href*="/new"] {
       padding: s(1.5);
