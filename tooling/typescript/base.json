@@ -25,7 +25,8 @@
     /** Transpile using Bundler (not tsc) */
     "module": "Preserve",
     "moduleResolution": "Bundler",
-    "noEmit": true
+    "noEmit": true,
+    "noUncheckedSideEffectImports": false
   },
   "exclude": ["node_modules", "build", "dist", ".next"]
 }

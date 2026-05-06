@@ -29,6 +29,7 @@
     "@repo/prettier-config": "workspace:*",
     "@repo/tsconfig": "workspace:*",
     "@types/bun": "catalog:",
+    "@types/node": "catalog:",
     "@types/serve-handler": "^6.1.4",
     "browserslist": "^4.28.2",
     "commander": "^14.0.3",
