@@ -39,7 +39,7 @@
   }
 }
 
-div[x-data]:has(div.absolute[x-show^="open"]) {
+div[x-data]:has(div.absolute[x-show^="open"]):has(div[\@click="openDropdown()"]) {
   & > div:has(input[x-ref="searchInput"]) {
     @include input.input-base;
     padding: s(2.25);
