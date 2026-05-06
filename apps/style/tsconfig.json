@@ -1,6 +1,7 @@
 {
   "extends": "@repo/tsconfig/base.json",
   "compilerOptions": {
+    "types": ["bun"],
     "lib": ["ES2022", "dom", "dom.iterable"],
     "jsx": "preserve",
     "paths": {
