@@ -14,8 +14,9 @@ export function FeatureCard({
   onClick: () => void;
 }) {
   return (
-    <div
-      className={`border-border relative flex w-full cursor-pointer flex-col items-start justify-start gap-2 self-stretch overflow-hidden border-b px-6 py-5 last:border-b-0 md:flex-1 md:border-b-0 md:first:border-l md:last:border-r ${
+    <button
+      type="button"
+      className={`border-border relative flex w-full cursor-pointer flex-col items-start justify-start gap-2 self-stretch overflow-hidden border-b px-6 py-5 text-left last:border-b-0 md:flex-1 md:border-b-0 md:first:border-l md:last:border-r ${
         isActive ? "bg-card -mt-px border-t-0" : ""
       }`}
       onClick={onClick}
@@ -34,6 +35,6 @@ export function FeatureCard({
       <div className="text-muted-foreground self-stretch text-xs">
         {description}
       </div>
-    </div>
+    </button>
   );
 }

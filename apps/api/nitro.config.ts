@@ -1,9 +1,14 @@
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "nitro";
 
+import { lightningCss } from "./plugins/lightning-css";
+
 export default defineConfig({
   serverDir: "src",
   traceDeps: ["lightningcss-wasm"],
+  rolldownConfig: {
+    plugins: [lightningCss()],
+  },
   experimental: {
     openAPI: true,
   },

@@ -79,9 +79,9 @@ export const ThemeShowcase: React.FC<ThemeShowcaseProps> = ({
           slideShadows: true,
         }}
       >
-        {SCREENSHOTS.map((screenshot, index) => (
+        {SCREENSHOTS.map((screenshot) => (
           <SwiperSlide
-            key={index}
+            key={screenshot.alt}
             className="border-border relative rounded-lg border"
           >
             <BlurImage
