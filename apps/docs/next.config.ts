@@ -51,7 +51,7 @@ async function createNextConfig(): Promise<NextConfig> {
         },
       ],
       qualities: [75, 100],
-    }
+    },
   };
 
   return nextConfig;
