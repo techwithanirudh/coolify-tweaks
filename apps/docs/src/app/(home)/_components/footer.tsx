@@ -6,9 +6,9 @@ import { Check, Copy, MailIcon } from "lucide-react";
 import { Button } from "@repo/ui/button";
 import { useCopyToClipboard } from "@repo/ui/hooks/use-copy-to-clipboard";
 
+import { GitHub } from "@/components/icons/github";
 import { owner, repo } from "@/lib/github";
 import { Love } from "./love";
-import { GitHub } from "@/components/icons/github";
 
 export function Footer() {
   const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 2000 });

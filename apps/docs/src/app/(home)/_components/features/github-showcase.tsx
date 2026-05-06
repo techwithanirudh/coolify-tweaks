@@ -5,8 +5,8 @@ import { Hammer, Sparkles, Star, Wrench } from "lucide-react";
 import { cn } from "@repo/ui";
 import { Shimmer } from "@repo/ui/shimmer";
 
-import { humanizeNumber } from "@/lib/github";
 import { GitHub } from "@/components/icons/github";
+import { humanizeNumber } from "@/lib/github";
 
 const COMMITS: CommitCardProps[] = [
   {

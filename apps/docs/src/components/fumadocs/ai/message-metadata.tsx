@@ -91,7 +91,7 @@ export const MessageMetadata = ({
 
   if (tool && inProgress) {
     let Icon = WrenchIcon;
-    let label = "Working";
+    let label: string;
     const name = tool.type
       .replace("tool-", "")
       .replace(/([A-Z])/g, " $1")

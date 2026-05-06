@@ -13,9 +13,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       return {
         url: url(page.url),
         lastModified: lastModified ? new Date(lastModified) : undefined,
-        changeFrequency: "weekly",
+        changeFrequency: "weekly" as const,
         priority: 0.5,
-      } as MetadataRoute.Sitemap[number];
+      };
     }),
   );
 
