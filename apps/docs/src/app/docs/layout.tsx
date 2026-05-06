@@ -64,7 +64,7 @@ export default function Layout({ children }: LayoutProps<"/docs">) {
         },
       }}
       tabMode="navbar"
-      tree={source.pageTree}
+      tree={source.getPageTree()}
     >
       {children}
 

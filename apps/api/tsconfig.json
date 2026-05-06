@@ -6,9 +6,6 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "lib": ["esnext", "dom", "dom.iterable"],
-    "jsx": "preserve",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment",
     // Additional Safety
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,

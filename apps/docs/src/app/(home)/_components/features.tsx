@@ -1,6 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
-import { Download, Github, Grid2X2, Palette, Sparkles } from "lucide-react";
+import { Download, GitFork, Grid2X2, Palette, Sparkles } from "lucide-react";
 
 import { cn } from "@repo/ui";
 import { Badge } from "@repo/ui/badge";
@@ -68,7 +68,7 @@ function getFeatures(stars: number): Feature[] {
       ),
     },
     {
-      Icon: Github,
+      Icon: GitFork,
       name: "Fully open-source",
       description:
         "Built in the open with community contributions. View the code, suggest improvements, or fork your own version.",
