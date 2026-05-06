@@ -1,6 +1,5 @@
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
-
 import type { Plugin } from "rolldown";
 
 const nodeRequire = createRequire(import.meta.url);
