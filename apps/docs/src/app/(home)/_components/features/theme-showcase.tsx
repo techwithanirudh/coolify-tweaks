@@ -14,6 +14,7 @@ interface ThemeShowcaseProps {
 }
 
 interface Screenshot {
+  id: string;
   light: string;
   dark: string;
   alt: string;
@@ -21,31 +22,37 @@ interface Screenshot {
 
 const SCREENSHOTS: Screenshot[] = [
   {
+    id: "claude",
     light: "/assets/themes/claude-light.png",
     dark: "/assets/themes/claude-dark.png",
     alt: "Claude Theme",
   },
   {
+    id: "bubblegum",
     light: "/assets/themes/bubblegum-light.png",
     dark: "/assets/themes/bubblegum-dark.png",
     alt: "Bubblegum Theme",
   },
   {
+    id: "nature",
     light: "/assets/themes/nature-light.png",
     dark: "/assets/themes/nature-dark.png",
     alt: "Nature Theme",
   },
   {
+    id: "soft-pop",
     light: "/assets/themes/soft-pop-light.png",
     dark: "/assets/themes/soft-pop-dark.png",
     alt: "Soft Pop Theme",
   },
   {
+    id: "t3-chat",
     light: "/assets/themes/t3-chat-light.png",
     dark: "/assets/themes/t3-chat-dark.png",
     alt: "T3 Chat Theme",
   },
   {
+    id: "vercel",
     light: "/assets/themes/vercel-light.png",
     dark: "/assets/themes/vercel-dark.png",
     alt: "Vercel Theme",
@@ -81,7 +88,7 @@ export const ThemeShowcase: React.FC<ThemeShowcaseProps> = ({
       >
         {SCREENSHOTS.map((screenshot) => (
           <SwiperSlide
-            key={screenshot.alt}
+            key={screenshot.id}
             className="border-border relative rounded-lg border"
           >
             <BlurImage
