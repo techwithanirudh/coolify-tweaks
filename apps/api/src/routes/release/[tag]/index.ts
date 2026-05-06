@@ -90,6 +90,12 @@ export default defineHandler(async (event) => {
     if (import.meta.dev) {
       event.res.headers.set("X-Source", "local");
     } else {
+      event.res.headers.set(
+        "Cache-Control",
+        tag === "latest"
+          ? "public, max-age=60, s-maxage=300, stale-while-revalidate=3600"
+          : "public, max-age=31536000, immutable",
+      );
       event.res.headers.set("X-Source", "github");
       event.res.headers.set("X-Proxy-Host", "github.com");
       for (const name of allowedHeaders) {
