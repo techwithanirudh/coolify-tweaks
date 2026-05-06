@@ -3,13 +3,16 @@
 ## 4.1.0
 
 ### Features
+
 - Add squishy button effect - buttons and interactive elements now scale down and create larger clickable area on press
 
 ### Fixes
+
 - Fix form-label width
 - Make dropdown selector more specific
 
 ### Chore
+
 - Upgrade to TypeScript 6.0
 - Fix package configurations and CI errors
 
