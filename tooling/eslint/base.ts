@@ -64,14 +64,7 @@ export const baseConfig = defineConfig(
       ...tseslint.configs.stylisticTypeChecked,
     ],
     rules: {
-      ...(typeof turboPlugin.configs === "object" &&
-      turboPlugin.configs !== null &&
-      "recommended" in turboPlugin.configs &&
-      turboPlugin.configs.recommended &&
-      !Array.isArray(turboPlugin.configs.recommended) &&
-      "rules" in turboPlugin.configs.recommended
-        ? turboPlugin.configs.recommended.rules
-        : {}),
+      "turbo/no-undeclared-env-vars": "error",
       "@typescript-eslint/no-unused-vars": [
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },

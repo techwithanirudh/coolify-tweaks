@@ -6,12 +6,13 @@ export default defineConfig({
   install: true,
   maturityPeriod: 14,
   ignorePaths: [
-    '**/node_modules/**'
+    '**/node_modules/**',
   ],
   ignoreOtherWorkspaces: true,
   packageMode: {
     'typescript': 'major',
     'eslint': 'major',
+    '@types/node': 'minor',
     '/react/': 'minor',
   },
   depFields: {
