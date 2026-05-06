@@ -3,13 +3,16 @@
 @mixin button-base {
   padding: s(2.25) s(4);
   height: auto;
+  position: relative;
   border: 1px solid transparent;
   border-radius: var(--radius-md);
   font-weight: 600;
   transition:
     background 0.18s ease,
     color 0.18s ease,
-    box-shadow 0.18s ease;
+    box-shadow 0.18s ease,
+    scale 0.18s ease,
+    translate 0.18s ease;
 
   &:focus-visible {
     outline: none;
@@ -30,6 +33,21 @@
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
+  }
+
+  &:active {
+    scale: 0.96;
+
+    &:not([aria-haspopup]) {
+      translate: 0 1px;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      scale: 1.06;
+    }
   }
 }
 

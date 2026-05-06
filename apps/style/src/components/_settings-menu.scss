@@ -48,10 +48,11 @@ button:has([title="Preferences"]) {
   @include icon("desktop-duotone", "duotone");
 }
 
-div:has(div[x-show="dropdownOpen"]:not([style*="display: none"]))
-  button:has([title="Settings"]),
-div:has(div[x-show="dropdownOpen"]:not([style*="display: none"]))
-  button:has([title="Preferences"]) {
+.relative:has(
+    > button[title="Preferences"]
+      + div[x-show="dropdownOpen"]:not([style*="display: none"])
+  )
+  > button[title="Preferences"] {
   color: var(--foreground);
   background: var(--secondary);
 }

@@ -2,6 +2,8 @@
 
 @mixin select-base {
   appearance: base-select;
+  display: inline-flex;
+  align-items: center;
   border: 1px solid var(--input);
   border-radius: var(--radius-md);
   background: transparent;
@@ -64,6 +66,7 @@ select {
       transform 0.2s cubic-bezier(0, 0, 0.3, 1),
       display 0.2s allow-discrete,
       overlay 0.2s allow-discrete;
+    box-shadow: var(--shadow-sm);
   }
 
   &:open::picker(select) {

@@ -127,9 +127,11 @@ input[type="checkbox"],
 input[type="radio"] {
   padding: s(2.75);
   border-radius: 4px;
-  background-color: var(--input);
+  background-color: var(--muted);
   transition: background-color 0.18s;
-  box-shadow: var(--shadow-xs);
+  box-shadow: none;
+  border: var(--border);
+  color: var(--muted-foreground);
 
   transition:
     background-color 0.18s,

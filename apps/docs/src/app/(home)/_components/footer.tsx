@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { Check, Copy, Github, MailIcon } from "lucide-react";
+import { Check, Copy, MailIcon } from "lucide-react";
 
 import { Button } from "@repo/ui/button";
 import { useCopyToClipboard } from "@repo/ui/hooks/use-copy-to-clipboard";
 
+import { GitHub } from "@/components/icons/github";
 import { owner, repo } from "@/lib/github";
 import { Love } from "./love";
 
@@ -31,7 +32,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Github className="size-5" />
+              <GitHub className="size-5" />
             </a>
           </Button>
         </div>

@@ -10,6 +10,7 @@
     "resolveJsonModule": true,
     "moduleDetection": "force",
     "isolatedModules": true,
+    "ignoreDeprecations": "6.0",
 
     /** Keep TSC performant in monorepos */
     "incremental": true,
@@ -24,7 +25,8 @@
     /** Transpile using Bundler (not tsc) */
     "module": "Preserve",
     "moduleResolution": "Bundler",
-    "noEmit": true
+    "noEmit": true,
+    "noUncheckedSideEffectImports": false
   },
   "exclude": ["node_modules", "build", "dist", ".next"]
 }

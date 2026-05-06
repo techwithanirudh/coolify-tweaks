@@ -60,9 +60,9 @@ export default function Layout({ children }: LayoutProps<"/">) {
       className={`${geist.variable} ${mono.variable}`}
       suppressHydrationWarning
     >
-      <Body tree={source.pageTree}>
+      <Body tree={source.getPageTree()}>
         <NextProvider>
-          <TreeContextProvider tree={source.pageTree}>
+          <TreeContextProvider tree={source.getPageTree()}>
             <Providers>{children}</Providers>
           </TreeContextProvider>
         </NextProvider>

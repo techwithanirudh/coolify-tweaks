@@ -39,7 +39,15 @@ export const restrictEnvAccess = defineConfig(
 export const baseConfig = defineConfig(
   // Ignore files not tracked by VCS and any config files
   includeIgnoreFile(path.join(import.meta.dirname, "../../.gitignore")),
-  { ignores: ["**/*.config.*"] },
+  {
+    ignores: [
+      "**/*.config.*",
+      "**/.claude/**",
+      "**/.codex/**",
+      "**/.cursor/**",
+      "**/.skills/**",
+    ],
+  },
   {
     files: ["**/*.js", "**/*.ts", "**/*.tsx"],
     plugins: {
@@ -53,7 +61,7 @@ export const baseConfig = defineConfig(
       ...tseslint.configs.stylisticTypeChecked,
     ],
     rules: {
-      ...turboPlugin.configs.recommended.rules,
+      "turbo/no-undeclared-env-vars": "error",
       "@typescript-eslint/no-unused-vars": [
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },

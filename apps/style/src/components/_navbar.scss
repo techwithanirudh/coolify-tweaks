@@ -14,7 +14,7 @@
 .navbar-main nav {
   display: flex;
   align-items: center;
-  padding-top: 0px;
+  padding-block: 0px;
   gap: s(3.25);
 }
 
@@ -44,4 +44,10 @@
 
 .navbar-main .flex-1 {
   flex: 1 1 auto;
+}
+
+.navbar-main div button[class*="button"] {
+  & > svg {
+    color: var(--primary-foreground);
+  }
 }

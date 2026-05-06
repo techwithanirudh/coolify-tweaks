@@ -1,5 +1,64 @@
 # coolify-tweaks
 
+## 4.1.0
+
+### Features
+
+- Add squishy button effect - buttons and interactive elements now scale down and create larger clickable area on press
+
+### Fixes
+
+- Fix form-label width
+- Make dropdown selector more specific
+
+### Chore
+
+- Upgrade to TypeScript 6.0
+- Fix package configurations and CI errors
+
+## 4.0.9
+
+### Patch Changes
+
+- Fix select dropdown class targeting and polish spacing in resource grids and navigation.
+
+## 4.0.8
+
+### Patch Changes
+
+- fix: resolve spacing between project header
+
+## 4.0.7
+
+### Patch Changes
+
+- fix: resolve select box picker icon alignment issue
+
+## 4.0.6
+
+### Patch Changes
+
+- Improve light mode contrast for surfaces, borders, and sidebar tokens.
+
+## 4.0.5
+
+### Patch Changes
+
+- Refine box interactions and table text readability.
+
+## 4.0.4
+
+### Patch Changes
+
+- Fix box hover behavior and ensure table text color consistency.
+
+## 4.0.3
+
+### Patch Changes
+
+- 8c2fb04: Improve UI style consistency across cards, navigation, search, tables, tabs, and theme variables.
+- 8c2fb04: Refine UI styling for deployment logs, navigation icons, and table surfaces.
+
 ## 4.0.2
 
 ### Patch Changes

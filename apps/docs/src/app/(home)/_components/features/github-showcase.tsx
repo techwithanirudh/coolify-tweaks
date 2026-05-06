@@ -1,10 +1,11 @@
 import type { LucideIcon } from "lucide-react";
 import type React from "react";
-import { Github, Hammer, Sparkles, Star, Wrench } from "lucide-react";
+import { Hammer, Sparkles, Star, Wrench } from "lucide-react";
 
 import { cn } from "@repo/ui";
 import { Shimmer } from "@repo/ui/shimmer";
 
+import { GitHub } from "@/components/icons/github";
 import { humanizeNumber } from "@/lib/github";
 
 const COMMITS: CommitCardProps[] = [
@@ -70,7 +71,7 @@ export function GitHubShowcase({
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Github className="size-3" />
+          <GitHub className="size-3" />
           <span className="truncate font-medium">
             {owner}/{repo}
           </span>

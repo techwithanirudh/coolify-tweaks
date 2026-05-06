@@ -5,11 +5,14 @@ import Link from "fumadocs-core/link";
 import { findSiblings } from "fumadocs-core/page-tree";
 import { PathUtils } from "fumadocs-core/source";
 import * as Twoslash from "fumadocs-twoslash/ui";
-import { createGenerator } from "fumadocs-typescript";
-import { AutoTypeTable } from "fumadocs-typescript/ui";
 import { Card, Cards } from "fumadocs-ui/components/card";
 import { TypeTable } from "fumadocs-ui/components/type-table";
-import { DocsPage, PageLastUpdate } from "fumadocs-ui/layouts/notebook/page";
+import {
+  DocsPage,
+  MarkdownCopyButton,
+  PageLastUpdate,
+  ViewOptionsPopover,
+} from "fumadocs-ui/layouts/notebook/page";
 
 import {
   HoverCard,
@@ -17,13 +20,10 @@ import {
   HoverCardTrigger,
 } from "@repo/ui/hover-card";
 
-import { LLMCopyButton, ViewOptions } from "@/components/fumadocs/page-actions";
 import { owner, repo } from "@/lib/github";
 import { createMetadata, getPageImage } from "@/lib/metadata";
 import { source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
-
-const generator = createGenerator();
 
 export const revalidate = false;
 
@@ -43,6 +43,10 @@ export default async function Page(
         style: "clerk",
       }}
       toc={toc}
+      full={!!page.data._openapi}
+      footer={{
+        className: "xl:pb-6",
+      }}
     >
       <div className="relative flex flex-col items-start gap-2 @sm:flex-row @sm:items-center">
         <h1 className="text-[1.75em] font-semibold break-all">
@@ -50,8 +54,8 @@ export default async function Page(
         </h1>
 
         <div className="ml-auto flex hidden shrink-0 flex-row items-center justify-end gap-2 @sm:flex">
-          <LLMCopyButton markdownUrl={`${page.url}.mdx`} />
-          <ViewOptions
+          <MarkdownCopyButton markdownUrl={`${page.url}.mdx`} />
+          <ViewOptionsPopover
             markdownUrl={`${page.url}.mdx`}
             githubUrl={`https://github.com/${owner}/${repo}/blob/main/content/docs/${page.path}`}
           />
@@ -61,8 +65,8 @@ export default async function Page(
         {page.data.description}
       </p>
       <div className="flex items-center gap-2 pb-6 @sm:hidden">
-        <LLMCopyButton markdownUrl={`${page.url}.mdx`} />
-        <ViewOptions
+        <MarkdownCopyButton markdownUrl={`${page.url}.mdx`} />
+        <ViewOptionsPopover
           markdownUrl={`${page.url}.mdx`}
           githubUrl={`https://github.com/${owner}/${repo}/blob/main/content/docs/${page.path}`}
         />
@@ -102,9 +106,6 @@ export default async function Page(
               );
             },
             TypeTable,
-            AutoTypeTable: (autoTypeProps) => (
-              <AutoTypeTable generator={generator} {...autoTypeProps} />
-            ),
             DocsCategory: ({ url }: { url?: string }) => (
               <DocsCategory url={url ?? page.url} />
             ),
@@ -121,15 +122,22 @@ function DocsCategory({ url }: { url: string }) {
   return (
     <Cards>
       {findSiblings(source.getPageTree(), url).map((item) => {
-        if (item.type === "separator") return;
-        if (item.type === "folder") {
-          if (!item.index) return;
-          item = item.index;
+        if (item.type === "separator") {
+          return null;
+        }
+
+        const resolvedItem = item.type === "folder" ? item.index : item;
+        if (!resolvedItem) {
+          return null;
         }
 
         return (
-          <Card key={item.url} title={item.name} href={item.url}>
-            {item.description}
+          <Card
+            key={resolvedItem.url}
+            title={resolvedItem.name}
+            href={resolvedItem.url}
+          >
+            {resolvedItem.description}
           </Card>
         );
       })}

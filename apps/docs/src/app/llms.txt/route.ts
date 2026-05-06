@@ -1,25 +1,9 @@
-import { categories } from "@/lib/constants";
+import { llms } from "fumadocs-core/source";
+
 import { source } from "@/lib/source";
 
 export const revalidate = false;
 
 export function GET() {
-  const scanned: string[] = [];
-  scanned.push("# Docs");
-  const map = new Map<string, string[]>();
-
-  for (const page of source.getPages()) {
-    const dir = page.path.split("/")[0];
-    if (!dir) continue;
-    const list = map.get(dir) ?? [];
-    list.push(`- [${page.data.title}](${page.url}): ${page.data.description}`);
-    map.set(dir, list);
-  }
-
-  for (const [key, value] of map) {
-    scanned.push(`## ${categories[key]}`);
-    scanned.push(value.join("\n"));
-  }
-
-  return new Response(scanned.join("\n\n"));
+  return new Response(llms(source).index());
 }

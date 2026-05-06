@@ -9,23 +9,31 @@
   border-radius: var(--radius-2xl);
   background: var(--card);
   color: var(--card-foreground);
+  position: relative;
   transition:
     transform 0.15s,
     box-shadow 0.2s,
     background 0.18s,
-    border-color 0.18s;
+    border-color 0.18s,
+    scale 0.15s,
+    translate 0.15s;
   box-shadow: var(--shadow-sm);
-}
 
-// todo: fix active state in servers/resources section
+  &:active {
+    scale: 0.96;
 
-.box:hover,
-.box-without-bg:hover,
-.coolbox:hover {
-  background-color: color-mix(in srgb, var(--card) 80%, transparent);
-  box-shadow:
-    var(--shadow-sm),
-    0 0 0 2px var(--ring);
+    &:not([aria-haspopup]) {
+      translate: 0 1px;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      scale: 1.06;
+      z-index: -1;
+    }
+  }
 }
 
 .box-title {
