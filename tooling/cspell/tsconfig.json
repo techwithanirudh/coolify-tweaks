@@ -1,6 +1,6 @@
 {
   "extends": "@repo/tsconfig/compiled-package.json",
   "compilerOptions": {},
-  "include": ["*.ts", "src", "index.js"],
+  "include": ["*.ts", "src"],
   "exclude": ["node_modules"]
 }

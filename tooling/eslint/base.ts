@@ -1,4 +1,5 @@
 import * as path from "node:path";
+import { fileURLToPath } from "node:url";
 import { includeIgnoreFile } from "@eslint/compat";
 import eslint from "@eslint/js";
 import importPlugin from "eslint-plugin-import";
@@ -38,8 +39,18 @@ export const restrictEnvAccess = defineConfig(
 
 export const baseConfig = defineConfig(
   // Ignore files not tracked by VCS and any config files
-  includeIgnoreFile(path.join(import.meta.dirname, "../../.gitignore")),
-  { ignores: ["**/*.config.*"] },
+  includeIgnoreFile(
+    path.join(fileURLToPath(new URL(".", import.meta.url)), "../../.gitignore"),
+  ),
+  {
+    ignores: [
+      "**/*.config.*",
+      "**/.claude/**",
+      "**/.codex/**",
+      "**/.cursor/**",
+      "**/.skills/**",
+    ],
+  },
   {
     files: ["**/*.js", "**/*.ts", "**/*.tsx"],
     plugins: {

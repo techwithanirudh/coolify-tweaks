@@ -1,4 +1,6 @@
-const config = {
+import { defineConfig } from "@cspell/cspell-types";
+
+const config = defineConfig({
   version: "0.2",
   language: "en",
   allowCompoundWords: true,
@@ -13,6 +15,10 @@ const config = {
     "**/.git/**",
     "**/.husky/**",
     "**/.idea/**",
+    "**/.claude/**",
+    "**/.codex/**",
+    "**/.cursor/**",
+    "**/.skills/**",
     "**/.swc/**",
     "**/.turbo/**",
     "**/.vscode/**",
@@ -63,6 +69,6 @@ const config = {
     "shadcn",
     "tweakcn",
   ],
-};
+});
 
 export default config;

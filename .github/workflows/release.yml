@@ -43,11 +43,27 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Resolve Style Release
+        id: style-release
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        shell: bash
+        run: |
+          version="$(node -p "require('./apps/style/package.json').version")"
+          tag="v${version}"
+
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+
+          if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
+            echo "create=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "create=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Upload Release Asset
-        if: steps.changesets.outputs.published == 'true'
+        if: steps.style-release.outputs.create == 'true'
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}
+          tag_name: ${{ steps.style-release.outputs.tag }}
           files: |
             apps/style/dist/**
           append_body: true
