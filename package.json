@@ -36,7 +36,9 @@
     "check:spelling": "turbo run check:spelling",
     "ui-add": "turbo run ui-add",
     "release": "turbo run build --filter=./apps/* && changeset publish",
-    "version": "changeset version && pnpm install --lockfile-only"
+    "version": "changeset version && pnpm install --lockfile-only",
+    "update-pkgs": "taze -w",
+    "update:major": "taze -w major"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
@@ -51,9 +53,10 @@
     "dotenv-cli": "^11.0.0",
     "lefthook": "^2.1.6",
     "prettier": "catalog:",
+    "taze": "^19.11.0",
     "turbo": "^2.9.9",
     "typescript": "catalog:"
   },
   "prettier": "@repo/prettier-config",
-  "packageManager": "pnpm@10.19.0"
+  "packageManager": "pnpm@10.33.3"
 }

@@ -13,7 +13,7 @@
   "dependencies": {
     "@cspell/cspell-types": "9.6.2",
     "@cspell/dict-bash": "^4.2.2",
-    "@cspell/dict-npm": "^5.2.25",
+    "@cspell/dict-npm": "^5.2.38",
     "@cspell/dict-redis": "^1.0.7",
     "cspell": "catalog:"
   },

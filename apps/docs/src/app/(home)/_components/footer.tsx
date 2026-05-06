@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Check, Copy, GitFork, MailIcon } from "lucide-react";
+import { Check, Copy, MailIcon } from "lucide-react";
 
 import { Button } from "@repo/ui/button";
 import { useCopyToClipboard } from "@repo/ui/hooks/use-copy-to-clipboard";
 
 import { owner, repo } from "@/lib/github";
 import { Love } from "./love";
+import { GitHub } from "@/components/icons/github";
 
 export function Footer() {
   const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 2000 });
@@ -31,7 +32,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <GitFork className="size-5" />
+              <GitHub className="size-5" />
             </a>
           </Button>
         </div>
