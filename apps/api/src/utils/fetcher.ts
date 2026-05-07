@@ -1,6 +1,5 @@
 import { readFile } from "node:fs/promises";
 import { isAbsolute, resolve } from "node:path";
-import { defineCachedFunction } from "nitro/cache";
 import { HTTPError } from "nitro/h3";
 import { useRuntimeConfig } from "nitro/runtime-config";
 import { $fetch } from "ofetch";
@@ -19,15 +18,8 @@ export async function fetchAsset(
   if (import.meta.dev) {
     return fetchFromLocal(asset);
   }
-  return cachedFetchFromGitHub(tag, asset);
+  return fetchFromGitHub(tag, asset);
 }
-
-const cachedFetchFromGitHub = defineCachedFunction(fetchFromGitHub, {
-  name: "github-release-asset",
-  maxAge: 60,
-  staleMaxAge: 300,
-  getKey: (tag: string, asset: string) => `${tag}:${asset}`,
-});
 
 async function fetchFromGitHub(
   tag: string,

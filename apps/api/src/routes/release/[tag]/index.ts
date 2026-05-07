@@ -90,11 +90,6 @@ export default defineHandler(async (event) => {
     if (import.meta.dev) {
       event.res.headers.set("X-Source", "local");
     } else {
-      event.res.headers.set("Cache-Control", "public, max-age=60");
-      event.res.headers.set(
-        "Vercel-CDN-Cache-Control",
-        "max-age=60, stale-while-revalidate=300, stale-if-error=86400",
-      );
       event.res.headers.set("X-Source", "github");
       event.res.headers.set("X-Proxy-Host", "github.com");
       for (const name of allowedHeaders) {
