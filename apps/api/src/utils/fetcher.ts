@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { isAbsolute, resolve } from "node:path";
+import { defineCachedFunction } from "nitro/cache";
 import { HTTPError } from "nitro/h3";
 import { useRuntimeConfig } from "nitro/runtime-config";
 import { $fetch } from "ofetch";
@@ -12,7 +13,7 @@ const RETRYABLE_STATUS_CODES = new Set([408, 425, 429, 500, 502, 503, 504]);
 
 export interface FetchResult {
   content: string;
-  headers?: Headers;
+  headers?: Record<string, string>;
 }
 
 export async function fetchAsset(
@@ -22,8 +23,15 @@ export async function fetchAsset(
   if (import.meta.dev) {
     return fetchFromLocal(asset);
   }
-  return fetchFromGitHub(tag, asset);
+  return cachedFetchFromGitHub(tag, asset);
 }
+
+const cachedFetchFromGitHub = defineCachedFunction(fetchFromGitHub, {
+  name: "github-release-asset",
+  maxAge: 60,
+  staleMaxAge: 300,
+  getKey: (tag: string, asset: string) => `${tag}:${asset}`,
+});
 
 async function fetchFromGitHub(
   tag: string,
@@ -46,7 +54,7 @@ async function fetchFromGitHub(
 
   return {
     content: typeof response._data === "string" ? response._data : "",
-    headers: new Headers(response.headers),
+    headers: Object.fromEntries(response.headers),
   };
 }
 
