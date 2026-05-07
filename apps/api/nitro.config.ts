@@ -36,13 +36,6 @@ export default defineConfig({
     },
   },
   routeRules: {
-    "/release/**": {
-      isr: {
-        expiration: 60,
-        allowQuery: ["asset", "theme"],
-        passQuery: true,
-      },
-    },
     "/main.user.css": {
       redirect: "/release/latest/?asset=main.user.css",
     },
