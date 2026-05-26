@@ -1,5 +1,11 @@
 # coolify-tweaks
 
+## 4.1.1
+
+### Patch Changes
+
+- Fix Coolify layout regressions affecting sidebar collapse, page content width, deployment action positioning, and resource grid styling.
+
 ## 4.1.0
 
 ### Features
