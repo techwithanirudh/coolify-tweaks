@@ -180,7 +180,8 @@ $breakpoints: (
 
   /* misc */
   --sidebar-width: 260px;
-  --sidebar-collapsed-width: 80px;
+  --navigation-sidebar-width: var(--sidebar-width);
+  --navigation-sidebar-collapsed-width: 80px;
   --blur: 10px;
 
   --color-coollabs: var(--primary);
@@ -203,7 +204,7 @@ $breakpoints: (
 
 @media (min-width: 1024px) {
   body:has(nav.sidebar-collapsed a[title="Dashboard"]) {
-    --sidebar-width: var(--sidebar-collapsed-width);
+    --navigation-sidebar-width: var(--navigation-sidebar-collapsed-width);
   }
 }
 

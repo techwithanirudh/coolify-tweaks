@@ -1,8 +1,17 @@
 @use "globals" as *;
 
 div[data-testid="resources-grid"],
-div.grid[class*="cols"] {
+div.grid[class*="cols"]:is(
+    :has(> .coolbox),
+    :has(> .box),
+    :has(> span > .coolbox),
+    :has(> span > .box),
+    [x-show^="filteredApplications"],
+    [x-show^="filteredServices"],
+    [x-show^="filteredDatabases"]
+  ) {
   overflow: hidden;
+  gap: s(2.5);
   margin-top: s(2.5);
   padding: s(4) s(4);
   border-radius: var(--radius-3xl);
@@ -126,9 +135,4 @@ div.grid[wire\:poll\.3000ms="loadDeployments"]
   .grid:has(a[href*="/#{$target}/"]) {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
-}
-
-.grid,
-[class*="grid-cols"] {
-  gap: s(2.5);
 }

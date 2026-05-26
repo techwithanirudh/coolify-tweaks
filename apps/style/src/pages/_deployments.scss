@@ -17,10 +17,10 @@ div.fixed.bottom-0.mb-4.left-0.ml-4:has(button) {
   }
 
   @media (min-width: 1024px) {
-    left: var(--sidebar-width);
+    left: var(--navigation-sidebar-width);
     margin-inline: s(8);
 
-    width: calc(100% - var(--sidebar-width));
+    width: calc(100% - var(--navigation-sidebar-width));
 
     & > div {
       max-width: 1280px;
