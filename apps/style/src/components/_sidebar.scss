@@ -41,7 +41,13 @@ nav[x-data]:has(a[title="Dashboard"]) > ul {
 /* Targets the sidebar header containing the team switcher.
      It's robustly selected by finding the `div` that directly contains the unique Livewire team selection dropdown. */
 nav[x-data] > div:has(select[wire\:model\.live="selectedTeamId"]) {
-  padding-block: s(4);
+  flex-shrink: 0;
+  padding: s(2) s(2) s(7);
+
+  select {
+    width: 100%;
+    min-height: s(10);
+  }
 }
 
 aside::-webkit-scrollbar {
@@ -183,7 +189,7 @@ $menu-icons: (
 /* Desktop push */
 @include mq(lg) {
   body:has(nav[class*="dark:border-coolgray-200"]) main {
-    padding-left: var(--sidebar-width);
+    padding-left: calc(var(--sidebar-width) + #{s(6)});
   }
 }
 

@@ -180,6 +180,7 @@ $breakpoints: (
 
   /* misc */
   --sidebar-width: 260px;
+  --sidebar-collapsed-width: 80px;
   --blur: 10px;
 
   --color-coollabs: var(--primary);
@@ -198,6 +199,12 @@ $breakpoints: (
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-info: var(--info);
+}
+
+@media (min-width: 1024px) {
+  body:has(nav.sidebar-collapsed a[title="Dashboard"]) {
+    --sidebar-width: var(--sidebar-collapsed-width);
+  }
 }
 
 .scrollbar {
