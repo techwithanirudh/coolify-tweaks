@@ -20,7 +20,7 @@
     "typescript": "catalog:"
   },
   "dependencies": {
-    "sass-embedded": "^1.99.0",
+    "sass-embedded": "^1.100.0",
     "zod": "catalog:"
   },
   "devDependencies": {
@@ -37,7 +37,7 @@
     "eslint": "catalog:",
     "lightningcss": "^1.32.0",
     "ora": "^9.4.0",
-    "postcss": "^8.5.14",
+    "postcss": "^8.5.15",
     "postcss-cli": "^11.0.1",
     "postcss-load-config": "^6.0.1",
     "prettier": "catalog:",

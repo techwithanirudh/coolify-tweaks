@@ -16,7 +16,7 @@
   "homepage": "https://coolify-tweaks.techwithanirudh.com",
   "engines": {
     "node": "^24.11.0",
-    "pnpm": "^10.19.0"
+    "pnpm": "^11.1.0"
   },
   "scripts": {
     "build": "turbo run build",
@@ -37,26 +37,26 @@
     "ui-add": "turbo run ui-add",
     "release": "turbo run build --filter=./apps/* && changeset publish",
     "version": "changeset version && pnpm install --lockfile-only",
-    "update-pkgs": "taze -w",
-    "update:major": "taze -w major"
+    "update-pkgs": "taze -w -r",
+    "update:major": "taze -w -r major"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
-    "@commitlint/cli": "^20.5.3",
-    "@commitlint/config-conventional": "^20.5.3",
-    "@commitlint/format": "^20.5.0",
-    "@commitlint/types": "^20.5.0",
+    "@commitlint/cli": "^21.0.1",
+    "@commitlint/config-conventional": "^21.0.1",
+    "@commitlint/format": "^21.0.1",
+    "@commitlint/types": "^21.0.1",
     "@repo/cspell-config": "workspace:*",
     "@repo/prettier-config": "workspace:*",
-    "@turbo/gen": "^2.9.9",
+    "@turbo/gen": "^2.9.14",
     "cspell": "catalog:",
     "dotenv-cli": "^11.0.0",
-    "lefthook": "^2.1.6",
+    "lefthook": "^2.1.8",
     "prettier": "catalog:",
-    "taze": "^19.11.0",
-    "turbo": "^2.9.9",
+    "taze": "^19.13.0",
+    "turbo": "^2.9.14",
     "typescript": "catalog:"
   },
   "prettier": "@repo/prettier-config",
-  "packageManager": "pnpm@10.33.3"
+  "packageManager": "pnpm@11.2.2"
 }

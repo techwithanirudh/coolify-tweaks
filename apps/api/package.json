@@ -20,8 +20,8 @@
     "lightningcss-wasm": "^1.32.0",
     "mime-types": "^3.0.2",
     "ofetch": "^1.5.1",
-    "postcss": "^8.5.14",
-    "shadcn": "^4.7.0",
+    "postcss": "^8.5.15",
+    "shadcn": "^4.8.0",
     "zod": "catalog:"
   },
   "devDependencies": {
