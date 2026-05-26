@@ -11,9 +11,6 @@ runs:
     - uses: oven-sh/setup-bun@v2
 
     - shell: bash
-      run: pnpm add -g turbo
-
-    - shell: bash
       run: pnpm install
 
     - name: Create environment variables file
