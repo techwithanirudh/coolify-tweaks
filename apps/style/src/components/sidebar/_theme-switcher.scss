@@ -2,10 +2,10 @@
 
 .menu-item[title="Theme"] {
   &:active {
-    scale: 1;
-    translate: 0;
+    scale: 1 !important;
+    translate: 0 !important;
 
-    &::after { content: none; }
+    &::after { content: none !important; }
   }
 
   & > div {

@@ -1,4 +1,5 @@
 @use "globals" as *;
+@use "theme-switcher";
 
 /* Targets the main desktop sidebar container.
      Instead of fragile width/flex classes, it's identified by its fixed position on large screens
@@ -201,8 +202,6 @@ $menu-icons: (
     padding-left: calc(var(--navigation-sidebar-width) + #{s(6)});
   }
 }
-
-@use "theme-switcher";
 
 .sub-menu-wrapper {
   display: flex;
