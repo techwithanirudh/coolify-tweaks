@@ -19,11 +19,11 @@ nav[x-data]:has(a[title="Dashboard"]) {
   scrollbar-color: var(--accent) transparent;
 
   // header coolify logo
-  & > div[class*="flex pt-6 pb-4 pl-2"] {
+  & > div[class*="flex pt-6 pb-4 pl-2"],
+  & > div[class*="flex pt-4 pb-4 pl-2"] {
     // there are three divs in this container, pick the middle one
     & > div {
       height: 100%;
-      display: flex;
       align-items: center;
       justify-content: center;
       margin-inline: s(0.5);
@@ -31,6 +31,10 @@ nav[x-data]:has(a[title="Dashboard"]) {
 
     & > div:first-child {
       align-items: flex-start;
+    }
+
+    & > div:has(> button[title*="Search"]):not([class*="lg:hidden"]) {
+      justify-content: flex-end;
     }
   }
 }
@@ -68,6 +72,11 @@ nav > ul > li > ul > li {
 @layer base {
   .menu-item,
   .sub-menu-item {
+    display: flex;
+  }
+
+  nav[x-data]:has(a[title="Dashboard"]) > div[class*="flex pt-6 pb-4 pl-2"] > div,
+  nav[x-data]:has(a[title="Dashboard"]) > div[class*="flex pt-4 pb-4 pl-2"] > div {
     display: flex;
   }
 }
