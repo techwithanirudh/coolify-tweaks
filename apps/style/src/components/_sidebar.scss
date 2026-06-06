@@ -1,7 +1,7 @@
 @use "globals" as *;
 
-/* Targets the main desktop sidebar container. 
-     Instead of fragile width/flex classes, it's identified by its fixed position on large screens 
+/* Targets the main desktop sidebar container.
+     Instead of fragile width/flex classes, it's identified by its fixed position on large screens
      and the fact that it contains the main navigation (`a[title="Dashboard"]`). This is much more stable. */
 div.lg\:fixed:has(nav a[title="Dashboard"]) {
   width: var(--navigation-sidebar-width);
@@ -64,9 +64,15 @@ nav > ul > li > ul > li {
   border-radius: var(--radius-lg);
 }
 
+@layer base {
+  .menu-item,
+  .sub-menu-item {
+    display: flex;
+  }
+}
+
 .menu-item,
 .sub-menu-item {
-  display: flex;
   align-items: center;
   width: 100%;
   min-width: 0;
@@ -93,6 +99,7 @@ nav > ul > li > ul > li {
       position: absolute;
       inset: 0;
       scale: 1.03;
+      pointer-events: none;
     }
   }
 }
@@ -154,6 +161,8 @@ $menu-icons: (
   "Sponsor\\ us": "heart-fill",
   "Send\\ us\\ feedback\\ or\\ get\\ help!": "chat-text-fill",
   "Logout": "sign-out-fill",
+  "Theme": "paint-brush-household-fill",
+  "What's\\ New": "sparkle-fill",
 );
 
 @each $title, $icon-name in $menu-icons {
@@ -191,6 +200,60 @@ $menu-icons: (
   body:has(nav[class*="dark:border-coolgray-200"]) main {
     padding-left: calc(var(--navigation-sidebar-width) + #{s(6)});
   }
+}
+
+// Theme row: restyle pill with sidebar tokens
+.menu-item[title="Theme"] {
+  // div is not interactive — suppress the active scale/translate
+  &:active {
+    scale: 1;
+    translate: 0;
+
+    &::after { content: none; }
+  }
+
+  & > div {
+    background: var(--sidebar-accent);
+    border-radius: var(--radius-sm);
+
+    button {
+      flex: 1;
+      color: var(--sidebar-foreground);
+      opacity: 0.55;
+      transition:
+        opacity 0.15s,
+        scale 0.15s;
+
+      &[class*="shadow-sm"] {
+        background: var(--sidebar) !important;
+        color: var(--sidebar-foreground) !important;
+        box-shadow: none !important;
+        opacity: 1;
+      }
+
+      &:hover {
+        background: var(--sidebar) !important;
+        color: var(--sidebar-foreground) !important;
+        opacity: 1;
+        scale: 1.15;
+      }
+    }
+  }
+
+  & > div button svg {
+    & > * { display: none; }
+  }
+
+  & > div button[title="Light"] svg { @include icon("sun-fill", "fill"); }
+  & > div button[title="System default"] svg { @include icon("monitor-fill", "fill"); }
+  & > div button[title="Dark"] svg { @include icon("moon-fill", "fill"); }
+}
+
+// Cycle button (collapsed sidebar) — phosphor icons via x-show attribute
+li:has(div.menu-item[title="Theme"]) button.menu-item {
+  .menu-item-icon[x-show*="light"] { @include icon("sun-fill", "fill"); }
+  .menu-item-icon[x-show*="system"] { @include icon("monitor-fill", "fill"); }
+  .menu-item-icon[x-show*="dark"] { @include icon("moon-fill", "fill"); }
 }
 
 .sub-menu-wrapper {
