@@ -82,13 +82,11 @@ function createMdxJsxFlowElement(
   return {
     type: "mdxJsxFlowElement",
     name,
-    attributes: attributes.map(
-      (attr): MdxJsxAttribute => ({
-        type: "mdxJsxAttribute",
-        name: attr.name,
-        value: attr.value,
-      }),
-    ),
+    attributes: attributes.map((attr): MdxJsxAttribute => ({
+      type: "mdxJsxAttribute",
+      name: attr.name,
+      value: attr.value,
+    })),
     children,
   };
 }
