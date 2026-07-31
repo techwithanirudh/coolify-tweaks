@@ -3,7 +3,7 @@
 ## Do not modify this file. You will lose the ability to install!
 ##
 ## Environment variables that can be set:
-## APP_PORT_DEFAULT       - Default bind address for Coolify dashboard (default: 0.0.0.0:3000)
+## APP_PORT_DEFAULT       - Default host port for the Coolify dashboard (default: 3000)
 ## COOLIFY_TWEAKS_CSS_URL - Override the Tweaks CSS URL
 ## SKIP_BACKUP            - Set to "true" to skip backup of docker-compose, and .env
 
@@ -22,7 +22,8 @@ DYNAMIC_DIR="$PROXY_DIR/dynamic"
 COMPOSE_FILE="$PROXY_DIR/docker-compose.yml"
 CURRENT_USER=$USER
 
-APP_PORT_DEFAULT="${APP_PORT_DEFAULT:-0.0.0.0:3000}"
+APP_PORT_DEFAULT="${APP_PORT_DEFAULT:-3000}"
+TRAEFIK_DASHBOARD_PORT="8000"
 SKIP_BACKUP="${SKIP_BACKUP:-${1:-false}}"
 
 COOLIFY_TWEAKS_DEFAULT_CSS_URL="https://coolify-tweaks-api.techwithanirudh.com/release/latest/?asset=main.css"
@@ -89,6 +90,20 @@ getAJoke() {
     done
     echo ""
   fi
+}
+
+# Coolify's compose uses APP_PORT in both `ports:` and `expose:`. `expose:`
+# only accepts a bare port number, so anything like "0.0.0.0:3000" makes
+# docker compose fail with: strconv.ParseUint: parsing "0.0.0.0:3000".
+strip_bind_address() {
+  printf '%s' "${1##*:}"
+}
+
+is_valid_port() {
+  case "$1" in
+    '' | *[!0-9]*) return 1 ;;
+  esac
+  [ "$1" -ge 1 ] && [ "$1" -le 65535 ]
 }
 
 update_env_var() {
@@ -181,8 +196,43 @@ else
   echo " - Skipping .env backup"
 fi
 
-read -r -p " - APP_PORT [${APP_PORT_DEFAULT}] = " NEW_APP_PORT
-NEW_APP_PORT="${NEW_APP_PORT:-$APP_PORT_DEFAULT}"
+APP_PORT_DEFAULT="$(strip_bind_address "$APP_PORT_DEFAULT")"
+if ! is_valid_port "$APP_PORT_DEFAULT"; then
+  echo -e "${RED} - APP_PORT_DEFAULT must be a port number between 1 and 65535.${RESET}"
+  exit 1
+fi
+
+CURRENT_APP_PORT=$(grep -m1 '^APP_PORT=' "$ENV_FILE" | cut -d= -f2- || true)
+if [ -n "$CURRENT_APP_PORT" ] && ! is_valid_port "$CURRENT_APP_PORT"; then
+  echo -e "${YELLOW} - Current APP_PORT is '${CURRENT_APP_PORT}', which Coolify cannot start with."
+  echo -e "   It must be a plain port number, so it will be replaced.${RESET}"
+fi
+
+echo " - APP_PORT must be a plain port number (no bind address), e.g. 3000."
+
+while true; do
+  read -r -p " - APP_PORT [${APP_PORT_DEFAULT}] = " NEW_APP_PORT || NEW_APP_PORT=""
+  NEW_APP_PORT="${NEW_APP_PORT:-$APP_PORT_DEFAULT}"
+
+  SANITIZED_APP_PORT="$(strip_bind_address "$NEW_APP_PORT")"
+  if [ "$SANITIZED_APP_PORT" != "$NEW_APP_PORT" ]; then
+    echo -e "${YELLOW} - Dropping the bind address: using '${SANITIZED_APP_PORT}' instead of '${NEW_APP_PORT}'.${RESET}"
+    NEW_APP_PORT="$SANITIZED_APP_PORT"
+  fi
+
+  if ! is_valid_port "$NEW_APP_PORT"; then
+    echo -e "${RED} - '${NEW_APP_PORT}' is not a valid port. Enter a number between 1 and 65535.${RESET}"
+    continue
+  fi
+
+  if [ "$NEW_APP_PORT" = "$TRAEFIK_DASHBOARD_PORT" ]; then
+    echo -e "${RED} - Port ${TRAEFIK_DASHBOARD_PORT} is reserved for the Traefik dashboard entrypoint. Pick another port.${RESET}"
+    continue
+  fi
+
+  break
+done
+
 update_env_var "APP_PORT" "$NEW_APP_PORT"
 
 # Step 3: Patch Traefik configuration

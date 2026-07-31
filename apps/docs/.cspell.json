@@ -61,6 +61,7 @@
     "armv",
     "libc",
     "nextjs",
-    "twimg"
+    "twimg",
+    "strconv"
   ]
 }
