@@ -1,5 +1,17 @@
 # coolify-tweaks
 
+## 4.1.2
+
+### Patch Changes
+
+- Fix sidebar header layout: move `display:flex` on header child divs into `@layer base` so Tailwind's `hidden` class correctly hides the collapsed logo. Also adds `justify-end` to the search button container and broadens the header selector to match both `pt-4` and `pt-6` variants.
+
+## 4.1.1
+
+### Patch Changes
+
+- Fix Coolify layout regressions affecting sidebar collapse, page content width, deployment action positioning, and resource grid styling.
+
 ## 4.1.0
 
 ### Features

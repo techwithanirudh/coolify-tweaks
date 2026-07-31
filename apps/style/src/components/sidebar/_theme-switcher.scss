@@ -1,0 +1,69 @@
+@use "globals" as *;
+
+.menu-item[title="Theme"] {
+  &:active {
+    scale: 1 !important;
+    translate: 0 !important;
+
+    &::after {
+      content: none !important;
+    }
+  }
+
+  & > div {
+    background: var(--sidebar-accent);
+    border-radius: var(--radius-sm);
+
+    button {
+      flex: 1;
+      color: var(--sidebar-foreground);
+      opacity: 0.55;
+      transition:
+        opacity 0.15s,
+        scale 0.15s;
+
+      &[class*="shadow-sm"] {
+        background: var(--sidebar) !important;
+        color: var(--sidebar-foreground) !important;
+        box-shadow: none !important;
+        opacity: 1;
+      }
+
+      &:hover {
+        background: var(--sidebar) !important;
+        color: var(--sidebar-foreground) !important;
+        opacity: 1;
+        scale: 1.15;
+      }
+    }
+  }
+
+  & > div button svg {
+    & > * {
+      display: none;
+    }
+  }
+
+  & > div button[title="Light"] svg {
+    @include icon("sun-fill", "fill");
+  }
+  & > div button[title="System default"] svg {
+    @include icon("monitor-fill", "fill");
+  }
+  & > div button[title="Dark"] svg {
+    @include icon("moon-fill", "fill");
+  }
+}
+
+// Cycle button (collapsed)
+li:has(div.menu-item[title="Theme"]) button.menu-item {
+  .menu-item-icon[x-show*="light"] {
+    @include icon("sun-fill", "fill");
+  }
+  .menu-item-icon[x-show*="system"] {
+    @include icon("monitor-fill", "fill");
+  }
+  .menu-item-icon[x-show*="dark"] {
+    @include icon("moon-fill", "fill");
+  }
+}

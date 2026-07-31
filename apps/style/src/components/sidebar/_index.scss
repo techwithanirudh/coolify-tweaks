@@ -1,10 +1,11 @@
 @use "globals" as *;
+@use "theme-switcher";
 
-/* Targets the main desktop sidebar container. 
-     Instead of fragile width/flex classes, it's identified by its fixed position on large screens 
+/* Targets the main desktop sidebar container.
+     Instead of fragile width/flex classes, it's identified by its fixed position on large screens
      and the fact that it contains the main navigation (`a[title="Dashboard"]`). This is much more stable. */
 div.lg\:fixed:has(nav a[title="Dashboard"]) {
-  width: var(--sidebar-width);
+  width: var(--navigation-sidebar-width);
 }
 
 nav[x-data]:has(a[title="Dashboard"]) {
@@ -18,11 +19,11 @@ nav[x-data]:has(a[title="Dashboard"]) {
   scrollbar-color: var(--accent) transparent;
 
   // header coolify logo
-  & > div[class*="flex pt-6 pb-4 pl-2"] {
+  & > div[class*="flex pt-6 pb-4 pl-2"],
+  & > div[class*="flex pt-4 pb-4 pl-2"] {
     // there are three divs in this container, pick the middle one
     & > div {
       height: 100%;
-      display: flex;
       align-items: center;
       justify-content: center;
       margin-inline: s(0.5);
@@ -30,6 +31,10 @@ nav[x-data]:has(a[title="Dashboard"]) {
 
     & > div:first-child {
       align-items: flex-start;
+    }
+
+    & > div:has(> button[title*="Search"]):not([class*="lg:hidden"]) {
+      justify-content: flex-end;
     }
   }
 }
@@ -41,7 +46,13 @@ nav[x-data]:has(a[title="Dashboard"]) > ul {
 /* Targets the sidebar header containing the team switcher.
      It's robustly selected by finding the `div` that directly contains the unique Livewire team selection dropdown. */
 nav[x-data] > div:has(select[wire\:model\.live="selectedTeamId"]) {
-  padding-block: s(4);
+  flex-shrink: 0;
+  padding: s(2) s(2) s(7);
+
+  select {
+    width: 100%;
+    min-height: s(10);
+  }
 }
 
 aside::-webkit-scrollbar {
@@ -58,9 +69,24 @@ nav > ul > li > ul > li {
   border-radius: var(--radius-lg);
 }
 
+@layer base {
+  .menu-item,
+  .sub-menu-item {
+    display: flex;
+  }
+
+  nav[x-data]:has(a[title="Dashboard"])
+    > div[class*="flex pt-6 pb-4 pl-2"]
+    > div,
+  nav[x-data]:has(a[title="Dashboard"])
+    > div[class*="flex pt-4 pb-4 pl-2"]
+    > div {
+    display: flex;
+  }
+}
+
 .menu-item,
 .sub-menu-item {
-  display: flex;
   align-items: center;
   width: 100%;
   min-width: 0;
@@ -87,6 +113,7 @@ nav > ul > li > ul > li {
       position: absolute;
       inset: 0;
       scale: 1.03;
+      pointer-events: none;
     }
   }
 }
@@ -148,6 +175,8 @@ $menu-icons: (
   "Sponsor\\ us": "heart-fill",
   "Send\\ us\\ feedback\\ or\\ get\\ help!": "chat-text-fill",
   "Logout": "sign-out-fill",
+  "Theme": "paint-brush-household-fill",
+  "What's\\ New": "sparkle-fill",
 );
 
 @each $title, $icon-name in $menu-icons {
@@ -183,7 +212,7 @@ $menu-icons: (
 /* Desktop push */
 @include mq(lg) {
   body:has(nav[class*="dark:border-coolgray-200"]) main {
-    padding-left: var(--sidebar-width);
+    padding-left: calc(var(--navigation-sidebar-width) + #{s(6)});
   }
 }
 

@@ -9,13 +9,14 @@ main {
 
 main {
   height: 100svh;
+  padding-block: s(18) !important;
 }
 
-/* Applies max-width and padding to the main content area. */
-main > div:first-child {
-  margin: auto;
+/* Applies max-width to both wrapped Livewire pages and pages with split direct children. */
+main > :not(template) {
+  width: 100%;
   max-width: 1280px;
-  padding-block: s(18);
+  margin-inline: auto;
 }
 
 body > div[x-data*="pageWidth"] {

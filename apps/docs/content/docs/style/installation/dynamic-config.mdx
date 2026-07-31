@@ -35,8 +35,15 @@ The steps below show how to do the same changes manually.
 Edit `/data/coolify/source/.env` and set Coolify's dashboard port to `3000` so the dashboard stays reachable even if Traefik is down:
 
 ```
-APP_PORT=0.0.0.0:3000
+APP_PORT=3000
 ```
+
+<Callout type="warn">
+  `APP_PORT` must be a plain port number. Coolify's compose also uses it in
+  `expose:`, which rejects a bind address, so a value like `0.0.0.0:3000` makes
+  the restart fail with `strconv.ParseUint: parsing "0.0.0.0:3000": invalid
+  syntax`.
+</Callout>
 
 ### 2. Update Traefik Compose
 
@@ -203,7 +210,7 @@ More information about custom themes can be found in the [Theming](/docs/style/t
 To revert:
 
 1. Delete `/data/coolify/proxy/dynamic/coolify-tweaks.yml`
-2. Reset `APP_PORT` in `/data/coolify/source/.env` to your previous value (default Coolify uses `0.0.0.0:8000`).
+2. Reset `APP_PORT` in `/data/coolify/source/.env` to your previous value (default Coolify uses `8000`).
 3. Remove:
 
 ```yaml

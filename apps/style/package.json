@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "main": "src/main.scss",
-  "version": "4.1.0",
+  "version": "4.1.2",
   "scripts": {
     "build": "pnpm with-env bun scripts/build.ts",
     "build:watch": "pnpm with-env bun scripts/watch.ts",
@@ -20,7 +20,7 @@
     "typescript": "catalog:"
   },
   "dependencies": {
-    "sass-embedded": "^1.99.0",
+    "sass-embedded": "^1.100.0",
     "zod": "catalog:"
   },
   "devDependencies": {
@@ -31,13 +31,13 @@
     "@types/bun": "catalog:",
     "@types/node": "catalog:",
     "@types/serve-handler": "^6.1.4",
-    "browserslist": "^4.28.2",
+    "browserslist": "^4.28.7",
     "commander": "^14.0.3",
     "cspell": "catalog:",
     "eslint": "catalog:",
-    "lightningcss": "^1.32.0",
-    "ora": "^9.4.0",
-    "postcss": "^8.5.14",
+    "lightningcss": "^1.33.0",
+    "ora": "^9.4.1",
+    "postcss": "^8.5.23",
     "postcss-cli": "^11.0.1",
     "postcss-load-config": "^6.0.1",
     "prettier": "catalog:",
