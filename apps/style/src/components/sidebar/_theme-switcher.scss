@@ -5,7 +5,9 @@
     scale: 1 !important;
     translate: 0 !important;
 
-    &::after { content: none !important; }
+    &::after {
+      content: none !important;
+    }
   }
 
   & > div {
@@ -37,17 +39,31 @@
   }
 
   & > div button svg {
-    & > * { display: none; }
+    & > * {
+      display: none;
+    }
   }
 
-  & > div button[title="Light"] svg { @include icon("sun-fill", "fill"); }
-  & > div button[title="System default"] svg { @include icon("monitor-fill", "fill"); }
-  & > div button[title="Dark"] svg { @include icon("moon-fill", "fill"); }
+  & > div button[title="Light"] svg {
+    @include icon("sun-fill", "fill");
+  }
+  & > div button[title="System default"] svg {
+    @include icon("monitor-fill", "fill");
+  }
+  & > div button[title="Dark"] svg {
+    @include icon("moon-fill", "fill");
+  }
 }
 
 // Cycle button (collapsed)
 li:has(div.menu-item[title="Theme"]) button.menu-item {
-  .menu-item-icon[x-show*="light"] { @include icon("sun-fill", "fill"); }
-  .menu-item-icon[x-show*="system"] { @include icon("monitor-fill", "fill"); }
-  .menu-item-icon[x-show*="dark"] { @include icon("moon-fill", "fill"); }
+  .menu-item-icon[x-show*="light"] {
+    @include icon("sun-fill", "fill");
+  }
+  .menu-item-icon[x-show*="system"] {
+    @include icon("monitor-fill", "fill");
+  }
+  .menu-item-icon[x-show*="dark"] {
+    @include icon("moon-fill", "fill");
+  }
 }
