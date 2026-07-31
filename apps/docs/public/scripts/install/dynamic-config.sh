@@ -203,9 +203,22 @@ if ! is_valid_port "$APP_PORT_DEFAULT"; then
 fi
 
 CURRENT_APP_PORT=$(grep -m1 '^APP_PORT=' "$ENV_FILE" | cut -d= -f2- || true)
-if [ -n "$CURRENT_APP_PORT" ] && ! is_valid_port "$CURRENT_APP_PORT"; then
-  echo -e "${YELLOW} - Current APP_PORT is '${CURRENT_APP_PORT}', which Coolify cannot start with."
-  echo -e "   It must be a plain port number, so it will be replaced.${RESET}"
+if [ -n "$CURRENT_APP_PORT" ]; then
+  SANITIZED_CURRENT_APP_PORT="$(strip_bind_address "$CURRENT_APP_PORT")"
+
+  if ! is_valid_port "$CURRENT_APP_PORT"; then
+    echo -e "${YELLOW} - Current APP_PORT is '${CURRENT_APP_PORT}', which Coolify cannot start with."
+    echo -e "   It must be a plain port number, so it will be replaced.${RESET}"
+  fi
+
+  if [ "$SANITIZED_CURRENT_APP_PORT" = "$TRAEFIK_DASHBOARD_PORT" ]; then
+    # Stock Coolify ships APP_PORT=8000, the port this installer hands to
+    # Traefik. Offering it back would suggest a value the loop always rejects.
+    echo " - Coolify is on ${TRAEFIK_DASHBOARD_PORT}, which Traefik takes over; suggesting ${APP_PORT_DEFAULT} instead."
+  elif is_valid_port "$SANITIZED_CURRENT_APP_PORT"; then
+    # Keep an already-configured port so re-running does not silently move it.
+    APP_PORT_DEFAULT="$SANITIZED_CURRENT_APP_PORT"
+  fi
 fi
 
 echo " - APP_PORT must be a plain port number (no bind address), e.g. 3000."
