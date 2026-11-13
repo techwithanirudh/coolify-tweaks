@@ -16,6 +16,13 @@
 
 </div>
 
+> [!IMPORTANT]
+> **This project is archived and no longer maintained.**
+>
+> Coolify now covers what this userstyle did. [v4.3](https://github.com/coollabsio/coolify/releases/tag/v4.3.0) redesigned the whole interface, and [v4.5.1](https://github.com/coollabsio/coolify/releases/tag/v4.5.1) added built-in custom themes with presets and share codes. Update Coolify and uninstall Coolify Tweaks. The styles here target the old UI and may clash with the new one.
+>
+> Thanks to everyone who used, starred, and contributed to it.
+
 ## About
 
 A userstyle that enhances Coolify's UI by applying opinionated tweaks, spacing, colors, and layout fixes, to make the UI more polished and user-friendly.
