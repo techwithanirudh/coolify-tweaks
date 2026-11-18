@@ -84,7 +84,7 @@ export function Hero() {
       <div className="flex flex-col items-center justify-center gap-2 self-stretch rounded-[3px]">
         <Link
           href="/docs/style#deprecated"
-          className="group/pill bg-background text-muted-foreground hover:text-foreground mb-4 inline-flex items-center gap-2 rounded-full border py-1 pr-3 pl-1 text-xs shadow-xs transition-colors sm:text-sm"
+          className="group/pill bg-background text-muted-foreground hover:text-foreground mb-4 inline-flex items-center gap-2 rounded-full border py-1 pr-3 pl-1 text-xs shadow-xs transition-colors sm:text-sm md:mb-3 lg:mb-2.5"
         >
           <span className="bg-primary/10 text-primary rounded-full px-2 py-0.5 font-medium">
             Archived
