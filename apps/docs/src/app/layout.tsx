@@ -7,7 +7,6 @@ import "@/styles/globals.css";
 
 import type { Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Link from "next/link";
 
 import { Body } from "./layout.client";
 import { Providers } from "./providers";
@@ -15,7 +14,6 @@ import { Providers } from "./providers";
 import "katex/dist/katex.css";
 
 import { NextProvider } from "fumadocs-core/framework/next";
-import { Banner } from "fumadocs-ui/components/banner";
 import { TreeContextProvider } from "fumadocs-ui/contexts/tree";
 
 const geist = Geist({
@@ -65,25 +63,7 @@ export default function Layout({ children }: LayoutProps<"/">) {
       <Body tree={source.getPageTree()}>
         <NextProvider>
           <TreeContextProvider tree={source.getPageTree()}>
-            <Providers>
-              <Banner variant="rainbow">
-                <span className="truncate px-4">
-                  <span className="font-medium">Archived.</span>{" "}
-                  <span className="max-sm:hidden">
-                    Coolify v4.3+ ships its own redesigned UI and themes, so
-                    this is only for older versions.
-                  </span>
-                  <span className="sm:hidden">Only for older Coolify.</span>{" "}
-                  <Link
-                    href="/docs/style#deprecated"
-                    className="font-medium underline underline-offset-4"
-                  >
-                    Learn more →
-                  </Link>
-                </span>
-              </Banner>
-              {children}
-            </Providers>
+            <Providers>{children}</Providers>
           </TreeContextProvider>
         </NextProvider>
       </Body>
