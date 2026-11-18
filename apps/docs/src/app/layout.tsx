@@ -68,18 +68,17 @@ export default function Layout({ children }: LayoutProps<"/">) {
             <Providers>
               <Banner variant="rainbow">
                 <span className="truncate px-4">
-                  <span className="sm:hidden">
-                    Archived: only for older Coolify.
-                  </span>
+                  <span className="font-medium">Archived.</span>{" "}
                   <span className="max-sm:hidden">
-                    Coolify Tweaks is archived. Coolify v4.3+ has a redesigned
-                    UI and built-in themes, so this is only for older versions.
-                  </span>{" "}
+                    Coolify v4.3+ ships its own redesigned UI and themes, so
+                    this is only for older versions.
+                  </span>
+                  <span className="sm:hidden">Only for older Coolify.</span>{" "}
                   <Link
                     href="/docs/style#deprecated"
                     className="font-medium underline underline-offset-4"
                   >
-                    Read more
+                    Learn more →
                   </Link>
                 </span>
               </Banner>
