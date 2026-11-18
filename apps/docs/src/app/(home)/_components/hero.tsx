@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Sparkles } from "lucide-react";
 import { useInterval } from "usehooks-ts";
 
 import { cn } from "@repo/ui";
@@ -82,6 +82,16 @@ export function Hero() {
   return (
     <div className="flex w-full flex-col items-center justify-start gap-6 pt-16 sm:pt-20 md:pt-24">
       <div className="flex flex-col items-center justify-center gap-2 self-stretch rounded-[3px]">
+        <Link
+          href="/docs/style#deprecated"
+          className="group/pill bg-background text-muted-foreground hover:text-foreground mb-4 inline-flex items-center gap-2 rounded-full border py-1 pr-3 pl-1 text-xs shadow-xs transition-colors sm:text-sm md:mb-3 lg:mb-2.5"
+        >
+          <span className="bg-primary/10 text-primary rounded-full px-2 py-0.5 font-medium">
+            Archived
+          </span>
+          Coolify now has built-in themes
+          <ArrowRight className="size-3.5 transition-transform group-hover/pill:translate-x-0.5" />
+        </Link>
         <div className="w-full px-2 text-center text-2xl leading-tight font-normal sm:px-4 sm:text-3xl md:px-0 md:text-4xl lg:text-5xl">
           Theme your{" "}
           <HoverCard>

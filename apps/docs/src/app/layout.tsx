@@ -32,7 +32,7 @@ export const metadata = createMetadata({
     default: "Coolify Tweaks",
   },
   description:
-    "Opinionated tweaks for Coolify: better spacing, layout, and colors.",
+    "Archived. Opinionated tweaks for older Coolify versions (pre-v4.3): better spacing, layout, and colors.",
   metadataBase: baseUrl,
   alternates: {
     types: {
