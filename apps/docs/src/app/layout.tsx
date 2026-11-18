@@ -7,6 +7,7 @@ import "@/styles/globals.css";
 
 import type { Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 
 import { Body } from "./layout.client";
 import { Providers } from "./providers";
@@ -74,12 +75,12 @@ export default function Layout({ children }: LayoutProps<"/">) {
                     Coolify Tweaks is archived. Coolify v4.3+ has a redesigned
                     UI and built-in themes, so this is only for older versions.
                   </span>{" "}
-                  <a
+                  <Link
                     href="/docs/style#deprecated"
                     className="font-medium underline underline-offset-4"
                   >
                     Read more
-                  </a>
+                  </Link>
                 </span>
               </Banner>
               {children}
