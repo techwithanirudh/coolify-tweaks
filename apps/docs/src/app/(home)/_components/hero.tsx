@@ -106,6 +106,12 @@ export function Hero() {
         <div className="text-muted-foreground flex w-full flex-col justify-center px-2 text-center text-sm leading-relaxed sm:px-4 sm:text-base md:px-0 md:text-lg">
           A theme that refines spacing, typography, and colors.
         </div>
+        <div className="mx-4 mt-4 max-w-xl rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-center text-sm leading-relaxed">
+          <span className="font-medium">This project is archived.</span> Coolify
+          v4.3 redesigned the dashboard and v4.5.1 added built-in custom themes,
+          so Coolify Tweaks only makes sense on older versions. On a recent
+          Coolify? Just use the built-in themes.
+        </div>
       </div>
       <div className="relative z-10 flex w-full flex-col items-center justify-center">
         <div
@@ -129,8 +135,8 @@ export function Hero() {
             className="group/button from-primary via-primary/80 to-primary/70 relative z-10 h-9 rounded-full bg-linear-to-r sm:px-6! md:h-11 md:px-8! lg:h-12 lg:px-12!"
             asChild
           >
-            <Link href="/docs/style">
-              Read The Docs
+            <Link href="/docs/style#deprecated">
+              Why it's archived
               <ArrowUpRight className="size-4 transition-transform group-hover/button:-rotate-12" />
             </Link>
           </Button>
